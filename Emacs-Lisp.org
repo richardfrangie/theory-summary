@@ -879,12 +879,16 @@ This forms the basis of a simple, singly linked list structure whose contents ca
    +------+------+   +------+------+   +------+------+
    |  *   |   *----->|  *   |   *----->|  *   |   *-----> nil
    +--|---+------+   +--|---+------+   +--|---+------+
-      |		    |		      |
-      v		    v		      v
+      |		     |		       |
+      v		     v		       v
       1                 2                 3
 
 
-In the computer, the electronic address of ‘1’ is recorded in a segment of computer memory along with the address that gives the electronic address of where the atom ‘2’ is located; and that address (the one that tells where ‘2’ is located) is kept along with an address that tells where the address for the atom ‘3’ is located.    
+In the computer, the electronic address of ‘1’ is recorded in a
+segment of computer memory along with the address that gives the
+electronic address of where the atom ‘2’ is located; and that address
+(the one that tells where ‘2’ is located) is kept along with an
+address that tells where the address for the atom ‘3’ is located.  
 
               sketched in a different manner
     --------------       --------------       --------------
@@ -893,7 +897,8 @@ In the computer, the electronic address of ‘1’ is recorded in a segment of c
    |      |       |     |      |       |     |      |       |
     --------------       --------------       --------------
   add of 1 add to 2     add of 2 add to 3    add of 3   nil
-Each arrow points to what the address is the address of, either an atom or another pair of addresses.
+Each arrow points to what the address is the address of, either an
+atom or another pair of addresses.
 
    *--*--*--nil
    |  |  |
@@ -1664,7 +1669,8 @@ Because quote is used so often in programs, Lisp provides a convenient read synt
 
 ;; Although the expressions both yield lists equal 
 (list '+ 1 2) ;; => (+ 1 2) ;; is a freshly-minted mutable list 
-'(+ 1 2)      ;; => (+ 1 2) ;; is a list built from conses that might be shared and shouldn't be modified
+'(+ 1 2)      ;; => (+ 1 2) ;; is a list built from conses that might 
+                            ;; be shared and shouldn't be modified
 
 #+end_src
 
@@ -2224,7 +2230,8 @@ and don't indent them.
 • Type \\[dired] to go into dired. (key of a command.)
 • clickable list of all keys of a given keymap name.
 \\{c-mode-map}
-• \\<c-mode-map> No visible effect. Tell emacs to use this keymap for displaying keys in the rest of this inline doc."
+• \\<c-mode-map> No visible effect. Tell emacs to use this keymap for 
+displaying keys in the rest of this inline doc."
   (interactive argument-passing-info)     ; optional
   body…)
 
@@ -3658,9 +3665,14 @@ Split STRING into substrings bounded by matches for SEPARATORS.
     (insert-file-contents filePath)
     (split-string (buffer-string) "\n" t)))
 
-;; Once you have a list, you can use mapcar to process each element in the list. If you don't need the resulting list, use mapc.
+;; Once you have a list, you can use mapcar to process each element in
+;; the list. If you don't need the resulting list, use mapc.
 
-;; Note: in elisp, it's more efficient to process text in a buffer than doing complicated string manipulation with string data type. But, if your lines are all short and you don't need to know the text that comes before or after current line, then, list of lines can be easier to work with.
+;; Note: in elisp, it's more efficient to process text in a buffer than
+;; doing complicated string manipulation with string data type. But, if
+;; your lines are all short and you don't need to know the text that
+;; comes before or after current line, then, list of lines can be easier
+;; to work with.
 
 #+end_src
 
@@ -4203,11 +4215,14 @@ Whenever you call regex functions such as [[re-search-forward]], [[string-match]
 
 <a href="…/this_and_that">this_and_that</a>
 
-<!-- you want to change the link text so that _ is replaced by space, like this: -->
+<!-- you want to change the link text so that _ is replaced by space,
+like this: -->
 
 <a href="…/this_and_that">this and that</a>
 
-<!-- First, you need to use regex find / replace to match the links. Then, you need a function to to transform the matched pattern. -->
+<!-- First, you need to use regex find / replace to match the
+links. Then, you need a function to to transform the matched
+pattern. -->
 
 #+end_src
 
@@ -4254,7 +4269,9 @@ To use this function, call `query-replace-regexp', then in the replacement promp
                   articlePath "\">" linkText2 "</a>" ))
     returnText ) )
 
-;; The (match-string 1) gives you the first captured string. (“1” is for 1st captured pattern, “2” for 2nd captured pattern. “0” is the entire match.).
+;; The (match-string 1) gives you the first captured string. (“1” is for
+;; 1st captured pattern, “2” for 2nd captured pattern. “0” is the entire
+;; match.).
 
 #+end_src
 
@@ -4289,9 +4306,13 @@ Highlight all lines that match REGEXP using FACE.
 
 (add-hook 'find-file-hook 'highlite-it)
 
-;;;; The add-hook line will make emacs call “highlite-it” whenever a file is opened. It works by adding the function “highlite-it” to the list in the variable find-file-hook.
+;; The add-hook line will make emacs call “highlite-it” whenever a file
+;; is opened. It works by adding the function “highlite-it” to the list
+;; in the variable find-file-hook.
 
-;; find-file is the function that open files. find-file-hook is a variable containing list of functions that will run when find-file is run.
+;; find-file is the function that open files. find-file-hook is a
+;; variable containing list of functions that will run when find-file is
+;; run.
 
 #+end_src
 
@@ -5003,7 +5024,8 @@ Normally, whenever a function is executed, Emacs sets the value of this-command 
 (if (not (eq last-command this-command))
 …
 )
-;;  the “this-command” and “last-command” are built-in variables. They store the command currently called or last called.
+;; the “this-command” and “last-command” are built-in variables. They
+;; store the command currently called or last called.
 
 #+end_src
 
@@ -5016,7 +5038,8 @@ Normally, whenever a function is executed, Emacs sets the value of this-command 
 (if (not (eq last-command this-command))
 …
 )
-;;  the “this-command” and “last-command” are built-in variables. They store the command currently called or last calle.
+;; the “this-command” and “last-command” are built-in variables. They
+;; store the command currently called or last calle.
 
 #+end_src
 
@@ -5270,7 +5293,8 @@ Fill paragraph at or after point.
 
 #+begin_src emacs-lisp
 
-;; This example shows how to temporarily change a pre-defined variable's value, then call a function whose behavior depends on the var.
+;; This example shows how to temporarily change a pre-defined variable's
+;; value, then call a function whose behavior depends on the var.
 (defun remove-line-breaks ()
   "Remove line endings in current paragraph."
   (interactive)
