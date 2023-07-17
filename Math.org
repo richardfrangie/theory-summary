@@ -114,14 +114,14 @@ Es un argumento deductivo para asegurar la verdad de una proposición matemátic
 *** Problema
 Un problema matemático consiste en buscar una determinada entidad matemática de entre un conjunto de entidades del mismo tipo que además satisfaga las llamadas condiciones del problema. Formalmente todo problema puede reducirse a una terna $( S , C ( ) , r )$  donde $S$  es un conjunto de objetos, $C ( s )$  es una condición (o condiciones) tal que dado $s \in S$  puede o no ser satisfecho (para ello la condición debe ser una fórmula lógica bien formada y cerrada). La resolución del problema es un procedimiento que determina cual es el único $r \in S$ que satisface $C ( r )$.
 
-Algunos problemas clásicos como el de la cuadratura del círculo u otros donde se trata de decidir si una afirmación $P$ es o no cierta, pueden reducirse a la forma de terna si tomamos como $S$  el conjunto de demostraciones posibles y $C ( X )$ como la condición de "$X$ es una demostración válida de que la afirmación del problema $P$ es cierta". Se dice que un problema no tiene solución cuando $\forall r\in S:\lnot C(r)$ es decir, $\lnot \exists r\in S:C(r)$.
+Algunos problemas clásicos como el de la cuadratura del círculo u otros donde se trata de decidir si una afirmación $P$ es o no cierta, pueden reducirse a la forma de terna si tomamos como $S$  el conjunto de demostraciones posibles y $C ( X )$ como la condición de " $X$ es una demostración válida de que la afirmación del problema $P$ es cierta". Se dice que un problema no tiene solución cuando $\forall r\in S:\lnot C(r)$ es decir, $\lnot \exists r\in S:C(r)$.
 
 *Ejemplo*:
-Un ejemplo sencillo sería encontrar los números enteros que satisfacen la siguiente igualdad $r^{2}-2r+1=0$. Aquí el conjunto sobre el que se plantea el problema es conjunto de los números enteros $\mathbb {Z}$, la condición es que se cumpla la anterior igualdad, y $r$, es el único número que la satisface (puede verse que  $r\,= 1$).
+Un ejemplo sencillo sería encontrar los números enteros que satisfacen la siguiente igualdad $r^2 - 2 r + 1 = 0$. Aquí el conjunto sobre el que se plantea el problema es conjunto de los números enteros $\mathbb {Z}$, la condición es que se cumpla la anterior igualdad, y $r$, es el único número que la satisface (puede verse que  $r\,= 1$).
 
 Más en general, la resolución de una ecuación algebraica es un problema matemático planteado sobre un conjunto $\mathbb {K}$ que tiene estructura de cuerpo o anillo algebraico consistente en buscar elementos $r\in \mathbb {K}$ que cumplan la siguiente igualdad:
 
-   $$C(x)=a_{n}\cdot x^{n}+a_{n-1}\cdot x^{n-1}+...+a_{1}\cdot x+a_{0}=0$$
+ $$C(x) = a_{n} \cdot x^{n} + a_{n-1} \cdot x^{n-1} + ... + a_{1} \cdot x + a_{0} = 0$$
 
 
 Si sólo existe un elemento que cumpla la anterior igualdad, esto se puede reformular como un problema del tipo $(\mathbb {K} ,C(r)=0,r)$, aunque normalmente el problema anterior admite más de una solución por lo que el problema matemático propiamente dicho es encontrar un conjunto de soluciones $S$, y por tanto cuando la solución no es única debemos resolver un problema de tipo $({\mathcal {P}}(\mathbb {K} ),\left[\forall x\in S:C(x)=0\right],S)$, donde $\mathcal {P}$ es el conjunto de las partes de  $\mathbb {K}$.
@@ -363,7 +363,7 @@ Una función f es continua en un punto $x_0$ que pertenezca al dominio de la fun
 
 Informalmente hablando, una aplicación es continua si transforma puntos que están cerca en puntos que están cerca, es decir, si respeta la "relación de cercanía". Esto además quiere decir que una función continua no "rompe" los que está unido y no "pega" lo que está separado. (extracto del artículo [[https://es.wikipedia.org/wiki/Topolog%C3%ADa][Topología en wikipedia]])
 
-*Nota*: una función es continua si los límites laterales coinciden $\lim_{x \to a^{+}}f(x)=\lim_{x \to a^{-}}f(x)$ sin embargo si los límites laterales coinciden no garantiza que sea continua (una función con un hueco en la gráfica ( $y=2$ con un hueco en $x=5$)).
+*Nota*: una función es continua si los límites laterales coinciden $\lim_{x \to a^+} f(x) = \lim_{x \to a^-} f(x)$ sin embargo si los límites laterales coinciden no garantiza que sea continua (una función con un hueco en la gráfica ( $y=2$ con un hueco en $x=5$)).
 
 *Ejemplo*:
 - Un ejemplo de una función que no es continua es la representada como la tarifa en un taxi, ya que esta empieza en un determinado número y después va saltando a otro número cada vez que se cambia de sección.
@@ -398,14 +398,14 @@ Si además existe otra aplicación sobreyectiva $g:B\to A$, entonces puede proba
 
 **** Función inversa
 ***** Definición
-Sea $f$ una función real biyectiva cuyo dominio sea el conjunto $I$ y cuya imagen sea el conjunto $J$. Entonces, la función inversa de $f$, denotada $f^{-1}$, es la función de dominio $J$ y codominio $I$ definida por la siguiente regla:
+Sea $f$ una función real biyectiva cuyo dominio sea el conjunto $I$ y cuya imagen sea el conjunto $J$. Entonces, la función inversa de $f$, denotada $f^{-1}$ , es la función de dominio $J$ y codominio $I$ definida por la siguiente regla:
 
-$$f(x)=y \Leftrightarrow f^{-1}(y)=x$$
+$$f(x) = y \Leftrightarrow f^{-1}(y) = x$$
 
-Destaquemos que $f^{-1}$, al igual que $f$, es una aplicación biyectiva, que queda determinada de modo único por $f$ y que cumple:
+Destaquemos que $f^{-1}$ , al igual que $f$ , es una aplicación biyectiva, que queda determinada de modo único por $f$ y que cumple:
 
-1. $f^{-1} \circ f = \operatorname {id}_{i}$
-2. $f \circ {f}^{-1}=\operatorname{id}_{j}$
+1. $f^{-1} \circ f = \operatorname{id}_{i}$
+2. $f \circ {f}^{-1} = \operatorname{id}_{j}$
 
 *Nota*:
 Para que una función tenga inversa debe ser siempre creciente o decreciente (por ejemplo, si es una parabola, dos puntos en $x$ van a tener un mismo $y$, lo cual no sería una función).
@@ -413,8 +413,8 @@ Para que una función tenga inversa debe ser siempre creciente o decreciente (po
 ***** Propiedades
 Dadas dos aplicaciones y las propiedades:
 
-1. $g \circ f=\operatorname{id}_{I}$
-2. $f \circ g=\operatorname{id}_{J}$
+1. $g \circ f = \operatorname{id}_{I}$
+2. $f \circ g = \operatorname{id}_{J}$
 
 entonces:
 
@@ -427,13 +427,13 @@ Este último punto se usa como definición de función inversa.
 *Propiedades algebraicas*:
 La función inversa de la composición de dos funciones, siempre que tengan su función inversa, viene dada por la fórmula
 
-$${(g\circ f)}^{-1}={f}^{-1}\circ {g}^{-1}$$
+$$(g \circ f)^{-1} = {f}^{-1} \circ {g}^{-1}$$
 
 *Continuidad*:
-$f$ y ${f}^{-1}$ son simultáneamente continuas: Si una lo es, también lo será la otra. Sin embargo, es posible que ninguna lo sea: Por ejemplo se puede definir $f$ así: si $x$ es racional, $f(x)=x$, y si es irracional, $f(x)=-x$. En este caso muy particular $f={f}^{-1}$.
+$f$ y $f^{-1}$ son simultáneamente continuas: Si una lo es, también lo será la otra. Sin embargo, es posible que ninguna lo sea: Por ejemplo se puede definir $f$ así: si $x$ es racional, $f(x)=x$, y si es irracional, $f(x)=-x$. En este caso muy particular $f = f^{-1}$.
 
 *Gráfica*:
-Las gráficas que representan $f$ y $g={f}^{-1}$ son simétricas con relación a la primera diagonal, es decir, la recta $y=x$. En efecto, esta simetría envía un punto cualquiera $M(x,y)$ sobre el punto $M'(y,x)$. $M$ pertenece a la curva de $f$ si y sólo si $M'$ pertenece a la de $g$, porque la primera condición se escribe $y=f(x)$ y la segunda $x=g(y)$ y son por definición equivalentes.
+Las gráficas que representan $f$ y $g = f^{-1}$ son simétricas con relación a la primera diagonal, es decir, la recta $y=x$. En efecto, esta simetría envía un punto cualquiera $M(x,y)$ sobre el punto $M'(y,x)$. $M$ pertenece a la curva de $f$ si y sólo si $M'$ pertenece a la de $g$, porque la primera condición se escribe $y=f(x)$ y la segunda $x=g(y)$ y son por definición equivalentes.
 
 **** Paridad
 ***** Función par
@@ -448,7 +448,8 @@ Si consideramos el punto $(x,f(x))$, nos interesa el comportamiento de $f$ cuand
 - El cociente de dos funciones pares es una función par.
 - El producto de una función par y una función impar es una función impar.
 - Toda función definida sobre toda la línea real puede descomponerse en la suma de una función par y una impar:
-$$f(x)=\left({\frac {f(x)+f(-x)}{2}}\right)+\left({\frac {f(x)-f(-x)}{2}}\right)={f}_{p}(x)+{f}_{i}(x)$$
+
+$$f(x)=\left({\frac {f(x)+f(-x)}{2}}\right)+\left({\frac {f(x)-f(-x)}{2}}\right) = f_p (x) + f_i (x)$$
 
 ***** Función impar
 Si consideramos el punto $(x,f(x))$, nos interesa el comportamiento de $f$ cuando se toma el opuesto $-x$. Puede suceder que $f(x)$ obtenga $-f(x)$ de modo que el resultado no es el mismo que el de $f(x)$, en cuyo caso se trata de una función impar. Es decir:
@@ -462,7 +463,8 @@ Desde un punto de vista geométrico, una función impar posee una simetría rota
 - El producto de dos funciones impares es una función par.
 - El cociente de dos funciones impares es una función par.
 - Toda función definida sobre toda la línea real puede descomponerse en la suma de una función par y una impar:
-$$f(x)=\left({\frac {f(x)+f(-x)}{2}}\right)+\left({\frac {f(x)-f(-x)}{2}}\right)=f_{p}(x)+f_{i}(x)$$
+
+$$f(x)=\left({\frac {f(x)+f(-x)}{2}}\right)+\left({\frac {f(x)-f(-x)}{2}}\right) = f_p (x) + f_i (x)$$
 
 **** Función implícita
 Una función $y(x)$ está dada de forma implícita cuando está definida de la forma $F(x,y)=0$, en vez de estarlo en su forma explícita, $y=f(x)$, más habitual.
@@ -486,11 +488,11 @@ $$A(x) = \sum_{n=0}^{\infty} a_n x^n = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$
 *Ejemplo*:
 La sucesión de Fibonacci definida por la recurrencia
 
-$f_{n+1}=f_{n}+f_{n-1},\quad n>0,\qquad f_{0}=0,f_{1}=1$ es la sucesión $0,1,1,2,3,5,8,13,\dots$
+$f_{n+1} = f_n + f_{n-1} , \quad n>0 , \qquad f_0 = 0 , f_1 = 1$ es la sucesión $0,1,1,2,3,5,8,13,\dots$
 
-Su función generadora es $F(x)={\frac {x}{1-x-x^{2}}}$ puesto que el desarrollo en serie de potencias de tal función es
+Su función generadora es $F(x) = \frac{x}{1 - x - x^2}$ puesto que el desarrollo en serie de potencias de tal función es
 
-${\frac {x}{1-x-x^{2}}}=0+1\cdot x+1\cdot x^{2}+2x^{3}+3x^{4}+5x^{5}+8x^{6}+13x^{7}+\cdots$ y los coeficientes de tal desarrollo son precisamente $0,1,1,2,3,5,8,13,\dots$
+$\frac{x}{1 - x - x^2} = 0 + 1 \cdot x + 1 \cdot x^2 + 2 x^3 + 3 x^4 + 5 x^5 + 8 x^6 + 13 x^7 + \cdots$ y los coeficientes de tal desarrollo son precisamente $0,1,1,2,3,5,8,13,\dots$
 
 *Ejemplo*: Aplicación de la función generadora
 ¿Calcular el número posible de combinaciones que existe para que la suma de dos números de resultado 6, donde el primer número esta entre 1 y 3 y el segundo número esta entre 3 y 4?
@@ -539,7 +541,7 @@ El teorema puede parecer trivial para conjuntos finitos, pero el enunciado del t
 *** Teorema de la función inversa
 Proporciona las condiciones suficientes para que una aplicación (función) sea invertible localmente en un entorno de un punto $p$ en términos de su derivada en dicho punto. Técnicamente es un teorema de existencia local de la función inversa.
 
-Sea $f:A\subseteq \mathbb {R} ^{n}\to \mathbb {R} ^{n}$ una función $C^1$. Supongamos que para $a \in A$, la diferencial $Df(a)$, es invertible y que $f(a)=b$. Entonces existen abiertos $U,V\subset \mathbb {R} ^{n}$ tales que $a\in U$, $b\in V$ y $f:U\rightarrow V$ es una función biyectiva por lo que la inversa $f^{-1}:V\rightarrow U$ de $f$, es $C^1$ y por lo tanto $Df^{-1}(b)=[Df(a)]^{-1}$.
+Sea $f : A \subseteq \mathbb R^n \to \mathbb R^n$ una función $C^1$. Supongamos que para $a \in A$, la diferencial $Df(a)$, es invertible y que $f(a)=b$. Entonces existen abiertos $U,V \subset \mathbb R^n$ tales que $a\in U$, $b\in V$ y $f:U\rightarrow V$ es una función biyectiva por lo que la inversa $f^{-1} : V \rightarrow U$ de $f$, es $C^1$ y por lo tanto $D f^{-1} (b) = [ D f (a) ]^{-1}$.
 
 * Teoría de Números
 ** Definición
@@ -614,11 +616,11 @@ Asumiendo por simplicidad que tanto $a$ como $b$ son números positivos, uno pue
 Teorema fundamental de la Aritmética o teorema de *factorización única* afirma que todo entero positivo mayor que 1 es un número primo o bien un único producto de números primos.
 
 Todo entero positivo $n > 1$ puede ser representado exactamente de una única manera como un producto de potencias de números primos:
-$$n=p_{1}^{\alpha_1}  p_{2}^{\alpha_2}  \cdots p_{k}^{\alpha_k} = \prod_{i=1}^{k} p_{i}^{\alpha_i}$$
+$$n = p_1^{\alpha_1}  p_2^{\alpha_2}  \cdots p_k^{\alpha_k} = \prod_{i=1}^k p_i^{\alpha_i}$$
 
 El teorema establece la importancia de los números primos. Estos son los «ladrillos básicos» con los que se «construyen» los enteros positivos, en el sentido de que todo entero positivo puede construirse como producto de números primos de una única manera. Conocer la factorización en primos de un número permite encontrar todos sus divisores, primos o compuestos.
 
-Por ejemplo, la factorización del número $6936$ muestra que cualquier divisor positivo de $6936$ debe tener la forma: $2^{a}\cdot 3^{b}\cdot {17}^{c}$ , donde $0 \le a \le 3$ (4 valores posibles), $0 \le b \le 1$ (2 valores posibles), y $0 \le c \le 2$ (3 valores posibles). Multiplicando el número de opciones independientes se obtiene un total de $4\cdot 2\cdot 3=24$ divisores positivos.
+Por ejemplo, la factorización del número $6936$ muestra que cualquier divisor positivo de $6936$ debe tener la forma: $2^a \cdot 3^b \cdot 17^c$ , donde $0 \le a \le 3$ (4 valores posibles), $0 \le b \le 1$ (2 valores posibles), y $0 \le c \le 2$ (3 valores posibles). Multiplicando el número de opciones independientes se obtiene un total de $4\cdot 2\cdot 3=24$ divisores positivos.
 
 Una vez que se conoce la factorización en primos de dos números, se pueden hallar fácilmente su máximo común divisor y mínimo común múltiplo. Sin embargo, si no se conoce la factorización en primos, usar el [[Algoritmo de Euclides][algoritmo de Euclides]] en general requiere muchos menos cálculos que factorizar los dos números.
 
@@ -657,7 +659,7 @@ Cada fila representa un coeficiente binomial. Esta fórmula o regla explica que 
 *** Teorema del Binomio Newton
 Fórmula que proporciona el desarrollo de la n-ésima potencia de un binomio:
 
-$$(x+y)^n=\sum_{k=0}^n \binom{n}{k} x^{n-k}y^k$$
+$$(x+y)^n=\sum_{k=0}^n \binom{n}{k} x^{n-k} y^k$$
 
 donde $\binom{n}{k}$ es el coeficiente binomial, el cual representa el número de formas de escoger $k$ elementos de un conjunto con $n$ elementos.
 
@@ -684,7 +686,7 @@ por lo que $P(1)$ es verdadera.
 
 *Paso inductivo*: Se asume que $P(k)$ es verdadera y se quiere mostrar que $P(k+1)$ es verdadera
 
-$$\begin{aligned}(1+2+\cdots +k)+(k+1)&={\frac {k(k+1)}{2}}+(k+1)\\&={\frac {k(k+1)+2(k+1)}{2}}\\&={\frac {k^{2}+k+2k+2}{2}}\\&={\frac {(k+1)(k+2)}{2}}\\&={\frac {(k+1)((k+1)+1)}{2}}\end{aligned}$$
+$$\begin{aligned}(1+2+\cdots +k)+(k+1) & = {\frac {k(k+1)}{2}}+(k+1) \\& = {\frac {k(k+1)+2(k+1)}{2}} \\& = {\frac {k^{2}+k+2k+2}{2}} \\& = {\frac {(k+1)(k+2)}{2}} \\& = {\frac {(k+1)((k+1)+1)}{2}}\end{aligned}$$
 
 mostrando de hecho que $P(k+1)$ es verdadera.
 Puesto que se han realizado los dos pasos de la inducción matemática tanto la base como el paso inductivo, la declaración $P ( n )$ se cumple para todo número natural  $n$.
@@ -697,28 +699,28 @@ El mínimo común múltiplo de dos o más números naturales es el menor múltip
 
 *Generalización*:
 
- $$\operatorname {mcm} \left({\frac {a}{b}},{\frac {c}{d}}\right)={\frac {\operatorname {mcm} (a,c)}{\operatorname {mcd} (b,d)}$$
+ $$ mcm \left({\frac {a}{b}} , {\frac {c}{d}}\right) = \frac{mcm (a,c)}{MCD (b,d)}$$
 
 *** M.C.D.
 El máximo común divisor de dos o más números enteros es el mayor número entero que los divide sin dejar residuo alguno (sin que sobre algún número).
 
 El máximo común divisor también puede ser calculado usando el mínimo común múltiplo. Si $a$ y $b$ son distintos de cero, entonces el máximo común divisor de $a$ y $b$ se obtiene mediante la siguiente fórmula, que involucra el mínimo común múltiplo de $a$ y $b$:
 
-$$\operatorname {MCD} (a,b)={\frac {a\cdot b}{\operatorname {mcm} (a,b)}}$$
+$$MCD (a,b)={\frac {a\cdot b}{mcm (a,b)}}$$
 
 
 *Aplicaciones*:
 - Para simplificar fracciones se puede usar el MCD. Por ejemplo, simplificar $48/60$ se calcula primero $MCD(60,48)=12$ se divide el numerador y denominador por $12$ y se consigue la fración simplificada.
-- Para calcular el mínimo común múltiplo de dos números. En efecto, el producto de los dos números es igual al producto de su máximo común divisor por su mínimo común múltiplo. Así, para calcular el mínimo común múltiplo de $48$ y de $60$, calculamos primero su mcd, $12$, siendo su mínimo común múltiplo $\frac{48\cdot 60}{12}}=240$.
+- Para calcular el mínimo común múltiplo de dos números. En efecto, el producto de los dos números es igual al producto de su máximo común divisor por su mínimo común múltiplo. Así, para calcular el mínimo común múltiplo de $48$ y de $60$, calculamos primero su mcd, $12$, siendo su mínimo común múltiplo $\frac{48 \cdot 60}{12}=240$.
 
 *Generalización*:
 
-$$\operatorname {mcd} \left({\frac {a}{b}},{\frac {c}{d}}\right)={\frac {\operatorname {mcd} (a,c)}{\operatorname {mcm} (b,d)}}$$
+$$mcd \left({\frac {a}{b}},{\frac {c}{d}}\right)={\frac {MCD (a,c)}{mcm (b,d)}}$$
 
 *** Algoritmo de Euclides
 Es un método eficiente para calcular el máximo común divisor, utiliza el algoritmo de la división junto al hecho que el MCD de dos números también divide al resto obtenido de dividir el mayor entre el más pequeño.
 
-$$\operatorname {MCD} (a,b)=\operatorname {MCD} (b,a\,\mathrm {mod} \,b)$$
+$$MCD (a,b) = MCD (b , a \, \mathrm {mod} \, b)$$
 
 *Ilustración*:
 1. Dados dos segmentos $AB$ y $CD$ (con $AB>CD$), restamos $CD$ de $AB$ tantas veces como sea posible. Si no hay residuo, entonces $CD$ es la máxima medida común.
@@ -823,7 +825,7 @@ Un caso muy común se refiere al caso en que $Y$ sea una subestructura de $X$ (p
 Si $A$ es un conjunto y $\sim$ una relación de equivalencia, entonces las clases de equivalencia forman una partición del conjunto $A$.
 
 *Ejemplo*:
-Sea $Z$ el conjunto de todos los números enteros y sea $\bar{k}$ el conjunto de todos los enteros definidos por la relación de equivalencia de congruencia $a \equiv k \, mod \, n$ es decir, las clases de equivalencia, entonces el conjunto  $Z_n$ definido por todos los conjuntos $\bar{k}$ para un $n$ fijo primo, es el conjunto cociente $Z_n=\{\bar{0},\bar{1},\bar{2}, \dtos, \overline{n-1}\}=N/\sim$. Es importante notar que las clases de equivalencias son *subconjuntos* del conjunto de los enteros $\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1} \subset Z$, es decir, $\bar{0}\cup\bar{1}\cup\bar{2}\cup \dots\cup \overline{n-1}= Z$ pero las clases de equivalencias son *elementos* del conjunto cociente $\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1} \in N/\sim$, es decir $N/\sim=\{\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1} \}$.
+Sea $Z$ el conjunto de todos los números enteros y sea $\bar{k}$ el conjunto de todos los enteros definidos por la relación de equivalencia de congruencia $a \equiv k \, mod \, n$ es decir, las clases de equivalencia, entonces el conjunto  $Z_n$ definido por todos los conjuntos $\bar{k}$ para un $n$ fijo primo, es el conjunto cociente $Z_n=\{\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1}\}=N/\sim$. Es importante notar que las clases de equivalencias son *subconjuntos* del conjunto de los enteros $\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1} \subset Z$, es decir, $\bar{0}\cup\bar{1}\cup\bar{2}\cup \dots\cup \overline{n-1}= Z$ pero las clases de equivalencias son *elementos* del conjunto cociente $\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1} \in N/\sim$, es decir $N/\sim=\{\bar{0},\bar{1},\bar{2}, \dots, \overline{n-1} \}$.
 
 *Ejemplo*:
 Sea el producto cartesiano de los números enteros con los números enteros excluyendo el cero $Z \times Z^*$ y sean $(a,b),(c,d) \in Z \times Z^*$ se define la relación de equivalencia $(a,b) \sim (c,d)$ sí y solo sí $a \times d = b \times c$, el conjunto cociente que se genera a través de esto es el conjunto de los números racionales $Q=Z \times Z^* / \sim$. Normalmente denotamos la clase del par $(a,b)$ como la fracción $C(a,b)= \frac{a}{b}$, así se tendría por ejemplo, la clase de todas las fracciones multiplos de dos $\{1/2\,,\,2/4\,,\,4/8\,,\,8/16\,, \dots\}$.
@@ -864,15 +866,15 @@ Todos los cuerpos finitos tienen cardinal potencia de un primo, por ejemplo, el 
 
 *** Pequeño teorema de Fermat y ejemplo
 **** Teorema de Fermat
-Si $p$ es un número primo, entonces, para cada número natural $a$, con $a>0$ se tiene $a^{p} \equiv a \, \, (mod \, p)$ .
+Si $p$ es un número primo, entonces, para cada número natural $a$, con $a>0$ se tiene $a^p \equiv a \, \, (mod \, p)$ .
 
 Otro enunciado equivalente que se deduce de este es:
 Si $p$ es un número primo, entonces, para cada número natural $a$, con $a>0$ , coprimo con $p$ se tiene $a^{p-1} \equiv 1 \, \, (mod \, p)$ .
 
-/Demostración/
+/Demostración/:
 Como $a^{p} \equiv a \, \, (mod \, p)$  se tiene $a^p - a$ es divisible por $p$ es decir  $a^p - a\, |\, p$
-Sacando factor común $a$ se tiene $a(a^{p-1} - 1) | p$ por lo que $a$ es divisible por $p$ o $a^{p-1}-1$ es divisible por $p$
-Como por hipótesis $a$ es coprimo con $p$ entonces $a^{p-1}-1$ tiene que ser divisible por $p$, es decir $a^{p-1}-1 \, | \, p$
+Sacando factor común $a$ se tiene $a (a^{p-1} - 1) | p$ por lo que $a$ es divisible por $p$ o $a^{p-1} - 1$ es divisible por $p$
+Como por hipótesis $a$ es coprimo con $p$ entonces $a^{p-1} - 1$ tiene que ser divisible por $p$, es decir $a^{p-1} - 1 \, | \, p$
 De donde se tiene $a^{p-1} \equiv 1 \, \, (mod \, p)$ .
 
 **** Recíproco del Teorema de Fermat
@@ -881,28 +883,28 @@ Si $p$ es compuesto, entonces $a^{p-1}$ es poco probable que sea congruente con 
 
 Otra forma de ver el Test de Primalidad es con el *contrarecíproco*:
 Encontrar un número $a$ menor que $p$ que no cumpla el teorema.
-Si éxiste un $a<p$ tal que $a^{p-1} \not\equiv  1 (mod \, p)$ entonces $p$ es compuesto, es decir, no primo.
+Si éxiste un $a < p$ tal que $a^{p-1} \not \equiv  1 (mod \, p)$ entonces $p$ es compuesto, es decir, no primo.
 
 *Ejemplo*:
 Supongamos que se quiere determinar si $n = 221$ es primo. Escogiendo aleatoriamente $1 < a < 221$, digamos $a = 38$, se puede chequear la expresión para determinar si se cumple:
 
-$$a^{n-1}=38^{220}\equiv 1{\pmod {221}}$$
+$$a^{n-1} = 38^{220} \equiv 1 {\pmod {221}}$$
 
 luego $221$ puede ser primo, o también puede que $38$ sea un número que falsee el test, de manera que tomamos otro a, esta vez $24$:
 
-$$a^{n-1}=24^{220}\equiv 81\not \equiv 1{\pmod {221}}$$
+$$a^{n-1} = 24^{220} \equiv 81 \not \equiv 1 {\pmod {221}}$$
 
 Luego $221$ es compuesto y $38$ era en efecto un número que falsaba el test. Además, $24$ es un testigo de Fermat de la no primalidad de $221$.
 
 *Nota*:
-El programa de cifrado PGP aprovecha esta propiedad del teorema para comprobar si los grandes números aleatorios que elige son primos. Comprueba los valores que llamaremos $n$ utilizando 4 valores de $a$ (llamados testigos) utilizando la fórmula anterior. Estos cuatro valores son $2$, $3$, $5$ y $7$, los cuatro primeros números primos. Si $1 \equiv 2^{n-1} \equiv 3^{n-1} \equiv 5^{n-1} \equiv 7^{n-1} (mod \, n)$, entonces sabe que el número $n$ es probablemente primo. Si de alguna de las expresiones anteriores se obtiene un valor distinto de $1$, entonces $n$ es definitivamente compuesto. Utilizar un número mayor de testigos disminuye la probabilidad de que un número compuesto $n$ parezca primo, aunque muy pocos números grandes pueden engañar a los cuatro testigos ya mencionados.
+El programa de cifrado PGP aprovecha esta propiedad del teorema para comprobar si los grandes números aleatorios que elige son primos. Comprueba los valores que llamaremos $n$ utilizando 4 valores de $a$ (llamados testigos) utilizando la fórmula anterior. Estos cuatro valores son $2$, $3$, $5$ y $7$, los cuatro primeros números primos. Si $1 \equiv 2^{n-1} \equiv 3^{n-1} \equiv 5^{n-1} \equiv 7^{n-1} (mod \, n)$ , entonces sabe que el número $n$ es probablemente primo. Si de alguna de las expresiones anteriores se obtiene un valor distinto de $1$, entonces $n$ es definitivamente compuesto. Utilizar un número mayor de testigos disminuye la probabilidad de que un número compuesto $n$ parezca primo, aunque muy pocos números grandes pueden engañar a los cuatro testigos ya mencionados.
 
 **** Ejemplo potencia de un número
-Calcular $3$ elevado a $1158$ en módulo $13$, es decir, $3^{1158}=\bar{3}^{1158}$ en $Z_{13}$:
+Calcular $3$ elevado a $1158$ en módulo $13$, es decir, $3^{1158} = \bar{3}^{1158}$ en $Z_{13}$ :
 
-El teorema de Fermat afirma que para $p$ primo se tiene $a^{p-1} \equiv 1 \, \, (mod \, p)$ , es decir, si se esta en el cuerpo $Z_p$ se tiene que $\bar{a}^{p-1}=1$.
-Como $p=13$ se tiene que $p-1=12$, ahora para cualquier entero $a$ en el espacio $Z_{13}$ se tiene por el teorema de Fermat  $\bar{a}^{12}=1$.
-Ahora dividiendo $1158$ entre $12$ se obtiene que $1158=12\times q + 6$  por lo tanto $\bar{3}^{1158}=\bar{3}^{12 \cdot q + 6}=(\bar{3}^{12})^q \cdot \bar{3}^6=(\bar{1})^q \cdot \overline{729}=\overline{729}=\bar{1}$ , ya que $\overline{729}\, mod \,13 = \bar{1}$.
+El teorema de Fermat afirma que para $p$ primo se tiene $a^{p-1} \equiv 1 \, \, (mod \, p)$ , es decir, si se esta en el cuerpo $Z_p$ se tiene que $\bar{a}^{p-1} = 1$ .
+Como $p=13$ se tiene que $p-1=12$, ahora para cualquier entero $a$ en el espacio $Z_{13}$ se tiene por el teorema de Fermat  $\bar{a}^{12} = 1$ .
+Ahora dividiendo $1158$ entre $12$ se obtiene que $1158=12\times q + 6$  por lo tanto $\bar{3}^{1158} = \bar{3}^{12 \cdot q + 6} = (\bar{3}^{12})^q \cdot \bar{3}^6 = (\bar{1})^q \cdot \overline{729} = \overline{729} = \bar{1}$ , ya que $\overline{729}\, mod \,13 = \bar{1}$.
 Por lo tanto en lugar de efectuar $3$ a la $1158$ el cálculo se redujo a calcular $3$ a la $6$ y otras pocas operaciones sencillas.
 
 **** Fermat y Euler
@@ -936,7 +938,7 @@ Si $p\mid ab$ entonces $p\mid a\lor p\mid b$
 
 *Generalización*:
 Si $n$ es un número entero y divide a un producto $ab$ y es coprimo con uno de los factores, entonces $n$ divide al otro factor. Es decir
-Si $n\mid ab$ y $\operatorname {mcd} (n,a)=1$, entonces $n\mid b$
+Si $n\mid ab$ y $mcd (n,a)=1$ , entonces $n\mid b$
 
 *** Test de primalidad
 Es un algoritmo que, dado un número de entrada $n$, no consigue verificar la hipótesis de un teorema cuya conclusión es que $n$ es compuesto. Esto es, un test de primalidad sólo conjetura que “ante la falta de certificación sobre la hipótesis de que $n$ es compuesto podemos tener cierta confianza en que se trata de un número primo”. Esta definición supone un grado menor de confianza que lo que se denomina prueba de primalidad (o test verdadero de primalidad), que ofrece una seguridad matemática al respecto.
@@ -960,7 +962,7 @@ donde $|\cdot|$ significa la cardinilidad del conjunto descrito. La función  $\
 **** Propiedades
 
 1. $\Phi (p) = p-1$ si $p$ es primo.
-2. $\Phi (p^k)=(p-1)p^{k-1}$ si $p$ es primo y $k$ un número natural.
+2. $\Phi (p^k) = (p-1) p^{k-1}$ si $p$ es primo y $k$ un número natural.
 3.  $\Phi$ es una función multiplicativa: si $m$ y $n$ son primos entre si, entonces  $\Phi(mn) = \Phi (m) \Phi (n)$ .
 
 *** Teorema de los números primos
@@ -996,7 +998,7 @@ Un racional es *decimal periódico mixto* cuando los divisores del denominador c
 Los racionales tienen estructura de cuerpo, que es más fuerte que la de anillo, esto debido a que poseen inverso para el producto además de inverso para la suma, lo cual permite hacer lo que comunmente conocemos como dividir, que no es mas que multiplicar por el inverso.
 
 *** Una forma de formar un número como 0,0110001
-Se realiza mediante esta fórmula $f(S)=\sum_{n \in S} 10^{-n}$ con $S \in \mathbb P(\mathbb N)$ y $f(S) \in (0,1) \subset \mathbb R$.
+Se realiza mediante esta fórmula $f(S) = \sum_{n \in S} 10^{-n}$ con $S \in \mathbb P(\mathbb N)$ y $f(S) \in (0,1) \subset \mathbb R$.
 
 Por ejemplo: $f({2,3,7})=0,0110001$, es decir, un número lleno de ceros y un 1 en las pocisiones 2, 3 y 7.
 
@@ -1083,11 +1085,11 @@ Estudia conceptos tales como vectores, matrices, espacio dual, sistemas de ecuac
 
 Dicho de otra forma, el Álgebra lineal es la rama de las matemáticas que se ocupa de las ecuaciones lineales como:
 
-$$a_{1}x_{1}+\cdots +a_{n}x_{n}=b$$
+$$a_1 x_1 + \cdots + a_n x_n = b$$
 
 y aplicaciones lineales tales como:
 
-$$(x_{1},\ldots ,x_{n})\mapsto a_{1}x_{1}+\cdots +a_{n}x_{n}$$
+$$(x_1, \ldots , x_n) \mapsto a_1 x_1 + \cdots + a_n x_n$$
 
 y sus representaciones en espacios vectoriales y a través de matrices.
 
@@ -1192,7 +1194,7 @@ Una superficie es un espacio topológico de dimensión dos; esto significa que u
 
 A menudo, una superficie está definida por ecuaciones que se satisfacen con las coordenadas de sus puntos. Es el caso de la gráfica de una función continua de dos variables. El conjunto de los ceros de una función de tres variables es una superficie, que se denomina superficie implícita. Si la función definitoria de tres variables es un polinomio, la superficie es una superficie algebraica. Por ejemplo, la esfera unidad es una superficie algebraica, ya que puede ser definida por la ecuación implícita
 
-$$x^{2}+y^{2}+z^{2}-1=0$$
+$$x^2 + y^2 + z^2 - 1 = 0$$
 
 **** Unidades de medida de superficies
 Las unidades de superficie son patrones establecidos mediante convención para facilitar el intercambio de datos de mediciones de la superficie, área o extensión de un objeto, terreno o figura geométrica.
@@ -1214,9 +1216,9 @@ Sin embargo, para calcular el área de superficies curvas se requiere introducir
 Para poder definir el área de una superficie en general —que es un concepto métrico—, se tiene que haber definido un tensor métrico sobre la superficie en cuestión: cuando la superficie está dentro de un espacio euclídeo, la superficie hereda una estructura métrica natural inducida por la métrica euclidiana.
 
 ***** Fórmulas de polígonos
-Para un polígono (simple) del que se conocen las coordenadas cartesianas $(x_{i},y_{i})} (i = 0, 1, ..., n - 1)$ de sus $n$ vértices, el área viene dada por la fórmula del área de Gauss:
+Para un polígono (simple) del que se conocen las coordenadas cartesianas $(x_i , y_i) (i = 0 , 1 , ... , n - 1)$ de sus $n$ vértices, el área viene dada por la fórmula del área de Gauss:
 
-$$A={\frac {1}{2}}{\Biggl \vert }\sum _{i=0}^{n-1}(x_{i}y_{i+1}-x_{i+1}y_{i}){\Biggr \vert }$$
+$$A = {\frac {1}{2}}{\Biggl \vert } \sum _{i=0}^{n-1} (x_i y_{i+1} - x_{i+1} y_i){\Biggr \vert }$$
 
 cuando $i = n - 1$, entonces $i + 1$ se expresa como módulo $n$ y por tanto se refiere a $0$.
 
@@ -1249,7 +1251,7 @@ Aunque la disección utilizada en esta fórmula es sólo aproximada, el error es
 
 Este argumento es una simple aplicación de las ideas del cálculo. En la antigüedad, el método por agotamiento se utilizaba de forma similar para encontrar el área del círculo, y este método se reconoce ahora como un precursor del cálculo integral. Utilizando métodos modernos, el área de un círculo puede calcularse mediante una integral definida:
 
-$$A\;=\;2\int _{-r}^{r}{\sqrt {r^{2}-x^{2}}}\,dx\;=\;\pi r^{2}$$
+$$A \; = \; 2 \int _{-r}^{r} {\sqrt {r^2 - x^2}} \, dx \; = \; \pi r^2$$
 
 ***** Área superficial
 La mayoría de las fórmulas básicas para el área superficial se pueden obtener cortando las superficies y aplanándolas. Por ejemplo, si la superficie lateral del cilindro (o de cualquier prisma) se corta longitudinalmente, la superficie puede aplanarse hasta formar un rectángulo. Del mismo modo, si se hace un corte a lo largo de un cono, la superficie lateral se puede aplanar hasta convertirla en un sector de un círculo y calcular el área resultante.
@@ -1261,15 +1263,15 @@ $$A=4\pi r^{2}$$
 ***** Área en el cálculo
 - El área entre una curva de valor positivo y el eje horizontal, medida entre dos valores $a$ y $b$ en el eje horizontal, viene dada por la integral de $a$ hasta $b$ de la función que representa la curva:
 
-$A=\int _{a}^{b}f(x)\,dx$
+$A = \int _{a}^{b}f(x) \, dx$
 
 - El área entre las gráficas de dos funciones es igual a la integral de una función, $f(x)$, menos la integral de la otra función, $g(x)$:
 
-$A=\int _{a}^{b}(f(x)-g(x))\,dx$ donde  $f(x)$ es la curva con el mayor valor de $y$.
+$A = \int _{a}^{b}(f(x)-g(x)) \, dx$ donde  $f(x)$ es la curva con el mayor valor de $y$.
 
 - Un área delimitada por una función $r=r(\theta )$ expresada en coordenadas polares es:
 
-$A={1 \over 2}\int r^{2}\,d\theta$
+$A = {1 \over 2}\int r^{2} \, d \theta$
 
 **** Perímetro
 El perímetro (del griego περί- [peri-], 'alrededor', y -μετρος [-metros], 'medir') es la longitud de la frontera de una figura plana cerrada. Siendo esta frontera el camino que abarca, rodea o contornea una forma bidimensional.
@@ -1317,7 +1319,7 @@ Formalmente, un espacio métrico es un par ordenado $( M , d )$ donde $M$ es un 
 
 - Sea $X$ un conjunto cualquiera no vacío y definamos  d como
 
-  $$d(x,y)={\begin{cases}0&{\mbox{si }}x=y,\\1&{\mbox{si }}x\neq y.\end{cases}}$$
+  $$d(x,y) = {\begin{cases} 0 & {\mbox{si }} x = y , \\1& {\mbox{si}} x \neq y . \end{cases}}$$
 
   Entonces  $d$ es una métrica en  $X$, llamada métrica discreta y $\left(X,d\right)$ es un espacio métrico. $\left(X,d\right)$ se llama espacio discreto.
 
@@ -1338,7 +1340,7 @@ Existen básicamente dos formas de definir un ángulo en el plano:
   - forma geométrica :: Se le llama «ángulo» a la amplitud entre dos líneas de cualquier tipo que concurren en un punto común llamado vértice. Coloquialmente, ángulo es la figura formada por dos líneas con origen común. El ángulo entre dos curvas es el ángulo que forman sus rectas tangentes en el punto de intersección.
   - forma trigonométrica :: Es la amplitud de rotación o giro que describe un segmento rectilíneo entorno de uno de sus extremos tomado como vértice desde una posición inicial hasta una posición final.
 
-El ángulo formado por dos radios de una circunferencia, medido en radianes, es igual a la longitud del arco que delimitan los radios dividida entre el radio; es decir, $\thetaθ = s/r$, donde $\theta$ es el ángulo, $s$ es la longitud de arco, y $r$ es el radio. Por tanto, el ángulo completo, $\scriptstyle {\theta }_{\text{circunferencia}}$, que subtiende una circunferencia de radio $r$, medido en radianes, es:
+El ángulo formado por dos radios de una circunferencia, medido en radianes, es igual a la longitud del arco que delimitan los radios dividida entre el radio; es decir, $\thetaθ = s/r$ , donde $\theta$ es el ángulo, $s$ es la longitud de arco, y $r$ es el radio. Por tanto, el ángulo completo, $\scriptstyle {\theta}_{\text{circunferencia}}$ , que subtiende una circunferencia de radio $r$, medido en radianes, es:
 
 $$\theta _{\text{circunferencia}}={\frac {L_{\text{circunferencia}}}{r}}={\frac {2\pi r}{r}}=2\pi \ {\text{rad}}$$
 
@@ -1350,7 +1352,7 @@ La medida de un ángulo es un múltiplo de la razón entre la longitud del arco 
 
   - grado sexagesimal ::
 
-  $1{\text{ vuelta}}=360^{\circ }$
+  $1{\text{ vuelta}} = 360^{\circ}$
 
   - grado centesimal ::
 
@@ -1446,7 +1448,7 @@ La principal aplicación del teorema, se deriva del establecimiento de la condic
 
 Del establecimiento de la existencia de una relación de semejanza entre ambos triángulos se deduce la necesaria proporcionalidad  entre sus lados. Eso significa que la razón entre la longitud de dos de ellos en un triángulo se mantiene constante en el otro.
 
-$\frac {A}{B}}={\frac {D}{C}}$ donde $A,B$ son los lados opuestos y adyacentes de un triángulo rectángulo y $C,D$ son los lados del triángulo semejante.
+$\frac {A}{B}={\frac {D}{C}}$ donde $A,B$ son los lados opuestos y adyacentes de un triángulo rectángulo y $C,D$ son los lados del triángulo semejante.
 
 El teorema demuestra la semejanza entre dos triángulos, no la constancia del cociente.
 
@@ -1476,7 +1478,7 @@ En el enfoque original de Euclides, el teorema de Pitágoras se deriva de los ax
 
 La ecuación
 
-$$|PQ|=\surd (p_{x}-q_{x})^{2}+(p_{y}-q_{y})^{2}$$
+$$|PQ| = \surd (p_x - q_x)^2 + (p_y - q_y)^2$$
 
 Define la distancia entre dos puntos $P = ( p_x , p_y )$ y $Q = ( q_x , q_y )$ se conoce como la métrica euclidiana, y otras métricas definen geometrías no euclidianas .
 
@@ -1491,14 +1493,14 @@ La ecuación general de una recta está dada por la expresión $Ax+By+C=0$ con $
 Dada una recta mediante un punto, $P=(x_{0},y_{0})$, y una pendiente  $m$:
 Se puede obtener la ecuación de la recta a partir de la fórmula de la pendiente (ecuación punto-pendiente):
 
-$$y-y_{0}=m(x-x_{0})$$
+$$y - y_0 = m(x - x_0)$$
 
 donde  $m$ es la tangente del ángulo que forma la recta con el eje de abscisas $X$.
 
 **** Forma simplificada de la ecuación de la recta
 Si se conoce la pendiente $m$, y el punto donde la recta corta al eje de ordenadas es $(0, b)$, podemos deducir, partiendo de la ecuación general de la recta,
 
-$y-y_{1}=m(x-x_{1})}$
+$y - y_1 = m(x - x_1)}$
 
 $y=mx+b$
 
@@ -1507,13 +1509,13 @@ $y=mx+b$
 $${\frac {x}{a}}+{\frac {y}{b}}=1$$
 
 **** Recta que pasa por dos puntos
-Si pasa por dos puntos $(x_{1},y_{1})}$ y $(x_{2},y_{2})$, donde $x_{1}\neq x_{2}$, la ecuación de la recta puede expresarse como:
+Si pasa por dos puntos $(x_1 , y_1)}$ y $(x_2 , y_2)$, donde $x_1 \neq x_2$ , la ecuación de la recta puede expresarse como:
 
-$$y={\cfrac {y_{2}-y_{1}}{x_{2}-x_{1}}}\;(x-x_{1})+y_{1}$$
+$$y = { \cfrac {y_2 - y_1}{x_2 - x_1}} \; (x - x_1) + y_1$$
 
 *** Rectas notables
-- La ecuación de una *recta vertical* responde a la ecuación general $x=x_{v}$ (constante).
-- La ecuación de una *recta horizontal* responde a la ecuación general  $y=y_{h}$ (constante).
+- La ecuación de una *recta vertical* responde a la ecuación general $x = x_v$ (constante).
+- La ecuación de una *recta horizontal* responde a la ecuación general  $y = y_h$ (constante).
 - Una *recta trigonoidal* que pase por el origen O $(0, 0)$, cumplirá la condición $b = 0$, siendo su ecuación:
 
 $$y=(m)(x)$$.
@@ -1522,11 +1524,11 @@ $$y=(m)(x)$$.
 - Recta tangente.
 - Dos rectas cualesquiera:
 
-$$y=\left(m_{1}\right)\left(x\right)+b_{1}$$
-$y=\left(m_{2}\right)\left(x\right)+b_{2}$
+$$y = \left(m_1 \right) \left(x \right) + b_1$$
+$$y = \left(m_2 \right) \left(x \right)+b_2$$
 
-serán *paralelas* si y solo si  $m_{1}=m_{2}$. Además, serán coincidentes cuando:  $b_{1}=b_{2}$
-serán *perpendiculares* si y solo si  $m_{1}=-1/m_{2}$, es decir: $(m_{1})(m_{2})=-1$
+serán *paralelas* si y solo si  $m_1 = m_2$. Además, serán coincidentes cuando:  $b_1 = b_2$
+serán *perpendiculares* si y solo si  $m_1 = -1/m_2$, es decir: $(m_1) (m_2) = -1$
 
 *** Ecuación paramétrica
 Un sistema de ecuaciones paramétricas permite representar una curva o superficie en el plano o en el espacio, mediante valores que recorren un intervalo de números reales, mediante una variable, llamada parámetro, considerando cada coordenada de un punto como una función dependiente del parámetro.
@@ -1567,7 +1569,7 @@ Un conjunto  $\mathbb {\gamma }$ de puntos del espacio se denominará curva elem
 
 Sea $\gamma$ una curva elemental y sea $a < t < b$ el segmento abierto del que se obtiene la aplicación $f$ de la curva correspondiente al punto $t$ del segmento. El sistema de igualdades
 
-$$\displaystyle x=f_{1}(t),y=f_{2}(t),z=f_{3}(t)$$
+$$\displaystyle x = f_1 (t) , y = f_2 (t) , z = f_3 (t)$$
 
 constituyen ecuaciones de la curva  $\mathbb {\gamma}$ en forma paramétrica.
 
@@ -1587,7 +1589,7 @@ Un ejemplo claro de curvatura extrínseca es la de la circunferencia, que siempr
 *** Variedad
 Es el objeto geométrico estándar que generaliza la noción intuitiva de «curva» (1-variedad) y de «superficie» (2-variedad) a cualquier dimensión y sobre cuerpos diversos (no solamente el de los reales, sino también complejos y matriciales).
 
-Un poco más formalmente, una variedad de dimensión $n$ es un espacio que se parece localmente a $\mathbb{R}^{n}$. Una variedad puede ser vista como un objeto compuesto de parches $n$  n-dimensionales pegados topológicamente.
+Un poco más formalmente, una variedad de dimensión $n$ es un espacio que se parece localmente a $\mathbb{R}^{n}$ . Una variedad puede ser vista como un objeto compuesto de parches $n$  n-dimensionales pegados topológicamente.
 
 Una variedad se llama cerrada si no tiene borde y es compacta.
 
@@ -1681,7 +1683,7 @@ si se puede encontrar para cada ocasión un $x$ suficientemente cerca de $c$ tal
 *Definición formal*:
 El límite de $f(x)$ cuando $x$ tiende a $c$ es igual a $L$ si y sólo si para todo número real $\varepsilon$ mayor que cero existe un número real $\delta$ mayor que cero tal que si la distancia entre $x$ y $c$ es menor que $\delta$, entonces la distancia entre la imagen de $x$ y $L$ es menor que $\varepsilon$ unidades
 
-$$\underset {x\to c}{\lim }}\,\,f(x)=L\iff \forall \varepsilon >0\ \ \exists \ \delta >0:0<|x-c|<\delta \Longrightarrow |f(x)-L|<\varepsilon$$
+$$\underset {x\to c}{\lim }\,\,f(x)=L\iff \forall \varepsilon >0\ \ \exists \ \delta >0:0<|x-c|<\delta \Longrightarrow |f(x)-L|<\varepsilon$$
 
 $$x \in (c-\delta,c+\delta) \Rightarrow f(x)\in (L-\varepsilon,L+\varepsilon)$$
 
@@ -1783,7 +1785,7 @@ No obstante, esta definición sólo es válida cuando el límite es un número r
 *Nota*:
 - La *primera derivada* da información sobre el crecimiento o decrecimiento de la función. Si $f'(x)>0$ la función crece, y si $f'(x)<0$ la función decrece.
 - La *segunda derivada* da información sobre si la función es convexa, es decir, si $f''(x)>0$ la función es convexa, y si $f''(x)<0$ la función es cóncava.
-- Si al calcular la derivada de una función cualquiera $f(x)$ el resultado es cero $f'(x)=0$, esto indica que la función es constante $f(x)=c$, además si se quiere hallar su valor, basta con sustituir cualquier valor en la función y el resultado será el valor de esa constante. De esta forma se puede encontrar la formula de Euler $e^{ix} = \cos ⁡ x + i \, \sin ⁡ x$, tomando $f(x)=e^{-ix}( \cos ⁡ x + i \, \sin ⁡ x)$. En otro caso puede que la función en el punto sea igual a cero porqué el punto es un extremo relativo que puede ser un máximo relativo o absoluto o un mínimo relativo o absoluto, para saberlo se cálcula la segunda derivada tantas veces como sea necesario hasta que de diferente de cero y según ciertas condiciones se puede encontrar que tipo de punto es.
+- Si al calcular la derivada de una función cualquiera $f(x)$ el resultado es cero $f'(x)=0$, esto indica que la función es constante $f(x)=c$, además si se quiere hallar su valor, basta con sustituir cualquier valor en la función y el resultado será el valor de esa constante. De esta forma se puede encontrar la formula de Euler $e^{ix} = \cos ⁡ x + i \, \sin ⁡ x$ , tomando $f(x)=e^{-ix}( \cos ⁡ x + i \, \sin ⁡ x)$ . En otro caso puede que la función en el punto sea igual a cero porqué el punto es un extremo relativo que puede ser un máximo relativo o absoluto o un mínimo relativo o absoluto, para saberlo se cálcula la segunda derivada tantas veces como sea necesario hasta que de diferente de cero y según ciertas condiciones se puede encontrar que tipo de punto es.
 
 *Nota*:
 La derivada del área bajo la curva de una función, da exáctamente la función que la está originando. $A'(x)=f(x)$ .
@@ -1791,20 +1793,20 @@ La derivada del área bajo la curva de una función, da exáctamente la función
 *** Diferencial
 Es un objeto matemático que representa la parte intermediaria del cambio en la factorización de una función $y=f(x)$ con respecto a cambios en la variable dependiente de cada ecuación.
 
-Informalmente, el diferencial ${\text{d}}y}$  se define en cursos introductorios mediante la expresión:
+Informalmente, el diferencial ${\text{d}}y$  se define en cursos introductorios mediante la expresión:
 
  $${\text{d}}y=f'(x)\,{\text{d}}x$$
 
- donde $f'(x)$ es la derivada de $f$ con respecto a $x$, y donde ${\text{d}}x$ es una variable real adicional a la ecuación (de manera que ${\text{d}}y}$ es una función de dos variables $x$ y ${\text{d}}x$). La notación es tal que la expresión:
+ donde $f'(x)$ es la derivada de $f$ con respecto a $x$, y donde ${\text{d}}x$ es una variable real adicional a la ecuación (de manera que ${\text{d}y}$ es una función de dos variables $x$ y ${\text{d}}x$). La notación es tal que la expresión:
 
-$${\text{d}}y={\frac {{\text{d}}y}{{\text{d}}x}}\,{\text{d}}x}$$
+$${\text{d}}y={\frac {{\text{d}}y}{{\text{d}}x}}\,{\text{d}}x$$
 
 donde la derivada es representada en la notación de Leibniz $\textstyle {\frac {{\text{d}}y}{{\text{d}}x}}$ se mantiene, y es consistente con respecto a la derivada como el cociente de diferenciales.
 
 *Interpretación geométrica del diferencial*
 El diferencial se puede tomar en el sentido geométrico como la elevación de la tangente desde el punto en que se toma el diferencial.
 
-Recuérdese que la derivada de la función en el punto es la pendiente de la recta tangente a la función en el punto, como sabemos que la tangente de un ángulo es igual al cociente entre el cateto opuesto (incremento de $y$) y el cateto contiguo (incremento de $x$) de un hipotético triángulo rectángulo, solo hay que despejar el incremento de $y$ que equivale a nuestro diferencial $\Delta y=\text{tan}}(\alpha) \, \Delta x$ equivalentemente $\Delta y=\text{m}} \, \Delta x$ .
+Recuérdese que la derivada de la función en el punto es la pendiente de la recta tangente a la función en el punto, como sabemos que la tangente de un ángulo es igual al cociente entre el cateto opuesto (incremento de $y$) y el cateto contiguo (incremento de $x$) de un hipotético triángulo rectángulo, solo hay que despejar el incremento de $y$ que equivale a nuestro diferencial $\Delta y=\text{tan}(\alpha) \, \Delta x$ equivalentemente $\Delta y=\text{m} \, \Delta x$ .
 
 Vista geométricamente, la elevación se produce verticalmente a partir del punto en que se toma el diferencial. El incremento $\Delta x$ que se tome representará el alejamiento horizontal que haga desde el punto en cuestión.
 
@@ -1835,7 +1837,9 @@ La integral de Riemann de una función $f$ sobre el intervalo $[a,b]$ es igual a
 
 Para todo $\varepsilon >0$ existe $\delta >0$ tal que, para cualquier partición etiquetada $[a,b]$ con paso más pequeño que $\delta$, se tiene
 
-$$\left|S-\sum _{i=1}^{n}f(t_{i})\Delta _{i}\right|<\varepsilon$$ , donde
+$$\left|S - \sum _{i=1}^{n} f(t_{i}) \Delta _{i}\right | < \varepsilon$$ 
+
+, donde
 
 $$S=\int _{a}^{b}f=\lim _{\|{\Delta _{i}}\|\to 0}\sum _{i=1}^{n}f(t_{i})\Delta _{i}$$
 
@@ -1845,7 +1849,7 @@ Cuando las etiquetas escogidas dan el máximo (o mínimo) valor de cada interval
 *** Teorema de valor intermedio
 Es un teorema sobre funciones continuas reales definidas sobre un intervalo. Intuitivamente, el resultado afirma que, si una función es continua en un intervalo, entonces toma todos los valores intermedios comprendidos entre los extremos del intervalo.
 
-Sea $f:[a,b]\to \mathbb {R}$ una función continua en $[a,b]$ tal que $f(a)<f(b)$. Entonces, para todo $u\in (f(a),f(b))$ se tiene que existe $c\in (a,b)$ tal que $f(c)=u$.
+Sea $f:[a,b]\to \mathbb {R}$ una función continua en $[a,b]$ tal que $f(a) < f(b)$ . Entonces, para todo $u\in (f(a),f(b))$ se tiene que existe $c\in (a,b)$ tal que $f(c)=u$.
 
 Como consecuencia del teorema de Weierstrass, se puede generalizar diciendo que la imagen de un intervalo es otro intervalo.
 
@@ -1876,7 +1880,7 @@ $$(f(b)-f(a))g\,'(c)=(g(b)-g(a))f\,'(c)$$
 
 En el caso de que $g(a) \ne g(b)$ y además $g'(c) \ne 0$, entonces se puede escribir:
 
-$$\frac {f'(c)}{g'(c)}}={\frac {f(b)-f(a)}{g(b)-g(a)}}\cdot$$
+$$\frac {f'(c)}{g'(c)}={\frac {f(b)-f(a)}{g(b)-g(a)}}\cdot$$
 
 Nótese el caso particular en el cual $g(x)=x$, donde entonces la expresión se reduce al teorema del valor medio de Lagrange.
 
@@ -1985,7 +1989,7 @@ el número $e$ puede ser definido como el único número real $x$ para el cual $
 *Nota*:
 $\log_e$ es el logaritmo «natural» porque automáticamente surge, y aparece más comúnmente, en matemáticas. Por ejemplo, consideremos el problema de derivar una función logarítmica:
 
-$$\frac {d}{dx}}\log _{b}(x)={\frac {d}{dx}}\left({\frac {1}{\ln(b)}}\ln {x}\right)={\frac {1}{\ln(b)}}{\frac {d}{dx}}\ln {x}={\frac {1}{x\ln(b)}}$$
+$$\frac {d}{dx}\log _{b}(x)={\frac {d}{dx}}\left({\frac {1}{\ln(b)}}\ln {x}\right)={\frac {1}{\ln(b)}}{\frac {d}{dx}}\ln {x}={\frac {1}{x\ln(b)}}$$
 
 **** Logaritmo para gráficar
 El logaritmo se utiliza para realizar gráficas que tengan un crecimiento muy rápido, esto es debido a que el logaritmo representa la idea de contar de diez en diez si es base diez o de cien en cien si su base es cien, es decir, dar saltos de diez en diez o de la base dada en la base dada.
@@ -1993,8 +1997,8 @@ El logaritmo se utiliza para realizar gráficas que tengan un crecimiento muy r�
 Ejemplo:
 Para hacer la gráfica de $n!$ en comparación con exponenciales o polinomios se haría de la siguiente manera: $\log_{10} (10^n)$ , $\log_{10} (n^2+1)$ , $\log_{10} (n!)$ ,  $\log_{10} (n^n)$ , donde el eje $y$ de la gráfica va representar saltos de diez en diez. En este ejemplo en particular se puede apreciar que el polinomio es la función que crece menos, la exponencial crece rápidamente pero a partir de $n=25$ la función $n!$ crece más rápido, sin embargo es la función $n^n$ la que crece más rapido de todas, esto se puede ver fácilmente por lo siguiente:
 
-$n! \,\, =1 \times 2 \times 3 \times 4 \times \cdots \times n$
-$n^n=n \times n \times n \times n \times \cdots \times n$
+$n! \,\, = 1 \times 2 \times 3 \times 4 \times \cdots \times n$
+$n^n = n \times n \times n \times n \times \cdots \times n$
 
 **** Logaritmo función inversa
 La fórmula para el logaritmo de una potencia dice en particular que para cualquier número $x$,
@@ -2185,11 +2189,12 @@ $$e:= \lim_{n \rightarrow \infty} \left(1+\frac{1}{n}\right)^n$$
 de donde para cualquier $x \in R$ se tiene $e^x:= \lim_{n \rightarrow \infty} \left(1+\frac{x}{n}\right)^n$
 
 *Representaciones de $e$ :*
-Aplicando el teorema del binomio a $\left(1+\frac{1}{n}\right)^n$ se obtiene:
+Aplicando el teorema del binomio a $\left (1 + \frac{1}{n} \right)^n$ se obtiene:
 
-$$e=\sum_{n=0}^{\infty} \frac{1}{n!}$$
+$$e = \sum_{n=0}^{\infty} \frac{1}{n!}$$
 
-*Mediante integral*: Cálculo del área bajo la hipérbola rectangular $1/x$ a partir de $1$.
+*Mediante integral*:
+Cálculo del área bajo la hipérbola rectangular $1/x$ a partir de $1$.
 
 $$\int_{1}^{x} \frac{dt}{t}=1$$
 
