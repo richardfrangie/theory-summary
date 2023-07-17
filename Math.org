@@ -400,11 +400,11 @@ Si además existe otra aplicación sobreyectiva $g:B\to A$, entonces puede proba
 ***** Definición
 Sea $f$ una función real biyectiva cuyo dominio sea el conjunto $I$ y cuya imagen sea el conjunto $J$. Entonces, la función inversa de $f$, denotada $f^{-1}$, es la función de dominio $J$ y codominio $I$ definida por la siguiente regla:
 
-$$f(x)=y\Leftrightarrow {f}^{-1}(y)=x$$
+$$f(x)=y \Leftrightarrow f^{-1}(y)=x$$
 
 Destaquemos que $f^{-1}$, al igual que $f$, es una aplicación biyectiva, que queda determinada de modo único por $f$ y que cumple:
 
-1. ${f}^{-1} \circ f=\operatorname{id}_{i}$
+1. $f^{-1} \circ f = \operatorname {id}_{i}$
 2. $f \circ {f}^{-1}=\operatorname{id}_{j}$
 
 *Nota*:
@@ -481,7 +481,7 @@ Es importante observar que las funciones generadoras no son realmente funciones 
 
 La *función generadora ordinaria* de una sucesión $(a_n) = a_0, a_1, a_2, a_3, \dots$ se define como
 
-$$A(x)=\sum_{n=0}^{\infty}a_{n}{x}^{n}={a}_{0}+{a}_{1}x+{a}_{2}{x}^{2}+{a}_{3}{x}^{3}+\cdots$$
+$$A(x) = \sum_{n=0}^{\infty} a_n x^n = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$$
 
 *Ejemplo*:
 La sucesión de Fibonacci definida por la recurrencia
