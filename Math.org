@@ -21,7 +21,7 @@ Es el estudio de (clases de) estructuras matemáticas tales como grupos, cuerpos
 
 Informalmente una teoría matemática está formada por un conjunto de teoremas y axiomas. Los teoremas son proposiciones lógicamente deducibles de los axiomas. En el enfoque moderno, las teorías se conciben como un conjunto de proposiciones expresables en un cierto lenguaje formal que recoge explícitamente el conjunto de símbolos de la teoría, los axiomas y las reglas de deducción. El aparataje anterior define la sintaxis de la teoría.
 
-En ese punto, la teoría de modelos permite definir la semántica de una teoría. Así un modelo $\mathfrak {U}$ es una L-estructura $\mathfrak{U}=(A,\phi )}$ donde una cadena de signos o sentencia del lenguaje formal de la teoría correctamente formada puede ser interpretada y verificada (es decir, o bien la proposición o su negación se satisfacen en el modelo). Un modelo $\mathfrak {U}$ para una teoría $\mathbf {T}$ es una estructura $\mathfrak {U}}\in \mathrm {Mod} \ \mathbf {T}$ donde los axiomas y teoremas de la teoría se satisfacen. Por ejemplo, el conjunto de números naturales constituyen un modelo para los axiomas de Peano. Un grupo matemático es un modelo de la teoría de grupos (aunque en este caso existe más de un modelo posible, cada grupo de hecho es un modelo de la teoría).
+En ese punto, la teoría de modelos permite definir la semántica de una teoría. Así un modelo $\mathfrak {U}$ es una L-estructura $\mathfrak{U}=(A,\phi )$ donde una cadena de signos o sentencia del lenguaje formal de la teoría correctamente formada puede ser interpretada y verificada (es decir, o bien la proposición o su negación se satisfacen en el modelo). Un modelo $\mathfrak {U}$ para una teoría $\mathbf {T}$ es una estructura $\mathfrak {U}\in \mathrm {Mod} \ \mathbf {T}$ donde los axiomas y teoremas de la teoría se satisfacen. Por ejemplo, el conjunto de números naturales constituyen un modelo para los axiomas de Peano. Un grupo matemático es un modelo de la teoría de grupos (aunque en este caso existe más de un modelo posible, cada grupo de hecho es un modelo de la teoría).
 
 Por tanto, un modelo es una estructura donde las oraciones formales de la teoría (es decir, una cadena de signos matemáticos) son interpretables y por tanto las oraciones pueden considerarse como afirmaciones sobre el modelo. Existe un paralelo con el lenguaje común y la realidad, una realidad física o un objeto físico real son análogos a un modelo matemático, mientras que una descripción verbal de esa realidad física es una teoría para dicho modelo. La teoría de modelos tiene fuertes lazos con el álgebra y el álgebra universal.
 
@@ -290,7 +290,7 @@ Es un conjunto no vacío totalmente ordenado tal que todo subconjunto no vacío 
 *** Definición
 Definición alternativa de función
 Una función $f:X \rightarrow Y$ es un subconjunto $G(f)$ del producto cartesiano $X \times Y$ que verifica que:
-$$ \forall x \in X \, | \, \exists ! \,\, y \in Y : (x,y) \in G(f)$$
+$$\forall x \in X \, | \, \exists ! \,\, y \in Y : (x,y) \in G(f)$$
 
 donde $\exists !$ significa que existe un único.
 
@@ -363,7 +363,7 @@ Una función f es continua en un punto $x_0$ que pertenezca al dominio de la fun
 
 Informalmente hablando, una aplicación es continua si transforma puntos que están cerca en puntos que están cerca, es decir, si respeta la "relación de cercanía". Esto además quiere decir que una función continua no "rompe" los que está unido y no "pega" lo que está separado. (extracto del artículo [[https://es.wikipedia.org/wiki/Topolog%C3%ADa][Topología en wikipedia]])
 
-*Nota*: una función es continua si los límites laterales coinciden $\lim_{x \to a^+}f(x) = \lim_{x \to a^-}f(x)$ sin embargo si los límites laterales coinciden no garantiza que sea continua (una función con un hueco en la gráfica ( $y=2$ con un hueco en $x=5$)).
+*Nota*: una función es continua si los límites laterales coinciden $\lim_{x \to a^{+}}f(x)=\lim_{x \to a^{-}}f(x)$ sin embargo si los límites laterales coinciden no garantiza que sea continua (una función con un hueco en la gráfica ( $y=2$ con un hueco en $x=5$)).
 
 *Ejemplo*:
 - Un ejemplo de una función que no es continua es la representada como la tarifa en un taxi, ya que esta empieza en un determinado número y después va saltando a otro número cada vez que se cambia de sección.
@@ -400,12 +400,12 @@ Si además existe otra aplicación sobreyectiva $g:B\to A$, entonces puede proba
 ***** Definición
 Sea $f$ una función real biyectiva cuyo dominio sea el conjunto $I$ y cuya imagen sea el conjunto $J$. Entonces, la función inversa de $f$, denotada $f^{-1}$, es la función de dominio $J$ y codominio $I$ definida por la siguiente regla:
 
-$$f(x)=y\Leftrightarrow {}f^{-1}(y)=x$$
+$$f(x)=y\Leftrightarrow {f}^{-1}(y)=x$$
 
 Destaquemos que $f^{-1}$, al igual que $f$, es una aplicación biyectiva, que queda determinada de modo único por $f$ y que cumple:
 
-1. $f^{-1}\circ f=\operatorname {id} _{i}$
-2. $f\circ f^{-1}=\operatorname {id} _{j}$
+1. ${f}^{-1} \circ f=\operatorname{id}_{i}$
+2. $f \circ {f}^{-1}=\operatorname{id}_{j}$
 
 *Nota*:
 Para que una función tenga inversa debe ser siempre creciente o decreciente (por ejemplo, si es una parabola, dos puntos en $x$ van a tener un mismo $y$, lo cual no sería una función).
@@ -413,8 +413,8 @@ Para que una función tenga inversa debe ser siempre creciente o decreciente (po
 ***** Propiedades
 Dadas dos aplicaciones y las propiedades:
 
-1. $g\circ f=\operatorname {id} _{I}$
-2. $f\circ g=\operatorname {id} _{J}$
+1. $g \circ f=\operatorname{id}_{I}$
+2. $f \circ g=\operatorname{id}_{J}$
 
 entonces:
 
@@ -427,17 +427,17 @@ Este último punto se usa como definición de función inversa.
 *Propiedades algebraicas*:
 La función inversa de la composición de dos funciones, siempre que tengan su función inversa, viene dada por la fórmula
 
-$$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$$
+$${(g\circ f)}^{-1}={f}^{-1}\circ {g}^{-1}$$
 
 *Continuidad*:
-$f$ y $f^{-1}$ son simultáneamente continuas: Si una lo es, también lo será la otra. Sin embargo, es posible que ninguna lo sea: Por ejemplo se puede definir $f$ así: si $x$ es racional, $f(x)=x$, y si es irracional, $f(x)=-x$. En este caso muy particular $f=f^{-1}$.
+$f$ y ${f}^{-1}$ son simultáneamente continuas: Si una lo es, también lo será la otra. Sin embargo, es posible que ninguna lo sea: Por ejemplo se puede definir $f$ así: si $x$ es racional, $f(x)=x$, y si es irracional, $f(x)=-x$. En este caso muy particular $f={f}^{-1}$.
 
 *Gráfica*:
-Las gráficas que representan $f$ y $g=f^{-1}$ son simétricas con relación a la primera diagonal, es decir, la recta $y=x$. En efecto, esta simetría envía un punto cualquiera $M(x,y)$ sobre el punto $M'(y,x)$. $M$ pertenece a la curva de $f$ si y sólo si $M'$ pertenece a la de $g$, porque la primera condición se escribe $y=f(x)$ y la segunda $x=g(y)$ y son por definición equivalentes.
+Las gráficas que representan $f$ y $g={f}^{-1}$ son simétricas con relación a la primera diagonal, es decir, la recta $y=x$. En efecto, esta simetría envía un punto cualquiera $M(x,y)$ sobre el punto $M'(y,x)$. $M$ pertenece a la curva de $f$ si y sólo si $M'$ pertenece a la de $g$, porque la primera condición se escribe $y=f(x)$ y la segunda $x=g(y)$ y son por definición equivalentes.
 
 **** Paridad
 ***** Función par
-Una función $f:\mathbb {R} \to \mathbb {R}$ es una función par si para $x\in \mathbb {R$ se cumple la siguiente relación:
+Una función $f:\mathbb {R} \to \mathbb {R}$ es una función par si para $x\in \mathbb {R}$ se cumple la siguiente relación:
 $$f(-x)=f(x)$$
 
 Si consideramos el punto $(x,f(x))$, nos interesa el comportamiento de $f$ cuando se toma el opuesto $-x$. Puede suceder que $f(x)$ obtenga el mismo resultado que $f(-x)$, en cuyo caso se trata de una función par. En el aspecto geométrico la no variación de $f(x)$ al cambiar $x$ a $-x$, revela simetría de la gráfica de $f$ respecto al eje $Y$. Ejemplo el *coseno*.
@@ -448,7 +448,7 @@ Si consideramos el punto $(x,f(x))$, nos interesa el comportamiento de $f$ cuand
 - El cociente de dos funciones pares es una función par.
 - El producto de una función par y una función impar es una función impar.
 - Toda función definida sobre toda la línea real puede descomponerse en la suma de una función par y una impar:
-$$f(x)=\left({\frac {f(x)+f(-x)}{2}}\right)+\left({\frac {f(x)-f(-x)}{2}}\right)=f_{p}(x)+f_{i}(x)$$
+$$f(x)=\left({\frac {f(x)+f(-x)}{2}}\right)+\left({\frac {f(x)-f(-x)}{2}}\right)={f}_{p}(x)+{f}_{i}(x)$$
 
 ***** Función impar
 Si consideramos el punto $(x,f(x))$, nos interesa el comportamiento de $f$ cuando se toma el opuesto $-x$. Puede suceder que $f(x)$ obtenga $-f(x)$ de modo que el resultado no es el mismo que el de $f(x)$, en cuyo caso se trata de una función impar. Es decir:
@@ -481,7 +481,7 @@ Es importante observar que las funciones generadoras no son realmente funciones 
 
 La *función generadora ordinaria* de una sucesión $(a_n) = a_0, a_1, a_2, a_3, \dots$ se define como
 
-$$A(x)=\sum _{n=0}^{\infty }a_{n}x^{n}=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+\cdots$$
+$$A(x)=\sum_{n=0}^{\infty}a_{n}{x}^{n}={a}_{0}+{a}_{1}x+{a}_{2}{x}^{2}+{a}_{3}{x}^{3}+\cdots$$
 
 *Ejemplo*:
 La sucesión de Fibonacci definida por la recurrencia
