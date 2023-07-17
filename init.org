@@ -102,7 +102,7 @@ Fitting Emacs with its environment.
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 1)         ; Give some breathing room
 (menu-bar-mode -1)          ; Disable the menu bar
-(show-paren-mode 1)         ; Show pair parentheses 
+(show-paren-mode 1)         ; Show pair parentheses
 
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -119,7 +119,7 @@ Fitting Emacs with its environment.
 
 
 ;; Maximum length of history files lists before truncation takes place.
-;; (setq history-length 25) 
+;; (setq history-length 25)
 
 
 ;; Remember and restore the last cursor location of opened files.
@@ -163,7 +163,7 @@ The standard faces of Emacs.
                                      :height efs/default-font-size)
 
 ;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Cantarell" 
+(set-face-attribute 'variable-pitch nil :font "Cantarell"
                                         :height efs/default-variable-font-size
                                         :weight 'regular)
 
@@ -201,7 +201,7 @@ Faces used in the mode line.
 Contents of the mode line.
 
  #+begin_src emacs-lisp
- 
+
 ;; Fixes the issue of icons disappearing in modeline.
 (use-package nerd-icons
   :custom
@@ -240,7 +240,7 @@ Controlling the behavior of the minibuffer.
 #+begin_src emacs-lisp
 
 ;; Save what you enter into minibuffer prompts.
-(savehist-mode 1) 
+(savehist-mode 1)
 
 #+end_src
 
@@ -263,7 +263,7 @@ Controlling the behavior of the minibuffer.
 
 #+end_src
 
-* Editing 
+* Editing
 Basic text editing facilities.
 
 ** Lines
@@ -279,7 +279,7 @@ Basic text editing facilities.
 (use-package drag-stuff
   :bind
   ("M-<down>" . drag-stuff-down)
-  ("M-<up>" . drag-stuff-up)  
+  ("M-<up>" . drag-stuff-up)
   :config
   (drag-stuff-global-mode 1))
 
@@ -315,10 +315,16 @@ It only works when there are only two windows."
 
 #+begin_src emacs-lisp
 
-;;;;; Unobtrusively remove trailing whitespace.
-;;;;; (use-package ws-butler
-;;;;;   :hook ((text-mode . ws-butler-mode)
-;;;;;          (prog-mode . ws-butler-mode)))
+;; Every buffer would be cleaned up before it’s saved.
+;; (add-hook 'before-save-hook 'whitespace-cleanup)
+
+
+;;;; Unobtrusively remove trailing whitespace.
+;;;; Automatically remove unwanted trailing whitespace from (only) the
+;;;; lines you’ve edited.
+;; (use-package ws-butler
+;;   :hook ((text-mode . ws-butler-mode)
+;;          (prog-mode . ws-butler-mode)))
 
 #+end_src
 
@@ -348,7 +354,28 @@ Advanced replacement for ‘buffer-menu’.
 #+begin_src emacs-lisp
 
 ;; Make ibuffer default.
-(defalias 'list-buffers 'ibuffer) 
+(defalias 'list-buffers 'ibuffer)
+
+
+;; Use human readable Size column instead of original one (EmacsWiki)
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+
+;; Modify the default ibuffer-formats
+  (setq ibuffer-formats
+        '((mark modified read-only " "
+                (name 18 18 :left :elide)
+                " "
+                (size-h 9 -1 :right)
+                " "
+                (mode 16 16 :left :elide)
+                " "
+                filename-and-process)))
 
 #+end_src
 
@@ -365,16 +392,8 @@ Directional selection of windows in a frame.
 (desktop-save-mode 1) ; 0 for off
 ;; To start emacs without opening last session's files, start it by:
 ;; emacs --no-desktop, this is useful because sometimes you have a
-;; corrupted desktop file. The desktop file path is controlled by 
+;; corrupted desktop file. The desktop file path is controlled by
 ;; the variable desktop-dirname
-
-
-(use-package windmove
-  :defer 0.2
-  :bind (("C-c b" . windmove-left)
-	   ("C-c n" . windmove-down)
-         ("C-c p" . windmove-up)
-	   ("C-c f" . windmove-right)))
 
 
 ;; Jump between visible windows, after assigning a number to each window
@@ -389,6 +408,8 @@ Directional selection of windows in a frame.
 
 ;; Swap window
 (global-set-key (kbd "C-c m") 'window-swap-states)
+;; Move window
+(global-set-key (kbd "C-c p") 'windmove-up)
 
 #+end_src
 
@@ -432,8 +453,8 @@ Directory editing.
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump)
          :map dired-mode-map
-	   ("r" . dired-single-buffer)
-	   ("b" . dired-single-up-directory))
+           ("r" . dired-single-buffer)
+           ("b" . dired-single-up-directory))
   ;; Changes the order in which the directories are displayed.
   :custom ((dired-listing-switches "-agho --group-directories-first")))
 
@@ -448,7 +469,7 @@ Directory editing.
 (use-package dired-hide-dotfiles
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :bind (:map dired-mode-map
-	      ("z" . dired-hide-dotfiles-mode)))
+              ("z" . dired-hide-dotfiles-mode)))
 
 #+end_src
 
@@ -460,7 +481,7 @@ Maintain a menu of recently opened files.
 
 #+begin_src emacs-lisp
 
-;; Remembering recently edited file 
+;; Remembering recently edited file
 (recentf-mode 1)
 
 
@@ -526,7 +547,7 @@ It is a rich document editor, project planner, task and time tracker, blogging e
 
   ;; Set italic color MediumSpringGreen.
   (set-face-attribute 'italic nil :foreground "#92A9BD")
-  
+
   ;; Get rid of the background on column views.
   (set-face-attribute 'org-column nil       :background nil)
   (set-face-attribute 'org-column-title nil :background nil))
@@ -547,16 +568,16 @@ It is a rich document editor, project planner, task and time tracker, blogging e
   :hook (org-mode . efs/org-mode-setup)
   :config
   (setq org-ellipsis " ➣"
-	   org-hide-emphasis-markers t)
+           org-hide-emphasis-markers t)
 
   ;; Configure org agenda.
-  (setq org-agenda-files 
+  (setq org-agenda-files
         '("~/Documents/Notes.org"))
 
   ;; Configure org TODO.
-  (setq org-todo-keywords 
+  (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "ACTIVE(a)" "REVIEW(r)" "HOLD(h)" "|" 
+          (sequence "ACTIVE(a)" "REVIEW(r)" "HOLD(h)" "|"
                     "FIXED(f)" "UNSOLVED(u)" "WAIT(w)" "CANCELLED(k)")))
 
   (setq org-todo-keyword-faces
@@ -614,7 +635,7 @@ It is a rich document editor, project planner, task and time tracker, blogging e
 #+end_src
 
 *** Babel
-To execute or export code in ~org-mode~ code blocks, you'll need to set up ~org-babel-load-languages~ for each language you'd like to use. 
+To execute or export code in ~org-mode~ code blocks, you'll need to set up ~org-babel-load-languages~ for each language you'd like to use.
 
 #+begin_src emacs-lisp
 
@@ -648,8 +669,8 @@ configuration here to the associated output files."
 ;; Adds a hook to org-mode buffers so that `efs/org-babel-tangle-config'
 ;; gets executed each time such a buffer gets saved.
 (add-hook 'org-mode-hook
-	  (lambda ()
-	    (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+          (lambda ()
+            (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 
 #+end_src
 
@@ -661,16 +682,16 @@ configuration here to the associated output files."
   "Insert or change the emphasis of a word or region.
 
 If there is an active region, change that region to a new
-emphasis.  If there is no region, emphasis the word or symbol 
+emphasis.  If there is no region, emphasis the word or symbol
 that's just next to or an the point."
  (let (bounds)
    (if (use-region-p)
        (org-emphasize marker)
      (progn (setq bounds (bounds-of-thing-at-point 'symbol))
-	       (goto-char (cdr bounds))
-	       (push-mark (car bounds))
-	       (setq mark-active t)
-	       (org-emphasize marker)))))
+               (goto-char (cdr bounds))
+               (push-mark (car bounds))
+               (setq mark-active t)
+               (org-emphasize marker)))))
 
 (defun rf/org-emphasize-bold ()
   "Insert or change a word emphasis or region to bold."
@@ -687,10 +708,18 @@ that's just next to or an the point."
   (interactive)
   (rf/org-emphasize-marker ?\/))
 
-;; org-emphasize (*) bold with F5 and (=) code with F6
+(defun rf/org-emphasize-math ()
+  "Insert or change a word emphasis or region to math."
+  (interactive)
+  (rf/org-emphasize-marker ?\$))
+
+;; org-emphasize (*) bold with F5 and (~) code with F6
 (global-set-key (kbd "<f5>") 'rf/org-emphasize-bold)
 (global-set-key (kbd "<f6>") 'rf/org-emphasize-code)
 (global-set-key (kbd "<f7>") 'rf/org-emphasize-italic)
+;;;;; I'm testing this because Emacs throws an error when I startup
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "<f8>") 'rf/org-emphasize-math))
 
 #+end_src
 
@@ -720,16 +749,16 @@ Support for Emacs help systems.
   :diminish
 ;; Swiper is an alternative to isearch that uses Ivy to show matches.
   :bind (("C-s" . swiper)
-	 :map ivy-minibuffer-map
-	 ("TAB" . ivy-alt-done)
-	 ("C-j" . ivy-alt-done)
-	 :map ivy-switch-buffer-map
-	 ("C-p" . ivy-previous-line)
-	 ("C-j" . ivy-done)
-	 ("C-d" . ivy-switch-buffer-kill)
-	 :map ivy-reverse-i-search-map
-	 ("C-p" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-j" . ivy-alt-done)
+         :map ivy-switch-buffer-map
+         ("C-p" . ivy-previous-line)
+         ("C-j" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-p" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
 
@@ -745,10 +774,10 @@ Support for Emacs help systems.
 ;; the best use of Ivy in minibuffer.
 (use-package counsel
   :bind (("C-M-j" . 'counsel-switch-buffer)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history))
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
   :custom
-  (counsel-linux-app-format-function 
+  (counsel-linux-app-format-function
    #'counsel-linux-app-format-function-name-only)
   :config
   (counsel-mode 1))
@@ -818,7 +847,7 @@ Enable IDE-like functionality for many different programming languages via "lang
 #+begin_src emacs-lisp
 
 (defun efs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments 
+  (setq lsp-headerline-breadcrumb-segments
         '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
@@ -832,7 +861,7 @@ Enable IDE-like functionality for many different programming languages via "lang
   (lsp-enable-which-key-integration t))
 
 
-;; Set of UI enhancements  which make Emacs feel even more like 
+;; Set of UI enhancements  which make Emacs feel even more like
 ;; an IDE (show informations of the symbols on the current line).
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -840,7 +869,7 @@ Enable IDE-like functionality for many different programming languages via "lang
   (lsp-ui-doc-position 'bottom))
 
 
-;; Integrates Ivy with lsp-mode to make it easy to search for things by 
+;; Integrates Ivy with lsp-mode to make it easy to search for things by
 ;; name in your code.
 (use-package lsp-ivy
   :after lsp)
@@ -866,9 +895,9 @@ Enable IDE-like functionality for many different programming languages via "lang
   :after lsp-mode
   :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
-	    ("<tab>" . company-complete-selection))
-	   (:map lsp-mode-map
-	    ("<tab>" . company-indent-or-complete-common))
+            ("<tab>" . company-complete-selection))
+           (:map lsp-mode-map
+            ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1) ; As soon as letter appears show completions.
   (company-idle-delay 0.0))         ; Show completions at 0.0 seconds.
@@ -1064,14 +1093,14 @@ Command shell implemented entirely in Emacs Lisp.
   (push 'eshell-tramp eshell-modules-list)
   (push 'xterm-color-filter eshell-preoutput-filter-functions)
   (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
-  
+
   ;; Save command history when commands are entered.
   (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
-  
+
   (add-hook 'eshell-before-prompt-hook
             (lambda ()
               (setq xterm-color-preserve-properties t)))
-  
+
   ;; Truncate buffer for performance.
   (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
@@ -1080,7 +1109,7 @@ Command shell implemented entirely in Emacs Lisp.
 
   ;; Initialize the shell history
   (eshell-hist-initialize)
-  
+
   (setq eshell-history-size         10000
         eshell-buffer-maximum-lines 10000
         eshell-hist-ignoredups t
@@ -1182,7 +1211,7 @@ Code local to your site.
 
 (defun rf/subtitle-srt-html ()
   "Format srt subtitle file to display in html.
- 
+
 File will save in Downloads Folder."
   (interactive)
   (beginning-of-buffer) ;; (goto-char 1)
@@ -1196,12 +1225,12 @@ File will save in Downloads Folder."
   (mark-whole-buffer)
   (org-html-convert-region-to-html)
   (write-file (concat "~/Downloads/" ;; better use write-region
-		      (substring (buffer-name) 0 -4)
-		      ".html")))
+                      (substring (buffer-name) 0 -4)
+                      ".html")))
 
 
 (defun rf/sentences-to-anki (beg end &optional asteri)
-  "Format sentences written in org-mode to be viewed in anki. 
+  "Format sentences written in org-mode to be viewed in anki.
 
 Remove the asterisks that are in the headings and put tab between
 sentences. Use ASTERI to control how many asterisks are to be removed
@@ -1212,34 +1241,34 @@ I don't know them well in Emacs, so this function works fine for what
 I want."
   (interactive "r\np")
   (let ((oldbuf (current-buffer))
-	lines
-	(count 0))
+        lines
+        (count 0))
     (if (equal asteri 1)
-	(setq asteri 4))
-    (setq name "buftem" 
-	  lines (/ (count-lines beg end) 3))
+        (setq asteri 4))
+    (setq name "buftem"
+          lines (/ (count-lines beg end) 3))
     (with-current-buffer (get-buffer-create name)
       (barf-if-buffer-read-only)
       (erase-buffer)
       (save-excursion
-	(insert-buffer-substring oldbuf beg end)
-	(beginning-of-buffer)
-	(progn (delete-region (point) (line-end-position))
-	       (line-move  1)
-	       (move-beginning-of-line 1)
-	       (backward-delete-char-untabify 1))
-	(while (< count lines)
-	  (delete-char (+ asteri 1))
-	  (move-end-of-line 1)
-	  (insert "\t")
-	  (delete-forward-char 1)
-	  (move-end-of-line 1)
-	  (insert "\n")
-	  (if (< (+ count 1) lines)
-	      (delete-forward-char 2))
-	  (setq count (1+ count)))	
-	(call-interactively 'write-file)
-	(kill-buffer (buffer-name))))))
+        (insert-buffer-substring oldbuf beg end)
+        (beginning-of-buffer)
+        (progn (delete-region (point) (line-end-position))
+               (line-move  1)
+               (move-beginning-of-line 1)
+               (backward-delete-char-untabify 1))
+        (while (< count lines)
+          (delete-char (+ asteri 1))
+          (move-end-of-line 1)
+          (insert "\t")
+          (delete-forward-char 1)
+          (move-end-of-line 1)
+          (insert "\n")
+          (if (< (+ count 1) lines)
+              (delete-forward-char 2))
+          (setq count (1+ count)))
+        (call-interactively 'write-file)
+        (kill-buffer (buffer-name))))))
 
 #+end_src
 
@@ -1248,4 +1277,3 @@ I want."
   - [[https://github.com/daviwil/emacs-from-scratch/blob/master/init.el][System Crafters Scratch]]
   - [[https://config.daviwil.com/emacs][System Crafters Daviwil]]
   - [[https://wilkesley.org/~ian/xah/][∑XAH]]
-

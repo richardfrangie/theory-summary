@@ -78,14 +78,14 @@
 
 *** Timestamp
 
-| /C-c ./        | org-time-stamp (date)     |
-| /C-u C-c ./    | org-time-stamp (datetime) |
-| /S-left/right/ | change date day (cursor)  |
-| /S-up/down/    | change time (cursor)      |
-| /C-c C-d/      | org-deadline              |
-| /C-c C-s/      | org-scheduled             |
-| /C-c C-q/      | org-set-tags-command      |
-| /C-c C-q/      | org-match-sparse-tree     |
+| /C-c ./          | org-time-stamp (date)     |
+| /C-u C-c ./      | org-time-stamp (datetime) |
+| /S-left / right/ | change date day (cursor)  |
+| /S-up / down/    | change time (cursor)      |
+| /C-c C-d/        | org-deadline              |
+| /C-c C-s/        | org-scheduled             |
+| /C-c C-q/        | org-set-tags-command      |
+| /C-c C-q/        | org-match-sparse-tree     |
 
 *** Table
 
@@ -116,6 +116,7 @@
 | /C-c C-x C-f/ | org-emphasize                   |
 | /C-c C-x C-b/ | org-toggle-inline-images        |
 | /C-c C-e #/   | org-export-dispatch             |
+| /C-c C-o/     | org-open-at-point (go to link)  |
 
 ** Files
 *** Files
@@ -212,33 +213,35 @@
 ** Window - Buffer - Frame
 *** Window
 # meand the number of window to wich the action will be aplied
-| /C-x o/     | other-window                  |
-| /C-x 0/     | delete-select-window          |
-| /C-x 1/     | delete-all-other-window       |
-| /C-x 2/     | split-window-below            |
-| /C-x 3/     | split-window-right            |
-| /C-c left/  | winner-undo                   |
-| /C-c right/ | winner-redo                   |
-|           |                               |
-| /C-c b/     | windmove-left                 |
-| /C-c n/     | windmove-down                 |
-| /C-c p/     | windmove-up                   |
-| /C-c f/     | windmove-right                |
-|           |                               |
-| /M-o m #/   | swap windows                  |
-| /M-o x #/   | delete window                 |
-| /M-o z/     | new frame with current window |
-| /M-o/       | other-window (works only 2)   |
-| /M-o M #/   | move windows                  |
-| /M-o ?/     | show command bindings         |
-|           |                               |
-| /C-x ^/     | enlarge-window                |
-|           | shrink-window                 |
-| /C-x }/     | enlarge-window-horizontally   |
-| /C-x {/     | shrink-window-horizontally    |
-|           |                               |
-| /C-x r w/   | window to-register            |
-| /C-x r j/   | jump-to-register              |
+| /C-x o/         | other-window                  |
+| /C-x 0/         | delete-select-window          |
+| /C-x 1/         | delete-all-other-window       |
+| /C-x 2/         | split-window-below            |
+| /C-x 3/         | split-window-right            |
+| /C-c left/      | winner-undo                   |
+| /C-c right/     | winner-redo                   |
+|               |                               |
+| /C-c b/         | windmove-left                 |
+| /C-c n/         | windmove-down                 |
+| /C-c p/         | windmove-up                   |
+| /C-c f/         | windmove-right                |
+| /C-u ace-w/     | swap windows                  |
+| /C-u C-u ace-w/ | delete windows                |
+|               |                               |
+| /M-o m #/       | swap windows                  |
+| /M-o x #/       | delete window                 |
+| /M-o z/         | new frame with current window |
+| /M-o/           | other-window (works only 2)   |
+| /M-o M #/       | move windows                  |
+| /M-o ?/         | show command bindings         |
+|               |                               |
+| /C-x ^/         | enlarge-window                |
+|               | shrink-window                 |
+| /C-x }/         | enlarge-window-horizontally   |
+| /C-x {/         | shrink-window-horizontally    |
+|               |                               |
+| /C-x r w/       | window to-register            |
+| /C-x r j/       | jump-to-register              |
 
 *** Buffer
 
@@ -317,7 +320,7 @@
 | kill-region | kill line b | b kill word | del chart b |
 | /C-w/         | /C-0-k/       | /M-DEL/       | /DEL/         |
 
-*** Scroll 
+*** Scroll
 
 | /C-l/       | center-line-screen       |
 | /C-M-l/     | reposition-window        |
@@ -356,6 +359,9 @@
 | /C-x r i/   | insert-register                      |
 | /M-%/       | query-replace                        |
 | /C-q TAB/   | quoted-insert                        |
+|           |                                      |
+| /C-x r N/   | rectangle-number-lines               |
+| /M-=/       | count-words-region                   |
 
 *** Regexp
 
@@ -436,7 +442,7 @@
 | /C-M-a/ | beginning-of-defun     |
 | /C-M-x/ | eval-defun (cursor in) |
 
-*** Debug 
+*** Debug
 
 | /M-x debu func/  | debug-on-entry (d)           |
 |                | cancel-debug-on-entry        |
@@ -461,6 +467,25 @@
 | /C-h C-h/ | help-for-help                |
 | /cmd C-h/ | what valid keys follow cmd   |
 | /M-./     | xref-find-definition(cursor) |
+
+*** Minibuffer
+
+| /C-M-m/   | ivy-call              | Run command, keep minibuffer |
+| /M-o/     | ivy-dispatching-done  | Show actions current match   |
+| /M-i/     | ivy-insert-current    | Insert match in the prompt   |
+| /C-c C-o/ | ivy-occur             | List match in new buffer     |
+| /C-p/     |                       | Focus in prompt              |
+| /M-j/     | ivy-yank-word         | Put Word at point in minibu  |
+| /S-SPC/   | ivy-restrict-to-match | Restrict list to prompt      |
+| /C-SPC/   | ivy-restrict-to-match | My alias for the above       |
+
+| /C-M-j/      | type RET in minibuffer            |
+| /C-j/ / /RET/  | exit-minibuffer                   |
+| /C-g/        | abort-recursive-edit              |
+| /M-n/ / /down/ | next-history-element              |
+| /M-p/ / /up/   | previous-history-element          |
+| /M-s/        | next-matching-history-element     |
+| /M-r/        | previous-matching-history-element |
 
 *** shells
 
@@ -510,6 +535,7 @@
 | /ESC x/     | same /M-x/ in no GUI term |
 |           |                         |
 | /C-h e/     | view-echo-area-messages |
+|           | auto-package-update-now |
 
 *** Calc
 
@@ -520,12 +546,12 @@
 | /S/   | sin(x)    |
 | /B/   | log_b(x)  |
 
-| /m d/ | degree mode    |
-| /m r/ | radian mode    |
-| /m a/ | numerical mode |
-| /m s/ | symbolic mode  |
-| /m f/ | fraction mode  |
-| /m a/ | algebraic mode |
+| /m d/     | degree mode    |
+| /m r/     | radian mode    |
+| /m a/     | numerical mode |
+| /m s/     | symbolic mode  |
+| /m f/     | fraction mode  |
+| /m a/ / /'/ | algebraic mode |
 
 | /P/   | pi number                 |
 | /N/   | eval numerical aprox      |
@@ -534,15 +560,15 @@
 | /c r/ | convert degrees radians   |
 | /c d/ | convert radians degrees   |
 
-*** Minibuffer
-
-| /C-M-j/      | type RET in minibuffer            |
-| /C-j/ / /RET/  | exit-minibuffer                   |
-| /C-g/        | abort-recursive-edit              |
-| /M-n/ / /down/ | next-history-element              |
-| /M-p/ / /up/   | previous-history-element          |
-| /M-s/        | next-matching-history-element     |
-| /M-r/        | previous-matching-history-element |
+| /TAB/   | exchange order results |
+| /=/     | eval expressions       |
+| /M-RET/ | calc-last-args         |
+| /t d/   | calc-trail-display     |
+| /t y/   | calc-trail-yank        |
+| /t p/   | calc-trail-previous    |
+| /t n/   | calc-trail-next        |
+| /t b/   | calc-trail-backwards   |
+| /t f/   | calc-trail-forwards    |
 
 *** Kmacro
 
@@ -576,11 +602,11 @@
 |             | describe-char (cursor)   |
 |             |                          |
 | /C-q/         | quoted-insert (literaly) |
-| /C-q TAB/     | tab char                 |
-| /C-q C-i/     | tab char                 |
-| /C-q C-[/     | escape char              |
-| /C-q C-m/     | carriage char            |
-| /C-q C-j/     | Line Feed char           |
+| /C-q TAB/     | insert tab char          |
+| /C-q C-i/     | insert tab char          |
+| /C-q C-[/     | insert escape char       |
+| /C-q C-m/     | insert carriage char     |
+| /C-q C-j/     | insert Line Feed char    |
 
 
 | /\n/          | newline                  |
@@ -625,7 +651,7 @@ By official emacs documentation, the key space for users are the function keys ~
 ** Elisp
 *** Proccesing
 **** Summary
-Whenever you give an editing command to Emacs Lisp, such as the command to move the cursor or to scroll the screen, you are evaluating an expression, the first element of which is a function. *This is how Emacs works*. 
+Whenever you give an editing command to Emacs Lisp, such as the command to move the cursor or to scroll the screen, you are evaluating an expression, the first element of which is a function. *This is how Emacs works*.
 
 - Lisp programs are made up of expressions, which are lists or single atoms.
 - Lists are made up of zero or more atoms or inner lists, separated by whitespace and surrounded by parentheses. A list can be empty.
@@ -636,21 +662,21 @@ Whenever you give an editing command to Emacs Lisp, such as the command to move 
 - When you evaluate a list, the Lisp interpreter looks at the first symbol in the list and then at the function definition bound to that symbol. Then the instructions in the function definition are carried out.
 - A single-quote ‘'’ tells the Lisp interpreter that it should return the following expression as written, and not evaluate it as it would if the quote were not there.
 - Arguments are the information passed to a function. The arguments to a function are computed by evaluating the rest of the elements of the list of which the function is the first element.
-- A function always returns a value when it is evaluated (unless it gets an error); in addition, it may also carry out some action that is a side effect. In many cases, a function’s primary purpose is to create a side effect. 
+- A function always returns a value when it is evaluated (unless it gets an error); in addition, it may also carry out some action that is a side effect. In many cases, a function’s primary purpose is to create a side effect.
 
 **** Run a Program
 A list in Lisp—any list—is a program ready to run. If you run it, the computer will do one of three things: do nothing except return to you the list itself; send you an error message; or, treat the first symbol in the list as a command to do something.
 
-The single [[quote]], when it precedes a list, it tells Lisp to do nothing with the list, other than take it as it is written. But if there is no quote preceding a list, the first item of the list is special: it is a command for the computer to obey. (In Lisp, these commands are called functions.) 
+The single [[quote]], when it precedes a list, it tells Lisp to do nothing with the list, other than take it as it is written. But if there is no quote preceding a list, the first item of the list is special: it is a command for the computer to obey. (In Lisp, these commands are called functions.)
 
-The list ~(+ 2 2)~ did not have a quote in front of it, so Lisp understands that the ~+~ is an instruction to do something with the rest of the list: add the numbers that follow. 
+The list ~(+ 2 2)~ did not have a quote in front of it, so Lisp understands that the ~+~ is an instruction to do something with the rest of the list: add the numbers that follow.
 
 **** The Lisp Interpreter
-What the Lisp interpreter does when we command it to evaluate a list is, first it looks to see whether there is a [[quote]] before the list; if there is, the interpreter just gives us the list. On the other hand, if there is no quote, the interpreter looks at the first element in the list and sees whether it has a function definition. If it does, the interpreter carries out the instructions in the function definition. Otherwise, the interpreter prints an error message. 
+What the Lisp interpreter does when we command it to evaluate a list is, first it looks to see whether there is a [[quote]] before the list; if there is, the interpreter just gives us the list. On the other hand, if there is no quote, the interpreter looks at the first element in the list and sees whether it has a function definition. If it does, the interpreter carries out the instructions in the function definition. Otherwise, the interpreter prints an error message.
 
-In addition to lists, the Lisp interpreter can evaluate a symbol that is not quoted and does not have parentheses around it. The Lisp interpreter will attempt to determine the symbol’s value as a [[Variable]]. 
+In addition to lists, the Lisp interpreter can evaluate a symbol that is not quoted and does not have parentheses around it. The Lisp interpreter will attempt to determine the symbol’s value as a [[Variable]].
 
-If the function that the Lisp interpreter is looking at is not a special form, and if it is part of a list, the Lisp interpreter looks to see whether the list has a list inside of it. If there is an inner list, the Lisp interpreter first figures out what it should do with the inside list, and then it works on the outside list. If there is yet another list embedded inside the inner list, it works on that one first, and so on. It always works on the innermost list first. The *interpreter works on the innermost list first*, to evaluate the result of that list. 
+If the function that the Lisp interpreter is looking at is not a special form, and if it is part of a list, the Lisp interpreter looks to see whether the list has a list inside of it. If there is an inner list, the Lisp interpreter first figures out what it should do with the inside list, and then it works on the outside list. If there is yet another list embedded inside the inner list, it works on that one first, and so on. It always works on the innermost list first. The *interpreter works on the innermost list first*, to evaluate the result of that list.
 
 Otherwise, the *interpreter works left to right*, from one expression to the next.
 
@@ -664,7 +690,7 @@ Este término proviene del significado histórico de la palabra átomo, que sign
 
          cons
    atoms ---> cons cell ---> list
-  
+
   "atoms" con la función "cons" crea "cons cell" y estos pueden crear "list"
 
  "a" "b" -> (cons "a" "b") = ("a" . "b") -> '("a" . ("b" . nil)) = ("a" "b")
@@ -675,7 +701,7 @@ Este término proviene del significado histórico de la palabra átomo, que sign
 ***** Definition
 A symbol, like ~+~, is not itself the set of instructions for the computer to carry out. Instead, the symbol is used, perhaps temporarily, *as a way of locating the definition* or set of instructions. A symbol can have only one function definition attached to it at a time.
 
-A symbol that has a function definition is called, simply, a function (although, properly speaking, the definition is the function and the symbol refers to it.) 
+A symbol that has a function definition is called, simply, a function (although, properly speaking, the definition is the function and the symbol refers to it.)
 
 You might imagine a symbol as being a chest of drawers. The function definition is put in one drawer,  the value in another, and so on (what is put in each drawer is the address). What is put in the drawer holding the value can be changed without affecting the contents of the drawer holding the function definition, and vice versa.
 
@@ -705,7 +731,7 @@ Symbol bouquet
         |                     |
         +---------------------+
         |    directions to    |
-        |    property list    |             
+        |    property list    |
         |                     |
         +---------------------+
         |/                   \|
@@ -731,7 +757,7 @@ Each lisp symbol has the following “cells” to store things:
 
 A symbol's {value, function} cell may be empty, it's said to be “void”. When you try to get a cell's value that's void, it's a lisp error. (a empty cell is not the same as having value of nil.)
 
-In normal coding, you don't need to worry about any of these. The only thing that's useful for most elisp code is property list, but many other higher-level functions do it for you. (i.e. add, remove, properties.) 
+In normal coding, you don't need to worry about any of these. The only thing that's useful for most elisp code is property list, but many other higher-level functions do it for you. (i.e. add, remove, properties.)
 
 Understanding Lisp Symbol cells is important when you do advanced lisp programing. ➢ for example: macros, create and calling functions at run-time, function inside functions, manipulate evaluation, implementing a language, or any sort of meta-programing. If you don't have a need, you should not exploit these facilities in your program. keep your program normal and simple.
 
@@ -751,10 +777,10 @@ Aunque cons cell se puede usar para contener pares de datos ordenados, se usan m
  cons cell = (cons "abc" "def") = ("abc" . "def")
 
       car     cdr
-   +-------+-------+ 
+   +-------+-------+
    | "abc" | "def" |
    +-------+-------+
-   
+
       car     cdr           car     cdr
    +-------+-------+     +-------+-------+
    | "abc" |    -------> | "def" |  nil  |
@@ -763,7 +789,7 @@ Aunque cons cell se puede usar para contener pares de datos ordenados, se usan m
 #+end_src
 
 **** Dotted Pair Notation
-Is a general syntax for cons cells that represents the CAR and CDR explicitly. In this syntax, ~(a . b)~ stands for a cons cell whose CAR is the object ~a~ and whose CDR is the object ~b~. Dotted pair notation is more general than list syntax because the CDR does not have to be a list. However, it is more cumbersome in cases where list syntax would work. 
+Is a general syntax for cons cells that represents the CAR and CDR explicitly. In this syntax, ~(a . b)~ stands for a cons cell whose CAR is the object ~a~ and whose CDR is the object ~b~. Dotted pair notation is more general than list syntax because the CDR does not have to be a list. However, it is more cumbersome in cases where list syntax would work.
 
 In dotted pair notation, the list ~(1 2 3)~ is written as ~(1 . (2 . (3 . nil)))~. For /nil/ *-terminated lists, you can use either notation*, but list notation is usually clearer and more convenient. When printing a list, the *dotted pair* notation *is only used if the CDR of a cons cell is not a* /list/.
 
@@ -841,11 +867,11 @@ This definition reflects LISP's representation of a list as a series of "cells",
 
 Tree data structure representing the S-expression (* 2 (+ 3 4)).
 
-     o        
+     o
     / \
-   *   o      
+   *   o
       / \
-     2   o    
+     2   o
         / \
        o  nil
       / \
@@ -868,7 +894,7 @@ Because most cons cells are used as part of lists, we refer to any structure mad
 
 This forms the basis of a simple, singly linked list structure whose contents can be manipulated with ~cons~, ~car~, and ~cdr~. Note that ~nil~ is the only list that is not also a cons pair.
 
- A list is kept using a series of pairs of pointers. A pointer itself is quite simply the electronic address of what is pointed to. Hence, a list is kept as a series of electronic addresses. 
+ A list is kept using a series of pairs of pointers. A pointer itself is quite simply the electronic address of what is pointed to. Hence, a list is kept as a series of electronic addresses.
 
 #+begin_src artist
 
@@ -888,7 +914,7 @@ In the computer, the electronic address of ‘1’ is recorded in a
 segment of computer memory along with the address that gives the
 electronic address of where the atom ‘2’ is located; and that address
 (the one that tells where ‘2’ is located) is kept along with an
-address that tells where the address for the atom ‘3’ is located.  
+address that tells where the address for the atom ‘3’ is located.
 
               sketched in a different manner
     --------------       --------------       --------------
@@ -905,11 +931,11 @@ atom or another pair of addresses.
    1  2  3
 
 Binary tree
-     *        
+     *
     / \
-   1   *      
+   1   *
       / \
-     2   *    
+     2   *
         / \
        3  nil
 
@@ -970,7 +996,7 @@ Here is a more complex, the three-element list, ~((pine needles) oak maple)~, th
   (match-beginning 0)
   (match-beginning 1))
 ;;     => (t 9 13)
-;; 
+;;
 ;; ---------- Buffer: foo ----------
 ;; I read "The cat -!-in the hat comes back" twice.
 ;;         ^   ^
@@ -1032,18 +1058,18 @@ In Emacs Lisp, it is not an error if an element of an association list is not a 
 Note that property lists are similar to association lists in several respects. A property list behaves like an association list in which each key can occur only once.
 
 **** Variable
-A symbol can have a value attached to it just as it can have a function definition attached to it. The value of a symbol can be any expression in Lisp, such as a symbol, number, list, or string. A symbol that has a value is often called a variable. 
+A symbol can have a value attached to it just as it can have a function definition attached to it. The value of a symbol can be any expression in Lisp, such as a symbol, number, list, or string. A symbol that has a value is often called a variable.
 
 The variable ~fill-column~ illustrates a symbol with a value attached to it, this symbol is set to some value, usually ~70~.
 
-A symbol can have any value attached to it or, to use the jargon, we can *bind* the variable to a value: to a number, such as ~72~; to a string, ~"such as this"~ ; to a list, such as ~(spruce pine oak)~ ; we can even bind a variable to a function definition. 
+A symbol can have any value attached to it or, to use the jargon, we can *bind* the variable to a value: to a number, such as ~72~; to a string, ~"such as this"~ ; to a list, such as ~(spruce pine oak)~ ; we can even bind a variable to a function definition.
 
 **** Macro
 A macro is a construct defined in Lisp, which differs from a function in that it translates a Lisp expression into another expression that is to be evaluated in place of the original expression. For example, [[if]], [[when]], and so on.
 
 Macros enable you to define new *control constructs* and other language features. A macro is defined much like a function, but instead of telling how to compute a value, it tells *how to compute another Lisp expression* which will in turn compute the value. We call this expression the expansion of the macro.
 
-Macros can do this because they operate on the unevaluated expressions for the arguments, not on the argument values as functions do. They can therefore construct an expansion containing these argument expressions or parts of them. 
+Macros can do this because they operate on the unevaluated expressions for the arguments, not on the argument values as functions do. They can therefore construct an expansion containing these argument expressions or parts of them.
 
 Suppose we would like to define a Lisp construct to increment a variable value, much like the ~++~ operator in C. We would like to write ~(inc x)~ and have the effect of ~(setq x (1+ x))~. Here’s a macro definition that does the job:
 
@@ -1054,7 +1080,7 @@ Suppose we would like to define a Lisp construct to increment a variable value, 
 
 #+end_src
 
-When this is called with ~(inc x)~, the argument var is the symbol ~x~ — *not the value of* ~x~, as it would be in a function. The body of the macro uses this to construct the expansion, which is ~(setq x (1+ x))~. Once the macro definition returns this expansion, Lisp proceeds to evaluate it, thus incrementing x. 
+When this is called with ~(inc x)~, the argument var is the symbol ~x~ — *not the value of* ~x~, as it would be in a function. The body of the macro uses this to construct the expansion, which is ~(setq x (1+ x))~. Once the macro definition returns this expansion, Lisp proceeds to evaluate it, thus incrementing x.
 
 **** Classification of Emacs Lisp Function
 On a separate subject, Emacs Lisp functions are classified into several types.
@@ -1128,7 +1154,7 @@ By default, the local variable bindings made by Emacs are dynamic bindings. When
 #+end_src
 
 Note: Converting to Lexical Binding
-Converting an Emacs Lisp program to lexical binding is easy. First, add a file-local variable setting of lexical-binding to t in the header line of the Emacs Lisp source file. Second, check that every variable in the program which needs to be dynamically bound has a variable definition, so that it is not inadvertently bound lexically. 
+Converting an Emacs Lisp program to lexical binding is easy. First, add a file-local variable setting of lexical-binding to t in the header line of the Emacs Lisp source file. Second, check that every variable in the program which needs to be dynamically bound has a variable definition, so that it is not inadvertently bound lexically.
 
 ***** Lexical binding
 A *lexically-bound* variable has lexical scope, meaning that any reference to the variable must be located textually *within the binding construct*.
@@ -1146,9 +1172,9 @@ A *lexically-bound* variable has lexical scope, meaning that any reference to th
 
 #+end_src
 
-Here, the variable ~x~ has no global value. When it is lexically bound within a ~let~ form, it can be used in the textual confines of that ~let~ form. But it can not be used from within a ~getx~ function called from the ~let~ form, since the function definition of ~getx~ occurs outside the ~let~ form itself. 
+Here, the variable ~x~ has no global value. When it is lexically bound within a ~let~ form, it can be used in the textual confines of that ~let~ form. But it can not be used from within a ~getx~ function called from the ~let~ form, since the function definition of ~getx~ occurs outside the ~let~ form itself.
 
-Each binding construct defines a lexical environment, specifying the variables that are bound within the construct and their local values. When the Lisp evaluator wants the current value of a variable, it looks first in the lexical environment; if the variable is not specified in there, it looks in the symbol’s value cell, where the dynamic value is stored. 
+Each binding construct defines a lexical environment, specifying the variables that are bound within the construct and their local values. When the Lisp evaluator wants the current value of a variable, it looks first in the lexical environment; if the variable is not specified in there, it looks in the symbol’s value cell, where the dynamic value is stored.
 
 (Internally, the lexical environment is an alist of symbol-value pairs, with the final element in the alist being the symbol t rather than a cons cell. Such an alist can be passed as the second argument to the eval function, in order to specify a lexical environment in which to evaluate a form. Most Emacs Lisp programs, however, should not interact directly with lexical environments in this way; only specialized programs like debuggers.)
 
@@ -1180,17 +1206,17 @@ x                        ; Note that x has no global value.
 
 The ~let~ binding defines a lexical environment in which the variable ~x~ is locally bound to ~0~. Within this binding construct, we define a lambda expression which increments ~x~ by one and returns the incremented value. This lambda expression is automatically turned into a closure, in which the lexical environment lives on even after the ~let~ binding construct has exited. Each time we evaluate the closure, it increments ~x~, using the binding of ~x~ in that lexical environment.
 
-Note that unlike dynamic variables which are tied to the symbol object itself, the relationship between lexical variables and symbols is only present in the interpreter (or compiler). Therefore, functions which take a symbol argument (like symbol-value, boundp, and set) can only retrieve or modify a variable’s dynamic binding (i.e., the contents of its symbol’s value cell). 
+Note that unlike dynamic variables which are tied to the symbol object itself, the relationship between lexical variables and symbols is only present in the interpreter (or compiler). Therefore, functions which take a symbol argument (like symbol-value, boundp, and set) can only retrieve or modify a variable’s dynamic binding (i.e., the contents of its symbol’s value cell).
 
 ***** Using Lexical Binding
 When loading an Emacs Lisp file or evaluating a Lisp buffer, lexical binding is enabled if the buffer-local variable lexical-binding is non-nil:
 
 Variable: lexical-binding
-    If this buffer-local variable is non-nil, Emacs Lisp files and buffers are evaluated using lexical binding instead of dynamic binding. (However, special variables are still dynamically bound.) If nil, dynamic binding is used for all local variables. This variable is typically set for a whole Emacs Lisp file, as a file local variable. Note that unlike other such variables, this one must be set in the first line of a file. 
+    If this buffer-local variable is non-nil, Emacs Lisp files and buffers are evaluated using lexical binding instead of dynamic binding. (However, special variables are still dynamically bound.) If nil, dynamic binding is used for all local variables. This variable is typically set for a whole Emacs Lisp file, as a file local variable. Note that unlike other such variables, this one must be set in the first line of a file.
 
-When evaluating Emacs Lisp code directly using an eval call, lexical binding is enabled if the lexical argument to eval is non-nil. 
+When evaluating Emacs Lisp code directly using an eval call, lexical binding is enabled if the lexical argument to eval is non-nil.
 
-Even when lexical binding is enabled, certain variables will continue to be dynamically bound. These are called special variables. Every variable that has been defined with ~defvar~, ~defcustom~ or ~defconst~ is a special variable. All other variables are subject to lexical binding. 
+Even when lexical binding is enabled, certain variables will continue to be dynamically bound. These are called special variables. Every variable that has been defined with ~defvar~, ~defcustom~ or ~defconst~ is a special variable. All other variables are subject to lexical binding.
 
 Using ~defvar~ without a value, it is possible to bind a variable dynamically just in one file, or in just one part of a file while still binding it lexically elsewhere. For example:
 
@@ -1215,11 +1241,11 @@ Using ~defvar~ without a value, it is possible to bind a variable dynamically ju
 
 #+end_src
 
-Note that since this is a function, it can only return non-nil for variables which are permanently special, but not for those that are only special in the current lexical scope. 
+Note that since this is a function, it can only return non-nil for variables which are permanently special, but not for those that are only special in the current lexical scope.
 
 *** Variables
 **** setq-default
-You can set any Lisp variable with ~setq~, but with certain variables ~setq~ won’t do what you probably want in the init file. Some variables automatically become buffer-local when set with ~setq~; what you want in the init file is to set the default value, using ~setq-default~. 
+You can set any Lisp variable with ~setq~, but with certain variables ~setq~ won’t do what you probably want in the init file. Some variables automatically become buffer-local when set with ~setq~; what you want in the init file is to set the default value, using ~setq-default~.
 
 #+begin_src emacs-lisp
 
@@ -1229,24 +1255,24 @@ You can set any Lisp variable with ~setq~, but with certain variables ~setq~ won
 #+end_src
 
 **** set-variable
-You could use the ~set-variable~ command to change the value of ~shell-command-default-error-buffer~ temporarily. However, options set using ~set-variable~ are set only for the duration of your editing session. The new values are not saved between sessions. 
+You could use the ~set-variable~ command to change the value of ~shell-command-default-error-buffer~ temporarily. However, options set using ~set-variable~ are set only for the duration of your editing session. The new values are not saved between sessions.
 
 For me, the major use of the ~set-variable~ command is to suggest variables that I might want to set in my ~.emacs~ file. You can press ~TAB~ after calling the ~M-x set-variable~ command to see the list of variables.
 
 **** defcustom
 Is designed for variables that people customize.
 
-You can specify variables using ~defcustom~ so that you and others can then use Emacs’s ~customize~ feature to set their values. 
+You can specify variables using ~defcustom~ so that you and others can then use Emacs’s ~customize~ feature to set their values.
 
-The ~customize~ feature depends on the ~defcustom~ macro. Although you can use ~defvar~ or ~setq~ for variables that users set, the ~defcustom~ macro is designed for the job. 
+The ~customize~ feature depends on the ~defcustom~ macro. Although you can use ~defvar~ or ~setq~ for variables that users set, the ~defcustom~ macro is designed for the job.
 
-- The first argument to ~defcustom~ is the name of the variable. 
-- The second argument is the variable’s initial value, if any; and this value is set only if the value has not already been set. 
+- The first argument to ~defcustom~ is the name of the variable.
+- The second argument is the variable’s initial value, if any; and this value is set only if the value has not already been set.
 - The third argument is the documentation.
 - The fourth and subsequent arguments to defcustom specify types and options; these are not featured in defvar. (These arguments are optional.)
 
-Incidentally, to be more complete concerning defines: 
-~defsubst~ defines an inline function. The syntax is just like that of defun. 
+Incidentally, to be more complete concerning defines:
+~defsubst~ defines an inline function. The syntax is just like that of defun.
 ~defconst~ defines a symbol as a constant.
 
 #+begin_src emacs-lisp
@@ -1254,11 +1280,11 @@ Incidentally, to be more complete concerning defines:
 ;; the customizable user option variable text-mode-hook looks like this:
 (defcustom text-mode-hook nil
   "Normal hook run when entering Text mode and many related modes."
-  :type 'hook ;; tells Emacs the kind of data to which text-mode-hook 
-              ;; should be set and how to display the value in a 
-              ;; Customization buffer. 
-  :options '(turn-on-auto-fill flyspell-mode) ;; specifies a suggested list 
-                                              ;; of values for the variable. 
+  :type 'hook ;; tells Emacs the kind of data to which text-mode-hook
+              ;; should be set and how to display the value in a
+              ;; Customization buffer.
+  :options '(turn-on-auto-fill flyspell-mode) ;; specifies a suggested list
+                                              ;; of values for the variable.
                                               ;; Usually, applies to a hook.
   :group 'wp) ;; tells command in which group the variable is located.
 
@@ -1270,9 +1296,9 @@ Some customizable minor mode variables do special things to enable the mode when
 ** Definitions
 *** point
 **** point
-Is the current position of the cursor. The expression ~(point)~ returns a number that tells you where the cursor is located as a count of the number of characters from the beginning of the buffer up to point. 
+Is the current position of the cursor. The expression ~(point)~ returns a number that tells you where the cursor is located as a count of the number of characters from the beginning of the buffer up to point.
 
-**** point-min 
+**** point-min
 Is somewhat similar to ~point~, but it returns the value of the minimum permissible value of point in the current buffer. This is the number ~1~ unless narrowing is in effect.
 
 **** point-max
@@ -1285,7 +1311,7 @@ In lisp code, you should call ~push-mark~ or ~set-mark~.
 
 If a mark has been set, you can use the command ~(exchange-point-and-mark)~ linked to ~C-x C-x~ to cause the cursor to jump to the mark and set the mark to be the previous position of point.
 
-In addition, if you set another mark, the position of the previous mark is saved in the mark ring. Many mark positions can be saved this way. You can jump the cursor to a saved mark by typing ~C-u C-SPC~ one or more times. 
+In addition, if you set another mark, the position of the previous mark is saved in the mark ring. Many mark positions can be saved this way. You can jump the cursor to a saved mark by typing ~C-u C-SPC~ one or more times.
 
 *** region
 Is the part of the buffer between point and mark. Numerous commands work on the region, including ~center-region~, ~count-words-region~, ~kill-region~, and ~print-region~.
@@ -1303,7 +1329,7 @@ Emacs's concept of “active region” is practically the same as the modern ter
 
 Text Selection = when region is active, and is not empty.
 
-*** prefix argument 
+*** prefix argument
 A prefix argument is passed to an [[interactive]] function by typing the ~META~ key followed by a number, for example, ~M-3 M-x command~ , or through ~universal-command~ this way ~C-u 3 M-x command~ .
 
 - ~C-u~ is bound to ~universal-argument~.
@@ -1313,7 +1339,7 @@ To make your command aware of universal argument, there are 3 simple ways:
 
 - The global variable ~current-prefix-arg~ holds the value of universal argument.
 - Add ~(interactive "P")~ to your function.
-- Add ~(interactive "p")~ to your function. 
+- Add ~(interactive "p")~ to your function.
 
 Can be raw prefix argument or can be numerical prefix argument, to see the difference [[Raw vs Numerical Prefix Arg]].
 
@@ -1361,11 +1387,11 @@ Tells the Lisp interpreter to substitute whatever key is currently bound to the 
 #+begin_src emacs-lisp
 
 \\[universal-argument]
-In the case of "universal-argument", that is usually "C-u", but it might be different. 
+In the case of "universal-argument", that is usually "C-u", but it might be different.
 
 #+end_src
 
-*** narrowing 
+*** narrowing
 Is a feature of Emacs that makes it possible for you to focus on a specific part of a buffer, and work without accidentally changing other parts. Narrowing is normally disabled since it can confuse novices.
 
 *** kill ring
@@ -1413,8 +1439,8 @@ PREDICATE is called with two elements of SEQ, and should return non-nil if the f
 *** let
 Declare that a list of variables is for use within the body of the ~let~ and give them an initial value; then evaluate the rest of the expressions in the body of the let and return the value of the last one. Inside the body of the ~let~, the Lisp interpreter does not see the values of the variables of the same names that are bound outside of the ~let~.
 
-A ~let~ expression is a list of three parts. 
-- The first part is the symbol ~let~. 
+A ~let~ expression is a list of three parts.
+- The first part is the symbol ~let~.
 - The second part is a list, called a /varlist/, each element of which is either a symbol by itself or a two-element list, the first element of which is a symbol.
 - The third part of the let expression is the body of the let.
 
@@ -1451,7 +1477,7 @@ The symbols in the varlist have the initial value of ~nil~.
 #+end_src
 
 *** let*
-It enables Emacs to set each variable in its varlist in *sequence*, one after another. Its critical feature is that variables later in the varlist can make use of the values to which Emacs set variables earlier in the varlist. 
+It enables Emacs to set each variable in its varlist in *sequence*, one after another. Its critical feature is that variables later in the varlist can make use of the values to which Emacs set variables earlier in the varlist.
 
 #+begin_src emacs-lisp
 
@@ -1474,15 +1500,15 @@ Note also, that when you use ~set~, you need to quote both arguments to ~set~, u
 #+end_src
 
 *** setq
-Sets the value of its first argument to the value of the second argument. Is just like [[set]] except that the first argument is quoted automatically, so you don’t need to type the quote mark yourself. 
+Sets the value of its first argument to the value of the second argument. Is just like [[set]] except that the first argument is quoted automatically, so you don’t need to type the quote mark yourself.
 
-Also, ~setq~ can be used to assign different values to different variables. The first argument is bound to the value of the second argument, the third argument is bound to the value of the fourth argument, and so on. 
+Also, ~setq~ can be used to assign different values to different variables. The first argument is bound to the value of the second argument, the third argument is bound to the value of the fourth argument, and so on.
 
-In summary, when a Lisp variable is set to a value, it is provided with the address of the list to which the variable refers. 
+In summary, when a Lisp variable is set to a value, it is provided with the address of the list to which the variable refers.
 
 #+begin_src emacs-lisp
 
-(setq x 1) 
+(setq x 1)
 ;; => x = 1
 
 (setq a 3 b 2 c 7)
@@ -1492,7 +1518,7 @@ In summary, when a Lisp variable is set to a value, it is provided with the addr
 ;; flor = (rosa violeta)
 
 (setq trees '(pine fir oak maple)
-      herbivores '(gazelle antelope zebra)) 
+      herbivores '(gazelle antelope zebra))
 ;; trees = (pine fir oak maple)
 ;; herbivores = (gazelle antelope zebra)
 
@@ -1535,7 +1561,7 @@ bouquet        flowers
 #+end_src
 
 *** defvar
-Is similar to [[setq]] in that it sets the value of a variable. It is unlike ~setq~ in two ways: first, it only sets the value of the variable if the variable *does not* already have a value. If the variable already has a value, ~defvar~ does not override the existing value. Second, ~defvar~ has a documentation string.
+Is similar to [[setq]] in that it sets the value of a variable. It is unlike ~setq~ in two ways: first, it only sets the value of the variable if the variable *does not* already have a value. If the variable already has a value, ~defvar~ does not override the existing value (this is actually useful: packages can define their variables with ~defvar~ and you can set values for them before the package gets loaded! Your settings will not be overridden by the default value). Second, ~defvar~ has a documentation string.
 
 Note: When you specified a variable using the ~defvar~ special form, you could distinguish a variable that a user might want to change from others by typing an asterisk, ~*~, in the first column of its documentation string ~(defvar variable "*Buffer name ...")~.
 
@@ -1548,7 +1574,7 @@ Note: When you specified a variable using the ~defvar~ special form, you could d
 ;; variable defined with a conditional construction
 (defvar X-axis-label-spacing
   (if (boundp 'graph-blank)
-      (* 5 (length graph-blank)) 
+      (* 5 (length graph-blank))
     5)
   "Number of units from one X axis label to next."
 )
@@ -1565,18 +1591,18 @@ Emacs Lisp maintains different namespaces for variables and functions so ~fset~ 
 ;; Since lambdas are literals and we can assign variable names to
 ;; literals we can set the lambda function.
 (fset 'cube (lambda (x) (* x x x))) (lambda (x) (* x x x))
-(cube 5) ;; => 125 
+(cube 5) ;; => 125
 
 
-;; Sets the function symbol yes-or-or-no-p to the definition y-or-n-p 
-;; and returns the definition y-or-n-p 
+;; Sets the function symbol yes-or-or-no-p to the definition y-or-n-p
+;; and returns the definition y-or-n-p
 (fset 'yes-or-no-p 'y-or-n-p)
 
 #+end_src
 
 ** Special forms
 *** progn
-Evaluate each argument in sequence and then return the value of the last. 
+Evaluate each argument in sequence and then return the value of the last.
 
 Sometimes you need to group several expressions together as one single expression. This can be done with ~progn~.
 
@@ -1667,9 +1693,9 @@ Because quote is used so often in programs, Lisp provides a convenient read synt
 (quote foo)     ;; => foo
 'foo            ;; => foo
 
-;; Although the expressions both yield lists equal 
-(list '+ 1 2) ;; => (+ 1 2) ;; is a freshly-minted mutable list 
-'(+ 1 2)      ;; => (+ 1 2) ;; is a list built from conses that might 
+;; Although the expressions both yield lists equal
+(list '+ 1 2) ;; => (+ 1 2) ;; is a freshly-minted mutable list
+'(+ 1 2)      ;; => (+ 1 2) ;; is a list built from conses that might
                             ;; be shared and shouldn't be modified
 
 #+end_src
@@ -1679,8 +1705,8 @@ Is both a symbol (false) ~nil~ and an empty list ~()~. In Emacs Lisp, any value 
 
 For convenience, the symbol ~nil~ is considered to have ~nil~ as its CDR (and also as its CAR).
 
-** Booleans 
-*** or 
+** Booleans
+*** or
 Evaluate each argument in sequence, and return the value of the first argument that is not ~nil~; if none return a value that is not ~nil~, return ~nil~.
 
 #+begin_src emacs-lisp
@@ -1693,7 +1719,7 @@ Evaluate each argument in sequence, and return the value of the first argument t
 *** and
 Evaluate each argument in sequence, and if any are ~nil~, return ~nil~; if none are ~nil~, return the value of the last argument.
 
-*** not 
+*** not
 Is a function that returns true if its argument is ~false~ and false if its argument is ~true~.
 
 ** Comparing
@@ -1703,12 +1729,12 @@ Tests whether its first argument is smaller than its second argument. Its behavi
 *** /=
 Not equal. It is for comparing *numbers only*.
 
-*** equal 
+*** equal
 It tests if two values have the same datatype and value.
 
-Test whether two *objects* are the same. ~equal~ uses one meaning of the word “same” and [[eq]] uses another: ~equal~ returns true if the two objects have a similar structure and contents, such as two copies of the same book. On the other hand, ~eq~, returns true if both arguments are actually the same object. 
+Test whether two *objects* are the same. ~equal~ uses one meaning of the word “same” and [[eq]] uses another: ~equal~ returns true if the two objects have a similar structure and contents, such as two copies of the same book. On the other hand, ~eq~, returns true if both arguments are actually the same object.
 
-The ~eq~ function is similar to the ~equal~ function in that it is used to test for equality, but differs in that it determines whether two representations are actually the same object inside the computer, but with different names. ~equal~ determines whether the structure and contents of two expressions are the same. 
+The ~eq~ function is similar to the ~equal~ function in that it is used to test for equality, but differs in that it determines whether two representations are actually the same object inside the computer, but with different names. ~equal~ determines whether the structure and contents of two expressions are the same.
 
 Compara recursivamente el contenido de los objetos si son enteros, cadenas, marcadores, vectores, vectores bool, objetos de función de código de bytes, tablas de caracteres, registros u objetos de fuente.
 
@@ -1729,10 +1755,10 @@ Compara recursivamente el contenido de los objetos si son enteros, cadenas, marc
 (eq 3 3)      ;; => t
 (eq 3 3.0)    ;; => nil
 
-(equal '(1 (2 (3))) '(1 (2 (3)))) ; => t  
-(eq    '(1 (2 (3))) '(1 (2 (3)))) ; => nil  
+(equal '(1 (2 (3))) '(1 (2 (3)))) ; => t
+(eq    '(1 (2 (3))) '(1 (2 (3)))) ; => nil
 
-(equal (point-marker) (point-marker)) ; => t 
+(equal (point-marker) (point-marker)) ; => t
 (eq    (point-marker) (point-marker)) ; => nil
 
 ;; General way to test inequality.
@@ -1749,7 +1775,7 @@ Compara recursivamente el contenido de los objetos si son enteros, cadenas, marc
 *** eq
 Test whether two *objects* are the same.
 
- ~eq~ uses one meaning of the word “same” and [[equal]] uses another: ~eq~, returns true if both arguments are actually the same object. On the other hand, ~equal~ returns true if the two objects have a similar structure and contents, such as two copies of the same book. 
+ ~eq~ uses one meaning of the word “same” and [[equal]] uses another: ~eq~, returns true if both arguments are actually the same object. On the other hand, ~equal~ returns true if the two objects have a similar structure and contents, such as two copies of the same book.
 
 The ~eq~ function is similar to the ~equal~ function in that it is used to test for equality, but differs in that it determines whether two representations are actually the same object inside the computer, but with different names. ~equal~ determines whether the structure and contents of two expressions are the same.
 
@@ -1767,11 +1793,11 @@ Dos argumentos con el mismo contenido o elementos no son necesariamente equivale
 
 #+begin_src emacs-lisp
 
-(eq    '(1 (2 (3))) '(1 (2 (3)))) ; => nil  
-(equal '(1 (2 (3))) '(1 (2 (3)))) ; => t  
+(eq    '(1 (2 (3))) '(1 (2 (3)))) ; => nil
+(equal '(1 (2 (3))) '(1 (2 (3)))) ; => t
 
 (eq    (point-marker) (point-marker)) ; => nil
-(equal (point-marker) (point-marker)) ; => t 
+(equal (point-marker) (point-marker)) ; => t
 
 #+end_src
 
@@ -1782,8 +1808,8 @@ The arguments to ~string-lessp~ must be strings or symbols; the ordering is lexi
 
 An empty string, ~""~, a string with no characters in it, is smaller than any string of characters.
 
-*** string-equal 
-Provides the corresponding test for equality. Its shorter, alternative name is ~string=~. 
+*** string-equal
+Provides the corresponding test for equality. Its shorter, alternative name is ~string=~.
 
 Can be used to compare string and symbol.
 
@@ -1808,20 +1834,7 @@ Evaluate the first argument to the function; if it is true, evaluate the second 
 
 #+end_src
 
-*** when
-Is an [[if]] without the possibility of an else clause. In your mind, you can replace ~when~ with ~if~ and understand what goes on. That is what the Lisp interpreter does. Technically speaking, ~when~ is a Lisp [[Macro]].
-
-#+begin_src emacs-lisp
-
-(when test expr1 expr2 …)
-
-
-;; Its meaning is the same as 
-(if test (progn expr1 expr2 …)).
-
-#+end_src
-
-*** if–then–else 
+*** if–then–else
 An [[if]] expression may have an optional third argument, called the else-part, for the case when the true-or-false-test returns false.
 
 #+begin_src emacs-lisp
@@ -1836,15 +1849,28 @@ An [[if]] expression may have an optional third argument, called the else-part, 
   (message "4 is not greater than 5!"))   ; else-part
 
 
-;; example of doing nothing when "if" is true but doing 
+;; example of doing nothing when "if" is true but doing
 ;; something when we have "else" part
 (if (> 4 5)
-    () ;; then do nothing 
-  (message "4 is not greater than 5!")) 
+    () ;; then do nothing
+  (message "4 is not greater than 5!"))
 
 #+end_src
 
-*** unless 
+*** when
+Is an [[if]] without the possibility of an else clause. In your mind, you can replace ~when~ with ~if~ and understand what goes on. That is what the Lisp interpreter does. Technically speaking, ~when~ is a Lisp [[Macro]].
+
+#+begin_src emacs-lisp
+
+(when test expr1 expr2 …)
+
+
+;; Its meaning is the same as
+(if test (progn expr1 expr2 …)).
+
+#+end_src
+
+*** unless
 If COND yields nil, do BODY, else return nil.
 
 Is an [[if]] without a then-part clause, just the else-part. (unless = si no)
@@ -1860,7 +1886,7 @@ Is an [[if]] without a then-part clause, just the else-part. (unless = si no)
 
 *** cond
 Try each clause until one succeeds.
- 
+
 Each clause looks like ~(CONDITION BODY...)~.  ~CONDITION~ is evaluated and, if the value is ~non-nil~, this clause succeeds: then the expressions in ~BODY~ are evaluated and the last one's value is the value of the ~cond-form~. If a clause has one element, as in ~(CONDITION)~, then the ~cond-form~ returns ~CONDITION's~ value, if that is ~non-nil~. If no clause succeeds, cond returns ~nil~.
 
 #+begin_src emacs-lisp
@@ -1868,8 +1894,8 @@ Each clause looks like ~(CONDITION BODY...)~.  ~CONDITION~ is evaluated and, if 
 (cond CLAUSES...)
 
 
-(cond ( (> 5 10) 55)  
-      ( (< 5 10) 100)  
+(cond ( (> 5 10) 55)
+      ( (< 5 10) 100)
       ( (= 5 5) 200) ) ;; 100
 
 #+end_src
@@ -1884,8 +1910,8 @@ The first is the var argument, is sometimes bound to a variable that contains in
 The second argument determines what should happen when everything works correctly.
 
 If an error occurs, among its other actions, the function generating the error signal will define one or more error condition names.
- 
-The third argument is an error handler. An error handler has two parts, a condition-name and a body. If the condition-name part of an error handler matches a condition name generated by an error, then the body part of the error handler is run.  
+
+The third argument is an error handler. An error handler has two parts, a condition-name and a body. If the condition-name part of an error handler matches a condition name generated by an error, then the body part of the error handler is run.
 
 #+begin_src emacs-lisp
 
@@ -1938,7 +1964,7 @@ Automatically shortens the list each time it loops—takes the ~cdr~ of the list
 ;; Evaluate BODY with VAR bound to each car from LIST, in turn.
 ;; Then evaluate RESULT to get return value, default nil.
 ;; RESULT is optional
-(dolist (var list [result]) 
+(dolist (var list [result])
   body)
 
 
@@ -1952,7 +1978,7 @@ Automatically shortens the list each time it loops—takes the ~cdr~ of the list
 ;; the same function using while
 (defun reverse-list-with-while (list)
   "Using while, reverse the order of LIST."
-  (let (result) 
+  (let (result)
     (while list
       (setq result (cons (car list) result))
       (setq list (cdr list)))
@@ -1973,8 +1999,8 @@ Loops a specific number of times: you specify the number. ~dotimes~ is useful wh
 
 (dotimes (number 5)
   (insert (message "%d" number)))
-;; => 01234nil (supongo que de último imprime nil porque dotimes 
-;; viene del ciclo while que imprime nil cuando no se cumple la 
+;; => 01234nil (supongo que de último imprime nil porque dotimes
+;; viene del ciclo while que imprime nil cuando no se cumple la
 ;; condicion tru-false)
 
 
@@ -1989,11 +2015,11 @@ Loops a specific number of times: you specify the number. ~dotimes~ is useful wh
 *** Recursive
 A recursive function typically contains a conditional expression which has three parts:
 
-- A ~true-or-false-test~ that determines whether the function is called again, here called the ~do-again-test~. 
+- A ~true-or-false-test~ that determines whether the function is called again, here called the ~do-again-test~.
 - The name of the function. When this name is called, a new instance of the function is created and told what to do.
-- An expression that returns a different value each time the function is called, here called the ~next-step-expression~. Consequently, the argument (or arguments) passed to the new instance of the function will be different from that passed to the previous instance. This causes the conditional expression, the ~do-again-test~, to test false after the correct number of repetitions. 
+- An expression that returns a different value each time the function is called, here called the ~next-step-expression~. Consequently, the argument (or arguments) passed to the new instance of the function will be different from that passed to the previous instance. This causes the conditional expression, the ~do-again-test~, to test false after the correct number of repetitions.
 
-*Note* that although we say that the function “calls itself”, what we mean is that the Lisp interpreter assembles and instructs a *new instance* of the program. The new instance is a clone of the first, but is a separate individual. 
+*Note* that although we say that the function “calls itself”, what we mean is that the Lisp interpreter assembles and instructs a *new instance* of the program. The new instance is a clone of the first, but is a separate individual.
 
 #+begin_src emacs-lisp
 
@@ -2023,9 +2049,9 @@ Uses recursion."
                     ;; que arroja el condicional "if" al fallar el último valor
                     ;; que rompe la recursividad
     (if (not (eq (car list) nil))    ;; CONDICIONAL que rompe la recursividad
-	(setq result
-	      (+ (car list) (rf/sum-list-recursivly (cdr list)))))
-		    ;; FUNCIÓN que llama la recursividad variando el parámetro
+        (setq result
+              (+ (car list) (rf/sum-list-recursivly (cdr list)))))
+                    ;; FUNCIÓN que llama la recursividad variando el parámetro
     result))
 
 (rf/sum-list-recursivly '(1 2 3 4)) ;; => 10
@@ -2052,10 +2078,10 @@ The pattern is:
 If a list be empty, return ~nil~.
 Else, act on the beginning of the list (the ~car~ of the list)
  - through a recursive call by the function on the rest (the ~cdr~) of the list,
- - and, optionally, combine the acted-on element, using ~cons~, with the results of acting on the rest. 
+ - and, optionally, combine the acted-on element, using ~cons~, with the results of acting on the rest.
 
  #+begin_src emacs-lisp
- 
+
 (defun square-each (list)
   "Square each of a LIST, recursively."
   (if (not list)                 ; do-again-test
@@ -2070,7 +2096,7 @@ Else, act on the beginning of the list (the ~car~ of the list)
 (defun rf/square-each (list)
   (if (not (eq (car list) nil))
       (cons (* (car list) (car list))
-	    (rf/square-each  (cdr list)))))
+            (rf/square-each  (cdr list)))))
 
  #+end_src
 
@@ -2082,7 +2108,7 @@ The pattern is:
 If a list be empty, return ~zero~ or some other constant.
 Else, act on the beginning of the list (the ~car~ of the list),
   - and combine that acted-on element, using ~+~ or some other combining function, with
-  - a recursive call by the function on the rest (the ~cdr~) of the list. 
+  - a recursive call by the function on the rest (the ~cdr~) of the list.
 
 #+begin_src emacs-lisp
 
@@ -2104,10 +2130,10 @@ The pattern has three parts:
 If a list be empty, return ~nil~.
 Else, if the beginning of the list (the ~car~ of the list) passes a test
    - act on that element and combine it, using ~cons~ with
-   - a recursive call by the function on the rest (the ~cdr~) of the list. 
+   - a recursive call by the function on the rest (the ~cdr~) of the list.
  Otherwise, if the beginning of the list (the ~car~ of the list) fails the test
    - skip on that element,
-   - and, recursively call the function on the rest (the ~cdr~) of the list. 
+   - and, recursively call the function on the rest (the ~cdr~) of the list.
 
 #+begin_src emacs-lisp
 
@@ -2130,10 +2156,10 @@ Else, if the beginning of the list (the ~car~ of the list) passes a test
 
 (defun rf/numbers-above-5 (number)
   "Keep NUMBER that are above 5."
-  (cond ;; ((not number) nil) ;; se puede omitir 
-	((< (car number) 5) (name (cdr number)))
-	((> (car number) 5) (cons (car number) (name (cdr number))))
-	)
+  (cond ;; ((not number) nil) ;; se puede omitir
+        ((< (car number) 5) (name (cdr number)))
+        ((> (car number) 5) (cons (car number) (name (cdr number))))
+        )
   )
 
 (rf/numbers-above-5 '(1 9 3 7)) (9 7)
@@ -2210,7 +2236,7 @@ A function definition has up to five parts following the word ~defun~:
 - A list of the arguments that will be passed to the function. If no arguments will be passed to the function, this is an empty list, ~()~.
 - Documentation describing the function. (optional)
 - An expression to make the function interactive so you can use it by typing ~M-x~ and then the name of the function. (optional)
-- The code that instructs the computer what to do: the body of the function definition. 
+- The code that instructs the computer what to do: the body of the function definition.
 
 It is helpful to think of the five parts of a function definition as being organized in a template, with slots for each part:
 
@@ -2230,7 +2256,7 @@ and don't indent them.
 • Type \\[dired] to go into dired. (key of a command.)
 • clickable list of all keys of a given keymap name.
 \\{c-mode-map}
-• \\<c-mode-map> No visible effect. Tell emacs to use this keymap for 
+• \\<c-mode-map> No visible effect. Tell emacs to use this keymap for
 displaying keys in the rest of this inline doc."
   (interactive argument-passing-info)     ; optional
   body…)
@@ -2244,7 +2270,7 @@ displaying keys in the rest of this inline doc."
 
 #+begin_src emacs-lisp
 
-(defun triangulo (numero)            
+(defun triangulo (numero)
   "Devuelve la suma de números desde el 1 hasta e incluyendo a NUMERO."
   (let ((total 0))
     (while (> numero 0)
@@ -2253,12 +2279,12 @@ displaying keys in the rest of this inline doc."
     total))
 
 
-(defun cuadrado-de-cada-uno (lista-de-numeros)   
-  "El cuadrado de cada elemento en LISTA DE NUMEROS, recursivamente."   
-  (if (not lista-de-numeros)		; prueba-hazlo-de-nuevo   
-      nil   
-     (cons 
-      (* (car lista-de-numeros) (car lista-de-numeros))   
+(defun cuadrado-de-cada-uno (lista-de-numeros)
+  "El cuadrado de cada elemento en LISTA DE NUMEROS, recursivamente."
+  (if (not lista-de-numeros)		; prueba-hazlo-de-nuevo
+      nil
+     (cons
+      (* (car lista-de-numeros) (car lista-de-numeros))
       (cuadrar-cada-uno (cdr lista-de-numeros))))) ; expresion-del-siguiente-paso
 
 #+end_src
@@ -2272,12 +2298,12 @@ Emacs's function parameter's features and syntax is very basic. It is simply a l
 (defun myfun (aa bb &optional cc dd)
 ""
    (let ((varOptional (or cc 5))))) ;; if send cc, put it on, if not, do not
-;; When you call, a and b are required, c and d are optional. 
+;; When you call, a and b are required, c and d are optional.
 ;; When a optional parameter is not given, its value is nil.
 
 #+end_src
 
-If you want to give a argument to some optional parameters but not all, use ~nil~ for those you don't care. 
+If you want to give a argument to some optional parameters but not all, use ~nil~ for those you don't care.
 
 #+begin_src emacs-lisp
 
@@ -2291,7 +2317,7 @@ If a function received a ~nil~ as argument for one of its optional parameter, th
 Elisp also support the *unspecified number of parameters*. It is done by adding ~&rest~ similar to ~&optional~. You can have both ~&optional~ and ~&rest~, in that order.
 
 *** interactive
-Declare to the interpreter that the function can be used interactively (by typing ~M-x~ and then the name of the function). 
+Declare to the interpreter that the function can be used interactively (by typing ~M-x~ and then the name of the function).
 
 This special form may be followed by a string with one or more parts that pass the information to the arguments of the function, in sequence. These parts may also tell the interpreter to prompt for information. Parts of the string are separated by newlines,  ~\n~ (can be use with a [[prefix argument]] like this ~C-u 3 M-x multiply-by-seven~).
 
@@ -2302,7 +2328,7 @@ The ~(interactive …)~ is used to fill out the parameters, when your function i
 - b :: The *name* of an existing *buffer*.
 - f :: The *name* of an existing *file*.
 - r :: *Point and the mark*, as two numeric arguments, smallest first. This is the only code letter that specifies two successive arguments rather than one.
-- s :: Any *string*.  Does not inherit the current input method. 
+- s :: Any *string*.  Does not inherit the current input method.
 
 Tech detail: In emacs, “commands” are a subset of “functions”. Commands are functions that can be called interactively (by typing ~M-x~). A function is a command when its definition contains the ~(interactive …)~ clause.
 
@@ -2355,7 +2381,7 @@ One way to use the ~interactive~ function is for it to return a list. This list'
 ;; Interesting quick example of the behavior of the interactive function
 (defun xah/wrap-html-tag (tagName &optional className ξid)
 ;;(interactive (list …))
-  (interactive '(1 2 3)) 
+  (interactive '(1 2 3))
   (message "uno %s dos %s tercer %s" tagName className ξid))
 ;; => 1 dos 2 tercer 3
 
@@ -2417,19 +2443,19 @@ When called in lisp program, if className is nil or empty string, don't add the 
 #+end_src
 
 *** lambda
-Is the symbol for an anonymous function, a function without a name. Every time you use an anonymous function, you need to include its whole body. It let you define a function in the middle of your code. 
+Is the symbol for an anonymous function, a function without a name. Every time you use an anonymous function, you need to include its whole body. It let you define a function in the middle of your code.
 
-The read syntax ~#'~ is a short-hand for using ~function~. 
+The read syntax ~#'~ is a short-hand for using ~function~.
 
 #+begin_src emacs-lisp
 
-(lambda (arg-variables) 
-  [documentation-string] 
-  [interactive-declaration] 
+(lambda (arg-variables)
+  [documentation-string]
+  [interactive-declaration]
   body-forms)
 
 
-(lambda (x y) (+ x y)) 
+(lambda (x y) (+ x y))
 ;; is a function that takes two arguments, x and y, and returns their sum.
 
 ;; these are some of the ways of calling the function
@@ -2449,10 +2475,10 @@ The read syntax ~#'~ is a short-hand for using ~function~.
       anonymous function     argument
 
 
-;; We had a function multiply-by-seven; it multiplied its argument by 7. 
+;; We had a function multiply-by-seven; it multiplied its argument by 7.
 (defun multiply-by-seven (number)
   (* 7 number))
-;; The anonymous equivalent of multiply-by-seven is: 
+;; The anonymous equivalent of multiply-by-seven is:
 (lambda (number) (* 7 number))
 
 
@@ -2461,9 +2487,9 @@ The read syntax ~#'~ is a short-hand for using ~function~.
 (function (lambda (x) (* x x)))
 #'(lambda (x) (* x x))
 
-;; Note: 
-;; function (aka #') is used to quote functions, whereas quote (aka ') 
-;; is used to quote data. 
+;; Note:
+;; function (aka #') is used to quote functions, whereas quote (aka ')
+;; is used to quote data.
 
 #+end_src
 
@@ -2485,10 +2511,10 @@ The argument FUNCTION must be either a Lisp function or a primitive function. Sp
 (funcall 'and t nil)    ;; => error→ Invalid function: #<subr and>(special form)
 
 (apply 'max '(1 2 3 4)) ;; => 4
-(funcall 'max '(1 2 3 4)) 
+(funcall 'max '(1 2 3 4))
 ;; => error because "funcall" would pass that argument to the function "max"
 ;; which precisely cannot recive the list as an argument while "apply" does,
-;; "apply" passes each value of the list as an individual argument. 
+;; "apply" passes each value of the list as an individual argument.
 
 #+end_src
 
@@ -2509,17 +2535,17 @@ The argument FUNCTION must be either a Lisp function or a primitive function. Sp
 (apply '+ '(1 2 3 4)) ;; => 10
 
 
-(apply 'append '((a b c) nil (x y z) nil)) ;; => (a b c x y z) 
+(apply 'append '((a b c) nil (x y z) nil)) ;; => (a b c x y z)
 ;; append sends each argument as an individual argument in itself.
 (apply '(+ 3 4)) ;; => 7
 (apply '(lambda (x) (+ x 5)) '(6)) ;; => 11
 
 
 (apply 'max '(1 2 3 4)) ;; => 4
-(funcall 'max '(1 2 3 4)) 
+(funcall 'max '(1 2 3 4))
 ;; => error because "funcall" would pass that argument to the function "max"
 ;; which precisely cannot recive the list as an argument while "apply" does,
-;; "apply" passes each value of the list as an individual argument. 
+;; "apply" passes each value of the list as an individual argument.
 
 #+end_src
 
@@ -2528,8 +2554,8 @@ Functions that take other functions as arguments.
 
 #+begin_src emacs-lisp
 
-(defun transform-unless-zero (fn n) 
-  (if (= n 0) 0 
+(defun transform-unless-zero (fn n)
+  (if (= n 0) 0
   (funcall fn n)))
 
 
@@ -2552,7 +2578,7 @@ Currently, an Emacs Lisp closure object is represented by a list with the symbol
 
 #+end_src
 
-However, the fact that the internal structure of a closure is exposed to the rest of the Lisp world is considered an internal implementation detail. For this reason, we recommend against directly examining or altering the structure of closure objects. 
+However, the fact that the internal structure of a closure is exposed to the rest of the Lisp world is considered an internal implementation detail. For this reason, we recommend against directly examining or altering the structure of closure objects.
 
 #+begin_src emacs-lisp
 
@@ -2605,11 +2631,11 @@ Note that the elements are numbered from zero, not one. That is to say, the firs
 **** elt
 This function returns the element of sequence indexed by index. Legitimate values of index are integers ranging from 0 up to one less than the length of sequence. If sequence is a list, out-of-range values behave as for [[nth]].
 
-#+begin_src emacs-lisp        
+#+begin_src emacs-lisp
 
 (elt [1 2 3 4] 2) ;; => 3
 
-(elt '(1 2 3 4) 2) ;; => 3 
+(elt '(1 2 3 4) 2) ;; => 3
 
 ;; We use string to show clearly which character elt returns.
 (string (elt "1234" 2)) ;; => "3"
@@ -2628,7 +2654,7 @@ Return the last link of LIST.  Its car is the last element.
 #+end_src
 
 **** cdr
-Returns the second and subsequent elements of a list. 
+Returns the second and subsequent elements of a list.
 
 ~cdr~ does not remove any elements from the list—it just returns a report of what the second and subsequent elements are.  ~cdr~ is “non-destructive”
 
@@ -2675,7 +2701,7 @@ This macro provides a convenient way to examine the CAR of a list, and take it o
 (pop listname)
 ; In the simplest case, listname is an unquoted symbol naming a list
 ; in that case, this macro is equivalent to
-(prog1 (car  listname) 
+(prog1 (car  listname)
        (setq listname (cdr listname)))
 
 
@@ -2684,7 +2710,7 @@ x       ;; => (a b c)
 x       ;; => (b c)
 
 ; More generally, listname can be a generalized variable.
-; In that case, this macro saves into listname using setf. 
+; In that case, this macro saves into listname using setf.
 
 #+end_src
 
@@ -2705,9 +2731,9 @@ This function returns the members of SEQUENCE in order, starting from the first 
 **** cons
 Return a new list, with new element added to front. (prepend)
 
-Constructs a list by prepending its first argument to its second argument. ~cons~ does not change an existing list, but creates a new one. ~cons~ is “non-destructive”. 
+Constructs a list by prepending its first argument to its second argument. ~cons~ does not change an existing list, but creates a new one. ~cons~ is “non-destructive”.
 
-- ~cons~ must have a list to attach to. You cannot start from absolutely nothing. If you are building a list, you need to provide at least an empty list at the beginning. 
+- ~cons~ must have a list to attach to. You cannot start from absolutely nothing. If you are building a list, you need to provide at least an empty list at the beginning.
 - ~cons~, can put together or construct a list, but not an array.
 
 The function ~cons~ adds a new pair of addresses to the front of a series of addresses. Thus, to ~cons~ a new element on a list, you add a new cons cell to the front of the list.
@@ -2799,7 +2825,7 @@ Modify LIST to *remove the last N elements*. It *changed the list*.
 #+end_src
 
 **** seq-drop
-Returns all but the first ~n~ (an integer) elements of SEQUENCE. If ~n~ is negative or zero, the result is SEQUENCE. 
+Returns all but the first ~n~ (an integer) elements of SEQUENCE. If ~n~ is negative or zero, the result is SEQUENCE.
 
 #+begin_src emacs-lisp
 
@@ -2851,7 +2877,7 @@ Set the [[car]] of a list to a new value.
 
 ~setcar~ did not add a new element to the list as ~cons~ would have; it replaced first element of the list with new value; *it changed the list*.
 
-The result we are interested in is the side effect, which we can see by evaluating the variable what will change. 
+The result we are interested in is the side effect, which we can see by evaluating the variable what will change.
 
 #+begin_src emacs-lisp
 
@@ -2873,7 +2899,7 @@ Set the [[cdr]] of a list to a new value.
 
 ~setcdr~ did not add elements to the list as ~cons~ would have; it replaced the second and subsequent elements of the list with new values; *it changed the list*.
 
-The result we are interested in is the side effect, which we can see by evaluating the variable what will change. 
+The result we are interested in is the side effect, which we can see by evaluating the variable what will change.
 
 #+begin_src emacs-lisp
 
@@ -2892,13 +2918,13 @@ numbers ;; =>  (first 2 3)
 
 ;; Ejemplo de acortar una lista se debe poneniendo
 ;; el último valor con nil
-(setq numbers (list 'first 'second 'third 'fourth)) 
+(setq numbers (list 'first 'second 'third 'fourth))
 ;; numbers => (first second third fourth)
 
 (setcdr (nthcdr 2 numbers) nil)
 ;; (nthcdr 2 numbers) no altera la lista, solo trabaja
-;; temporalmente entregando (third fourt) y luego 
-;; setcdr la altera (third fourt) => (third nil) 
+;; temporalmente entregando (third fourt) y luego
+;; setcdr la altera (third fourt) => (third nil)
 ;; numbers => (first second third)
 ;; SE PUEDE VER MEJOR USANDO LAS DIRECCIONES DE LISTA, I.E.
 ;; CADA CONS CELL TIENE LA DIRECCIÓN PROPIA Y LA DE EL PUNTERO
@@ -2914,7 +2940,7 @@ Return the length of vector, list or string.
 
 (length '(first second third)) ;; => 3
 
-(length "first") ;; => 5 
+(length "first") ;; => 5
 
 (length (make-bool-vector 5 nil)) ;; => 5
 
@@ -2923,7 +2949,7 @@ Return the length of vector, list or string.
 **** sort
 This function sorts SEQUENCE stably. Note that this function doesn’t work for all sequences; it may be used only for lists and vectors. If SEQUENCE is a list, it is modified *destructively*. This functions returns the sorted SEQUENCE and compares elements using PREDICATE. A stable sort is one in which elements with equal sort keys maintain their relative order before and after the sort. Stability is important when successive sorts are used to order elements according to different criteria.
 
-*WARNING*: The destructive aspect of ~sort~ for lists is that it rearranges the cons cells forming SEQUENCE by changing CDRs. A nondestructive sort function would create new cons cells to store the elements in their sorted order. If you wish to make a sorted copy without destroying the original, copy it first with [[copy-sequence]] and then sort. 
+*WARNING*: The destructive aspect of ~sort~ for lists is that it rearranges the cons cells forming SEQUENCE by changing CDRs. A nondestructive sort function would create new cons cells to store the elements in their sorted order. If you wish to make a sorted copy without destroying the original, copy it first with [[copy-sequence]] and then sort.
 
 #+begin_src emacs-lisp
 
@@ -2931,7 +2957,7 @@ This function sorts SEQUENCE stably. Note that this function doesn’t work for 
 (sort nums #'<)                  ;; => (0 1 2 3 4 5 6)
 nums                             ;; => (1 2 3 4 5 6)
 
-;;Most often we store the result back into the variable 
+;;Most often we store the result back into the variable
 ;;that held the original list:
 (setq nums (sort nums #'<))
 
@@ -2948,7 +2974,7 @@ This function returns a copy of its ARGUMENT, which should be either a sequence 
 
 *Storing a new element into the copy does not affect the original ARGUMENT, and vice versa. However, the elements of the copy are not copies; they are identical (eq) to the elements of the original. Therefore, changes made within these elements, as found via the copy, are also visible in the original.*
 
-This function does not work for dotted lists. Trying to copy a circular list may cause an infinite loop. 
+This function does not work for dotted lists. Trying to copy a circular list may cause an infinite loop.
 
 #+begin_src emacs-lisp
 
@@ -2965,7 +2991,7 @@ This function does not work for dotted lists. Trying to copy a circular list may
 **** mapcar
 Apply FUNCTION to each element of SEQUENCE, and make a list of the results. SEQUENCE may be a list, a vector, a bool-vector, or a string.
 
-Contrast this with [[apply]], which applies its first argument to all the remaining. 
+Contrast this with [[apply]], which applies its first argument to all the remaining.
 
 The ‘map’ part of the name comes from the mathematical phrase, “mapping over a domain”, meaning to apply a function to each of the elements in a domain. The mathematical phrase is based on the metaphor of a surveyor walking, one step at a time, over an area he is mapping. And ‘car’, of course, comes from the Lisp notion of the first of a list.
 
@@ -3024,7 +3050,7 @@ x                ;; => "xyzzy"
 #+end_src
 
 **** nreverse
-This function reverses the order of the elements of SEQUENCE. Unlike [[reverse]] the original SEQUENCE may be *modified*. 
+This function reverses the order of the elements of SEQUENCE. Unlike [[reverse]] the original SEQUENCE may be *modified*.
 
 Note that unlike ~reverse~, this function doesn’t work with strings. Although you can alter string data by using ~aset~, it is strongly encouraged to treat strings as immutable even when they are mutable.
 
@@ -3066,7 +3092,7 @@ Return a sequence of numbers from FROM to TO (both inclusive) as a list.
 
 #+end_src
 
-**** seq-random-elt 
+**** seq-random-elt
 This function returns an ELEMENT of sequence taken at random.
 
 #+begin_src emacs-lisp
@@ -3078,7 +3104,7 @@ This function returns an ELEMENT of sequence taken at random.
 #+end_src
 
 **** seqp
-This function returns non-nil if object is a sequence (a list or array), or any additional type of sequence defined via seq.el generic functions. This is an extensible variant of ~sequencep~. 
+This function returns non-nil if object is a sequence (a list or array), or any additional type of sequence defined via seq.el generic functions. This is an extensible variant of ~sequencep~.
 
 #+begin_src emacs-lisp
 
@@ -3141,7 +3167,7 @@ symbols in one function definition."
 **** set-buffer
 Switch the attention of Emacs to another buffer, but does not redisplay it on the screen.
 
-Para trabajar temporalmente en otro buffer, cambia la atencion al buffer que 
+Para trabajar temporalmente en otro buffer, cambia la atencion al buffer que
 se le indique pero no lo muestra en pantalla, trabaja en segundo plano por así decirlo.
 
 **** get-buffer
@@ -3231,7 +3257,7 @@ Create a temporary buffer, and evaluate BODY there like progn.
 
 Elisp has a buffer data type that's powerful and flexible, and you have over 3 thousand functions that acts on text in a buffer. When you have a string, and you need to do more than just getting substring or number of chars, put it in a temp buffer.
 
-Notes: 
+Notes:
 - with temp buffer, emacs doesn't do syntax-coloring (which is very slow), disables undo, or any other thing emacs normally do when opening a file for interactive edit.
 - I think the difference between ~with-temp-buffer~ and ~with-output-to-temp-buffer~ is that latter works inside the buffer and then outputs the result in that buffer while the other just works inside the buffer but then kills the buffer.
 
@@ -3245,7 +3271,7 @@ Notes:
         ;; code to manipulate your string as buffer text
         ;; …
         (buffer-string))) ; get result
-        
+
 
 ;; read-only processing a file without user interaction
 (defun my-process-file (fPath)
@@ -3303,15 +3329,15 @@ Note: I think the difference between ~with-temp-buffer~ and ~with-output-to-temp
 ;; <a class="amz" href="http://www.amazon.com/dp/B000055Y0X/?tag=xahh-20" title="Dr. Strangelove; movie">amazon</a>
 
 (setq outputBuffer "*xah output*" )
-(with-output-to-temp-buffer outputBuffer 
+(with-output-to-temp-buffer outputBuffer
 
   (find-file "~/web/xahlee_org/Periodic_dosage_dir/skina/nelci_skina.html" )
   (goto-char 1)
 
-  (while 
+  (while
       (search-forward-regexp "<a class=\"amz\" href=\"http://www.amazon.com/dp/[^\"]+?\">amazon</a>"  nil t)
 
-    (progn 
+    (progn
       ;; set points for amazon link
       (backward-char 11)
       (setq amzLinkInsertPoint (point) )
@@ -3320,14 +3346,14 @@ Note: I think the difference between ~with-temp-buffer~ and ~with-output-to-temp
       (search-backward-regexp "<a href=\"http://...wikipedia.org/wiki/[^\"]+?\">\\([^<]+?\\)</a>")
       (setq titleText (match-string 1 ) )
 
-      (when (yes-or-no-p titleText) 
+      (when (yes-or-no-p titleText)
         (goto-char amzLinkInsertPoint)
         (insert (concat " title=\"" titleText "; movie\"")) )
       )
 
     (progn (print "not found"))
     )
-  
+
   (princ "Done deal!")
   )
 
@@ -3337,7 +3363,7 @@ Note: I think the difference between ~with-temp-buffer~ and ~with-output-to-temp
 Return the number of characters in the current buffer.
 
 **** buffer-string
-This function returns the contents *of the entire accessible portion* of the current buffer, as a string. 
+This function returns the contents *of the entire accessible portion* of the current buffer, as a string.
 
 #+begin_src emacs-lisp
 
@@ -3356,7 +3382,7 @@ Return the contents of part of the current buffer as a string.
 
 ;; ---------- Buffer: foo ----------
 ;; This is the contents of buffer foo
-;; 
+;;
 ;; ---------- Buffer: foo ----------
 
 (buffer-substring 1 10)
@@ -3378,7 +3404,7 @@ For example, if Font-Lock mode is enabled, you might get results like these:
 
 #+end_src
 
-**** buffer-substring-no-properties 
+**** buffer-substring-no-properties
 Emacs's string can have text properties for the purposes of syntax coloring, button, clickable link, etc. if you are doing text processing, usually you don't need text properties.
 
 The ~buffer-substring-no-properties~ function just return a plain string without these properties.
@@ -3402,8 +3428,8 @@ Assumes that the file contains the string
 
 #+end_src
 
-**** insert-buffer-substring 
-Copy a region of text from a buffer that is passed to the function as an 
+**** insert-buffer-substring
+Copy a region of text from a buffer that is passed to the function as an
 argument and insert the region into the current buffer.
 
 **** mark-whole-buffer
@@ -3416,7 +3442,7 @@ Return t if BUFFER was modified since its file was last read or saved.
 Begin using Ibuffer to edit a list of buffers.
 
 **** bufferp
-Return t if its argument is a buffer; otherwise return nil. 
+Return t if its argument is a buffer; otherwise return nil.
 
 *** string-
 **** message
@@ -3426,21 +3452,30 @@ Print a message in the echo area. The first argument is a string that can contai
 - %d :: must be a number
 - %c :: must be an ASCII code number; it will be printed as the character with that ASCII code
 
-If there is more than one ~%s~ in the quoted string, the value of the first argument following the quoted string is printed at the location of the first ~%s~ and the value of the second argument is printed at the location of the second ~%s~ and so on. 
+If there is more than one ~%s~ in the quoted string, the value of the first argument following the quoted string is printed at the location of the first ~%s~ and the value of the second argument is printed at the location of the second ~%s~ and so on.
 
  #+begin_src emacs-lisp
 
 (message "The name of this buffer is: %s." (buffer-name))
 ;; => "The name of this buffer is: Emacs.org."
- 
+
+
 (message "There are %d %s in the office!"
-         (- fill-column 14) "pink elephants") 
+         (- fill-column 14) "pink elephants")
 ;; => "There are 56 pink elephants in the office!"
+
+
+(message "%s has %d line%s, %d word%s, and %d character%s."
+   str
+   lines (if (= lines 1) "" "s")
+   words (if (= words 1) "" "s")
+   chars (if (= chars 1) "" "s"))
+;; => "Region has 5 lines, 26 words, and 167 characters."
 
  #+end_src
 
 **** format
-How a lisp object is converted to string for printing is done by the ~format~ function. It takes a input string, and several other arguments of lisp objects, and output a string. 
+How a lisp object is converted to string for printing is done by the ~format~ function. It takes a input string, and several other arguments of lisp objects, and output a string.
 
 #+begin_src emacs-lisp
 
@@ -3598,7 +3633,7 @@ Output the printed representation of OBJECT, any Lisp object.
         ;; (terpri )
         )
 
-      (when (not (equal myStack nil)) 
+      (when (not (equal myStack nil))
         (princ "Error file: ")
         (princ fPath)
         (print (car myStack) )
@@ -3677,7 +3712,7 @@ Split STRING into substrings bounded by matches for SEPARATORS.
 #+end_src
 
 **** string-match
-Returns the *index* of the start of the first match for the regular expression regexp in string, or ~nil~ if there is no match. If start is non-~nil~, the search starts at that index in string. 
+Returns the *index* of the start of the first match for the regular expression regexp in string, or ~nil~ if there is no match. If start is non-~nil~, the search starts at that index in string.
 
 #+begin_src emacs-lisp
 
@@ -3702,16 +3737,16 @@ For example:
 #+end_src
 
 **** search-forward
-Search for a *string*, and if the string is found, *move point*. With a regular expression, use the similar [[re-search-forward]]. 
+Search for a *string*, and if the string is found, *move point*. With a regular expression, use the similar [[re-search-forward]].
 
 ~search-forward~ and ~re-search-forward~ take four arguments:
 
 1. The string or regular expression to search for.
 2. Optionally, the limit of the search.
 3. Optionally, what to do if the search fails, return nil or an error message.
-4. Optionally, how many times to repeat the search; if negative, the search goes backwards. 
+4. Optionally, how many times to repeat the search; if negative, the search goes backwards.
 
-Note: Due the way computers are built, the Lisp interpreter may treat a single character as being different from a string of characters. Inside the computer, a single character has a different electronic format than a string of one character. (A single character can often be recorded in the computer using exactly one byte; but a string may be longer, and the computer needs to be ready for this.) 
+Note: Due the way computers are built, the Lisp interpreter may treat a single character as being different from a string of characters. Inside the computer, a single character has a different electronic format than a string of one character. (A single character can often be recorded in the computer using exactly one byte; but a string may be longer, and the computer needs to be ready for this.)
 
 In emacs buffer, newline char is ~\n~. So, you can use ~(search-forward "\n")~ if you really need to find the end of line character.
 
@@ -3761,7 +3796,7 @@ In emacs buffer, newline char is ~\n~. So, you can use ~(search-forward "\n")~ i
 Search backward from point for STRING. Move cursor to the location of a string, returns the new position.
 
 **** current-word
-This function returns the symbol (or word) at or near point, as a string. The return value includes no text properties. 
+This function returns the symbol (or word) at or near point, as a string. The return value includes no text properties.
 
 **** symbol-name
 Return SYMBOL's name, a string.
@@ -3769,7 +3804,7 @@ Return SYMBOL's name, a string.
 **** thing-at-point
 Return the thing around or next to point, as a string.
 
-The argument thing is a symbol which specifies a kind of syntactic entity (symbol, list, sexp, defun, filename, url, word, sentence, whitespace, line, page, and others). 
+The argument thing is a symbol which specifies a kind of syntactic entity (symbol, list, sexp, defun, filename, url, word, sentence, whitespace, line, page, and others).
 
 ~thing-at-point~ does have some annoyances. For example, when getting a line, it'll normally include the newline char "\n", but not if the line is at the end of buffer.
 
@@ -3792,7 +3827,7 @@ Note: emacs's concept of “symbol” is like a “identifier”. It usually inc
 (defun xah/print-current-word-and-line ()
   "print current word and line."
   (interactive)
-  (message "%s and %s" (thing-at-point 'word)) 
+  (message "%s and %s" (thing-at-point 'word))
                        (thing-at-point 'line))
 
 ;; Without thing-at-point
@@ -3834,7 +3869,7 @@ If a region is active (a phrase), lookup that phrase."
 
 **** make-string
 Return a newly created string of length LENGTH, with INIT in each element.
- 
+
 #+begin_src emacs-lisp
 
 (make-string 3 65) ;; => "AAA"
@@ -3867,11 +3902,11 @@ becomes
 "
   (let ((linkText url))
     ; decode percent encoding. ➢ for example: %20
-    (setq linkText (gnus-url-unhex-string linkText nil)) 
+    (setq linkText (gnus-url-unhex-string linkText nil))
     ; get last part
     (setq linkText (car (last (split-string linkText "/"))))
     ; low line → space
-    (setq linkText (replace-regexp-in-string "_" " " linkText )) 
+    (setq linkText (replace-regexp-in-string "_" " " linkText ))
     (format "<a href=\"%s\">%s</a>" url linkText)))
 
 #+end_src
@@ -3890,20 +3925,20 @@ This function does not move point, but it updates the match data, which you can 
 #+end_src
 
 **** re-search-forward
-Search for a *pattern* (regular expression), and if the pattern is found, *move point* to rest just after it. With a string, use the similar [[search-forward]]. 
+Search for a *pattern* (regular expression), and if the pattern is found, *move point* to rest just after it. With a string, use the similar [[search-forward]].
 
 ~search-forward~ and ~re-search-forward~ take four arguments:
 
   1. A regular expression that specifies the pattern to search for. (Remember to put quotation marks around this argument!)
   2. Optionally, the limit of the search.
   3.  Optionally, what to do if the search fails, return nil or an error message.
-  4. Optionally, how many times to repeat the search; if negative, the search goes backwards. 
+  4. Optionally, how many times to repeat the search; if negative, the search goes backwards.
 
 #+begin_src emacs-lisp
-  
+
 (re-search-forward "\*+ *" nil t)
-;; This function moves ahead of the match string 
-;; (1 or more * and 0 or more blanks) and returns the 
+;; This function moves ahead of the match string
+;; (1 or more * and 0 or more blanks) and returns the
 ;; point number or nil in case of no match, instead of error.
 
 
@@ -4018,7 +4053,7 @@ Return *position* of end of text matched by *last* search.
 **** match-data
 Return a list describing what the last search matched.
 
-**** perform-replace 
+**** perform-replace
 This function is the guts of ~query-replace~ and related commands. It searches for occurrences of from-string and *replaces* some or all of them. If query-flag is ~nil~, it replaces all occurrences; otherwise, it asks the user what to do about each one.
 
 **** replace-match
@@ -4062,7 +4097,7 @@ Replace all matches for REGEXP with REP in STRING.
 (search-forward-regexp regexp nil t)
 
 (concat
- "<img src=\""(match-string 1)"\" 
+ "<img src=\""(match-string 1)"\"
 
  alt=\""(replace-regexp-in-string ".png" ""
     (replace-regexp-in-string "_" " " (match-string 1)))"\"
@@ -4338,7 +4373,7 @@ Return the character position of the last character on the current line.
 **** forward-char
 Move point N characters forward (backward if N is negative).
 
-**** backward-char 
+**** backward-char
 Move point N characters backward (forward if N is negative).
 
 **** bounds-of-thing-at-point
@@ -4346,7 +4381,7 @@ Determine the start and end buffer locations for the THING at point.
 
 Often you want a command that works on the current word (or line, paragraph), but if there is a text selection, take the text selection as input. Here's a template for this and other examples.
 
-Sometimes, you need to not just grab current word, but do other things such as delete the word. You need to know the beginning and ending positions of the region you are interested. Use ~bounds-of-thing-at-point~. 
+Sometimes, you need to not just grab current word, but do other things such as delete the word. You need to know the beginning and ending positions of the region you are interested. Use ~bounds-of-thing-at-point~.
 
 
 #+begin_src emacs-lisp
@@ -4375,7 +4410,7 @@ Sometimes, you need to not just grab current word, but do other things such as d
     (setq pos2 (cdr bounds))
     (setq mything (buffer-substring-no-properties pos1 pos2))
 
-    (message 
+    (message
      "thing begin at [%s], end at [%s], thing is [%s]"
      pos1 pos2 mything)))
 
@@ -4421,7 +4456,7 @@ with “*” as separator, becomes
 #+end_src
 
 **** eobp
-Return t for true if point is at the end of the accessible part of a buffer. The end of the accessible part is the end of the buffer if the buffer is not narrowed; it is the end of the narrowed part if the buffer is narrowed. 
+Return t for true if point is at the end of the accessible part of a buffer. The end of the accessible part is the end of the buffer if the buffer is not narrowed; it is the end of the narrowed part if the buffer is narrowed.
 
 *** mark-
 **** push-mark
@@ -4496,7 +4531,7 @@ The function ~use-region-p~ basically checks 3 things:
 
 #+end_src
 
-**** kill-region 
+**** kill-region
 Cuts the text between point and mark from the buffer and stores that text in the kill ring, so you can get it back by yanking.
 
 #+begin_src emacs-lisp
@@ -4519,7 +4554,7 @@ Save the region as if killed, but don't kill it.
 **** kill-new
 Make STRING the latest kill in the kill ring.
 
-[[kill-ring-save]] copy text between buffer positions and push it to ~kill-ring~ if you already have a string, use ~kill-new~ 
+[[kill-ring-save]] copy text between buffer positions and push it to ~kill-ring~ if you already have a string, use ~kill-new~
 
 #+begin_src emacs-lisp
 
@@ -4559,10 +4594,10 @@ Whenever you work in a region, remember that the boundaries of the text that you
 
 #+end_src
 
-**** copy-region-as-kill 
+**** copy-region-as-kill
 Copies the text between point and mark into the kill ring, from which you can get it by yanking. The function does not cut or remove the text from the buffer.
 
-**** delete-and-extract-region 
+**** delete-and-extract-region
 Removes the text between point and mark from the buffer and throws it away. You cannot get it back. (This is not an interactive command.)
 
 **** widen
@@ -4627,12 +4662,12 @@ Return FILENAME sans final "extension".
 **** file-relative-name
 Get relative path.
 
-**** expand-file-name 
+**** expand-file-name
 Convert filename NAME to absolute, and canonicalize it. The function employs the name of the directory in which the function is called.
 
 #+begin_src emacs-lisp
 
-;; if expand-file-name is called when Emacs is visiting 
+;; if expand-file-name is called when Emacs is visiting
 ;; the /usr/local/share/emacs/22.1.1/lisp/emacs-lisp/
 
 (expand-file-name "debug.el")
@@ -4827,10 +4862,10 @@ Return largest of all the arguments (which must be numbers or markers).
 
 ;; max into a list
 (apply 'max '(1 2 3 4)) ;; => 4
-(funcall 'max '(1 2 3 4)) 
+(funcall 'max '(1 2 3 4))
 ;; => error because "funcall" would pass that argument to the function "max"
 ;; which precisely cannot recive the list as an argument while "apply" does,
-;; "apply" passes each value of the list as an individual argument. 
+;; "apply" passes each value of the list as an individual argument.
 
 #+end_src
 
@@ -4902,7 +4937,7 @@ Return number of lines between START and END.
 **** forward-line
 Move cursor to previous(-1) or next line(1). Cursor will be at beginning of line.
 
-Do not use ~next-line~ or ~previous-line~. Because these are for interactive use. Their behavior changes depending on the variable ~line-move-visual~.
+Do not use ~next-line~ , ~previous-line~ or ~goto-line~ because these are for interactive use, ~forward-line~ is better opcion. Their behavior changes depending on the variable ~line-move-visual~.
 
 *** ring-
 **** kill-append
@@ -4973,7 +5008,7 @@ Non-nil if searches and matches should ignore case.
 
       (goto-char 1)
       (while (search-forward searchStr nil t) ;for regex, re-search-forward
-        (princ (format "this many: %d %s\n" 
+        (princ (format "this many: %d %s\n"
                   (line-number-at-pos (point)) fPath)))
 
       (kill-buffer myBuffer))))
@@ -5098,10 +5133,10 @@ Return t if answer is "y" and nil if it is "n".
         (setq p4 (point) )
         (backward-char 6) ; beginning of the closing div tag
         (setq p3 (point) )
-        (narrow-to-region p1 p4) 
+        (narrow-to-region p1 p4)
 
         (when (y-or-n-p "replace?")
-          (progn 
+          (progn
             (delete-region p3 p4 )
             (goto-char p3)
             (insert "</figure>")
@@ -5118,7 +5153,7 @@ Return t if answer is "y" and nil if it is "n".
 
 (let (outputBuffer)
   (setq outputBuffer "*xah img/figure replace output*" )
-  (with-output-to-temp-buffer outputBuffer 
+  (with-output-to-temp-buffer outputBuffer
     (mapc 'my-process-file (find-lisp-find-files "~/web/xahlee_org/emacs/" "\\.html$"))
     (princ "Done deal!")))
 
@@ -5205,7 +5240,7 @@ Here's a example of printing to your own buffer:
 #+begin_src emacs-lisp
 
 (require 'find-lisp)
-(with-output-to-temp-buffer "*my output*" 
+(with-output-to-temp-buffer "*my output*"
   (mapc 'my-process-file (find-lisp-find-files "~/" "\\.html$"))
   (princ "Done.\n")
   (switch-to-buffer "*my output*")
@@ -5238,7 +5273,7 @@ To exit a function, just put ~throw 'tagname value~ where you want to, and, wrap
           )
       (progn ; else, go on
         (message "went on")
-        4)))) ; return 4        
+        4)))) ; return 4
 
 
 ;; Exit a map
@@ -5310,7 +5345,7 @@ Another similar function is ~highlight-lines-matching-regexp~.
 
 #+begin_src emacs-lisp
 
-(highlight-phrase "\\bKing\\b" (quote hi-blue)) 
+(highlight-phrase "\\bKing\\b" (quote hi-blue))
 
 (highlight-lines-matching-regexp "^#" (quote hi-blue-b))
 
@@ -5334,7 +5369,7 @@ Skip to end of tag or matching closing tag if present.
 **** sit-for
 Redisplay, then wait for SECONDS seconds.  Stop when input is available.
 
-This expression makes the graph printing operation more interesting to watch than it would be otherwise. The expression causes Emacs to sit or do nothing for a zero length of time and then redraw the screen. Placed here, it causes Emacs to redraw the screen column by column. Without it, Emacs would not redraw the screen until the function exits. 
+This expression makes the graph printing operation more interesting to watch than it would be otherwise. The expression causes Emacs to sit or do nothing for a zero length of time and then redraw the screen. Placed here, it causes Emacs to redraw the screen column by column. Without it, Emacs would not redraw the screen until the function exits.
 
 #+begin_src emacs-lisp
 
@@ -5418,7 +5453,7 @@ Return t if OBJECT is nil, and return nil otherwise.
 #+end_src
 
 **** sequencep
-This function returns t if object is a list, vector, string, bool-vector, or char-table, nil otherwise. 
+This function returns t if object is a list, vector, string, bool-vector, or char-table, nil otherwise.
 
 **** functionp
 Return t if OBJECT is a function.
@@ -5451,15 +5486,15 @@ Check if a “feature” is loaded.
 *** Regexp
 Regular expressions have a syntax in which a few characters are *special constructs* and the rest are *ordinary*. An ordinary character matches that same character and nothing else. The special characters are ~$^.*+?[\~ .
 
-*** Special Characters 
+*** Special Characters
 **** . , * , + , ?
 ***** .
-Is a special character that matches *any single* character *except a newline*. 
+Is a special character that matches *any single* character *except a newline*.
 
-~a.b~ matches any three-character string that begins with ~a~ and ends with ~b~. 
+~a.b~ matches any three-character string that begins with ~a~ and ends with ~b~.
 
 ***** *
-Is not a construct by itself; it is a postfix operator that means to match the *preceding regular expression* repetitively *any number of times*, as many times as possible. Thus, ~o*~ matches any number of ~o~ s, *including no* ~o~ s. 
+Is not a construct by itself; it is a postfix operator that means to match the *preceding regular expression* repetitively *any number of times*, as many times as possible. Thus, ~o*~ matches any number of ~o~ s, *including no* ~o~ s.
 
 ~*~ always applies to the smallest possible preceding expression. Thus, ~fo~ has a repeating ~o~, not a repeating ~fo~. It matches ~f~, ~fo~, ~foo~, and so on.
 
@@ -5469,20 +5504,20 @@ Is not a construct by itself; it is a postfix operator that means to match the *
 
 The matcher processes a ~*~ construct by matching, immediately, as many repetitions as can be found. Then it continues with the rest of the pattern. If that fails, backtracking occurs, discarding some of the matches of the ~*~-modified construct in case that makes it possible to match the rest of the pattern. For example, in matching ~ca*ar~ against the string ~caaar~, the ~a*~ first tries to match all three ~a~ s; but the rest of the pattern is ~ar~ and there is only ~r~ left to match, so this try fails. The next alternative is for ~a*~ to match only two ~a~ s. With this choice, the rest of the regexp matches successfully.
 
-*Nota*: la regex ~ca*ar~ enlaza con ~car~ de la siguiente manera: 
+*Nota*: la regex ~ca*ar~ enlaza con ~car~ de la siguiente manera:
 Enlazando con la ~c~ del principio que es fija y con el ~ar~ del final que también es fijo, esto es lo que realmente enlaza con ~car~. La ~a*~ no enlaza ya que esta puede ser o bien la cantidad de ~a~ que sea o ninguna ~a~ , lo cual es este caso, es decir 1 ~c~ + 0 ~a*~ + 1 ~ar~ .
 
   - Using [[\{n,m\}]] notation, ~\{0,\}~ is equivalent to ~*~.
 
 ***** +
-Is a postfix operator, similar to ~*~ except that it must match the preceding expression *at least once*. 
+Is a postfix operator, similar to ~*~ except that it must match the preceding expression *at least once*.
 
 Thus, ~ca+r~ matches the strings ~car~ and ~caaaar~ but not the string ~cr~, whereas ~ca*r~ matches all three strings.
 
   - Using [[\{n,m\}]] notation, ~\{1,\}~ is equivalent to ~+~.
 
 ***** ?
-Is a postfix operator, similar to ~*~ except that it can match the preceding expression *either once or not at all*. 
+Is a postfix operator, similar to ~*~ except that it can match the preceding expression *either once or not at all*.
 
 Thus, ~ca?r~ matches ~car~ or ~cr~, and nothing else.
 
@@ -5490,11 +5525,11 @@ Thus, ~ca?r~ matches ~car~ or ~cr~, and nothing else.
 
 **** *? , +? , ??
 Are non-greedy variants. The normal operators ~*~, ~+~, ~?~ match as much as they can, as long as the overall regexp can still match. With a following ~?~, they will *match as little as possible* .
-    
-For example, ~ab*~ can match the string ~a~ and the string ~abbbb~; 
-               but  ~ab*?~ match only with ~a~ (the shortest valid match). 
 
-Non-greedy operators match the shortest possible string starting at a given starting point; in a forward search, though, the earliest possible starting point for match is always the one chosen. Thus, if you search for ~a.*?$~ against the text ~abbab~ followed by a newline, it matches the whole string. Since it can match starting at the first ~a~, it does. 
+For example, ~ab*~ can match the string ~a~ and the string ~abbbb~;
+               but  ~ab*?~ match only with ~a~ (the shortest valid match).
+
+Non-greedy operators match the shortest possible string starting at a given starting point; in a forward search, though, the earliest possible starting point for match is always the one chosen. Thus, if you search for ~a.*?$~ against the text ~abbab~ followed by a newline, it matches the whole string. Since it can match starting at the first ~a~, it does.
 
 In the following example you can see the difference when using the normal operators against the non-greedy search (?).
 
@@ -5527,7 +5562,7 @@ MATCHES: 9
 
 **** \{n\}
 ***** \\{n\\}
-Is a postfix operator specifying ~n~ repetitions—that is, the preceding regular expression must match *exactly ~n~ times in a row*. 
+Is a postfix operator specifying ~n~ repetitions—that is, the preceding regular expression must match *exactly ~n~ times in a row*.
 
 For example, ~x\\{4\\}~ matches the string ~xxxx~ and nothing else.
 
@@ -5544,7 +5579,7 @@ Caution: maybe it's just one ~\~ , e.g.  ~\{0,1\}~.
 
 **** [ ... ]
 ***** [ … ]
-The characters between the two brackets are what this set can match. 
+The characters between the two brackets are what this set can match.
 
 - ~[ad]~ matches either one ~a~ or one ~d~.
 - ~[ad]*~ matches any string composed of just ~a~ s and ~d~ s (including the empty string).
@@ -5552,10 +5587,10 @@ The characters between the two brackets are what this set can match.
 
 You can also include character ranges in a character set, by writing the starting and ending characters with a ~-~ between them. Thus, ~[a-z]~ matches any lower-case ASCII letter.
 
-To include a ~]~ in a character set, you must make it the first character. For example, ~[]a]~ matches ~]~ or ~a~. To include a ~-~, write ~-~ as the last character of the set, tho you can also put it first or after a range. Thus, ~[]-]~ matches both ~]~ and ~-~. 
+To include a ~]~ in a character set, you must make it the first character. For example, ~[]a]~ matches ~]~ or ~a~. To include a ~-~, write ~-~ as the last character of the set, tho you can also put it first or after a range. Thus, ~[]-]~ matches both ~]~ and ~-~.
 
 ***** [^ … ]
-~[^~ begins a *complemented* (caracter complementario como en matemática, el complemento de todos esos caracteres, cualquier caracter menos los que estan en los corchetes, es como un "No estos caracteres") character set, which *matches any character except the ones specified*, even new line (put a newline in the list if you want it not to be matched). 
+~[^~ begins a *complemented* (caracter complementario como en matemática, el complemento de todos esos caracteres, cualquier caracter menos los que estan en los corchetes, es como un "No estos caracteres") character set, which *matches any character except the ones specified*, even new line (put a newline in the list if you want it not to be matched).
 
 Thus, ~[^a-z0-9A-Z]~ matches all characters except ASCII letters and digits.
 
@@ -5566,16 +5601,16 @@ Note: A complemented character set can match a newline, unless newline is mentio
 ***** \|
 *Specifies an alternative*. Two regular expressions ~a~ and ~b~ with ~\|~ in between form an expression that matches some text if either ~a~ matches it or ~b~ matches it. It works by trying to match ~a~, and if that fails, by trying to match ~b~.
 
-Thus, ~foo\|bar~ matches either ~foo~ or ~bar~ but no other string. 
+Thus, ~foo\|bar~ matches either ~foo~ or ~bar~ but no other string.
 
 **** ^ , $
 ***** ^
-Is a special character that matches the empty string, but *only at the beginning of a line* in the text being matched. Otherwise it fails to match anything. 
+Is a special character that matches the empty string, but *only at the beginning of a line* in the text being matched. Otherwise it fails to match anything.
 
 Thus, ~^foo~ matches a ~foo~ that occurs at the beginning of a line.
 
 ***** $
-Is similar to ~^~ but matches *only at the end of a line*. 
+Is similar to ~^~ but matches *only at the end of a line*.
 
 Thus, ~x+$~ matches a string of one ~x~ or more at the end of a line.
 
@@ -5592,9 +5627,9 @@ Literal backslash with doubling backslash ~\\\\~.
 *Caution*: when it's an interactive command search one ~\~ by executing Lisp code two ~\\~.
 
 ***** \b
-Matches the *empty string*, but only at the *beginning or end of a word*. 
+Matches the *empty string*, but only at the *beginning or end of a word*.
 
-  - ~\bfoo\b~ matches any occurrence of ~foo~ as a separate word. 
+  - ~\bfoo\b~ matches any occurrence of ~foo~ as a separate word.
   - ~\bballs?\b~ matches ~ball~ or ~balls~ as a separate word.
 
 ~\b~ matches at the beginning or end of the buffer regardless of what text appears next to it.
@@ -5611,7 +5646,7 @@ Is a grouping construct that serves three purposes:
 
    1. To enclose a set of ~\|~ alternatives for other operations. Thus, ~\(foo\|bar\)x~ matches either ~foox~ or ~barx~.
    2. To enclose a complicated expression for the postfix operators ~*~, ~+~ and ~?~ to operate on. Thus, ~ba\(na\)*~ matches ~bananana~, etc., with any (zero or more) number of ~na~ strings.
-   3. To record a <<matched substring>> for future reference. 
+   3. To record a <<matched substring>> for future reference.
 
 Capture pattern. ~\\(pattern\\)~
 
@@ -5652,12 +5687,12 @@ Specifies a shy group that does not record the [[matched substring]]; you can~t 
 Matches the empty string, but only at point.
 
 ***** \<
-Matches the *empty string*, but only at the *beginning of a word*. 
+Matches the *empty string*, but only at the *beginning of a word*.
 
 ~\<~ matches at the beginning of the buffer only if a word-constituent character follows.
 
 ***** \>
-Matches the *empty string*, but only at the *end of a word*. 
+Matches the *empty string*, but only at the *end of a word*.
 
 ~\>~ matches at the end of the buffer only if the contents end with a word-constituent character.
 
@@ -5665,7 +5700,7 @@ Matches the *empty string*, but only at the *end of a word*.
 Matches any character whose syntax is ~c~. Here ~c~ is a character which represents a syntax code: thus, ~w~ for word constituent, ~-~ for whitespace, ~(~ for open parenthesis, etc.
 
 ***** \Sc
-Matches any character whose syntax is not ~c~. 
+Matches any character whose syntax is not ~c~.
 
 *** Commands
 
@@ -5685,20 +5720,20 @@ Matches any character whose syntax is not ~c~.
 | flush-lines          | delete lines containing matches           |
 | align-regexp         | alig using strings match regex delimiters |
 
-Note that ~list-matching-lines~ is an alias for ~occur~ and ~delete-matching-lines~ is an alias for ~flush-lines~. 
+Note that ~list-matching-lines~ is an alias for ~occur~ and ~delete-matching-lines~ is an alias for ~flush-lines~.
 
 *** Examples
 **** End of sentence
-End of a sentence together with any whitespace that follows. It is the value of the variable ~sentence-end~. 
+End of a sentence together with any whitespace that follows. It is the value of the variable ~sentence-end~.
 
 #+begin_src emacs-lisp
 
 "[.?!][]\"')}]*\\($\\| $\\|\t\\|  \\)[ \t\n]*"
 
 ;; or in contrast, if you evaluate the variable sentence-end
-"[.?!][]\"')}]*\\($\\| $\\|  \\|  \\)[       
+"[.?!][]\"')}]*\\($\\| $\\|  \\|  \\)[
 ]*"
-;; In this output, tab and newline appear as themselves. 
+;; In this output, tab and newline appear as themselves.
 
 
 ;; With rx expressions
@@ -5712,16 +5747,16 @@ End of a sentence together with any whitespace that follows. It is the value of 
 
 ;; =>
 
-"[!.?][]\"')}]*\\(?:$\\| $\\|	\\|  \\)[	
+"[!.?][]\"')}]*\\(?:$\\| $\\|	\\|  \\)[
  ]*"
 
 #+end_src
 
 ~[.?!]~ match with one of three characters, a period, a question mark and an exclamation mark.
 
-~[]\"')}]*~ matches any closing braces and quotation marks, zero or more of them, that may follow the period, question mark or exclamation mark. 
+~[]\"')}]*~ matches any closing braces and quotation marks, zero or more of them, that may follow the period, question mark or exclamation mark.
 
-~\\($\\| \\|\t\\| \\)~ matches the whitespace that follows the end of a sentence: the end of a line, or a tab, or two spaces. The parentheses mark the group and the vertical bars separate alternatives. The dollar sign is used to match the end of a line. 
+~\\($\\| \\|\t\\| \\)~ matches the whitespace that follows the end of a sentence: the end of a line, or a tab, or two spaces. The parentheses mark the group and the vertical bars separate alternatives. The dollar sign is used to match the end of a line.
 
 ~[ \t\n]*~ matches any additional whitespace beyond the minimum needed to end a sentence.
 
@@ -5733,7 +5768,7 @@ End of a sentence together with any whitespace that follows. It is the value of 
 
 #+end_src
 
-The ~\\(~ is the first part of the grouping construct that includes the ~\\w~ and the ~\\s_~ as alternatives, separated by the ~\\|~. The ~\\w~ matches any word-constituent character and the ~\\s_~ matches any character that is part of a symbol name but not a word-constituent character. The ~+~ following the group indicates that the word or symbol constituent characters must be matched at least once. 
+The ~\\(~ is the first part of the grouping construct that includes the ~\\w~ and the ~\\s_~ as alternatives, separated by the ~\\|~. The ~\\w~ matches any word-constituent character and the ~\\s_~ matches any character that is part of a symbol name but not a word-constituent character. The ~+~ following the group indicates that the word or symbol constituent characters must be matched at least once.
 
 **** Word or symbol followed optionally by
 Word or symbol constituents are followed optionally by characters that are not white space and then followed optionally by white space.
@@ -5776,7 +5811,7 @@ M-x replace-regexp RET \([0-9]+\)\. RET \1, RET
 ;; matches zero or more non-word-constituent characters. Again, not
 ;; useful.
 
-;; Here is the pattern that I use. It is not perfect, but good enough. 
+;; Here is the pattern that I use. It is not perfect, but good enough.
 \\b\\([^@ \n\t]+\\)[ \n\t]+\\1\\b
 ;; ‘\\b’ matches the empty string, provided it is at the beginning or end
 ;; of a word; ‘[^@ \n\t]+’ matches one or more occurrences of any
@@ -5807,17 +5842,17 @@ M-x replace-regexp RET \([0-9]+\)\. RET \1, RET
 ;; "\([^"]+\)" ;; or ;; "\([^"]+?\)"
 ;; \"\\([^\"]+\\)\" ;; or ;; \"\\([^\"]+?\\)\"
 
-;; To truncate decimals to 3 places, e.g. 0.123456 -> 0.123 
+;; To truncate decimals to 3 places, e.g. 0.123456 -> 0.123
 "\([0-9]\)\.\([0-9][0-9][0-9]\)[0-9]+"
-;;and replace it with 
+;;and replace it with
 "\1.\2."
 
 #+end_src
 
 *** rx
-A nifty macro that generates regular expressions for you, from reasonably-comprehensible s-expressions. This notation is usually easier to read, write and maintain than regexp strings, and can be indented and commented freely. It requires a conversion into string form since that is what regexp functions expect, but that conversion typically takes place during byte-compilation rather than when the Lisp code using the regexp is run. 
+A nifty macro that generates regular expressions for you, from reasonably-comprehensible s-expressions. This notation is usually easier to read, write and maintain than regexp strings, and can be indented and commented freely. It requires a conversion into string form since that is what regexp functions expect, but that conversion typically takes place during byte-compilation rather than when the Lisp code using the regexp is run.
 
-The ~rx~ notation is mainly useful in Lisp code; it cannot be used in most interactive situations where a regexp is requested, such as when running ~query-replace-regexp~ or in variable customization. 
+The ~rx~ notation is mainly useful in Lisp code; it cannot be used in most interactive situations where a regexp is requested, such as when running ~query-replace-regexp~ or in variable customization.
 
 When given just a single string argument, it acts just like ~regexp-to-string~.
 
@@ -5833,7 +5868,7 @@ Here is an ~rx~ regexp that matches a block comment in the C programming languag
     (one-or-more "*")             ; At least one star,
     "/")                          ; and the final /
 
-;; => 
+;; =>
      "/\\*\\(?:[^*]\\|\\*[^/]\\)*\\*+/"
 
 ;; or, using shorter synonyms and written more compactly,
@@ -5853,7 +5888,7 @@ Here is an ~rx~ regexp that matches a block comment in the C programming languag
 #+end_src
 
 *** Notes
-- By default, the case of the replaced text is smartly dependent on the matched text. For example, if you want to replace ~dragon~ for ~here~ in this ~{here, Here, HERE}~ the result will be ~{dragon, Dragon, DRAGON}~. If you want the letter case of your replacement string be exactly as you have it, you need to set the variable ~case-replace~ to ~nil~. 
+- By default, the case of the replaced text is smartly dependent on the matched text. For example, if you want to replace ~dragon~ for ~here~ in this ~{here, Here, HERE}~ the result will be ~{dragon, Dragon, DRAGON}~. If you want the letter case of your replacement string be exactly as you have it, you need to set the variable ~case-replace~ to ~nil~.
 
 - When using ~[a-z]~, it is not case sensitive by default. Case sensitivity is controlled by the variable ~case-fold-search~. Call ~toggle-case-fold-search~ to toggle it.
 
@@ -5877,7 +5912,7 @@ Warning: the meaning of a character class in emacs is dependent on the current m
 ** Org
 *** Markup
 **** Énfasis y monoespacio
-Se pueden énfasis en palabras como *bold*, /italic/, _underlined_, =verbatim= and ~code~, y, también, +strike-through+. 
+Se pueden énfasis en palabras como *bold*, /italic/, _underlined_, =verbatim= and ~code~, y, también, +strike-through+.
 
 Para que no se vea la sintaxis en el documento se puede setear en ~nil~ la variable ~org-fontify-emphasized-text~.
 
@@ -5906,7 +5941,7 @@ Esto tampoco se exporta
 #+END_COMMENT
 
 **** Quote
-Cuando se cita un pasaje desde otro documento, es un libro de usos y costumbres para formatear esto como un párrafo que se pretende en ambos la izquierda y el margen derecho.  	
+Cuando se cita un pasaje desde otro documento, es un libro de usos y costumbres para formatear esto como un párrafo que se pretende en ambos la izquierda y el margen derecho.
 
 #+BEGIN_QUOTE
 Cada cosa debería ser hecha tan simple como sea posible,
@@ -5914,14 +5949,14 @@ pero no simple de cualquier manera -- Albert Einstein
 #+END_QUOTE
 
 Si se quisiera centrar algún texto, se puede hacer así:
- 	
+
 #+BEGIN_CENTER
 Cada cosa debería hecha tan simple como posible \\
 pero no simple cualquier manera
 #+END_CENTER
 
 **** Include
-Durante la exportación, se pueden incluir el contenido de otro fichero. Por ejemplo, para incluir tu fichero ‘.emacs’, se podría usar: 	
+Durante la exportación, se pueden incluir el contenido de otro fichero. Por ejemplo, para incluir tu fichero ‘.emacs’, se podría usar:
 
 #+INCLUDE: "~/.emacs" src emacs-lisp
 
@@ -5986,7 +6021,7 @@ $\sum _{k=1}^{n}m=mn$
    :CUSTOM_ID: source-code-layout-organization
    :END:
 
-[[#source-code-layout-organization][Source Code Layout & Organization]] 
+[[#source-code-layout-organization][Source Code Layout & Organization]]
 
 #+end_src
 
@@ -5995,15 +6030,15 @@ $\sum _{k=1}^{n}m=mn$
 #+begin_src org
 
 # Enlaza con <<target>>
-[[target][aquí]] 
-# or 
+[[target][aquí]]
+# or
 [[target]]
 
 #+end_src
 
 **** Image
 
-#+begin_src org 
+#+begin_src org
 
 [[http://makeapullrequest.com][https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square][image]]
 # or
@@ -6014,13 +6049,13 @@ $\sum _{k=1}^{n}m=mn$
 **** Footnotes
 Una forma de hacer estas cosas en Org[fn:1] la llaman notas al pie.
 ...
-[fn:1] 
+[fn:1]
 
 *** Babel
 **** #+PROPERTY:
 Propiedad del documento que se usa para exportar todos los bloques de código.
 
-Un argumento de cabecera de ~:tangle yes~ causará que los bloques de código se enlazen a un fichero llamado después del nombre del fichero del búffer. Un nombre de fichero alternativo puede ser especificado con ~:tangle filename~. 
+Un argumento de cabecera de ~:tangle yes~ causará que los bloques de código se enlazen a un fichero llamado después del nombre del fichero del búffer. Un nombre de fichero alternativo puede ser especificado con ~:tangle filename~.
 
 #+begin_src emacs-lisp
 
@@ -6096,7 +6131,7 @@ Example of an authorization letter.
 #+begin_src text
 
 # #+title: Comment out, or do not use
-#+date: 00 abril, 2023 
+#+date: 00 abril, 2023
 
 #+options: toc:nil
 
@@ -6147,12 +6182,12 @@ We also need a shell script that can run our Emacs Lisp script (no es necesario 
 #!/bin/sh
 emacs -Q --script build-site.el
 
-# Dont forget to use chmod +x build.sh to make the script executable! 
+# Dont forget to use chmod +x build.sh to make the script executable!
 # The -Q parameter prevents Emacs from loading your own Emacs configuration
 
 #+end_src
 
-Now in the shell, change directory to ~my-org-site~ and run the script ~./build.sh~ to launch emacs with ~build-site.el~ 
+Now in the shell, change directory to ~my-org-site~ and run the script ~./build.sh~ to launch emacs with ~build-site.el~
 
 **** Setting up the publish project
 
@@ -6171,11 +6206,11 @@ Now in the shell, change directory to ~my-org-site~ and run the script ~./build.
          :publishing-function 'org-html-publish-to-html)))
 ;;publishing-funtion -> we want to publish the files as HTML
 ;;first list -> list of all project configuration
-;;second list -> list configuration one 
+;;second list -> list configuration one
 
 ;; Generate the site output
 ;;publish every project configured in org-publish-project-alist
-(org-publish-all t) 
+(org-publish-all t)
 ;;t -> don't use any cached files just regenerate everything from scratch
 
 (message "Build complete!")
@@ -6193,7 +6228,7 @@ Create ~~/my-org-site/content/index.org~ file to test
 
 This is an *example* of a _website_ written with Org Mode.
 
- * Links 
+ * Links
 
 - [[https://www.google.com][External link]]
 - [[file:///home/richard/Test/index.html][Internal pc link]]
@@ -6281,7 +6316,7 @@ Enhance the code and avoid the error "Cannot fontify source block (htmlize.el >=
 **** Linking between pages
 One last thing I want to show you is how you can create links between pages on your site. Let's open up ~index.org~ and create a link to the ~Emacs.org~ file.
 
-Inside ~index.org~, we can press /C-c C-l/ (~org-insert-link~), enter the path of the Org file we want to link to (~./Emacs.org~), press Enter, then enter the text for the link ("My Emacs configuration"). 
+Inside ~index.org~, we can press /C-c C-l/ (~org-insert-link~), enter the path of the Org file we want to link to (~./Emacs.org~), press Enter, then enter the text for the link ("My Emacs configuration").
 
 **** The final build script
 
@@ -6327,7 +6362,7 @@ Inside ~index.org~, we can press /C-c C-l/ (~org-insert-link~), enter the path o
              :time-stamp-file nil))) ;; Don't include time stamp in file
 ;;publishing-funtion -> we want to publish the files as HTML
 ;;first list -> list of all project configuration
-;;second list -> list configuration one 
+;;second list -> list configuration one
 
 ;; Generate the site output
 ;;publish every project configured in org-publish-project-alist
@@ -6343,7 +6378,7 @@ Inside ~index.org~, we can press /C-c C-l/ (~org-insert-link~), enter the path o
 - <language> :: especifica el lenguaje del bloque de código
 - <switches> :: puede usarse para controlar la exportación del bloque de código
 - <header arguments> :: puede usarse para controlar muchos aspectos del comportamiento
-- <body> :: contiene el código fuente actual. 
+- <body> :: contiene el código fuente actual.
 
 #+NAME: <name>
 #+begin_src text <language>  <switches> <header arguments>
@@ -6378,8 +6413,8 @@ Coloca imagenes en org mode, para hacerlas visibles se usa la función ~org-togg
 
 #+end_src
 
-**** Description list 
-Descripción de listas, se usa ‘ :: ’ para separar el término de la descripción. 
+**** Description list
+Descripción de listas, se usa ‘ :: ’ para separar el término de la descripción.
 
 #+begin_src org
 
@@ -6391,10 +6426,10 @@ Descripción de listas, se usa ‘ :: ’ para separar el término de la descrip
 
 **** Labels (tag)
 Las etiquetas hacen uso de la estructura jerárquica. Si una cabecera tiene una cierta etiqueta, todas las subcabeceras la heredarán. Útil para agregarlas a listas TODO y así poder filtrar por etiquetas.
- 	
+
 ~org-set-tags-command~ introduce nuevas etiquetas para la cabecera actual.
 
-~org-sparse-tree~ y luego ~m~ crear un árbol expandido con todas las cabeceras coincidentes con la etiqueta (tag) buscada. Con el prefijo ~C-u~, ignora las cabeceras que no son TODO. 
+~org-sparse-tree~ y luego ~m~ crear un árbol expandido con todas las cabeceras coincidentes con la etiqueta (tag) buscada. Con el prefijo ~C-u~, ignora las cabeceras que no son TODO.
 
 #+begin_src org
 
@@ -6404,172 +6439,17 @@ Las etiquetas hacen uso de la estructura jerárquica. Si una cabecera tiene una 
 
 #+end_src
 
-** Commands
-*** Lines
-**** list-matching-lines (occur)
-Show all lines in the current buffer containing a match for REGEXP.
-
-**** delete-matching-lines (flush-lines)
-Delete lines containing matches for REGEXP.
-
-~delete-matching-lines~ starts at the line your cursor is on.
-
-**** delete-non-matching-lines (keep-lines)
-Delete all lines except those containing matches for REGEXP.
-
-~delete-non-matching-lines~ starts at the line your cursor is on.
-
-**** delete-duplicate-lines
-Delete all but one copy of any identical lines in the region.
-
-**** count-matches (how-many)
-Print and return number of matches for REGEXP following point.
-
-**** sort-lines
-Sort lines in region alphabetically; REVERSE non-nil means descending order
-
-**** reverse-region
-Reverse the order of lines in a region.
-
-**** highlight-lines-matching-regexp
-Highlight all lines that match REGEXP using FACE.
-
-**** unhighlight-regexp
-Remove highlighting of each match to REGEXP set by hi-lock.
-
-**** fill-paragraph
-Fill paragraph at or after point.
-
-It's often used to reduce the lenght of the lines of code documentation.
-
-*** Regex
-**** isearch-forward
-Do incremental search forward.
-
-**** isearch-backward
-Do incremental search backward.
-
-**** highlight-regexp
-Set face of each match of REGEXP to FACE.
-
-**** find-dired
-Run find and go into Dired mode on a buffer of the output.
-
-**** dired-do-search
-Search through all marked files for a match for REGEXP.
-
-While in dired, you can *step thru all files that matches a text pattern*. In dired, call ~dired-do-search A~. It will prompt you for a search string, then open the first file of the match, with your cursor placed at the matching location.
-
-To go to next occurrence, press ~M-,~ (~tags-loop-continue~).
-
-**** dired-do-query-replace-regexp
-Do query-replace-regexp of FROM with TO, on all marked files.
-
-**** dired-do-rename-regexp
-Rename selected files whose names match REGEXP to NEWNAME.
-
-**** grep
-Call ~grep~ to list all matching text of all files in the current directory.
-
-For example, if you give this input ~grep -nH -e "Cheshire" *html~, which will list all files ending in “html” that contains the word “Cheshire”.
-
-If you want case insensitive search, add a ~-i~ in the grep option.
-
-**** rgrep
-Search all files in current directory and sub-directory.
-
-**** lgrep 
-Search only some files of current dir by using a text pattern (regex) on file names first.
-
-**** grep-find
-Use a combination of unix's ~grep~ and ~find~ commands..
-
-*** String
-**** string-rectangle
-Replace rectangle contents with STRING on each line.
-
-*Note*: The command string-rectangle can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
-
-**** kill-rectangle
-Delete the region-rectangle and save it as the last killed one.
-
-~kill-rectangle~ can be used to delete any rectangular block of text, not just at the beginning of lines.
-
-There are others useful command like ~replace-rectangle~, ~yank-rectangle~,...
-
-#+begin_example
-
-try to delete the middle column
-3c21 646f 6374
-6874 6d6c 3e3c
-2063 6861 7273
-202f 3e0a 3c6d
-6965 7770 6f72
-2277 6964 7468
-
-1. Put your cursor before “646f”.
-2. Call set-mark-command =C-SPC=.
-3. Move cursor to end of “6964”.
-4. Call =kill-rectangle=.
-
-#+end_example
-
-**** align-regexp
-Align the current region using an ad-hoc rule read from the minibuffer.Align the current region using an ad-hoc rule read from the minibuffer.
-
-There are others useful command like ~align-regexp~, ~sort-regexp-fields~, ~sort-columns~.
-
-Example pressing ~align-regexp~ with "=" align the text.
-
-#+begin_example
-
-align them by the equal sign
-tom = 5
-jenny = 8
-mary = 7
-
-align
-California 423,970 km²
-Taiwan 36,008 km²
-Japan 377,944 km²
-Germany 357,021 km²
-Iraq 438,317 km²
-Iran 1,648,195 km²
-Korea (North+South) 219,140 km²
-Mexico 1,964,375 km²
-
-Select the text first, then press C-u then call align-regexp, with the regexp .* \([0-9,]+\).* then choose -1 for group, 1 for spacing, and n for repeat.
-
-#+end_example
-
-*** Misc
-**** command-history
-Examine commands from command-history in a buffer.
-**** apropos
- This command is like the ~C-h a~ (command-apropos) command, except that the latter finds only those functions that are commands. The ~M-x apropos~ command lists all symbols that match a regular expression, including functions that are not interactive. 
-
-#+begin_src emacs-lisp
-
-;; Example: we want to look for is some command that prints or inserts columns. Very likely, the name of the function will contain either the word “print” or the word “insert” or the word “column”. Therefore, we can simply type:
-
-M-x apropos RET print\|insert\|column RET 
-
-#+end_src
-
-**** compare-windows
-Compare text in current window with text in another window.
-
 ** Programming
 *** YASnippet
 Special Characters
 
-  1. =$0= → the position the cursor (after the snippte is inserted). You don't need to put a =$0= if you don't need to.
-  2. =$‹n›= → a field, where the =‹n›= is a integer starting with 1. (Example: =$1=, =$2=, …). Pressing tab will move cursor to these stops for user to fill in. Multiple occurrence of the same =$‹n›= means typing in one field will automatically fill the other.
-  3. =${‹n›:‹default text›}= → same as =$‹n›=, but provides a default text.
-  4. =$&= → means indent the line according to the mode's indentation rule.
-  5. =`…`= → (backtick) is used to enclose elisp code. The lisp code will be evaluated in the same buffer the snippet is being expanded.
+  1. ~$0~ → the position the cursor (after the snippte is inserted). You don't need to put a ~$0~ if you don't need to.
+  2. ~$‹n›~ → a field, where the ~‹n›~ is a integer starting with 1. (Example: ~$1~, ~$2~, …). Pressing tab will move cursor to these stops for user to fill in. Multiple occurrence of the same ~$‹n›~ means typing in one field will automatically fill the other.
+  3. ~${‹n›:‹default text›}~ → same as ~$‹n›~, but provides a default text.
+  4. ~$&~ → means indent the line according to the mode's indentation rule.
+  5. ~`…`~ → (backtick) is used to enclose elisp code. The lisp code will be evaluated in the same buffer the snippet is being expanded.
 
-Once you create a template file, you have to load it. Call =yas-reload-all=.
+Once you create a template file, you have to load it. Call ~yas-reload-all~.
 
 #+begin_example
 
@@ -6585,13 +6465,13 @@ You can also include lisp code in your template. For example, you might want to 
 
 `(current-time-string)`
 
-#+end_example 
+#+end_example
 
 *** IDE package error
-Si al usar un IDE como lsp-mode surgen errores al principio, probar actualizar los paquetes. ~auto-package-update-now~ 
-~package-refresh-content~ 
+Si al usar un IDE como lsp-mode surgen errores al principio, probar actualizar los paquetes. ~auto-package-update-now~
+~package-refresh-content~
 
-*** JS typescript error 
+*** JS typescript error
 Si al activar lsp-mode para js no funciona, probar cargando el modo ~typescript~ con esto se apertura el lps server.
 
 *** flymake-mode
@@ -6616,11 +6496,11 @@ And autocompletion etc.
 To do that, you just insert this line in a Python program: from ipdb import set_trace; set_trace()
 
 *** edebug
-Depurador a nivel de fuente que requiere de escribir una función antes de poder usarlo. 
+Depurador a nivel de fuente que requiere de escribir una función antes de poder usarlo.
 
-Es posible desplazarse a través de la ejecución de la función, línea a línea presionando ~SPC~, o ejecutarla rápidamente hasta alcanzar un punto de ruptura donde la ejecución se detenga. 
+Es posible desplazarse a través de la ejecución de la función, línea a línea presionando ~SPC~, o ejecutarla rápidamente hasta alcanzar un punto de ruptura donde la ejecución se detenga.
 
-Se instala colocando el cursor dentro o justo después de la definición y escribiendo ~M-x edebug-defun~, esto hará que Emacs cargue Edebug automáticamente si aun no está cargado, y que instrumente correctamente la función. Luego se coloca el cursor después de el llamado a la función que se quiere depurar y se presiona ~eval-last-setup~. 
+Se instala colocando el cursor dentro o justo después de la definición y escribiendo ~M-x edebug-defun~, esto hará que Emacs cargue Edebug automáticamente si aun no está cargado, y que instrumente correctamente la función. Luego se coloca el cursor después de el llamado a la función que se quiere depurar y se presiona ~eval-last-setup~.
 
 *** Debug
 **** dap-node-setup
@@ -6692,19 +6572,28 @@ Abre una vetana donde se puede evaluar código con las variables que se tiene o 
 **** dap-tooltip-at-point
 Muestra información sobre la variable donde esta puesto el cursor.
 
+*** LSP Mode
+ [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol]].  Before trying to set up ~lsp-mode~ for a particular language in your init file, check out the [[https://emacs-lsp.github.io/lsp-mode/page/languages/][documentation for your language]] so that you can learn which language servers are available and how to install them.
+
+The ~lsp-keymap-prefix~ setting enables you to define a prefix for where ~lsp-mode~'s default keybindings will be added. I *highly recommend* using the prefix to find out what you can do with ~lsp-mode~ in a buffer.
+
+The ~which-key~ integration adds helpful descriptions of the various keys so you should be able to learn a lot just by pressing ~C-c l~ in a ~lsp-mode~ buffer and trying different things that you find there.
+
 ** Terminals
 *** eshell
-~eshell~ is a shell written entirely in emacs lisp. Note: it is not a bash emulator. Eshell is a shell by itself, but similar to bash or other shells. 
+~eshell~ is a shell written entirely in emacs lisp. Note: it is not a bash emulator. Eshell is a shell by itself, but similar to bash or other shells.
 
 ~eshell~ is good especially on Microsoft Windows where bash is not installed. Eshell is also super fast on startup. If you are a emacs lisp programer, you might prefer eshell because direct access to emacs lisp and better integration with emacs.
 
-Tricks: 
+Tricks:
 - redirect to buffers - along with the above, you can also do things like ~ls >> #<buffer *scratch*>~ to output the result from ls to the scratch buffer
 - ~/dev/clip~ and ~/dev/kill~ - you can redirect shell commands to the emacs clipboard and killring
 
 Personally (Xah Lee), i used shell from 1998 to 2013, and eshell now. But i always have a real terminal app open, for running any command i'm not familiar with. For any serious command, such as starting a server, or any command that has logs, i run it in a real terminal app, with no tie to emacs.
 
-Es la propia implementación de shell (emulador de terminal) de Emacs escrita en Emacs Lisp. Proporciona una implementación multiplataforma de las utilidades comunes de GNU (ls, rm, mv, grep, etc.). Más poderosa pero compleja de configurar a través de los paquetes y surgen problemas difíciles de resolver.
+Is Emacs’ own shell implementation written in Emacs Lisp. It provides you with a cross-platform implementation of the common GNU utilities you would find on Linux (~ls~, ~rm~, ~mv~, ~grep~, etc). It also allows you to call Emacs Lisp functions directly from the shell and you can even set up aliases (like aliasing ~vim~ to ~find-file~). Eshell is also an Emacs Lisp REPL which allows you to evaluate full expressions at the shell.
+
+The downsides to Eshell are that it can be harder to configure than other packages due to the particularity of where you need to set some options for them to go into effect, the lack of shell completions (by default) for some useful things like Git commands, and that REPL programs sometimes don’t work as well.
 
 - REPL de Emacs Lisp, permite llamar a las funciones o evaluar comandos de Emacs Lisp directamente desde el shell, incluso puede configurar alias ~alias ffo "find-file-other-window $1"~ y proporciona una manera sencilla de hacer nuestros scripts en elisp en lugar de bash u otros.
 - Puede correr comandos en la shell como ~find-file~, ~dired~, ...,  también correr funciones ~(+ 20 5)~  (presionando /TAB/ se puede completar las funciones).
@@ -6721,7 +6610,7 @@ NOTES:
 - Comandos que impliquen opciones que manipulan enlaces simbólicos como ~cp -a dir dirNew~  dan problema.
 - No funciona el comando para asignar variables ~var=variable~ .
 
-**** Aliases
+*Aliases*:
 A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~. Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ , which you can also edit directly (although you will have to manually reload it).
 
 Note that unlike aliases in Bash, arguments must be handled explicitly. Typically the alias definition would end in ~$*~ to pass all arguments along. More selective use of arguments via ~$1~, ~$2~, etc., is also possible. For example, alias ~mcd 'mkdir $1 && cd $1'~ would cause ~mcd foo~ to create and switch to a directory called ~foo~.
@@ -6729,12 +6618,14 @@ Note that unlike aliases in Bash, arguments must be handled explicitly. Typicall
 *Warning*: if this doesn't work and get the error ~command not found~ , remove the quote, e.g. type the command ~alias ll ls -l $*~  instead of ~alias ll 'ls -l $*'~.
 
 *** vterm
-Es un paquete de emulador de terminal mejorado que usa a diferencia de ~term-mode~ un módulo nativo compilado para interactuar con las aplicaciones de terminal subyacentes, escrito en código nativo C que lo hace más rapido que ~term-mode~ pero se debe configurar. Debe estar instaladas las dependencias necesarias antes de usar vterm porque hay un módulo que deberá compilarse antes de poder usarlo con éxito [[https://github.com/akermu/emacs-libvterm/#requirements][Emacs-libvterm]].
+Is an improved terminal emulator package which uses a compiled native module to interact with the underlying terminal applications. This enables it to be much faster than ~term-mode~ and to also provide a more complete terminal emulation experience.
+
+Make sure that you have the necessary dependencies installed before trying to use ~vterm~ because there is a module that will need to be compiled before you can use it successfully.
 
 *** shell
 ~shell~ is the standard emacs interface to Operating System's command line interface.
 
-~shell~ is the most popular. It is good for general use of classic/standard unix shell commands, such as {grep, du, ls, sort, cat, head, tail, uname, …}. 
+~shell~ is the most popular. It is good for general use of classic/standard unix shell commands, such as {grep, du, ls, sort, cat, head, tail, uname, …}.
 
 Es un termino medio entre ~term~ y ~eshell~. No es un emulador de terminal es solo una shell por lo que no se ejecutarán programas de terminal más complejos dentro de él. Tiene de ventaja que no se necesita cambiar de modo para habilitar el minibuffer. (Mejor opción para windows si se quiere usar PowerShell, bash, wsl).
 
@@ -6774,7 +6665,7 @@ Now, when you type “bg” followed by a space or return, it'll expand to “ba
 If you want the abbrev only for the current major mode,
 
 ~M-x add-mode-abbrev~
-    
+
 If the expanded text is more than one word, for example, suppose you want to define “faq” → “frequently asked questions”.
 
   1. Type “frequently asked questions”.
@@ -6885,15 +6776,15 @@ Emacs's abbrev feature lets you type a short word and expand into a full word or
 *** Interactively Find/Replace Text in Directory
 Suppose you need to do find/replace of a string pattern, for the hundreds of files in a directory. However, you do not want to replace all of them. You need to look at it in a case-by-case basis. What can you do?
 
-   1. Call dired to list files in dir, or call =find-dired= if you need all subdirectories.
-   2. Mark the files you want. You can mark by regex by typing =% m=.
-   3. Type Q to call =dired-do-query-replace-regexp=.
+   1. Call dired to list files in dir, or call ~find-dired~ if you need all subdirectories.
+   2. Mark the files you want. You can mark by regex by typing ~% m~.
+   3. Type Q to call ~dired-do-query-replace-regexp~.
    4. Type your find regex and replace string.
-   5. For each occurrence, type y to replace, =n= to skip.
-   6. Type =!= to replace all occurrences in current file without asking, =N= to skip all possible replacement for rest of the current file. (N is emacs 23 only)
-   7. To do the replacement on all files without further asking, type =Y=. (Emacs 23 only)
-   8. Call =ibuffer= to list all opened files.
-   9. Type =* u= to mark all unsaved files, type =S= to save all marked files, type =D= to close them all.
+   5. For each occurrence, type y to replace, ~n~ to skip.
+   6. Type ~!~ to replace all occurrences in current file without asking, ~N~ to skip all possible replacement for rest of the current file. (N is emacs 23 only)
+   7. To do the replacement on all files without further asking, type ~Y~. (Emacs 23 only)
+   8. Call ~ibuffer~ to list all opened files.
+   9. Type ~* u~ to mark all unsaved files, type ~S~ to save all marked files, type ~D~ to close them all.
 
 https://wilkesley.org/~ian/xah/emacs/find_replace_inter.html
 
@@ -6902,9 +6793,67 @@ Descargar el paquete ~texlive~, esto debería ser suficiente ya que el paquete t
 
 Para exportar de org a LaTeX pdf se necesito instalar el paquete ~texlive-latex-extra~ para obtener ~wrapfig~ que soluciona el error ~! LaTeX Error: File `wrapfig.sty' not found~.
 
+*** Edit Column Text, Rectangle Commands
+This page shows you how to edit text in a rectangular region.
+
+- Add a prefix to every line (such as # or //)
+     1- Move to the beginning of first line you want.
+     2- Press ~C-SPC~ (~set-mark-command~) to mark cursor position.
+     3- Move cursor to the beginning of the last line.
+     4- Then ~M-x string-rectangle~ ( ~C-x r t~ )
+     5- Then type what you want to insert, then Enter.
+The command ~string-rectangle~ can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
+
+- Delete the first few n chars of every line ( ~kill-rectangle~o )
+- Delete a column of text ( ~kill-rectangle~ )
+- replace-rectangle
+- Paste Rectangle ( ~yank-rectangle~ )
+- Insert a Column of Numbers ( ~rectangle-number-lines~ )
+
+http://xahlee.info/emacs/emacs/emacs_string-rectangle_ascii-art.html
+
+
+Insert A to Z Vertically:
+1- Move cursor to before specific start word.
+2- ~set-mark-command~ ( ~C-SPC~ ).
+3- Move cursor to before specific end word.
+4- ~universal-argument~ ( ~C-u~ ).
+5- Now, ~M-x rectangle-number-lines~. It will prompt you to enter arguments.
+6- Type ~65~ (Letter ~A~ has Unicode codepoint ~65~. ~a~ is ~97~).
+7- Remove the default ~%2d~ , type ~%c~. (the ~%c~ is for character format)
+
+*** Demo Configuration init file
+This configuration is not intended to be used! However, if you’re curious:
+
+Put this text in a file called demo.el:
+
+#+begin_src emacs-lisp
+
+;; Make the colors and text less eye-strainy
+(load-theme 'tango-dark t)
+(set-face-attribute 'default nil :height 200)
+
+;; I mindlessly press ESC, so stop me from wreaking havoc
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+#+end_src
+
+Run Emacs with the configuration:
+
+#+begin_src shell
+
+emacs -Q -l demo.el
+
+#+end_src
+
+*** Web with example of Calc usage
+Useful becase it has some functions to show how to calculate the number of days between two days, and optionally a number of periods of absence to exclude.
+
+https://www.emacswiki.org/emacs/Calc
+
 ** Miscellaneous
 *** artist-mode
-Permite dibujar líneas, cuadrados, rectángulos y polilíneas, elipses y círculos con el mouse y/o el teclado en formato AsCii. 
+Permite dibujar líneas, cuadrados, rectángulos y polilíneas, elipses y círculos con el mouse y/o el teclado en formato AsCii.
 
 Con *mouse-2* se activa una ventana emergente para elegir el tipo de figura a dibujar (rectángulo, línea,...)
 
@@ -6938,7 +6887,7 @@ Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pue
 +-----------------+
 
 #java -jar ditaaXXX.jar
-#java -jar ditaa0_9.jar demo.txt 
+#java -jar ditaa0_9.jar demo.txt
 
 #+end_src
 
@@ -6959,7 +6908,7 @@ The following are my recommendation, in order of importance:
   4. Programable (e.g. make CapsLock do Escape) with Onboard Memory (plug in to any computer to have custom macro/layout. No need to install software.).
   5. Key lable don't wear off.
   6. Spacebar do not make a loud thud noise.
-  7. Has physical media keys. Volume wheel is a major plus. 
+  7. Has physical media keys. Volume wheel is a major plus.
   8. No Fn key. Because it's usually hardwired, meaning, you can't remap it, meaning, a dead horse squatting in front yard.
   9. Short spacebar or split spacebar. So more thumb keys.
   10. Should be one with large Alt and Ctrl keys, and they should be available on both sides (one set for each hand, just like ⇧ Shift key), and the right side's set should be positioned symmetrically. The distance from F to left Alt, and distance from J to the right Alt, should be the same.
@@ -7019,7 +6968,7 @@ Es un ~major-mode~ para editar archivos Typescript o Javascript, ofrece resaltad
 
 **** Regexp
 ***** visual-regexp
-visual-regexp for Emacs is like replace-regexp or regex-builder, but with live visual feedback directly in the buffer. 
+visual-regexp for Emacs is like replace-regexp or regex-builder, but with live visual feedback directly in the buffer.
 
 https://github.com/benma/visual-regexp.el
 
@@ -7031,7 +6980,7 @@ En una ventana emergente, muestra las combinaciones de teclas que siguen a un co
 Es una interfaz interactiva en el minibuffer para completar en Emacs (muestra información de funciones, comandos,...).
 
 ***** ivy-rich
-Interfaz más amigable (transformador de pantalla) para ~ivy~. Muestra columnas adicionales para ~counsel comands~ proporcione  información adicional. 
+Interfaz más amigable (transformador de pantalla) para ~ivy~. Muestra columnas adicionales para ~counsel comands~ proporcione  información adicional.
 
 ***** ivy-prescient
 Clasifica los candidatos a completar de ~ivy~.
@@ -7060,7 +7009,7 @@ A set of definitions that customize the behavior of Emacs in useful ways. It is 
 There are derived modes, such as HTML mode which is derived from Text mode. When HTML mode is enabled, run ~text-mode-hook~ before running ~html-mode-hook~.
 
 *** Major mode
-They provide specialized functions for working on a particular type of file or buffer, used for editing or interacting with a particular type of text. They are mutually exclusive; each buffer has one and only one at any time. 
+They provide specialized functions for working on a particular type of file or buffer, used for editing or interacting with a particular type of text. They are mutually exclusive; each buffer has one and only one at any time.
 
 Most modes are divided into three main groups, the first group contains modes for plain text, either plain or markup (Text mode, HTML mode, SGML mode, TeX mode and Outline mode). The second contains modes for specific programming languages (Lisp (which has several variants), C mode, ...). The third consists of main modes that are not directly associated with files; they are used in buffers created for specific purposes by Emacs (Dired mode, Message to Mail mode, Shell mode).
 
@@ -7087,13 +7036,185 @@ Most hooks are *normal hooks.* This means that when Emacs runs the hook, it call
 A few hooks are *abnormal hooks*. Their names end in  ~-functions~ , instead of ~-hook~. What makes these hooks abnormal is the way its functions are called—perhaps they are given arguments, or perhaps the values they return are used in some way. For example, ~find-file-not-found-functions~ is abnormal because as soon as one hook function returns a non-nil value, the rest are not called at all.
 
 ** keymaps
-Internal data structure that records key bindings to commands or other keymap. 
+Internal data structure that records key bindings to commands or other keymap.
 
 When an event type is bound to a keymap, that keymap is used to search for the next input event; this continues until a command is found. Mode-specific keymaps overwrite the global ~(mode-map)~ that all buffers share.
 
+** Commands
+*** Lines
+**** list-matching-lines (occur)
+Show all lines in the current buffer containing a match for REGEXP.
+
+**** delete-matching-lines (flush-lines)
+Delete lines containing matches for REGEXP.
+
+~delete-matching-lines~ starts at the line your cursor is on.
+
+**** delete-non-matching-lines (keep-lines)
+Delete all lines except those containing matches for REGEXP.
+
+~delete-non-matching-lines~ starts at the line your cursor is on.
+
+**** delete-duplicate-lines
+Delete all but one copy of any identical lines in the region.
+
+**** count-matches (how-many)
+Print and return number of matches for REGEXP following point.
+
+**** sort-lines
+Sort lines in region alphabetically; REVERSE non-nil means descending order
+
+**** reverse-region
+Reverse the order of lines in a region.
+
+**** highlight-lines-matching-regexp
+Highlight all lines that match REGEXP using FACE.
+
+**** unhighlight-regexp
+Remove highlighting of each match to REGEXP set by hi-lock.
+
+**** fill-paragraph
+Fill paragraph at or after point.
+
+It's often used to reduce the lenght of the lines of code documentation.
+
+*** Regex
+**** isearch-forward
+Do incremental search forward.
+
+**** isearch-backward
+Do incremental search backward.
+
+**** highlight-regexp
+Set face of each match of REGEXP to FACE.
+
+**** find-dired
+Run find and go into Dired mode on a buffer of the output.
+
+**** dired-do-search
+Search through all marked files for a match for REGEXP.
+
+While in dired, you can *step thru all files that matches a text pattern*. In dired, call ~dired-do-search A~. It will prompt you for a search string, then open the first file of the match, with your cursor placed at the matching location.
+
+To go to next occurrence, press ~M-,~ (~tags-loop-continue~).
+
+**** dired-do-query-replace-regexp
+Do query-replace-regexp of FROM with TO, on all marked files.
+
+**** dired-do-rename-regexp
+Rename selected files whose names match REGEXP to NEWNAME.
+
+**** grep
+Call ~grep~ to list all matching text of all files in the current directory.
+
+For example, if you give this input ~grep -nH -e "Cheshire" *html~, which will list all files ending in “html” that contains the word “Cheshire”.
+
+If you want case insensitive search, add a ~-i~ in the grep option.
+
+**** rgrep
+Search all files in current directory and sub-directory.
+
+**** lgrep
+Search only some files of current dir by using a text pattern (regex) on file names first.
+
+**** grep-find
+Use a combination of unix's ~grep~ and ~find~ commands..
+
+*** String
+**** string-rectangle
+Replace rectangle contents with STRING on each line.
+
+*Note*: The command string-rectangle can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
+
+**** kill-rectangle
+Delete the region-rectangle and save it as the last killed one.
+
+~kill-rectangle~ can be used to delete any rectangular block of text, not just at the beginning of lines.
+
+There are others useful command like ~replace-rectangle~, ~yank-rectangle~,...
+
+#+begin_example
+
+try to delete the middle column
+3c21 646f 6374
+6874 6d6c 3e3c
+2063 6861 7273
+202f 3e0a 3c6d
+6965 7770 6f72
+2277 6964 7468
+
+1. Put your cursor before “646f”.
+2. Call set-mark-command =C-SPC=.
+3. Move cursor to end of “6964”.
+4. Call =kill-rectangle=.
+
+#+end_example
+
+**** align-regexp
+Align the current region using an ad-hoc rule read from the minibuffer.Align the current region using an ad-hoc rule read from the minibuffer.
+
+There are others useful command like ~align-regexp~, ~sort-regexp-fields~, ~sort-columns~.
+
+Example pressing ~align-regexp~ with "=" align the text.
+
+#+begin_example
+
+align them by the equal sign
+tom = 5
+jenny = 8
+mary = 7
+
+align
+California 423,970 km²
+Taiwan 36,008 km²
+Japan 377,944 km²
+Germany 357,021 km²
+Iraq 438,317 km²
+Iran 1,648,195 km²
+Korea (North+South) 219,140 km²
+Mexico 1,964,375 km²
+
+Select the text first, then press C-u then call align-regexp, with the regexp .* \([0-9,]+\).* then choose -1 for group, 1 for spacing, and n for repeat.
+
+#+end_example
+
+*** Misc
+**** command-history
+Examine commands from command-history in a buffer.
+**** apropos
+ This command is like the ~C-h a~ (command-apropos) command, except that the latter finds only those functions that are commands. The ~M-x apropos~ command lists all symbols that match a regular expression, including functions that are not interactive.
+
+#+begin_src emacs-lisp
+
+;; Example: we want to look for is some command that prints or inserts columns. Very likely, the name of the function will contain either the word “print” or the word “insert” or the word “column”. Therefore, we can simply type:
+
+M-x apropos RET print\|insert\|column RET
+
+#+end_src
+
+**** compare-windows
+Compare text in current window with text in another window.
+
+**** custom-reevaluate-setting
+Reset the value of SYMBOL by re-evaluating its saved or standard value.
+
+*Note*: "saved or standard value". In that order of precedence. If the user has customized and saved a value for the variable, this function resets it to its saved-value, not its standard-value.
+
+#+begin_src emacs-lisp
+
+(custom-reevaluate-setting 'emms-player-next-function)
+
+#+end_src
+
+**** whitespace-cleanup
+Cleanup some blank problems in all buffer or at region.
+
+**** delete-trailing-whitespace
+Delete trailing whitespace between START and END.
+
 ** Load file
 *** load
-You can use a ~load~ command to evaluate a complete file and thereby install all the functions and variables in the file into Emacs. 
+You can use a ~load~ command to evaluate a complete file and thereby install all the functions and variables in the file into Emacs.
 
 Load a file by searching thru var ~load-path~. Argument should be just the file name without full path, such as ~(load "undo")~. It'll auto add “.elc” for compiled version if exist, or add “.el”, or with “.gz”.	Use this if the exact file path is not known in advance.
 
@@ -7117,9 +7238,9 @@ Load a file only when a function is called. Associate a function name with a fil
 
 Instead of installing a function by loading the file that contains it, or by evaluating the function definition, you can make the function available but not actually install it until it is first called. This is called *autoloading*.
 
-When you execute an autoloaded function, Emacs automatically evaluates the file that contains the definition, and then calls the function. 
+When you execute an autoloaded function, Emacs automatically evaluates the file that contains the definition, and then calls the function.
 
- ~autoload~ is a built-in function that takes up to five arguments, the final three of which are optional. 
+ ~autoload~ is a built-in function that takes up to five arguments, the final three of which are optional.
 
 The first argument is the name of the function to be autoloaded.
 The second is the name of the file to be loaded.
@@ -7155,13 +7276,13 @@ The ~provide~ function adds a symbol to the ~features~ list.
 
 *** Loading the File
 **** Load the File Manually
-Suppose you downloaded a simple emacs package on the web named =xyz.el=. To use the package, all you have to do is to make emacs load the file.
+Suppose you downloaded a simple emacs package on the web named ~xyz.el~. To use the package, all you have to do is to make emacs load the file.
 
-  1. =M-x load-file= then give the file path.
-  2. Now, emacs is aware of the package. To activate, call the command in the package. For example, if the file name is =xyz.el=, then the command to activate it is typically =xyz= or =xyz-mode=.
+  1. ~M-x load-file~ then give the file path.
+  2. Now, emacs is aware of the package. To activate, call the command in the package. For example, if the file name is ~xyz.el~, then the command to activate it is typically ~xyz~ or ~xyz-mode~.
 
 **** Load File at Startup
-If you want emacs to load the file when it starts, put the file in the dir =~/.emacs.d/lisp/=, (create that directory if it doesn't exist, by convention, this dir is for packages you manually installed.) then put the following in your emacs init file:
+If you want emacs to load the file when it starts, put the file in the dir ~~/.emacs.d/lisp/~, (create that directory if it doesn't exist, by convention, this dir is for packages you manually installed.) then put the following in your emacs init file:
 
 #+begin_src emacs-lisp
 
@@ -7176,9 +7297,9 @@ If you want emacs to load the file when it starts, put the file in the dir =~/.e
 **** Byte Compile
 Elisp source code can be byte compiled. When a file is byte compiled, it loads faster, and the functions will run faster too (about 6 times faster). For simple packages, the difference in speed is not noticeable.
 
-To compile your code, call =byte-compile-file=. Once you compiled the code, you'll get a file with suffix =.elc=.
+To compile your code, call ~byte-compile-file~. Once you compiled the code, you'll get a file with suffix ~.elc~.
 
-You can byte-compile multiple files. In dired, press =m= to mark them (press =u= to unmark), then press =B= (=diredp-byte-compile-this-file=). 
+You can byte-compile multiple files. In dired, press ~m~ to mark them (press ~u~ to unmark), then press ~B~ (~diredp-byte-compile-this-file~).
 
 **** Auto-Activation of Mode When Opening File
 This is usually setup by the package, but not always. Here's the basics:
@@ -7193,9 +7314,9 @@ This is usually setup by the package, but not always. Here's the basics:
 *** site-wide
 In addition to your personal initialization file, Emacs automatically loads various site-wide initialization files, if they exist. These have the same form as your ~.emacs~ file, but are loaded by everyone.
 
-Two site-wide initialization files, ~site-load.el~ and ~site-init.el~, are loaded into Emacs and then dumped if a dumped version of Emacs is created, as is most common. 
+Two site-wide initialization files, ~site-load.el~ and ~site-init.el~, are loaded into Emacs and then dumped if a dumped version of Emacs is created, as is most common.
 
-Three other site-wide initialization files are loaded automatically each time you start Emacs, if they exist. These are ~site-start.el~ (it pretty much means a init file for all users of this emacs installation), which is loaded /before/ your ~.emacs~ file, and ~default.el~, and the terminal type file, which are both loaded /after/ your ~.emacs~ file. 
+Three other site-wide initialization files are loaded automatically each time you start Emacs, if they exist. These are ~site-start.el~ (it pretty much means a init file for all users of this emacs installation), which is loaded /before/ your ~.emacs~ file, and ~default.el~, and the terminal type file, which are both loaded /after/ your ~.emacs~ file.
 
 Settings and definitions in your ~.emacs~ file will overwrite conflicting settings and definitions in a ~site-start.el~ file, if it exists; but the settings and definitions in a ~default.el~ or terminal type file will overwrite those in your ~.emacs~ file. (You can prevent interference from a terminal type file by setting ~term-file-prefix~ to ~nil~.)
 
@@ -7203,7 +7324,97 @@ The ~INSTALL~ file that comes in the distribution contains descriptions of the ~
 
 The ~loadup.el~, ~startup.el~, and ~loaddefs.el~ files control loading. These files are in the lisp directory of the Emacs distribution and are worth perusing.
 
-The ~loaddefs.el~ file contains a good many suggestions as to what to put into your own ~.emacs~ file, or into a site-wide initialization file. 
+The ~loaddefs.el~ file contains a good many suggestions as to what to put into your own ~.emacs~ file, or into a site-wide initialization file.
+
+** Variables
+*** Buffer local variables
+You can set the value of a variable for the current buffer only using ~setq-local~. Any code that runs in that buffer will receive the buffer-local value instead of the global value!
+
+Why do this? There are many settings that should only be set per buffer, like editor settings for different programming languages and customization variables for major modes.
+
+If the variable isn’t already buffer-local, ~setq-local~ will make it so, but only for the current buffer!
+
+#+begin_src emacs-lisp
+
+(setq-local tab-width 4)
+
+;; some-value doesn't exist yet!
+(setq some-value 2)
+
+;; Make it buffer-local
+(setq-local some-value 4)
+
+#+end_src
+
+*** Making a variable local for all buffers
+You can make any variable local for all future buffers with the make-variable-buffer-local function:
+
+#+begin_src emacs-lisp
+
+(setq not-local-yet t)
+(make-variable-buffer-local 'not-local-yet)
+
+#+end_src
+
+If you are writing an Emacs Lisp package and want to provide a buffer-local variable, this is the way to do it!
+
+#+begin_src emacs-lisp
+
+;; Defining a variable with defvar and then making it buffer local
+(defvar new-buffer-local-var 311)
+(make-variable-buffer-local 'new-buffer-local-var)
+
+#+end_src
+
+*** Setting default values
+You might also want to set the default value for a buffer-local variable with ~setq-default~:
+
+Keep in mind that ~setq-default~ does not set the value in the current buffer, only future buffers!
+
+#+begin_src emacs-lisp
+
+(setq-default not-local-yet nil)
+
+(setq-default tab-width 2
+              evil-shift-width 2)
+
+;; BEWARE!  Unexpected results using buffer-local variables:
+(setq-default evil-shift-width tab-width)
+
+;; This will create a variable that doesn't exist
+(setq-default will-i-be-created t)
+
+#+end_src
+
+*** Defining customization variables
+Customizable variables are used to define user-facing settings for customizing the behavior of Emacs and packages.
+
+The primary difference between They show up in the customization UI (users can set them without code)
+
+The ~defcustom~ function allows you to define a customizable variable:
+
+#+begin_src emacs-lisp
+
+(defcustom my-custom-variable 42
+  "A variable that you can customize")
+
+#+end_src
+
+~defcustom~ takes some additional parameters after the documentation string:
+
+  -  ~:type~ - The expected value type
+  -  ~:group~ - The symbol that identifies the “group” this variable belongs to (defined with ~defgroup~)
+  -  ~:options~ - The list of possible values this variable can hold
+  -  ~:set~ - A function that will be invoked when this variable is customized
+  -  ~:get~ - A function that will be invoked when this variable is resolved
+  -  ~:initialize~ - A function to be used to initialize the variable when it gets defined
+  -  ~:local~ - When ~t~, automatically marks the variable as buffer-local
+
+*** Useful variables
+**** org-structure-template-alist
+An alist of keys and block types.
+
+~org-insert-structure-template~ will display a menu with this list of templates to choose from.  The block type is inserted, with ~#+BEGIN_~ and ~#+END_~ added automatically.
 
 ** Customization
 *** Keybindings
@@ -7272,7 +7483,7 @@ The ~loaddefs.el~ file contains a good many suggestions as to what to put into y
 
 #+begin_src emacs-lisp
 
-;; Redefine all keys which now run next-line in Fundamental mode 
+;; Redefine all keys which now run next-line in Fundamental mode
 ;; so that they run forward-line instead.
 (substitute-key-definition 'next-line 'forward-line
                            global-map)
@@ -7289,14 +7500,17 @@ The ~loaddefs.el~ file contains a good many suggestions as to what to put into y
 ;; add ~/emacs directory to the existing load path
 (setq load-path (cons "~/emacs" load-path))
 
-;; Load the installed Lisp library named foo (actually a file foo.elc or 
+;; Load the installed Lisp library named foo (actually a file foo.elc or
 ;; foo.el in a standard Emacs directory).
 (load "foo")
-;; When the argument to load is a relative file name, not starting 
+;; When the argument to load is a relative file name, not starting
 ;; with ‘/’ or ‘~’, load searches the directories in load-path
 
 ;; Load the compiled Lisp file foo.elc from your home directory.
 (load "~/foo.elc")
+
+;; Add personal library path to load-path
+(push "~/.dotfiles/.emacs.d/lisp" load-pat)h
 
 #+end_src
 
@@ -7363,15 +7577,15 @@ For some minor modes, you need to load it first, example:
 #+end_src
 
 **** Modify Keys
-=shell= and =shell-command= M-! have many special keys. Suppose you want to change them. They both use a keymap named =comint-mode-map=. The following is a example of redefining some of its keys.
+~shell~ and ~shell-command~ M-! have many special keys. Suppose you want to change them. They both use a keymap named ~comint-mode-map~. The following is a example of redefining some of its keys.
 
 #+begin_src emacs-lisp
 
 (progn
   ;; "change keybindings for shell related modes."
-   (define-key comint-mode-map (kbd "M-p") 'recenter) 
+   (define-key comint-mode-map (kbd "M-p") 'recenter)
    ;; was comint-previous-input
-   (define-key comint-mode-map (kbd "M-n") 'nil) 
+   (define-key comint-mode-map (kbd "M-n") 'nil)
    ;; was comint-next-input
 
 ;; rebind displaced commands that i still want a key
@@ -7380,7 +7594,7 @@ For some minor modes, you need to load it first, example:
 
 ;; Here's a example of how to redefine keybinding in minibuffer
 (define-key minibuffer-local-map (kbd "M-r") 'kill-word)
-(define-key minibuffer-local-map (kbd "M-s") 'other-window) 
+(define-key minibuffer-local-map (kbd "M-s") 'other-window)
 
 #+end_src
 
@@ -7398,19 +7612,19 @@ For some minor modes, you need to load it first, example:
 #+end_src
 
 *** macro
-1. =Call name-last-kbd=-macro and give it a name.
-2. =Call insert-kbd-macro= This will insert the lisp code for a named kmacro at the cursor position.
+1. ~M-x name-last-kbd-macro~ and give it a name.
+2. ~M-x insert-kbd-macro~ This will insert the lisp code for a named kmacro at the cursor position.
 3. Copy ＆ Paste the code into your emacs init file.
 4. In any future emacs session, you can call your kmacro by name just like any emacs command.
 
-Once you've saved your macro with a name, you can also give it a keyboard shortcut, such as =F8=. 
+Once you've saved your macro with a name, you can also give it a keyboard shortcut, such as ~F8~.
 
 #+begin_src emacs-lisp
 
 ;; macro for bold region, add two *
 (fset 'bold
    (kmacro-lambda-form [?\C-c ?\C-x ?\C-f kp-multiply] 0 "%d"))
-(global-set-key (kbd "<f7>") 'bold) 
+(global-set-key (kbd "<f7>") 'bold)
 
 ;; macro for code region, add tow =
 (fset 'code
@@ -7419,9 +7633,96 @@ Once you've saved your macro with a name, you can also give it a keyboard shortc
 
 #+end_src
 
-*** Misc
+*** External App
+
 
 #+begin_src emacs-lisp
+
+;; To open the current file or marked dired files in external app. (as if
+;; you double-clicked the file on desktop) It's useful for image files,
+;; PDF file, video, audio files.
+(defun xah-open-in-external-app (&optional Fname)
+  "Open the current file or dired marked files in external app.
+When called in emacs lisp, if Fname is given, open that.
+
+URL `http://xahlee.info/emacs/emacs/emacs_dired_open_file_in_ext_apps.html'
+Version: 2019-11-04 2023-04-05 2023-06-26"
+  (interactive)
+  (let (xfileList xdoIt)
+    (setq xfileList
+          (if Fname
+              (list Fname)
+            (if (string-equal major-mode "dired-mode")
+                (dired-get-marked-files)
+              (list buffer-file-name))))
+    (setq xdoIt (if (<= (length xfileList) 10) t
+                  (y-or-n-p "Open more than 10 files? ")))
+    (when xdoIt
+      (cond
+       ((string-equal system-type "windows-nt")
+        (let ((xoutBuf (get-buffer-create "*xah open in external app*"))
+              (xcmdlist (list "PowerShell" "-Command"
+                              "Invoke-Item" "-LiteralPath")))
+          (mapc
+           (lambda (x)
+             (message "%s" x)
+             (apply 'start-process
+                    (append (list "xah open in external app" xoutBuf)
+                            xcmdlist (list
+                                      (format "'%s'"
+                                              (if (string-match "'" x)
+                                                  (replace-match "`'" t t x) x)))
+                            nil)))
+           xfileList)
+          ;; (switch-to-buffer-other-window xoutBuf)
+          )
+        ;; old code. calling shell. also have a bug if filename contain apostrophe
+        ;; (mapc (lambda (xfpath) (shell-command
+        ;; (concat "PowerShell -Command \"Invoke-Item -LiteralPath\" " "'"
+        ;; (shell-quote-argument (expand-file-name xfpath)) "'"))) xfileList)
+        )
+       ((string-equal system-type "darwin")
+        (mapc (lambda (xfpath) (shell-command
+                                (concat "open "(shell-quote-argument xfpath))))
+              xfileList))
+       ((string-equal system-type "gnu/linux")
+        (mapc (lambda (xfpath)
+                (call-process shell-file-name nil 0 nil
+                              shell-command-switch
+                              (format "%s %s"
+                                      "xdg-open"
+                                      (shell-quote-argument xfpath))))
+              xfileList))
+       ((string-equal system-type "berkeley-unix")
+        (mapc (lambda (xfpath)
+                (let ((process-connection-type nil))
+                  (start-process "" nil "xdg-open" xfpath))) xfileList))))))
+
+#+end_src
+
+#+RESULTS:
+
+*** Configurations
+
+#+begin_src emacs-lisp
+
+;; flyspell-mode
+(add-hook 'text-mode-hook
+        '(lambda () (flyspell-mode 1)))
+
+(setq ispell-local-dictionary "espanol")
+
+
+;; Case conversion can be toggled on/off by typing ‘M-c’ in the
+;; minibuffer during search or disable case conversion
+(setq case-fold-search nil)
+
+;; In an interactive search, a space character stands for one or more
+;; whitespace characters (tabs are whitespace characters). You can use
+;; M-s SPC while searching or replacing to toggle between this behavior
+;; and treating spaces as literal spaces.
+(setq search-whitespace-regexp nil)
+
 
 ;;Adjusting the configuration to various platforms and Emacs versions.
 ;; Users typically want Emacs to behave the same on all systems, so the
@@ -7436,15 +7737,38 @@ Once you've saved your macro with a name, you can also give it a keyboard shortc
 (if (boundp 'coding-category-utf-8)
     (set-coding-priority '(coding-category-utf-8)))
 
-;; You can also simply disregard the errors that occur if the 
+;; You can also simply disregard the errors that occur if the
 ;; function is not defined.
 (ignore-errors (set-face-background 'region "grey75"))
 
 #+end_src
 
+*** Miscellaneous
+
+#+begin_src emacs-lisp
+
+;; Example of how to use Hydra package.
+(global-set-key (kbd "C-c m")
+ (defhydra hydra-transpose (:color red)
+   "Transpose"
+    ("w" transpose-words "words")
+    ("o" org-transpose-words "Org mode words")
+    ("l" transpose-lines "lines")
+    ("q" nil "cancel" :color blue)))
+
+;; auto-saves buffers, when certain events happen (e.g. you switch
+;; between buffers, an Emacs frame loses focus)
+(use-package super-save
+  :defer 1
+  :diminish super-save-mode
+  :config
+  (super-save-mode +1))
+
+#+end_src
+
 * use-packages
 ** Install
-*** Install package 
+*** Install package
 Para instalar un paquete deseado sin usar ~use-package~, se puede instalar manualmente desde GitHub y colocarlo en una ruta de carga donde Emacs pueda encontrarlo, por ejemplo con ~(add-to-list 'load-path "/path/to/installed-package-repo")~. Alternativamente, se puede abrir la lista de paquetes en Emacs con ~M-x list-packages~, navegar con el cursor para encontrar el paquete que desea y presionar ~i~ seguido de ~x~ en la fila que contiene el paquete. De cualquier manera, tendría que llamar explícitamente ~(require 'package-name)~ en su ~init.el~ antes de poder hacer cualquier configuración. Por último, cualquier configuración del paquete puede necesitar estar envuelta en un ~(with-eval-after-load 'package-name ...)~ bloque, para evitar encontrarse con variables y funciones indefinidas antes de que su paquete esté completamente cargado.
 
 Todo este procedimiento se puede evitar usando ~(use-package name)~.
@@ -7454,12 +7778,12 @@ Es una macro que permite aislar la configuración de un paquete en el archivo ~i
 
 Evita hacer todo el procedimiento tradicional y tedioso de la [[Install package][instalación]] de un paquete, ~use-package~ abstrae todo esto.
 
-No es un administrador de paquetes! Aunque tiene la capacidad de interactuar con los administradores de paquetes, su propósito principal es la configuración y carga de paquetes. 
+No es un administrador de paquetes! Aunque tiene la capacidad de interactuar con los administradores de paquetes, su propósito principal es la configuración y carga de paquetes.
 
 *Warning:* Cuando aparece un error de paquete no encontrado, actualizar paquetes usando ~M-x list-package~ y si es necesario ~M-x package-refresh-contents~.
 
 *** :ensure t
-Instala el paquete pero no lo mantiene actualizado. 
+Instala el paquete pero no lo mantiene actualizado.
 
 Asegura que los paquetes se instalen correctamente al inicio, instala automáticamente los que faltan, descargue las dependencias cada vez que se use por primera vez (útil cuando se quiere transferir la configuración entre otras maquinas).
 
@@ -7467,7 +7791,7 @@ Setear ~(use-package-always-ensure t)~ al inicio, ahorra estar especificando ~:e
 
 Setear ~:ensure nil~ evita buscar el paquete en los archivos de internet ya que es un paquete incorporado  en emacs (se usa con ~use-package~ para poder usar las configuraciones de ~use-package~).
 
-** Load 
+** Load
 *** use-package name
 Carga el paquete ~name~ pero solo si este paquete ya esta disponible en el sistema.
 
@@ -7476,16 +7800,16 @@ Si se está usando el administrador de paquetes incorporado de Emacs ~paquete.el
 El uso de ~:hook~, al igual que con ~:bind~, ~:mode~, ~:interpreter~, ... hace que las funciones enlazadas se lean implícitamente como comandos (lo que significa que establecerán definiciones de carga automática(autoload) interactivas para ese módulo, si aún no están definidas como funciones) .
 
 *** :require
-Esto carga el paquete si aún no se ha cargado. 
+Esto carga el paquete si aún no se ha cargado.
 
 Nunca carga el paquete si las dependencias no están disponibles en el momento en que se encuentra la declaración de uso del paquete.
 
  #+begin_src emacs-lisp
 
-(use-package abbrev  
+(use-package abbrev
   :requires foo)
 ;; Equivalentemente
-(use-package abbrev  
+(use-package abbrev
   :if (featurep 'foo))
 
  #+end_src
@@ -7496,13 +7820,13 @@ Difiere la carga del paquete (esta de manera implícita en varios keywords ~:bin
 Solo necesita especificar ~:defer~ si sabe con certeza que algún otro paquete hará algo para que su paquete se cargue en el momento adecuado y, por lo tanto, le gustaría diferir la carga aunque ~use-package~ no esté creando cualquier carga automática para usted.
 
  #+begin_src emacs-lisp
- 
-(use-package ace-jump-mode  
-  :defer t  
-  :init  (autoload 'ace-jump-mode "ace-jump-mode" nil t)  
+
+(use-package ace-jump-mode
+  :defer t
+  :init  (autoload 'ace-jump-mode "ace-jump-mode" nil t)
          (bind-key "C-." 'ace-jump-mode)) ; El "autoload" setea la carga automática más no carga el paquete
 ;; Equivalentemente
-(use-package ace-jump-mode  
+(use-package ace-jump-mode
   :bind ("C-." . ace-jump-mode))
 
  #+end_src
@@ -7514,10 +7838,10 @@ Carga un paquete después de que se haya cargado otro. Permite una descripción 
 
 ;; Este caso no es realmente necesario porque se carga hydra de primero
 ;; pero ilustra el ejemplo
-(use-package hydra  
+(use-package hydra
   :load-path "site-lisp/hydra")
 
-(use-package ivy-hydra 
+(use-package ivy-hydra
   :after (hydra))
 
 #+end_src
@@ -7539,9 +7863,9 @@ Ejecuta configuraciones después de que se cargue el paquete.
 Crea cargas automáticas para los comandos y difiere la carga del módulo hasta que se usen. Toma un símbolo o una lista de símbolos.
 
  #+begin_src emacs-lisp
- 
-(use-package ace-jump-mode 
-  :commands ace-jump-mode 
+
+(use-package ace-jump-mode
+  :commands ace-jump-mode
   :init (bind-key "C-." 'ace-jump-mode))
 
  #+end_src
@@ -7552,9 +7876,9 @@ Vincula key bindings a los comandos principales dentro de ese modo. Hace dos cos
 El paquete se cargará la primera vez que se utilice una de las key bindings.
 
  #+begin_src emacs-lisp
- 
-(use-package ace-jump-mode 
-  :bind ("C-." . ace-jump-mode)) 
+
+(use-package ace-jump-mode
+  :bind ("C-." . ace-jump-mode))
 
  #+end_src
 
@@ -7567,7 +7891,7 @@ La única diferencia con ~:bind~ es que los "comandos" enlazados por ~:bind-keym
 
 #+begin_src emacs-lisp
 
-(use-package helm 
+(use-package helm
   :bind-keymap ("C-c p" . help-command-map))
 
 #+end_src
@@ -7576,32 +7900,32 @@ La única diferencia con ~:bind~ es que los "comandos" enlazados por ~:bind-keym
 Vincula comando a una función *dentro* de un ~local keymap~ que solo existe después de que se carga el paquete.
 
  #+begin_src emacs-lisp
- 
-(use-package helm 
+
+(use-package helm
 :bind (:map helm-command-map ("C-c h" . helm-execute-persistent-action)))
-;;Espera hasta que "helm" se haya cargado y luego vincula la tecla "C-c h" 
+;;Espera hasta que "helm" se haya cargado y luego vincula la tecla "C-c h"
 ;;a "helm-execute-persistent-action" dentro del "local keymap" de Helm.
 
  #+end_src
 
 ** Modes - interpretes - hook
 *** :mode
-Establece enlaces diferidos dentro de estas variables ~auto-mode-alist~ e ~interpreter-mode-alist~. Hace dos cosas, primero crea una carga automática ~autoload~ para el comando y difiere la carga del mode hasta que realmente lo use, segundo enlaza el comando. 
+Establece enlaces diferidos dentro de estas variables ~auto-mode-alist~ e ~interpreter-mode-alist~. Hace dos cosas, primero crea una carga automática ~autoload~ para el comando y difiere la carga del mode hasta que realmente lo use, segundo enlaza el comando.
 
 El especificador de la keyword puede ser una "cons cell" ~(:mode (a . b))~, una lista de "cons cells" ~(:mode (a . (b . c)))~, o un string ~(:mode "string")~ o regexp ~(:mode ( "\\regexp\\" ) )~.
 
 Emacs por si solo no contiene todos los modos, así que algunos se deben descargar, por ejemplo ~typescript-mode~ , luego se debe añadir a la lista de modos, y por último si es necesario se debe agregar la expresión que reconocera la extensión del archivo, para así reconocerlo automáticamente.
 
  #+begin_src emacs-lisp
- 
-(use-package typescript-mode 
-  :mode ("\\.tsx?\\'" . typescript-mode)) 
+
+(use-package typescript-mode
+  :mode ("\\.tsx?\\'" . typescript-mode))
 ;; Equivalentemente
-(use-package typescript-mode 
+(use-package typescript-mode
   :config (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode)))
 
 ;; no requiere la modificación de la lista de modos automáticos
-;; para el reconocimiento de expresiones regulares de extensión de 
+;; para el reconocimiento de expresiones regulares de extensión de
 ;; archivo ya que son manejados por los propios paquetes.
 (use-package json-mode)
 
@@ -7611,9 +7935,9 @@ Emacs por si solo no contiene todos los modos, así que algunos se deben descarg
 Similar a [[:mode]] establece enlaces diferidos dentro de estas variables ~auto-mode-alist~ y ~interpreter-mode-alist~.
 
  #+begin_src emacs-lisp
- 
-(use-package python 
-  :mode ("\\.py\\'" . python-mode) 
+
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)) ; El paquete es "python" pero el modo es "python-mode"
 
  #+end_src
@@ -7623,13 +7947,13 @@ Similar a [[:mode]] y a [[:interpreter]] hace que se ejecute cierta función si 
 
 
  #+begin_src emacs-lisp
- 
+
 ;; Registra un comando de autocarga autoload para pdf-view-mode
-;; difiere la carga de pdf-tools y ejecuta pdf-view-mode 
+;; difiere la carga de pdf-tools y ejecuta pdf-view-mode
 ;; si el comienzo de un buffer coincide con el string %PDF
-(use-package pdf-tools 
-  :load-path "site-lisp/pdf-tools/lisp" 
-  :magic ("%PDF" . pdf-view-mode) 
+(use-package pdf-tools
+  :load-path "site-lisp/pdf-tools/lisp"
+  :magic ("%PDF" . pdf-view-mode)
   :config (pdf-tools-install :no-query))
 
  #+end_src
@@ -7646,34 +7970,34 @@ El paquete se cargará la primera vez que se invoque uno de los hooks.
 
 
  #+begin_src emacs-lisp
- 
+
 ;; El :hook difirere la carga de ace-jump-mode hasta que se haya activado
 ;; el modo prog-mode
-(use-package ace-jump-mode  
+(use-package ace-jump-mode
   :hook prog-mode)
 ;; Equivalentemente
-(use-package ace-jump-mode  
+(use-package ace-jump-mode
   :hook (prog-mode . ace-jump-mode))
 ;; Equivalentemente
-(use-package ace-jump-mode  
-  :commands ace-jump-mode  
+(use-package ace-jump-mode
+  :commands ace-jump-mode
   :init  (add-hook 'prog-mode-hook #'ace-jump-mode))
-;; El : hook (prog-mode . ace-jump-mode) se expande internamente para 
+;; El : hook (prog-mode . ace-jump-mode) se expande internamente para
 ;; convertirse en  (add-hook 'prog-mode-hook #'ace-jump-mode)
 
 ;; Se pueden aplicar multiples hooks, las siguientes son equivalentes.
-(use-package ace-jump-mode 
+(use-package ace-jump-mode
   :hook (prog-mode text-mode))
 
-(use-package ace-jump-mode 
+(use-package ace-jump-mode
   :hook ((prog-mode text-mode) . ace-jump-mode))
 
-(use-package ace-jump-mode 
+(use-package ace-jump-mode
   :hook ((prog-mode . ace-jump-mode) (text-mode . ace-jump-mode)))
 
-(use-package ace-jump-mode 
-  :commands ace-jump-mode 
-  :init (add-hook 'prog-mode-hook #'ace-jump-mode) 
+(use-package ace-jump-mode
+  :commands ace-jump-mode
+  :init (add-hook 'prog-mode-hook #'ace-jump-mode)
         (add-hook 'text-mode-hook #'ace-jump-mode))
 ;; No hace falta :hook ya que se adjunta de forma predeterminada
 
@@ -7681,15 +8005,15 @@ El paquete se cargará la primera vez que se invoque uno de los hooks.
 
 ** Customizing variables
 *** :custom
-Permite la personalización de las variables personalizables del paquete. 
+Permite la personalización de las variables personalizables del paquete.
 
 Los valores personalizados *NO* seran guardados en la ~custom-file~ Emacs. Así que debe usar ~:custom~ option o debe usar ~M-x customize-option~ que guardara valores personalizados en Emacs (no se puede usar ambos).
 
 El único beneficio de usar ~setq~ en un bloque ~:config~ es que las personalizaciones pueden ejecutar código cuando se asignan valores.
 
  #+begin_src emacs-lisp
- 
-(use-package comint  
+
+(use-package comint
   :custom  (comint-buffer-maximum-size 20000))
 
  #+end_src
@@ -7698,8 +8022,8 @@ El único beneficio de usar ~setq~ en un bloque ~:config~ es que las personaliza
 Permite la personalización de las fuentes personalizadas del paquete.
 
  #+begin_src emacs-lisp
- 
-(use-package eruby-mode   
+
+(use-package eruby-mode
   :custom-face  (eruby-standard-face ((t (:slant italic)))))
 
  #+end_src
@@ -7716,7 +8040,7 @@ Para remover el string de minor mode en la ~mode-line~ (no muestra el modo en la
 
 *** :delight
 Para cambiar el string minor mode en la ~mode-line~.
- 
+
 * References
   - [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
   - [[https://www.youtube.com/watch?v=48JlgiBpw_I][System Crafters Youtube]]
@@ -7725,4 +8049,3 @@ Para cambiar el string minor mode en la ~mode-line~.
   - [[https://orgmode.org/orgguide.html][Org Mode Compact Guide]]
   - [[https://www.gnu.org/software/emacs/manual/html_mono/emacs.htm][The GNU Emacs Editor Manual]]
   - [[https://wilkesley.org/~ian/xah/][∑XAH]]
-
