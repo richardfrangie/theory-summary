@@ -1,0 +1,1179 @@
+#+title: Pro Git
+#+date: 2022-11-29
+
+* The Three States
+Git has three main states that your files can reside in: modified, staged, and committed:
+
+- Modified :: you have changed the file but have not committed it to your database yet.
+- Staged :: you have marked a modified file in its current version to go into your next commit snapshot.
+- Committed :: the data is safely stored in your local database.
+
+This leads us to the three main sections of a Git project: the working tree, the staging area, and the Git directory.
+
+#+begin_src artist
+
+ Working                       Staging                 .git directory
+Directory                       Area                   (Repository)
+
+<----------------- checkout the project-----------------------
+
+Stage Fixes --------------------->
+
+                              Commit ------------------------>
+
+#+end_src
+
+- The working tree :: is a single checkout of one version of the project. These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify.
+- The staging area :: is a file, generally contained in your Git directory, that stores information about what will go into your next commit. Its technical name in Git parlance is the “index”.
+- The Git directory :: is where Git stores the metadata and object database for your project. This is the most important part of Git, and it is what is copied when you clone a repository from another computer.
+
+* Recording Changes to the Repository
+- Tracked files :: are files that were in the last snapshot, as well as any newly staged files; they can be unmodified, modified, or staged. In short, tracked files are files that Git knows about.
+
+- Untracked files :: are everything else — any files in your working directory that were not in your last snapshot and are not in your staging area.
+
+The lifecycle of the status of your files:
+
+#+begin_src artist
+
+Untracked        ¦-------------------- Tracked ----------------------¦
+                  Unmodified           Modified                Staged
+
+Add the file ---------------------------------------------------->
+
+                    Edit the file -------->
+
+                                            Stage the file ------>
+
+<---------- Remove the file
+
+                   <------------------------------------------Commit
+
+#+end_src
+
+* Branches in a Nutshell
+** Branching
+*** Branch
+Branching means you diverge from the main line of development and continue to do work without messing with that main line.
+
+When you make a commit, Git stores a commit object that contains a pointer to the snapshot of the content you staged. This object also contains the author’s name and email address, the message that you typed, and pointers to the commit or commits that directly came before this commit (its parent or parents): zero parents for the initial commit, one parent for a normal commit, and multiple parents for a commit that results from a merge of two or more branches.
+
+Let’s assume that you have a directory containing three files, and you stage them all and commit. Staging the files computes a checksum for each one, stores that version of the file in the Git repository (Git refers to them as blobs), and adds that checksum to the staging area.
+
+When you create the commit by running ~git commit~, Git checksums each subdirectory (in this case, just the root project directory) and stores them as a tree object in the Git repository. Git then creates a commit object that has the metadata and a pointer to the root project tree so it can re-create that snapshot when needed.
+
+Git repository now contains five objects: three blobs (each representing the contents of one of the three files), one tree that lists the contents of the directory and specifies which file names are stored as which blobs, and one commit with the pointer to that root tree and all the commit metadata.
+
+#+begin_src artist
+
+                                                        5b1d3
+                                                    +-----------+
+                                                    | blob size |
+                                                    |           |
+                                                    | License   |
+                                                    +-----------+
+                                                   /
+                                                  /
+       98ca9                       92ec2         /        911e7
++--------------------+     +--------------------+     +-----------+
+| commit    size     |     | tree size          |     | blob size |
+| tree      92ec2    |     | blob 5b1d3 README  |     |           |
+| author    Scott    | --> | blob 911e7 LICENSE | --> |           |
+| commiter  Scott    |     | blob cba0a test.rb |     |           |
+| The initial commit |     |                    |     | Library   |
++--------------------+     +--------------------+     +-----------+
+                                                 \
+                                                  \
+                                                   \    cba0a
+                                                    +-----------+
+                                                    | blob size |
+                                                    |           |
+                                                    | test      |
+                                                    +-----------+
+
+#+end_src
+
+If you make some changes and commit again, the next commit stores a pointer to the commit that came immediately before it.
+
+#+begin_src artist
+
+         98ca9                    34ac2                   f30ab
++--------------------+     +-----------------+     +-----------------+
+| commit    size     |     | commit    size  |     | commit    size  |
+| tree      92ec2    |     | tree      184ca |     | tree      0de24 |
+| parent             |     | parent    98ca9 |     | parent    34ac2 |
+| author    Scott    | <-- | author    Scott | <-- | author    Scott |
+| commiter  Scott    |     | commiter  Scott |     | commiter  Scott |
+| The initial commit |     | Fixed bug #32   |     | ass feature #4  |
++--------------------+     +-----------------+     +-----------------+
+           ¦                        ¦                       ¦
+    +------------+           +------------+           +------------+
+    | Snapshot A |           | Snapshot B |           | Snapshot C |
+    +------------+           +------------+           +------------+
+
+#+end_src
+
+A *branch* in Git is simply a lightweight movable pointer to one of these commits. The default branch name in Git is master. As you start making commits, you’re given a master branch that points to the last commit you made. Every time you commit, the master branch pointer moves forward automatically.
+
+*New Branch*
+When you create a new branch, this creates a new pointer to the same commit you’re currently on.
+
+*Merge Branch*
+When you try to merge one commit with a commit that can be reached by following the first commit’s history, Git simplifies things by moving the pointer forward because there is no divergent work to merge together — this is called a “fast-forward.”
+
+*** Remote Branches
+- Remote reference ::  are reference (pointers) in your remote repositories, including branches, tags, and so on.
+
+- Remote-tracking branches :: are references to the state of remote branches. They’re local references that you can’t move; Git moves them for you whenever you do any network communication, to make sure they accurately represent the state of the remote repository. Think of them as bookmarks, to remind you where the branches in your remote repositories were the last time you connected to them.
+
+- Tracking Branches :: are local branches that have a direct relationship to a remote branch. If you’re on a tracking branch and type ~git pull~ , Git automatically knows which server to fetch from and which branch to merge in.
+
+*** Merge Conflicts
+Anything that has merge conflicts and hasn’t been resolved is listed as unmerged when this command is used ~git status~ . Git adds standard conflict-resolution markers to the files that have conflicts, so you can open them manually and resolve those conflicts. Your file contains a section that looks something like this:
+
+#+begin_src shell
+
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
+
+#+end_src
+
+This means the version in HEAD (your master branch, because that was what you had checked out when you ran your merge command) is the top part of that block (everything above the =======), while the version in your other branch looks like everything in the bottom part. In order to resolve the conflict, you have to either choose one side or the other or merge the contents yourself.
+
+Once solved, the resolution has a little of each section, and the <<<<<<<, =======, and >>>>>>> lines have been completely removed. After you’ve resolved each of these sections in each conflicted file, run ~git add~ on each file to mark it as resolved. Staging the file marks it as resolved in Git.
+
+*** Tracking Branches
+Checking out a local branch from a remote-tracking branch automatically creates what is called a “tracking branch” (and the branch it tracks is called an “upstream branch”). Tracking branches are local branches that have a direct relationship to a remote branch. If you’re on a tracking branch and type ~git pull~, Git automatically knows which server to fetch from and which branch to merge in.
+
+When you clone a repository, it generally automatically creates a ~master~ branch that tracks ~origin/master~. However, you can set up other tracking branches if you wish — ones that track branches on other remotes, or don’t track the ~master~ branch. The simple case is the example you just saw, running ~git checkout -b <branch> <remote>/<branch>~.
+
+** Rebasing
+*** Rebasing different branches
+
+#+begin_src artist
+
+                             experiment
+                              +----+
+                              | C4 |
+                              +----+
+                            /
+                          L
++----+    +----+    +----+    +----+
+| C0 |<-- | C1 |<-- | C2 |<-- | C3 |
++----+    +----+    +----+    +----+
+                              master
+
+#+end_src
+
+The easiest way to integrate the branches, is the ~merge~ command. It performs a three-way merge between the two latest branch snapshots (~C3~ and ~C4~) and the most recent common ancestor of the two (~C2~), creating a new snapshot (and commit).
+
+#+begin_src artist
+
+ MERGE
+                            experiment
+                              +----+
+                              |*C4*|
+                              +----+
+                             /      ^
+                           L          \
++----+    +----+    +----+    +----+   +----+
+| C0 |<-- | C1 |<-- |*C2*|<-- |*C3*|<--| C5 |
++----+    +----+    +----+    +----+   +----+
+                                       master
+
+#+end_src
+
+However, there is another way: you can take the patch of the change that was introduced in ~C4~ and reapply it on top of ~C3~. In Git, this is called *rebasing*. With the ~rebase~ command, you can take all the changes that were committed on one branch and replay them on a different branch.
+
+For this example, you would ~switch~ the /experiment/ branch, and then ~rebase~ it onto the master branch.
+
+This operation works by going to the common ancestor of the two branches (the one you’re on and the one you’re rebasing onto), getting the diff introduced by each commit of the branch you’re on, saving those diffs to temporary files, resetting the current branch to the same commit as the branch you are rebasing onto, and finally applying each change in turn.
+
+Rebasing the change introduced in ~C4~ onto ~C3~ .
+
+#+begin_src artist
+
+                               + - -+
+                               |+C4+|
+                               +- - +
+
+                                       experiment
++----+    +----+    +----+    +----+    +-----+
+| C0 |<-- | C1 |<-- | C2 |<-- | C3 |<-- | C4' |
++----+    +----+    +----+    +----+    +-----+
+                              master
+
+
+#+end_src
+
+Fast-forwarding the *master* branch applying  ~git checkout master ; git merge experiment~ command:
+
+#+begin_src artist
+
+                                       experiment
++----+    +----+    +----+    +----+    +-----+
+| C0 |<-- | C1 |<-- | C2 |<-- | C3 |<-- | C4' |
++----+    +----+    +----+    +----+    +-----+
+                              master
+
+
+#+end_src
+
+Now, the snapshot pointed to by ~C4'~ is exactly the same as the one that was pointed to by ~C5~ in the merge example. There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the ~log~ of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
+
+*** More Interesting Rebases
+
+#+begin_src artist
+
+                              master
++----+    +----+    +----+    +----+
+| C1 |<-- | C2 |<-- | C5 |<-- | C6 |
++----+    +----+    +----+    +----+
+                ^
+                 \
+                    +----+    +----+    +-----+
+                    | C3 |<-- | C4 |<-- | C10 |
+                    +----+    +----+    +-----+
+                          ^              server
+                           \
+                              +----+    +-----+
+                              | C8 |<-- | C9  |
+                              +----+    +-----+
+                                         client
+
+#+end_src
+
+You want to merge your client-side changes into your mainline for a release, but you want to hold off on the server-side changes until it’s tested further. You can take the changes on client that aren’t on server (~C8~ and ~C9~) and replay them on your master branch by using the ~--onto~ option of ~git rebase~:
+
+~git rebase --onto master server client~
+
+#+begin_src artist
+
+                              master                client
++----+    +----+    +----+    +----+    +-----+    +-----+
+| C1 |<-- | C2 |<-- | C5 |<-- | C6 |<-- | C8' |<-- | C9' |
++----+    +----+    +----+    +----+    +-----+    +-----+
+                ^
+                 \
+                    +----+    +----+    +-----+
+                    | C3 |<-- | C4 |<-- | C10 |
+                    +----+    +----+    +-----+
+                                        server
+
+                              + - -+    +- - +
+                              |+C8+|<-- |+C9+|
+                              +- - +    + - -+
+
+#+end_src
+
+=warning=: Do not rebase commits that exist outside your repository and that people may have based work on.
+
+*Rebase vs. Merge*: You can get the best of both worlds: rebase local changes before pushing to clean up your work, but never rebase anything that you’ve pushed somewhere.
+
+* Remote repositories
+** About remote repositories
+A remote URL is Git's fancy way of saying "*the place where your code is stored.*" That URL could be your repository on GitHub, or another user's fork, or even on a completely different server.
+
+You can only push to two types of URL addresses:
+
+  - An HTTPS URL like ~https://github.com/user/repo.git~
+  - An SSH URL, like ~git@github.com:user/repo.git~
+
+Git associates a remote URL with a name, and your default remote is usually called ~origin~.
+
+** Creating remote repositories
+You can use the ~git remote add~ command to match a remote URL with a name. For example, you'd type the following in the command line:
+
+~git remote add origin <REMOTE_URL>~
+
+This associates the name ~origin~ with the ~REMOTE_URL~.
+
+You can use the command ~git remote set-url~ to change a remote's URL.
+
+** About git push
+The ~git push~ command takes two arguments:
+
+    A remote name, for example, ~origin~
+    A branch name, for example, ~main~
+
+For example:
+
+~git push REMOTE-NAME BRANCH-NAME~
+
+As an example, you usually run ~git push origin main~ to push your local changes to your online repository.
+
+* Distributed Git
+** Contributing to a Project
+*** Private Small Team
+The simplest setup you’re likely to encounter is a private project with one or two other developers. “Private,” in this context, means closed-source — not accessible to the outside world. You and the other developers all have push access to the repository.
+
+That is one of the simplest workflows. You work for a while (generally in a topic branch), and merge that work into your *master* branch when it’s ready to be integrated. When you want to share that work, you fetch and merge your *master* from *origin/master* if it has changed, and finally push to the *master* branch on the server.
+
+*** Private Managed Team
+In this next scenario, you’ll look at contributor roles in a larger private group. You’ll learn how to work in an environment where small groups collaborate on features, after which those team-based contributions are integrated by another party.
+
+Let’s say that John and Jessica are working together on one feature (call this “featureA”), while Jessica and a third developer, Josie, are working on a second (say, “featureB”). In this case, the company is using a type of integration-manager workflow where the work of the individual groups is integrated only by certain engineers, and the master branch of the main repo can be updated only by those engineers. In this scenario, all work is done in team-based branches and pulled together by the integrators later.
+
+*** Forked Public Project
+You’ll probably want to clone the main repository, create a topic branch for the patch or patch series you’re planning to contribute, and do your work there. The sequence looks basically like this:
+
+#+begin_src shell
+
+git clone <url>
+cd project
+git checkout -b featureA
+#... work ...
+git commit
+#... work ...
+git commit
+
+#+end_src
+
+When your branch work is finished and you’re ready to contribute it back to the maintainers, go to the original project page and click the “Fork” button, creating your own writable fork of the project. You then need to add this repository URL as a new remote of your local repository.
+
+~git remote add myfork <url>~
+
+You then need to push your new work to this repository. In any event, you can push your work with:
+
+~git push -u myfork featureA~
+
+Once your work has been pushed to your fork of the repository, you need to notify the maintainers of the original project that you have work you’d like them to merge. You can run the ~git request-pull~ command and email the subsequent output to the project maintainer manually.
+
+The ~git request-pull~ command takes the base branch into which you want your topic branch pulled and the Git repository URL you want them to pull from, and produces a summary of all the changes you’re asking to be pulled.
+
+~git request-pull origin/master myfork~
+
+If you want to submit a second topic of work to the project, don’t continue working on the topic branch you just pushed up — start over from the main repository’s master branch:
+
+~git checkout -b featureB origin/master~
+
+*** Public Project over Email
+You create topic branches for each patch series you work on. You generate email versions of each commit series and email them to the developer mailing list:
+
+#+begin_src shell
+
+git checkout -b topicA
+#... work ...
+git commit
+#... work ...
+git commit
+
+#+end_src
+
+Now you have two commits that you want to send to the mailing list. You use ~git format-patch~ to generate the mbox-formatted files that you can email to the list:
+
+~git format-patch -M origin/master~ (prints out the names of the patch files it creates)
+
+**** To email this to a mailing list
+You can either paste the file into your email program or send it via a command-line program. We’ll demonstrate how to send a patch via Gmail. First, you need to set up the imap section in your ~~/.gitconfig~ file.You can set each value separately with a series of git config commands, or you can add them manually, but in the end your config file
+
+#+begin_src shell
+
+[imap]
+  folder = "[Gmail]/Drafts"
+  host = imaps://imap.gmail.com #if IMAP server doesn’t use SSL use imap://
+  user = user@gmail.com
+  pass = YX8g76G_2^sFbd
+  port = 993 #if IMAP server doesn’t use SSL, probably aren’t necessary
+  sslverify = false #if IMAP server doesn’t use SSL, probably aren’t necessary
+
+#+end_src
+
+When that is set up, you can use ~git imap-send~ to place the patch series in the Drafts folder of the specified IMAP server:
+
+~cat *.patch |git imap-send~
+
+***** Send the patches through an SMTP server.
+As before, you can set each value separately with a series of ~git config~ commands, or you can add them manually in the sendemail section in your ~~/.gitconfig~ file:
+
+#+begin_src shell
+
+[sendemail]
+  smtpencryption = tls
+  smtpserver = smtp.gmail.com
+  smtpuser = user@gmail.com
+  smtpserverport = 587
+
+#+end_src
+
+After this is done, you can use ~git send-email~ to send your patches:
+
+~git send-email *.patch~
+
+*** Commit Guidelines
+First, your submissions should not contain any whitespace errors. Run ~git diff --check~ .
+
+Next, try to make each commit a logically separate changeset. If some of the changes modify the same file, try to use ~git add --patch~ to partially stage files.
+
+As a general rule, your messages should start with a single line that’s no more than about 50 characters and that describes the changeset concisely, followed by a blank line, followed by a more detailed explanation. Write your commit message in the imperative: "Fix bug" and not "Fixed bug" or "Fixes bug." Here is a template:
+
+#+begin_src text
+
+Capitalized, short (50 chars or less) summary
+
+More detailed explanatory text, if necessary.  Wrap it to about 72
+characters or so.  In some contexts, the first line is treated as the
+subject of an email and the rest of the text as the body.  The blank
+line separating the summary from the body is critical (unless you omit
+the body entirely); tools like rebase will confuse you if you run the
+two together.
+
+Write your commit message in the imperative: "Fix bug" and not "Fixed bug"
+or "Fixes bug."  This convention matches up with commit messages generated
+by commands like git merge and git revert.
+
+Further paragraphs come after blank lines.
+
+- Bullet points are okay, too
+
+- Typically a hyphen or asterisk is used for the bullet, followed by a
+  single space, with blank lines in between, but conventions vary here
+
+- Use a hanging indent
+
+#+end_src
+
+The Git project has well-formatted commit messages — try running ~git log --no-merges~ there to see what a nicely-formatted project-commit history looks like.
+
+** Distributed Workflow
+*** Centralized Workflow
+One central hub, or repository, can accept code, and everyone synchronizes their work with it. A number of developers are nodes — consumers of that hub — and synchronize with that centralized location.
+
+This means that if two developers clone from the hub and both make changes, the first developer to push their changes back up can do so with no problems. The second developer must merge in the first one’s work before pushing changes up, so as not to overwrite the first developer’s changes.
+
+*** Integration-Manager Workflow
+Because Git allows you to have multiple remote repositories, it’s possible to have a workflow where each developer has write access to their own public repository and read access to everyone else’s. This scenario often includes a canonical repository that represents the “official” project.
+
+1. The project maintainer pushes to their public repository.
+2. A contributor clones that repository and makes changes.
+3. The contributor pushes to their own public copy.
+4. The contributor sends the maintainer an email asking them to pull changes.
+5. The maintainer adds the contributor’s repository as a remote and merges locally.
+6. The maintainer pushes merged changes to the main repository.
+
+ One of the main advantages of this approach is that you can continue to work, and the maintainer of the main repository can pull in your changes at any time.
+
+*** Dictator and Lieutenants Workflow
+It’s generally used by huge projects with hundreds of collaborators; one famous example is the Linux kernel.
+
+1. Regular developers work on their topic branch and rebase their work on top of *master*. The *master* branch is that of the reference repository to which the dictator pushes.
+2. Lieutenants merge the developers' topic branches into their *master* branch.
+3. The dictator merges the lieutenants' *master* branches into the dictator’s *master* branch.
+4. Finally, the dictator pushes that *master* branch to the reference repository so the other developers can rebase on it.
+
+* Github
+** The GitHub Flow
+*** Generally works
+1. Fork the project.
+2. Create a topic branch from master.
+3. Make some commits to improve the project.
+4. Push this branch to your GitHub project.
+5. Open a Pull Request on GitHub.
+6. Discuss, and optionally continue committing.
+7. The project owner merges or closes the Pull Request.
+8. Sync the updated master back to your fork.
+
+*** Example
+1. Clone our fork of the project locally.
+2. Create a descriptive topic branch.
+3. Make our change to the code.
+4. Check that the change is good.
+5. Commit our change to the topic branch.
+6. Push our new topic branch back up to our GitHub fork.
+
+#+begin_src shell
+
+$ git clone https://github.com/tonychacon/blink # (1)
+# Cloning into 'blink'...
+
+$ cd blink
+$ git checkout -b slow-blink # (2)
+#Switched to a new branch 'slow-blink'
+
+$ sed -i 's/1000/3000/' blink.ino # (3)
+
+$ git diff --word-diff # (4)
+# diff --git a/blink.ino b/blink.ino
+# index 15b9911..a6cc5a5 100644
+# --- a/blink.ino
+# +++ b/blink.ino
+# @@ -18,7 +18,7 @@ void setup() {
+# // the loop routine runs over and over again forever:
+# void loop() {
+#   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
+#   [-delay(1000);-]{+delay(3000);+}               // wait for a second
+#   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
+#   [-delay(1000);-]{+delay(3000);+}               // wait for a second
+# }
+
+$ git commit -a -m 'Change delay to 3 seconds' # (5)
+# [slow-blink 5ca509d] Change delay to 3 seconds
+#  1 file changed, 2 insertions(+), 2 deletions(-)
+
+$ git push origin slow-blink # (6)
+# Username for 'https://github.com': tonychacon
+# Password for 'https://tonychacon@github.com':
+# Counting objects: 5, done.
+# Delta compression using up to 8 threads.
+# Compressing objects: 100% (3/3), done.
+# Writing objects: 100% (3/3), 340 bytes | 0 bytes/s, done.
+# Total 3 (delta 1), reused 0 (delta 0)
+# To https://github.com/tonychacon/blink
+#  * [new branch]      slow-blink -> slow-blink
+
+#+end_src
+
+** Keep your GitHub public repository up-to-date
+If you forked from https://github.com/progit/progit2.git, you can keep your master branch up-to-date like this:
+
+#+begin_src shell
+
+git checkout master # (1)
+git pull https://github.com/progit/progit2.git # (2)
+git push origin master # (3)
+
+#+end_src
+
+1. If you were on another branch, return to master.
+2. Fetch changes from https://github.com/progit/progit2.git and merge them into master.
+3. Push your master branch to origin.
+
+This works, but it is a little tedious having to spell out the fetch URL every time. You can automate this work with a bit of configuration:
+
+#+begin_src shell
+
+git remote add progit https://github.com/progit/progit2.git # (1)
+git fetch progit # (2)
+git branch --set-upstream-to=progit/master master # (3)
+git config --local remote.pushDefault origin # (4)
+
+#+end_src
+
+1. Add the source repository and give it a name. Here, I have chosen to call it ~progit~.
+2. Get a reference on progit’s branches, in particular ~master~.
+3. Set your ~master~ branch to fetch from the ~progit~ remote.
+4. Define the default push repository to ~origin~.
+
+Once this is done, the workflow becomes much simpler:
+
+#+begin_src shell
+
+git checkout master # (1)
+git pull # (2)
+git push # (3)
+
+#+end_src
+
+1. If you were on another branch, return to ~master~.
+2. Fetch changes from ~progit~ and merge changes into ~master~.
+3. Push your ~master~ branch to ~origin~.
+
+This approach can be useful, but it’s not without downsides. Git will happily do this work for you silently, but it won’t warn you if you make a commit to ~master~, pull from ~progit~, then push to ~origin~ — all of those operations are valid with this setup. So you’ll have to take care never to commit directly to ~master~, since that branch effectively belongs to the upstream repository.
+
+** Special Files
+*** README
+Can be of nearly any format that GitHub recognizes as prose. For example, it could be ~README~, ~README.md~, ~README.asciidoc~, etc. If GitHub sees a README file in your source, it will render it on the landing page of the project.
+
+Many teams use this file to hold all the relevant project information for someone who might be new to the repository or project. This generally includes things like:
+
+- What the project is for
+- How to configure and install it
+- An example of how to use it or get it running
+- The license that the project is offered under
+- How to contribute to it
+
+Since GitHub will render this file, you can embed images or links in it for added ease of understanding.
+
+*** CONTRIBUTING
+If you have a file named ~CONTRIBUTING~ with any file extension, GitHub will show Opening a Pull Request when a CONTRIBUTING file exists when anyone starts opening a Pull Request.
+
+The idea here is that you can specify specific things you want or don’t want in a Pull Request sent to your project. This way people may actually read the guidelines before opening the Pull Request.
+
+* Miscellaneus
+** Set configuration variables
+
+- ~/etc/gitconfig~ Contains values applied to every user on the system and all their repositories.
+- ~~/.gitconfig~ or ~~/.config/git/config~ Values specific personally to you, the user.
+- ~config~ file in the Git directory (that is, ~.git/config~) of whatever repository you’re currently using: Specific to that single repository.
+
+*** File .gitignore
+Create a file to add a list of patterns to match the files to be ignored.
+
+The rules for the patterns you can put in the ~.gitignore~ file are as follows:
+- Blank lines or lines starting with ~#~ are ignored.
+- Standard glob patterns work, and will be applied recursively throughout the entire working tree.
+- You can start patterns with a forward slash (~/~) to avoid recursivity.
+- You can end patterns with a forward slash (~/~) to specify a directory.
+- You can negate a pattern by starting it with an exclamation point (~!~).
+- You can also use two asterisks to match nested directories; ~a/**/z~ would match ~a/z~, ~a/b/z~, ~a/b/c/z~.
+
+In the simple case, a repository might have a single ~.gitignore~ file in its root directory, which applies recursively to the entire repository. However, it is also possible to have additional ~.gitignore~ files in subdirectories. The rules in these nested ~.gitignore~ files apply only to the files under the directory where they are located.
+
+~man gitignore~ show more details.
+
+#+begin_src shell
+
+# ignore any files ending in “.o” or “.a”
+*.[oa]
+
+# but do track lib.a, even though you're ignoring .a files above
+!lib.a
+
+# only ignore the TODO file in the current directory, not subdir/TODO
+/TODO
+
+# ignore all files in any directory named build
+build/
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+
+# ignore all .pdf files in the doc/ directory and any of its subdirectories
+doc/**/*.pdf
+
+#+end_src
+
+** Tags
+*** Lightweight
+Is very much like a branch that doesn’t change — it’s just a pointer to a specific commit.
+
+*** Annotated
+Are stored as full objects in the Git database. They’re checksummed; contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG). It’s generally recommended that you create annotated tags so you can have all this information; but if you want a temporary tag or for some reason don’t want to keep the other information, lightweight tags are available too.
+
+** Git on the Server
+*** Bare repository
+A remote repository is generally a *bare repository* — a Git repository that has no working directory. In the simplest terms, a bare repository is the contents of project’s ~.git~ directory and nothing else. It’s just the Git data.
+
+*** The Protocols
+- Local Protocol :: The most basic protocol is the *Local protocol*, in which the remote repository is in another directory on the same host.  If you have a shared mounted filesystem, then you can clone, push to, and pull from a local file-based repository. To clone a repository like this, or to add one as a remote to an existing project, use the path to the repository as the URL.
+
+- The HTTP Protocols ::
+  - Smart HTTP :: Smart HTTP operates very similarly to the SSH or Git protocols but runs over standard HTTPS ports and can use various HTTP authentication mechanisms, meaning it’s often easier on the user than something like SSH, since you can use things like username/password authentication rather than having to set up SSH keys.
+
+  - Dumb HTTP :: The Dumb protocol expects the bare Git repository to be served like normal files from the web server. The beauty of Dumb HTTP is the simplicity of setting it up. Basically, all you have to do is put a bare Git repository under your HTTP document root and set up a specific post-update hook, and you’re done.
+
+- The SSH Protocol :: A common transport protocol for Git when self-hosting is over SSH. This is because SSH access to servers is already set up in most places — and if it isn’t, it’s easy to do.
+
+- The Git Protocol :: This is a special daemon that comes packaged with Git; it listens on a dedicated port (9418) that provides a service similar to the SSH protocol, but with absolutely no authentication. In order for a repository to be served over the Git protocol, you must create a ~git-daemon-export-ok~ file — the daemon won’t serve a repository without that file in it — but, other than that, there is no security.
+
+*** Getting Git on a Server
+In order to initially set up any Git server, you have to export an existing repository into a new bare repository — a repository that doesn’t contain a working directory.  Now that you have a bare copy of your repository, all you need to do is put it on a server and set up your protocols.
+
+* Git Command
+** Initializing & Recording
+*** git init
+Create a new subdirectory named ~.git~ that contains all  necessary repository files — a Git repository skeleton.
+[ /--bare/ initializes the repository without a working directory ]
+
+*** git clone <url>
+Get a copy of an existing Git repository.
+It creates a new directory, goes into it and runs ~git init~ to make it an empty Git repository, adds a remote (~git remote add~) to the URL that you pass it (by default named ~origin~), runs a ~git fetch~ from that remote repository and then checks out the latest commit into your working directory with ~git checkout~.
+[ /-o <name>/ rename default remote branch ]
+( ~git clone <url> <dir>~ clone the repository into another directory name )
+
+*** git add <file>
+Specify the file /file/ to be tracked or staged or merge-conflicted.
+( ~git add -A~ stage *all* (new, modified, deleted) files )
+( ~git add .~ stage all (new, modified, deleted) files in current folder (not higher directories) )
+( ~git add --ignore-removal .~ stage new and modified files only(*not delete files*) )
+( ~git add -u~ stage modified and deleted files only (*not new files*) )
+
+*** git status
+Determine which files are in which state.
+( *A* added | *M* modified | *?* not tracked ) ( *left-hand* column indicates the status of the *staging area* and the *right-hand* column indicates the status of the *working tree*) .
+[ /-s/ more simplified output ]
+( ~git ls-files~ to take a more raw look at what your staging area looks like )
+
+*** git commit
+Commit the changes. Just changes to anything that was staged. Records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
+[ /-v/ puts the diff of the changes /-m/ type commit message inline /-a/ automatically stage every file that is already tracked before doing the commit (includes all changed files. Skip the *git add*) ]
+( ~git commit -a -m 'whatever'~ commit, automatically stage and message inline )
+( ~git commit -a -S -m 'Signed commit'~ signing commits directly with GPG key )
+
+*** git show
+Show various types of objects in a simple and human readable way. Normally you would use this to show the information about a tag or a commit.
+
+** Difference
+*** git diff
+Show difference between working environment and staging area. Show *exactly* what was changed. (doesn’t show all changes made since last commit — only changes that are still unstaged)
+( ~git diff --staged~ between staging area and last commit )
+( ~git diff master branchB~ between two commits )
+( ~git diff A...B~ between branches )
+
+*** git diff master...contrib
+Shows you only the work your current topic branch has introduced since its common ancestor with *master* . (to do a ~diff~ between the last commit of the branch you’re on and its common ancestor with another branch)
+
+*** git diff --ours
+Show what the merge introduced. To compare your result to what you had in your branch before the merge.
+( ~git diff --theirs~ how the result of the merge differed from what was on their side )
+( ~git diff --base~ how the file has changed from both sides with )
+
+*** git diff -b
+Filter out whitespace differences.
+( ~git diff --check~ look for possible whitespace issues before committing )
+
+*** git difftool
+Launches an external tool to show difference between two trees.
+
+** Branching
+*** git branch
+List of current branchs.
+[ /-v/ last commit on each branch /--merged/ show which branches are already merged into the branch /--no-merged/ filter no merge branch /--all/ all branches /-vv/ see what tracking branches you have set up. List out your local branches with more information including what each branch is tracking and if your local branch is ahead, behind or both ]
+
+*** git branch name
+Create a new branch called /name/ .
+[ /-D/ force remove /-f/ Reset <branchname> to <start-point>, *even if <branchname> exists already*. Without -f, git branch refuses to change an existing branch /-m/ Move/rename a branch, together with its config and reflog /-M/ shortcut for -m -f allow renaming the branch even if the new branch name already exists ]
+( ~git branch -d namebranch~ delete the branch /namebranch/ )
+( ~git branch --move bad-name corrected-name~ replaces /bad-name/ branch with /corrected-name/ branch, but this change is only local for now )
+( ~git push --set-upstream origin corrected-name~  corrected branch name on the remote )
+( ~git push origin --delete bad-branch-name~ delete bad name from remote )
+( ~git checkout -b <branch> <remote>/<branch>~ to set up a local branch with a different name than the remote branch. Then, local branch /<branch>/ will automatically pull from /<remote>/<branch>/ )
+
+*** git switch -c <newbranch>
+Create a new branch and switch to it.
+[ /-c/ create ]
+( ~git branch newbranch ; git switch newbranch~ equivalent command )
+( ~git switch <name>~ to switch to an existing branch )
+( ~git switch -~ return to previously checked out branch )
+
+*** git checkout
+Switch branches and check content out into your working directory.
+
+*** git checkout --track origin/serverfix
+To start tracking branches .
+
+*** git branch -u origin/serverfix
+If you already have a local branch and want to set it to a remote branch you just pulled down, or want to change the upstream branch you’re tracking.
+[ /-u/ upstream to ]
+
+** Merging & Rebasing
+*** git merge namebranch
+Merge the /namebranch/ with the current branch.
+[ /--squash/  takes all the work on the merged branch and squashes it into one changeset producing the repository state as if a real merge happened, without actually making a merge commit. This means your future commit will have one parent only and allows you to introduce all the changes from another branch and then make more changes before recording the new commit /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature /-S/ sign the resulting merge commit itself ]
+( ~git merge origin/serverfix~ merge work into current working branch )
+( ~git merge --verify-signatures -S signed-branch~ verifies that every commit in the branch to be merged is signed and furthermore signs the resulting merge commit )
+
+*** git cherry-pick e43a6
+ It takes the change (patch) that was introduced in a commit and tries to reapply (re-introduce) it on the branch you’re currently on. This is useful to only take one or two commits from a branch individually rather than merging in the branch which takes all the changes or if you only have one commit on a topic branch and you’d prefer to cherry-pick it rather than run rebase.
+
+*** git rebase main
+Take all the changes that were committed on one branch and replay them on a different branch.
+(is basically an automated ~cherry-pick~. It determines a series of commits and then ~cherry-picks~ them one by one in the same order somewhere else)
+[ /-i/ interactive ]
+( ~git rebase <basebranch> <topicbranch>~ equivalent command whitout switch )
+
+*** git rebase --onto main server client
+Take the /client/ branch, figure out the patches since it diverged from the /server/ branch, and replay these patches in the /client/ branch as if it was based directly off the master branch instead.
+
+*** git mergetool
+A graphical tool to resolve merge conflicts.
+
+** Remotes
+*** git remote -v
+Lists the shortnames of each remote specified.
+[ /-v/ show URLs that Git has stored for the shortname ]
+
+*** git ls-remote
+Get a list of all the branches and tags and other references in the repository.
+(If the repository is on GitHub and you have any Pull Requests that have been opened, you’ll get these references that are prefixed with ~refs/pull/~ . These are basically branches, but since they’re not under ~refs/heads/~ you don’t get them normally when you clone or fetch from the server — the process of fetching ignores them normally)
+
+*** git remote show <remote>
+Show more information about particular remote.
+
+*** git remote add <shortname> <url>
+Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
+
+*** git remote rename <name1> <name2>
+Change a remote’s shortname, renaming /name1/ to /name2/ .
+(that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
+( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL. (when you rename a it repository) )
+
+*** git remote rm name
+Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
+( ~git remote remove name~ equivalent command )
+
+*** git fetch <remote>
+ Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on)
+[ /--all/ totally up to date ahead and behind numbers ]
+( ~git fetch origin refs/pull/958/head~ fetching the reference directly (connect to the /origin/ remote, and download the ref named /refs/pull/958/head/) )
+
+*** git pull
+Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
+[ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
+( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
+
+*** git push <remote> <branch>
+Push /branch/ to origin server /remote/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+[ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
+( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
+( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
+
+*** git request-pull origin/master myfork
+Take the base branch into which you want your topic branch pulled and the Git repository URL you want them to pull from, and produces a summary of all the changes you’re asking to be pulled.
+
+** Undoing Things
+*** git restore --staged <file>
+To unstage the file /file/.
+( ~git reset HEAD <file>~ to unstage the file /file/. It moves around the HEAD pointer and optionally changes the index or staging area )
+
+*** git restore <file>
+Discard changes in working directory of the file /file/. *Careful* any local changes made to that file are gone. Git just replaced that file with the last staged or committed version. (modify -> unmodify)
+
+*** git commit --amend
+ Redo last commit (if commit and then realize forgot to stage the changes in a file wanted to add to this commit). This command takes staging area and uses it for the commit. (Is used to modify the most recent commit. It combines changes in the staging environment with the latest commit, and creates a new commit. This new commit replaces the latest commit entirely)
+[ /--no-edit/ will allow you to make the amendment to your commit without changing its commit message ]
+( ~git commit --amend -m "an updated commit message"~ adding the /-m/ option allows you to pass in a new message from the command line without being prompted to open an editor )
+
+*** git reset
+We use when we want to move the repository back to a previous commit, discarding any changes made after that commit.
+[ /--hard/ change the working directory, this option makes it possible for this command to lose your work ]
+( ~git reset HEAD~1~ reset to the last commit and preserve changes done (move the HEAD pointer back one commit) )
+( ~git reset --soft HEAD~1~ reset to the last commit and preserve changes done and index(stage area) )
+( ~git reset --hard HEAD~1~ reset to the last commit and also remove all unstaged changes (files are reset to their state at last commit) )
+( ~git reflog~ reset (if destroy a commit, but then discover you needed it after all) )
+
+*** git revert
+Is essentially a reverse ~git cherry-pick~. It creates a new commit that applies the exact opposite of the change introduced in the commit you’re targeting, essentially undoing or reverting it. (we use when we want to take a previous commit and add it as a new commit, keeping the log intact.)
+(/reset/ if the commit being reset only exists *locally*. /revert/ creates a new commit that undoes the changes, so if the commit to revert has already been pushed to a shared repository, it is best to use revert as it doesn't overwrite commit history)
+( ~git revert -m 1 HEAD~ the /-m 1/ flag indicates which parent is the “mainline” and should be kept )
+
+*** git merge --abort
+Back out of the merge. (tries to revert back to your state before you ran the merge. The only cases where it may not be able to do this perfectly would be if you had unstashed, uncommitted changes in your working directory when you ran it)
+( ~git merge -Xignore-all-space whitespace~ if you see that you have a lot of whitespace issues in a merge, you can simply abort it and do it again (ignores whitespace *completely* when comparing lines) )
+
+*** git rm <file>
+Removes a file from Git (remove it from tracked files (remove it from staging area and also removes the file from working directory)).
+[ /-f/ force the removal (if modified the file or had already added it to the staging area) /--cached/ keep the file in working tree but remove it from staging area ]
+( ~git rm log/\*.log~ removes all files that have the /.log/ extension in the /log// directory (backslash (/\/) in front of the (/*/) is necessary because Git does its own filename expansion in addition to shell’s filename expansion) )
+( ~git rm \*~~ removes all files whose names end with a /~/ )
+( ~git rm --cached <file>~ only remove file from the staging area but leaving it in the working directory )
+
+*** git mv <from> <to>
+Rename a file. (Git doesn’t explicitly track file movement. If rename a file in Git, no metadata is stored in Git that tells it renamed the file)
+( ~mv file_from file_to ;git rm file_from ;git add file_to~ equivalent command )
+
+** Commit History
+*** git log
+Lists the commits made in that repository in reverse chronological order.
+[ /-p/ shows the difference (the *patch* output) introduced in each commit /-2/ limit the number of log entries displayed /--stat/ show statistics for files modified in each commit /--pretty=oneline/ show commits in an alternate format. Option values include *oneline* other option are *short*, *full*, *fuller* /--pretty=format/ specify own log output format /--graph/ display an ASCII graph of the branch and merge history beside the log output /--abbrev-commit/ show only the first few characters of the SHA-1 /--shortstat/ display only the changed/insertions/deletions line from the *--stat command* /--relative-date/ display the date in a relative format /--no-merges/ prevent the display of merge commits ]
+( ~git log --pretty=format:"%h - %an, %ar : %s"~ abbreviated commit hash - author name , author date relative : subject)
+( ~git log --since=2.weeks~ list of commits made in the last two weeks )
+( ~git log -S function_name~ find the last commit that added or removed a reference to a specific function )
+( ~git log -- path/to/file~ specify a directory or file name, you can limit the log output to commits that introduced a change to those files )
+( ~git log --pretty="%h - %s" --author='Junio C Hamano' --since="2008-10-01" --before="2008-11-01" --no-merges -- t/~ commits modifying test files in the Git source code history were committed by Junio Hamano in the month of October 2008 and are not merge commits )
+( ~git log --oneline --decorate --graph --all~ print out the history of your commits, showing where your branch pointers are and how your history has diverged )
+
+**** Specifier and description
+
+| Specifier | Description of Output                         |
+|-----------+-----------------------------------------------|
+| %H        | Commit hash                                   |
+| %h        | Abbreviated commit hash                       |
+| %T        | Tree hash                                     |
+| %t        | Abbreviated tree hash                         |
+| %P        | Parent hashes                                 |
+| %p        | Abbreviated parent hashes                     |
+| %an       | Author name                                   |
+| %ae       | Author email                                  |
+| %ad       | Author date(format respect the --date=option) |
+| %ar       | Author date, relative                         |
+| %cn       | Committer name                                |
+| %ce       | Committer email                               |
+| %cd       | Committer date                                |
+| %cr       | Committer date, relative                      |
+| %s        | Subject                                       |
+
+**** Limit the output
+
+| Option            | Description                                   |
+| -<n>              | Show only the last n commits                  |
+| --since, --after  | Limit commits after the specified date        |
+| --until, --before | Limit commits before the specified date       |
+| --author          | Only show commits in which the author         |
+|                   | entry matches the specified string            |
+| --committer       | Only show commits in which the committer      |
+|                   | entry matches the specified string            |
+| --grep            | Only s commits with commit msg containing str |
+| -S                | Only s commits adding or rm code matching str |
+
+*** git log featureA..featureB
+Show what commits are unique to a branch relative to another branch.
+
+*** git log contrib --not master
+See what changes each commit introduces.
+[ /--not/ exclude commits in the *master* branch /-p/ append the diff introduced to each commit ]
+
+*** git log --show-signature -1
+To see and verify GPG signatures.
+( ~git log --pretty="format:%h %G? %aN  %s"~ check any signatures it finds and list them in its output )
+
+*** git log -S ZLIB_BUF_MAX --oneline
+Find out when the /ZLIB_BUF_MAX/ constant was originally introduced. Shows only those commits that changed the number of occurrences of that string.
+( ~git log -L :git_deflate_bound:zlib.c~ see every change made to the function /git_deflate_boun/. This will try to figure out what the bounds of that function are and then look through the history and show every change that was made to the function as a series of patches back to when the function was first created. If Git can’t figure out how to match a function or method in your programming language, you can also provide it with a regular expression )
+
+*** git shortlog
+Is used to summarize the output of ~git log~. (instead of listing out all of the commits it will present a summary of the commits grouped by author)
+( ~git shortlog --no-merges master --not v1.0.1~ gives you a summary of all the commits since your last release, if your last release was named /v1.0.1/ )
+
+*** git describe master
+Git generates a string consisting of the name of the most recent tag earlier than that commit, followed by the number of commits since that tag, followed finally by a partial SHA-1 value of the commit being described. (Because Git doesn’t have monotonically increasing numbers like 'v123' or the equivalent to go with each commit. This way, you can export a snapshot or build and name it something understandable to people)
+
+*** git archive master --prefix='project/' | gzip > `git describe master`.tar.gz
+Create an archive of the latest snapshot. If someone opens that tarball, they get the latest snapshot of your project under a project directory.
+( ~git archive master --prefix='project/' --format=zip > `git describe master`.zip~ create a zip archive in much the same way )
+
+*** gitk --all
+Graphical history viewer. (each dot represents a commit, the lines represent parent relationships, and refs are shown as colored boxes, the yellow dot represents HEAD, and the red dot represents changes that are yet to become a commit)
+[ /--all/ show commits reachable from any ref, not just HEAD ]
+( ~git gui~ tool for crafting commits )
+
+** Tagging
+*** git tag
+Listing the existing tags in alphabetical order. Is used to give a permanent bookmark to a specific point in the code history. Generally this is used for things like releases.
+[ /-l/ mandatory if using a wildcard ]
+( ~git tag -l "v1.8.5*"~ only in looking at the /1.8.5/ series )
+
+*** git tag v1.4-lw
+Create a [[Lightweight]] tag commit. The commit checksum stored in a file — no other information (don’t supply any of the -a, -s, or -m options, just provide a tag name).
+[ /-d/ delete tag (does not remove the tag from any remote servers) ]
+
+*** git tag -a v1.4 -m "my version 1.4"
+Create a [[Annotated]] tag commit.
+[ /-a/ annotated tag /-m/ specifies a tagging message /-d/ delete tag (does not remove the tag from any remote servers) ]
+( ~git tag -s v1.5 -m 'my signed 1.5 tag'~ sign tags with GPG private key )
+( ~git tag -v v1.4.2.1~ use GPG to verify the signature )
+( ~git tag -a v1.2 9fceb02~ create a tag that the commit checksum ends in /9fceb02/ )
+( ~git tag -a maintainer-pgp-pub <key>~ create a tag that points directly to it by specifying the new SHA-1 value that the ~hash-object~ command gave you )
+
+*** git show v1.4
+Shows the tagger information of /v1.4/ , the date the commit was tagged, and the annotation message before showing the commit information.
+
+*** git push origin <tagname>
+Push tags to a shared server after they've been created.
+( ~git push origin --tags~ will transfer all tags to the remote server that aren't there yet )
+( ~git push <remote> --tags~ will push both *lightweight* and *annotated* tags )
+( ~git push <remote> --follow-tags~ only *annotated* tags will be pushed to the remote (There's currently no option to push only lightweight tags) )
+
+*** git push origin --delete <tagname>
+Deleting a tag /tagname/ from a remote server.
+( ~git push <remote> :refs/tags/<tagname>~ equivalent command )
+
+*** git checkout v2.0.0
+Show the versions of files a tag is pointing to, although this puts your repository in “detached HEAD” state, which has some ill side effects. In “detached HEAD” state, if you make changes and then create a commit, the tag will stay the same, but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash.
+
+** Emails & Patch
+*** git format-patch
+Is used to generate a series of patches in mbox format that you can use to send to a mailing list properly formatted.
+
+*** git format-patch -M origin/master
+Prepare patches for e-mail submission. Prints out the names of the patch files it creates.
+[ /-M/ switch tells Git to look for renames ]
+
+*** git apply
+Applies a patch created with the ~git diff~ or even GNU diff command. It is similar to what the patch command might do with a few small differences. This command is an “apply all or abort all” model where either everything is applied or nothing is, whereas ~patch~ can partially apply patchfiles, leaving your working directory in a weird state.
+( ~git apply   / tmp/patch-ruby-client.patch~ apply patch saved in //tmp/patch-ruby-client.patch/ . This modifies the files in your working directory ( ~patch -p1~ equivalent command ) )
+
+*** git apply --check 01-see-if-this-helps.patch
+To see if a patch applies cleanly before you actually applying it. If there is no output, then the patch should apply cleanly. This command also exits with a non-zero status if the check fails.
+
+*** git am
+Is used to apply patches from an email inbox, specifically one that is mbox formatted. This is useful for receiving patches over email and applying them to your project easily.
+
+*** git am 0001-limit-log-function.patch
+To apply a patch generated by ~format-patch~ .
+[ /-i/ interactive mode ]
+( ~git imap-send~ uploads a mailbox generated with ~git format-patch~ into an IMAP drafts folder )
+( ~git send-email~ is used to send patches that are generated with ~git format-patch~ over email )
+
+*** git request-pull
+Is simply used to generate an example message body to email to someone. If you have a branch on a public server and want to let someone know how to integrate those changes without sending the patches over email, you can run this command and send the output to the person you want to pull the changes in.
+
+** Config & Help
+*** git config
+Get and set configuration variables.
+[ /--system/ reads and writes from the file ~/etc/gitconfig~ /--global/ reads and writes from the file ~~/.config/git/config~ and affects all of the repositories you work with on your system /--local/ reads and writes from the file ~.git/config~ this is the default option (each level overrides values in the previous level) ]
+
+*** git config --list --show-origin
+Show all settings and where they are coming from.
+( ~git config --list~ show all settings )
+
+*** git config --global alias.ci commit
+Set up an alias for a command /commit/ . Instead of typing ~git commit~, just need to type ~git ci~ .
+( ~git config --global alias.unstage 'reset HEAD --'~ correct the usability problem you encountered with unstaging a file )
+( ~git config --global alias.last 'log -1 HEAD'~ to add a /last/ command )
+
+*** git config --global alias.visual '!gitk'
+With character /!/ it run an external command, rather than a Git subcommand. Then ~git visual~  runs /gitk/ .
+
+*** git config --global user.name "John Doe"
+Set name on the system. (if you want to override this with a different name for specific projects, you can run the command without the /--global/ option)
+( ~git config --global user.email john@example.com~  set email on the system )
+( ~git config --global core.editor emacs~ set the editor /emacs/ )
+( ~git config --global init.defaultBranch main~ to set /main/ as the default branch name )
+
+*** git config --global user.signingkey 0A46826A!
+Configure Git to use signing things. Then Git will use your key by default to sign tags and commits if you want.
+
+*** git config --global rerere.enabled true
+When *rerere* is enabled, Git will keep a set of pre- and post-images from successful merges, and if it notices that there’s a conflict that looks exactly like one you’ve already fixed, it’ll just use the fix from last time, without bothering you with it. Whenever you do a merge that resolves conflicts, the resolution will be recorded in the cache in case you need it in the future.
+
+*** git config --global credential.helper cache
+Set up a “credential cache”. If you don’t want to type password every single time you push.
+
+*** git help command
+The manpage help for the /commad/ .
+( ~git add -h~ quick refresher on the available options for a Git command )
+( ~man gitignore~ show more details about file *.gitignore* )
+
+** Miscellaneous
+*** gpg -a --export F721C45A | git hash-object -w --stdin
+Can directly import the key into the Git database by exporting it and piping that through which writes a new blob with those contents into Git and gives you back the SHA-1 of the blob.
+
+*** git show maintainer-pgp-pub | gpg --import
+Can directly import your PGP key by pulling the blob directly out of the database and importing it into GPG.
+
+*** git instaweb --httpd=webrick
+Starts up an HTTPD server on port 1234 and then automatically starts a web browser that opens a page that shows how the project would look like.
+[ /--httpd/ start instaweb with a non-lighttpd handler ]
+( ~git instaweb --httpd=webrick --stop~ shut down the server )
+
+*** git rev-parse
+To take just about any string and turn it into an object SHA-1.
+
+*** git clean
+To remove unwanted files from working directory. This could include removing temporary build artifacts or merge conflict files.
+
+*** git stash
+Is used to temporarily store uncommitted work in order to clean out your working directory without having to commit unfinished work on a branch.
+
+*** git bisect
+Incredibly helpful debugging tool used to find which specific commit was the first one to introduce a bug or problem by doing an automatic binary search.
+
+*** git blame
+Command annotates the lines of any file with which commit was the last one to introduce a change to each line of the file and what person authored that commit. This is helpful in order to find the person to ask for more information about a specific section of your code.
+
+*** git grep
+Find any string or regular expression in any of the files in your source code, even older versions of your project. (this command is really fast and you can search through any tree in Git, not just the working directory)
+[ /-n/ print out the line numbers where Git has found matches /-c/ summarize the output by showing you only which files contained the search string and how many matches there were in each file /-p/ display the enclosing method or function for each matching string /--and/ ensures that multiple matches must occur in the same line of text /--break/ split up the output into a more readable format /--heading/ split up the output into a more readable format ]
+( ~git grep -p gmtime_r *.c~ )
+
+** Git on the Server
+*** The Protocols
+**** Local Protocol
+***** git clone /srv/git/project.git
+To clone a local repository. Git tries to use hardlinks or directly copy the files it needs.
+
+***** git clone file:///srv/git/project.git
+To clone a local repository. Git fires up the processes that it normally uses to transfer data over a network, which is generally much less efficient (clean copy of the repository with extraneous references or objects left out).
+
+***** git remote add local_proj  / srv/git/project.git
+To add a local repository to an existing Git project. (you can push to and pull from that remote via your new remote name /local_proj/ as though you were doing so over a network)
+
+**** Dumb HTTP
+***** To allow read access to your repository over HTTP, do something like this:
+The Dumb protocol expects the bare Git repository to be served like normal files from the web server. The beauty of Dumb HTTP is the simplicity of setting it up. Basically, all you have to do is put a bare Git repository under your HTTP document root and set up a specific post-update hook, and you’re done.
+
+#+begin_src shell
+
+cd /var/www/htdocs/
+git clone --bare /path/to/git_project gitproject.git
+cd gitproject.git
+mv hooks/post-update.sample hooks/post-update
+chmod a+x hooks/post-update
+
+# In this particular case, we’re using the /var/www/htdocs path that is
+# common for Apache setups, but you can use any static web server — just
+# put the bare repository in its path.
+
+#+end_src
+
+The ~post-update~ hook that comes with Git by default runs the appropriate command (~git update-server-info~) to make HTTP fetching and cloning work properly.
+
+***** git clone https://example.com/gitproject.git
+To clone repository.
+
+**** SSH Protocol
+***** git clone ssh://[user@]server/project.git
+To clone a Git repository over SSH. (if don’t specify the optional username, Git assumes the user is currently logged in as)
+
+***** git clone [user@]server:project.git
+To clone a Git repository with shorter scp-like syntax for the SSH protocol. (if don’t specify the optional username, Git assumes the user is currently logged in as)
+
+*** Getting Git on a Server
+**** git clone --bare my_project my_project.git
+Clone your repository to create a new bare repository. With this you have a copy of the Git directory data in your /my_project.git/ directory.
+( ~cp -Rf my_project/.git my_project.git~ equivalent command* )
+
+**** scp -r my_project.git user@git.example.com:/srv/git
+Set up new repository by copying bare repository over. Assuming that //srv/git/ exists on the server /git.example.com/ .
+
+**** git clone user@git.example.com:/srv/git/my_project.git
+Clone repository by users who have SSH-based read access to the //srv/git/ directory on that server. ( if a user SSHs into a server and has write access to the //srv/git/my_project.git/ directory, they will also automatically have push access)
+
+**** git init --bare --shared
+Will automatically add group write permissions to a repository. (this command, you will not destroy any commits, refs, etc. in the process)
+
+#+begin_src shell
+
+ssh user@git.example.com
+cd /srv/git/my_project.git
+git init --bare --shared
+
+#+end_src
+
+*** Git Daemon
+**** git daemon --reuseaddr --base-path=/srv/git/   / srv/git/
+Set up Git daemon serving repositories using the "Git" protocol. (If you’re running a firewall, you’ll also need to punch a hole in it at port 9418 on the box you’re setting this up on)
+[ /--reuseaddr/ allows the server to restart without waiting for old connections to time out /--base-path/ allows people to clone projects without specifying the entire path //srv/git// at the end tells the Git daemon where to look for repositories to export ]
+
+#+begin_src shell
+
+# Place a file in /etc/systemd/system/git-daemon.service
+
+[Unit]
+Description=Start Git Daemon
+
+[Service]
+ExecStart=/usr/bin/git daemon --reuseaddr --base-path=/srv/git/ /srv/git/
+
+Restart=always
+RestartSec=500ms
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=git-daemon
+
+User=git
+Group=git
+
+[Install]
+WantedBy=multi-user.target
+
+# run systemctl enable git-daemon to automatically start the service on
+# boot, and can start and stop the service with, respectively, systemctl
+# start git-daemon and systemctl stop git-daemon.
+
+#+end_src
+
+#+begin_src shell
+
+# You to have to tell Git which repositories to allow unauthenticated
+# Git server-based access to. You can do this in each repository by
+# creating a file named git-daemon-export-ok.
+
+cd /path/to/project.git
+touch git-daemon-export-ok
+
+# The presence of that file tells Git that it’s OK to serve this project
+# without authentication.
+
+#+end_src
+
+* References
+- [[https://git-scm.com/book/en/v2][Pro Git. Scott Chacon and Ben Straub]]
+- [[https://docs.github.com/en/get-started/][GitHub Docs]]
