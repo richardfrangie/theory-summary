@@ -440,6 +440,19 @@ Further paragraphs come after blank lines.
 
 The Git project has well-formatted commit messages — try running ~git log --no-merges~ there to see what a nicely-formatted project-commit history looks like.
 
+*Note*:
+Regarding the “summary” line (the 50 in your formula), the Linux kernel documentation has this to say:
+
+#+begin_src  
+
+For these reasons, the "summary" must be no more than 70-75
+characters, and it must describe both what the patch changes, as well
+as why the patch might be necessary.  It is challenging to be both
+succinct and descriptive, but that is what a well-written summary
+should do.
+
+#+end_src
+
 ** Distributed Workflow
 *** Centralized Workflow
 One central hub, or repository, can accept code, and everyone synchronizes their work with it. A number of developers are nodes — consumers of that hub — and synchronize with that centralized location.

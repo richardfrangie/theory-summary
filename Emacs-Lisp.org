@@ -42,19 +42,24 @@
 
 *** Agenda
 
-|              | org-agenda                     |
-| /C-c ./        | org-time-stamp                 |
-| /C-c C-s/      | org-schedule                   |
-| /C-c C-d/      | org-deadline                   |
-| /C-c C-t/      | org-todo     (change state)    |
-| /C-c ,/        | org-priority                   |
-|              | counsel-org-tags (add remove)  |
-|              |                                |
-| /C-c C-c/      | Set tag (cursor)               |
-| /S-left/right/ | change state org task (cursor) |
-|              |                                |
-| /C-c [/        | org-agenda-file-to-front       |
-| /C-c ]/        | org-remove-file                |
+|                | org-agenda                     |
+| /C-c ./          | org-time-stamp (date)          |
+| /C-u C-c ./      | org-time-stamp (datetime)      |
+| /S-left / right/ | change date day (cursor)       |
+| /S-up / down/    | change time (cursor)           |
+| /C-c C-d/        | org-deadline                   |
+| /C-c C-s/        | org-scheduled                  |
+| /C-c C-q/        | org-set-tags-command           |
+| /C-c C-q/        | org-match-sparse-tree          |
+| /C-c C-t/        | org-todo     (change state)    |
+| /C-c ,/          | org-priority                   |
+|                | counsel-org-tags (add/remove)  |
+|                |                                |
+| /C-c C-c/        | Set tag (cursor)               |
+| /S-left/right/   | change state org task (cursor) |
+|                |                                |
+| /C-c [/          | org-agenda-file-to-front       |
+| /C-c ]/          | org-remove-file                |
 
 *** Timer
 
@@ -76,17 +81,6 @@
 | /C-u C-c C-x ,/ | stop timer           |
 | /C-c C-x -/     | org-timer-item       |
 
-*** Timestamp
-
-| /C-c ./          | org-time-stamp (date)     |
-| /C-u C-c ./      | org-time-stamp (datetime) |
-| /S-left / right/ | change date day (cursor)  |
-| /S-up / down/    | change time (cursor)      |
-| /C-c C-d/        | org-deadline              |
-| /C-c C-s/        | org-scheduled             |
-| /C-c C-q/        | org-set-tags-command      |
-| /C-c C-q/        | org-match-sparse-tree     |
-
 *** Table
 
 | /C-c ¦/     | org-table-create-or-convert-from     |
@@ -106,6 +100,10 @@
 | /C-c ^ N/   | org-table-sort-lines numeric reverse |
 | /C-c ^ a/   | org-table-sort-lines alphabetic      |
 | /C-c ^ A/   | org-table-sort-lines alphabetic reve |
+|           |                                      |
+| /C-c ~/     | org-table-create-with-table.el       |
+| /C-c '/     | org-edit-special (inside table)      |
+| /C-c C-c </ | adjusts the column width             |
 
 *** Miscellaneous
 
@@ -646,6 +644,31 @@ Emacs has its quirks. It's best not to define the following keys.
 | /C-j/ / /TAB/  | these are tied together              |
 
 By official emacs documentation, the key space for users are the function keys ~F5~ to ~F9~, and ~C-c letter~. This is very restrictive.
+
+*** Artist
+
+|             | artist-mode                     |
+| /C-c C-c/     | exits artis mode                |
+| /C-c C-a p/   | art poly-line                   |
+| /RET/         | artist-key-set-point            |
+| /C-u RET/     | for final segment               |
+|             |                                 |
+| /C-c C-a C-o/ | artist-select-operation         |
+| /C-c C-a C-f/ | artist-select-fill-char         |
+| /C-c C-a C-l/ | artist-select-line-char         |
+|             |                                 |
+| /C-c C-a C-r/ | artist-toggle-rubber-banding    |
+| /C-c C-a C-t/ | artist-toggle-trim-line-endings |
+| /C-c C-a C-s/ | artist-toggle-borderless-shapes |
+|             |                                 |
+| />/           | set unset arrow begin           |
+| /</           | set unset arrow end             |
+
+
+| /C-c </ | move left  |
+| /C-c >/ | move right |
+| /C-c ^/ | move up    |
+| /C-c ./ | move down  |
 
 * Elisp
 ** Elisp
@@ -6611,7 +6634,9 @@ NOTES:
 - No funciona el comando para asignar variables ~var=variable~ .
 
 *Aliases*:
-A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~. Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ , which you can also edit directly (although you will have to manually reload it).
+A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~. 
+
+Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ (this defaults to something like ~~/.emacs.d/eshell/aliases~), which you can also edit directly (although you will have to manually reload it).
 
 Note that unlike aliases in Bash, arguments must be handled explicitly. Typically the alias definition would end in ~$*~ to pass all arguments along. More selective use of arguments via ~$1~, ~$2~, etc., is also possible. For example, alias ~mcd 'mkdir $1 && cd $1'~ would cause ~mcd foo~ to create and switch to a directory called ~foo~.
 
@@ -6852,10 +6877,13 @@ Useful becase it has some functions to show how to calculate the number of days 
 https://www.emacswiki.org/emacs/Calc
 
 ** Miscellaneous
-*** artist-mode
-Permite dibujar líneas, cuadrados, rectángulos y polilíneas, elipses y círculos con el mouse y/o el teclado en formato AsCii.
+*** Draw ASCII
+**** artist-mode
+Lets you draw ASCII pictures with mouse. Permite dibujar líneas, cuadrados, rectángulos y polilíneas, elipses y círculos con el mouse y/o el teclado en formato AsCii.
 
-Con *mouse-2* se activa una ventana emergente para elegir el tipo de figura a dibujar (rectángulo, línea,...)
+  - Left mouse button to draw.
+  - Right mouse button to erase.
+  - Middle click (mouse-2) to switch to rectangle, ellipse, and other tools.
 
 Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pueden colocar las flechas.
 
@@ -6890,6 +6918,15 @@ Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pue
 #java -jar ditaa0_9.jar demo.txt
 
 #+end_src
+
+**** picture-mode
+Emacs's picture-mode lets you draw ASCII diagrams.
+
+To see how to use it:
+
+  1. Open a new file.
+  2. Alt+x picture-mode,
+  3. Alt+x describe-mode
 
 *** Keyboard
 **** Keyboard Shortcut vs Launch Buttons
@@ -7001,22 +7038,22 @@ It's a rss for youtube in emacs. I might like it because it shows the transcript
 
 https://github.com/karthink/elfeed-tube
 
-* Emacs Lisp
-** Modes
-*** Mode
+** Emacs Lisp
+*** Modes
+**** Mode
 A set of definitions that customize the behavior of Emacs in useful ways. It is basically a collection of features that can be applied to a single buffer or to the entire editor.
 
 There are derived modes, such as HTML mode which is derived from Text mode. When HTML mode is enabled, run ~text-mode-hook~ before running ~html-mode-hook~.
 
-*** Major mode
+**** Major mode
 They provide specialized functions for working on a particular type of file or buffer, used for editing or interacting with a particular type of text. They are mutually exclusive; each buffer has one and only one at any time.
 
 Most modes are divided into three main groups, the first group contains modes for plain text, either plain or markup (Text mode, HTML mode, SGML mode, TeX mode and Outline mode). The second contains modes for specific programming languages (Lisp (which has several variants), C mode, ...). The third consists of main modes that are not directly associated with files; they are used in buffers created for specific purposes by Emacs (Dired mode, Message to Mail mode, Shell mode).
 
-*** Minor mode
+**** Minor mode
 Optional editing mode provides functions that users can turn on and off while editing. Unlike the major modes, any number of minor modes can be active at any time. They are independent of each other and of the selected major mode.
 
-** Hook
+*** Hook
 Hooks are an important mechanism for customizing Emacs. A hook is a Lisp variable which holds a list of functions, to be called on some well-defined occasion. (This is called running the hook.) The individual functions in the list are called the hook functions of the hook. For example, the hook ~kill-emacs-hook~ runs just before exiting Emacs.
 
 Each hook is designed to “run” when some event happens. When a hook “run”, all functions in that hook are called.
@@ -7035,98 +7072,98 @@ Most hooks are *normal hooks.* This means that when Emacs runs the hook, it call
 
 A few hooks are *abnormal hooks*. Their names end in  ~-functions~ , instead of ~-hook~. What makes these hooks abnormal is the way its functions are called—perhaps they are given arguments, or perhaps the values they return are used in some way. For example, ~find-file-not-found-functions~ is abnormal because as soon as one hook function returns a non-nil value, the rest are not called at all.
 
-** keymaps
+*** keymaps
 Internal data structure that records key bindings to commands or other keymap.
 
 When an event type is bound to a keymap, that keymap is used to search for the next input event; this continues until a command is found. Mode-specific keymaps overwrite the global ~(mode-map)~ that all buffers share.
 
-** Commands
-*** Lines
-**** list-matching-lines (occur)
+*** Commands
+**** Lines
+***** list-matching-lines (occur)
 Show all lines in the current buffer containing a match for REGEXP.
 
-**** delete-matching-lines (flush-lines)
+***** delete-matching-lines (flush-lines)
 Delete lines containing matches for REGEXP.
 
 ~delete-matching-lines~ starts at the line your cursor is on.
 
-**** delete-non-matching-lines (keep-lines)
+***** delete-non-matching-lines (keep-lines)
 Delete all lines except those containing matches for REGEXP.
 
 ~delete-non-matching-lines~ starts at the line your cursor is on.
 
-**** delete-duplicate-lines
+***** delete-duplicate-lines
 Delete all but one copy of any identical lines in the region.
 
-**** count-matches (how-many)
+***** count-matches (how-many)
 Print and return number of matches for REGEXP following point.
 
-**** sort-lines
+***** sort-lines
 Sort lines in region alphabetically; REVERSE non-nil means descending order
 
-**** reverse-region
+***** reverse-region
 Reverse the order of lines in a region.
 
-**** highlight-lines-matching-regexp
+***** highlight-lines-matching-regexp
 Highlight all lines that match REGEXP using FACE.
 
-**** unhighlight-regexp
+***** unhighlight-regexp
 Remove highlighting of each match to REGEXP set by hi-lock.
 
-**** fill-paragraph
+***** fill-paragraph
 Fill paragraph at or after point.
 
 It's often used to reduce the lenght of the lines of code documentation.
 
-*** Regex
-**** isearch-forward
+**** Regex
+***** isearch-forward
 Do incremental search forward.
 
-**** isearch-backward
+***** isearch-backward
 Do incremental search backward.
 
-**** highlight-regexp
+***** highlight-regexp
 Set face of each match of REGEXP to FACE.
 
-**** find-dired
+***** find-dired
 Run find and go into Dired mode on a buffer of the output.
 
-**** dired-do-search
+***** dired-do-search
 Search through all marked files for a match for REGEXP.
 
 While in dired, you can *step thru all files that matches a text pattern*. In dired, call ~dired-do-search A~. It will prompt you for a search string, then open the first file of the match, with your cursor placed at the matching location.
 
 To go to next occurrence, press ~M-,~ (~tags-loop-continue~).
 
-**** dired-do-query-replace-regexp
+***** dired-do-query-replace-regexp
 Do query-replace-regexp of FROM with TO, on all marked files.
 
-**** dired-do-rename-regexp
+***** dired-do-rename-regexp
 Rename selected files whose names match REGEXP to NEWNAME.
 
-**** grep
+***** grep
 Call ~grep~ to list all matching text of all files in the current directory.
 
 For example, if you give this input ~grep -nH -e "Cheshire" *html~, which will list all files ending in “html” that contains the word “Cheshire”.
 
 If you want case insensitive search, add a ~-i~ in the grep option.
 
-**** rgrep
+***** rgrep
 Search all files in current directory and sub-directory.
 
-**** lgrep
+***** lgrep
 Search only some files of current dir by using a text pattern (regex) on file names first.
 
-**** grep-find
+***** grep-find
 Use a combination of unix's ~grep~ and ~find~ commands..
 
-*** String
-**** string-rectangle
+**** String
+***** string-rectangle
 Replace rectangle contents with STRING on each line.
 
 *Note*: The command string-rectangle can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
 
-**** kill-rectangle
+***** kill-rectangle
 Delete the region-rectangle and save it as the last killed one.
 
 ~kill-rectangle~ can be used to delete any rectangular block of text, not just at the beginning of lines.
@@ -7150,7 +7187,7 @@ try to delete the middle column
 
 #+end_example
 
-**** align-regexp
+***** align-regexp
 Align the current region using an ad-hoc rule read from the minibuffer.Align the current region using an ad-hoc rule read from the minibuffer.
 
 There are others useful command like ~align-regexp~, ~sort-regexp-fields~, ~sort-columns~.
@@ -7178,10 +7215,10 @@ Select the text first, then press C-u then call align-regexp, with the regexp .*
 
 #+end_example
 
-*** Misc
-**** command-history
+**** Misc
+***** command-history
 Examine commands from command-history in a buffer.
-**** apropos
+***** apropos
  This command is like the ~C-h a~ (command-apropos) command, except that the latter finds only those functions that are commands. The ~M-x apropos~ command lists all symbols that match a regular expression, including functions that are not interactive.
 
 #+begin_src emacs-lisp
@@ -7192,10 +7229,10 @@ M-x apropos RET print\|insert\|column RET
 
 #+end_src
 
-**** compare-windows
+***** compare-windows
 Compare text in current window with text in another window.
 
-**** custom-reevaluate-setting
+***** custom-reevaluate-setting
 Reset the value of SYMBOL by re-evaluating its saved or standard value.
 
 *Note*: "saved or standard value". In that order of precedence. If the user has customized and saved a value for the variable, this function resets it to its saved-value, not its standard-value.
@@ -7206,14 +7243,14 @@ Reset the value of SYMBOL by re-evaluating its saved or standard value.
 
 #+end_src
 
-**** whitespace-cleanup
+***** whitespace-cleanup
 Cleanup some blank problems in all buffer or at region.
 
-**** delete-trailing-whitespace
+***** delete-trailing-whitespace
 Delete trailing whitespace between START and END.
 
-** Load file
-*** load
+*** Load file
+**** load
 You can use a ~load~ command to evaluate a complete file and thereby install all the functions and variables in the file into Emacs.
 
 Load a file by searching thru var ~load-path~. Argument should be just the file name without full path, such as ~(load "undo")~. It'll auto add “.elc” for compiled version if exist, or add “.el”, or with “.gz”.	Use this if the exact file path is not known in advance.
@@ -7227,13 +7264,13 @@ Load a file by searching thru var ~load-path~. Argument should be just the file 
 
 #+end_src
 
-*** load-file
+**** load-file
 Load a specific file. Load one specific file. (“.el” or “.elc” file name extentions are not auto added, but “.gz” is.) Use this when you don't want emacs to guess the file name extention of “.el”, “.elc” or none.
 
-*** require
+**** require
 Load a package if it has not already been loaded. Checks the var ~features~, if symbol is not there, then call ~load~ to load it. File name is guessed from the feature name, or specified in the optional argument. Best used in elisp libraries or scripts, similar to other lang's “require” or “import”.
 
-*** autoload
+**** autoload
 Load a file only when a function is called. Associate a function name with a file path. When the function is called, load the file, and execute the function. If you are writing a major mode, have your package installation go by ~autoload~ if possible. It saves startup time.
 
 Instead of installing a function by loading the file that contains it, or by evaluating the function definition, you can make the function available but not actually install it until it is first called. This is called *autoloading*.
@@ -7261,7 +7298,7 @@ The fifth argument tells what type of object.
 
 #+end_src
 
-*** Feature, require, provide
+**** Feature, require, provide
 - ~features~ is a elisp symbol that represent a lisp package. It is a global variable, holding a list of elisp symbols that are features.
 - A package can call ~(provide 'symbol_name)~. When this code is evaluated, emacs will add the symbol name to the ~features~ list.
 - When the code ~(require 'symbol_name)~ is called, emacs check if that symbol name is already in the ~features~ list. If not, load it. (emacs will guess a file name based on the symbol name. Or, the ~require~ function may specify a file name in the 2nd argument.)
@@ -7274,14 +7311,14 @@ The ~require~ function checks the ~features~ variable to see if a symbol is alre
 
 The ~provide~ function adds a symbol to the ~features~ list.
 
-*** Loading the File
-**** Load the File Manually
+**** Loading the File
+***** Load the File Manually
 Suppose you downloaded a simple emacs package on the web named ~xyz.el~. To use the package, all you have to do is to make emacs load the file.
 
   1. ~M-x load-file~ then give the file path.
   2. Now, emacs is aware of the package. To activate, call the command in the package. For example, if the file name is ~xyz.el~, then the command to activate it is typically ~xyz~ or ~xyz-mode~.
 
-**** Load File at Startup
+***** Load File at Startup
 If you want emacs to load the file when it starts, put the file in the dir ~~/.emacs.d/lisp/~, (create that directory if it doesn't exist, by convention, this dir is for packages you manually installed.) then put the following in your emacs init file:
 
 #+begin_src emacs-lisp
@@ -7294,14 +7331,14 @@ If you want emacs to load the file when it starts, put the file in the dir ~~/.e
 
 #+end_src
 
-**** Byte Compile
+***** Byte Compile
 Elisp source code can be byte compiled. When a file is byte compiled, it loads faster, and the functions will run faster too (about 6 times faster). For simple packages, the difference in speed is not noticeable.
 
 To compile your code, call ~byte-compile-file~. Once you compiled the code, you'll get a file with suffix ~.elc~.
 
 You can byte-compile multiple files. In dired, press ~m~ to mark them (press ~u~ to unmark), then press ~B~ (~diredp-byte-compile-this-file~).
 
-**** Auto-Activation of Mode When Opening File
+***** Auto-Activation of Mode When Opening File
 This is usually setup by the package, but not always. Here's the basics:
 
 #+begin_src emacs-lisp
@@ -7311,7 +7348,7 @@ This is usually setup by the package, but not always. Here's the basics:
 
 #+end_src
 
-*** site-wide
+**** site-wide
 In addition to your personal initialization file, Emacs automatically loads various site-wide initialization files, if they exist. These have the same form as your ~.emacs~ file, but are loaded by everyone.
 
 Two site-wide initialization files, ~site-load.el~ and ~site-init.el~, are loaded into Emacs and then dumped if a dumped version of Emacs is created, as is most common.
@@ -7326,8 +7363,8 @@ The ~loadup.el~, ~startup.el~, and ~loaddefs.el~ files control loading. These fi
 
 The ~loaddefs.el~ file contains a good many suggestions as to what to put into your own ~.emacs~ file, or into a site-wide initialization file.
 
-** Variables
-*** Buffer local variables
+*** Variables
+**** Buffer local variables
 You can set the value of a variable for the current buffer only using ~setq-local~. Any code that runs in that buffer will receive the buffer-local value instead of the global value!
 
 Why do this? There are many settings that should only be set per buffer, like editor settings for different programming languages and customization variables for major modes.
@@ -7346,7 +7383,7 @@ If the variable isn’t already buffer-local, ~setq-local~ will make it so, but 
 
 #+end_src
 
-*** Making a variable local for all buffers
+**** Making a variable local for all buffers
 You can make any variable local for all future buffers with the make-variable-buffer-local function:
 
 #+begin_src emacs-lisp
@@ -7366,7 +7403,7 @@ If you are writing an Emacs Lisp package and want to provide a buffer-local vari
 
 #+end_src
 
-*** Setting default values
+**** Setting default values
 You might also want to set the default value for a buffer-local variable with ~setq-default~:
 
 Keep in mind that ~setq-default~ does not set the value in the current buffer, only future buffers!
@@ -7386,7 +7423,7 @@ Keep in mind that ~setq-default~ does not set the value in the current buffer, o
 
 #+end_src
 
-*** Defining customization variables
+**** Defining customization variables
 Customizable variables are used to define user-facing settings for customizing the behavior of Emacs and packages.
 
 The primary difference between They show up in the customization UI (users can set them without code)
@@ -7410,15 +7447,15 @@ The ~defcustom~ function allows you to define a customizable variable:
   -  ~:initialize~ - A function to be used to initialize the variable when it gets defined
   -  ~:local~ - When ~t~, automatically marks the variable as buffer-local
 
-*** Useful variables
-**** org-structure-template-alist
+**** Useful variables
+***** org-structure-template-alist
 An alist of keys and block types.
 
 ~org-insert-structure-template~ will display a menu with this list of templates to choose from.  The block type is inserted, with ~#+BEGIN_~ and ~#+END_~ added automatically.
 
-** Customization
-*** Keybindings
-**** Set key
+*** Customization
+**** Keybindings
+***** Set key
 
 #+begin_src emacs-lisp
 
@@ -7439,7 +7476,7 @@ An alist of keys and block types.
 
 #+end_src
 
-**** Unset key
+***** Unset key
 
 #+begin_src emacs-lisp
 
@@ -7449,7 +7486,7 @@ An alist of keys and block types.
 
 #+end_src
 
-**** With hyper or super key
+***** With hyper or super key
 
 #+begin_src emacs-lisp
 
@@ -7459,7 +7496,7 @@ An alist of keys and block types.
 
 #+end_src
 
-**** Key sequence
+***** Key sequence
 
 #+begin_src emacs-lisp
 
@@ -7479,7 +7516,7 @@ An alist of keys and block types.
 
 #+end_src
 
-**** Substitute definition
+***** Substitute definition
 
 #+begin_src emacs-lisp
 
@@ -7490,7 +7527,7 @@ An alist of keys and block types.
 
 #+end_src
 
-*** Load
+**** Load
 
 #+begin_src emacs-lisp
 
@@ -7514,7 +7551,7 @@ An alist of keys and block types.
 
 #+end_src
 
-*** Major mode add-hook
+**** Major mode add-hook
 
 #+begin_src emacs-lisp
 
@@ -7549,8 +7586,8 @@ An alist of keys and block types.
 
 #+end_src
 
-*** Minor mode
-**** Change minor mode keys
+**** Minor mode
+***** Change minor mode keys
 To change minor mode keys, you need to change of the mode's keymap.
 
 #+begin_src emacs-lisp
@@ -7576,7 +7613,7 @@ For some minor modes, you need to load it first, example:
 
 #+end_src
 
-**** Modify Keys
+***** Modify Keys
 ~shell~ and ~shell-command~ M-! have many special keys. Suppose you want to change them. They both use a keymap named ~comint-mode-map~. The following is a example of redefining some of its keys.
 
 #+begin_src emacs-lisp
@@ -7598,7 +7635,7 @@ For some minor modes, you need to load it first, example:
 
 #+end_src
 
-*** defalias
+**** defalias
 
 #+begin_src emacs-lisp
 
@@ -7611,7 +7648,7 @@ For some minor modes, you need to load it first, example:
 
 #+end_src
 
-*** macro
+**** macro
 1. ~M-x name-last-kbd-macro~ and give it a name.
 2. ~M-x insert-kbd-macro~ This will insert the lisp code for a named kmacro at the cursor position.
 3. Copy ＆ Paste the code into your emacs init file.
@@ -7633,7 +7670,7 @@ Once you've saved your macro with a name, you can also give it a keyboard shortc
 
 #+end_src
 
-*** External App
+**** External App
 
 
 #+begin_src emacs-lisp
@@ -7702,7 +7739,7 @@ Version: 2019-11-04 2023-04-05 2023-06-26"
 
 #+RESULTS:
 
-*** Configurations
+**** Configurations
 
 #+begin_src emacs-lisp
 
@@ -7743,7 +7780,7 @@ Version: 2019-11-04 2023-04-05 2023-06-26"
 
 #+end_src
 
-*** Miscellaneous
+**** Miscellaneous
 
 #+begin_src emacs-lisp
 

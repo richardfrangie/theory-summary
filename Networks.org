@@ -1,0 +1,1051 @@
+#+title: Networks
+#+date: 2022-06-13
+
+* Networks
+** Network
+Conjunto de equipos nodos y software conectados entre sí por medio de dispositivos físicos que envían y reciben impulsos eléctricos, ondas electromagnéticas o cualquier otro medio para el transporte de datos, con la finalidad de compartir información, recursos y ofrecer servicios.
+
+Como en todo proceso de comunicación, se requiere de un emisor, un mensaje, un medio y un receptor. La finalidad principal para la creación de una red de computadoras es compartir los recursos y la información en la distancia, asegurar la confiabilidad y la disponibilidad de la información, aumentar la velocidad de transmisión de los datos y reducir el costo. Un ejemplo es [[Internet]], el cual es una gran red de millones de computadoras ubicadas en distintos puntos del planeta interconectados básicamente para compartir información y recursos, otro ejemplo es la red telefónica.
+
+La comunicación por medio de una red se lleva a cabo en dos diferentes categorías: la capa física y la capa lógica. La razón más importante (quizá la única) sobre por qué existe diferenciación entre la capa física y la lógica es que cuando existe una división entre ambas, es posible utilizar un número casi infinito de protocolos distintos, lo que facilita la actualización y migración entre distintas tecnologías.
+
+- Capa Física :: incluye todos los elementos de los que hace uso un equipo para comunicarse con otros equipos dentro de la red, como, por ejemplo, las tarjetas de red, los cables, las antenas, ...
+
+- Capa Lógica :: define la forma en que los hosts acceden a los medios para enviar datos. Se rige por normas muy rudimentarias que por sí mismas resultan de escasa utilidad. Sin embargo, haciendo uso de dichas normas es posible construir los denominados protocolos, que son normas de comunicación más complejas (mejor conocidas como de alto nivel), capaces de proporcionar servicios que resultan útiles.
+
+La estructura y el modo de funcionamiento de las redes informáticas actuales están definidos en varios estándares, siendo el más importante y extendido de todos ellos el modelo [[Modelo TCP/IP]] utilizado como base para el modelo de referencia [[Modelo OSI]]. Este último, concibe cada red como estructurada en siete capas con funciones concretas pero relacionadas entre sí (en TCP/IP se habla de cuatro capas).
+
+** Network topology
+Mapa físico o lógico de una red para intercambiar datos. Es la forma en que está diseñada la red, sea en el plano físico, que es la disposición real de los cables o medios, o lógico, que define la forma en que los hosts acceden a los medios para enviar datos.
+
+Existen dos tipos de topologías de red: las físicas y las lógicas.
+
+La disposición del medio de transmisión usada para conectar los dispositivos es la topología física de la red, junto con la ubicación de los nodos y las conexiones entre los dispositivos y el cableado, ejemplo bus, anillo, estrella, jerárquica, malla, árbol, mixta...
+
+La topología lógica es la forma en la que los datos pasan por la red, y no tiene en cuenta las conexiones físicas de los dispositivos, viéndolos únicamente como nodos, ejemplo broadcast, tokens....
+
+Examples of network topologies are found in local area networks (LAN), a common computer network installation. Any given node in the LAN has one or more physical links to other devices in the network; graphically mapping these links results in a geometric shape that can be used to describe the physical topology of the network.
+
+** Network types
+*** LAN
+A Local Area Network is a computer network that interconnects computers within a limited area such as a residence, school, laboratory, university campus or office building.
+
+Simple LANs generally consist of cabling and one or more switches. A switch can be connected to a router, cable modem, or ADSL modem for Internet access. A LAN can include a wide variety of other network devices such as firewalls, load balancers, and network intrusion detection.
+
+ Las LAN domésticas suelen utilizar un único enrutador, mientras que las LAN en espacios más grandes pueden utilizar además conmutadores de red para una entrega de paquetes más eficiente. Las redes LAN casi siempre utilizan Ethernet, WiFi o ambas para conectar los dispositivos de la red.
+
+*** WAN
+A Wide Area Network is a telecommunications network that extends over a large geographic area. The Internet may be considered a WAN. Many WANs are, however, built for one particular organization and are private. WANs can be separated from local area networks (LANs) in that the latter refers to physically proximal networks.
+
+In terms of the application of communication protocols and concepts, it may be best to view WANs as computer networking technologies used to transmit data over long distances, and between different networks.
+
+WANs are used to connect LANs and other types of networks together so that users and computers in one location can communicate with users and computers in other locations. Many WANs are built for one particular organization and are private. Others, built by Internet service providers, provide connections from an organization's LAN to the Internet.
+
+*** VLAN
+A Virtual Local Area Network is any broadcast domain that is partitioned and isolated in a computer network at the data link layer (OSI layer 2). In this context, virtual, refers to a physical object recreated and altered by additional logic, within the local area network. VLANs work by applying tags to network frames and handling these tags in networking systems – creating the appearance and functionality of network traffic that is physically on a single network but acts as if it is split between separate networks. In this way, VLANs can keep network applications separate despite being connected to the same physical network, and without requiring multiple sets of cabling and networking devices to be deployed.
+
+VLANs allow network administrators to group hosts together even if the hosts are not directly connected to the same network switch. Because VLAN membership can be configured through software, this can greatly simplify network design and deployment. Without VLANs, grouping hosts according to their resource needs the labor of relocating nodes or rewiring data links. VLANs allow devices that must be kept separate to share the cabling of a physical network and yet be prevented from directly interacting with one another. This managed sharing yields gains in simplicity, security, traffic management, and economy. For example, a VLAN can be used to separate traffic within a business based on individual users or groups of users or their roles (e.g. network administrators), or based on traffic characteristics (e.g. low-priority traffic prevented from impinging on the rest of the network's functioning).
+
+*** WLAN
+A Wireless LAN is a wireless computer network that links two or more devices using wireless communication to form a local area network (LAN) within a limited area such as a home, school, and so on. This gives users the ability to move around within the area and remain connected to the network. Through a gateway, a WLAN can also provide a connection to the wider Internet.
+
+Wireless LANs based on the IEEE 802.11 standards are the most widely used computer networks in the world. These are commonly called Wi-Fi, which is a trademark belonging to the Wi-Fi Alliance. They are used for home and small office networks that link together laptop computers, printers, smartphones, Web TVs and gaming devices with a wireless router, which links them to the internet.
+
+*** VPN
+A Virtual Private Network is a mechanism for creating a secure connection between a computing device and a computer network, or between two networks, using an insecure communication medium such as the public Internet.
+
+A VPN can extend a private network (one that disallows or restricts public access), in such a way that it enables users of that network to send and receive data across public networks as if the public networks' devices were directly connected to the private network. The benefits of a VPN include security, reduced costs for dedicated communication lines, and greater flexibility for remote workers. VPNs are also used to bypass internet censorship. Encryption is common, although not an inherent part of a VPN connection.
+
+A VPN is created by establishing a virtual point-to-point connection through the use of tunneling protocols over existing networks.
+
+** Internet
+Conjunto descentralizado de *redes de comunicaciones interconectadas*, que utilizan la familia de protocolos [[Internet Protocol Suite TCP/IP][TCP/IP]], lo cual garantiza que las redes físicas heterogéneas que la componen constituyen una red lógica única de alcance mundial.
+
+Al igual que es una red de computadoras interconectadas a nivel mundial en forma de telaraña. Consiste de servidores que proveen información a aproximadamente 100 millones de personas que están conectadas.
+
+Posee muchos servicios y protocolos en internet, uno de los más exitosos es la [[www][World Wide Web]] (www), hasta tal punto que es habitual la confusión entre ambos términos. La www es un conjunto de protocolos que permite, de forma sencilla, la consulta remota de archivos de hipertexto.
+
+Existen, por tanto, muchos otros servicios y protocolos en internet, aparte de la Web: el envio de correos (SMPT), la transmisión de archivos (FTP y P2P), las conversaciones en línea (IRC), la mensajería instantánea y presencia, la transmisión de contenido y comunicación multimedia —telefonía (VoIP), televisión (IPTV) —, los boletines electrónicos (NNTP), el acceso remoto a otros dispositivos (SSH y Telnet), juegos en línea.
+
+** www
+La World Wide Web es un sistema que funciona a través de [[Internet]], contiene un conjunto de protocolos que permite, de forma sencilla, la consulta remota de archivos de hipertexto. A través de estos Protocolos de Transferencia de Hipertextos o [[HTTP]] se pueden transmitir diversos tipos de datos, que son los enlaces de la página web.
+
+Documents and downloadable media are made available to the network through web servers and can be accessed by programs such as web browsers. Servers and resources on the World Wide Web are identified and located through character strings called uniform resource locators (URLs). The original and still very common document type is a web page formatted in Hypertext Markup Language (HTML). The information in the Web is transferred across the Internet using the Hypertext Transfer Protocol (HTTP).
+
+*Estándares web*:
+  - el Identificador de Recurso Uniforme (URI) :: que es un sistema universal para referenciar recursos en la Web, como páginas web
+  - el Protocolo de Transferencia de Hipertexto (HTTP) :: que especifica cómo se comunican el navegador y el servidor entre ellos
+  - el Lenguaje de Marcado de Hipertexto (HTML) :: usado para definir la estructura y contenido de documentos de hipertexto
+  - el Lenguaje de Marcado Extensible (XML) :: usado para describir la estructura de los documentos de texto.
+
+** URI
+*** Definition
+A Uniform Resource Identifier is a unique sequence of characters that *identifies* a logical or physical resource used by web technologies.
+
+Some URIs provide a means of *locating* and retrieving information resources on a network; these are *Uniform Resource Locators* (URLs). A URL provides the location of the resource. A URI identifies the resource by name at the specified location or URL. Other URIs provide only a unique *name*, without a means of locating or retrieving the resource or information about it, these are *Uniform Resource Names* (URNs).
+
+#+begin_src
+
+        URI
+  ┌──────┴──────┐
+  +-------------+
+  | URL  |  URN |
+  +-------------+
+
+#+end_src
+
+A *URN* is analogous to a *person's name*, while a *URL* is analogous to their *street address*. In other words, a URN identifies an item and a URL provides a method for finding it.
+
+The URI generic syntax consists of five components organized hierarchically in order of decreasing significance from left to right:
+~URI = scheme ":" ["//" authority] path ["?" query] ["#" fragment]~
+
+The authority component consists of subcomponents:
+~authori y = [userinfo "@"] host [":" port]~
+
+*Examples* :
+*URI*: To identify a specific resource and how to access it - in all completeness
+~mysql://localhost@databasename:password~
+
+~mysql://localhost~
+*URL*: Shows you where you can find the database on the internet and which protocol you should use.
+
+#+begin_src artist
+
+        userinfo     host    port
+        ┌──┴───┐ ┌────┴────┐ ┌┴┐
+https://john.doe@www.exa.com:123/forum/questi/?tag=net&order=new#top
+└─┬─┘   └───────────┬──────────┘└─────┬──────┘ └────────┬──────┘ └┬┘
+scheme          authority           path               query  fragment
+
+
+mailto:John.Doe@example.com
+└─┬─┘  └────────┬─────────┘
+scheme        path
+
+#+end_src
+
+*** URL
+A Uniform Resource Locator is a URI that specifies the means of acting upon or obtaining the representation of a resource, i.e. specifying both its *primary access mechanism* and *network location*.
+
+For example, the URL http://example.org/wiki/Main_Page refers to a resource identified as ~/wiki/Main_Page~, whose representation is obtainable via the Hypertext Transfer Protocol (~http:~) from a network host whose domain name is ~example.org~.
+
+**** Relative URL
+A relative URL gives you the location of resource relative to the location of the resource that contains the URL.
+
+*Examples*:
+A relative URL beginning with (~/~) replaces the entire path of the base URL.
+~http://www.conclase.net/hola.txt~
+~/hola.txt~ (relative URL)
+
+A URL beginning with (~//~) replaces everything in the base URL from the included destination name
+~http://www.yahoo.com/~
+~//www.yahoo.com/~ (relative URL)
+
+*Note*: Directories always end with a slash (~/~) and files end without a slash (~/~).
+
+*** URN
+A Uniform Resource Name is a URI that *identifies* a resource *by name* in a particular namespace. A URN may be used to talk about a resource without implying its location or how to access it.
+
+** Port
+Is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service. At the software level, within an operating system, a port is a logical construct that identifies a specific process or a type of network service. A port at the software level is identified for each transport protocol and address combination by the port number assigned to it. The most common transport protocols that use port numbers are the Transmission Control Protocol (TCP) and the User Datagram Protocol (UDP); those port numbers are 16-bit unsigned numbers.
+
+A process associates its input or output channels via an internet socket, which is a type of file descriptor, associated with a transport protocol, a network address such as an IP address, and a port number. This is known as binding. A socket is used by a process to send and receive data via the network. The operating system's networking software has the task of transmitting outgoing data from all application ports onto the network, and forwarding arriving network packets to processes by matching the packet's IP address and port number to a socket.
+
+In many operating systems special privileges are required for applications to bind to sme ports because these are often deemed critical to the operation of IP networks. Conversely, the client end of a connection typically uses a high port number allocated for short-term use, therefore called an ephemeral port.
+
+The Internet Assigned Numbers Authority (IANA) has divided port numbers into three ranges. Port numbers 0 through 1023 are used for common, well-known services. Port numbers 1024 through 49151 are the registered ports used for IANA-registered services. Ports 49152 through 65535 are dynamic ports that are not officially designated for any specific service and may be used for any purpose. These may also be used as ephemeral ports, which software running on the host may use to dynamically create communications endpoints as needed.
+
+** Socket
+*** Definition
+Is a software structure within a network node of a computer network that serves as an endpoint for sending and receiving data across the network. The structure and properties of a socket are defined by an application programming interface (API) for the networking architecture. Sockets are created only during the lifetime of a process of an application running in the node.
+
+#+begin_src 
+
+   10.0.1.25 : 80
+   └───┬───┘  └┬┘
+      IP     PORT
+   └──────┬──────┘
+       Socket
+
+#+end_src
+
+*** Use
+The application programming interface (API) for the network protocol stack creates a handle for each socket created by an application, commonly referred to as a socket descriptor. In Unix-like operating systems, this descriptor is a type of file descriptor. It is stored by the application process for use with every read and write operation on the communication channel.
+
+At the time of creation with the API, a network socket is bound to the combination of a type of network protocol to be used for transmissions, a network address of the host, and a port number. Ports are numbered resources that represent another type of software structure of the node. They are used as service types, and, once created by a process, serve as an externally (from the network) addressable location component, so that other hosts may establish connections.
+
+*** Socket addresses
+An application can communicate with a remote process by exchanging data with TCP/IP by knowing the combination of protocol type, IP address, and port number. This combination is often known as a /socket address/. It is the network-facing access handle to the network socket. The remote process establishes a network socket in its own instance of the protocol stack and uses the networking API to connect to the application, presenting its own socket address for use by the application.
+
+*** Implementation
+A protocol stack, usually provided by the operating system (rather than as a separate library, for instance), is a set of services that allow processes to communicate over a network using the protocols that the stack implements. The operating system forwards the payload of incoming IP packets to the corresponding application by extracting the socket address information from the IP and transport protocol headers and stripping the headers from the application data.
+
+Internet socket APIs are usually based on the Berkeley sockets standard. In the Berkeley sockets standard, sockets are a form of file descriptor, due to the Unix philosophy that "everything is a file", and the analogies between sockets and files. Both have functions to read, write, open, and close. In practice, the differences strain the analogy, and different interfaces (send and receive) are used on a socket. In inter-process communication, each end generally has its own socket.
+
+In the standard Internet protocols TCP and UDP, a socket address is the combination of an IP address and a port number, much like one end of a telephone connection is the combination of a phone number and a particular extension. Sockets need not have a source address, for example, for only sending data, but if a program binds a socket to a source address, the socket can be used to receive data sent to that address. Based on this address, Internet sockets deliver incoming data packets to the appropriate application process.
+
+Socket often refers specifically to an internet socket or TCP socket. An internet socket is minimally characterized by the following:
+  - local socket address, consisting of the local IP address and (for TCP and UDP, but not IP) a port number
+  - protocol: A transport protocol, e.g., TCP, UDP, raw IP. This means that (local or remote) endpoints with TCP port 53 and UDP port 53 are distinct sockets, while IP does not have ports.
+  - A socket that has been connected to another socket, e.g., during the establishment of a TCP connection, also has a remote socket address.
+
+Within the operating system and the application that created a socket, a socket is referred to by a unique integer value called a socket descriptor.
+
+A server may create several concurrently established TCP sockets with the same local port number and local IP address, each mapped to its own server-child process, serving its own client process. They are treated as different sockets by the operating system since the remote socket address (the client IP address or port number) is different; i.e. since they have different socket pair tuples.
+
+UDP sockets do not have an established state, because the protocol is connectionless. A UDP server process handles incoming datagrams from all remote clients sequentially through the same socket. UDP sockets are not identified by the remote address, but only by the local address, although each message has an associated remote address that can be retrieved from each datagram with the networking application programming interface (API).
+
+*** Example
+This example, modeled according to the Berkeley socket interface, sends the string "Hello, world!" via TCP to port 80 of the host with address 1.2.3.4. It illustrates the creation of a socket (getSocket), connecting it to the remote host, sending the string, and finally closing the socket:
+
+#+begin_src
+
+Socket mysocket = getSocket(type = "TCP")
+connect(mysocket, address = "1.2.3.4", port = "80")
+send(mysocket, "Hello, world!")
+close(mysocket)
+
+#+end_src
+
+** API
+An application programming interface is a way for two or more computer programs to communicate with each other. It is a type of software interface, offering a service to other pieces of software.
+
+In contrast to a user interface, which connects a computer to a person, an application programming interface connects computers or pieces of software to each other. It is not intended to be used directly by a person (the end user) other than a computer programmer who is incorporating it into the software.
+
+One purpose of APIs is to hide the internal details of how a system works, exposing only those parts that a programmer will find useful, and keeping them consistent even if the internal details change later. An API may be custom-built for a particular pair of systems, or it may be a shared standard allowing interoperability among many systems.
+
+** Subnetting
+*** Subnet
+A subnetwork or subnet is a logical subdivision of an IP network. The practice of dividing a network into two or more networks is called subnetting.
+
+Computers that belong to the same subnet are addressed with an identical group of its most-significant bits of their IP addresses. This results in the logical division of an IP address into two fields: the network number or routing prefix, and the rest field or host identifier. The rest field is an identifier for a specific host or network interface.
+
+For IPv4, a network may also be characterized by its subnet mask or netmask, which is the bitmask that, when applied by a bitwise AND operation to any IP address in the network, yields the routing prefix. Subnet masks are also expressed in dot-decimal notation like an IP address. For example, the prefix 198.51.100.0/24 would have the subnet mask 255.255.255.0. This notation was introduced with Classless Inter-Domain Routing (CIDR).
+
+Traffic is exchanged between subnets through routers when the routing prefixes of the source address and the destination address differ. A router serves as a logical or physical boundary between the subnets.
+
+Una subred es una red dentro de una red. Cuando una red se vuelve muy grande, conviene dividirla en subredes. Las subredes hacen que las redes sean más eficientes. Mediante la creación de subredes, el tráfico de la red puede recorrer una distancia más corta sin tener que pasar por routers innecesarios para llegar a su destino, es más manejable, administrativamente.
+
+Una subred típica es una red física hecha con un router, por ejemplo: una Red Ethernet o una “red de área local virtual” [[VLAN]]. Sin embargo, las subredes permiten a la red ser dividida lógicamente a pesar del diseño físico de la misma, por cuanto es posible dividir una red física en varias subredes configurando diferentes computadores host que utilicen diferentes routers. La dirección de todos los nodos en una subred comienzan con la misma secuencia binaria, que es su ID de red e ID de subred. En IPv4, las subredes deben ser identificadas por la base de la dirección y una máscara de subred.
+
+Since each locally connected subnet must be represented by a separate entry in the routing tables of each connected router, subnetting increases routing complexity. However, by careful design of the network, routes to collections of more distant subnets within the branches of a tree hierarchy can be aggregated into a supernetwork and represented by single routes.
+
+*** Netmask
+La máscara de subred o subneting señala qué bytes de su dirección es el identificador de la red. La máscara consiste en una secuencia de unos seguidos de una secuencia de ceros con el mismo tamaño que una dirección IP (32 bits), por ejemplo, una máscara de 20 bits se escribiría 255.255.240.0, es decir como una dirección IP con 20 bits en 1 seguidos por 12 bits en 0. La máscara determina todos los parámetros de una subred: dirección de red, dirección de difusión (broadcast) y direcciones asignables a nodos de red (hosts).
+
+En resumen, la máscara lo que determina es qué paquetes que circulan por la LAN se aceptan por algún ordenador de la LAN o qué paquetes han de salir fuera de la LAN (por el enrutador). La máscara determina todos los parámetros de una subred: dirección de red, dirección de difusión (broadcast) y direcciones asignables a nodos de red (hosts).
+
+*** Subnetting
+A una compañía se le ha asignado la red ~200.3.25.0~. Es una red de clase C, lo cual significa que puede disponer de ~254~ direcciones diferentes (la primera y la última dirección están reservadas, no son utilizables). Si no se divide la red en subredes, la máscara de red será ~255.255.255.0~ (o ~/24~).
+
+La compañía decide dividir esta red en ~8~ subredes, con lo cual, la máscara de subred tiene que recorrer tres bits más, se "toman prestados" tres bits de la porción que corresponde al host. Eso resulta en una máscara de subred ~/27~, en binario ~11111111.11111111.11111111.11100000~, o en decimal punteado, ~255.255.255.224~. Cada subred tendrá ~2^5=32~ direcciones posibles; pero solo tendrá ~(2^5)-2=32-2=30~ direcciones asignables a los hosts puesto que la primera dirección (con todos los bits de host a ~0~) identifica a subred y la última dirección de cada subred (todos los bits de host a ~1~) se reserva para el broadcast.
+
+Para calcular el total de subredes se debe realizar ~2^3=8~, ya que hemos tomado ~3~ bits prestados a la dirección de host.
+La subred uno tiene la dirección de subred ~200.3.25.0~; las direcciones utilizables son ~200.3.25.1 - 200.3.25.30~ y su dirección de broadcast es la ~200.3.25.31~, aunque esta subred, al ser la primera, no se puede usar.
+La subred dos tiene la dirección de subred ~200.3.25.32~; las direcciones utilizables son ~200.3.25.33 - 200.3.25.62~ y su dirección de broadcast es la ~200.3.25.63~, sería la primera subred válida o asignable a máquinas.
+Y así sucesivamente; de cada subred a la siguiente, el último byte aumenta en ~32~. Dependiendo del tipo de máscara de subred utilizado.
+
+** Bandwidth
+In computing, bandwidth is the maximum rate of data transfer across a given path. Bandwidth may be characterized as network bandwidth, data bandwidth, or digital bandwidth.
+
+Es la que puede manejar una onda más corta, una onda más corta equivale a mayor frecuencia por lo que se puede enviar más datos (mayor ancho de banda (más frecuencia) puede modular más ondas por el mismo intervalo de tiempo).
+
+Ancho de banda puede referirse a la capacidad de ancho de banda o ancho de banda disponible en bit/s, lo cual típicamente significa el rango neto de bits o la máxima salida de una huella de comunicación lógico o físico en un sistema de comunicación digital. La razón de este uso es que de acuerdo a la Ley de Hartley, el rango máximo de transferencia de datos de un enlace físico de comunicación es proporcional a su ancho de banda(procesamiento de señal).
+
+In Web hosting service, the term bandwidth is often incorrectly used to describe the amount of data transferred to or from the website or server within a prescribed period of time, for example bandwidth consumption accumulated over a month measured in gigabytes per month. The more accurate phrase used for this meaning of a maximum amount of data transfer each month or given period is monthly data transfer.
+
+* Hardware
+** Host
+Se refiere a las computadoras u otros dispositivos conectados a una red que proveen y utilizan servicios de ella. Los host son, por tanto, dispositivos monousuario o multiusuario que ofrecen servicios de transferencia de archivos, conexión remota, servidores de base de datos, servidores web, etc.
+
+De forma genérica, podemos decir que un host es todo equipo informático que posee una dirección IP y que se encuentra interconectado con uno o más equipos y que funciona como el punto de inicio y final de las transferencias de datos.
+
+** Server
+Is a piece of computer hardware or software that provides functionality for other programs or devices, called "clients". This architecture is called the client–server model. Servers can provide various functionalities, often called "services", such as sharing data or resources among multiple clients or performing computations for a client. Typical servers are database servers, file servers, mail servers, print servers, web servers, game servers, and application servers.
+
+Client–server systems are usually most frequently implemented by (and often identified with) the request–response model: a client sends a request to the server, which performs some action and sends a response back to the client, typically with a result or acknowledgment.
+
+*Proxy server*:
+Is a server application that acts as an intermediary between a client requesting a resource and the server providing that resource. It improves privacy, security, and performance in the process.
+
+Instead of connecting directly to a server that can fulfill a request for a resource, such as a file or web page, the client directs the request to the proxy server, which evaluates the request and performs the required network transactions. This serves as a method to simplify or control the complexity of the request, or provide additional benefits such as load balancing, privacy, or security. Proxies were devised to add structure and encapsulation to distributed systems. A proxy server thus functions on behalf of the client when requesting service, potentially masking the true origin of the request to the resource server.
+
+** NIC
+A network interface controller is a computer hardware component that connects a computer to a computer network.
+
+The network controller implements the electronic circuitry required to communicate using a specific physical layer and data link layer standard such as Ethernet or Wi-Fi. This provides a base for a full network protocol stack, allowing communication among computers on the same local area network (LAN) and large-scale network communications through routable protocols, such as [[IP][Internet Protocol]] (IP).
+
+** Modem
+A modulator-demodulator is a device that converts data from a digital format into a format suitable for an analog transmission medium such as telephone or radio. A modem transmits data by modulating one or more carrier wave signals to encode digital information, while the receiver demodulates the signal to recreate the original digital information. The goal is to produce a signal that can be transmitted easily and decoded reliably.
+
+** Ethernet hub
+Is a network hardware device for connecting multiple Ethernet devices together and making them act as a single network segment. It has multiple input/output (I/O) ports, in which a signal introduced at the input of any port appears at the output of every port except the original incoming. A hub works at the physical layer (layer 1) of the OSI model.
+
+** Switch
+A switch is a device in a computer network that connects other devices together. Multiple data cables are plugged into a switch to enable communication between different networked devices. Switches manage the flow of data across a network by transmitting a received network packet only to the one or more devices for which the packet is intended. Each networked device connected to a switch can be identified by its network address, allowing the switch to direct the flow of traffic maximizing the security and efficiency of the network.
+
+A network switch is a multiport network bridge that uses MAC addresses to forward data at the data link layer (layer 2) of the OSI model. Some switches can also forward data at the network layer (layer 3) by additionally incorporating routing functionality. Such switches are commonly known as layer-3 switches or multilayer switches.
+
+Unlike repeater hubs, which broadcast the same data out of each port and let the devices pick out the data addressed to them, a network switch learns the identities of connected devices and then only forwards data to the port connected to the device to which it is addressed.
+
+** Gateway
+Is a piece of networking hardware or software used in telecommunications networks that allows data to flow from one discrete network to another. Gateways are distinct from [[Router][routers]] or [[Switch][switches]] in that they communicate using more than one protocol to connect multiple networks and can operate at any of the seven layers of the open systems interconnection model (OSI).
+
+On an Internet Protocol (IP) network, IP packets with a destination outside a given [[Máscara de Subred][subnet mask]] are sent to the network gateway. For example, if a private network has a base IPv4 address of 192.168.1.1 and has a subnet mask of 255.255.255.0, then any data addressed to an IP address outside of 192.168.1.0 is sent to the network gateway.
+
+** Router
+Is a networking device that forwards data packets between computer networks. Routers perform the traffic directing functions between networks and on the global Internet. Data sent through a network, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another router through the networks that constitute an internetwork (e.g. the Internet) until it reaches its destination node.
+
+A router is connected to two or more data lines from different IP networks. When a data packet comes in on one of the lines, the router reads the network address information in the packet header to determine the ultimate destination. Then, using information in its routing table or routing policy, it directs the packet to the next network on its journey.
+
+The main purpose of a router is to connect multiple networks and forward packets destined either for directly attached networks or more remote networks. A router is considered a layer-3 device because its primary forwarding decision is based on the information in the layer-3 IP packet, specifically the destination IP address. When a router receives a packet, it searches its routing table to find the best match between the destination IP address of the packet and one of the addresses in the routing table. Once a match is found, the packet is encapsulated in the layer-2 data link frame for the outgoing interface indicated in the table entry. A router typically does not look into the packet payload, but only at the layer-3 addresses to make a forwarding decision, plus optionally other information in the header for hints on, for example, quality of service (QoS). For pure IP forwarding, a router is designed to minimize the state information associated with individual packets. Once a packet is forwarded, the router does not retain any historical information about the packet.
+
+Tienen incorporadas otras funciones adicionales al enrutador, como por ejemplo: punto de acceso inalámbrico, que permite crear y conectarse a una red Wifi; módem, que convierte las señales análogicas a digitales y viceversa; Conmutador, que conecta varios dispositivos a través de cable, creando una red local. El router y el ISP no se pueden comunicar directamente porque emplean lenguajes distintos, o mejor dicho, transmiten distintos tipos de señales. De ahí que el papel del módem como interprete sea tan relevante.
+
+* Packets
+** Network packet
+Is a formatted unit of data carried by a [[Packet switching][packet-switched]] network. A packet consists of control information and user data; the latter is also known as the payload. Control information provides data for delivering the payload (e.g., source and destination network addresses, error detection codes, or sequencing information). Typically, control information is found in packet headers and trailers.
+
+The basis of the packet concept is the postal letter: the header is like the envelope, the payload is the entire content inside the envelope, and the footer would be your signature at the bottom.
+
+Network design can achieve two major results by using packets: error detection and multiple host addressing.
+
+** Datagram
+Is a basic transfer unit associated with a [[Packet switching][packet-switched]] network. Datagrams are typically structured in header and payload sections. Datagrams provide a connectionless communication service across a packet-switched network. The delivery, arrival time, and order of arrival of datagrams need not be guaranteed by the network.
+
+A datagram needs to be self-contained without reliance on earlier exchanges because there is no connection of fixed duration between the two communicating points as there is, for example, in most voice telephone conversations.
+
+Datagram service is often compared to a mail delivery service; the user only provides the destination address, but receives no guarantee of delivery, and no confirmation upon successful delivery. Datagram service is therefore considered unreliable. Datagram service routes datagrams without first creating a predetermined path. Datagram service is therefore considered connectionless. There is also no consideration given to the order in which it and other datagrams are sent or received. In fact, many datagrams in the same group can travel along different paths before reaching the same destination.
+
+Each datagram has two components, a header and a data payload. The header contains all the information sufficient for routing from the originating equipment to the destination without relying on prior exchanges between the equipment and the network. Headers may include source and destination addresses as well as a type field. The payload is the data to be transported. This process of nesting data payloads in a tagged header is called encapsulation.
+
+** Frame
+Is a digital data transmission unit. A frame is a simple container for a single network packet.
+
+A frame typically includes frame synchronization features consisting of a sequence of bits or symbols that indicate to the receiver the beginning and end of the payload data within the stream of symbols or bits it receives. If a receiver is connected to the system during frame transmission, it ignores the data until it detects a new frame synchronization sequence.
+
+In the OSI model of computer networking, a frame is the protocol data unit at the data link layer. Frames are the result of the final layer of encapsulation before the data is transmitted over the physical layer.
+
+** TTL
+Time To Live or hop limit is a mechanism which limits the lifespan or lifetime of data in a computer or network. TTL may be implemented as a counter or timestamp attached to or embedded in the data. Once the prescribed event count or timespan has elapsed, data is discarded or revalidated. In computer networking, TTL prevents a data packet from circulating indefinitely. In computing applications, TTL is commonly used to improve the performance and manage the caching of data.
+
+** MTU
+Maximum Transmission Unit is the size of the largest [[PDU][protocol data unit]] (PDU) that can be communicated in a single network layer transaction. The MTU relates to, but is not identical to the maximum frame size that can be transported on the data link layer, e.g. Ethernet frame.
+
+MTUs apply to communications protocols and network layers. The MTU is specified in terms of bytes or octets of the largest PDU that the layer can pass onwards. MTU parameters usually appear in association with a communications interface (NIC, serial port, etc.). Standards (Ethernet, for example) can fix the size of an MTU; or systems (such as point-to-point serial links) may decide MTU at connect time.
+
+Underlying data link and physical layers usually add overhead to the network layer data to be transported, so for a given maximum frame size of a medium, one needs to subtract the amount of overhead to calculate that medium's MTU. For example, with Ethernet, the maximum frame size is 1518 bytes, 18 bytes of which are overhead (header and frame check sequence), resulting in an MTU of 1500 bytes.
+
+** PDU
+Protocol Data Unit is a single unit of information transmitted among peer entities of a computer network. It is composed of protocol-specific control information and user data. In the layered architectures of communication protocol stacks, each layer implements protocols tailored to the specific type or mode of data exchange.
+
+For example, the Transmission Control Protocol (TCP) implements a connection-oriented transfer mode, and the PDU of this protocol is called a segment, while the User Datagram Protocol (UDP) uses [[Datagram][datagrams]] as protocol data units for connectionless communication. A layer lower in the Internet protocol suite, at the Internet layer, the PDU is called a [[Network packet][packet]], irrespective of its payload type.
+
+** SDU
+A service data unit is a unit of data that has been passed down from an OSI layer or sublayer to a lower layer. This unit of data (SDU) has not yet been encapsulated into a [[PDU][protocol data unit]] (PDU) by the lower layer. That SDU is then encapsulated into the lower layer's PDU and the process continues until reaching the PHY, physical, or lowest layer of the OSI stack.
+
+The SDU can also be thought of as a set of data that is sent by a user of the services of a given layer, and is transmitted semantically unchanged to a peer service user.
+
+*SDU and PDU*:
+It differs from a PDU in that the PDU specifies the data that will be sent to the peer protocol layer at the receiving end, as opposed to being sent to a lower layer.
+
+The SDU accepted by any given layer (n) from layer (n+1) above, is a PDU of the layer (n+1) above. In effect the SDU is the 'payload' of a given PDU. The layer (n) may add headers or trailers, or both, to the SDU and may do other kinds of reformatting, recoding, splitting or transformations on the data, forming one or more layer (n) PDUs. The added headers or trailers and other possible changes are part of the process that makes it possible to get data from a source to a destination.
+
+* Addressing
+** IP address
+*** Definition
+An Internet Protocol address is a numerical label such as 192.0.2.1 that is connected to a computer network that uses the [[IP][Internet Protocol]] for communication. Network administrators assign an IP address to each device connected to a network. Such assignments may be on a static (fixed or permanent) or dynamic basis, depending on network practices and software features.
+
+An IP address serves two principal functions: it identifies the host, or more specifically its network interface, and it provides the location of the host in the network, and thus the capability of establishing a path to that host. Its role has been characterized as follows: "A name indicates what we seek. An address indicates where it is. A route indicates how to get there." The header of each IP packet contains the IP address of the sending host and that of the destination host.
+
+IP networks may be divided into subnetworks in both IPv4 and IPv6. For this purpose, an IP address is recognized as consisting of two parts: the network prefix in the high-order bits and the remaining bits called the rest field, host identifier, or interface identifier (IPv6), used for host numbering within a network. The subnet mask or CIDR notation determines how the IP address is divided into network and host parts. For example, an IPv4 address and its subnet mask may be 192.0.2.1 and 255.255.255.0, respectively. The CIDR notation for the same IP address and subnet is 192.0.2.1/24, because the first 24 bits of the IP address indicate the network and subnet.
+
+An IPv4 address has a size of 32 bits, which limits the address space to 4.294.967.296 (2^32) addresses. IPv4 addresses are usually represented in dot-decimal notation, consisting of four decimal numbers, each ranging from 0 to 255, separated by dots, e.g., 192.0.2.1. Each part represents a group of 8 bits (an octet) of the address.
+
+IP addresses are assigned to a host either dynamically as they join the network, or persistently by configuration of the host hardware or software. Persistent configuration is also known as using a static IP address. In contrast, when a computer's IP address is assigned each time it restarts, this is known as using a dynamic IP address.
+
+*** IPv4 Fragmentation
+Sea la IP ~81.17.71.138~ con mascara de subred ~255.255.192.0~ .
+
+La notación en binaros para la red es ~01010001.00010001.01000111.10001010~ y para la mascara de subred es ~11111111.11111111.11000000.00000000~ o en sistaxis CIDR ~/18~ .
+Se realiza la operación AND
+-> ~01010001.00010001.01000111.10001010~ AND ( ~81.17.71.138~ )
+-> ~11111111.11111111.11000000.00000000~           ( ~255.255.192.0~ )
+--------------------------------------------
+-> ~01010001.00010001.01000000.00000000~           ( ~81.17.64.0~ )
+Por lo tanto la red en notación decimal sería ~81.17.64.0/18~ .
+
+Para calcular la cantidad de host se invierte la mascara, dando resutado una IP a veces denominada wildcard.
+-> ~00000000.00000000.00111111.11111111~ o en decimal ~0.0.63.255~ lo que da como resultado ~2^14 = 16.384~ host o calculandolo de otra forma ~64x256 = 16.384~ host, donde dos direcciones de estas se reservan una para la red ~81.17.64.0~ y otra la última para el broadcast ~81.17.127.255~ dando realmente un total de ~16.382~ host en un rango de ~81.17.64.1 - 81.17.127.254~ hosts.
+
+El rango de direcciones de host resulta de todas las posibles combinaciones de los sustitución de binarios en las equis ~11111111.11111111.11xxxxxx.xxxxxxxx~ , los números decimales resultantes estarán en el rango de ~64-~127~ en el tercer octeto y ~0-255~ en el último octeto.
+
+Para calular el broadcast se puede hacer sumando la IP del wildcard a la IP de red
+-> ~00000000.00000000.00111111.11111111~ SUMA  ( ~0.0.64.255~ )
+-> ~01010001.00010001.01000000.00000000~              ( ~81.17.64.0~ )
+--------------------------------------------
+-> ~01010001.00010001.01111111.11111111~              ( ~81.17.127.255~ )
+
+** MAC address
+Is a unique identifier assigned to a network interface controller (NIC) for use as a network address in communications within a network segment. This use is common in most IEEE 802 networking technologies, including Ethernet, Wi-Fi, and Bluetooth. Within the  OSI network model, MAC addresses are used in the medium access control protocol sublayer of the data link layer. As typically represented, MAC addresses are recognizable as six groups of two hexadecimal digits, separated by hyphens, colons, or without a separator.
+
+MAC addresses are typically assigned to network interface hardware at the time of manufacture. The most significant part of the address identifies the manufacturer, who assigns the remainder of the address, thus provide a potentially unique address. This makes it possible for frames to be delivered on a network link that interconnects hosts by some combination of repeaters, hubs, bridges and switches, but not by network layer routers. Thus, for example, when an IP packet reaches its destination (sub)network, the destination IP address (a layer 3 or network layer concept) is resolved with the Address Resolution Protocol for IPv4, or by Neighbor Discovery Protocol (IPv6) into the MAC address (a layer 2 concept) of the destination host.
+
+On broadcast networks, such as Ethernet, the MAC address is expected to uniquely identify each node on that segment and allows frames to be marked for specific hosts. It thus forms the basis of most of the link layer (OSI layer 2) networking upon which upper-layer protocols rely to produce complex, functioning networks.
+
+Many network interfaces support changing their MAC address. On most Unix-like systems, the command utility ifconfig may be used to remove and add link address aliases. Changing MAC addresses is necessary in network virtualization.
+
+In Internet Protocol (IP) networks, the MAC address of an interface corresponding to an IP address may be queried with the Address Resolution Protocol (ARP) for IPv4 and the Neighbor Discovery Protocol (NDP) for IPv6, relating OSI layer 3 addresses with layer 2 addresses.
+
+** ARP
+*** Definition
+The Address Resolution Protocol is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given internet layer address, typically an IPv4 address. This mapping is a critical function in the [[Internet protocol suite]].
+
+The ARP is a request-response protocol. Its messages are directly encapsulated by a link layer protocol. It is communicated within the boundaries of a single network, never routed across internetworking nodes.
+
+*** Implementation
+Cuando se envía un paquete a la capa de enlace de datos para encapsularlo en una trama de Ethernet, el dispositivo consulta una tabla en su memoria para encontrar la dirección MAC que está asignada a la dirección IPv4. Esta tabla se denomina "tabla ARP" o "caché ARP". La tabla ARP se almacena en la RAM del dispositivo.
+
+Si la dirección IPv4 de destino del paquete está en la misma red que la dirección IPv4 de origen, el dispositivo busca la dirección IPv4 de destino en la tabla ARP.
+Si la dirección IPv4 de destino está en una red diferente que la dirección IPv4 de origen, el dispositivo busca la dirección IPv4 del gateway predeterminado.
+
+Si el dispositivo localiza la dirección IPv4, se utiliza la dirección MAC correspondiente como la dirección MAC de destino de la trama. Si no se encuentra ninguna entrada, el dispositivo envía una solicitud de ARP. La solicitud de ARP se envía como mensaje de difusión ([[Broadcast]]), llegando a todos los dispositivos conectados a esa red.
+
+Solo un dispositivo de la LAN tiene la dirección IPv4 que coincide con la dirección IPv4 objetivo de la solicitud de ARP. Todos los demás dispositivos no envían una respuesta. Los routers no reenviarán las solocitudes de ARP.
+
+Cuando un dispositivo de origen tiene un paquete con una dirección IPv4 de otra red, lo encapsula en una trama con la dirección MAC de destino del router.
+
+*** Example
+Two computers in an office (Computer 1 and Computer 2) are connected to each other in a local area network by Ethernet cables and network switches, with no intervening gateways or routers. Computer 1 has a packet to send to Computer 2. Through DNS, it determines that Computer 2 has the IP address 192.168.0.55.
+
+To send the message, it also requires Computer 2's MAC address. First, Computer 1 uses a cached ARP table to look up 192.168.0.55 for any existing records of Computer 2's MAC address (00:EB:24:B2:05:AC). If the MAC address is found, it sends an Ethernet frame containing the IP packet onto the link with the destination address 00:EB:24:B2:05:AC. If the cache did not produce a result for 192.168.0.55, Computer 1 has to send a broadcast ARP request message (destination FF:FF:FF:FF:FF:FF MAC address), which is accepted by all computers on the local network, requesting an answer for 192.168.0.55.
+
+Computer 2 responds with an ARP response message containing its MAC and IP addresses. As part of fielding the request, Computer 2 may insert an entry for Computer 1 into its ARP table for future use.
+
+Computer 1 receives and caches the response information in its ARP table and can now send the packet.
+
+** NAT
+Network Address Translation is a method of mapping an IP address space into another by modifying network address information in the IP header of packets while they are in transit across a traffic routing device. It has become a popular and essential tool in conserving global address space in the face of IPv4 address exhaustion.
+
+The majority of network address translators map multiple private hosts to one publicly exposed IP address. Here is a typical configuration:
+  1. A local network uses one of the designated private IP address subnets.
+  2. The network has a router having both a private and a public address. The private address is used by the router for communicating with other devices in the private local network. The public address (typically assigned by an Internet service provider) is used by the router for communicating with the rest of the Internet.
+  3. As traffic passes from the network to the Internet, the router translates the source address in each packet from a private address to the router's own public address. The router tracks basic data about each active connection (particularly the destination address and port). When the router receives inbound traffic from the Internet, it uses the connection tracking data it stored during the outbound phase to determine to which private address (if any) it should forward the reply.
+
+This method allows communication through the router only when the conversation originates in the private network, since the initial originating transmission is what establishes the required information in the translation tables. Thus a web browser within the private network would be able to browse websites that are outside the network, whereas web browsers outside the network would be unable to browse a website hosted within. Protocols not based on TCP and UDP require other translation techniques.
+
+An additional benefit of one-to-many NAT is that it mitigates IPv4 address exhaustion by allowing entire networks to be connected to the Internet using a single public IP address.
+
+** Broadcast
+Es una conexión multipunto que permite la transmisión de información a usuarios de una red sin tener necesariamente las direcciones de cada destinatario. En cuando al proceso de difusión, un emisor envía información a los respectivos destinatarios simultáneamente desde un solo nodo en lugar de varios.
+
+La multidifusión utiliza un rango especial de direcciones denominado “rango de clase D”. Estas direcciones no identifican nodos sino redes o subredes.
+
+Cuando se envía un paquete con una dirección de multidifusión, todos los enrutadores intermedios se limitan a reenviar el paquete hasta el enrutador de dicha subred. Este último se encarga de hacerlo llegar a todos los nodos que se encuentran en la subred.
+
+Aquella dirección que tiene todos y cada uno de los bits de la parte de dirección de máquina con valor 1 es una dirección de multidifusión. Por ejemplo, en una red 192.168.11.0/24, la dirección de broadcast es 192.168.11.255.
+
+** Address 0.0.0.0
+Dirección reservada por la IANA para identificación local.
+
+La dirección 0.0.0.0 se utiliza por acuerdo general como una referencia general para todas las IP que no están en la red interna.
+
+Si un equipo dentro de la red 192.168.1.0/24 quiere contactar a la IP 8.8.8.8 le envía una solicitud a su switch, para solicitar que lo contacte, el switch dependiendo de su nivel (ahorita ya casi todos son suficientemente inteligentes), reconocerá que esta IP no es parte de la red interna, así que tomará la solicitud y se la enviará al ruteador, el ruteador de la misma manera sabrás que no es parte de la red, pero antes de salir a intentar contactar esa dirección IP, clasificará la solicitud en un grupo de destino que es 0.0.0.0 , para así aplicarle las reglas que se hayan configurado en el ruteador, como Nateo, filtrado de contenido, restricciones, por donde debe salir, si el equipo que solicita ese tráfico está autorizado, etc.
+
+De manera más sencilla, 0.0.0.0 es internet, si una computadora pide cualquier cosa que no esté en la red, entonces quiere algo de 0.0.0.0, es decir internet, así que se procesa y luego ya se envía por el puerto de WAN.
+
+* Routing
+** Routing
+Is the process of selecting a path for traffic in a network or between or across multiple networks.
+
+In [[Packet switching][packet switching]] networks, routing is the higher-level decision making that directs network packets from their source toward their destination through intermediate network nodes by specific packet forwarding mechanisms. Packet forwarding is the transit of network packets from one network interface to another. Intermediate nodes are typically network hardware devices such as routers, gateways, firewalls, or switches. General-purpose computers also forward packets and perform routing, although they have no specially optimized hardware for the task. The routing process usually directs forwarding on the basis of routing tables.
+
+Routing, in a narrower sense of the term, often refers to IP routing and is contrasted with bridging. IP routing assumes that network addresses are structured and that similar addresses imply proximity within the network. Structured addresses allow a single routing table entry to represent the route to a group of devices. In large networks, structured addressing (routing, in the narrow sense) outperforms unstructured addressing (bridging). Routing has become the dominant form of addressing on the Internet. Bridging is still widely used within local area networks.
+
+** Routing table
+Is a data table stored in a router or a network host that lists the routes to particular network destinations, and in some cases, metrics (distances) associated with those routes. The routing table contains information about the [[Network topology][topology of the network]] immediately around it.
+
+*Example routing table contents*
+
+|   /Destination/ |         /Netmask/ |       /Gateway/ |     /Interface/ |  /M/ |
+|---------------+-----------------+---------------+---------------+----|
+|       0.0.0.0 |         0.0.0.0 |   192.168.0.1 | 192.168.0.100 | 10 |
+|     127.0.0.0 |       255.0.0.0 |     127.0.0.1 |     127.0.0.1 |  1 |
+|   192.168.0.0 |   255.255.255.0 | 192.168.0.100 | 192.168.0.100 | 10 |
+| 192.168.0.100 | 255.255.255.255 |     127.0.0.1 |     127.0.0.1 | 10 |
+|   192.168.0.1 | 255.255.255.255 | 192.168.0.100 | 192.168.0.100 | 10 |
+
+- The columns *Network destination* and *Netmask* together describe the *Network identifier*. For example, destination *192.168.0.0* and netmask *255.255.255.0* can be written as *192.168.0.0/24*.
+- The *Gateway* column contains the same information as the *Next hop*, i.e. it points to the gateway through which the network can be reached.
+- The *Interface* indicates what locally available interface is responsible for reaching the gateway. In this example, gateway *192.168.0.1* (the internet router) can be reached through the local network card with address *192.168.0.100*.
+- The *Metric* indicates the associated cost of using the indicated route. This is useful for determining the efficiency of a certain route from two points in a network. In this example, it is more efficient to communicate with the computer itself through the use of address *127.0.0.1* (called localhost) than it would be through *192.168.0.100* (the IP address of the local network card).
+
+** Packet switching
+Is a method of grouping data into packets that are transmitted over a digital network. Packets are made of a header and a payload. Data in the header is used by networking hardware to direct the packet to its destination, where the payload is extracted and used by an operating system, application software, or higher layer protocols. Packet switching (conmutación de paquetes) is the primary basis for data communications in computer networks worldwide.
+
+Packet switching allows delivery of variable bit rate data streams, realized as sequences of packets, over a computer network which allocates transmission resources as needed using statistical multiplexing or dynamic bandwidth allocation techniques. As they traverse networking hardware, such as switches and routers, packets are received, buffered, queued, and retransmitted (stored and forwarded), resulting in variable latency and throughput depending on the link capacity and the traffic load on the network. Packets are normally forwarded by intermediate network nodes asynchronously using first-in, first-out buffering, but may be forwarded according to some scheduling discipline for fair queuing, traffic shaping, or for differentiated or guaranteed quality of service, such as weighted fair queuing or leaky bucket.
+
+A packet switch has four components: input ports, output ports, routing processor, and switching fabric.
+
+** IP fragmentation
+Is an Internet Protocol (IP) process that breaks packets into smaller pieces (fragments), so that the resulting pieces can pass through a link with a smaller maximum transmission unit (MTU) than the original packet size. The fragments are reassembled by the receiving host.
+
+Under IPv4, a router that receives a network packet larger than the next hop's MTU has two options: drop the packet if the Don't Fragment (DF) flag bit is set in the packet's header and send an Internet Control Message Protocol (ICMP) message which indicates the condition Fragmentation Needed (Type 3, Code 4), or fragment the packet and send it over the link with a smaller MTU. Although originators may produce fragmented packets, IPv6 routers do not have the option to fragment further. Instead, network equipment is required to deliver any IPv6 packets or packet fragments smaller than or equal to 1280 bytes and IPv6 hosts are required to determine the optimal MTU through Path MTU Discovery before sending packets.
+
+** Firewall
+Is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. A firewall typically establishes a barrier between a trusted network and an untrusted network, such as the Internet.
+
+Firewalls are categorized as a network-based or a host-based system. Network-based firewalls are positioned between two or more networks, typically between the local area network (LAN) and wide area network (WAN), their basic function is to control the flow of data between connected networks. They are either a software appliance running on general-purpose hardware, a hardware appliance running on special-purpose hardware, or a virtual appliance running on a virtual host controlled by a hypervisor. Firewall appliances may also offer non firewall functionality, such as DHCP or VPN services. Host-based firewalls are deployed directly on the host itself to control network traffic or other computing resources. This can be a daemon or service as a part of the operating system or an agent application for protection.
+
+The first reported type of network firewall is called a packet filter, which inspects packets transferred between computers. The firewall maintains an access-control list which dictates what packets will be looked at and what action should be applied, if any, with the default action set to silent discard. Three basic actions regarding the packet consist of a silent discard, discard with [[ICMP][Internet Control Message Protocol]] or TCP reset response to the sender, and forward to the next hop. Packets may be filtered by source and destination IP addresses, protocol, source and destination ports.
+
+* Protocols
+** IP
+The Internet Protocol is the network layer communications protocol in the [[Internet Protocol Suite TCP/IP][Internet protocol suite]] for relaying datagrams across network boundaries. Its routing function enables internetworking, and essentially establishes the Internet.
+
+The Internet Protocol is responsible for addressing host interfaces, encapsulating data into datagrams (including fragmentation and reassembly) and routing datagrams from a source host interface to a destination host interface across one or more IP networks. For these purposes, the Internet Protocol defines the format of packets and provides an addressing system.
+
+Each datagram has two components: a header and a payload. The IP header includes source IP address, destination IP address, and other metadata needed to route and deliver the datagram. The payload is the data that is transported.
+
+IP addressing entails the assignment of IP addresses and associated parameters to host interfaces. The address space is divided into subnetworks, involving the designation of network prefixes. IP routing is performed by all hosts, as well as routers, whose main function is to transport packets across network boundaries. Routers communicate with one another via specially designed routing protocols, either interior gateway protocols or exterior gateway protocols, as needed for the topology of the network.
+
+** TCP
+*** Introduction
+The Transmission Control Protocol is one of the main protocols of the [[Internet Protocol Suite TCP/IP][Internet protocol suite]]. It originated in the initial network implementation in which it complemented the [[IP][Internet Protocol]] (IP). Therefore, the entire suite is commonly referred to as TCP/IP. TCP provides reliable, ordered, and error-checked delivery of a stream of octets (bytes) between applications running on hosts communicating via an IP network. Major internet applications such as the World Wide Web, email, remote administration, and file transfer rely on TCP, which is part of the Transport Layer of the TCP/IP suite. SSL/TLS often runs on top of TCP.
+
+TCP is connection-oriented, and a connection between client and server is established before data can be sent. The server must be listening (passive open) for connection requests from clients before a connection is established. Three-way handshake (active open), retransmission, and error detection adds to reliability but lengthens latency. TCP employs network congestion avoidance. However, there are vulnerabilities in TCP, including denial of service, connection hijacking, TCP veto, and reset attack.
+
+TCP is a reliable byte stream delivery service which guarantees that all bytes received will be identical and in the same order as those sent. Since packet transfer by many networks is not reliable, TCP achieves this using a technique known as positive acknowledgement with re-transmission. This requires the receiver to respond with an acknowledgement message as it receives the data. The sender keeps a record of each packet it sends and maintains a timer from when the packet was sent. The sender re-transmits a packet if the timer expires before receiving the acknowledgement. The timer is needed in case a packet gets lost or corrupted.
+
+While IP handles actual delivery of the data, TCP keeps track of segments - the individual units of data transmission that a message is divided into for efficient routing through the network. For example, when an HTML file is sent from a web server, the TCP software layer of that server divides the file into segments and forwards them individually to the internet layer in the network stack. The internet layer software encapsulates each TCP segment into an IP packet by adding a header that includes (among other data) the destination IP address. When the client program on the destination computer receives them, the TCP software in the transport layer re-assembles the segments and ensures they are correctly ordered and error-free as it streams the file contents to the receiving application.
+
+Transmission Control Protocol accepts data from a data stream, divides it into chunks, and adds a TCP header creating a TCP segment. The TCP segment is then encapsulated into an Internet Protocol (IP) datagram, and exchanged with peers.
+
+*** Operation
+**** Intro
+TCP protocol operations may be divided into three phases. Connection establishment is a multi-step handshake process that establishes a connection before entering the data transfer phase. After data transfer is completed, the connection termination closes the connection and releases all allocated resources.
+
+**** Connection establishment
+Before a client attempts to connect with a server, the server must first bind to and listen at a port to open it up for connections: this is called a passive open. Once the passive open is established, a client may establish a connection by initiating an active open using the three-way (or 3-step) handshake:
+
+  1. SYN: The active open is performed by the client sending a SYN to the server. The client sets the segment's sequence number to a random value A.
+  2. SYN-ACK: In response, the server replies with a SYN-ACK. The acknowledgment number is set to one more than the received sequence number i.e. A+1, and the sequence number that the server chooses for the packet is another random number, B.
+  3. ACK: Finally, the client sends an ACK back to the server. The sequence number is set to the received acknowledgment value i.e. A+1, and the acknowledgment number is set to one more than the received sequence number i.e. B+1.
+
+Steps 1 and 2 establish and acknowledge the sequence number for one direction. Steps 2 and 3 establish and acknowledge the sequence number for the other direction. Following the completion of these steps, both the client and server have received acknowledgments and a full-duplex communication is established.
+
+**** Connection termination
+The connection termination phase uses a four-way handshake, with each side of the connection terminating independently. When an endpoint wishes to stop its half of the connection, it transmits a FIN packet, which the other end acknowledges with an ACK. Therefore, a typical tear-down requires a pair of FIN and ACK segments from each TCP endpoint. After the side that sent the first FIN has responded with the final ACK, it waits for a timeout before finally closing the connection, during which time the local port is unavailable for new connections; this state lets the TCP client resend the final acknowledgement to the server in case the ACK is lost in transit. The time duration is implementation-dependent, but some common values are 30 seconds, 1 minute, and 2 minutes. After the timeout, the client enters the CLOSED state and the local port becomes available for new connections.
+
+It is also possible to terminate the connection by a 3-way handshake, when host A sends a FIN and host B replies with a FIN & ACK (combining two steps into one) and host A replies with an ACK.
+
+Some operating systems, such as Linux and HP-UX,[citation needed] implement a half-duplex close sequence. If the host actively closes a connection, while still having unread incoming data available, the host sends the signal RST (losing any received data) instead of FIN. This assures that a TCP application is aware there was a data loss.
+
+A connection can be in a half-open state, in which case one side has terminated the connection, but the other has not. The side that has terminated can no longer send any data into the connection, but the other side can. The terminating side should continue reading the data until the other side terminates as well.
+
+**** Resource usage
+Most implementations allocate an entry in a table that maps a session to a running operating system process. Because TCP packets do not include a session identifier, both endpoints identify the session using the client's address and port. Whenever a packet is received, the TCP implementation must perform a lookup on this table to find the destination process. Each entry in the table is known as a Transmission Control Block or TCB. It contains information about the endpoints (IP and port), status of the connection, running data about the packets that are being exchanged and buffers for sending and receiving data.
+
+The number of sessions in the server side is limited only by memory and can grow as new connections arrive, but the client must allocate an ephemeral port before sending the first SYN to the server. This port remains allocated during the whole conversation and effectively limits the number of outgoing connections from each of the client's IP addresses. If an application fails to properly close unrequired connections, a client can run out of resources and become unable to establish new TCP connections, even from other applications.
+
+Both endpoints must also allocate space for unacknowledged packets and received (but unread) data.
+
+**** Data transfer
+  - Ordered data transfer: the destination host rearranges segments according to a sequence number.
+  - Retransmission of lost packets: any cumulative stream not acknowledged is retransmitted.
+  - Error-free data transfer: corrupted packets are treated as lost and are retransmitted.
+  - Flow control: limits the rate a sender transfers data to guarantee reliable delivery. The receiver continually hints the sender on how much data can be received. When the receiving host's buffer fills, the next acknowledgment suspends the transfer and allows the data in the buffer to be processed.
+  - Congestion control: lost packets (presumed due to congestion) trigger a reduction in data delivery rate.
+
+** UDP
+The User Datagram Protocol is one of the core communication protocols of the [[Internet Protocol Suite TCP/IP][Internet protocol suite]] used to send messages (transported as datagrams in packets) to other hosts on an [[IP][Internet Protocol]] (IP) network. Within an IP network, UDP does not require prior communication to set up communication channels or data paths.
+
+UDP is suitable for purposes where error checking and correction are either not necessary or are performed in the application; UDP avoids the overhead of such processing in the protocol stack. Time-sensitive applications often use UDP because dropping packets is preferable to waiting for packets delayed due to retransmission, which may not be an option in a real-time system.
+
+** DNS
+The Domain Name System is a hierarchical and distributed naming system for computers, services, and other resources in the Internet or other Internet Protocol (IP) networks. It associates various information with domain names (identification strings) assigned to each of the associated entities. Most prominently, it translates readily memorized domain names to the numerical IP addresses needed for locating and identifying computer services and devices with the underlying network protocols.
+
+The Internet maintains two principal namespaces, the domain name hierarchy and the IP address spaces. The Domain Name System maintains the domain name hierarchy and provides translation services between it and the address spaces. Internet name servers and a communication protocol implement the Domain Name System. A DNS name server is a server that stores the DNS records for a domain; a DNS name server responds with answers to queries against its database.
+
+** HTTP
+*** Definition
+The Hypertext Transfer Protocol is an application layer protocol in the Internet protocol suite model for distributed, collaborative, hypermedia information systems. HTTP is the foundation of data communication for the [[www][World Wide Web]], where hypertext documents include hyperlinks to other resources that the user can easily access, for example by a mouse click or by tapping the screen in a web browser.
+
+*** Request syntax
+A client sends request messages to the server, which consist of:
+
+  - a *request line*, consisting of the case-sensitive request method, a space, the requested URL, another space, the protocol version, a carriage return, and a line feed, e.g.:
+
+#+begin_src
+
+GET /images/logo.png HTTP/1.1
+
+#+end_src
+
+  - zero or more request header fields (at least 1 or more headers in case of HTTP/1.1), each consisting of the case-insensitive field name, a colon, optional leading whitespace, the field value, an optional trailing whitespace and ending with a carriage return and a line feed, e.g.:
+
+#+begin_src
+
+Host: www.example.com
+Accept-Language: en
+
+#+end_src
+
+  - an empty line, consisting of a carriage return and a line feed;
+  - an optional message body.
+
+In the HTTP/1.1 protocol, all header fields except ~Host: hostname~ are optional.
+
+*** Request methods
+**** Introduction
+HTTP defines methods to indicate the desired action to be performed on the identified resource. What this resource represents, whether pre-existing data or data that is generated dynamically, depends on the implementation of the server. Often, the resource corresponds to a file or the output of an executable residing on the server.
+
+All general-purpose web servers are required to implement at least the GET and HEAD methods, and all other methods are considered optional by the specification.
+
+*Safe methods*:
+The methods GET, HEAD, OPTIONS, and TRACE are defined as safe. In other words, safe methods are intended to be read-only. They do not exclude side effects though, such as appending request information to a log file or charging an advertising account, since they are not requested by the client, by definition.
+
+In contrast, the methods POST, PUT, DELETE, CONNECT, and PATCH are not safe. They may modify the state of the server or have other effects such as sending an email.
+
+*Cacheable methods*:
+A request method is cacheable if responses to requests with that method may be stored for future reuse. The methods GET, HEAD, and POST are defined as cacheable.
+
+In contrast, the methods PUT, DELETE, CONNECT, OPTIONS, TRACE, and PATCH are not cacheable.
+
+**** GET
+The GET method requests that the target resource transfer a representation of its state. GET requests should only retrieve data and should have no other effect.
+
+**** HEAD
+The HEAD method requests that the target resource transfer a representation of its state, as for a GET request, but without the representation data enclosed in the response body. This is useful for retrieving the representation metadata in the response header, without having to transfer the entire representation. Uses include checking whether a page is available through the status code and quickly finding the size of a file (Content-Length).
+
+**** POST
+The POST method requests that the target resource process the representation enclosed in the request according to the semantics of the target resource. For example, it is used for posting a message to an Internet forum, subscribing to a mailing list, or completing an online shopping transaction.
+
+**** PUT
+The PUT method requests that the target resource create or update its state with the state defined by the representation enclosed in the request. A distinction from POST is that the client specifies the target location on the server.
+
+**** DELETE
+The DELETE method requests that the target resource delete its state.
+
+**** CONNECT
+The CONNECT method requests that the intermediary establish a TCP/IP tunnel to the origin server identified by the request target. It is often used to secure connections through one or more HTTP proxies with TLS.
+
+Se utiliza para saber si se tiene acceso a un host, no necesariamente la petición llega al servidor, este método se utiliza principalmente para saber si un proxy nos da acceso a un host bajo condiciones especiales, como por ejemplo "corrientes" de datos bidireccionales encriptadas (como lo requiere SSL).
+
+**** OPTIONS
+The OPTIONS method requests that the target resource transfer the HTTP methods that it supports. This can be used to check the functionality of a web server by requesting '*' instead of a specific resource.
+
+**** TRACE
+The TRACE method requests that the target resource transfer the received request in the response body. That way a client can see what (if any) changes or additions have been made by intermediaries.
+
+**** PATCH
+The PATCH method requests that the target resource modify its state according to the partial update defined in the representation enclosed in the request. This can save bandwidth by updating a part of a file or document without having to transfer it entirely.
+
+Su función es la misma que PUT, el cual sobrescribe completamente un recurso.
+
+*** Response syntax
+A server sends response messages to the client, which consist of:
+
+  - a status line, consisting of the protocol version, a space, the response status code, another space, a possibly empty reason phrase, a carriage return and a line feed, e.g.:
+
+#+begin_src
+
+HTTP/1.1 200 OK
+
+#+end_src
+
+  - zero or more response header fields, each consisting of the case-insensitive field name, a colon, optional leading whitespace, the field value, an optional trailing whitespace and ending with a carriage return and a line feed, e.g.:
+
+#+begin_src
+
+Content-Type: text/html
+
+#+end_src
+
+-  an empty line, consisting of a carriage return and a line feed;
+-  an optional message body.
+
+*** Response status codes
+- ~1XX~ (informational)
+    The request was received, continuing process.
+
+- ~2XX~ (successful)
+    The request was successfully received, understood, and accepted. ~200~ - *OK*, ~201~ - OK *created*
+
+- ~3XX~ (redirection)
+    Further action needs to be taken in order to complete the request / redirect. ~301~ - *Moved to new URL*, ~304~ - *Not modified (cached version)*
+
+- ~4XX~ (client error)
+    The request contains bad syntax or cannot be fulfilled. ~400~ - *Bad request*, ~401~ - *Unauthorized*, ~404~ - *Not found*
+
+- ~5XX~ (server error)
+    The server failed to fulfill an apparently valid request. ~500~ - *Internal server error*
+
+*** HTTPS
+Hypertext Transfer Protocol Secure is an extension of the Hypertext Transfer Protocol (HTTP). It uses encryption for secure communication over a computer network, and is widely used on the Internet. In HTTPS, the communication protocol is encrypted using Transport Layer Security (TLS) or, formerly, Secure Sockets Layer (SSL).
+
+** ICMP
+Internet Control Message Protocol is a supporting protocol in the Internet protocol suite. It is used by network devices, including routers, to send error messages and operational information indicating success or failure when communicating with another IP address, for example, an error is indicated when a requested service is not available or that a host or router could not be reached. ICMP differs from transport protocols such as TCP and UDP in that it is not typically used to exchange data between systems, nor is it regularly employed by end-user network applications (with the exception of some diagnostic tools like ping and traceroute).
+
+ICMP errors are directed to the source IP address of the originating packet. For example, every device (such as an intermediate router) forwarding an IP datagram first decrements the time to live (TTL) field in the IP header by one. If the resulting TTL is 0, the packet is discarded and an ICMP time exceeded in transit message is sent to the datagram's source address.
+
+Many commonly used network utilities are based on ICMP messages. The traceroute command can be implemented by transmitting IP datagrams with specially set IP TTL header fields, and looking for ICMP time exceeded in transit and Destination unreachable messages generated in response. The related ping utility is implemented using the ICMP echo request and echo reply messages.
+
+** DHCP
+The Dynamic Host Configuration Protocol is a network management protocol used on Internet Protocol (IP) networks for automatically assigning IP addresses and other communication parameters to devices connected to the network using a client–server architecture.
+
+The technology eliminates the need for individually configuring network devices manually, and consists of two network components, a centrally installed network DHCP server and client instances of the protocol stack on each computer or device. When connected to the network, and periodically thereafter, a client requests a set of parameters from the server using DHCP.
+
+Internet Protocol (IP) defines how devices communicate within and across local networks on the Internet. A DHCP server can manage IP settings for devices on its local network, e.g., by assigning IP addresses to those devices automatically and dynamically.
+
+** SSH
+The Secure Shell Protocol is a cryptographic network protocol for operating network services securely over an unsecured network. Its most notable applications are remote login and command-line execution.
+
+SSH applications are based on a client–server architecture, connecting an SSH client instance with an SSH server. SSH operates as a layered protocol suite comprising three principal hierarchical components: the transport layer provides server authentication, confidentiality, and integrity; the user authentication protocol validates the user to the server; and the connection protocol multiplexes the encrypted tunnel into multiple logical communication channels.
+
+** TLS
+Transport Layer Security is a cryptographic protocol designed to provide communications security over a computer network. The protocol is widely used in applications such as email, instant messaging, and voice over IP, but its use in securing HTTPS remains the most publicly visible.
+
+The TLS protocol aims primarily to provide security, including privacy (confidentiality), integrity, and authenticity through the use of cryptography, such as the use of certificates, between two or more communicating computer applications. It runs in the presentation layer and is itself composed of two layers: the TLS record and the TLS handshake protocols.
+
+Since applications can communicate either with or without TLS (or SSL), it is necessary for the client to request that the server set up a TLS connection. One of the main ways of achieving this is to use a different port number for TLS connections. Port 80 is typically used for unencrypted HTTP traffic while port 443 is the common port used for encrypted HTTPS traffic. Another mechanism is to make a protocol-specific STARTTLS request to the server to switch the connection to TLS – for example, when using the mail and news protocols.
+
+Once the client and server have agreed to use TLS, they negotiate a stateful connection by using a handshaking procedure. The protocols use a handshake with an asymmetric cipher to establish not only cipher settings but also a session-specific shared key with which further communication is encrypted using a symmetric cipher. During this handshake, the client and server agree on various parameters used to establish the connection's security.
+
+Los certificados SSL son los que permiten que los sitios web cambien de HTTP a HTTPS, que es más seguro. Un certificado SSL es un archivo de datos alojado en el servidor de origen de un sitio web. Los certificados SSL hacen posible la encriptación SSL/TLS, y contienen la clave pública del sitio web, y la identidad del sitio web, junto con información relacionada. Los dispositivos que intenten comunicarse con el servidor de origen harán referencia a este archivo para obtener la clave pública y verificar la identidad del servidor.
+
+* Models
+** Internet Protocol Suite TCP/IP
+*** Introduction
+The Internet protocol suite commonly known as TCP/IP, is a framework for organizing the set of communication protocols used in the Internet and similar computer networks according to functional criteria. The foundational protocols in the suite are the Transmission Control Protocol (TCP), the User Datagram Protocol (UDP), and the Internet Protocol (IP).
+
+The Internet protocol suite is a model of networking developed contemporarily to the OSI model, and was funded primarily by the U.S. Department of Defense. It was the foundation for the development of the Internet. It assumed the presence of generic physical links and focused primarily on the software layers of communication, with a similar but much less rigorous structure than the OSI model.
+
+The Internet protocol suite provides end-to-end data communication specifying how data should be packetized, addressed, transmitted, routed, and received. This functionality is organized into four abstraction layers, which classify all related protocols according to each protocol's scope of networking. An implementation of the layers for a particular application forms a protocol stack.
+
+  - the application layer :: providing process-to-process data exchange for applications.
+  - the transport layer :: handling host-to-host communication
+  - the internet layer :: providing internetworking between independent networks
+  - the link layer :: containing communication methods for data that remains within a single network segment (link)
+
+|   | /Layer/             | /Protocol/   | /PDU/              |
+|---+-------------------+------------+------------------|
+| /4/ | Application layer | HTTP - SSH | Undefined        |
+| /3/ | Transport layer   | TCP - UDP  | Segment,Datagram |
+| /2/ | Internet layer    | ICMP - ARP | Packet           |
+| /1/ | Link layer        | PPP - MAC  | Frame            |
+
+Despite using a different concept for layering than the OSI model, these layers are often compared with the OSI layering scheme in the following manner:
+  -  The Internet application layer maps to the OSI application layer, presentation layer, and most of the session layer.
+  -  The TCP/IP transport layer maps to the graceful close function of the OSI session layer as well as the OSI transport layer.
+  -  The internet layer performs functions as those in a subset of the OSI network layer.
+  -  The link layer corresponds to the OSI data link layer and may include similar functions as the physical layer, as well as some protocols of the OSI's network layer.
+
+*** Application layer
+Is the scope within which applications, or processes, create user data and communicate this data to other applications on another or the same host.
+
+The applications make use of the services provided by the underlying lower layers, especially the transport layer which provides reliable or unreliable pipes to other processes. The communications partners are characterized by the application architecture, such as the client–server model and peer-to-peer networking. Processes are addressed via ports which essentially represent services.
+
+In the OSI model, the definition of the application layer is narrower in scope. The OSI model defines the application layer as only the interface responsible for communicating with host-based and user-facing applications. OSI then explicitly distinguishes the functionality of two additional layers, the session layer and presentation layer, as separate levels below the application layer and above the transport layer. OSI specifies a strict modular separation of functionality at these layers and provides protocol implementations for each. In contrast, the Internet Protocol Suite compiles these functions into a single layer.
+
+*Protocols*: [[DNS]], ~SMTP~, ~FTP~, ~SSH~, [[HTTP]], [[TLS][TLS/SSL]]...
+
+*** Transport layer
+**** Definition
+Performs host-to-host communications on either the local network or remote networks separated by routers. The protocols of this layer provide end-to-end communication services for applications.
+
+It provides a channel for the communication needs of applications. The best-known transport protocol of the Internet protocol suite is the Transmission Control Protocol (TCP). It is used for connection-oriented transmissions, provides flow-control, connection establishment, and reliable transmission of data, whereas the connectionless User Datagram Protocol (UDP) is used for simpler messaging transmissions, providing an unreliable connectionless datagram service. TCP is the more complex protocol, due to its stateful design incorporating reliable transmission and data stream services. Together, TCP and UDP comprise essentially all traffic on the Internet and are the only protocols implemented in every major operating system. Additional transport layer protocols that have been defined and implemented include the Datagram Congestion Control Protocol (DCCP) and the Stream Control Transmission Protocol (SCTP).
+
+The transport layer is responsible for delivering data to the appropriate application process on the host computers. This involves statistical multiplexing of data from different application processes, i.e. forming data segments, and adding source and destination port numbers in the header of each transport layer data segment. Together with the source and destination IP address, the port numbers constitute a network socket, i.e. an identification address of the process-to-process communication. In the OSI model, this function is supported by the session layer.
+
+In the OSI model the transport layer is often referred to as Layer 4, or L4, while numbered layers are not used in TCP/IP.
+
+*Protocols*: [[TCP]], [[UDP]], ~DCCP~, ~SCTP~, ...
+
+**** Services
+Transport layer services are conveyed to an application via a programming interface to the transport layer protocols. The services may include the following features:
+
+  - Connection-oriented communication :: It is normally easier for an application to interpret a connection as a data stream rather than having to deal with the underlying connection-less models, such as the datagram model of the User Datagram Protocol (UDP) and of the Internet Protocol (IP).
+
+  - Same order delivery :: The network layer doesn't generally guarantee that packets of data will arrive in the same order that they were sent, but often this is a desirable feature. This is usually done through the use of segment numbering, with the receiver passing them to the application in order. This can cause head-of-line blocking.
+
+  - Reliability :: Packets may be lost during transport due to network congestion and errors. By means of an error detection code, such as a checksum, the transport protocol may check that the data is not corrupted, and verify correct receipt by sending an ACK or NACK message to the sender. Automatic repeat request schemes may be used to retransmit lost or corrupted data.
+
+  - Flow control :: The rate of data transmission between two nodes must sometimes be managed to prevent a fast sender from transmitting more data than can be supported by the receiving data buffer, causing a buffer overrun. This can also be used to improve efficiency by reducing buffer underrun.
+
+  - Congestion avoidance :: Congestion control can control traffic entry into a telecommunications network, so as to avoid congestive collapse by attempting to avoid oversubscription of any of the processing or link capabilities of the intermediate nodes and networks and taking resource reducing steps, such as reducing the rate of sending packets. For example, automatic repeat requests may keep the network in a congested state; this situation can be avoided by adding congestion avoidance to the flow control, including slow start. This keeps the bandwidth consumption at a low level in the beginning of the transmission, or after packet retransmission.
+
+  - Multiplexing :: Ports can provide multiple endpoints on a single node. For example, the name on a postal address is a kind of multiplexing and distinguishes between different recipients of the same location. Computer applications will each listen for information on their own ports, which enables the use of more than one network service at the same time. It is part of the transport layer in the TCP/IP model, but of the session layer in the OSI model.
+
+*** Internet layer
+Is a group of internetworking methods, protocols, and specifications that are used to transport network packets from the originating host across network boundaries; if necessary, to the destination host specified by an IP address.
+
+It provides a uniform networking interface that hides the actual [[Network topology][topology]] (layout) of the underlying network connections. It is therefore also the layer that establishes internetworking. Indeed, it defines and establishes the Internet. This layer defines the addressing and routing structures used for the TCP/IP protocol suite. The primary protocol in this scope is the Internet Protocol, which defines IP addresses. Its function in routing is to transport datagrams to the next host, functioning as an IP router, that has the connectivity to a network closer to the final data destination.
+
+A common design aspect in the internet layer is the robustness principle: "Be liberal in what you accept, and conservative in what you send" as a misbehaving host can deny Internet service to many other users.
+
+The primary protocols in the internet layer are the [[IP][Internet Protocol]] ~IP~. It is implemented in two versions, ~IPv4~ and ~IPv6~. The Internet Control Message Protocol ~ICMP~ is primarily used for error and diagnostic functions. Different implementations exist for IPv4 and IPv6. The Internet Group Management Protocol ~IGMP~ is used by IPv4 hosts and adjacent IP multicast routers to establish multicast group memberships.
+
+*Protocols*: [[[[IP address][IP]] ~(IPv4 IPv6)~, [[ICMP]], ~IPsec~, ~IGMP~, ...
+
+*** Link layer
+Defines the networking methods within the scope of the local network link on which hosts communicate without intervening routers. This layer includes the protocols used to describe the local [[Network topology][network topology]] and the interfaces needed to affect the transmission of Internet layer datagrams to next-neighbor hosts.
+
+Despite the different semantics of layering between the Internet protocol suite and OSI model, the link layer is sometimes described as a combination of the OSI's data link layer (layer 2) that transfers data between nodes on a network segment across the physical layer, and physical layer (layer 1) that provides an electrical, mechanical, and procedural interface to the transmission medium. The shapes and properties of the electrical connectors, the frequencies to broadcast on, the line code to use and similar low-level parameters, are specified by the physical layer.
+
+The core protocols specified by the Internet Engineering Task Force IETF in this layer are the Address Resolution Protocol ~ARP~, the Reverse Address Resolution Protocol ~RARP~, and the Neighbor Discovery Protocol ~NDP~, which is a facility delivering similar functionality as ARP for IPv6.
+
+*Protocols*: ~Tunnels~, ~PPP~, ~MAC~, ...
+
+** OSI Model
+*** Introduction
+The Open Systems Interconnection model (OSI model) is a conceptual model that "provides a common basis for the coordination of standards development for the purpose of systems interconnection."
+
+The model partitions the flow of data in a communication system into seven abstraction layers to describe networked communication from the physical implementation of transmitting bits across a communications medium to the highest-level representation of data of a distributed application. Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are realized in all software development through all standardized communication protocols.
+
+Communication protocols enable an entity in one host to interact with a corresponding entity at the same layer in another host. Service definitions, like the OSI model, abstractly describe the functionality provided to a layer N by a layer N−1, where N is one of the seven layers of protocols operating in the local host.
+
+At each level N, two entities at the communicating devices (layer N peers) exchange [[PDU][protocol data units]] (PDUs) by means of a layer N protocol. Each PDU contains a payload, called the [[SDU][service data unit]] (SDU), along with protocol-related headers or footers.
+
+Data processing by two communicating OSI-compatible devices proceeds as follows:
+
+  1. The data to be transmitted is composed at the topmost layer of the transmitting device (layer N) into a protocol data unit (PDU).
+  2. The PDU is passed to layer N−1, where it is known as the service data unit (SDU).
+  3. At layer N−1 the SDU is concatenated with a header, a footer, or both, producing a layer N−1 PDU. It is then passed to layer N−2.
+  4. The process continues until reaching the lowermost level, from which the data is transmitted to the receiving device.
+  5. At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's header or footer until reaching the topmost layer, where the last of the data is consumed.
+
+|       |   | /Layer/              | /Protocol/        | /PDU/              |
+|-------+---+--------------------+-----------------+------------------|
+| Host  | /7/ | Application layer  | HTTP - DNS      | APDU             |
+|       | /6/ | Presentation layer | SSL - ASCII     | PPDU             |
+|       | /5/ | Session layer      | SOCKS - NetBIOS | SPDU             |
+|       | /4/ | Transport layer    | TCP - UDP       | Segment,Datagram |
+| Media | /3/ | Network layer      | IPv4 - ICMP     | Datagram         |
+|       | /2/ | Data link layer    | ARP - MAC       | Frame            |
+|       | /1/ | Physical layer     | USB - Bluetooth | Bit, Symbol      |
+
+*** Application layer
+The application layer is the layer of the OSI model that is closest to the end user, which means both the OSI application layer and the user interact directly with a software application that implements a component of communication between the client and server, such as File Explorer and Microsoft Word. Such application programs fall outside the scope of the OSI model unless they are directly integrated into the application layer through the functions of communication, as is the case with applications such as web browsers and email programs.
+
+Application-layer functions typically include file sharing, message handling, and database access, through the most common protocols at the application layer, known as HTTP, FTP, SMB/CIFS, TFTP, and SMTP. When identifying communication partners, the application layer determines the identity and availability of communication partners for an application with data to transmit. The most important distinction in the application layer is the distinction between the application-entity and the application. For example, a reservation website might have two application-entities: one using HTTP to communicate with its users, and one for a remote database protocol to record reservations. Neither of these protocols have anything to do with reservations. That logic is in the application itself. The application layer has no means to determine the availability of resources in the network.
+
+*Protocols*: [[DNS]], ~FTP~, [[HTTP]], ~NFS~, ~SMTP~, ~Telnet~, ~DHCP~, ~NETCONF~, ...
+
+*** Presentation layer
+The presentation layer establishes data formatting and data translation into a format specified by the application layer during the encapsulation of outgoing messages while being passed down the protocol stack, and possibly reversed during the deencapsulation of incoming messages when being passed up the protocol stack. For this very reason, outgoing messages during encapsulation are converted into a format specified by the application layer, while the conversion for incoming messages during deencapsulation are reversed.
+
+The presentation layer handles protocol conversion, data encryption, data decryption, data compression, data decompression, incompatibility of data representation between operating systems, and graphic commands. The presentation layer transforms data into the form that the application layer accepts, to be sent across a network.
+
+*Protocols*: ~MIME~, ~XDR~, ~ASN.1~, ~ASCII~, ~PGP~.
+
+*** Session layer
+La capa de sesión es la responsable de la apertura y cierre de comunicaciones entre dos dispositivos. Ese tiempo que transcurre entre la apertura de la comunicación y el cierre de esta se conoce como sesión. La capa de sesión garantiza que la sesión permanezca abierta el tiempo suficiente como para transferir todos los datos que se están intercambiando; tras esto, cerrará sin demora la sesión para evitar desperdicio de recursos.
+
+The session layer creates the setup, controls the connections, and ends the teardown, between two or more computers, which is called a "session". Since DNS and other Name Resolution Protocols operate in this part of the layer, common functions of the session layer include user logon (establishment), name lookup (management), and user logoff (termination) functions. Including this matter, authentication protocols are also built into most client software, such as FTP Client and NFS Client for Microsoft Networks. Therefore, the session layer establishes, manages and terminates the connections between the local and remote application. The session layer also provides for full-duplex, half-duplex, or simplex operation, and establishes procedures for checkpointing, suspending, restarting, and terminating a session between two related streams of data, such as an audio and a video stream in a web-conferencing application.
+
+La capa de sesión también sincroniza la transferencia de datos utilizando puntos de control. Por ejemplo, si un archivo de 100 megabytes está transfiriéndose, la capa de sesión podría fijar un punto de control cada 5 megabytes. En caso de desconexión o caída tras haberse transferido, por ejemplo, 52 megabytes, la sesión podría reiniciarse a partir del último punto de control, con lo cual solo quedarían unos 50 megabytes pendientes de transmisión. Sin esos puntos de control, la transferencia en su totalidad tendría que reiniciarse desde cero. La mayoría de protocolos de aplicación actuales como SMTP o FTP se ocupan ellos mismos de las sesiones o, como HTTP, son protocolos sin estado.
+
+*Protocols*: ~Named pipe~, ~NetBIOS~, ~PPTP~, ~RTP~, ~SOCKS~, ...
+
+*** Transport layer
+The transport layer provides the functional and procedural means of transferring variable-length data sequences from a source host to a destination host from one application to another across a network, while maintaining the quality-of-service functions. Transport protocols may be connection-oriented or connectionless.
+
+This may require breaking large protocol data units or long data streams into smaller chunks called "segments", since the network layer imposes a maximum packet size called the maximum transmission unit (MTU), which depends on the maximum packet size imposed by all data link layers on the network path between the two hosts. The amount of data in a data segment must be small enough to allow for a network-layer header and a transport-layer header. For example, for data being transferred across Ethernet, the MTU is 1500 bytes, the minimum size of a TCP header is 20 bytes, and the minimum size of an IPv4 header is 20 bytes, so the maximum segment size is 1500−(20+20) bytes, or 1460 bytes.
+
+The transport layer also controls the reliability of a given link between a source and destination host through flow control, error control, and acknowledgments of sequence and existence. Some protocols are state- and connection-oriented. This means that the transport layer can keep track of the segments and retransmit those that fail delivery through the acknowledgment hand-shake system. The transport layer will also provide the acknowledgement of the successful data transmission and sends the next data if no errors occurred.
+
+La capa de transporte es también la responsable del control de flujo y del control de errores. El control de flujo sirve para determinar la velocidad óptima de transmisión que garantice que un emisor con velocidad de conexión alta no apabulle a un receptor cuya conexión sea lenta. La capa de transporte realiza un control de errores en el extremo receptor consistente en asegurarse de que todos los datos recibidos estén completos, y solicitará el reenvío en caso de que no.
+
+*Protocols*: [[TCP]], [[UDP]], ~SCTP~, ~DCCP~. ~SPX~.
+
+*** Network layer
+The network layer provides the functional and procedural means of transferring packets from one node to another connected in "different networks". A network is a medium to which many nodes can be connected, on which every node has an address and which permits nodes connected to it to transfer messages to other nodes connected to it by merely providing the content of a message and the address of the destination node and letting the network find the way to deliver the message to the destination node, possibly routing it through intermediate nodes. If the message is too large to be transmitted from one node to another on the data link layer between those nodes, the network may implement message delivery by splitting the message into several fragments at one node, sending the fragments independently, and reassembling the fragments at another node. It may, but does not need to, report delivery errors.
+
+Posee dos tipos de servicio: *Servicios no orientados a la conexión (CLNS)*: donde cada paquete debe llevar la dirección destino, y con cada uno, los nodos de la red deciden el camino que se debe seguir y *Servicios orientados a la conexión (CONS)*: donde sólo el primer paquete de cada mensaje tiene que llevar la dirección destino. Con este paquete se establece la ruta que deberán seguir todos los paquetes pertenecientes a esta conexión. Cuando llega un paquete que no es el primero se identifica a que conexión pertenece y se envía por el enlace de salida adecuado, según la información que se generó con el primer paquete y que permanece almacenada en cada conmutador o nodo.
+
+A number of layer-management protocols, a function defined in the management annex, ISO 7498/4, belong to the network layer. These include routing protocols, multicast group management, network-layer information and error, and network-layer address assignment. It is the function of the payload that makes these belong to the network layer, not the protocol that carries them.
+
+*Protocols*: [[[[IP address][IP]] ~(IPv4 IPv6)~, [[ICMP]], ~IPsec~, ~IGMP~, ~AppleTalk~, ...
+
+*** Data link layer
+The data link layer provides node-to-node data transfer—a link between two directly connected nodes. It detects and possibly corrects errors that may occur in the physical layer. It defines the protocol to establish and terminate a connection between two physically connected devices. It also defines the protocol for flow control between them.
+
+Es muy similar a la capa de red, salvo que lo que hace es facilitar la transferencia de datos entre dos dispositivos ubicados en una misma red, esta toma los paquetes de la capa de red y los rompe en trozos más pequeños denominados tramas. Al igual que la capa de red, la capa de enlace de datos es también la responsable del control de flujo y de errores respecto de esa comunicación dentro de la red (la capa de transporte solo realiza esto último respecto de comunicaciones entre redes).
+
+Es responsable de la transferencia fiable de información a través de un circuito de transmisión de datos. Su objetivo es conseguir que la información fluya, libre de errores, entre dos máquinas que estén conectadas directamente (servicio orientado a la conexión). Para lograr este objetivo tiene que montar bloques de información (llamados tramas en esta capa), dotarles de una dirección de capa de enlace (Dirección MAC), gestionar la detección o corrección de errores, y ocuparse del “control de flujo” entre equipos (para evitar que un equipo más rápido desborde a uno más lento). Recibe peticiones de la capa de red y utiliza los servicios de la capa física.
+
+IEEE 802 divides the data link layer into two sublayers:
+
+  - Medium access control (MAC) layer – is the layer that controls the hardware responsible for interaction with the wired, optical or wireless transmission medium. It's responsible for controlling how devices in a network gain access to a medium and permission to transmit data.
+  - Logical link control (LLC) layer – acts as an interface between the MAC sublayer and the network layer, it's provides flow control and multiplexing for the logical link. It's responsible for identifying and encapsulating network layer protocols, and controls error checking and frame synchronization.
+
+When sending data to another device on the network, the MAC sublayer encapsulates higher-level frames into frames appropriate for the transmission medium (i.e. the MAC adds a syncword preamble and also padding if necessary), adds a frame check sequence to identify transmission errors, and then forwards the data to the physical layer as soon as the appropriate channel access method permits it.
+
+*Protocols*: ~ATM~, [[ARP]], [[MAC address][MAC]], ~ITU-T G.hn DLL~, ~PPP~, ...
+
+*** Physical layer
+Is responsible for the transmission and reception of unstructured raw data between a device, such as a network interface controller, Ethernet hub, or network switch, and a physical transmission medium. It converts the digital bits into electrical, radio, or optical signals. Layer specifications define characteristics such as voltage levels, the timing of voltage changes, maximum transmission distances, physical connectors, among others. The components of a physical layer can be described in terms of a [[Network topology][network topology]] (bus, ring, mesh,...). Physical layer specifications are included in the specifications for the ubiquitous Bluetooth, Ethernet, and USB standards.
+
+The physical layer also specifies how encoding occurs over a physical signal, such as electrical voltage or a light pulse. For example, a 1 bit might be represented on a copper wire by the transition from a 0-volt to a 5-volt signal, whereas a 0 bit might be represented by the transition from a 5-volt to a 0-volt signal. As a result, common problems occurring at the physical layer are often related to the incorrect media termination, EMI or noise scrambling, and NICs and hubs that are misconfigured or do not work correctly.
+
+*Protocols*: ~DSL~, ~IEEE 802.11~, ~ITU-T G.hn PHY~, ~USB~, ~Bluetooth~, ...
+
+* Cryptographic
+** Key
+Is a piece of information, usually a string of numbers or letters that are stored in a file, which, when processed through a cryptographic algorithm, can encode or decode cryptographic data. Based on the used method, the key can be different sizes and varieties, but in all cases, the strength of the encryption relies on the security of the key being maintained. A key's security strength is dependent on its algorithm, the size of the key, the generation of the key, and the process of key exchange.
+
+The key is what is used to encrypt data from plaintext to ciphertext. There are different methods for utilizing keys and encryption: Symmetric cryptography and Asymmetric cryptography.
+
+“The keys used in public key cryptography have some mathematical structure. For example, public keys used in the RSA system are the product of two prime numbers. Thus public key systems require longer key lengths than symmetric systems for an equivalent level of security. 3072 bits is the suggested key length for systems based on factoring and integer discrete logarithms which aim to have security equivalent to a 128 bit symmetric cipher.”
+
+** Basic TLS handshake
+1. Negotiation phase:
+    - A client sends a *ClientHello* message specifying the highest TLS protocol version it supports, a random number, a list of suggested cipher suites and suggested compression methods. If the client is attempting to perform a resumed handshake, it may send a session ID. If the client can use Application-Layer Protocol Negotiation, it may include a list of supported application protocols, such as HTTP/2.
+    - The server responds with a *ServerHello* message, containing the chosen protocol version, a random number, cipher suite and compression method from the choices offered by the client. To confirm or allow resumed handshakes the server may send a session ID. The chosen protocol version should be the highest that both the client and server support. For example, if the client supports TLS version 1.1 and the server supports version 1.2, version 1.1 should be selected; version 1.2 should not be selected.
+    - The server sends its *Certificate* message (depending on the selected cipher suite, this may be omitted by the server).
+    - The server sends its *ServerKeyExchange* message (depending on the selected cipher suite, this may be omitted by the server). This message is sent for all DHE, ECDHE and DH_anon cipher suites.
+    - The server sends a *ServerHelloDone* message, indicating it is done with handshake negotiation.
+    - The client responds with a *ClientKeyExchange* message, which may contain a PreMasterSecret, public key, or nothing. (Again, this depends on the selected cipher.) This PreMasterSecret is encrypted using the public key of the server certificate.
+    - The client and server then use the random numbers and PreMasterSecret to compute a common secret, called the "master secret". All other key data (session keys such as IV, symmetric encryption key, MAC key) for this connection is derived from this master secret (and the client- and server-generated random values), which is passed through a carefully designed pseudorandom function.
+2.The client now sends a *ChangeCipherSpec* record, essentially telling the server, "Everything I tell you from now on will be authenticated (and encrypted if encryption parameters were present in the server certificate)." The ChangeCipherSpec is itself a record-level protocol with content type of 20.
+    - The client sends an authenticated and encrypted *Finished* message, containing a hash and MAC over the previous handshake messages.
+    - The server will attempt to decrypt the client's Finished message and verify the hash and MAC. If the decryption or verification fails, the handshake is considered to have failed and the connection should be torn down.
+3.Finally, the server sends a *ChangeCipherSpec*, telling the client, "Everything I tell you from now on will be authenticated (and encrypted, if encryption was negotiated)."
+    - The server sends its authenticated and encrypted *Finished* message.
+    - The client performs the same decryption and verification procedure as the server did in the previous step.
+4.Application phase: at this point, the "handshake" is complete and the application protocol is enabled, with content type of 23. Application messages exchanged between client and server will also be authenticated and optionally encrypted exactly like in their Finished message. Otherwise, the content type will return 25 and the client will not authenticate.
+
+*Session IDs*
+In an ordinary full handshake, the server sends a session id as part of the ServerHello message. The client associates this session id with the server's IP address and TCP port, so that when the client connects again to that server, it can use the session id to shortcut the handshake. In the server, the session id maps to the cryptographic parameters previously negotiated, specifically the "master secret". Both sides must have the same "master secret" or the resumed handshake will fail (this prevents an eavesdropper from using a session id). The random data in the ClientHello and ServerHello messages virtually guarantee that the generated connection keys will be different from in the previous connection. In the RFCs, this type of handshake is called an abbreviated handshake. It is also described in the literature as a restart handshake.
+
+** Symmetric-key algorithms
+Are algorithms for cryptography that use the same cryptographic keys for both the encryption of plaintext and the decryption of ciphertext. The keys may be identical, or there may be a simple transformation to go between the two keys. The keys, in practice, represent a shared secret between two or more parties that can be used to maintain a private information link. The requirement that both parties have access to the secret key is one of the main drawbacks of symmetric-key encryption, in comparison to public-key encryption (also known as asymmetric-key encryption). However, symmetric-key encryption algorithms are usually better for bulk encryption. With exception of the one-time pad they have a smaller key size, which means less storage space and faster transmission. Due to this, asymmetric-key encryption is often used to exchange the secret key for symmetric-key encryption.
+
+#+begin_src artist
+
+                    Secret key
+                      +----+
+              --------|    |--------
+              |       +----+       |
+              |                    |
+              |                    |
+              v                    v
+          Encryption          Decryption
+   +----+             +----+             +----+
+   |    |------------>|    |------------>|    |
+   +----+             +----+             +----+
+  Plaintext          Encrypted          Plaintext
+  document            document           document
+
+#+end_src
+
+** Public-key cryptography
+*** Definition
+Public-key cryptography, or asymmetric cryptography, is the field of cryptographic systems that use pairs of related keys. Each key pair consists of a public key and a corresponding private key. Key pairs are generated with cryptographic algorithms based on mathematical problems termed one-way functions. Security of public-key cryptography depends on keeping the private key secret; the public key can be openly distributed without compromising security.
+
+In a public-key encryption system, anyone with a public key can encrypt a message, yielding a ciphertext, but only those who know the corresponding private key can decrypt the ciphertext to obtain the original message.
+
+Compared to symmetric encryption, asymmetric encryption is rather slower than good symmetric encryption, too slow for many purposes. Today's cryptosystems (such as TLS, Secure Shell) use both symmetric encryption and asymmetric encryption, often by using asymmetric encryption to securely exchange a secret key which is then used for symmetric encryption.
+
+*** Example
+Supongase un baúl con un tipo especial de cerradura. Esta cerradura tiene tres estados en lugar de dos:
+
+A. Cerrado, llave girada hacia la izquierda.
+B. Desbloqueado, en el centro.
+C. Cerrado, con la llave girada hacia la derecha.
+
+En lugar de una llave, esta cerradura tiene dos llaves:
+
+- Llave n.º 1 solo puede girar hacia la izquierda
+- Llave n.º 2 solo puede girar a la derecha
+
+Esto significa que si el baúl está bloqueado y la llave se gira a la posición A, solo la llave n.º 2 puede desbloquearlo al girar a la derecha, a la posición B (desbloqueado). Si el baúl está bloqueado en la posición C, solo la llave n.º 1 puede desbloquearlo al girar la cerradura hacia la izquierda, hasta la posición B.
+
+En otras palabras, cualquiera de las dos llaves puede cerrar el baúl, pero una vez cerrado, solo la otra llave puede abrirlo.
+
+Ahora, supongamos que Bob hace varias decenas de copias de la llave n.º 2, la que solo gira a la derecha, y las comparte con todos sus conocidos y con cualquiera que quiera una copia, convirtiéndola en su llave pública. Se queda con la llave n.º 1 para sí mismo: es su llave privada, con esto Alice puede enviar a Bob datos confidenciales mediante el baúl y estar segura de que solo Bob podrá abrirlo. Una vez que Alice ha cerrado el baúl con la llave pública, que gira de izquierda a derecha, solo una llave que pueda girar de derecha a izquierda puede abrirlo. Eso significa que solo la llave privada de Bob puede abrirlo.
+
+** Diffie–Hellman key exchange
+*** Introduction
+Is a mathematical method of securely exchanging cryptographic keys over a public channel and was one of the first [[Public-key cryptography][public-key protocols]]. Traditionally, secure encrypted communication between two parties required that they first exchange keys by some secure physical means, such as paper key lists transported by a trusted courier. The Diffie–Hellman key exchange method allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric-key cipher.
+
+Although Diffie–Hellman key agreement itself is a non-authenticated key-agreement protocol, it provides the basis for a variety of authenticated protocols, and is used to provide forward secrecy in Transport Layer Security's ephemeral modes (referred to as EDH or DHE depending on the cipher suite).
+
+The method was followed shortly afterwards by RSA, an implementation of public-key cryptography using asymmetric algorithms.
+
+*** Cryptographic explanation
+The simplest and the original implementation, later formalized as Finite Field Diffie-Hellman in RFC 7919, of the protocol uses the multiplicative group of integers modulo $p$, where $p$ is prime, and $g$ is a primitive root modulo $p$. These two values are chosen in this way to ensure that the resulting shared secret can take on any value from $1$ to $p-1$.
+
+  1. Alice and Bob publicly agree to use a modulus $p = 23$ and base $g = 5$ (which is a primitive root modulo $23$).
+
+  2. Alice chooses a secret integer $a = 4$, then sends Bob $A =g^a \, mod \, p$
+       $A =  5^4 \, mod \, 23 = 4$  (in this example both $A$ and a have the same value $4$, but this is usually not the case)
+
+  3. Bob chooses a secret integer $b = 3$, then sends Alice $B = g^b  \, mod \, p$
+       $B =  5^3 \, mod \, 23 = 10$
+
+  4. Alice computes $s = B^a \, mod \, p$
+        $s =  10^4 \, mod \, 23 = 18$
+
+  5. Bob computes $s = A^b \, mod \, p$
+        $s =  4^3 \, mod \, 23 = 18$
+
+  6. Alice and Bob now share a secret (the number $18$).
+
+Both Alice and Bob have arrived at the same values because under mod $p$,
+
+$$A^b{\bmod p}=g^{ab}{\bmod p}=g^{ba}{\bmod p}=B^a{\bmod p}$$
+
+More specifically,
+
+$$(g^a{\bmod p})^b{\bmod p}=(g^b{\bmod p})^a{\bmod p}$$
+
+Only a and $b$ are kept secret. All the other values – $p$, $g$, $g^a \, mod \, p$, and $g^b \, mod \,p$ – are sent in the clear. The strength of the scheme comes from the fact that $g^{ab} \, mod \, p = g^{ba} \, mod \, p$ take extremely long times to compute by any known algorithm just from the knowledge of $p$, $g$, $g^a \, mod \, p$, and $g^b \, mod \, p$. Once Alice and Bob compute the shared secret they can use it as an encryption key, known only to them, for sending messages across the same open communications channel.
+
+Of course, much larger values of $a$, $b$, and $p$ would be needed to make this example secure, since there are only $23$ possible results of $n \, mod \, 23$. However, if $p$ is a prime of at least $600$ digits, then even the fastest modern computers using the fastest known algorithm cannot find a given only $g$, $p$ and $g^a \, mod \, p$. Such a problem is called the discrete logarithm problem. The computation of $g^a \, mod \, p$ is known as modular exponentiation and can be done efficiently even for large numbers. Note that g need not be large at all, and in practice is usually a small integer (like $2$, $3$, ...).
+
+*** Generalization to finite cyclic groups
+Here is a more general description of the protocol:
+
+  1. Alice and Bob agree on a natural number $n$ and a generating element $g$ in the finite cyclic group $G$ of order $n$. (This is usually done long before the rest of the protocol; $g$ is assumed to be known by all attackers.) The group $G$ is written multiplicatively.
+  2. Alice picks a random natural number $a$ with $1 < a < n$, and sends the element $g^a$ of $G$ to Bob.
+  3. Bob picks a random natural number $b$ with $1 < b < n$, and sends the element $g^b$ of $G$ to Alice.
+  4. Alice computes the element $(gb)^a = g^{ba}$ of $G$.
+  5. Bob computes the element $(ga)^b = g^{ab}$ of $G$.
+
+Both Alice and Bob are now in possession of the group element $g^{ab} = g^{ba}$, which can serve as the shared secret key. The group $G$ satisfies the requisite condition for secure communication as long as there is no efficient algorithm for determining $g^{ab}$ given $g$, $g^a$, and $g^b$.
+
+** Session keys
+Es una clave simétrica usada por las dos partes de una comunicación segura a través de TLS, después de que se haya realizado el protocolo de enlace TLS. Una vez que ambas partes han acordado un conjunto de claves de sesión, ya no hay necesidad de utilizar las claves públicas y privadas. TLS genera diferentes claves de sesión para cada una de las sesiones.
+
+Durante un protocolo de enlace TLS, tanto el cliente como el servidor se envían mutuamente datos aleatorios, que utilizan para hacer cálculos por separado y luego derivar las mismas claves de sesión. Se envían tres tipos de datos generados aleatoriamente de un lado a otro:
+
+- *Aleatorio del cliente*: es una cadena de bytes aleatoria que el cliente envía al servidor.
+- *Aleatorio del servidor*: es similar al aleatorio del cliente, excepto que el servidor lo envía al cliente.
+- *Secreto premaster*: se trata de otra cadena de datos. En algunas versiones del protocolo de enlace TLS, el cliente lo genera y lo envía al servidor encriptado con la clave pública; en otras versiones, el cliente y el servidor generan el secreto premaster por su cuenta, utilizando parámetros de algoritmo acordados para llegar al mismo resultado.
+
+El secreto maestro es el resultado final de combinar el aleatorio del cliente, el aleatorio del servidor y el secreto premaster mediante un algoritmo. Tanto el cliente como el servidor tienen esos tres mensajes, por lo que deberían llegar al mismo resultado para el secreto maestro.
+
+A continuación, el cliente y el servidor utilizan el secreto maestro para calcular varias claves de sesión que solo se utilizarán en esa sesión: 4 claves de sesión.
+
+Los 4 tipos de claves de sesión que se crean en cada protocolo de enlace TLS son:
+
+- *Clave de escritura del cliente*: es la clave que utiliza el cliente para encriptar sus mensajes. La clave de escritura del cliente es una clave simétrica, y la tienen tanto el cliente como el servidor. Esto permite que el servidor pueda desencriptar los mensajes del cliente utilizando la misma clave.
+- *Clave de escritura del servidor*: es igual que la clave de escritura del cliente, excepto que está en el lado del servidor.
+- *Clave MAC de escritura del cliente*:  o código de autenticación de mensajes, se utilizan para firmar digitalmente los mensajes. El servidor firma sus mensajes con la clave MAC de escritura del servidor y, cuando el cliente recibe el mensaje, puede comparar la clave MAC utilizada con su propio registro de la clave MAC del servidor para asegurarse de que sea legítima. El cliente firma sus mensajes con la clave MAC de escritura del cliente.
+- *Clave MAC de escritura del servidor*.
+
+Con cada nueva sesión de comunicación y nuevo protocolo de enlace TLS se crea un conjunto de 4 claves de sesión completamente nuevas. Habrá una clave de escritura del cliente diferente, una clave de escritura del servidor, y así sucesivamente, pero esos 4 tipos de claves se crean cada vez.
+
+A diferencia de la encriptación asimétrica, en la encriptación simétrica las dos partes de una conversación usan la misma clave. Tras el protocolo de enlace TLS, ambas partes utilizan las mismas claves de sesión para la encriptación. Una vez se utilizan las claves de sesión, las claves pública y privada dejan de usarse. Las claves de sesión son claves temporales que no se vuelven a utilizar una vez haya finalizado la sesión. Se creará un nuevo conjunto aleatorio de claves de sesión para la siguiente sesión.
+
+** SSL Handshake RSA
+1. El cliente envía al servidor un mensaje "hola" de texto sin formato que incluye la versión del protocolo que desea utilizar, una lista de conjuntos de cifrado compatibles y una breve cadena de datos aleatorios denominada "cadena aleatoria del cliente".
+2. El servidor responde (en texto sin formato) con su certificado SSL, su conjunto de cifrado de preferencia y una breve cadena diferente de datos aleatorios, denominada"cadena aleatoria del servidor".
+3. El cliente crea otro conjunto de datos aleatorios, llamado "secreto premaster". Tomando la clave pública del certificado SSL del servidor, el cliente encripta el secreto premaster y lo envía al servidor; solo alguien con la clave privada puede desencriptar el secreto premaster.
+4. El servidor desencripta el secreto premaster. Este el único momento en el que se usa la clave privada.
+5. Ahora tanto el cliente como el servidor tienen el valor aleatorio del cliente, el valor aleatorio del servidor y el secreto premaster. De manera independiente, combinan los tres datos para
+obtener las claves de sesión. Ambos deben obtener el mismo resultado y todas las comunicaciones posteriores durante la sesión se encriptan con esas nuevas claves.
+
+En el protocolo RSA no hay confidencialidad directa; si la clave privada se pone en riesgo, un atacante en ruta podría desencriptar las claves de sesión de conversaciones anteriores, porque puede desencriptar el secreto premaster, y los valores aleatorios de cliente y del servidor están en texto no cifrado. Combinando los tres, el atacante en ruta puede derivar cualquier clave de sesión.
