@@ -1394,6 +1394,7 @@ We use /any/ before nouns to refer to *indefinite or unknown quantities or an un
 
 - We use /any/ with comparative adjectives and adverbs.
   ~I’ll see if we can go *any* faster.~ (faster than we are going now)
+
 *** anyways
 Al final significa de todos modos.
 ~I knew it was dangerous. I did it *anyway*.~ Sabía que era peligroso. Lo hice de todos modos.
@@ -1401,72 +1402,20 @@ Al final significa de todos modos.
 Al principio significa en todo caso.
 ~Anyway, don't do it again.~ En todo cao, no lo vuelvas a hacer.
 
-*** o'clock
-**** What day is today?
-04/01/2023
-the first (1st) of April, 2023
-April first (1st), 2023
+*** before
+Is a preposition, an adverb and a conjunction. Before means earlier than the time or event mentioned:
+~Can you call me back *before* 5 pm, please?~
+~I met her just *before* she left.~
 
-**** What time is it?
-*minutes* + *hour*
-- It's + hour + o'clock :: hora en punto(solo aquí se usa /o'clock/), para enfatizar se usa /exactly/ o /on the dot/.
-  ~It's ten o'clock.~ 10:00 or ~It's exactly ten o'clock.~ or ~It's ten on the dot.~
+*Note*:
+- In writing, when we refer back to something that we have already written, we use above not before:
+  ~As the graph *above* shows, the rate of inflation has risen by 15%.~  +As the graph before...+
 
-- It's + a quarter past + hour :: pasado/después 15 minutos.
-  ~It's a quarter past ten.~ 10:15   +It's a quarter past ten o'clock.+
+-     When we refer to a period of time that is completed and which goes from a point in the past up to now, we use ago, not before:
+  ~When did you first meet? Ten years *ago* when we were in college.~  +Ten years before...+
 
-- It's + minutes + past + hour :: hora entre 0 y 29 minutos.
-  ~It's twenty past ten.~ 10:20
-
-- It's + half past + hour :: pasado 0 minutos.
-  ~It's half past ten.~ 10:30
-
-- It's + minutes + to + hour :: hora entre 31 y 59 minutos.
-  ~It's twenty to eleven.~ 10:40
-
-- It's + a quarter + to + hour :: a los 45 minutos.
-  ~It's a quarter to ten.~ 10:45
-
-| /Hour/ | /Analogue/                     | /Digital/        |
-|------+------------------------------+----------------|
-| 6:00 | *six* o’clock                  | six o’clock    |
-| 6:05 | /five/ past *six*                | six oh five    |
-| 6:15 | a /quarter/ past *six*           | six fifteen    |
-| 6:20 | /twenty/ past *six*              | six twenty     |
-| 6:30 | /half/ past *six*                | six thirty     |
-| 6:31 | /twenty-nine/ minutes to *seven* | six thirty-one |
-| 6:45 | a /quarter/ to *seven*           | six forty-five |
-| 6:50 | /ten/ to *seven*                 | six fifty      |
-
-*Notes*:
-- We use the expression in the /morning/afternoon/evening/ or /at night/ to avoid misunderstandings with a.m. and p.m.
-  ~I usually wake up at 6 o’clock *in the morning*.~
-
-- Some people find twelve o’clock confusing. Look at the examples below.
-  ~12:00~  →  ~midday/noon~  → ~twelve pm~  →  ~twelve noon~
-  ~00:00~  →  ~midnight~  → ~twelve am~  →  ~twelve midnight~
-
-**** Useful Vocabulary with Time Words
-| /Expression/      | /Example/                                  |
-|-----------------+------------------------------------------|
-| a moment ago    | He left a moment ago.                    |
-| now             | What is Lucy doing now?                  |
-| in a moment     | I’ll answer that question in a moment.   |
-| soon            | Michael and Madeline will be here soon.  |
-| later           | I’ll call you later.                     |
-| sooner or later | The truth will come out sooner or later. |
-| never           | Ruby has never seen snow.                |
-| always          | I always brush my teeth before bed.      |
-
-| /Expression/                   | /Example/                                            |
-|------------------------------+----------------------------------------------------|
-| in fifteen minutes           | I’ll be home in fifteen minutes.                   |
-| in three quarters of an hour | Dinner will be ready in three quarters of an hour. |
-| in half an hour              | Her ran 10 km in half an hour.                     |
-| in an hour                   | School finishes in an hour.                        |
-| in two hours                 | The shops closes in two hours.                     |
-| two hours ago                | I got here two hours ago.                          |
-| after three hours            | He was tired after three hours of writing.         |
+*** embrace
+to accept something enthusiastically.
 
 *** go
 - moving or traveling to a destination :: ~I think Jack has *gone to* the /bathroom/.~  -  ~We *went to* /Bali/ last year.~
@@ -1606,6 +1555,36 @@ When we use /home/ as an adverb we don't use the preposition /to/ (moving or tra
 - liken :: 	to say that *someone is similar to* or has the same qualities as someone else.
   ~Getting a tatto is often *likened* to being stung by 1000 bees.~
 
+*** mathematics
+/Mathematics/ is synonymous with /math/ and /math/ is more common.
+- En ingles no importa el número, los verbos en las matemáticas siempre son singulares ( ~nine is ...~   +nine are+ ). Se refiere al número en si no al número de cosas.
+- Igual siempre se dice /equals/ con la /s/ al final (es la /s/ de verbo en tercera persona no de plural).
+
+*Symbols*
+- + :: plus   ( ~2 + 2~ -> ~two plus two~ (dos mas dos) )
+- - :: minus   ( ~5 - 1~ -> ~five minus one~ (cinco menos uno) )
+- x :: times   ( ~2 x 5~ -> ~two times five~ (dos veces cinco) )
+- / :: divided by   ( ~5/2~ -> ~five divided by two~ (cinco entre 2) )
+- = :: equals   ( ~2 + 2 = 4~ -> ~two plus two equals four~ (dos mas dos es igual a cuatro) )
+- > :: greater than ( ~9 > 7~ -> ~nine is greater than seven~ (nueve es menor que siete) )
+- < :: less than
+
+*Verbs*
+- sumar :: add
+- restar :: subtract
+- multiplicar :: multiply
+- dividir :: divide
+
+*Nouns*
+- suma :: addition
+- resta :: subtraction
+- multiplicación :: multiplication
+- división :: division
+
+*Others*
+- operaciones matemáticas :: mathematical operations
+- operandos :: operands
+
 *** mean
 - understanding :: to explain or *ask what a word or phrase refers to*. We form questions with /mean/ with the auxiliary verb /do/. ("significado")
   ~What does ‘strike’ *mean*?~  +What means ‘strike’?+
@@ -1682,6 +1661,81 @@ Is used to show that one thing happens immediately after another thing. It is of
 When no sooner is used in front position, we invert the order of the auxiliary verb and subject. This is common in more formal and literary styles:
 
 [event 1] ~No sooner had they started their walk than~ [event 2] ~it started to rain.~
+
+*** o'clock
+**** What day is today?
+04/01/2023
+the first (1st) of April, 2023
+April first (1st), 2023
+
+**** What time is it?
+*minutes* + *hour*
+- It's + hour + o'clock :: hora en punto(solo aquí se usa /o'clock/), para enfatizar se usa /exactly/ o /on the dot/.
+  ~It's ten o'clock.~ 10:00 or ~It's exactly ten o'clock.~ or ~It's ten on the dot.~
+
+- It's + a quarter past + hour :: pasado/después 15 minutos.
+  ~It's a quarter past ten.~ 10:15   +It's a quarter past ten o'clock.+
+
+- It's + minutes + past + hour :: hora entre 0 y 29 minutos.
+  ~It's twenty past ten.~ 10:20
+
+- It's + half past + hour :: pasado 0 minutos.
+  ~It's half past ten.~ 10:30
+
+- It's + minutes + to + hour :: hora entre 31 y 59 minutos.
+  ~It's twenty to eleven.~ 10:40
+
+- It's + a quarter + to + hour :: a los 45 minutos.
+  ~It's a quarter to ten.~ 10:45
+
+| /Hour/ | /Analogue/                     | /Digital/        |
+|------+------------------------------+----------------|
+| 6:00 | *six* o’clock                  | six o’clock    |
+| 6:05 | /five/ past *six*                | six oh five    |
+| 6:15 | a /quarter/ past *six*           | six fifteen    |
+| 6:20 | /twenty/ past *six*              | six twenty     |
+| 6:30 | /half/ past *six*                | six thirty     |
+| 6:31 | /twenty-nine/ minutes to *seven* | six thirty-one |
+| 6:45 | a /quarter/ to *seven*           | six forty-five |
+| 6:50 | /ten/ to *seven*                 | six fifty      |
+
+*Notes*:
+- We use the expression in the /morning/afternoon/evening/ or /at night/ to avoid misunderstandings with a.m. and p.m.
+  ~I usually wake up at 6 o’clock *in the morning*.~
+
+- Some people find twelve o’clock confusing. Look at the examples below.
+  ~12:00~  →  ~midday/noon~  → ~twelve pm~  →  ~twelve noon~
+  ~00:00~  →  ~midnight~  → ~twelve am~  →  ~twelve midnight~
+
+**** Useful Vocabulary with Time Words
+| /Expression/      | /Example/                                  |
+|-----------------+------------------------------------------|
+| a moment ago    | He left a moment ago.                    |
+| now             | What is Lucy doing now?                  |
+| in a moment     | I’ll answer that question in a moment.   |
+| soon            | Michael and Madeline will be here soon.  |
+| later           | I’ll call you later.                     |
+| sooner or later | The truth will come out sooner or later. |
+| never           | Ruby has never seen snow.                |
+| always          | I always brush my teeth before bed.      |
+
+| /Expression/                   | /Example/                                            |
+|------------------------------+----------------------------------------------------|
+| in fifteen minutes           | I’ll be home in fifteen minutes.                   |
+| in three quarters of an hour | Dinner will be ready in three quarters of an hour. |
+| in half an hour              | Her ran 10 km in half an hour.                     |
+| in an hour                   | School finishes in an hour.                        |
+| in two hours                 | The shops closes in two hours.                     |
+| two hours ago                | I got here two hours ago.                          |
+| after three hours            | He was tired after three hours of writing.         |
+
+*** of
+*Notes*:
+- Cuando se usa la palabra /all/ con un pronombre se debe colocar /of/.
+  all of + noun (opcional)
+  all of + pronombre (obligatorio)
+  ~He ate all (*of*) my food.~ opcional
+  ~He ate all *of* it.~ obligatorio
 
 *** off
 - apagado ::
@@ -1887,6 +1941,20 @@ We use used to when we refer to things in the past which are no longer true. It 
 
 - ~There used to be.~ = Solía existir antes pero ya no.
 
+*** view
+- noun :: an opinion, belief, or idea, or a way of thinking about something.
+~Do you have any *views* about/on what we should do now?~
+
+- verb (have opinion) :: to have a particular opinion or way of thinking about someone or something.
+~A reporter asked the minister how he *viewed* recent events.~
+~If we *view* the problem from a different angle, a solution may become more obvious.~ 
+
+- verb (see) :: to watch something. To look at something in a complete or careful way.
+~There's a special area at the airport where you can *view* aircraft taking off and landing.~
+~We have two people coming to *view* the house this afternoon.~
+
+*Quora answer*: Thoughts after you observe a thing. Now what’s observe? Getting deeply involved in something is called observing that thing. Observe things around you, you would have deep thoughts then. Then people will ask you how you view-ed that something.
+
 *** whose
 It's always followed by a noun.
 
@@ -1983,8 +2051,8 @@ Adjective "vivo", "en vivo".
 
 *** all - each - every - everything
 **** all
-It must be followed by something. It is not used as a subject or object.
-~We drank *all* the wine.~
+Significa /todo/ de algo específico. It must be followed by something. It is not used as a subject or object.
+~We drank *all* the /wine/.~ El /wine/ es lo específico.
 ~I see him *all* day.~
 
 **** each
@@ -1998,7 +2066,8 @@ Singular. Refers to each object or people in a group.
 ~He read each and *every* book on the list.~ (/each/ and /every/ together for emphasis)
 
 **** everything
-Used as subject or object.
+Significa /todo/ lo que hay de todo. Used as subject or object.
+~I washed *everything* in the house.~ Se refiere a toda la casa en general, a todo lo que hay en la casa se lavo.
 ~Everything is fine.~
 
 *** all - entire/whole
@@ -2076,21 +2145,30 @@ Significa "demasiado" en estas formas:
 ~Your lesson was *very* helpful.~  +Your lesson was too helpful.+  -  ~That's *too* expensive. I can't buy it.~
 ~That's *too* delicious. Keep it away from me. I'm on a diet.~  -  ~I don't want to go out. I'm *too* tired.~
 
-*** although - even though - though
+*** although - though
 **** although
-In formal contexts and always at the beginning.
+/Although/ and /though/ meaning /in spite of something/. They are subordinating conjunctions. In formal contexts and always at the beginning.
 ~Although Tina was very tired, she couldn't sleep last night.~
 
-**** even though
-Más enfático.
-~Even though Tina was very tired, she couldn't sleep last night.~
+When the /although/though/ clause comes after a main clause, it can also mean ‘ *but* it is also true that …’:
+~Karen is coming to stay next week *although* I’m not sure what day she is coming.~
+~We didn’t make any profit *though* nobody knows why.~
 
 **** though
-Informal and neutral. Conjunction at the beginning. Adverb, usually at the end after a comma.
+/Although/ and /though/ meaning /in spite of something/. They are subordinating conjunctions. Informal and neutral. Conjunction at the beginning. Adverb, usually at the end after a comma.
 ~Though Tina was very tired, she couldn't sleep last night.~
+/Though/ is more common than /although/ in general and it is much more common than /although/ in speaking. For emphasis, we often use /even/ with /though/ (but not with /although/).
+~Even though Tina was very tired, she couldn't sleep last night.~
 
-Cuando se coloca al final significa lo mismo "aunque" debido a que mientras se hablaba se olvido decirlo al principio y se dice al final.
-~Tina was very tired, she couldn't sleep last night, though.~
+Especially in speaking, we can use /though/ (but not /although/ or /even though/) with a meaning similar to /however/ or /nevertheless/. In these cases, we usually put it at the end of a clause:
+~You have six hours in the airport between flights! - I don’t mind, *though*. I have lots of work to do. I’ll just bring my laptop with me.~
+~It’s expensive. - It’s nice, *though*.~
+Cuando se coloca al final significa /however/, se hace de esta manera debido a que mientras se hablaba se olvido decirlo al principio, entonces se dice al final.
+~Tina was very tired, she couldn't sleep last night, *though*.~
+
+/As though/ has a meaning very similar to /as if/. /As if/ is much more common than /as though/.
+~You look as though(as if) you have seen a ghost!~
+~He looks as though(as if) he hasn’t slept.~
 
 *** amount of - number of - quantity of
 **** amount of
@@ -2194,6 +2272,17 @@ To stay at home and do what you usually do.
 **** at the house
 Briefly at home to do something and then leave.
 ~Where are you? I'm *at the house*.~ (brevemente, hago algo y me voy)
+
+*** attempt - try
+**** attempt
+Has the connotation of being unsuccessful. Synonyms of try.
+~Few people knew that she had once *attempted* suicide.~ (suggest that she just thought)
+~She *attempted* to fix it.~ (shows she is trying but maybe the observer thinks she won't be able to fix it)
+
+**** try
+Make an effort to accomplish something.Synonyms of attempt.
+~Few people knew that she had once *tried* suicide.~ (suggest that she did)
+~She *tried* to fix it.~ (shows effort to fix it)
 
 *** awake - wake
 **** awake
@@ -2420,6 +2509,17 @@ Positive implies emphatic certainty, which may even become overconfidence or dog
 **** sure
 Sure, *the simplest and most general*, expresses mere absence of doubt.
 
+*** come across - run into
+**** run into
+/Run into/ means "*meet by chance*", and suggests more of a shock than /come across/.  We can use it when we meet people by chance.
+~I *ran into* an old school friend in town yesterday. We hadn't seen each other for years.~
+We can also use it for *unexpected difficulties*. ~The project *ran into* a few problems.~
+
+**** come across
+/Come across/ means "find", and is used mainly for *things and information*. /Come across/ is gentler than /run into/.
+~I *came across* some old photos when I was looking through my grandmother's attic.~
+~I *came across* some interesting facts when I was browsing the internet.~ 
+
 *** client - customer
 **** client
 Someone who pays for a service. Legal service, archictetura, accounting,...
@@ -2429,10 +2529,16 @@ Someone who buys a product: clothes, grocery, makeup.
 
 *** close - shut
 **** close
-Cerrar. Similar to /shut/.
+Cerrar algo físico.
+~Close the door.~ - ~Close your eyes.~
+Cerrar algo no físico. De esta manera no es sinónimo de /shut/.
+~They *closed* the meeting with a prayer.~
+~The bank *closes* at 5:00 pm.~
+~I want to *close* my account.~
 
 **** shut
-Cerrar. Similar to /close/ but adding more emphasis.
+Cerrar algo físico but adding more emphasis that /close/.
+~Shut the door.~ - ~Shut your eyes.~
 
 *** cluster - group
 **** cluster
@@ -2449,6 +2555,17 @@ Can be a *restaurant* of a particular style or the *person*, typically a custome
 
 **** dinner
 Is the *meal*, usually the main evening meal. Traditionally in English-speaking countries, dinner is lunch when taken in the home or school ('school dinners' are school lunches) and supper then becomes the evening meal.
+
+*** do - make
+**** do
+/Do/ focuses on the process of acting or performing something. (*acciones*)
+~When I was~ [action] ~doing the calculations, I~ [outcome] ~made two mistakes.~
+
+**** make
+/Make/ emphasises more the product or outcome of an action. (*crear algo*)
+
+/Make/ también significa *obligar*.
+~My dad *made* me do it.~
 
 *** each other - one another
 **** each other
@@ -2512,19 +2629,25 @@ Ejemplificar o ilustrar algo.
 Se refiere a una muestra un modelo una pequeña pieza de un todo.
 
 *** fewer - less - more
+**** fewer
+Is used when the number of things is counted (plural nouns).
+~fewer problems~
+~I have *fewer* pens than pencils.~
+
+**** less
+Is used when the number is measured (non-countable nouns).
+~less trouble~  -  ~less time~
+~I have *less* flour than sugar.~
+However, this is not a strict rule and there are accepted instances of /less/ being used with countable amounts and especially with money and distance.
+~250 words or less~  -  ~3 items or less~
+~less than $20~
+~less than 3 miles~
+
 **** more
 Plural nouns and non-countable nouns.
 ~I have *more* pencils than pen.~
 ~More sugar than flour.~
 ~I’m *happier* today than I was yesterday~
-
-**** fewer
-Plural nouns.
-~I have *fewer* pens than pencils.~
-
-**** less
-Non-countable nouns.
-~I have *less* flour than sugar.~
 
 *** following - next
 **** following
@@ -2722,6 +2845,23 @@ We often use /sort/, /type/ and /kind/ as vague expressions to suggest that we t
   ~What are you doing tonight?  Well, first, I’ve got lots of marking *and that sort of thing* to do.~
   ~Are you taking anything to eat?  Just a few snacks – crisps *and that kind of thing*.~
 
+*** know - meet
+**** know
+Saber.
+Conocer, pero en el sentido de que *ya* se conoce a alguien. Si se quiere decir "llegar a conocer a alguien" se usa "get to know".
+~I'd like to *get to know* you better.~ Me gustaría *conocerte* mejor.
+~They *got to know* each other over time.~ Se llegaron a *conocer* con el tiempo.
+
+*Nota*: Con los lugares no se usa "know".
+~I'd like to *go* to Rome.~ o ~I'd like to *visit* Rome.~ Me gustaría *conocer* Roma.
+~I've never *visited* Paris.~ No *conozco* París.
+
+**** meet
+Reunirse.
+Conocer, pero en el sentido de conocer por primera vez, y solo se usa con personas no con hechos u otras cosas.
+~She *meets* new people all the time.~ Ella *conoce* gente nueva todo el tiempo.
+~We haven't *met*.~ No nos hemos *conocido*.
+
 *** look for - look up - search for - seek
 **** look for
 Sinónimo de *search*. Para buscar algo o alguien, particularmente encontrar *algo que se necesita o esta perdido*. Normalmente en presente continuo.
@@ -2820,14 +2960,27 @@ Does not take an object, as it is an *intransitive* verb. If something rises, it
 ~Rents have *risen* sharply in this part of town.~
 ~Something *rises*.~
 
-*** remember - remind
+*** recall - remember - remind
+**** recall
+May mean “to bring to mind or think of again”("to call back into memory" , "*access something from memory again*"). It's synonymous with /remember/ but often has a similar *connotation of conscious effort*.
+~I don’t *recall* meeting her last year.~
+~Remember the flowers for the wedding.~  +Recall the flowers for the wedding.+
+
+As a noun “recall” is the ability to remember something or the act of remembering. The first syllable of the word is stressed. So we say RE-call, not re-CALL.
+~Although he had not spoken French for a while, his *recall* of vocabulary was amazing.~
+
 **** remember
-Algo se nos viene a la mente. Acordarse de algo. Con /to/ + /verb/ se refiere al futuro, con /-ing/ se refiere a pasado.
+Is a verb that means "to think about the past" ("to bring back to mind" , "*keep something in your memory*"). You can create from memory a mental picture of the past. It's synonymous with /recall/ but often doesn't necessarily imply effort.
+~I *remember* playing outside a lot as a child.~
+
+Algo se nos viene a la mente. Acordarse de algo. Con /to/ + /verb/ se refiere al futuro, con /-ing/ se refiere a pasado. (have a memory about something)
 ~I don't *remember* him.~
 ~Remember this number.~
 
+If you are concerns about these words, you may generally use /remember/.
+
 **** remind
-Algo o alguien nos hace recordar otra cosa o tiene parecido. Generalemente con objeto.
+Algo o alguien nos hace recordar otra cosa o tiene parecido. Generalemente con objeto. (make someone remember) 
 ~He *reminds me* of his father.~
 ~Remind me to send the email today.~
 
@@ -2954,6 +3107,19 @@ Acciones que se solían realizar *durante un período específico* en el pasado.
 
 Note: cuando no se específica el tiempo se entiende que el uso de /would/ es condicional.
 ~I *would* work at my dad's store.~ Trabajaría en la tienda de mi papá.
+
+*** what - which
+**** what
+Todas las opciones posibles.
+~What's your name?~ se pregunta entre todos los nombres posibles.
+~What's the right answer?~ 
+
+**** which
+Dos o varias opciones.
+~Which is your name?~ se pregunta entre varios nombres posibles que se conocen, por ejemplo un maestro pasando lista: "Cuál es su nombre de entre todos los que estan aquí en la lista?".
+~Which the right answer?~ 
+
+~Which phone did he choose?~ Qué teléfono escogió él?
 
 *** whereas - while
 **** whereas
@@ -3820,13 +3986,23 @@ Averiarse - Explicar. Desglozar - Collapso mental - Fracasar - Derrumbarse emoci
 
 - This new printer is useless; it’s always *breaking down*.
 
+**** Bring up
+Criar - Sacar un tema a relucir. Mencionar algo.
+
+- Don't bring up John's divorce, okay?
+
 **** Bump into
 Encontrarse a alguien - Chocarse con algo
 
 If you should *bump into* Carol, can you tell her I’m looking for her? If by chance you bump into Carol.
 
+**** Carry on
+Seguir. Continuar
+
+- We sat down at the table, just the two of us. He *carried on* eating his food. *Neither of* us said anything.
+
 **** Carry out
-Llevar a cabo una acción. Hacer y completar una tares
+Llevar a cabo una acción. Hacer y completar una tarea
 
 - The function (that is, the word ‘this’) does not have a definition of any set of instructions for the computer to *carry out*.
 
@@ -3835,10 +4011,27 @@ Salir. Salga
 
 - Fire *comes out* here.
 
+**** Come up
+Subir - Llegar a - Acercarse
+
+- how'd you like it if a random stranger came up to your kid and asked them where they lived?
+
 **** Come up with
 Ocurrirse una idea. Pensar en algo para decir. Proponer. Inventar. Whoever came up with the Cronut is a genius - Subir - Llegar
 
 - I doubt a novice would *come up with* that particular word when using "apropos" or other aid.
+- Throughout history humans have *come up with* all kinds of clever ways to count things.
+
+**** Fall behind
+Progresar menos que otras personas. Quedarse atras. Retrasarse
+
+- You're not gonna fall behind in your life because you're taking a couple extra semesters to finish your degree.
+
+**** Get around
+to find a way of dealing with or *avoiding* a problem:
+
+- The committee is looking for ways to get around the funding problem.
+
 
 **** Get back
 Regresar. Volver - Recuperar. Recobrar
@@ -4033,9 +4226,6 @@ Reducir la cantidad de algo
 **** Bring on
 Venga! Vamos!
 
-**** Bring up
-Criar - Sacar un tema a relucir. Mencionar algo. Don't bring up John's divorce, okay?
-
 **** Build up
 Aumentar en tamaño o cantidad. Acumular la cantidad de algo
 
@@ -4086,9 +4276,6 @@ Preocuparse
 
 **** Carry along
 Llevar en brazos
-
-**** Carry on
-Seguir. Continuar
 
 **** Carry over
 Hacer algo mas tarde de lo planeado
@@ -4142,7 +4329,10 @@ Salir. Subir con dificultad
 Marcar la entrada al trabajo
 
 **** Close down
-Cerrar permanentemente. Quebrar
+Cerrar las operaciones. Cerrar permanentemente. Quebrar. Sinónimo de [[Shut down][shut down]].
+
+**** Close off
+Bloquear.
 
 **** Come across
 Encontrarse a alguien o alguna cosa por casualidad
@@ -4173,9 +4363,6 @@ Salir con algo
 
 **** Come over
 Ir a visitar. Pasarse. Venir
-
-**** Come up
-Subir - Llegar a - Acercarse
 
 **** Cool down
 Enfriarse
@@ -4272,9 +4459,6 @@ Desmonorarse
 
 **** Fall asleep
 Quedarse dormido
-
-**** Fall behind
-Progresar menos que otras personas. Quedarse atras. Retrasarse
 
 **** Fall down
 Caer
@@ -4745,7 +4929,10 @@ Presumir. Lucir
 Aparecer - Llegar
 
 **** Shut down
-Cerrar un negocio. Clausurado
+Cerrar las operaciones. Cerrar un negocio. Clausurado. Sinónimo de [[Close down][close down]].
+
+**** Shut off
+Apagar una máquina mecánica o eléctronica.
 
 **** Sit around
 Sentado sin hacer nada
@@ -7733,7 +7920,7 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
   At the *beginning* is pronounced "kən".  ~Can you believe that?~
   In the *middle* is pronunced "kən".  ~We can talk about this.~
   At the *end* is pronounced "kæn".  ~Of course you can.~
-  *Emphasized* is pronounced "kæn".  ~I can learning.~
+  *Emphasized* is pronounced "kæn".  ~I *can* learning.~
 
 - can't ::
   *Emphasizes* the pronunciation of *main* verb. ~We can't *do* it.~
@@ -7742,6 +7929,11 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
 **** caught - cough
 ~caught~ (atrapar)	kɑːt
 ~cough~ (tos)		kɑːf
+
+**** chose - chosen - choose
+~chose~   tʃoʊz
+~chosen~  ˈtʃoʊ.zən
+~choose~  tʃuːz
 
 **** close - close
 ~close~ (not open)	kloʊz
@@ -8011,175 +8203,127 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
 
 - The difference between ɜ:ʳ and əʳ is that ɜ:ʳ  is stressed as in ~bird~  bɜrd while the əʳ isn't stressed as in  ~mother~  mʌð·ər.
 
-* Daily speech
+* Daily sentences
 ** Practice
 *** New
-**** 1No hice nada.
-I did *nothing*. (stronger than) I didn’t do anything.
+**** 0y dura *solo* tanto como el proceso.
+and lasts only as long as the process.
 
-**** 1Ella no se lo dijo a *nadie*, ni siquiera a su madre.
-She told *no one*, not even her mother. (stronger than) She didn’t tell anyone …
+**** 00.hasta que por fin haya un sistema *algo* funcional
+*****  hasta que al final ...
+until at last there’s a somewhat functional system
 
-**** *2Nada* me hará cambiar de opinión.
-*Nothing* will make me change my mind.  +Not anything will make me change my mind.+ (We don’t use it as the subject of a clause.)
+**** 0.sin tener en cuenta el manual en línea
+***** sin considerar el manual en línea
+with no regard for online manual
 
-**** 1*Nadie* va nunca a verla. Ella está muy sola.
-*Nobody* ever goes to see her. She’s very lonely.
+**** 1Guardar como borrador
+Save as draft
 
-**** 1No había *ningún sitio para aparcar el coche*.
-There was *nowhere to park the car*.
-
-**** 1Ella habla con casi nadie.
-She talks to hardly anyone.  +She talks to hardly no one.+
-
-
-**** El chico más inteligente que conocí era extremadamente equilibrado y se cuidaba a sí mismo, se presentaba en clase, traía su comida y comía en clase, se sentaba allí con un cuchillo y un tenedor y comía algo que olía delicioso (ejemplo de pasado normal (algo que ya paso) y pasado con would (una acción que se solía hacer en el pasado))
-The smartest guy I ever knew was extremely balanced and he took care of himself he would show up to class he would bring his food and he would eat food in class he would sit there with a knife and a fork and eat some delicious smelling food
-
-**** Estas personas tienen derecho a sus opiniones, pero dado que esas opiniones brotan de valores que no incluyen la libertad, no son una guía para aquellos de nosotros que valoramos la libertad.
-These people are entitled to their opinions, but since those opinions spring from values which do not include freedom, they are no guide for those of us who do value freedom.
-
-**** ,usted necesita descifrar o averiguar lo que hace.
-, you need to figure out or find out what it does.
-
-**** .Veamos cómo se hace
-***** Veamos cómo esto es hecho
-Let’s see how this is done
-
-**** es para llenar el espacio que queda cuando sacan el aire frio para quemarlo
-it's for (for -> de función de algo) filling up the space left when they take the cool air out to burn it
-
-**** Casi siempre está claro por el contexto lo que la gente quiere decir
-It is almost always clear from context what people mean
+**** 2Sugeriría utilizar las técnicas mencionadas anteriormente para limitar lo más posible dónde los paquetes estan siendo descartados y tratar de comprender por qué sucede esto, incluso si solucionarlo está más allá de su control.
+I'd suggest using the techniques mentioned above to narrow down as much as possible where packets are being dropped, and try to understand why this is happening, even if fixing it is beyond your control. 
 
 
-**** 1Los intentos de acceder a otras direcciones desencadenan una interrupción,
-Attempts to access other addresses trigger an interrupt,
+**** 2si estás tratando de aprender algo y no lo haces
+if you're trying to learn something and you don't do this
 
-**** 1Las entradas son las señales o datos recibidos por el sistema y las salidas son las señales o datos enviados desde él.
-Inputs are the signals or data received by the system and outputs are the signals or data sent from it.
+**** 3.La buena noticia es que cuanto más practiques, más te acercarás a tus objetivos. Intente dividir las cosas en pasos.
+***** ... más vas acercarte a obtenere tus objetivos...
+the good news is the more you practice the closer you're going to get to your goals try breaking down things into steps
 
+**** 2ve un poco más lento
+go a little slower
 
-**** 2Debería poder hacer que su software haga lo que quieres que haga sin conjuros o rituales "mágicos".
-You should be able to make your software do what you want it to do without “magic” incantations or rituals.
+**** 3y para poder subir de nivel y pasar al siguiente nivel tienes que superarlo, así que trata de verlo como un desafío agradable, sabes que es un poco difícil de hacer cuando tienes escuela y
+and in order to level up in order to take it to the next level you have to break through that so try to view it as a pleasant challenge you know it's a little bit hard to do when you have school and
 
-**** 2¿Quiere saber por qué algunas cosas funcionan y otras no?
-Want to know why some things work and others don't?
+**** 3pero si estás aprendiendo por aprender, si estás aprendiendo para autoaprendizaje, acepta/abraza esos desafíos y hará que tu camino sea mucho más fácil
+but if you're learning for the sake of learning if you're learning for self-study embrace those challenges and it will make your path a lot easier
 
-**** 2¿Quieres saber qué pasa si mueves algo de sitio?
-Want to know what happens if you move something around?
+**** 3Siempre fui muy, muy débil en... Todavía soy así. Me gusta hacer todo por mi cuenta y es un defecto, no dejes que sea tu defecto, busca ayuda de otros, únete a grupos de estudio.
+I was always very very weak at... I am still kind of that way. I like to do everything on my own and it's a flaw don't let it be your flaw seek help from others join study groups
 
-**** 3¿Cómo se las arregla todo esto para funcionar y cómo se puede encontrarle sentido?
-How does all of this manage to work, and how can you make sense of any of it?
+**** 3Fui a la tienda y estaba comprando algo. Estaba comprando azúcar y no sabía qué recipiente de azúcar comprar, así que comparé los precios y muchas veces dicen el precio por onza pero no tenían eso, entonces, ¿qué hice? Tome mi teléfono ...
+I went to the store and I was buying something I was buying so sugar and I didn't know which container of sugar to buy so I compared the prices and a lot of times they have like the price per ounce but they didn't have that so what did I do I took my phone
 
-**** 3Casi todo lo que hace el kernel gira en torno a la memoria principal.
-Nearly everything that the kernel does revolves around main memory.
+**** 3o cuando lo hacen se exceden
+or when they do it they overdo it
 
-****  3Sin embargo, las aplicaciones de usuario pueden depender de estos servidores para realizar tareas que preferirían no hacer ellas mismas, por lo que también se podría argumentar a favor de situarlos en el nivel intermedio.
-However, user applications may depend on these servers to perform tasks that they’d rather not do themselves, so you could also make a case for placing them at the middle level.
-
-**** 3.Por esta razón, los diseñadores de sistemas intentan constantemente que el acceso root sea lo más innecesario posible.
-***** Por este motivo, los diseñadores de sistemas intentan constantemente que el acceso root sea lo menos necesario posible.
-For this reason, system designers constantly try to make root access as unnecessary as possible
-
-**** 3Además, por muy poderoso que sea el usuario root, sigue ejecutándose en el modo de usuario del sistema operativo, no en el modo kernel.
-In addition, as powerful as the root user is, it still runs in the operating system’s user mode, not kernel mode.
-
-**** 2La razón por la que el CAT adopta aquí un comportamiento interactivo tiene que ver con los STREAMS.
-The reason cat adopts an interactive behavior here has to do with streams.
+**** 3pero no te permitas excederte, intenta encontrar el equilibrio
+but don't allow yourself to overdo it try to find balance
 
 
-**** 1Seguro, cierto, confiado, positivo indican plena creencia y confianza en que algo es cierto.
-Sure, certain, confident, positive indicate full belief and trust that something is true.
+**** 2La respuesta (línea 11) es la que pedimos. 
+ The answer (line 11) is what we asked for. 
 
+**** Me gustaría *conocerte* mejor.
+I'd like to *get to know* you better 
 
-**** 00¿Este nombre significa algo para ti?
-Does this name mean anything to you?
+**** Se llegaron a *conocer* con el tiempo. 
+They *got to know* each other over time.
+
+**** Llegas a conocer a la gente al trabajar juntos.
+You get to know people when you work together.
+
+**** No nos hemos *conocido*.
+We haven't *met*
+
+**** Ellos se conocerán en la fiesta
+They will meet at the party
+
+**** Me gustaría *conocer* Roma. 
+I'd like to *go* to Rome.  or  I'd like to *visit* Rome.
+
+**** No *conozco* París 
+I've never *been* to Paris.  or  I've never *visited* Paris.
+
+**** Vamos a *conocer* la ciudad mañana.
+We're going to *explore* the city tomorrow.
+
+**** 
 
 *** Buffer
-**** *No* tengo tiempo que perder.
-I’ve got /no/ time to waste.
 
-**** *No* hay gente que reconozca aquí.
-There are /no/ people I recognise here.
+**** Estas son preguntas enormes que están surgiendo de la nada en este momento.
+These are massive questions that that are popping out of the woodwork right now.
 
-**** Ella dice que no tiene amigos.
-She says she has /no/ friends.
+****  Hace tiempo que me interesan los escritos populares sobre matemáticas.
+I've long been interested in popular writing in mathematics.
 
-**** Slorne miró fijamente... y pareció tratar de encontrar alguna fuerza que le permitiera hablar. Pero *no* vino *ninguno*.
-Slorne stared … and seemed to try to find some strength which would let her speak. But *none* came. (No strength came.)
+**** Dado esto, es posible que desees saber cómo estos pequeños BOTS algorítmicos dan forma a tu mundo.
+given this you might want to know how these little algorithmic BOTS shaping your world
 
-**** Mi madre tenía dos hermanos. Mi padre no tenía *ninguno*.
-My mother had two brothers. My father had *none*. (the same as) My father didn’t have any brothers.
+**** Los cerebros de estos robots son más simples, algo que un programador humano inteligente puede hacer.
+These bots' brains are simpler, something a smart human programmer can make.
 
-**** Se lo pasaron genial y por suerte *nadie* resultó herido.
-They had a wonderful time and luckily *no one* was injured.  +… and luckily none was injured.+ (We don’t use /none/ where we mean /no one/ or /nobody/.)
+**** El robot constructor construye robots, aunque no es muy bueno en eso.
+The builder bot builds bots, though it's not very good at it
 
-**** *Ninguno* de sus viejos amigos sabía lo que le había pasado.
-*None of* his old friends knew what had happened to him.
+**** El robot constructor todavía no es bueno construyendo bots, pero ahora toma los que quedan y hace copias con cambios en nuevas combinaciones.
+Builder bot still isn't good at building bots, but now it takes those left and makes copies with changes in new combinations.
 
-**** No importa. *Nada de* eso fue tu culpa.
-It doesn’t matter. *None of* it was your fault.
+**** ¿Ves muchas preguntas sobre la conducción últimamente? Mmm…! ¿Para qué podría ser eso una prueba?
+Seeing lots of questions about driving lately? Hmm…! What could that be building a test for?
 
-**** Ella no recuerda a *ninguno* de nosotros.
-She doesn’t remember *any of* us.  +She doesn’t remember none of us.+ (We don’t use /none of/ when there is already a negative word (/not/, /n’t/) in the clause.)
+**** Por ejemplo, supongamos que NetMeTube, completamente hipotético, quisiera que los usuarios siguieran mirando el mayor tiempo posible.
+For example, say entirely hypothetical NetMeTube wanted users to keep watching as long as possible?
 
-**** Nos sentamos a la mesa, los dos solos. Siguió comiendo su comida. *Ninguno de nosotros* dijo nada.
-We sat down at the table, just the two of us. He carried on eating his food. *Neither of* us said anything. +None of us said anything.+
+**** Los robots estudiantiles observan lo que ve su usuario, examinan sus archivos y hacen todo lo posible para seleccionar los videos que mantienen al usuario en el sitio.
+the student bots watch what their user watches, looks at their files, and do their best to pick the videos that keep the user on the site. 
 
-**** Ningún niño en mi grupo causó ningún problema.
-No children in my group caused any trouble. or None of the children in my group … +None children in my group …+
+**** Estamos acostumbrados a la idea de que las herramientas que utilizamos, aunque no las entendamos, alguien las entiende, pero
+We're used to the idea that the tools we use, even if we don't understand them, someone does, but
 
+**** Sólo podemos esperar guiarlos con las pruebas que hacemos, y debemos sentirnos cómodos con eso, ya que nuestros compañeros bot algorítmicos están por todas partes y no van a ninguna parte.
+We can only hope to guide them with the tests we make, and we need to get comfortable with that, as our algorithmic bot buddies are all around, and not going anywhere
 
-**** *No quedan* galletas. Se los han comido todos. o No quedan galletas. Se los han comido todos. (mas enfasis)
-There *aren’t any* biscuits left. They’ve eaten them all.  or  There are *no* biscuits left. They’ve eaten them all. (more emphasis)
+**** ¿Quizás incluso en segundo plano mientras ordenas toda tu habitación durante horas? ¿O lo que sea?
+Maybe even just in the background while you're tidying up your all room for hours? Or whatever?
 
-**** Vendo mi computadora porque *no tengo* espacio para ella.
-I’m selling my computer because I *haven’t got any* space for it.  +… because I’ve got any space for it+
+**** 
 
-**** Vendo mi computadora porque *no* tengo espacio para ella. (mas enfasis)
-I’m selling my computer because I’ve got *no* space for it. (more emphasis)
-
-**** *No hubo* ningún problema técnico. El cantante tenía dolor de garganta por lo que cancelaron el concierto.
-There *weren’t any* technical problems. The singer had a sore throat so they cancelled the concert. +There were any technical problems.+
-
-**** *No hubo* problemas técnicos. El cantante tenía dolor de garganta por lo que cancelaron el concierto. (mas enfasis)
-There were *no* technical problems. The singer had a sore throat so they cancelled the concert. (more emphasis)
-
-
-**** ¿Necesitas algo de las tiendas? *No*. Fui antes, gracias.
-Do you need anything from the shops? *No*. I went earlier, thanks.
-
-**** Si claro, *no hay problema*.
-Yes sure, *no problem*.
-
-**** No tienes *ninguna posibilidad* de conseguir un boleto ahora. Están todos agotados.
-You’ve got *no chance* of getting a ticket now. They’re all sold out.
-
-**** *No vale la pena* tomar un taxi. Podemos hablar.
-It’s *not worth* taking a taxi. We can walk.
-
-**** Tienen un diccionario. → *No* tienen diccionario.
-They have a dictionary.  →  They *don't* have a dictionary.
-
-**** Tienen un diccionario. → *No* tienen diccionario.
-They have got a dictionary.  →  They *haven’t* got a dictionary.
-
-**** No queda *nada en lo absoluto* en la nevera.
-There’s *nothing at all* left in the fridge.
-
-**** Preferiría *no* estar aquí en *absoluto*.
-I’d rather *not* be here *at all*.
-
-**** No se debe introducir comida ni bebida *de ningún tipo* en el aula.
-No food or drink *whatsoever* must be brought into the classroom.
-
-**** Apenas salimos del hotel cuando empezó a llover a cántaros.
-Hardly /had we/ left the hotel when it started to pour with rain.  +Hardly we had left the hotel …+
-
-**** Hasta que llegué a casa no me di cuenta de que me faltaba la cartera.
-Not till I got home /did I/ realise my wallet was missing.
-
+*** Practice
+*** Chunks
 ** As they speak
 *** They say
 **** podemos centrarnos en unos elementos sobre otros, *sobre todo* si los *disponemos* de *forma poco habitual*.
@@ -8187,6 +8331,28 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 
 **** Se le pedirá
 You will be prompted / You will be asked
+**** , en cuyo caso *puede hacer* que S haga el trabajo por usted
+, in which case you *can get* systemctl to do the work for you.
+
+**** Bien, *para resumir*, la integral de Riemann es
+Okay, *to sum it up*, the Riemann integral is 
+
+**** *en cuanto a* calcular los valores reales es bastante similar..
+*as for* calculating the actual values it's pretty similar...
+
+**** y por mucho que me encante ver vídeos de matemáticas y
+and as much as i love watching math videos and
+
+**** pero todo esto *me hizo pensar* que si alguien *me va a dejar obsoleto* seré yo
+but all this *got me thinking* if anyone's *going to make me obsolete* it's going to be me
+
+**** *segúrese* de esperar hasta que finalice el comando y vuelva a aparecer el símbolo del shell. 
+, *make sure* that you’re waiting until the command terminates and you get the shell prompt back. 
+
+**** .si tiendes a *convertir* en un hábito lo primero que usas
+***** ... *hacer* un habito
+if you tend to *make* a habit out of the first thing that you use
+
 **** La razón por la que el CAT adopta aquí un comportamiento interactivo *tiene que ver* con los STREAMS.
 The reason cat adopts an interactive behavior here *has to do* with streams.
 
@@ -8604,6 +8770,21 @@ I'*m comming*
 ***** Ella no esta bien.
 She’s not feeling very well.
 
+**** Me gustaría *conocer* Roma. 
+I'd like to *go* to Rome.  or  I'd like to *visit* Rome.
+
+**** No *conozco* París 
+I've never *been* to Paris.  or  I've never *visited* Paris.
+
+**** Vamos a *conocer* la ciudad mañana.
+We're going to *explore* the city tomorrow.
+
+**** *Seguiremos* teniendo una unidad de servicio y una unidad auxiliar que representa el recurso ofrecido de la unidad de servicio,
+*We’ll still have* a service unit and an auxiliary unit representing the service unit’s offered resource, 
+
+**** y *tenga ganas* de leer la documentación en detalle, 
+and *feel like* reading the documentation in detail, 
+
 **** .No pueden volver a tener hambre.
 ***** No pueden estar hambrientos otra vez
 They *can’t* be hungry again.
@@ -8816,6 +8997,21 @@ I *get* my nails *done* every week. (causitive verb)
 She *makes* him leave. - She *lets* him leave. (causitive verbs)
 **** Pero vale la pena repetirlo:
 But it bears repeating:
+**** *y por mucho que* me encante ver vídeos de matemáticas y
+*and as much as* i love watching math videos and
+
+**** ¿Qué te parecería si un desconocido se acercara a tu hijo y le preguntara dónde vive?
+how'd you like it if a random stranger came up to your kid and asked them where they lived?
+
+**** , porque desea iniciar *tantos servicios como sea posible* lo más rápido posible para reducir el tiempo de inicio.
+, because you want to start *as many services as possible* as quickly as possible to reduce boot time.
+
+**** . pero *lo que me parece extraño* de esto es que...
+***** pero lo que encuentro extraño de esto es que... 
+but *when I find weird* about this is ...
+
+**** Ha habido muchos intentos de conversión automática *a nivel del sistema de archivos*
+There have been many attempts at automatic conversion *at the filesystem level*,
 
 **** Además, *por muy poderoso que sea el usuario root*, sigue ejecutándose en el modo de usuario del sistema operativo, no en el modo kernel.
 In addition, *as powerful as the root user is*, it still runs in the operating system’s user mode, not kernel mode.
@@ -8911,6 +9107,18 @@ and yet they *turn out* to be extremely intricate (ocurre de una manera diferent
 *** Random
 **** Ella no es tan simpática
 She's not that (sinónimo de "so") nice
+
+**** No hice nada.
+I did *nothing*. (stronger than) I didn’t do anything.
+
+**** Cuánto estamos haciendo?
+How much are we up to?
+
+**** y decir oh, sé que hice eso antes, pero ¿cómo lo hice?
+and be like oh i know i did that before but how did i do it
+
+**** Así que sigamos adelante y entremos en ello.
+so let's go ahead and get into it
 
 **** Anteayer fuimos al cine
 The day before yesterday, we went to the movies
@@ -9461,6 +9669,65 @@ I read a lotta/(a lot of) books and stuff
 You're outta/(out of) time
 
 ** YouTube
+*** The 3 Biggest Mistakes College Students Make (and How to Avoid Them) 
+[[https://youtu.be/f0TJOP27coQ?si=qoKkaYLP0QI92WBJ][The Math Sorcerer]]
+**** cuanto mejor seas tomando las pruebas, mejor te desenvolveras estudiando
+the better you get at test taking the better you get at studying
+
+**** Sería mentiroso si te dijera que existe una solución fácil para solucionar para curar estos errores.
+I would be lying if I told you that there's an easy solution for curing these mistakes
+
+**** si tomas demasiadas clases no lo vas hacer tan bien
+if you take too many classes you are not going to do as well
+
+**** y ahí es donde se pone un poco complicado
+and that's where it gets a little bit tricky
+
+**** No te vas a quedar atrás en tu vida porque te tomarás un par de semestres más/extras para terminar tu carrera.
+you're not gonna fall behind in your life because you're taking a couple extra semesters to finish your degree
+
+**** y eso te ayudará a largo plazo
+and that'll help you in the long run
+
+**** e hice lo mejor para obtener una A en aquellas clases
+and I did my best to get an A in those classes
+
+**** La mayor parte del tiempo pude obtener una A,
+most the time I was able to get an A 
+
+**** y ahí es donde tuve que empezar a recortar(quitar del pensun del semestre) algunas clases
+and that's where I had to start cutting back on some classes
+
+**** así que no te excedas
+so don't overdo it
+
+**** este es uno que realmente fui muy afortunado porque pude evitarlo tan pronto como comencé la universidad.
+this is one that I actually was very very fortunate I was able to avoid it as soon as I started college 
+
+**** pero lo que digo es que trates de reducir la cantidad de trabajo que haces, 
+but I'm saying is try to cut back on how much work you do
+
+**** un trabajo que se relacione con el campo en el que desea ingresar
+a job that relates to the field you want to go into
+
+**** ...trabajar en un lugar que se alinee con tus objetivos realmente te ayudará a mantenerte enfocado y además no querrás trabajar a tiempo completo a menos que lo necesites
+by working somewhere that aligns with your goals it'll really help you keep you focused also you really don't want to work full time unless you have to
+
+**** Solía ​​pensar siempre en ello así.
+I used to always think about it like this
+
+**** Esto es todo lo que tienes ahora, todo lo que tienes es hoy, así que haz que cuente. No querrás mirar hacia atrás, a este momento dentro de 20 años y decir: "Oh, sabes, debería haberlo hecho mejor".
+this is it all you have is right now all you have is today so Make It Count you don't want to look back on this moment 20 years from now and say oh you know I should have done better
+
+**** Debería haber escuchado a esa persona cualquiera en YouTube diciéndome que me lo tomara en serio. Tómalo en serio para que no tengas arrepentimientos.
+I should have listened to that random person on YouTube telling me to take it seriously. take it seriously so you don't have regrets
+
+**** esta es la única vez dentro de 30 años
+this is the only time 30 years from now
+
+**** Quieres mirar atrás y quieres decir que hiciste lo mejor que pudiste haciendo esta una memorable experiencia. 
+you want to look back and you want to say that you did the best you could make this a memorable experience
+
 *** How To Immediately Get Better At Learning
 [[https://www.youtube.com/watch?v=wRToQsBhEs8&list=WL&index=12][The Math Sorcerer]]
 **** se trata de ser consciente de ser consciente de si mismo
@@ -10715,9 +10982,337 @@ In spite of the distinction between files and buffers
 **** Casi siempre está claro por el contexto lo que la gente quiere decir
 It is almost always clear from context what people mean
 
+*** How Linux Works
+**** Básicamente, la elección se reduce a esto:
+Basically, the choice comes down to this:
+
+**** Si desea un editor que pueda hacer casi cualquier cosa y que tenga una amplia ayuda en línea, y no le importa escribir un poco más para obtener estas funciones,
+If you want an editor that can do almost anything and has extensive online help, and you don’t mind doing some extra typing to get these features,
+
+**** .si tiendes a convertir en un hábito la primera cosa que usas
+***** ...hacer un habito
+if you tend to make a habit out of the first thing that you use
+
+**** Obtienes este error cuando intentas 
+You get this error when you attempt to
+
+**** un error de bus significa que el programa intentó acceder a parte de la memoria de una manera que no debería haberlo hecho. 
+a bus error means that the program tried to access some memory in a way it shouldn’t have. 
+
+**** El kernel le da a la mayoría de los procesos la *oportunidad* de limpiarse después de recibir señales
+The kernel gives most processes a *chance* to clean up after themselves upon receiving signals
+
+**** especialmente si no sabes lo que están haciendo. Quizás te estés disparando en el pie.
+, especially if you don’t know what they’re doing. You may be shooting yourself in the foot.
+
+**** pero presionar la secuencia incorrecta en el momento equivocado puede dejarte en una situación aún peor que antes. 
+but pressing the wrong sequence at the wrong time can leave you in an even worse situation than before.
+
+**** debes seguir el enlace para ver si va a un archivo o directorio
+you must follow the link to see if it goes to a file or directory
+
+**** y muy a menudo lo es
+and it quite often is
+
+**** Resulta que sus dificultades son significativamente superadas por el poder que proporcionan.
+As it turns out, their pitfalls are significantly outweighed by the power they provide
+
+**** , asegúrese de que tú estes esperando hasta que finalice el comando y obtengas de vuelta el símbolo del shell
+, make sure that you’re waiting until the command terminates and you get the shell prompt back. 
+
+**** Ha habido muchos cambios en como el kernel presenta los dispositivos al usuario.
+ there have been many changes to how the kernel presents devices to the user.
+
+**** Por ejemplo, crear /dev/sda1 es cuestión de utilizar el siguiente comando:
+For example, creating /dev/sda1 is a matter of using the following command:
+
+**** por qué harías esto en el kernel?
+why would you do this in the kernel?
+
+**** La siguiente sección describe cómo hace su trabajo udevd.
+The next section describes how udevd does its work.
+
+**** Hubo muchos más resultados en este ejemplo de los que era necesario mostrar aquí
+There was far more output in this example than was necessary to show here
+
+**** Pruebe el comando usted mismo para tener una idea de lo que hace.
+try the command for yourself to get a feel for what it does.
+
+**** tal como lo haría con un disco completo
+, just as it would an entire disk. 
+     
+**** Para tener una idea de cómo encaja todo,
+To get a handle on how everything fits together,
+
+**** Una partición extendida se descompone en particiones lógicas, luego se utiliza(utilicelo) como lo haría con cualquier otra partición.
+An extended partition breaks down into logical partitions, then use as it would any other partition.
+
+**** Al ver su tabla de particiones,
+When viewing your partition table,
+
+**** Obtendrá resultados mucho menos detallados con fdisk -l;
+you’ll get much less detailed output with fdisk -l; 
+
+**** y tenga ganas de leer la documentación en detalle, 
+and feel like reading the documentation in detail, 
+
+**** Aun así, es importante comprender los UUID.
+Still, it’s important to understand UUIDs.
+
+**** Ha habido muchos intentos de conversión automática a nivel del sistema de archivos
+There have been many attempts at automatic conversion at the filesystem level,
+
+**** y cada vez se hace más largo,
+and it gets longer all the time,
+
+**** Una mirada rápida a /dev/ubuntu-vg/root revela que algo más está sucediendo:
+A quick look at /dev/ubuntu-vg/root reveals that something else is going on:
+
+**** Pero no asuma simplemente que debe responder "y" a cualquier pregunta que le hagan.
+But don’t just assume that you should reply "y" to any question you’re asked.
+
+**** El resto de este capítulo analiza brevemente las entrañas de un sistema de archivos Linux. 
+The remainder of this chapter briefly looks at the innards of a Linux filesystem.
+
+**** , le permite crear la jerarquía del sistema de archivos a la que está acostumbrado.
+, allows you to create the filesystem hierarchy that you’re used to.
+
+**** También por este motivo, eliminar un archivo se denomina a veces desvincularlo.
+This is also why removing a file is sometimes called unlinking. 
+
+**** , porque desea iniciar tantos servicios como sea posible lo más rápido posible para reducir el tiempo de inicio.
+, because you want to start as many services as possible as quickly as possible to reduce boot time.
+
+**** Seguiremos teniendo una unidad de servicio y una unidad auxiliar que representa el recurso ofrecido de la unidad de servicio,
+We’ll still have a service unit and an auxiliary unit representing the service unit’s offered resource, 
+
+**** Los Servicios A, B y C dependen de este recurso (pero no entre sí) y deben esperar hasta que se haya iniciado el Servicio E. 
+ Services A, B, and C depend on this resource (but not on each other) and must wait until Service E has started.
+
+**** A medida que systemd ha crecido en popularidad, ha crecido hasta incluir soporte para algunas tareas no relacionadas con el inicio y la gestión de servicios,
+As systemd has grown in popularity, it has grown to include support for a few tasks not related to startup and service management, 
+
+**** , justo antes de que te permita iniciar sesión. 
+, just before it lets you log in.
+
+**** También puede haber otros dos campos:
+There can also be two other fields:
+
+**** esta entre una de las más útiles para delimitar un momento especifico
+is among the most useful in narrowing in on a specific time
+
+**** A menudo, la información importante puede estar cerca en términos de tiempo.
+Often, important information might be nearby in terms of time.
+
+**** El servicio cron ha sido durante mucho tiempo el estándar de facto para hacer esto,
+ The cron service has long been the de facto standard for doing this,
+
+**** ... incluso si no son todas ejecutadas por el mismo usuario
+... even if they aren’t all run by the same user.
+
+**** Sin embargo, la configuración por sí sola es una razón por la que es poco probable que el formato cron desaparezca en cualquier momento pronto.
+However, configuration alone is a reason why it’s unlikely that the cron format will go away any time soon. 
+
+**** y eres bienvenido en pasar/saltar al siguiente capítulo si está listo para ensuciarse las manos con algunos procesos internos.
+and you’re welcome to skip to the next chapter if you’re ready to get your hands dirty with some process internals.
+
+**** ¿Por qué no tienes que lidiar con los otros ID de usuario con mucha frecuencia?
+Why don’t you have to deal with the other user IDs very frequently?
+
+**** Una de las formas más esenciales de mantener la actividad no deseada fuera de su sistema es imponer/hacer cumplir la autenticación de usuario
+One of the most essential ways to keep unwanted activity off your system is to enforce user authentication 
+
+**** integrar el soporte en un cliente requiere poco o ningún trabajo adicional/extra.
+integrating support into a client requires little, if any, extra work.
+
+**** ejecutará cualquier línea que quede en su pila.
+it will run any lines left on its stack
+
+**** y el trabajo del núcleo es asignar los recursos de manera justa.
+, and the kernel’s job is to allocate resources fairly. 
+
+**** y puedes pasar días intentando ajustar el rendimiento de tu máquina sin resultados significativos, especialmente si no sabes qué buscar.
+and you can spend days trying to tune your machine’s performance without meaningful results, especially if you don’t know what to look for.
+
+**** Cuanto mayor sea el número, menos probable es que el núcleo programe el proceso si otros necesitan tiempo de CPU.
+ The higher the number, the less likely the kernel is to schedule the process if others need CPU time.
+
+**** El comando uptime le indica tres promedios de carga además de cuánto tiempo ha estado ejecutándose el kernel:
+The uptime command tells you three load averages in addition to how long the kernel has been running:
+
+**** , problemas de rendimiento pueden surgir por escasez de memoria. 
+, performance problems can arise from memory shortages.
+
+**** Sin embargo, es demasiado fácil culpar a la escasez de memoria por cada problema de rendimiento en su máquina.
+However, it’s too easy to blame a shortage of memory for every performance problem on your machine.
+
+**** "swap" por las páginas que entran y salen del intercambio
+"swap" for the pages pulled in and out of swap,
+
+**** Una vez que no quede nada,
+Once there is nothing left,
+
+**** , las diferencias estructurales entre las versiones se pueden resumir de la siguiente manera:
+the structural differences between the versions can be summed up as follows:
+
+**** Además de poder limitar los recursos por cgroup,
+In addition to being able to limit resources by cgroup, 
+
+**** Una de las razones por las que existen tantas herramientas para medir y gestionar la utilización de recursos es
+One reason there are so many tools to measure and manage resource utilization is 
+
+**** , puede que ya hayas notado que si tienes la dirección IP y
+, you might have already noticed that if you’ve got the IP address and
+
+**** Como ya habrás adivinado,
+As you may have guessed by now, 
+
+**** Envía paquetes de solicitud de eco ICMP a un host que solicita al host destinatario que devuelva el paquete al remitente.
+ It sends ICMP echo request packets to a host that asks a recipient host to return the packet to the sender. 
+
+**** es el tiempo total transcurrido entre el momento en que sale el paquete de solicitud y el momento en que llega el paquete de respuesta.
+is the total elapsed time between the moment that the request packet leaves and the moment that the response packet arrives.
+
+**** Ha habido muchos intentos en Linux para estandarizar los archivos de configuración para el arranque en red.
+There have been many attempts in Linux to standardize configuration files for boot-time networking.
+
+**** Cuando las cosas eran más simples,
+ When things were simpler,
+
+**** Antes de dejar el tema de las búsquedas de nombres, hay una última configuración que deberías tener en cuenta. 
+Before we leave the topic of name lookups, there’s one last setting you should be aware of.
+
+**** si la respuesta desde el servidor se pierde en algún lugar de la red,
+if the response from the server gets lost somewhere in the network,
+
+**** Los clientes de red utilizan los protocolos e interfaces de la capa de transporte del sistema operativo, 
+Network clients use the operating system’s transport layer protocols and interfaces,
+
+**** Muy parecido a la salida anterior,
+Much like the previous output,
+
+**** , y cuanta más gente la tuviera, más oportunidades hubiera de ser comprometida. 
+, and the more people who had it, the more opportunities there were for it to be compromised. 
+
+**** El servidor independiente es mucho más común y solo es cuestión de ejecutar sshd como root.
+The standalone server is by far more common, and it’s just a matter of running sshd as root.
+
+**** pero xinetd ha sido eliminado casi por completo en favor de systemd.
+, but xinetd has almost entirely been phased out in favor of systemd. 
+
+**** pero también puedes hacer que tcpdump imprima todo el contenido del paquete.
+but you can also make tcpdump print the entire packet contents.
+
+**** Esta puede ser una forma práctica de identificar servicios que no soportan IPv6.
+This can be a handy way of identifying services that do not support IPv6.
+
+**** y aquellos quienes idean(phrasal verb) elaborados esquemas de protección y se dedican a espantar a quienes intentan entrar/romper a la fuerza en sus sistemas. (Esto, también, puede ser muy rentable.)
+and those who come up with elaborate protection schemes and really like to swat away people trying to break into their systems. (This, too, can be very profitable.)
+
+**** Pero ¿por qué es importante hacerlo?
+But why is it important to do so?
+
+**** Si estas en un aprieto
+If you’re in a bind
+
+**** Hay dos construcciones rápidas que pueden(posiblemente) ver de vez en cuando
+There are two quick, constructs that you may see from time to time
+
+**** Las siguientes secciones describen las pruebas principales
+The following sections outline the main tests.
+
+**** Use xargs para evitar(phrasal verb) este problema ejecutando un comando en cada nombre de archivo en su flujo de entrada estandar.
+Use xargs to get around this problem by running a command on each filename in its standard input stream.
+
+**** De hecho, las secciones en las que podrías(posibilidad) obtener más valor son las más "teoricas".
+ In fact, the sections that you might get the most value from are the most “theoretical” ones.
+
+**** Incluso aunque no estará usando su capacidad de enlace descendiente durante dicha/tal transferencia
+Even though you won’t be using your downlink capacity during such a transfer
+
+**** Para evitar esto, use
+To get around this, use 
+
+**** Para el resto de este capítulo, 
+For the remainder of this chapter, 
+
+**** Una cosa que debes/necesitas preguntarse cuando trabajes con cualquier tipo de sistema de intercambio de archivos es por qué lo esta haciendo en primer lugar
+One thing you need to ask yourself when working with any kind of file sharing system is why you’re doing it in the first place. 
+
+**** Un usuario podría iniciar sessión en una de varias máquinas en una red, cada una con acceso al directorio home del usuario
+One user could log in to one of several machines on a network, each with access to the user’s home directory. 
+
+**** , en cuyo caso puede hacer que S haga el trabajo por usted
+, in which case you can get systemctl to do the work for you.
+
+**** ni siquiera lo pienses
+don't even think about it
+
+**** Por extraño que suene,
+***** Extraño como podría sonar,
+Odd as it might sound,
+
+**** , puedes inspeccionar a los clientes a medida que se ejecutan.
+, you can inspect clients as they run.
+
+**** para que tengas un lugar para empezar.
+ so that you have somewhere to start.
+
+**** Como mínimo,
+At the very least,
+
+**** , sin mencionar algunos trucos realmente increíbles, pero puedes abusar de ellos hasta el punto en que/donde
+, not to mention some really incredible hacks, but you can abuse them to the point where
+
+**** , será mejor que te acostumbres a esto.
+, you’d better get used to this.
+
+**** , no pruebes tu paciencia en algo tan insignificante.
+, don’t test your patience on something this insignificant.
+
+**** Para contrarrestar esto,
+To counter this,
+
+**** La forma más fácil de ... es ponerse manos a la obra.
+The easiest way to familiarize yourself with containers is to get hands-on.
+
+**** .hasta que por fin haya un sistema algo funcional
+*****  hasta que al final ...
+until at last there’s a somewhat functional system
+
+**** ... representar la ubicación de la solicitud de conexión de red entrante.
+...represent incoming network connection request locations.
+
+**** .sin tener en cuenta el manual en línea
+***** sin considerar el manual en línea
+with no regard for online manual
+
+**** , este directorio contiene archivos de biblioteca que contienen código que puede utilizar el ejecutable.
+, this directory holds library files containing code that executables can use.
+
 * Timer
 ** Review
 :LOGBOOK:
+CLOCK: [2023-10-02 Mon 09:36]--[2023-10-02 Mon 09:42] =>  0:06
+CLOCK: [2023-10-01 Sun 08:51]--[2023-10-01 Sun 08:54] =>  0:03
+CLOCK: [2023-09-30 Sat 09:22]--[2023-09-30 Sat 09:28] =>  0:06
+CLOCK: [2023-09-29 Fri 08:29]--[2023-09-29 Fri 09:39] =>  1:10
+CLOCK: [2023-09-28 Thu 08:35]--[2023-09-28 Thu 08:39] =>  0:04
+CLOCK: [2023-09-27 Wed 08:49]--[2023-09-27 Wed 08:54] =>  0:05
+CLOCK: [2023-09-26 Tue 08:35]--[2023-09-26 Tue 08:40] =>  0:05
+CLOCK: [2023-09-25 Mon 09:39]--[2023-09-25 Mon 09:45] =>  0:06
+CLOCK: [2023-09-24 Sun 08:00]--[2023-09-24 Sun 08:04] =>  0:04
+CLOCK: [2023-09-23 Sat 08:50]--[2023-09-23 Sat 09:00] =>  0:10
+CLOCK: [2023-09-22 Fri 10:18]--[2023-09-22 Fri 10:22] =>  0:04
+CLOCK: [2023-09-21 Thu 08:39]--[2023-09-21 Thu 08:44] =>  0:05
+CLOCK: [2023-09-20 Wed 08:45]--[2023-09-20 Wed 08:48] =>  0:03
+CLOCK: [2023-09-19 Tue 08:35]--[2023-09-19 Tue 08:40] =>  0:05
+CLOCK: [2023-09-18 Mon 09:42]--[2023-09-18 Mon 09:57] =>  0:15
+CLOCK: [2023-09-16 Sat 10:22]--[2023-09-16 Sat 10:33] =>  0:11
+CLOCK: [2023-09-15 Fri 10:04]--[2023-09-15 Fri 10:49] =>  0:45
+CLOCK: [2023-09-14 Thu 08:40]--[2023-09-14 Thu 08:46] =>  0:06
+CLOCK: [2023-09-04 Mon 09:30]--[2023-09-04 Mon 09:45] =>  0:15
+CLOCK: [2023-08-28 Mon 12:27]--[2023-08-28 Mon 12:35] =>  0:08
 CLOCK: [2023-08-24 Thu 08:47]--[2023-08-24 Thu 09:02] =>  0:15
 CLOCK: [2023-08-23 Wed 11:45]--[2023-08-23 Wed 12:15] =>  0:30
 CLOCK: [2023-08-23 Wed 09:08]--[2023-08-23 Wed 10:13] =>  1:05
@@ -10855,8 +11450,49 @@ CLOCK: [2023-04-19 Wed 08:31]--[2023-04-19 Wed 08:59] =>  0:28
 CLOCK: [2023-04-18 Tue 08:39]--[2023-04-18 Tue 08:42] =>  0:03
 CLOCK: [2023-04-17 Mon 08:07]--[2023-04-17 Mon 08:16] =>  0:09
 :END:
-** Speech
+** Sentences
 :LOGBOOK:
+CLOCK: [2023-10-02 Mon 09:43]--[2023-10-02 Mon 10:29] =>  0:46
+CLOCK: [2023-09-30 Sat 09:28]--[2023-09-30 Sat 09:42] =>  0:14
+CLOCK: [2023-09-29 Fri 14:37]--[2023-09-29 Fri 14:50] =>  0:13
+CLOCK: [2023-09-28 Thu 08:40]--[2023-09-28 Thu 08:57] =>  0:17
+CLOCK: [2023-09-27 Wed 08:54]--[2023-09-27 Wed 09:10] =>  0:16
+CLOCK: [2023-09-26 Tue 08:40]--[2023-09-26 Tue 09:07] =>  0:27
+CLOCK: [2023-09-25 Mon 09:49]--[2023-09-25 Mon 10:25] =>  0:36
+CLOCK: [2023-09-24 Sun 08:06]--[2023-09-24 Sun 08:53] =>  0:47
+CLOCK: [2023-09-23 Sat 09:01]--[2023-09-23 Sat 09:49] =>  0:48
+CLOCK: [2023-09-22 Fri 10:35]--[2023-09-22 Fri 11:43] =>  1:08
+CLOCK: [2023-09-21 Thu 08:45]--[2023-09-21 Thu 10:06] =>  1:21
+CLOCK: [2023-09-20 Wed 09:37]--[2023-09-20 Wed 10:55] =>  1:18
+CLOCK: [2023-09-19 Tue 08:41]--[2023-09-19 Tue 10:14] =>  1:33
+CLOCK: [2023-09-18 Mon 09:59]--[2023-09-18 Mon 10:39] =>  0:40
+CLOCK: [2023-09-16 Sat 15:41]--[2023-09-16 Sat 16:20] =>  0:39
+CLOCK: [2023-09-16 Sat 10:37]--[2023-09-16 Sat 10:57] =>  0:20
+CLOCK: [2023-09-15 Fri 11:08]--[2023-09-15 Fri 12:37] =>  1:29
+CLOCK: [2023-09-14 Thu 10:38]--[2023-09-14 Thu 10:58] =>  0:20
+CLOCK: [2023-09-14 Thu 08:46]--[2023-09-14 Thu 10:19] =>  1:33
+CLOCK: [2023-09-13 Wed 09:11]--[2023-09-13 Wed 11:08] =>  1:57
+CLOCK: [2023-09-12 Tue 09:43]--[2023-09-12 Tue 10:59] =>  1:16
+CLOCK: [2023-09-12 Tue 08:38]--[2023-09-12 Tue 09:29] =>  0:51
+CLOCK: [2023-09-11 Mon 10:36]--[2023-09-11 Mon 13:10] =>  2:34
+CLOCK: [2023-09-10 Sun 08:57]--[2023-09-10 Sun 09:15] =>  0:18
+CLOCK: [2023-09-08 Fri 11:39]--[2023-09-08 Fri 13:24] =>  1:45
+CLOCK: [2023-09-08 Fri 10:39]--[2023-09-08 Fri 11:13] =>  0:34
+CLOCK: [2023-09-08 Fri 09:50]--[2023-09-08 Fri 10:05] =>  0:15
+CLOCK: [2023-09-07 Thu 10:08]--[2023-09-07 Thu 11:34] =>  1:26
+CLOCK: [2023-09-07 Thu 09:38]--[2023-09-07 Thu 09:50] =>  0:12
+CLOCK: [2023-09-07 Thu 08:34]--[2023-09-07 Thu 09:12] =>  0:38
+CLOCK: [2023-09-06 Wed 11:36]--[2023-09-06 Wed 12:39] =>  1:03
+CLOCK: [2023-09-06 Wed 09:45]--[2023-09-06 Wed 11:11] =>  1:26
+CLOCK: [2023-09-05 Tue 09:52]--[2023-09-05 Tue 11:42] =>  1:50
+CLOCK: [2023-09-04 Mon 10:18]--[2023-09-04 Mon 12:17] =>  1:59
+CLOCK: [2023-09-02 Sat 14:52]--[2023-09-02 Sat 15:39] =>  0:47
+CLOCK: [2023-09-02 Sat 13:29]--[2023-09-02 Sat 14:52] =>  1:23
+CLOCK: [2023-09-01 Fri 10:42]--[2023-09-01 Fri 12:49] =>  2:07
+CLOCK: [2023-08-31 Thu 11:21]--[2023-08-31 Thu 13:58] =>  2:37
+CLOCK: [2023-08-30 Wed 10:26]--[2023-08-30 Wed 12:24] =>  1:58
+CLOCK: [2023-08-29 Tue 10:42]--[2023-08-29 Tue 12:04] =>  1:22
+CLOCK: [2023-08-28 Mon 10:52]--[2023-08-28 Mon 12:24] =>  1:32
 CLOCK: [2023-08-25 Fri 11:07]--[2023-08-25 Fri 11:57] =>  0:50
 CLOCK: [2023-08-24 Thu 09:08]--[2023-08-24 Thu 09:44] =>  0:36
 CLOCK: [2023-08-23 Wed 11:15]--[2023-08-23 Wed 12:15] =>  1:00
@@ -10977,6 +11613,19 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Videos
 :LOGBOOK:
+CLOCK: [2023-09-18 Mon 11:48]--[2023-09-18 Mon 12:18] =>  0:30
+CLOCK: [2023-09-14 Thu 11:12]--[2023-09-14 Thu 12:11] =>  0:59
+CLOCK: [2023-09-12 Tue 13:15]--[2023-09-12 Tue 13:45] =>  0:30
+CLOCK: [2023-09-07 Thu 14:26]--[2023-09-07 Thu 15:01] =>  0:35
+CLOCK: [2023-09-05 Tue 14:23]--[2023-09-05 Tue 16:10] =>  1:47
+CLOCK: [2023-09-05 Tue 12:39]--[2023-09-05 Tue 13:33] =>  0:54
+CLOCK: [2023-09-04 Mon 16:03]--[2023-09-04 Mon 16:44] =>  0:41
+CLOCK: [2023-08-30 Wed 14:09]--[2023-08-30 Wed 15:19] =>  1:10
+CLOCK: [2023-08-30 Wed 12:45]--[2023-08-30 Wed 13:20] =>  0:35
+CLOCK: [2023-08-29 Tue 20:06]--[2023-08-29 Tue 20:41] =>  0:35
+CLOCK: [2023-08-29 Tue 17:45]--[2023-08-29 Tue 18:51] =>  1:06
+CLOCK: [2023-08-29 Tue 13:40]--[2023-08-29 Tue 14:02] =>  0:22
+CLOCK: [2023-08-29 Tue 12:34]--[2023-08-29 Tue 12:52] =>  0:18
 CLOCK: [2023-07-17 Mon 10:56]--[2023-07-17 Mon 11:10] =>  0:14
 CLOCK: [2023-07-13 Thu 10:12]--[2023-07-13 Thu 11:25] =>  1:13
 CLOCK: [2023-06-28 Wed 14:27]--[2023-06-28 Wed 14:48] =>  0:21
@@ -11013,5 +11662,6 @@ CLOCK: [2023-04-28 Fri 11:25]--[2023-04-28 Fri 12:10] =>  0:45
 - [[https://english.lingolia.com/en/][Lingolia English]]
 - [[https://www.youtube.com/@tarlespeech][Tarle Speech - English Pronunciation]]
 - [[https://www.youtube.com/@rachelsenglish][Rachel's English]]
+- [[https://www.youtube.com/@ArnelsEverydayEnglish][Arnel's Everyday English]]
 - [[https://madridingles.net/][Daniel Welsch]]
 - [[https://es.wikipedia.org/wiki/Wikipedia:Portada][Wikipedia]]

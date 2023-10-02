@@ -57,7 +57,7 @@ La teoría de conjuntos se emplea habitualmente como sistema fundacional de toda
 Se identifica una proposición lógica con una fórmula bien formada usando los símbolos del alfabeto que caracteriza al lenguaje formal que se esté empleando. Las reglas de buena formación garantizan que la proposición sea interpretable en términos de verdad o en un modelo formal. Las fórmulas mal formadas de hecho no pueden tener valor de verdad ya que no existe garantías de que sean interpretables y por tanto puedan tener un valor de verdad.
 
 *** Axioma
-*Matemática*:
+**** En matemática
 Son *afirmaciones que se aceptan como verdaderas y cuya veracidad no puede ser demostrada a partir de otros axiomas* . Un axioma no se caracteriza por si resulta una afirmación trivial o intuitiva.
 
 En matemáticas para que una afirmación sea considerada válida debe o bien estar contenida dentro de una base de afirmaciones de partida, los denominados axiomas, o debe poder demostrarse a partir de los mismos. Los axiomas son por tanto los pilares fundamentales de toda rama de las matemáticas, y a partir de ellos, mediante las demostraciones matemáticas, se deduce la veracidad de cualquier afirmación.
@@ -68,7 +68,7 @@ Muchas partes de la matemática están axiomatizadas, lo que significa que exist
 
 Si bien hoy se reconoce su utilidad a nivel metodológico y sobre la base de la creación de conocimiento, lo cierto es que el axioma ya no es considerado como un reflejo evidente de la realidad, sino más bien como un mecanismo de construcción teórica. El estatuto del axioma varía de una disciplina a otra, sin embargo, el aspecto de "andamio para la creación del conocimiento" persiste como su función más importante para demostrar otras proposiciones y constituir sistemas axiomáticos.
 
-*Lógica*:
+**** En lógica
 Es solo una premisa que se asume, con independencia de que sea o no evidente, y que se usa para demostrar otras proposiciones. La palabra axioma proviene del sustantivo griego ἀξίωμα, que significa «lo que parece justo» o, que se le considera evidente, sin necesidad de demostración.
 
 La lógica del axioma es partir de una premisa calificada de verdadera por sí misma (el axioma), y de esta inferir otras proposiciones por medio del método deductivo, de lo cual se obtienen conclusiones coherentes con el axioma. A partir de los axiomas, y de reglas de inferencia, han de deducirse todas las demás proposiciones de una teoría dada.
@@ -746,6 +746,9 @@ Como $MCD(91,0)=91$ se tiene que $MCD(2366,273)=91$.
 *** Definición
 Es un sistema aritmético para clases de equivalencia de números enteros llamadas clases de congruencia. Algunas veces se le llama, sugerentemente, aritmética del reloj, ya que los números «dan la vuelta» tras alcanzar cierto valor llamado módulo.
 
+*Veritasum en español*:
+En la aritmética modular solo se trata de econtrar el resto.
+
 *** Relación Binaria
 Una relación binaria es un subconjunto $R$ del producto cartesiano $X \times X$, es decir, $(x,y) \in R$ sí y solo sí $x R y$.
 
@@ -1056,6 +1059,17 @@ En matemáticas no se puede generalizar a la ligera porque se puede llegar a con
 *Ejemplo*:
 - $i = \sqrt{-1} = \sqrt[2] {(-1)^1} = (-1)^{\frac{1}{2}} = (-1)^{\frac{2}{4}}  = \sqrt[4] {(-1)^2} = \sqrt[4] {1} = 1$ esta contradicción se debe a que $\sqrt{-1}$ no es un número real, y el uso de exponentes fraccionarios en bases negativas $(-1)^{\frac{1}{2}}$, si se hiciera, se debe definir bien, por esto en matemática no se puede generalizar de forma indiscriminada. (siempre que se trabaja con funciones exponenciales se considera para bases positivas $f: \mathbb R \rightarrow \mathbb R$ tal que $f(x)=a^x$ para $a>0$)
 
+*** Transformación decimal a base 3
+Se quiere transformar el número $17$ en su equivalente en base $3$:
+- Primero se divide $17$ entre $3$ dando resto $2$, este sería el primer número ($2$).
+- Luego se divide $17$ en la siguiente potencia superior de $3$, dando resto $8$, a este se le sustrae el resto anterior $8-2=6=2 \times 3^1$, por lo que el siguiente número sería $2$, quedando el número resultante en ($22$).
+- Se repite el procedimiento $17/27$ da resto $17$, se sustrae el resto anterior $17-8=9=1 \times 3^2$, por lo que el siguiente número sería $1$ quedando nuestro número final en ($122$).
+
+*** División
+Otra forma de ver la división es como la cantidad de veces que se puede restar el divisor al dividendo hasta llegar a cero. De esta forma se puede ver que la división entre cero no esta definida.
+
+Ejemplo: $6/1=6$ ya que $-1-1-1-1-1-1=0$
+
 * Álgebra
 ** Definición
 Estudia la combinación de elementos de estructuras abstractas acorde a ciertas reglas. Originalmente esos elementos podían ser interpretados como números o cantidades, por lo que el álgebra en cierto modo originalmente fue una generalización y extensión de la aritmética. El álgebra elemental difiere de la aritmética en el uso de abstracciones, como el uso de letras para representar números que son desconocidos o que pueden tomar muchos valores.
@@ -1106,7 +1120,7 @@ Los objetos básicos de la geometría, que son las líneas y los planos se repre
 
 ** Álgebra de Boole
 *** Definición
-Es una estructura algebraica que esquematiza las operaciones lógicas.
+Is a branch of algebra. It differs from elementary algebra in two ways. First, the values of the variables are the truth values true and false, usually denoted $1$ and $0$, whereas in elementary algebra the values of the variables are numbers. Second, Boolean algebra uses logical operators such as conjunction (and) denoted as $\land$ , disjunction (or) denoted as $\lor$, and the negation (not) denoted as $\neg$. Elementary algebra, on the other hand, uses arithmetic operators such as addition, multiplication, subtraction, and division. Boolean algebra is therefore *a formal way of describing logical operations*, in the same way that elementary algebra describes numerical operations. 
 
 *** Leyes de De Morgan
 Son un par de reglas de transformación que son ambas reglas de inferencia válidas. Las normas permiten la expresión de las conjunciones y disyunciones puramente en términos de vía negación.
@@ -1667,6 +1681,25 @@ Una de las diferencias entre el álgebra y el análisis es que este último recu
 
 *** Convergencia
 La idea de la convergencia es la de "aproximar" un objeto por otro, es decir, sustituir un objeto por otro que está próximo a él. Evidentemente, al hacerlo así se está cometiendo un error, error que en general dependerá de lo próximo que se encuentre el objeto sustituido del objeto sustituto. Para hacer esta sustitución de una manera sistemática, de forma que el error pueda ser elegido arbitrariamente pequeño, aparecen distintos tipos de conjuntos. Se obtiene así un proceso de sucesivas aproximaciones que, si todo va bien, terminarían llevándonos al objeto, aunque fuese después de un número infinito de aproximaciones. El más sencillo de estos conjuntos es una sucesión, es decir, una colección infinita (numerable) y ordenada de objetos, aunque con el mismo carácter de orden hay otros conjuntos que reflejan mejor el concepto de convergencia. (extracto del artículo [[https://es.wikipedia.org/wiki/Topolog%C3%ADa][Topología en wikipedia]])
+
+*** σ-algebra 
+A σ-algebra (also σ-field) on a set $X$ is a nonempty collection $\sum$ of subsets of $X$ closed under complement, countable unions, and countable intersections. The ordered pair $(X,\Sigma )$ is called a measurable space.
+
+The main use of σ-algebras is in the definition of measures; specifically, the collection of those subsets for which a given measure is defined is necessarily a σ-algebra. This concept is important in mathematical analysis as the foundation for Lebesgue integration, and in probability theory, where it is interpreted as the collection of events which can be assigned probabilities.
+
+If $X=\{a,b,c,d\}$ one possible σ-algebra on $X$  is $\Sigma =\{\varnothing ,\{a,b\},\{c,d\},\{a,b,c,d\}\}$ where  $\varnothing$ is the empty set. In general, a finite algebra is always a σ-algebra.
+
+If  $\{A_{1},A_{2},A_{3},\ldots \}$ is a countable partition of $X$ then the collection of all unions of sets in the partition (including the empty set) is a σ-algebra.
+
+A more useful example is the set of subsets of the real line formed by starting with all open intervals and adding in all countable unions, countable intersections, and relative complements and continuing this process (by transfinite iteration through all countable ordinals) until the relevant closure properties are achieved (a construction known as the Borel hierarchy). 
+
+*Motivation*:
+There are at least three key motivators for σ-algebras: defining measures, manipulating limits of sets, and managing partial information characterized by sets.
+
+*Measure*:
+A measure on $X$ is a function that assigns a non-negative real number to subsets of $X$ ; this can be thought of as making precise a notion of "size" or "volume" for sets. We want the size of the union of disjoint sets to be the sum of their individual sizes, even for an infinite sequence of disjoint sets.
+
+One would like to assign a size to every subset of $X$, but in many natural settings, this is not possible. For example, the axiom of choice implies that when the size under consideration is the ordinary notion of length for subsets of the real line, then there exist sets for which no size exists, for example, the Vitali sets. For this reason, one considers instead a smaller collection of privileged subsets of $X$. These subsets will be called the measurable sets. They are closed under operations that one would expect for measurable sets, that is, the complement of a measurable set is a measurable set and the countable union of measurable sets is a measurable set. Non-empty collections of sets with these properties are called σ-algebras.
 
 ** Cálculo Infinitesimal
 *** Definición
@@ -2260,7 +2293,7 @@ $${\displaystyle {\frac {355}{113}}\approx 3.141592...}$$
 
 ** Sucesiones
 *** Brief
-Es una aplicación cuyo dominio es el conjunto de los números naturales y su codominio es cualquier otro conjunto, generalmente de números de diferente naturaleza, también pueden ser figuras geométricas o funciones; es decir, a cada posición de la secuencia índice 1, 2, 3, 4... se le asocia un objeto que le corresponde en el conjunto de destino. En general, las sucesiones se utilizan para representar listas ordenadas de elementos.
+Es una aplicación cuyo dominio es el conjunto de los números naturales y su codominio es cualquier otro conjunto, generalmente de números de diferente naturaleza, también pueden ser figuras geométricas o funciones; es decir, a cada posición de la secuencia índice $1$, $2$, $3$, $4$, $\dots$ se le asocia un objeto que le corresponde en el conjunto de destino. En general, las sucesiones se utilizan para representar listas ordenadas de elementos.
 
 $${\begin{array}{rccl}a:&\mathbb {N} &\longrightarrow &X\\&n&\longmapsto &a_{n}\end{array}}$$
 

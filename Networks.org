@@ -34,6 +34,31 @@ Simple LANs generally consist of cabling and one or more switches. A switch can 
 
  Las LAN domésticas suelen utilizar un único enrutador, mientras que las LAN en espacios más grandes pueden utilizar además conmutadores de red para una entrega de paquetes más eficiente. Las redes LAN casi siempre utilizan Ethernet, WiFi o ambas para conectar los dispositivos de la red.
 
+ #+begin_src artist
+                                                        ---------
+                                                      -/         \-
+                                                     /             \
+                                                    (   Internet    )
+                                                     \             /
+                                                      -\         /-
+                                                        ---------
+                  Subnet 10.23.2.0/24 (LAN)                  |
+                              |                              |
+                              v                              |
+        ┌-------------------------------------------------┐  |
+        |              |               |                  |  |
+        |              |               |                  |  |
+ +-----------+  +------------+  +-------------+    +-----------------+
+ | 10.23.2.4 |  | 10.23.2.37 |  | 10.23.2.132 |    |10.23.2.1|Uplink |
+ |           |  |            |  |             |    |         |Address|
+ |-----------|  |------------|  |-------------|    |-----------------|
+ |           |  |            |  |             |    |                 |
+ |  Host A   |  |   Host B   |  |    Host C   |    |      Router     |
+ |           |  |            |  |             |    |                 |
+ +-----------+  +------------+  +-------------+    +-----------------+
+
+ #+end_src
+
 *** WAN
 A Wide Area Network is a telecommunications network that extends over a large geographic area. The Internet may be considered a WAN. Many WANs are, however, built for one particular organization and are private. WANs can be separated from local area networks (LANs) in that the latter refers to physically proximal networks.
 
@@ -60,6 +85,8 @@ A VPN is created by establishing a virtual point-to-point connection through the
 
 ** Internet
 Conjunto descentralizado de *redes de comunicaciones interconectadas*, que utilizan la familia de protocolos [[Internet Protocol Suite TCP/IP][TCP/IP]], lo cual garantiza que las redes físicas heterogéneas que la componen constituyen una red lógica única de alcance mundial.
+
+The resulting system of interconnected networks are called an internetwork, or simply an internet. The term internetworking is a combination of the components inter (between) and networking.
 
 Al igual que es una red de computadoras interconectadas a nivel mundial en forma de telaraña. Consiste de servidores que proveen información a aproximadamente 100 millones de personas que están conectadas.
 
@@ -151,7 +178,7 @@ Is a number assigned to uniquely identify a connection endpoint and to direct da
 
 A process associates its input or output channels via an internet socket, which is a type of file descriptor, associated with a transport protocol, a network address such as an IP address, and a port number. This is known as binding. A socket is used by a process to send and receive data via the network. The operating system's networking software has the task of transmitting outgoing data from all application ports onto the network, and forwarding arriving network packets to processes by matching the packet's IP address and port number to a socket.
 
-In many operating systems special privileges are required for applications to bind to sme ports because these are often deemed critical to the operation of IP networks. Conversely, the client end of a connection typically uses a high port number allocated for short-term use, therefore called an ephemeral port.
+In many operating systems special privileges are required for applications to bind to sme ports because these are often deemed critical to the operation of IP networks. Conversely, the client end of a connection typically uses a high port number allocated for short-term use, therefore called an *ephemeral* port.
 
 The Internet Assigned Numbers Authority (IANA) has divided port numbers into three ranges. Port numbers 0 through 1023 are used for common, well-known services. Port numbers 1024 through 49151 are the registered ports used for IANA-registered services. Ports 49152 through 65535 are dynamic ports that are not officially designated for any specific service and may be used for any purpose. These may also be used as ephemeral ports, which software running on the host may use to dynamically create communications endpoints as needed.
 
@@ -159,7 +186,7 @@ The Internet Assigned Numbers Authority (IANA) has divided port numbers into thr
 *** Definition
 Is a software structure within a network node of a computer network that serves as an endpoint for sending and receiving data across the network. The structure and properties of a socket are defined by an application programming interface (API) for the networking architecture. Sockets are created only during the lifetime of a process of an application running in the node.
 
-#+begin_src 
+#+begin_src
 
    10.0.1.25 : 80
    └───┬───┘  └┬┘
@@ -169,7 +196,43 @@ Is a software structure within a network node of a computer network that serves 
 
 #+end_src
 
-*** Use
+*** On Unix systems
+A process uses a socket to identify when and how it’s talking to the network. Sockets are the interface that processes use to access the network through the kernel; they represent the boundary between user space and kernel space. They’re often also used for interprocess communication (IPC).
+
+There are different types of sockets because processes need to access the network in different ways. For example, TCP connections are represented by stream sockets ~SOCK_STREAM~, and UDP connections are represented by datagram sockets ~SOCK_DGRAM~.
+
+Setting up a network socket can be somewhat complicated because you need to account for socket type, IP addresses, ports, and transport protocol at particular times. However, after all of the initial details are sorted out, servers use certain standard methods to deal with incoming traffic from the network.
+
+Flowchart shows how many servers handle connections for incoming stream sockets.
+
+One method for accepting and processing incoming connections
+
+Notice that this type of server involves two kinds of sockets: one for listening and one for reading and writing. The master process uses the listening socket to look for connections from the network. When a new connection comes in, the master process uses the ~accept()~ system call to accept the connection, which creates the read/write socket dedicated to that connection. Next, the master process uses ~fork()~ to create a new child process to deal with the connection. Finally, the original socket remains the listener and continues to look for more connections on behalf of the master process.
+
+#+begin_src artist
+
+                                             Original process
+          ┌----------------------------------------------------┐
+          |                                                    |
+          v                                                    |
+  +-----------------+    +------------+    +----------+    +--------+
+  | Server master   |    | Incomming  |    |          |    |        |
+  | listens with    |--->| connection |--->| accept() |--->| fork() |
+  | listener socket |    | detected   |    |          |    |        |
+  +-----------------+    +------------+    +----------+    +--------+
+                                                               |
+                                    New child process          |
+                                   ┌---------------------------┘
+                                   |
+                                   v
+                 +--------------------------------------+
+                 | Server child handles connection      |
+                 | using new socket created by accept() |
+                 +--------------------------------------+
+
+#+end_src
+
+*** Socket use
 The application programming interface (API) for the network protocol stack creates a handle for each socket created by an application, commonly referred to as a socket descriptor. In Unix-like operating systems, this descriptor is a type of file descriptor. It is stored by the application process for use with every read and write operation on the communication channel.
 
 At the time of creation with the API, a network socket is bound to the combination of a type of network protocol to be used for transmissions, a network address of the host, and a port number. Ports are numbered resources that represent another type of software structure of the node. They are used as service types, and, once created by a process, serve as an externally (from the network) addressable location component, so that other hosts may establish connections.
@@ -206,6 +269,19 @@ send(mysocket, "Hello, world!")
 close(mysocket)
 
 #+end_src
+
+*** Unix Domain Sockets‌
+Applications that use network facilities don’t have to involve two separate hosts. Many applications are built as client-server or peer-to-peer mechanisms, where processes running on the same machine use interprocess communication to negotiate what work needs to be done and who does it. For example, recall that daemons such as systemd and NetworkManager use D-Bus to monitor and react to system events.
+
+Processes are capable of using regular IP networking over localhost ~127.0.0.1~ or ~::1~ to communicate with each other, but they typically use a special kind of socket called a Unix domain socket as an alternative. When a process connects to a Unix domain socket, it behaves almost exactly like it does with a network socket: it can listen for and accept connections on the socket, and you can even choose between different socket types to make it behave like TCP or UDP.
+
+Keep in mind that a Unix domain socket is not a network socket, and there’s no network behind one. You don’t even need networking to be configured to use one. Unix domain sockets don’t have to be bound to socket files, either. A process can create an unnamed Unix domain socket and share the address with another process.
+
+Developers like Unix domain sockets for IPC for two reasons. 
+
+First, they allow the option to use special socket files in the filesystem to control access, so any process that doesn’t have access to a socket file can’t use it. And because there’s no interaction with the network, it’s simpler and less prone to conventional network intrusion.
+
+Second, because the Linux kernel doesn’t have to go through the many layers of its networking subsystem when working with Unix domain sockets, performance tends to be much better.
 
 ** API
 An application programming interface is a way for two or more computer programs to communicate with each other. It is a type of software interface, offering a service to other pieces of software.
@@ -253,6 +329,9 @@ Es la que puede manejar una onda más corta, una onda más corta equivale a mayo
 Ancho de banda puede referirse a la capacidad de ancho de banda o ancho de banda disponible en bit/s, lo cual típicamente significa el rango neto de bits o la máxima salida de una huella de comunicación lógico o físico en un sistema de comunicación digital. La razón de este uso es que de acuerdo a la Ley de Hartley, el rango máximo de transferencia de datos de un enlace físico de comunicación es proporcional a su ancho de banda(procesamiento de señal).
 
 In Web hosting service, the term bandwidth is often incorrectly used to describe the amount of data transferred to or from the website or server within a prescribed period of time, for example bandwidth consumption accumulated over a month measured in gigabytes per month. The more accurate phrase used for this meaning of a maximum amount of data transfer each month or given period is monthly data transfer.
+
+** Latency
+Is the time it takes to receive data from any random (arbitrary) network file access.
 
 * Hardware
 ** Host
@@ -386,6 +465,32 @@ Para calular el broadcast se puede hacer sumando la IP del wildcard a la IP de r
 --------------------------------------------
 -> ~01010001.00010001.01111111.11111111~              ( ~81.17.127.255~ )
 
+*** IPv6
+An IPv6 address has 128 bits—32 bytes, arranged in eight sets of 4 bytes. In long form, an address is written as follows:
+
+~2001:0db8:0a0b:12f0:0000:0000:0000:8b6e~
+
+The representation is hexadecimal, with each digit ranging from 0 to f. There are a few commonly used methods of abbreviating the representation. First, you can leave out any leading zeros (for example, ~0db8~ becomes ~db8~), and one—and only one—set of contiguous zero groups can become ~::~ (two colons). Therefore, you can write the preceding address as:
+
+~2001:db8:a0b:12f0::8b6e~
+
+Subnets are still denoted in CIDR notation. For the end user, they often cover half of the available bits in the address space (/64), but there are instances where fewer are used. The portion of the address space that’s unique for each host is called the interface ID.
+
+*Note*: IPv6 hosts normally have at least two addresses. The first, which is valid across the internet, is called the *global unicast address*. The second, for the local network, is called the *link-local address*. Link-local addresses always have an ~fe80::/10~ prefix, followed by an all-zero 54-bit network ID, and end with a 64-bit interface ID. The result is that when you see a link-local address on your system, it will be in the ~fe80::/64~ subnet. Global unicast addresses have the prefix ~2000::/3~.
+
+Next figure shows the breakdown of an example address with a 64-bit subnet.
+
+#+begin_src artist
+
+         Subnet                  Interface ID
+  +---------------------+   +---------------------+
+  | 2001:db80:8500:e000 | : | 52b6:59cc:74e9:8b6e |
+  +---------------------+   +---------------------+
+  └---------------------┘   └---------------------┘
+         64 bits                    64 bits
+
+#+end_src
+
 ** MAC address
 Is a unique identifier assigned to a network interface controller (NIC) for use as a network address in communications within a network segment. This use is common in most IEEE 802 networking technologies, including Ethernet, Wi-Fi, and Bluetooth. Within the  OSI network model, MAC addresses are used in the medium access control protocol sublayer of the data link layer. As typically represented, MAC addresses are recognizable as six groups of two hexadecimal digits, separated by hyphens, colons, or without a separator.
 
@@ -403,6 +508,8 @@ The Address Resolution Protocol is a communication protocol used for discovering
 
 The ARP is a request-response protocol. Its messages are directly encapsulated by a link layer protocol. It is communicated within the boundaries of a single network, never routed across internetworking nodes.
 
+A host using Ethernet as its physical layer and IP as the network layer maintains a small table called an ARP cache that maps IP addresses to MAC addresses. In Linux, the ARP cache is in the kernel.
+
 *** Implementation
 Cuando se envía un paquete a la capa de enlace de datos para encapsularlo en una trama de Ethernet, el dispositivo consulta una tabla en su memoria para encontrar la dirección MAC que está asignada a la dirección IPv4. Esta tabla se denomina "tabla ARP" o "caché ARP". La tabla ARP se almacena en la RAM del dispositivo.
 
@@ -416,9 +523,9 @@ Solo un dispositivo de la LAN tiene la dirección IPv4 que coincide con la direc
 Cuando un dispositivo de origen tiene un paquete con una dirección IPv4 de otra red, lo encapsula en una trama con la dirección MAC de destino del router.
 
 *** Example
-Two computers in an office (Computer 1 and Computer 2) are connected to each other in a local area network by Ethernet cables and network switches, with no intervening gateways or routers. Computer 1 has a packet to send to Computer 2. Through DNS, it determines that Computer 2 has the IP address 192.168.0.55.
+Two computers in an office (Computer 1 and Computer 2) are connected to each other in a local area network by Ethernet cables and network switches, with no intervening gateways or routers. Computer 1 has a packet to send to Computer 2. Through DNS, it determines that Computer 2 has the IP address ~192.168.0.55~.
 
-To send the message, it also requires Computer 2's MAC address. First, Computer 1 uses a cached ARP table to look up 192.168.0.55 for any existing records of Computer 2's MAC address (00:EB:24:B2:05:AC). If the MAC address is found, it sends an Ethernet frame containing the IP packet onto the link with the destination address 00:EB:24:B2:05:AC. If the cache did not produce a result for 192.168.0.55, Computer 1 has to send a broadcast ARP request message (destination FF:FF:FF:FF:FF:FF MAC address), which is accepted by all computers on the local network, requesting an answer for 192.168.0.55.
+To send the message, it also requires Computer 2's MAC address. First, Computer 1 uses a cached ARP table to look up ~192.168.0.55~ for any existing records of Computer 2's MAC address (~00:EB:24:B2:05:AC~). If the MAC address is found, it sends an Ethernet frame containing the IP packet onto the link with the destination address ~00:EB:24:B2:05:AC~. If the cache did not produce a result for ~192.168.0.55~, Computer 1 has to send a broadcast ARP request message (destination ~FF:FF:FF:FF:FF:FF~ MAC address), which is accepted by all computers on the local network, requesting an answer for ~192.168.0.55~.
 
 Computer 2 responds with an ARP response message containing its MAC and IP addresses. As part of fielding the request, Computer 2 may insert an entry for Computer 1 into its ARP table for future use.
 
@@ -495,9 +602,88 @@ Under IPv4, a router that receives a network packet larger than the next hop's M
 ** Firewall
 Is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. A firewall typically establishes a barrier between a trusted network and an untrusted network, such as the Internet.
 
+A firewall usually sits on a router between the internet and a smaller network. You can also set up firewall features on any host to screen all incoming and outgoing data at the packet level. Firewalling on individual machines is sometimes called IP filtering.
+
 Firewalls are categorized as a network-based or a host-based system. Network-based firewalls are positioned between two or more networks, typically between the local area network (LAN) and wide area network (WAN), their basic function is to control the flow of data between connected networks. They are either a software appliance running on general-purpose hardware, a hardware appliance running on special-purpose hardware, or a virtual appliance running on a virtual host controlled by a hypervisor. Firewall appliances may also offer non firewall functionality, such as DHCP or VPN services. Host-based firewalls are deployed directly on the host itself to control network traffic or other computing resources. This can be a daemon or service as a part of the operating system or an agent application for protection.
 
 The first reported type of network firewall is called a packet filter, which inspects packets transferred between computers. The firewall maintains an access-control list which dictates what packets will be looked at and what action should be applied, if any, with the default action set to silent discard. Three basic actions regarding the packet consist of a silent discard, discard with [[ICMP][Internet Control Message Protocol]] or TCP reset response to the sender, and forward to the next hop. Packets may be filtered by source and destination IP addresses, protocol, source and destination ports.
+
+Firewalls put checkpoints for packets at the points of data transfer just identified. The checkpoints drop, reject, or accept packets, usually based on some of these criteria:
+
+- The source or destination IP address or subnet.
+- The source or destination port (in the transport layer information).
+- The firewall’s network interface.
+
+** Linux Firewall Basics‌
+In Linux, you create firewall rules in a series known as a *chain*. A set of chains makes up a *table*. As a packet moves through the various parts of the Linux networking subsystem, the kernel applies the rules in certain chains to the packets. For example, a new packet arriving from the physical layer is classified by the kernel as “input,” so it activates rules in chains corresponding to input.
+
+All of these data structures are maintained by the kernel. The whole system is called *iptables*, with an ~iptables~ user-space command to create and manipulate the rules.
+
+You’ll normally work primarily with a single table named *filter* that controls basic packet flow. There are three basic chains in the filter table:
+
+- ~INPUT~ for incoming packets.
+- ~OUTPUT~ for outgoing packets.
+- ~FORWARD~ for routed packets.
+
+** Firewall Strategies‌
+There are two basic kinds of firewall scenarios: one for protecting individual machines (where you set rules in each machine’s ~INPUT~ chain) and one for protecting a network of machines (where you set rules in the router’s ~FORWARD~ chain). In both cases, you can’t have serious security if you use a default policy of ~ACCEPT~ and continuously insert rules to drop packets from sources that start to send bad stuff. You must allow only the packets that you trust, and deny everything else.
+
+For example, say your machine has an ~SSH~ server on ~TCP~ port ~22~. There’s no reason for any random host to initiate a connection to any other port on your machine, and you shouldn’t give any such host a chance. To set that up, first set the ~INPUT~ chain policy to ~DROP~:
+
+#+begin_src sh
+
+iptables -P INPUT DROP
+
+#+end_src
+
+To enable ~ICMP~ traffic (for ping and other utilities), use this line:
+
+#+begin_src sh
+
+iptables -A INPUT -p icmp -j ACCEPT
+
+#+end_src
+
+Make sure that you can receive packets you send to both your own network IP address and ~127.0.0.1~ (localhost). Assuming your host’s IP address is ~my_addr~, do this:
+
+#+begin_src sh
+
+iptables -A INPUT -s 127.0.0.1 -j ACCEPT
+iptables -A INPUT -s my_addr -j ACCEPT
+
+#+end_src
+
+*WARNING*: Don’t run these commands one by one on a machine to which you only have remote access. The very first DROP command will instantly block your access, and you won’t be able to regain access until you intervene (for example, by rebooting the machine).
+
+If you control your entire subnet (and trust everything on it), you can replace ~my_addr~ with your subnet address and subnet mask—for example, ~10.23.2.0/24~.
+
+Now, although you still want to deny incoming ~TCP~ connections, you still need to make sure that your host can make ~TCP~ connections to the outside world. Because all ~TCP~ connections start with a ~SYN~ (connection request) packet, if you let all ~TCP~ packets through that aren’t ~SYN~ packets, you’re still okay:
+
+#+begin_src sh
+
+iptables -A INPUT -p tcp '!' --syn -j ACCEPT
+
+#+end_src
+
+The ~!~ symbol indicates a negation, so ~! --syn~ matches any non-SYN packet.
+
+Next, if you’re using remote UDP-based DNS, you must accept traffic from your name server so that your machine can look up names with DNS. Do this for all DNS servers in ~/etc/resolv.conf~. Use this command (where the name server’s address is ~ns_addr~):
+
+#+begin_src sh
+
+iptables -A INPUT -p udp --source-port 53 -s ns_addr -j ACCEPT
+
+#+end_src
+
+And finally, allow SSH connections from anywhere:
+
+#+begin_src sh
+
+iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
+
+#+end_src
+
+The preceding iptables settings work for many situations, including any direct connection (especially broadband) where an intruder is much more likely to port-scan your machine. You could also adapt these settings for a firewalling router by using the ~FORWARD~ chain instead of ~INPUT~ and using source and destination subnets where appropriate. For more advanced configurations, you may find a configuration tool such as Shorewall to be helpful.
 
 * Protocols
 ** IP
@@ -556,6 +742,83 @@ Both endpoints must also allocate space for unacknowledged packets and received 
   - Error-free data transfer: corrupted packets are treated as lost and are retransmitted.
   - Flow control: limits the rate a sender transfers data to guarantee reliable delivery. The receiver continually hints the sender on how much data can be received. When the receiving host's buffer fills, the next acknowledgment suspends the transfer and allows the data in the buffer to be processed.
   - Congestion control: lost packets (presumed due to congestion) trigger a reduction in data delivery rate.
+
+*** Structure TCP format
+
+#+begin_src artist
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          Source Port          |       Destination Port        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        Sequence Number                        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Acknowledgment Number                      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Data |           |U|A|P|R|S|F|                               |
+   | Offset| Reserved  |R|C|S|S|Y|I|            Window             |
+   |       |           |G|K|H|T|N|N|                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           Checksum            |         Urgent Pointer        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Options                    |    Padding    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                             data                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#+end_src
+
+*** TCP Connection State Diagram
+
+#+begin_src artist
+
+                              +---------+ ---------\      active OPEN
+                              |  CLOSED |            \    -----------
+                              +---------+<---------\   \   create TCB
+                                |     ^              \   \  snd SYN
+                   passive OPEN |     |   CLOSE        \   \
+                   ------------ |     | ----------       \   \
+                    create TCB  |     | delete TCB         \   \
+                                V     |                      \   \
+                              +---------+            CLOSE    |    \
+                              |  LISTEN |          ---------- |     |
+                              +---------+          delete TCB |     |
+                   rcv SYN      |     |     SEND              |     |
+                  -----------   |     |    -------            |     V
+ +---------+      snd SYN,ACK  /       \   snd SYN          +---------+
+ |         |<-----------------           ------------------>|         |
+ |   SYN   |                    rcv SYN                     |   SYN   |
+ |   RCVD  |<-----------------------------------------------|   SENT  |
+ |         |                    snd ACK                     |         |
+ |         |------------------           -------------------|         |
+ +---------+   rcv ACK of SYN  \       /  rcv SYN,ACK       +---------+
+   |           --------------   |     |   -----------
+   |                  x         |     |     snd ACK
+   |                            V     V
+   |  CLOSE                   +---------+
+   | -------                  |  ESTAB  |
+   | snd FIN                  +---------+
+   |                   CLOSE    |     |    rcv FIN
+   V                  -------   |     |    -------
+ +---------+          snd FIN  /       \   snd ACK          +---------+
+ |  FIN    |<-----------------           ------------------>|  CLOSE  |
+ | WAIT-1  |------------------                              |   WAIT  |
+ +---------+          rcv FIN  \                            +---------+
+   | rcv ACK of FIN   -------   |                            CLOSE  |
+   | --------------   snd ACK   |                           ------- |
+   V        x                   V                           snd FIN V
+ +---------+                  +---------+                   +---------+
+ |FINWAIT-2|                  | CLOSING |                   | LAST-ACK|
+ +---------+                  +---------+                   +---------+
+   |                rcv ACK of FIN |                 rcv ACK of FIN |
+   |  rcv FIN       -------------- |    Timeout=2MSL -------------- |
+   |  -------              x       V    ------------        x       V
+    \ snd ACK                 +---------+delete TCB         +---------+
+     ------------------------>|TIME WAIT|------------------>| CLOSED  |
+                              +---------+                   +---------+
+
+#+end_src
 
 ** UDP
 The User Datagram Protocol is one of the core communication protocols of the [[Internet Protocol Suite TCP/IP][Internet protocol suite]] used to send messages (transported as datagrams in packets) to other hosts on an [[IP][Internet Protocol]] (IP) network. Within an IP network, UDP does not require prior communication to set up communication channels or data paths.
@@ -670,26 +933,42 @@ Content-Type: text/html
     The request was received, continuing process.
 
 - ~2XX~ (successful)
-    The request was successfully received, understood, and accepted. ~200~ - *OK*, ~201~ - OK *created*
+    The request was successfully received, understood, and accepted.
+    ~200~ - *OK*, ~201~ - OK *created*
 
 - ~3XX~ (redirection)
-    Further action needs to be taken in order to complete the request / redirect. ~301~ - *Moved to new URL*, ~304~ - *Not modified (cached version)*
+    Further action needs to be taken in order to complete the request / redirect.
+    ~301~ - *Moved to new URL*, ~304~ - *Not modified (cached version)*
 
 - ~4XX~ (client error)
-    The request contains bad syntax or cannot be fulfilled. ~400~ - *Bad request*, ~401~ - *Unauthorized*, ~404~ - *Not found*
+    The request contains bad syntax or cannot be fulfilled.
+    ~400~ - *Bad request*, ~401~ - *Unauthorized*, ~404~ - *Not found*
 
 - ~5XX~ (server error)
-    The server failed to fulfill an apparently valid request. ~500~ - *Internal server error*
+    The server failed to fulfill an apparently valid request.
+    ~500~ - *Internal server error*
 
 *** HTTPS
 Hypertext Transfer Protocol Secure is an extension of the Hypertext Transfer Protocol (HTTP). It uses encryption for secure communication over a computer network, and is widely used on the Internet. In HTTPS, the communication protocol is encrypted using Transport Layer Security (TLS) or, formerly, Secure Sockets Layer (SSL).
 
 ** ICMP
+*** Definition
 Internet Control Message Protocol is a supporting protocol in the Internet protocol suite. It is used by network devices, including routers, to send error messages and operational information indicating success or failure when communicating with another IP address, for example, an error is indicated when a requested service is not available or that a host or router could not be reached. ICMP differs from transport protocols such as TCP and UDP in that it is not typically used to exchange data between systems, nor is it regularly employed by end-user network applications (with the exception of some diagnostic tools like ping and traceroute).
 
 ICMP errors are directed to the source IP address of the originating packet. For example, every device (such as an intermediate router) forwarding an IP datagram first decrements the time to live (TTL) field in the IP header by one. If the resulting TTL is 0, the packet is discarded and an ICMP time exceeded in transit message is sent to the datagram's source address.
 
 Many commonly used network utilities are based on ICMP messages. The traceroute command can be implemented by transmitting IP datagrams with specially set IP TTL header fields, and looking for ICMP time exceeded in transit and Destination unreachable messages generated in response. The related ping utility is implemented using the ICMP echo request and echo reply messages.
+
+*** ICMP Protocol Overview
+Internet Control Message Protocol (ICMP), documented in RFC 792, is a required protocol tightly integrated with IP. ICMP messages, delivered in IP packets, are used for out-of-band messages related to network operation or mis-operation. Of course, since ICMP uses IP, ICMP packet delivery is unreliable, so hosts can't count on receiving ICMP packets for any network problem. Some of ICMP's functions are to:
+
+- Announce network errors, such as a host or entire portion of the network being unreachable, due to some type of failure. A TCP or UDP packet directed at a port number with no receiver attached is also reported via ICMP.
+
+- Announce network congestion. When a router begins buffering too many packets, due to an inability to transmit them as fast as they are being received, it will generate ICMP Source Quench messages. Directed at the sender, these messages should cause the rate of packet transmission to be slowed. Of course, generating too many Source Quench messages would cause even more network congestion, so they are used sparingly.
+
+- Assist Troubleshooting. ICMP supports an Echo function, which just sends a packet on a round--trip between two hosts. Ping, a common network management tool, is based on this feature. Ping will transmit a series of packets, measuring average round--trip times and computing loss percentages.
+
+- Announce Timeouts. If an IP packet's TTL field drops to zero, the router discarding the packet will often generate an ICMP packet announcing this fact. TraceRoute is a tool which maps network routes by sending packets with small TTL values and watching the ICMP timeout announcements. 
 
 ** DHCP
 The Dynamic Host Configuration Protocol is a network management protocol used on Internet Protocol (IP) networks for automatically assigning IP addresses and other communication parameters to devices connected to the network using a client–server architecture.
@@ -728,6 +1007,14 @@ The Internet protocol suite provides end-to-end data communication specifying ho
   - the internet layer :: providing internetworking between independent networks
   - the link layer :: containing communication methods for data that remains within a single network segment (link)
 
+Despite using a different concept for layering than the OSI model, these layers are often compared with the OSI layering scheme in the following manner:
+  -  The Internet application layer maps to the OSI application layer, presentation layer, and most of the session layer.
+  -  The TCP/IP transport layer maps to the graceful close function of the OSI session layer as well as the OSI transport layer.
+  -  The internet layer performs functions as those in a subset of the OSI network layer.
+  -  The link layer corresponds to the OSI data link layer and may include similar functions as the physical layer, as well as some protocols of the OSI's network layer.
+
+*** Protocol Relationships
+
 |   | /Layer/             | /Protocol/   | /PDU/              |
 |---+-------------------+------------+------------------|
 | /4/ | Application layer | HTTP - SSH | Undefined        |
@@ -735,11 +1022,25 @@ The Internet protocol suite provides end-to-end data communication specifying ho
 | /2/ | Internet layer    | ICMP - ARP | Packet           |
 | /1/ | Link layer        | PPP - MAC  | Frame            |
 
-Despite using a different concept for layering than the OSI model, these layers are often compared with the OSI layering scheme in the following manner:
-  -  The Internet application layer maps to the OSI application layer, presentation layer, and most of the session layer.
-  -  The TCP/IP transport layer maps to the graceful close function of the OSI session layer as well as the OSI transport layer.
-  -  The internet layer performs functions as those in a subset of the OSI network layer.
-  -  The link layer corresponds to the OSI data link layer and may include similar functions as the physical layer, as well as some protocols of the OSI's network layer.
+  #+begin_src artist
+
+       +------+ +-----+ +-----+       +-----+
+       |Telnet| | FTP | |Voice|  ...  |     |  Application Level
+       +------+ +-----+ +-----+       +-----+
+             |   |         |             |
+            +-----+     +-----+       +-----+
+            | TCP |     | RTP |  ...  |     |  Host Level
+            +-----+     +-----+       +-----+
+               |           |             |
+            +-------------------------------+
+            |    Internet Protocol & ICMP   |  Gateway Level
+            +-------------------------------+
+                           |
+              +---------------------------+
+              |   Local Network Protocol  |    Network Level
+              +---------------------------+
+
+  #+end_src
 
 *** Application layer
 Is the scope within which applications, or processes, create user data and communicate this data to other applications on another or the same host.
@@ -890,6 +1191,41 @@ Is responsible for the transmission and reception of unstructured raw data betwe
 The physical layer also specifies how encoding occurs over a physical signal, such as electrical voltage or a light pulse. For example, a 1 bit might be represented on a copper wire by the transition from a 0-volt to a 5-volt signal, whereas a 0 bit might be represented by the transition from a 5-volt to a 0-volt signal. As a result, common problems occurring at the physical layer are often related to the incorrect media termination, EMI or noise scrambling, and NICs and hubs that are misconfigured or do not work correctly.
 
 *Protocols*: ~DSL~, ~IEEE 802.11~, ~ITU-T G.hn PHY~, ~USB~, ~Bluetooth~, ...
+
+* Network interface
+** Definition
+A network interface is the network-specific software that communicates with the network-specific device driver and the IP layer in order to provide the IP layer with a consistent interface to all network adapters that might be present.
+
+The IP layer selects the appropriate network interface based on the destination address of the packet to be transmitted. Each network interface has a network address. The Network Interface layer is responsible for adding or removing any link layer protocol header required to deliver a message to its destination. The network adapter device driver controls the network adapter card.
+
+Although not required, a network interface is usually associated with a network adapter. For instance, the loopback interface has no network adapter associated with it. A machine must have one network adapter card for each network (not network type) to which it connects. However, a machine requires only one copy of the network interface software for each network adapter it uses. For instance, if a host attaches to two token-ring networks, it must have two network adapter cards. However, only one copy of the token-ring network interface software and one copy of the token-ring device driver is required.
+
+** Network Interface Configuration
+1. Connect the network hardware and ensure that the kernel has a driver for it. If the driver is present, ip address show includes an entry for the device, even if it hasn’t been configured.
+
+2. Perform any additional physical layer setup, such as choosing a network name or password.
+
+3. Assign IP address(es) and subnets to the kernel network interface so that the kernel’s device drivers (physical layer) and internet subsystems (internet layer) can talk to each other. (ifconfig)
+
+4. Add any additional necessary routes, including the default gateway. (route)
+
+** Localhost
+The lo interface is a virtual network interface called the *loopback* because it “loops back” to itself. The effect is that connecting to ~127.0.0.1~ (or ~::1~ in IPv6) is connecting to the machine that you’re currently using. When outgoing data to localhost reaches the kernel network interface for lo, the kernel just repackages it as incoming data and sends it back through lo, for use by any server program that’s listening (by default, most do).
+
+The netmask is ~/8~, and anything starting with ~127~ is assigned to loopback. This allows you to run different servers on different IPv4 addresses in the loopback space without configuring additional interfaces. One server that takes advantage of this is systemd-resolved, which uses ~127.0.0.53~. This way, it won’t interfere with another name server running on ~127.0.0.1~. So far, IPv6 defines only one loopback address, but there are proposals to change this.
+
+* Network Security‌
+- Run as few services as possible :: Intruders can’t break into services that don’t exist on your system. If you know what a service is and you’re not using it, don’t turn it on for the sole reason that you might want to use it “at some later point.”
+
+- Block as much as possible with a firewall :: Unix systems have a number of internal services that you may not know about (such as TCP port 111 for the RPC port-mapping server), and no other system in the world should know about them. It can be very difficult to track and regulate the services on your system because many different kinds of programs listen on various ports. To keep intruders from discovering internal services on your system, use effective firewall rules and install a firewall at your router.
+
+- Track the services that you offer to the internet :: If you run an SSH server, Postfix, or similar services, keep your software up to date and get appropriate security alerts.
+
+- Use “long-term support” distribution releases for servers :: Security teams normally concentrate their work on stable, supported distribution releases. Development and testing releases such Debian Unstable and Fedora Rawhide receive much less attention.
+
+- Don’t give an account on your system to anyone who doesn’t need one :: It’s much easier to gain superuser access from a local account than it is to break in remotely. In fact, given the huge base of software (and the resulting bugs and design flaws) available on most systems, it can be easy to gain superuser access to a system after you get to a shell prompt. Don’t assume that your friends know how to protect their passwords (or choose good passwords in the first place).
+
+- Avoid installing dubious binary packages :: They can contain Trojan horses.
 
 * Cryptographic
 ** Key
@@ -1049,3 +1385,6 @@ A diferencia de la encriptación asimétrica, en la encriptación simétrica las
 obtener las claves de sesión. Ambos deben obtener el mismo resultado y todas las comunicaciones posteriores durante la sesión se encriptan con esas nuevas claves.
 
 En el protocolo RSA no hay confidencialidad directa; si la clave privada se pone en riesgo, un atacante en ruta podría desencriptar las claves de sesión de conversaciones anteriores, porque puede desencriptar el secreto premaster, y los valores aleatorios de cliente y del servidor están en texto no cifrado. Combinando los tres, el atacante en ruta puede derivar cualquier clave de sesión.
+* References
+- [[https://es.wikipedia.org/wiki/Wikipedia:Portada][Wikipedia]]
+- How Linux Works by Brian Ward.

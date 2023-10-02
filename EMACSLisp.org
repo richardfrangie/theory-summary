@@ -210,7 +210,6 @@
 
 ** Window - Buffer - Frame
 *** Window
-# meand the number of window to wich the action will be aplied
 | /C-x o/         | other-window                  |
 | /C-x 0/         | delete-select-window          |
 | /C-x 1/         | delete-all-other-window       |
@@ -226,20 +225,17 @@
 | /C-u ace-w/     | swap windows                  |
 | /C-u C-u ace-w/ | delete windows                |
 |               |                               |
-| /M-o m #/       | swap windows                  |
-| /M-o x #/       | delete window                 |
+| /M-o m 1/       | swap windows 1                |
+| /M-o x 1/       | delete window 1               |
 | /M-o z/         | new frame with current window |
 | /M-o/           | other-window (works only 2)   |
-| /M-o M #/       | move windows                  |
+| /M-o M 1/       | move windows 1                |
 | /M-o ?/         | show command bindings         |
 |               |                               |
 | /C-x ^/         | enlarge-window                |
 |               | shrink-window                 |
 | /C-x }/         | enlarge-window-horizontally   |
 | /C-x {/         | shrink-window-horizontally    |
-|               |                               |
-| /C-x r w/       | window to-register            |
-| /C-x r j/       | jump-to-register              |
 
 *** Buffer
 
@@ -257,12 +253,20 @@
 |         |                                 |
 | /m/       | Mark                            |
 | /u/       | Unmark                          |
-| /* u/     | Mark unsaved                    |
-| /S/       | Save marked buffer              |
-| /D/       | Close marked buffers            |
-| /i/       | list subdirectories (on a dir)  |
-| /% m/     | mark all files by regexp        |
+| /U/       | Unmark all                      |
 | /t/       | toogel                          |
+| /* u/     | Mark unsaved                    |
+| /* M/     | Mark by mode                    |
+| /% m/     | Mark by mode using regexp       |
+| /% n/     | Mark by name using regexp       |
+|         |                                 |
+| /S/       | Save marked buffer              |
+| /D/       | Kill marked buffers             |
+| /i/       | list subdirectories (on a dir)  |
+|         |                                 |
+| /RET/     | View the buffer on this line    |
+| /o/       | As above, but in another window |
+| /C-o/     | As both above,but no new window |
 
 *** Frames
 
@@ -278,8 +282,8 @@
 | /C-x h/     | mark-whole-buffer             |
 |           |                               |
 | /C-SPC-SPC/ | set-mark                      |
-| /C-u C-SPC/ | return-to-point-mark          |
 | /C-x C-x/   | exchange-point-and-mark       |
+| /C-u C-SPC/ | return to point mark          |
 | /C-x C-SPC/ | pop-global-mark(other buffer) |
 
 *** Cursor
@@ -307,16 +311,6 @@
 | /----->/   | /---->/     | /--->/     | /-->/      | /->/       |
 | forw ele | forw-sent | end line | forw-wor | forw-cha |
 | /M-}/      | /M-e/       | /C-e/      | /M-f/      | /C-f/      |
-
-*** Kill text
-
-| /---->/       | /--->/        | /-->/         | /->/          |
-| kill-sent f | kill line f | kill-word f | del char f  |
-| /M-k/         | /C-k/         | /M-d/         | /C-d/         |
-|-------------+-------------+-------------+-------------|
-| /<-----/      | /<---/        | /<--/         | /<-/          |
-| kill-region | kill line b | b kill word | del chart b |
-| /C-w/         | /C-0-k/       | /M-DEL/       | /DEL/         |
 
 *** Scroll
 
@@ -360,6 +354,16 @@
 |           |                                      |
 | /C-x r N/   | rectangle-number-lines               |
 | /M-=/       | count-words-region                   |
+
+*** Kill text
+
+| /---->/       | /--->/        | /-->/         | /->/          |
+| kill-sent f | kill line f | kill-word f | del char f  |
+| /M-k/         | /C-k/         | /M-d/         | /C-d/         |
+|-------------+-------------+-------------+-------------|
+| /<-----/      | /<---/        | /<--/         | /<-/          |
+| kill-region | kill line b | b kill word | del chart b |
+| /C-w/         | /C-x DEL/     | /M-DEL/       | /DEL/         |
 
 *** Regexp
 
@@ -533,7 +537,6 @@
 | /ESC x/     | same /M-x/ in no GUI term |
 |           |                         |
 | /C-h e/     | view-echo-area-messages |
-|           | auto-package-update-now |
 
 *** Calc
 
@@ -568,6 +571,10 @@
 | /t b/   | calc-trail-backwards   |
 | /t f/   | calc-trail-forwards    |
 
+| /d6/    | to turn display into hexa    |
+| /d0/    | to turn display into decimal |
+| /16#FF/ | to turn FF into decimal      |
+
 *** Kmacro
 
 | /F3/ \ /C-x(/   | kmacro-start-macro(sequence) |
@@ -585,13 +592,22 @@
 
 *** Register
 
-| /C-x r SPC r/     | Position              |
-| /C-x r s r/       | Text                  |
-| /C-x r r r/       | Rectangle             |
-| /C-x r w r/       | Window Config         |
-| /C-u 7 C-x r n r/ | Number                |
-| /C-x r i r/       | insert                |
-| /C-x r + x/       | Increment number by 1 |
+| /C-x r s/   | copy-to-register             |
+| /C-x r r/   | copy-rectangle-to-register   |
+| /C-x r n/   | number-to-register           |
+| /C-x r SPC/ | point and buffer to register |
+|           |                              |
+| /C-x C-k x/ | kmacro-to-register           |
+| /C-x r w/   | window to-register           |
+| /C-x r f/   | frameset-to-register         |
+|           |                              |
+| /C-x r i/   | insert-register              |
+| /C-x r j/   | jump-to-register             |
+|           |                              |
+| /C-x r m/   | bookmark-set                 |
+| /C-x r l/   | bookmark-bmenu-list          |
+| /C-x r b/   | counsel-bookmark             |
+|           | bookmark-save                |
 
 *** Characters
 
@@ -670,6 +686,13 @@ By official emacs documentation, the key space for users are the function keys ~
 | /C-c ^/ | move up    |
 | /C-c ./ | move down  |
 
+*** Functions M-x
+
+| /M-x/ | auto-package-update-now |
+|     |                         |
+| /M-x/ | desktop-save            |
+| /M-x/ | desktop-read            |
+
 * Elisp
 ** Elisp
 *** Proccesing
@@ -683,7 +706,7 @@ Whenever you give an editing command to Emacs Lisp, such as the command to move 
 - A string between double quotes also evaluates to itself.
 - When you evaluate a symbol by itself, its value is returned.
 - When you evaluate a list, the Lisp interpreter looks at the first symbol in the list and then at the function definition bound to that symbol. Then the instructions in the function definition are carried out.
-- A single-quote ‘'’ tells the Lisp interpreter that it should return the following expression as written, and not evaluate it as it would if the quote were not there.
+- A single-quote ‘ ~'~ ’ tells the Lisp interpreter that it should return the following expression as written, and not evaluate it as it would if the quote were not there.
 - Arguments are the information passed to a function. The arguments to a function are computed by evaluating the rest of the elements of the list of which the function is the first element.
 - A function always returns a value when it is evaluated (unless it gets an error); in addition, it may also carry out some action that is a side effect. In many cases, a function’s primary purpose is to create a side effect.
 
@@ -3366,7 +3389,8 @@ Note: I think the difference between ~with-temp-buffer~ and ~with-output-to-temp
       (setq amzLinkInsertPoint (point) )
 
       ;; get title from preceding Wikipedia link
-      (search-backward-regexp "<a href=\"http://...wikipedia.org/wiki/[^\"]+?\">\\([^<]+?\\)</a>")
+      (search-backward-regexp 
+      "<a href=\"http://...wikipedia.org/wiki/[^\"]+?\">\\([^<]+?\\)</a>")
       (setq titleText (match-string 1 ) )
 
       (when (yes-or-no-p titleText)
@@ -3543,6 +3567,11 @@ becomes
   (let ((linkText url))
     ;; ...
     (format "<a href=\"%s\">%s</a>" url linkText)))
+
+
+;; How to convert between Decimal and Hexadecimal.
+(format "%x" 10)  ; decimal to hex. Returns 「a」
+(format "%d" #xa) ; hex 「a」 to decimal. Returns 「10」.
 
 #+end_src
 
@@ -5931,6 +5960,890 @@ Here is an ~rx~ regexp that matches a block comment in the C programming languag
 
 Warning: the meaning of a character class in emacs is dependent on the current major mode's syntax table. For example, what chars are considered “word” in ~[[:word:]]~ depends on how its defined in syntax table of current major mode.
 
+* Emacs Lisp
+** Modes
+*** Mode
+A set of definitions that customize the behavior of Emacs in useful ways. It is basically a collection of features that can be applied to a single buffer or to the entire editor.
+
+There are derived modes, such as HTML mode which is derived from Text mode. When HTML mode is enabled, run ~text-mode-hook~ before running ~html-mode-hook~.
+
+*** Major mode
+They provide specialized functions for working on a particular type of file or buffer, used for editing or interacting with a particular type of text. They are mutually exclusive; each buffer has one and only one at any time.
+
+Most modes are divided into three main groups, the first group contains modes for plain text, either plain or markup (Text mode, HTML mode, SGML mode, TeX mode and Outline mode). The second contains modes for specific programming languages (Lisp (which has several variants), C mode, ...). The third consists of main modes that are not directly associated with files; they are used in buffers created for specific purposes by Emacs (Dired mode, Message to Mail mode, Shell mode).
+
+*** Minor mode
+Optional editing mode provides functions that users can turn on and off while editing. Unlike the major modes, any number of minor modes can be active at any time. They are independent of each other and of the selected major mode.
+
+** Hook
+Hooks are an important mechanism for customizing Emacs. A hook is a Lisp variable which holds a list of functions, to be called on some well-defined occasion. (This is called running the hook.) The individual functions in the list are called the hook functions of the hook. For example, the hook ~kill-emacs-hook~ runs just before exiting Emacs.
+
+Each hook is designed to “run” when some event happens. When a hook “run”, all functions in that hook are called.
+
+For example,
+  - when ~html-mode~ is loaded, ~html-mode-hook~'s functions are run.
+  - when any command is called, ~post-command-hook~'s functions are run.
+
+There are hundreds of hooks. Each major mode usually have at least 1 hook, designed to run when the mode is loaded.
+
+A hook is similar to the concept of events in other systems. Adding function to a hook is similar to adding event handlers. (note: emacs lisp manual also uses the term “event”, but that is lower level events to emacs, not events by emacs.)
+
+For example ~prog-mode-hook~ is a hook to any mode of programming languages. It is a main mode that does nothing more than let other main modes inherit from it, exactly for this purpose.
+
+Most hooks are *normal hooks.* This means that when Emacs runs the hook, it calls each hook function in turn, with no arguments. Every variable whose name ends in  ~-hook~  is a normal hook.
+
+A few hooks are *abnormal hooks*. Their names end in  ~-functions~ , instead of ~-hook~. What makes these hooks abnormal is the way its functions are called—perhaps they are given arguments, or perhaps the values they return are used in some way. For example, ~find-file-not-found-functions~ is abnormal because as soon as one hook function returns a non-nil value, the rest are not called at all.
+
+** keymaps
+Internal data structure that records key bindings to commands or other keymap.
+
+When an event type is bound to a keymap, that keymap is used to search for the next input event; this continues until a command is found. Mode-specific keymaps overwrite the global ~(mode-map)~ that all buffers share.
+
+** Terminals
+*** eshell
+~eshell~ is a shell written entirely in emacs lisp. Note: it is not a bash emulator. Eshell is a shell by itself, but similar to bash or other shells.
+
+~eshell~ is good especially on Microsoft Windows where bash is not installed. Eshell is also super fast on startup. If you are a emacs lisp programer, you might prefer eshell because direct access to emacs lisp and better integration with emacs.
+
+Tricks:
+- redirect to buffers - along with the above, you can also do things like ~ls >> #<buffer *scratch*>~ to output the result from ls to the scratch buffer
+- ~/dev/clip~ and ~/dev/kill~ - you can redirect shell commands to the emacs clipboard and killring
+
+Personally (Xah Lee), i used shell from 1998 to 2013, and eshell now. But i always have a real terminal app open, for running any command i'm not familiar with. For any serious command, such as starting a server, or any command that has logs, i run it in a real terminal app, with no tie to emacs.
+
+Is Emacs’ own shell implementation written in Emacs Lisp. It provides you with a cross-platform implementation of the common GNU utilities you would find on Linux (~ls~, ~rm~, ~mv~, ~grep~, etc). It also allows you to call Emacs Lisp functions directly from the shell and you can even set up aliases (like aliasing ~vim~ to ~find-file~). Eshell is also an Emacs Lisp REPL which allows you to evaluate full expressions at the shell.
+
+The downsides to Eshell are that it can be harder to configure than other packages due to the particularity of where you need to set some options for them to go into effect, the lack of shell completions (by default) for some useful things like Git commands, and that REPL programs sometimes don’t work as well.
+
+- REPL de Emacs Lisp, permite llamar a las funciones o evaluar comandos de Emacs Lisp directamente desde el shell, incluso puede configurar alias ~alias ffo "find-file-other-window $1"~ y proporciona una manera sencilla de hacer nuestros scripts en elisp en lugar de bash u otros.
+- Puede correr comandos en la shell como ~find-file~, ~dired~, ...,  también correr funciones ~(+ 20 5)~  (presionando /TAB/ se puede completar las funciones).
+- Puede usar comandos con pipe para enviar salida a un buffer ~echo "Hello" > #<buffer test-buffer>~.
+- La sintaxis de la subshell es un poco diferente se utiliza ~${ }~ en vez de ~$( )~.
+- Soporta TRAMP (controlar remotamente otra maquina).
+- Programas que leen input (como lenguajes REPLs, como por ejemplo "node") y herramientas que dependen de la configuración de los ambientes de shell (nvm, virtualenv) pueden funcionar incorrectamente.
+- ~*ls~ (se coloca delante para poderlo usar).
+
+NOTES:
+- Los enlaces duros y simbólicos funcionan diferente a lo esperado. Cuando se modifica el archivo original que tiene un hard link creado con eshell, cambia su valor de ~inode~ .
+- Los comandos ~trap~ , ~alias~ dan problemas.
+- No permite crear redirecciones tales como ~cat << Whatever~ .
+- Comandos que impliquen opciones que manipulan enlaces simbólicos como ~cp -a dir dirNew~  dan problema.
+- No funciona el comando para asignar variables ~var=variable~ .
+
+*Aliases*:
+A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~. 
+
+Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ (this defaults to something like ~~/.emacs.d/eshell/aliases~), which you can also edit directly (although you will have to manually reload it).
+
+Note that unlike aliases in Bash, arguments must be handled explicitly. Typically the alias definition would end in ~$*~ to pass all arguments along. More selective use of arguments via ~$1~, ~$2~, etc., is also possible. For example, alias ~mcd 'mkdir $1 && cd $1'~ would cause ~mcd foo~ to create and switch to a directory called ~foo~.
+
+*Warning*: if this doesn't work and get the error ~command not found~ , remove the quote, e.g. type the command ~alias ll ls -l $*~  instead of ~alias ll 'ls -l $*'~.
+
+*** vterm
+Is an improved terminal emulator package which uses a compiled native module to interact with the underlying terminal applications. This enables it to be much faster than ~term-mode~ and to also provide a more complete terminal emulation experience.
+
+Make sure that you have the necessary dependencies installed before trying to use ~vterm~ because there is a module that will need to be compiled before you can use it successfully.
+
+*** shell
+~shell~ is the standard emacs interface to Operating System's command line interface.
+
+~shell~ is the most popular. It is good for general use of classic/standard unix shell commands, such as {grep, du, ls, sort, cat, head, tail, uname, …}.
+
+Es un termino medio entre ~term~ y ~eshell~. No es un emulador de terminal es solo una shell por lo que no se ejecutarán programas de terminal más complejos dentro de él. Tiene de ventaja que no se necesita cambiar de modo para habilitar el minibuffer. (Mejor opción para windows si se quiere usar PowerShell, bash, wsl).
+
+Ejecuta el shell predeterminado del sistema, dentro de un buffer de Emacs, por lo que todas las entradas de comandos en este modo son manejadas por Emacs y luego se envían al shell subyacente una vez se presiona enter. Es una subshell y no podrá ejecutar todos los comandos que se le pasen.
+
+*** term
+~term~ is a terminal emulator. It behaves like a dedicated terminal app, such as {~xterm~, ~gnome-terminal~, ~puTTY~}. It is compatible to more shell apps than emacs shell interface, but standard emacs keys such as moving cursor doesn't work here.
+
+~term~ and ~ansi-term~ are good if you want to run stuff like ssh, or other command line interactive interface (such as {python, ruby, lisp} shell), or text based GUI app such as vim.
+
+Emulador de terminal integrado. Esta escrito en Emacs Lisp por lo que es un poco más lento pero se puede usar de inmediato con poca configuración, admite aplicaciones de terminal bastante complejas (htop, vim, etc...).
+
+- Ejecuta el shell que le digamos (bash, zsh, ...). Este comando abre un terminal completo en un buffer de Emacs. Es interactivo, y además funcionarán las aplicaciones basadas en curses.
+- Permite realizar conexiones remotas a través de ssh o telnet. Se puede utilizar el terminal a través de un puerto serie con ~M-x serial-term~ y comunicarse con cualquier dispositivo que se tenga conectado a un puerto serie.
+- ~line-mode~ utiliza combinaciones de teclas de Emacs. ~char-mode~ manda las pulsaciones de teclas a la terminal subyacente.
+- ~eval-expression "(getenv "SHELL")~ ejecuta una terminal no por default
+
+*** ansi-term
+Similar a ~term~ con ligeras diferencias. (Útil para abrir varias terminales con nombres distintos).
+
+** Load file
+*** load
+You can use a ~load~ command to evaluate a complete file and thereby install all the functions and variables in the file into Emacs.
+
+Load a file by searching thru var ~load-path~. Argument should be just the file name without full path, such as ~(load "undo")~. It'll auto add “.elc” for compiled version if exist, or add “.el”, or with “.gz”.	Use this if the exact file path is not known in advance.
+
+#+begin_src emacs-lisp
+
+;; This evaluates, i.e., loads, the slowsplit.el file or if it exists,
+;; the faster, byte compiled slowsplit.elc file from the emacs
+;; sub-directory of your home directory.
+(load "~/emacs/slowsplit")
+
+#+end_src
+
+*** load-file
+Load a specific file. Load one specific file. (“.el” or “.elc” file name extentions are not auto added, but “.gz” is.) Use this when you don't want emacs to guess the file name extention of “.el”, “.elc” or none.
+
+*** require
+Load a package if it has not already been loaded. Checks the var ~features~, if symbol is not there, then call ~load~ to load it. File name is guessed from the feature name, or specified in the optional argument. Best used in elisp libraries or scripts, similar to other lang's “require” or “import”.
+
+*** autoload
+Load a file only when a function is called. Associate a function name with a file path. When the function is called, load the file, and execute the function. If you are writing a major mode, have your package installation go by ~autoload~ if possible. It saves startup time.
+
+Instead of installing a function by loading the file that contains it, or by evaluating the function definition, you can make the function available but not actually install it until it is first called. This is called *autoloading*.
+
+When you execute an autoloaded function, Emacs automatically evaluates the file that contains the definition, and then calls the function.
+
+ ~autoload~ is a built-in function that takes up to five arguments, the final three of which are optional.
+
+The first argument is the name of the function to be autoloaded.
+The second is the name of the file to be loaded.
+The third argument is documentation for the function.
+The fourth tells whether the function can be called interactively.
+The fifth argument tells what type of object.
+
+~autoload~ can handle a keymap or macro as well as a function (the default is a function).
+
+#+begin_src emacs-lisp
+
+;; This expression autoloads the html-helper-mode function. It takes it
+;; from the html-helper-mode.el file (or from the byte compiled version
+;; html-helper-mode.elc, if that exists.) The file must be located in a
+;; directory specified by load-path.
+(autoload 'html-helper-mode
+  "html-helper-mode" "Edit HTML documents" t)
+
+#+end_src
+
+*** Feature, require, provide
+- ~features~ is a elisp symbol that represent a lisp package. It is a global variable, holding a list of elisp symbols that are features.
+- A package can call ~(provide 'symbol_name)~. When this code is evaluated, emacs will add the symbol name to the ~features~ list.
+- When the code ~(require 'symbol_name)~ is called, emacs check if that symbol name is already in the ~features~ list. If not, load it. (emacs will guess a file name based on the symbol name. Or, the ~require~ function may specify a file name in the 2nd argument.)
+
+The purpose of features is for emacs to know if a package is already loaded.
+
+The ~features~ variable and the functions {~provide~, ~require~}, is the mechanism.
+
+The ~require~ function checks the ~features~ variable to see if a symbol is already there, if not, then load the file.
+
+The ~provide~ function adds a symbol to the ~features~ list.
+
+*** Loading the File
+**** Load the File Manually
+Suppose you downloaded a simple emacs package on the web named ~xyz.el~. To use the package, all you have to do is to make emacs load the file.
+
+  1. ~M-x load-file~ then give the file path.
+  2. Now, emacs is aware of the package. To activate, call the command in the package. For example, if the file name is ~xyz.el~, then the command to activate it is typically ~xyz~ or ~xyz-mode~.
+
+**** Load File at Startup
+If you want emacs to load the file when it starts, put the file in the dir ~~/.emacs.d/lisp/~, (create that directory if it doesn't exist, by convention, this dir is for packages you manually installed.) then put the following in your emacs init file:
+
+#+begin_src emacs-lisp
+
+;; Tell emacs where is your personal elisp lib dir
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+;; load the packaged named xyz.
+(load "xyz") ;; best not to include the ending “.el” or “.elc”
+
+#+end_src
+
+**** Byte Compile
+Elisp source code can be byte compiled. When a file is byte compiled, it loads faster, and the functions will run faster too (about 6 times faster). For simple packages, the difference in speed is not noticeable.
+
+To compile your code, call ~byte-compile-file~. Once you compiled the code, you'll get a file with suffix ~.elc~.
+
+You can byte-compile multiple files. In dired, press ~m~ to mark them (press ~u~ to unmark), then press ~B~ (~diredp-byte-compile-this-file~).
+
+**** Auto-Activation of Mode When Opening File
+This is usually setup by the package, but not always. Here's the basics:
+
+#+begin_src emacs-lisp
+
+;; setup files ending in “.js” to open in js2-mode
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+#+end_src
+
+*** site-wide
+In addition to your personal initialization file, Emacs automatically loads various site-wide initialization files, if they exist. These have the same form as your ~.emacs~ file, but are loaded by everyone.
+
+Two site-wide initialization files, ~site-load.el~ and ~site-init.el~, are loaded into Emacs and then dumped if a dumped version of Emacs is created, as is most common.
+
+Three other site-wide initialization files are loaded automatically each time you start Emacs, if they exist. These are ~site-start.el~ (it pretty much means a init file for all users of this emacs installation), which is loaded /before/ your ~.emacs~ file, and ~default.el~, and the terminal type file, which are both loaded /after/ your ~.emacs~ file.
+
+Settings and definitions in your ~.emacs~ file will overwrite conflicting settings and definitions in a ~site-start.el~ file, if it exists; but the settings and definitions in a ~default.el~ or terminal type file will overwrite those in your ~.emacs~ file. (You can prevent interference from a terminal type file by setting ~term-file-prefix~ to ~nil~.)
+
+The ~INSTALL~ file that comes in the distribution contains descriptions of the ~site-init.el~ and ~site-load.el~ files.
+
+The ~loadup.el~, ~startup.el~, and ~loaddefs.el~ files control loading. These files are in the lisp directory of the Emacs distribution and are worth perusing.
+
+The ~loaddefs.el~ file contains a good many suggestions as to what to put into your own ~.emacs~ file, or into a site-wide initialization file.
+
+** Variables
+*** Buffer local variables
+You can set the value of a variable for the current buffer only using ~setq-local~. Any code that runs in that buffer will receive the buffer-local value instead of the global value!
+
+Why do this? There are many settings that should only be set per buffer, like editor settings for different programming languages and customization variables for major modes.
+
+If the variable isn’t already buffer-local, ~setq-local~ will make it so, but only for the current buffer!
+
+#+begin_src emacs-lisp
+
+(setq-local tab-width 4)
+
+;; some-value doesn't exist yet!
+(setq some-value 2)
+
+;; Make it buffer-local
+(setq-local some-value 4)
+
+#+end_src
+
+*** Making a variable local for all buffers
+You can make any variable local for all future buffers with the make-variable-buffer-local function:
+
+#+begin_src emacs-lisp
+
+(setq not-local-yet t)
+(make-variable-buffer-local 'not-local-yet)
+
+#+end_src
+
+If you are writing an Emacs Lisp package and want to provide a buffer-local variable, this is the way to do it!
+
+#+begin_src emacs-lisp
+
+;; Defining a variable with defvar and then making it buffer local
+(defvar new-buffer-local-var 311)
+(make-variable-buffer-local 'new-buffer-local-var)
+
+#+end_src
+
+*** Setting default values
+You might also want to set the default value for a buffer-local variable with ~setq-default~:
+
+Keep in mind that ~setq-default~ does not set the value in the current buffer, only future buffers!
+
+#+begin_src emacs-lisp
+
+(setq-default not-local-yet nil)
+
+(setq-default tab-width 2
+              evil-shift-width 2)
+
+;; BEWARE!  Unexpected results using buffer-local variables:
+(setq-default evil-shift-width tab-width)
+
+;; This will create a variable that doesn't exist
+(setq-default will-i-be-created t)
+
+#+end_src
+
+*** Defining customization variables
+Customizable variables are used to define user-facing settings for customizing the behavior of Emacs and packages.
+
+The primary difference between They show up in the customization UI (users can set them without code)
+
+The ~defcustom~ function allows you to define a customizable variable:
+
+#+begin_src emacs-lisp
+
+(defcustom my-custom-variable 42
+  "A variable that you can customize")
+
+#+end_src
+
+~defcustom~ takes some additional parameters after the documentation string:
+
+  -  ~:type~ - The expected value type
+  -  ~:group~ - The symbol that identifies the “group” this variable belongs to (defined with ~defgroup~)
+  -  ~:options~ - The list of possible values this variable can hold
+  -  ~:set~ - A function that will be invoked when this variable is customized
+  -  ~:get~ - A function that will be invoked when this variable is resolved
+  -  ~:initialize~ - A function to be used to initialize the variable when it gets defined
+  -  ~:local~ - When ~t~, automatically marks the variable as buffer-local
+
+** init customization
+*** Keybindings
+**** Set key
+
+#+begin_src emacs-lisp
+
+;;Rebind the key C-x l to run the function make-symbolic-link
+(global-set-key (kbd "C-x l") 'make-symbolic-link)
+;; or
+(define-key global-map (kbd "C-x l") 'make-symbolic-link)
+
+;; Rebind for Lisp mode only.
+(define-key lisp-mode-map (kbd "C-x l") 'make-symbolic-link)
+
+;; With special characters
+(global-set-key (kbd "M-a") 'backward-char) ; Alt+a
+(global-set-key (kbd "C-a") 'backward-char) ; Ctrl+a
+(global-set-key (kbd "C-c t") 'backward-char) ; Ctrl+c t
+(global-set-key (kbd "<f9>") 'calendar) ; F9
+(global-set-key (kbd "<f7> <f8>") 'calendar)    ; F7 F8
+
+#+end_src
+
+**** Unset key
+
+#+begin_src emacs-lisp
+
+;; Make C-b undefined.
+(global-set-key (kbd "C-b") nil)
+(global-unset-key "C-b")
+
+#+end_src
+
+**** With hyper or super key
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "H-b") 'backward-word) ; H is for hyper
+(global-set-key (kbd "s-b") 'backward-word) ; lower case “s” is for super
+(global-set-key (kbd "M-H-b") 'backward-word) ; Meta+Hyper+b
+
+#+end_src
+
+**** Key sequence
+
+#+begin_src emacs-lisp
+
+(progn
+  ;; define a prefix keymap
+  (define-prefix-command 'my-modes-key-map)
+  (define-key my-modes-key-map (kbd "<f6>") 'visual-line-mode)
+  (define-key my-modes-key-map (kbd "<f7>") 'linum-mode)
+  (define-key my-modes-key-map (kbd "<f8>") 'whitespace-mode)
+  )
+
+(global-set-key (kbd "<f9>") my-modes-key-map)
+
+;; now, F9 F6 will call visual-line-mode
+;; F9 F7 for linum-mode
+;; F9 f8 for whitespace-mode
+
+#+end_src
+
+**** Substitute definition
+
+#+begin_src emacs-lisp
+
+;; Redefine all keys which now run next-line in Fundamental mode
+;; so that they run forward-line instead.
+(substitute-key-definition 'next-line 'forward-line
+                           global-map)
+
+#+end_src
+
+*** Load
+
+#+begin_src emacs-lisp
+
+;; Add a directory to the variable load-path.
+(add-to-list 'load-path "/path/to/lisp/libraries")
+
+;; add ~/emacs directory to the existing load path
+(setq load-path (cons "~/emacs" load-path))
+
+;; Load the installed Lisp library named foo (actually a file foo.elc or
+;; foo.el in a standard Emacs directory).
+(load "foo")
+;; When the argument to load is a relative file name, not starting
+;; with ‘/’ or ‘~’, load searches the directories in load-path
+
+;; Load the compiled Lisp file foo.elc from your home directory.
+(load "~/foo.elc")
+
+;; Add personal library path to load-path
+(push "~/.dotfiles/.emacs.d/lisp" load-pat)h
+
+#+end_src
+
+*** Major mode add-hook
+
+#+begin_src emacs-lisp
+
+;; Make Text mode the default mode for new buffers.
+(setq-default major-mode 'text-mode)
+
+
+;; turning on line number only for html-mode
+(add-hook 'html-mode-hook 'linum-mode)
+
+;; Turn on Auto Fill mode automatically in Text mode and related modes..
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+;; you don’t want Auto Fill mode turned on in LaTeX mode, which is one of
+;; the modes based on Text mode
+(add-hook 'latex-mode-hook (lambda () (auto-fill-mode -1)))
+
+;; remove a hook
+(remove-hook 'html-mode-hook 'linum-mode)
+
+
+;; binding keys only when Major Mode html-mode is active
+(defun my-html-mode-config ()
+  "Modify keymaps used by `html-mode'."
+  (local-set-key (kbd "C-c w") 'my-bold-word) ; add a key
+  (local-set-key (kbd "C-c C-p") nil) ; remove a key
+  (local-set-key (kbd "<C-left>") 'my-html-skip-tag-backward)
+  ;; more here
+  )
+;; add to hook
+(add-hook 'html-mode-hook 'my-html-mode-config)
+
+#+end_src
+
+*** Minor mode
+**** Change minor mode keys
+To change minor mode keys, you need to change of the mode's keymap.
+
+#+begin_src emacs-lisp
+
+(progn
+  ;; change isearch's keys to arrows
+  (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward))
+
+#+end_src
+
+For some minor modes, you need to load it first, example:
+
+#+begin_src emacs-lisp
+
+(progn
+  ;; modify dired keys
+  (require 'dired ) ;  (provide 'dired) search name in source code
+;; search map in describe-function
+;;(define-key keymap_name-map (kbd "key") 'command_name)
+  (define-key dired-mode-map (kbd "o") 'other-window)
+  (define-key dired-mode-map (kbd "C-o") 'find-file))
+
+#+end_src
+
+**** Modify Keys
+~shell~ and ~shell-command~ M-! have many special keys. Suppose you want to change them. They both use a keymap named ~comint-mode-map~. The following is a example of redefining some of its keys.
+
+#+begin_src emacs-lisp
+
+(progn
+  ;; "change keybindings for shell related modes."
+   (define-key comint-mode-map (kbd "M-p") 'recenter)
+   ;; was comint-previous-input
+   (define-key comint-mode-map (kbd "M-n") 'nil)
+   ;; was comint-next-input
+
+;; rebind displaced commands that i still want a key
+(define-key comint-mode-map (kbd "<f11>") 'comint-previous-input)
+(define-key comint-mode-map (kbd "<f12>") 'comint-next-input))
+
+;; Here's a example of how to redefine keybinding in minibuffer
+(define-key minibuffer-local-map (kbd "M-r") 'kill-word)
+(define-key minibuffer-local-map (kbd "M-s") 'other-window)
+
+#+end_src
+
+*** defalias
+
+#+begin_src emacs-lisp
+
+;; Define an alias to be use with the ~query-replace-regexp~ function by
+;; typing ~like M-x qrr~.
+(defalias 'qrr 'query-replace-regexp)
+
+;; Always use ibuffer
+(defalias 'list-buffers 'ibuffer)
+
+#+end_src
+
+*** macro
+1. ~M-x name-last-kbd-macro~ and give it a name.
+2. ~M-x insert-kbd-macro~ This will insert the lisp code for a named kmacro at the cursor position.
+3. Copy ＆ Paste the code into your emacs init file.
+4. In any future emacs session, you can call your kmacro by name just like any emacs command.
+
+Once you've saved your macro with a name, you can also give it a keyboard shortcut, such as ~F8~.
+
+#+begin_src emacs-lisp
+
+;; macro for bold region, add two *
+(fset 'bold
+   (kmacro-lambda-form [?\C-c ?\C-x ?\C-f kp-multiply] 0 "%d"))
+(global-set-key (kbd "<f7>") 'bold)
+
+;; macro for code region, add tow =
+(fset 'code
+   (kmacro-lambda-form [?\C-c ?\C-x ?\C-f ?=] 0 "%d"))
+(global-set-key (kbd "<f8>") 'code)
+
+#+end_src
+
+*** External App
+
+
+#+begin_src emacs-lisp
+
+;; To open the current file or marked dired files in external app. (as if
+;; you double-clicked the file on desktop) It's useful for image files,
+;; PDF file, video, audio files.
+(defun xah-open-in-external-app (&optional Fname)
+  "Open the current file or dired marked files in external app.
+When called in emacs lisp, if Fname is given, open that.
+
+URL `http://xahlee.info/emacs/emacs/emacs_dired_open_file_in_ext_apps.html'
+Version: 2019-11-04 2023-04-05 2023-06-26"
+  (interactive)
+  (let (xfileList xdoIt)
+    (setq xfileList
+          (if Fname
+              (list Fname)
+            (if (string-equal major-mode "dired-mode")
+                (dired-get-marked-files)
+              (list buffer-file-name))))
+    (setq xdoIt (if (<= (length xfileList) 10) t
+                  (y-or-n-p "Open more than 10 files? ")))
+    (when xdoIt
+      (cond
+       ((string-equal system-type "windows-nt")
+        (let ((xoutBuf (get-buffer-create "*xah open in external app*"))
+              (xcmdlist (list "PowerShell" "-Command"
+                              "Invoke-Item" "-LiteralPath")))
+          (mapc
+           (lambda (x)
+             (message "%s" x)
+             (apply 'start-process
+                    (append (list "xah open in external app" xoutBuf)
+                            xcmdlist (list
+                                      (format "'%s'"
+                                              (if (string-match "'" x)
+                                                  (replace-match "`'" t t x) x)))
+                            nil)))
+           xfileList)
+          ;; (switch-to-buffer-other-window xoutBuf)
+          )
+        ;; old code. calling shell. also have a bug if filename contain apostrophe
+        ;; (mapc (lambda (xfpath) (shell-command
+        ;; (concat "PowerShell -Command \"Invoke-Item -LiteralPath\" " "'"
+        ;; (shell-quote-argument (expand-file-name xfpath)) "'"))) xfileList)
+        )
+       ((string-equal system-type "darwin")
+        (mapc (lambda (xfpath) (shell-command
+                                (concat "open "(shell-quote-argument xfpath))))
+              xfileList))
+       ((string-equal system-type "gnu/linux")
+        (mapc (lambda (xfpath)
+                (call-process shell-file-name nil 0 nil
+                              shell-command-switch
+                              (format "%s %s"
+                                      "xdg-open"
+                                      (shell-quote-argument xfpath))))
+              xfileList))
+       ((string-equal system-type "berkeley-unix")
+        (mapc (lambda (xfpath)
+                (let ((process-connection-type nil))
+                  (start-process "" nil "xdg-open" xfpath))) xfileList))))))
+
+#+end_src
+
+#+RESULTS:
+
+*** Configurations
+
+#+begin_src emacs-lisp
+
+;; flyspell-mode
+(add-hook 'text-mode-hook
+        '(lambda () (flyspell-mode 1)))
+
+(setq ispell-local-dictionary "espanol")
+
+
+;; Case conversion can be toggled on/off by typing ‘M-c’ in the
+;; minibuffer during search or disable case conversion
+(setq case-fold-search nil)
+
+;; In an interactive search, a space character stands for one or more
+;; whitespace characters (tabs are whitespace characters). You can use
+;; M-s SPC while searching or replacing to toggle between this behavior
+;; and treating spaces as literal spaces.
+(setq search-whitespace-regexp nil)
+
+
+;;Adjusting the configuration to various platforms and Emacs versions.
+;; Users typically want Emacs to behave the same on all systems, so the
+;; same init file is right for all platforms. However, sometimes it
+;; happens that a function you use for customizing Emacs is not available
+;; on some platforms or in older Emacs versions. To deal with that
+;; situation, put the customization inside a conditional that tests
+;; whether the function or facility is available, like this:
+(if (fboundp 'blink-cursor-mode)
+    (blink-cursor-mode 0))
+
+(if (boundp 'coding-category-utf-8)
+    (set-coding-priority '(coding-category-utf-8)))
+
+;; You can also simply disregard the errors that occur if the
+;; function is not defined.
+(ignore-errors (set-face-background 'region "grey75"))
+
+#+end_src
+
+*** Miscellaneous
+
+#+begin_src emacs-lisp
+
+;; Example of how to use Hydra package.
+(global-set-key (kbd "C-c m")
+ (defhydra hydra-transpose (:color red)
+   "Transpose"
+    ("w" transpose-words "words")
+    ("o" org-transpose-words "Org mode words")
+    ("l" transpose-lines "lines")
+    ("q" nil "cancel" :color blue)))
+
+;; auto-saves buffers, when certain events happen (e.g. you switch
+;; between buffers, an Emacs frame loses focus)
+(use-package super-save
+  :defer 1
+  :diminish super-save-mode
+  :config
+  (super-save-mode +1))
+
+#+end_src
+
+** Useful commands
+*** Lines
+**** list-matching-lines (occur)
+Show all lines in the current buffer containing a match for REGEXP.
+
+**** delete-matching-lines (flush-lines)
+Delete lines containing matches for REGEXP.
+
+~delete-matching-lines~ starts at the line your cursor is on.
+
+**** delete-non-matching-lines (keep-lines)
+Delete all lines except those containing matches for REGEXP.
+
+~delete-non-matching-lines~ starts at the line your cursor is on.
+
+**** delete-duplicate-lines
+Delete all but one copy of any identical lines in the region.
+
+**** count-matches (how-many)
+Print and return number of matches for REGEXP following point.
+
+**** sort-lines
+Sort lines in region alphabetically; REVERSE non-nil means descending order
+
+**** reverse-region
+Reverse the order of lines in a region.
+
+**** highlight-lines-matching-regexp
+Highlight all lines that match REGEXP using FACE.
+
+**** unhighlight-regexp
+Remove highlighting of each match to REGEXP set by hi-lock.
+
+**** fill-paragraph
+Fill paragraph at or after point.
+
+It's often used to reduce the lenght of the lines of code documentation.
+
+*** Regex
+**** isearch-forward
+Do incremental search forward.
+
+**** isearch-backward
+Do incremental search backward.
+
+**** highlight-regexp
+Set face of each match of REGEXP to FACE.
+
+**** find-dired
+Run find and go into Dired mode on a buffer of the output.
+
+**** dired-do-search
+Search through all marked files for a match for REGEXP.
+
+While in dired, you can *step thru all files that matches a text pattern*. In dired, call ~dired-do-search A~. It will prompt you for a search string, then open the first file of the match, with your cursor placed at the matching location.
+
+To go to next occurrence, press ~M-,~ (~tags-loop-continue~).
+
+**** dired-do-query-replace-regexp
+Do query-replace-regexp of FROM with TO, on all marked files.
+
+**** dired-do-rename-regexp
+Rename selected files whose names match REGEXP to NEWNAME.
+
+**** grep
+Call ~grep~ to list all matching text of all files in the current directory.
+
+For example, if you give this input ~grep -nH -e "Cheshire" *html~, which will list all files ending in “html” that contains the word “Cheshire”.
+
+If you want case insensitive search, add a ~-i~ in the grep option.
+
+**** rgrep
+Search all files in current directory and sub-directory.
+
+**** lgrep
+Search only some files of current dir by using a text pattern (regex) on file names first.
+
+**** grep-find
+Use a combination of unix's ~grep~ and ~find~ commands..
+
+*** String
+**** string-rectangle
+Replace rectangle contents with STRING on each line.
+
+*Note*: The command string-rectangle can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
+
+**** kill-rectangle
+Delete the region-rectangle and save it as the last killed one.
+
+~kill-rectangle~ can be used to delete any rectangular block of text, not just at the beginning of lines.
+
+There are others useful command like ~replace-rectangle~, ~yank-rectangle~,...
+
+#+begin_example
+
+try to delete the middle column
+3c21 646f 6374
+6874 6d6c 3e3c
+2063 6861 7273
+202f 3e0a 3c6d
+6965 7770 6f72
+2277 6964 7468
+
+1. Put your cursor before “646f”.
+2. Call set-mark-command =C-SPC=.
+3. Move cursor to end of “6964”.
+4. Call =kill-rectangle=.
+
+#+end_example
+
+**** align-regexp
+Align the current region using an ad-hoc rule read from the minibuffer.Align the current region using an ad-hoc rule read from the minibuffer.
+
+There are others useful command like ~align-regexp~, ~sort-regexp-fields~, ~sort-columns~.
+
+Example pressing ~align-regexp~ with "=" align the text.
+
+#+begin_example
+
+align them by the equal sign
+tom = 5
+jenny = 8
+mary = 7
+
+align
+California 423,970 km²
+Taiwan 36,008 km²
+Japan 377,944 km²
+Germany 357,021 km²
+Iraq 438,317 km²
+Iran 1,648,195 km²
+Korea (North+South) 219,140 km²
+Mexico 1,964,375 km²
+
+Select the text first, then press C-u then call align-regexp, with the regexp .* \([0-9,]+\).* then choose -1 for group, 1 for spacing, and n for repeat.
+
+#+end_example
+
+*** Variables
+**** org-structure-template-alist
+An alist of keys and block types.
+
+~org-insert-structure-template~ will display a menu with this list of templates to choose from.  The block type is inserted, with ~#+BEGIN_~ and ~#+END_~ added automatically.
+
+*** Misc
+**** command-history
+Examine commands from command-history in a buffer.
+**** apropos
+ This command is like the ~C-h a~ (command-apropos) command, except that the latter finds only those functions that are commands. The ~M-x apropos~ command lists all symbols that match a regular expression, including functions that are not interactive.
+
+#+begin_src emacs-lisp
+
+;; Example: we want to look for is some command that prints or inserts columns. Very likely, the name of the function will contain either the word “print” or the word “insert” or the word “column”. Therefore, we can simply type:
+
+M-x apropos RET print\|insert\|column RET
+
+#+end_src
+
+**** compare-windows
+Compare text in current window with text in another window.
+
+**** custom-reevaluate-setting
+Reset the value of SYMBOL by re-evaluating its saved or standard value.
+
+*Note*: "saved or standard value". In that order of precedence. If the user has customized and saved a value for the variable, this function resets it to its saved-value, not its standard-value.
+
+#+begin_src emacs-lisp
+
+(custom-reevaluate-setting 'emms-player-next-function)
+
+#+end_src
+
+**** delete-trailing-whitespace
+Delete trailing whitespace between START and END.
+
+**** whitespace-cleanup
+Cleanup some blank problems in all buffer or at region.
+
+**** xah-fill-or-unfill
+This command automatically toggle “fill” or “unfill” on the current paragraph. If there is a text selection, then the command automatically works on the region.
+
+#+begin_src emacs-lisp
+
+;; Automatically toggle “fill” or “unfill” on the current paragraph.
+(defun xah-fill-or-unfill ()
+  "Reformat current paragraph or region to `fill-column'.
+When there is a text selection, act on the selection, else, act on a
+text block separated by blank lines. URL
+`http://xahlee.info/emacs/emacs/modernization_fill-paragraph.html'
+Version 2017-01-08"
+  (interactive)
+  ;; This command symbol has a property “'compact-p”, the possible values 
+  ;; are t and nil. This property is used to easily determine whether to 
+  ;; compact or uncompact, when this command is called again
+  (let ( ($compact-p
+          (if (eq last-command this-command)
+              (get this-command 'compact-p)
+            (> (- (line-end-position) (line-beginning-position)) fill-column)))
+         (deactivate-mark nil)
+         ($blanks-regex "\n[ \t]*\n")
+         $p1 $p2
+         )
+    (if (use-region-p)
+        (progn (setq $p1 (region-beginning))
+               (setq $p2 (region-end)))
+      (save-excursion
+        (if (re-search-backward $blanks-regex nil "NOERROR")
+            (progn (re-search-forward $blanks-regex)
+                   (setq $p1 (point)))
+          (setq $p1 (point)))
+        (if (re-search-forward $blanks-regex nil "NOERROR")
+            (progn (re-search-backward $blanks-regex)
+                   (setq $p2 (point)))
+          (setq $p2 (point)))))
+    (if $compact-p
+        (fill-region $p1 $p2)
+      (let ((fill-column most-positive-fixnum ))
+        (fill-region $p1 $p2)))
+    (put this-command 'compact-p (not $compact-p))))
+
+#+end_src
+
+**** set-register
+Set contents of Emacs register named REGISTER to VALUE.  Returns VALUE.
+
+**** flymake-mode
+Habílita el modo flymake (verificador de sintaxis sobre la marcha).
+
 * Notes
 ** Org
 *** Markup
@@ -5944,6 +6857,26 @@ Para que no se vea la sintaxis en el documento se puede setear en ~nil~ la varia
 Se pueden énfasis en palabras como *bold*, /italic/, _underlined_, =verbatim= and ~code~, y, también, +strike-through+.
 
 #+end_example
+
+**** Description list
+Descripción de listas, se usa ‘ :: ’ para separar el término de la descripción.
+
+#+begin_src org
+
+   Actores importantes es esta película:
+   - Elijah Wood :: En el papel de Frodo
+   - Sean Austin :: En el papel de Sam, amigo de Frodo.
+
+#+end_src
+
+**** Image
+Coloca imagenes en org mode, para hacerlas visibles se usa la función ~org-toggle-inline-images~.
+
+#+begin_src org
+
+[[./img/name.jpg]
+
+#+end_src
 
 **** Example
 Se pueden incluir ejemplos literales que no deberían ser asunto de marcado.
@@ -5977,11 +6910,6 @@ Si se quisiera centrar algún texto, se puede hacer así:
 Cada cosa debería hecha tan simple como posible \\
 pero no simple cualquier manera
 #+END_CENTER
-
-**** Include
-Durante la exportación, se pueden incluir el contenido de otro fichero. Por ejemplo, para incluir tu fichero ‘.emacs’, se podría usar:
-
-#+INCLUDE: "~/.emacs" src emacs-lisp
 
 **** Latex
 Al exportador HTML, se puede usar #+LaTeX: y la siguiente construcción para añadir código LaTeX literal.
@@ -6396,20 +7324,6 @@ Inside ~index.org~, we can press /C-c C-l/ (~org-insert-link~), enter the path o
 #+end_src
 
 *** Miscellaneous
-**** Etiqueta bloque de código
-- <name> :: es una cadena usada para nombrar el bloque de código
-- <language> :: especifica el lenguaje del bloque de código
-- <switches> :: puede usarse para controlar la exportación del bloque de código
-- <header arguments> :: puede usarse para controlar muchos aspectos del comportamiento
-- <body> :: contiene el código fuente actual.
-
-#+NAME: <name>
-#+begin_src text <language>  <switches> <header arguments>
-
-<body>
-
-#+end_src
-
 **** Local variables
 They can be placed at the end of the document
 
@@ -6427,25 +7341,24 @@ They can be placed at the end of the document
 
 #+end_src
 
-**** Image
-Coloca imagenes en org mode, para hacerlas visibles se usa la función ~org-toggle-inline-images~.
+**** Etiqueta bloque de código
+- <name> :: es una cadena usada para nombrar el bloque de código
+- <language> :: especifica el lenguaje del bloque de código
+- <switches> :: puede usarse para controlar la exportación del bloque de código
+- <header arguments> :: puede usarse para controlar muchos aspectos del comportamiento
+- <body> :: contiene el código fuente actual.
 
-#+begin_src org
+#+NAME: <name>
+#+begin_src text <language>  <switches> <header arguments>
 
-[[./img/name.jpg]
-
-#+end_src
-
-**** Description list
-Descripción de listas, se usa ‘ :: ’ para separar el término de la descripción.
-
-#+begin_src org
-
-   Actores importantes es esta película:
-   - Elijah Wood :: En el papel de Frodo
-   - Sean Austin :: En el papel de Sam, amigo de Frodo.
+<body>
 
 #+end_src
+
+**** Include
+Durante la exportación, se pueden incluir el contenido de otro fichero. Por ejemplo, para incluir tu fichero ‘.emacs’, se podría usar:
+
+#+INCLUDE: "~/.emacs" src emacs-lisp
 
 **** Labels (tag)
 Las etiquetas hacen uso de la estructura jerárquica. Si una cabecera tiene una cierta etiqueta, todas las subcabeceras la heredarán. Útil para agregarlas a listas TODO y así poder filtrar por etiquetas.
@@ -6490,16 +7403,6 @@ You can also include lisp code in your template. For example, you might want to 
 
 #+end_example
 
-*** IDE package error
-Si al usar un IDE como lsp-mode surgen errores al principio, probar actualizar los paquetes. ~auto-package-update-now~
-~package-refresh-content~
-
-*** JS typescript error
-Si al activar lsp-mode para js no funciona, probar cargando el modo ~typescript~ con esto se apertura el lps server.
-
-*** flymake-mode
-Habílita el modo flymake (verificador de sintaxis sobre la marcha).
-
 *** IDE (Daniel)
 Option 1, the „cheap“ but good enough option:
 - helm-git-grep (with helm, of course), and just typing a few letters of where I want to go. For instance, if I want to go to where a function is defined, I type „name def“ (or „def name“ or „name d“ or „f.name“ or „f na“, … Helm does fuzzy matching and finds it)
@@ -6525,76 +7428,6 @@ Es posible desplazarse a través de la ejecución de la función, línea a líne
 
 Se instala colocando el cursor dentro o justo después de la definición y escribiendo ~M-x edebug-defun~, esto hará que Emacs cargue Edebug automáticamente si aun no está cargado, y que instrumente correctamente la función. Luego se coloca el cursor después de el llamado a la función que se quiere depurar y se presiona ~eval-last-setup~.
 
-*** Debug
-**** dap-node-setup
-Descarga de visual studio marketplace los paquetes "node" (previamente configurado) para poder hacer los debugger.
-
-**** dap-debug
-Ejecuta el debugger pidiendo cargar el archivo.
-
-**** dap-ui-show-many-window
-Muestra todas las ventanas que muestran configuraciones de debugger.
-
-**** dap-ui-hide-many-window
-Esconde todas las ventanas que muestran configuraciones de debugger.
-
-**** dap-breakpoints-toggle
-Coloca los breakpoints.
-
-**** dap-debug-last
-Ejecuta el último debugger sin cargar el archivo otra vez.
-
-**** dap-switch-stack-frame
-Cambie el marco de la pila seleccionando otro marco de la pila.
-
-**** dap-disconect
-Desconectar la aplicación de debugger.
-
-**** dap-debug-recently
-Lista las configurciones reciente.
-
-**** dap-ui-sessions
-Muestra las seciones actuales.
-
-**** dap-ui-mode
-Enciendo o apaga la ventanas de configuración de debugger tipo UI.
-
-**** dap-debug-edit-template
-Edita plantilla.
-
-#+begin_src emacs-lisp
-
-(dap-register-debug-template  "System Crafters" (list :type "node"  :request "launch"  :program "${workspaceFolder}/src/server/index.js" :outFiles ["${workspaceFolder}/public/src/server/**/*.js"]  :name "System Crafters"))
-;; luego de crear la plantilla se ejecuta eval-buffer
-
-#+end_src
-
-También se puede poner como una plantilla las configuraciones de debugger de otras personas que usen visual studio code y habilitarlas en este .
-
-**** dap-breakpoint-log-message
-Colocar mensajes en los breakpoint , por ejemplo ~Se espera valor 26 en vez de el valor { i }~ (primero debe activarse ~dap-breakpoint-toggle~).
-
-**** dap-next
-Ejecuta la siguiente línea (útil para cuando se puso un breakpoint y solo se quiere ejecutar la siguiente línea a ver que sucede).
-
-**** dap-continue
-Continua la ejecución desde el punto.
-
-**** dap-breakpoint-condition
-Ejecuta el breakpoint según una condición, por ejemplo ~i === 5~ (se detendrá si ~i~ es igual a ~5~).
-
-**** dap-ui-expression-add
-Añade expresiones a la ventana local, en el mini-buffer se coloca por ejemplo ~i~ entonces se agrega esa variable a la pantalla local y asi se puede seguir sus cambios mientras se va depurando el código.
-
-**** dap-ui-expression-remove
-Remueve la expresión.
-
-**** dap-ui-repl
-Abre una vetana donde se puede evaluar código con las variables que se tiene o de manera independiente (útil para probar el comportamiento de una función, que resultados se obtiene o podría obtener o setearle nuevas variables y ver que comportamiento resulta).
-
-**** dap-tooltip-at-point
-Muestra información sobre la variable donde esta puesto el cursor.
-
 *** LSP Mode
  [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol]].  Before trying to set up ~lsp-mode~ for a particular language in your init file, check out the [[https://emacs-lsp.github.io/lsp-mode/page/languages/][documentation for your language]] so that you can learn which language servers are available and how to install them.
 
@@ -6602,84 +7435,278 @@ The ~lsp-keymap-prefix~ setting enables you to define a prefix for where ~lsp-mo
 
 The ~which-key~ integration adds helpful descriptions of the various keys so you should be able to learn a lot just by pressing ~C-c l~ in a ~lsp-mode~ buffer and trying different things that you find there.
 
-** Terminals
-*** eshell
-~eshell~ is a shell written entirely in emacs lisp. Note: it is not a bash emulator. Eshell is a shell by itself, but similar to bash or other shells.
+** Draw ASCII
+*** artist-mode
+Lets you draw ASCII pictures with mouse. Permite dibujar líneas, cuadrados, rectángulos y polilíneas, elipses y círculos con el mouse y/o el teclado en formato AsCii.
 
-~eshell~ is good especially on Microsoft Windows where bash is not installed. Eshell is also super fast on startup. If you are a emacs lisp programer, you might prefer eshell because direct access to emacs lisp and better integration with emacs.
+  - Left mouse button to draw.
+  - Right mouse button to erase.
+  - Middle click (mouse-2) to switch to rectangle, ellipse, and other tools.
 
-Tricks:
-- redirect to buffers - along with the above, you can also do things like ~ls >> #<buffer *scratch*>~ to output the result from ls to the scratch buffer
-- ~/dev/clip~ and ~/dev/kill~ - you can redirect shell commands to the emacs clipboard and killring
+Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pueden colocar las flechas.
 
-Personally (Xah Lee), i used shell from 1998 to 2013, and eshell now. But i always have a real terminal app open, for running any command i'm not familiar with. For any serious command, such as starting a server, or any command that has logs, i run it in a real terminal app, with no tie to emacs.
+#+begin_src ditaa :file some_filename.png :cmdline -r -s 0.8
 
-Is Emacs’ own shell implementation written in Emacs Lisp. It provides you with a cross-platform implementation of the common GNU utilities you would find on Linux (~ls~, ~rm~, ~mv~, ~grep~, etc). It also allows you to call Emacs Lisp functions directly from the shell and you can even set up aliases (like aliasing ~vim~ to ~find-file~). Eshell is also an Emacs Lisp REPL which allows you to evaluate full expressions at the shell.
+    +-----------+        +---------+
+    |    PLC    |        |         |
+    |  Network  +<------>+   PLC   +<---=---------+
+    |    cRED   |        |  c707   |              |
+    +-----------+        +----+----+              |
+                              ^                   |
+                              |                   |
+                              |  +----------------|-----------------+
+                              |  |                |                 |
+                              v  v                v                 v
+      +----------+       +----+--+--+      +-------+---+      +-----+-----+       Windows clients
+      |          |       |          |      |           |      |           |      +----+      +----+
+      | Database +<----->+  Shared  +<---->+ Executive +<-=-->+ Operator  +<---->|cYEL| . . .|cYEL|
+      |   c707   |       |  Memory  |      |   c707    |      | Server    |      |    |      |    |
+      +--+----+--+       |{d} cGRE  |      +------+----+      |   c707    |      +----+      +----+
+         ^    ^          +----------+             ^           +-------+---+
+         |    |                                   |
+         |    +--------=--------------------------+
+         v
++--------+--------+
+|                 |
+| Millwide System |            -------- Data ---------
+| cBLU            |            --=----- Signals ---=--
++-----------------+
 
-The downsides to Eshell are that it can be harder to configure than other packages due to the particularity of where you need to set some options for them to go into effect, the lack of shell completions (by default) for some useful things like Git commands, and that REPL programs sometimes don’t work as well.
+#java -jar ditaaXXX.jar
+#java -jar ditaa0_9.jar demo.txt
 
-- REPL de Emacs Lisp, permite llamar a las funciones o evaluar comandos de Emacs Lisp directamente desde el shell, incluso puede configurar alias ~alias ffo "find-file-other-window $1"~ y proporciona una manera sencilla de hacer nuestros scripts en elisp en lugar de bash u otros.
-- Puede correr comandos en la shell como ~find-file~, ~dired~, ...,  también correr funciones ~(+ 20 5)~  (presionando /TAB/ se puede completar las funciones).
-- Puede usar comandos con pipe para enviar salida a un buffer ~echo "Hello" > #<buffer test-buffer>~.
-- La sintaxis de la subshell es un poco diferente se utiliza ~${ }~ en vez de ~$( )~.
-- Soporta TRAMP (controlar remotamente otra maquina).
-- Programas que leen input (como lenguajes REPLs, como por ejemplo "node") y herramientas que dependen de la configuración de los ambientes de shell (nvm, virtualenv) pueden funcionar incorrectamente.
-- ~*ls~ (se coloca delante para poderlo usar).
+#+end_src
 
-NOTES:
-- Los enlaces duros y simbólicos funcionan diferente a lo esperado. Cuando se modifica el archivo original que tiene un hard link creado con eshell, cambia su valor de ~inode~ .
-- Los comandos ~trap~ , ~alias~ dan problemas.
-- No permite crear redirecciones tales como ~cat << Whatever~ .
-- Comandos que impliquen opciones que manipulan enlaces simbólicos como ~cp -a dir dirNew~  dan problema.
-- No funciona el comando para asignar variables ~var=variable~ .
+*** Box Drawing Unicode
+|        | /0/ | /1/ | /2/ | /3/ | /4/ | /5/ | /6/ | /7/ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+250x/ | ─ | ━ | │ | ┃ | ┄ | ┅ | ┆ | ┇ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+251x/ | ┐ | ┑ | ┒ | ┓ | └ | ┕ | ┖ | ┗ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+252x/ | ┠ | ┡ | ┢ | ┣ | ┤ | ┥ | ┦ | ┧ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+253x/ | ┰ | ┱ | ┲ | ┳ | ┴ | ┵ | ┶ | ┷ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+254x/ | ╀ | ╁ | ╂ | ╃ | ╄ | ╅ | ╆ | ╇ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+255x/ | ═ | ║ | ╒ | ╓ | ╔ | ╕ | ╖ | ╗ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+256x/ | ╠ | ╡ | ╢ | ╣ | ╤ | ╥ | ╦ | ╧ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+257x/ | ╰ | ╱ | ╲ | ╳ | ╴ | ╵ | ╶ | ╷ |
 
-*Aliases*:
-A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~. 
+|        | /8/ | /9/ | /A/ | /B/ | /C/ | /D/ | /E/ | /F/ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+250x/ | ┈ | ┉ | ┊ | ┋ | ┌ | ┍ | ┎ | ┏ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+251x/ | ┘ | ┙ | ┚ | ┛ | ├ | ┝ | ┞ | ┟ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+252x/ | ┨ | ┩ | ┪ | ┫ | ┬ | ┭ | ┮ | ┯ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+253x/ | ┸ | ┹ | ┺ | ┻ | ┼ | ┽ | ┾ | ┿ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+254x/ | ╈ | ╉ | ╊ | ╋ | ╌ | ╍ | ╎ | ╏ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+255x/ | ╘ | ╙ | ╚ | ╛ | ╜ | ╝ | ╞ | ╟ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+256x/ | ╨ | ╩ | ╪ | ╫ | ╬ | ╭ | ╮ | ╯ |
+|--------+---+---+---+---+---+---+---+---|
+| /U+257x/ | ╸ | ╹ | ╺ | ╻ | ╼ | ╽ | ╾ | ╿ |
 
-Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ (this defaults to something like ~~/.emacs.d/eshell/aliases~), which you can also edit directly (although you will have to manually reload it).
+** Packages
+*** Keybindings
+**** general
+Paquete ~general.el~ setea varios key binding globales o de modos.
 
-Note that unlike aliases in Bash, arguments must be handled explicitly. Typically the alias definition would end in ~$*~ to pass all arguments along. More selective use of arguments via ~$1~, ~$2~, etc., is also possible. For example, alias ~mcd 'mkdir $1 && cd $1'~ would cause ~mcd foo~ to create and switch to a directory called ~foo~.
+**** hydra
+Vincular comandos relacionados en una familia de enlaces cortos con un prefijo común.
 
-*Warning*: if this doesn't work and get the error ~command not found~ , remove the quote, e.g. type the command ~alias ll ls -l $*~  instead of ~alias ll 'ls -l $*'~.
+*** Programming IDE
+**** lsp
+Proporcionar una experiencia similar a IDE al proporcionar integración opcional con los paquetes como ~company~, ~flycheck~, ....
 
-*** vterm
-Is an improved terminal emulator package which uses a compiled native module to interact with the underlying terminal applications. This enables it to be much faster than ~term-mode~ and to also provide a more complete terminal emulation experience.
+Primero se necesita el modo ~lsp-mode~, que es un cliente Emacs para un servidor LSP. Luego, se debe instalar el servidor LSP específico para el idioma. Finalmente, se debe llamar a ~M-x lsp~ o usar el enlace de modo principal correspondiente para iniciar automáticamente el servidor.
 
-Make sure that you have the necessary dependencies installed before trying to use ~vterm~ because there is a module that will need to be compiled before you can use it successfully.
+**** lsp-ui
+Contiene todos los módulos de interfaz de usuario de nivel superior del modo lsp, con información de los símbolos en la línea actual, diagnósticos de ~flycheck~, acciones de código LSP código (de forma predeterminada ~lsp-mode~ activa automáticamente ~lsp-ui~).
 
-*** shell
-~shell~ is the standard emacs interface to Operating System's command line interface.
+**** lsp-ivy
+Integra ~ivy~ con el ~lsp-mode~ para facilitar la búsqueda de cosas por nombre en el código.
 
-~shell~ is the most popular. It is good for general use of classic/standard unix shell commands, such as {grep, du, ls, sort, cat, head, tail, uname, …}.
+**** flycheck
+Funciona de verificador de sintaxis sobre la marcha.
 
-Es un termino medio entre ~term~ y ~eshell~. No es un emulador de terminal es solo una shell por lo que no se ejecutarán programas de terminal más complejos dentro de él. Tiene de ventaja que no se necesita cambiar de modo para habilitar el minibuffer. (Mejor opción para windows si se quiere usar PowerShell, bash, wsl).
+**** lsp-treemacs
+Proporciona vistas de árbol para diferentes aspectos.
 
-Ejecuta el shell predeterminado del sistema, dentro de un buffer de Emacs, por lo que todas las entradas de comandos en este modo son manejadas por Emacs y luego se envían al shell subyacente una vez se presiona enter. Es una subshell y no podrá ejecutar todos los comandos que se le pasen.
+**** company
+Proporciona una mejor interfaz de finalización en el búfer.
 
-*** term
-~term~ is a terminal emulator. It behaves like a dedicated terminal app, such as {~xterm~, ~gnome-terminal~, ~puTTY~}. It is compatible to more shell apps than emacs shell interface, but standard emacs keys such as moving cursor doesn't work here.
+**** yasnippet
+Sistema de plantillas. Permite escribir una abreviatura y expandirla automáticamente.
 
-~term~ and ~ansi-term~ are good if you want to run stuff like ssh, or other command line interactive interface (such as {python, ruby, lisp} shell), or text based GUI app such as vim.
+**** swank-js
+Proporciona SLIME REPL y otras herramientas de desarrollo para JavaScript y Node.JS en el navegador. Consiste en el backend de SWANK y la contribución de SLIME que lo acompaña. Socket.IO se utiliza para comunicarse con una amplia gama de navegadores web.
 
-Emulador de terminal integrado. Esta escrito en Emacs Lisp por lo que es un poco más lento pero se puede usar de inmediato con poca configuración, admite aplicaciones de terminal bastante complejas (htop, vim, etc...).
+**** js2-refactor
+Una biblioteca de refactorización de JavaScript. Esta es una colección de pequeñas funciones de refactorización para promover la idea de un IDE de JavaScript en Emacs que comenzó con js2-mode.
 
-- Ejecuta el shell que le digamos (bash, zsh, ...). Este comando abre un terminal completo en un buffer de Emacs. Es interactivo, y además funcionarán las aplicaciones basadas en curses.
-- Permite realizar conexiones remotas a través de ssh o telnet. Se puede utilizar el terminal a través de un puerto serie con ~M-x serial-term~ y comunicarse con cualquier dispositivo que se tenga conectado a un puerto serie.
-- ~line-mode~ utiliza combinaciones de teclas de Emacs. ~char-mode~ manda las pulsaciones de teclas a la terminal subyacente.
-- ~eval-expression "(getenv "SHELL")~ ejecuta una terminal no por default
+*** Debug
+**** dap-mode
+Es el cliente/biblioteca de Emacs para el protocolo de adaptador de depuración, es un protocolo de conexión similar a LSP para la comunicación entre el cliente y el servidor de depuración.
 
-*** ansi-term
-Similar a ~term~ con ligeras diferencias. (Útil para abrir varias terminales con nombres distintos).
+**** typescript-mode
+Es un ~major-mode~ para editar archivos Typescript o Javascript, ofrece resaltado de sintaxis simple y soporte de sangría, para funciones avanzadas, sin ninguna dependencia externa.
 
-** Tutorials
-*** Abbrev Mode by Commands
-**** Turn on Abbrev Mode
+*** Regexp
+**** visual-regexp
+visual-regexp for Emacs is like replace-regexp or regex-builder, but with live visual feedback directly in the buffer.
+
+https://github.com/benma/visual-regexp.el
+
+*** Help
+**** which-key
+En una ventana emergente, muestra las combinaciones de teclas que siguen a un comando incompleto (un prefijo).
+
+**** ivy
+Es una interfaz interactiva en el minibuffer para completar en Emacs (muestra información de funciones, comandos,...).
+
+**** ivy-rich
+Interfaz más amigable (transformador de pantalla) para ~ivy~. Muestra columnas adicionales para ~counsel comands~ proporcione  información adicional.
+
+**** ivy-prescient
+Clasifica los candidatos a completar de ~ivy~.
+
+**** counsel
+Conjunto de comandos para reemplazar los comandos de finalización predeterminados usando ~ivy~.
+
+**** helpful
+Es una alternativa a la ayuda integrada de Emacs que proporciona mucha más información contextual y mejora visual.
+
+**** helm
+Mecanismo de completacion terminal que ayuda a completar rápidamente nombres de archivos, nombres de búfer o cualquier otra interacción que requiera seleccionar un elemento de una lista de opciones posibles.
+
+*** Miscellaneous
+**** elfeed tube
+Youtube on your terms
+It's a rss for youtube in emacs. I might like it because it shows the transcript.
+
+https://github.com/karthink/elfeed-tube
+
+** Miscellaneous
+*** Keyboard
+**** Keyboard Shortcut vs Launch Buttons
+Single Key is Much Better than Key Combinations
+
+For example, say that F6 is launching the Firefox browser. I use 3 browsers daily, because i am a web developer. I might think, that F6 launches Firefox, and Ctrl + F6 launches Microsoft's browser, and Alt + F6 launches Google Chrome web browser. The idea is that the F6 is always associated with launching a browser. This keeps all the hotkeys consistent and easier to remember. My experience tells me that, if these functions are needed frequently (say, even just once per 10 min on average), then, single key hotkeys is much more important than consistency. (So, here it would be better to have F6, F7, F8, to launch each browser.)
+
+[[http://xahlee.info/kbd/keyboard_special_buttons.html]]
+
+**** Keyboards Review
+The following are my recommendation, in order of importance:
+
+  1. Mechanical keys
+  2. Have physical arrow keys.
+  3. Full sized function keys F1 to F12, and they should have gaps between groups of 4, and have a gap between the function key row and the number row. (Extra macro keys is a plus.)
+  4. Programable (e.g. make CapsLock do Escape) with Onboard Memory (plug in to any computer to have custom macro/layout. No need to install software.).
+  5. Key lable don't wear off.
+  6. Spacebar do not make a loud thud noise.
+  7. Has physical media keys. Volume wheel is a major plus.
+  8. No Fn key. Because it's usually hardwired, meaning, you can't remap it, meaning, a dead horse squatting in front yard.
+  9. Short spacebar or split spacebar. So more thumb keys.
+  10. Should be one with large Alt and Ctrl keys, and they should be available on both sides (one set for each hand, just like ⇧ Shift key), and the right side's set should be positioned symmetrically. The distance from F to left Alt, and distance from J to the right Alt, should be the same.
+
+Other issues, such as whether it has numerical keypad, how compact it is, how light weight or heavy it is, wired or wireless, what color LED light show it does, is up to you.
+
+http://xahlee.info/kbd/keyboard_review_gallery.html
+
+Some ergonomic keyboard
+
+- X-Bows Keyboard http://xahlee.info/kbd/xbows_keyboard_review.html
+
+*** Web with example of Calc usage
+Useful becase it has some functions to show how to calculate the number of days between two days, and optionally a number of periods of absence to exclude.
+
+https://www.emacswiki.org/emacs/Calc
+
+*** Demo Configuration init file
+This configuration is not intended to be used! However, if you’re curious:
+
+Put this text in a file called demo.el:
+
+#+begin_src emacs-lisp
+
+;; Make the colors and text less eye-strainy
+(load-theme 'tango-dark t)
+(set-face-attribute 'default nil :height 200)
+
+;; I mindlessly press ESC, so stop me from wreaking havoc
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+#+end_src
+
+Run Emacs with the configuration:
+
+#+begin_src shell
+
+emacs -Q -l demo.el
+
+#+end_src
+
+* How to
+** Interactively Find/Replace Text in Directory
+Suppose you need to do find/replace of a string pattern, for the hundreds of files in a directory. However, you do not want to replace all of them. You need to look at it in a case-by-case basis. What can you do?
+
+   1. Call dired to list files in dir, or call ~find-dired~ if you need all subdirectories.
+   2. Mark the files you want. You can mark by regex by typing ~% m~.
+   3. Type Q to call ~dired-do-query-replace-regexp~.
+   4. Type your find regex and replace string.
+   5. For each occurrence, type y to replace, ~n~ to skip.
+   6. Type ~!~ to replace all occurrences in current file without asking, ~N~ to skip all possible replacement for rest of the current file. (N is emacs 23 only)
+   7. To do the replacement on all files without further asking, type ~Y~. (Emacs 23 only)
+   8. Call ~ibuffer~ to list all opened files.
+   9. Type ~* u~ to mark all unsaved files, type ~S~ to save all marked files, type ~D~ to close them all.
+
+https://wilkesley.org/~ian/xah/emacs/find_replace_inter.html
+
+** Edit Column Text, Rectangle Commands
+This page shows you how to edit text in a rectangular region.
+
+- Add a prefix to every line (such as # or //)
+     1- Move to the beginning of first line you want.
+     2- Press ~C-SPC~ (~set-mark-command~) to mark cursor position.
+     3- Move cursor to the beginning of the last line.
+     4- Then ~M-x string-rectangle~ ( ~C-x r t~ )
+     5- Then type what you want to insert, then Enter.
+The command ~string-rectangle~ can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
+
+- Delete the first few n chars of every line ( ~kill-rectangle~ )
+- Delete a column of text ( ~kill-rectangle~ )
+- replace-rectangle
+- Paste Rectangle ( ~yank-rectangle~ )
+- Insert a Column of Numbers ( ~rectangle-number-lines~ )
+
+http://xahlee.info/emacs/emacs/emacs_string-rectangle_ascii-art.html
+
+
+Insert A to Z Vertically:
+1- Move cursor to before specific start word.
+2- ~set-mark-command~ ( ~C-SPC~ ).
+3- Move cursor to before specific end word.
+4- ~universal-argument~ ( ~C-u~ ).
+5- Now, ~M-x rectangle-number-lines~. It will prompt you to enter arguments.
+6- Type ~65~ (Letter ~A~ has Unicode codepoint ~65~. ~a~ is ~97~).
+7- Remove the default ~%2d~ , type ~%c~. (the ~%c~ is for character format)
+
+** Abbrev Mode by Commands
+*** Turn on Abbrev Mode
 ~M-x abbrev-mode~ to turn it on. Call again to turn off.
 
 To turn on globally when emacs starts, put this in your Emacs Init File:
 ~(setq-default abbrev-mode t)~
 
-**** Define Abbrev
+*** Define Abbrev
 Suppose you want to define “bg” → “background”.
 
  1.  Type “background”.
@@ -6738,7 +7765,7 @@ I put “z” in the beginning of my abbrevs. This way, i don't have to worry ab
 
 #+end_src
 
-**** Remove Abbrev
+*** Remove Abbrev
 To remove a definition, give a negative argument to add-global-abbrev or add-mode-abbrev.
 
 For example, to undefine the abbrev “bg”.
@@ -6746,7 +7773,7 @@ For example, to undefine the abbrev “bg”.
   1. ~C-u -1~.
   2. ~M-x add-global-abbrev~, in the prompt, type “bg”.
 
-**** Save Abbrev
+*** Save Abbrev
 When you quit, emacs will ask you if you want to save.
 
 To auto save, put this in your Emacs Init File:
@@ -6759,14 +7786,14 @@ The abbrevs is saved in a file at a path specified by the variable
 
 By default, it's at ~~/.emacs.d/abbrev_defs~
 
-**** List and Edit
+*** List and Edit
 Display a list of defined abbrevs.
 ~M-x list-abbrevs~
 
 Edit Abbrevs
 ~M-x edit-abbrevs~
 
-**** Abbrev File Location
+*** Abbrev File Location
 The abbrevs is saved in a file at a path specified by the variable ~abbrev-file-name~
 
 By default, it's at  ~(~/.emacs.d/abbrev_defs)~
@@ -6775,7 +7802,7 @@ You can change it, for example, put this in emacs init:
 
 ~(setq abbrev-file-name "~/emacs_abbre.el")~
 
-**** Edit Abbrevs
+*** Edit Abbrevs
 Call ~edit-abbrevs~ to edit abbrev.
 
 To remove a abbrev, just delete the line.
@@ -6787,1021 +7814,21 @@ When done, to load and or save, call any of:
 ~abbrev-edit-save-buffer~  → Redefine and save to abbrev file.
 ~abbrev-edit-save-to-file~ → Redefine and save to abbrev file, but ask for a location.
 
-**** Reference
+*** Reference
 
 [[http://xahlee.info/emacs/emacs/emacs_abbrev_mode_tutorial.html]]
 
 https://wilkesley.org/~ian/xah/emacs/emacs_abbrev_mode.html
 
-**** Abbrev Mode by Lisp Code
+*** Abbrev Mode by Lisp Code
 Emacs's abbrev feature lets you type a short word and expand into a full word or code template.
 
 [[http://xahlee.info/emacs/emacs/emacs_abbrev_mode.html]]
 
-*** Interactively Find/Replace Text in Directory
-Suppose you need to do find/replace of a string pattern, for the hundreds of files in a directory. However, you do not want to replace all of them. You need to look at it in a case-by-case basis. What can you do?
-
-   1. Call dired to list files in dir, or call ~find-dired~ if you need all subdirectories.
-   2. Mark the files you want. You can mark by regex by typing ~% m~.
-   3. Type Q to call ~dired-do-query-replace-regexp~.
-   4. Type your find regex and replace string.
-   5. For each occurrence, type y to replace, ~n~ to skip.
-   6. Type ~!~ to replace all occurrences in current file without asking, ~N~ to skip all possible replacement for rest of the current file. (N is emacs 23 only)
-   7. To do the replacement on all files without further asking, type ~Y~. (Emacs 23 only)
-   8. Call ~ibuffer~ to list all opened files.
-   9. Type ~* u~ to mark all unsaved files, type ~S~ to save all marked files, type ~D~ to close them all.
-
-https://wilkesley.org/~ian/xah/emacs/find_replace_inter.html
-
-*** LaTeX installation
+** LaTeX installation
 Descargar el paquete ~texlive~, esto debería ser suficiente ya que el paquete trae todos los paquetes necesarios para trabajar con LaTeX, sin embargo debido a un error ~org-compile-file: File "/tmp/orgtexrJsNOr.dvi" wasn’t produced.  Please adjust ‘dvipng’ part of ‘org-preview-latex-process-alist’~ también arrojaba lo siguiente ~! LaTeX Error: File `ulem.sty' not found.,~ se necesito descargar el paquete adicional ~texlive-plain-generic~ para obtener ~ulem~.
 
 Para exportar de org a LaTeX pdf se necesito instalar el paquete ~texlive-latex-extra~ para obtener ~wrapfig~ que soluciona el error ~! LaTeX Error: File `wrapfig.sty' not found~.
-
-*** Edit Column Text, Rectangle Commands
-This page shows you how to edit text in a rectangular region.
-
-- Add a prefix to every line (such as # or //)
-     1- Move to the beginning of first line you want.
-     2- Press ~C-SPC~ (~set-mark-command~) to mark cursor position.
-     3- Move cursor to the beginning of the last line.
-     4- Then ~M-x string-rectangle~ ( ~C-x r t~ )
-     5- Then type what you want to insert, then Enter.
-The command ~string-rectangle~ can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
-
-- Delete the first few n chars of every line ( ~kill-rectangle~o )
-- Delete a column of text ( ~kill-rectangle~ )
-- replace-rectangle
-- Paste Rectangle ( ~yank-rectangle~ )
-- Insert a Column of Numbers ( ~rectangle-number-lines~ )
-
-http://xahlee.info/emacs/emacs/emacs_string-rectangle_ascii-art.html
-
-
-Insert A to Z Vertically:
-1- Move cursor to before specific start word.
-2- ~set-mark-command~ ( ~C-SPC~ ).
-3- Move cursor to before specific end word.
-4- ~universal-argument~ ( ~C-u~ ).
-5- Now, ~M-x rectangle-number-lines~. It will prompt you to enter arguments.
-6- Type ~65~ (Letter ~A~ has Unicode codepoint ~65~. ~a~ is ~97~).
-7- Remove the default ~%2d~ , type ~%c~. (the ~%c~ is for character format)
-
-*** Demo Configuration init file
-This configuration is not intended to be used! However, if you’re curious:
-
-Put this text in a file called demo.el:
-
-#+begin_src emacs-lisp
-
-;; Make the colors and text less eye-strainy
-(load-theme 'tango-dark t)
-(set-face-attribute 'default nil :height 200)
-
-;; I mindlessly press ESC, so stop me from wreaking havoc
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-#+end_src
-
-Run Emacs with the configuration:
-
-#+begin_src shell
-
-emacs -Q -l demo.el
-
-#+end_src
-
-*** Web with example of Calc usage
-Useful becase it has some functions to show how to calculate the number of days between two days, and optionally a number of periods of absence to exclude.
-
-https://www.emacswiki.org/emacs/Calc
-
-** Miscellaneous
-*** Draw ASCII
-**** artist-mode
-Lets you draw ASCII pictures with mouse. Permite dibujar líneas, cuadrados, rectángulos y polilíneas, elipses y círculos con el mouse y/o el teclado en formato AsCii.
-
-  - Left mouse button to draw.
-  - Right mouse button to erase.
-  - Middle click (mouse-2) to switch to rectangle, ellipse, and other tools.
-
-Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pueden colocar las flechas.
-
-#+begin_src ditaa :file some_filename.png :cmdline -r -s 0.8
-
-    +-----------+        +---------+
-    |    PLC    |        |         |
-    |  Network  +<------>+   PLC   +<---=---------+
-    |    cRED   |        |  c707   |              |
-    +-----------+        +----+----+              |
-                              ^                   |
-                              |                   |
-                              |  +----------------|-----------------+
-                              |  |                |                 |
-                              v  v                v                 v
-      +----------+       +----+--+--+      +-------+---+      +-----+-----+       Windows clients
-      |          |       |          |      |           |      |           |      +----+      +----+
-      | Database +<----->+  Shared  +<---->+ Executive +<-=-->+ Operator  +<---->|cYEL| . . .|cYEL|
-      |   c707   |       |  Memory  |      |   c707    |      | Server    |      |    |      |    |
-      +--+----+--+       |{d} cGRE  |      +------+----+      |   c707    |      +----+      +----+
-         ^    ^          +----------+             ^           +-------+---+
-         |    |                                   |
-         |    +--------=--------------------------+
-         v
-+--------+--------+
-|                 |
-| Millwide System |            -------- Data ---------
-| cBLU            |            --=----- Signals ---=--
-+-----------------+
-
-#java -jar ditaaXXX.jar
-#java -jar ditaa0_9.jar demo.txt
-
-#+end_src
-
-**** picture-mode
-Emacs's picture-mode lets you draw ASCII diagrams.
-
-To see how to use it:
-
-  1. Open a new file.
-  2. Alt+x picture-mode,
-  3. Alt+x describe-mode
-
-*** Keyboard
-**** Keyboard Shortcut vs Launch Buttons
-Single Key is Much Better than Key Combinations
-
-For example, say that F6 is launching the Firefox browser. I use 3 browsers daily, because i am a web developer. I might think, that F6 launches Firefox, and Ctrl + F6 launches Microsoft's browser, and Alt + F6 launches Google Chrome web browser. The idea is that the F6 is always associated with launching a browser. This keeps all the hotkeys consistent and easier to remember. My experience tells me that, if these functions are needed frequently (say, even just once per 10 min on average), then, single key hotkeys is much more important than consistency. (So, here it would be better to have F6, F7, F8, to launch each browser.)
-
-[[http://xahlee.info/kbd/keyboard_special_buttons.html]]
-
-**** Keyboards Review
-The following are my recommendation, in order of importance:
-
-  1. Mechanical keys
-  2. Have physical arrow keys.
-  3. Full sized function keys F1 to F12, and they should have gaps between groups of 4, and have a gap between the function key row and the number row. (Extra macro keys is a plus.)
-  4. Programable (e.g. make CapsLock do Escape) with Onboard Memory (plug in to any computer to have custom macro/layout. No need to install software.).
-  5. Key lable don't wear off.
-  6. Spacebar do not make a loud thud noise.
-  7. Has physical media keys. Volume wheel is a major plus.
-  8. No Fn key. Because it's usually hardwired, meaning, you can't remap it, meaning, a dead horse squatting in front yard.
-  9. Short spacebar or split spacebar. So more thumb keys.
-  10. Should be one with large Alt and Ctrl keys, and they should be available on both sides (one set for each hand, just like ⇧ Shift key), and the right side's set should be positioned symmetrically. The distance from F to left Alt, and distance from J to the right Alt, should be the same.
-
-Other issues, such as whether it has numerical keypad, how compact it is, how light weight or heavy it is, wired or wireless, what color LED light show it does, is up to you.
-
-http://xahlee.info/kbd/keyboard_review_gallery.html
-
-Some ergonomic keyboard
-
-- X-Bows Keyboard http://xahlee.info/kbd/xbows_keyboard_review.html
-
-*** Packages
-**** Keybindings
-***** general
-Paquete ~general.el~ setea varios key binding globales o de modos.
-
-***** hydra
-Vincular comandos relacionados en una familia de enlaces cortos con un prefijo común.
-
-**** Programming IDE
-***** lsp
-Proporcionar una experiencia similar a IDE al proporcionar integración opcional con los paquetes como ~company~, ~flycheck~, ....
-
-Primero se necesita el modo ~lsp-mode~, que es un cliente Emacs para un servidor LSP. Luego, se debe instalar el servidor LSP específico para el idioma. Finalmente, se debe llamar a ~M-x lsp~ o usar el enlace de modo principal correspondiente para iniciar automáticamente el servidor.
-
-***** lsp-ui
-Contiene todos los módulos de interfaz de usuario de nivel superior del modo lsp, con información de los símbolos en la línea actual, diagnósticos de ~flycheck~, acciones de código LSP código (de forma predeterminada ~lsp-mode~ activa automáticamente ~lsp-ui~).
-
-***** lsp-ivy
-Integra ~ivy~ con el ~lsp-mode~ para facilitar la búsqueda de cosas por nombre en el código.
-
-***** flycheck
-Funciona de verificador de sintaxis sobre la marcha.
-
-***** lsp-treemacs
-Proporciona vistas de árbol para diferentes aspectos.
-
-***** company
-Proporciona una mejor interfaz de finalización en el búfer.
-
-***** yasnippet
-Sistema de plantillas. Permite escribir una abreviatura y expandirla automáticamente.
-
-***** swank-js
-Proporciona SLIME REPL y otras herramientas de desarrollo para JavaScript y Node.JS en el navegador. Consiste en el backend de SWANK y la contribución de SLIME que lo acompaña. Socket.IO se utiliza para comunicarse con una amplia gama de navegadores web.
-
-***** js2-refactor
-Una biblioteca de refactorización de JavaScript. Esta es una colección de pequeñas funciones de refactorización para promover la idea de un IDE de JavaScript en Emacs que comenzó con js2-mode.
-
-**** Debug
-***** dap-mode
-Es el cliente/biblioteca de Emacs para el protocolo de adaptador de depuración, es un protocolo de conexión similar a LSP para la comunicación entre el cliente y el servidor de depuración.
-
-***** typescript-mode
-Es un ~major-mode~ para editar archivos Typescript o Javascript, ofrece resaltado de sintaxis simple y soporte de sangría, para funciones avanzadas, sin ninguna dependencia externa.
-
-**** Regexp
-***** visual-regexp
-visual-regexp for Emacs is like replace-regexp or regex-builder, but with live visual feedback directly in the buffer.
-
-https://github.com/benma/visual-regexp.el
-
-**** Help
-***** which-key
-En una ventana emergente, muestra las combinaciones de teclas que siguen a un comando incompleto (un prefijo).
-
-***** ivy
-Es una interfaz interactiva en el minibuffer para completar en Emacs (muestra información de funciones, comandos,...).
-
-***** ivy-rich
-Interfaz más amigable (transformador de pantalla) para ~ivy~. Muestra columnas adicionales para ~counsel comands~ proporcione  información adicional.
-
-***** ivy-prescient
-Clasifica los candidatos a completar de ~ivy~.
-
-***** counsel
-Conjunto de comandos para reemplazar los comandos de finalización predeterminados usando ~ivy~.
-
-***** helpful
-Es una alternativa a la ayuda integrada de Emacs que proporciona mucha más información contextual y mejora visual.
-
-***** helm
-Mecanismo de completacion terminal que ayuda a completar rápidamente nombres de archivos, nombres de búfer o cualquier otra interacción que requiera seleccionar un elemento de una lista de opciones posibles.
-
-**** Miscellaneous
-***** elfeed tube
-Youtube on your terms
-It's a rss for youtube in emacs. I might like it because it shows the transcript.
-
-https://github.com/karthink/elfeed-tube
-
-** Emacs Lisp
-*** Modes
-**** Mode
-A set of definitions that customize the behavior of Emacs in useful ways. It is basically a collection of features that can be applied to a single buffer or to the entire editor.
-
-There are derived modes, such as HTML mode which is derived from Text mode. When HTML mode is enabled, run ~text-mode-hook~ before running ~html-mode-hook~.
-
-**** Major mode
-They provide specialized functions for working on a particular type of file or buffer, used for editing or interacting with a particular type of text. They are mutually exclusive; each buffer has one and only one at any time.
-
-Most modes are divided into three main groups, the first group contains modes for plain text, either plain or markup (Text mode, HTML mode, SGML mode, TeX mode and Outline mode). The second contains modes for specific programming languages (Lisp (which has several variants), C mode, ...). The third consists of main modes that are not directly associated with files; they are used in buffers created for specific purposes by Emacs (Dired mode, Message to Mail mode, Shell mode).
-
-**** Minor mode
-Optional editing mode provides functions that users can turn on and off while editing. Unlike the major modes, any number of minor modes can be active at any time. They are independent of each other and of the selected major mode.
-
-*** Hook
-Hooks are an important mechanism for customizing Emacs. A hook is a Lisp variable which holds a list of functions, to be called on some well-defined occasion. (This is called running the hook.) The individual functions in the list are called the hook functions of the hook. For example, the hook ~kill-emacs-hook~ runs just before exiting Emacs.
-
-Each hook is designed to “run” when some event happens. When a hook “run”, all functions in that hook are called.
-
-For example,
-  - when ~html-mode~ is loaded, ~html-mode-hook~'s functions are run.
-  - when any command is called, ~post-command-hook~'s functions are run.
-
-There are hundreds of hooks. Each major mode usually have at least 1 hook, designed to run when the mode is loaded.
-
-A hook is similar to the concept of events in other systems. Adding function to a hook is similar to adding event handlers. (note: emacs lisp manual also uses the term “event”, but that is lower level events to emacs, not events by emacs.)
-
-For example ~prog-mode-hook~ is a hook to any mode of programming languages. It is a main mode that does nothing more than let other main modes inherit from it, exactly for this purpose.
-
-Most hooks are *normal hooks.* This means that when Emacs runs the hook, it calls each hook function in turn, with no arguments. Every variable whose name ends in  ~-hook~  is a normal hook.
-
-A few hooks are *abnormal hooks*. Their names end in  ~-functions~ , instead of ~-hook~. What makes these hooks abnormal is the way its functions are called—perhaps they are given arguments, or perhaps the values they return are used in some way. For example, ~find-file-not-found-functions~ is abnormal because as soon as one hook function returns a non-nil value, the rest are not called at all.
-
-*** keymaps
-Internal data structure that records key bindings to commands or other keymap.
-
-When an event type is bound to a keymap, that keymap is used to search for the next input event; this continues until a command is found. Mode-specific keymaps overwrite the global ~(mode-map)~ that all buffers share.
-
-*** Commands
-**** Lines
-***** list-matching-lines (occur)
-Show all lines in the current buffer containing a match for REGEXP.
-
-***** delete-matching-lines (flush-lines)
-Delete lines containing matches for REGEXP.
-
-~delete-matching-lines~ starts at the line your cursor is on.
-
-***** delete-non-matching-lines (keep-lines)
-Delete all lines except those containing matches for REGEXP.
-
-~delete-non-matching-lines~ starts at the line your cursor is on.
-
-***** delete-duplicate-lines
-Delete all but one copy of any identical lines in the region.
-
-***** count-matches (how-many)
-Print and return number of matches for REGEXP following point.
-
-***** sort-lines
-Sort lines in region alphabetically; REVERSE non-nil means descending order
-
-***** reverse-region
-Reverse the order of lines in a region.
-
-***** highlight-lines-matching-regexp
-Highlight all lines that match REGEXP using FACE.
-
-***** unhighlight-regexp
-Remove highlighting of each match to REGEXP set by hi-lock.
-
-***** fill-paragraph
-Fill paragraph at or after point.
-
-It's often used to reduce the lenght of the lines of code documentation.
-
-**** Regex
-***** isearch-forward
-Do incremental search forward.
-
-***** isearch-backward
-Do incremental search backward.
-
-***** highlight-regexp
-Set face of each match of REGEXP to FACE.
-
-***** find-dired
-Run find and go into Dired mode on a buffer of the output.
-
-***** dired-do-search
-Search through all marked files for a match for REGEXP.
-
-While in dired, you can *step thru all files that matches a text pattern*. In dired, call ~dired-do-search A~. It will prompt you for a search string, then open the first file of the match, with your cursor placed at the matching location.
-
-To go to next occurrence, press ~M-,~ (~tags-loop-continue~).
-
-***** dired-do-query-replace-regexp
-Do query-replace-regexp of FROM with TO, on all marked files.
-
-***** dired-do-rename-regexp
-Rename selected files whose names match REGEXP to NEWNAME.
-
-***** grep
-Call ~grep~ to list all matching text of all files in the current directory.
-
-For example, if you give this input ~grep -nH -e "Cheshire" *html~, which will list all files ending in “html” that contains the word “Cheshire”.
-
-If you want case insensitive search, add a ~-i~ in the grep option.
-
-***** rgrep
-Search all files in current directory and sub-directory.
-
-***** lgrep
-Search only some files of current dir by using a text pattern (regex) on file names first.
-
-***** grep-find
-Use a combination of unix's ~grep~ and ~find~ commands..
-
-**** String
-***** string-rectangle
-Replace rectangle contents with STRING on each line.
-
-*Note*: The command string-rectangle can be used to insert a vertical column of string across mulitple lines at any column position, not just at the beginning of lines.
-
-***** kill-rectangle
-Delete the region-rectangle and save it as the last killed one.
-
-~kill-rectangle~ can be used to delete any rectangular block of text, not just at the beginning of lines.
-
-There are others useful command like ~replace-rectangle~, ~yank-rectangle~,...
-
-#+begin_example
-
-try to delete the middle column
-3c21 646f 6374
-6874 6d6c 3e3c
-2063 6861 7273
-202f 3e0a 3c6d
-6965 7770 6f72
-2277 6964 7468
-
-1. Put your cursor before “646f”.
-2. Call set-mark-command =C-SPC=.
-3. Move cursor to end of “6964”.
-4. Call =kill-rectangle=.
-
-#+end_example
-
-***** align-regexp
-Align the current region using an ad-hoc rule read from the minibuffer.Align the current region using an ad-hoc rule read from the minibuffer.
-
-There are others useful command like ~align-regexp~, ~sort-regexp-fields~, ~sort-columns~.
-
-Example pressing ~align-regexp~ with "=" align the text.
-
-#+begin_example
-
-align them by the equal sign
-tom = 5
-jenny = 8
-mary = 7
-
-align
-California 423,970 km²
-Taiwan 36,008 km²
-Japan 377,944 km²
-Germany 357,021 km²
-Iraq 438,317 km²
-Iran 1,648,195 km²
-Korea (North+South) 219,140 km²
-Mexico 1,964,375 km²
-
-Select the text first, then press C-u then call align-regexp, with the regexp .* \([0-9,]+\).* then choose -1 for group, 1 for spacing, and n for repeat.
-
-#+end_example
-
-**** Misc
-***** command-history
-Examine commands from command-history in a buffer.
-***** apropos
- This command is like the ~C-h a~ (command-apropos) command, except that the latter finds only those functions that are commands. The ~M-x apropos~ command lists all symbols that match a regular expression, including functions that are not interactive.
-
-#+begin_src emacs-lisp
-
-;; Example: we want to look for is some command that prints or inserts columns. Very likely, the name of the function will contain either the word “print” or the word “insert” or the word “column”. Therefore, we can simply type:
-
-M-x apropos RET print\|insert\|column RET
-
-#+end_src
-
-***** compare-windows
-Compare text in current window with text in another window.
-
-***** custom-reevaluate-setting
-Reset the value of SYMBOL by re-evaluating its saved or standard value.
-
-*Note*: "saved or standard value". In that order of precedence. If the user has customized and saved a value for the variable, this function resets it to its saved-value, not its standard-value.
-
-#+begin_src emacs-lisp
-
-(custom-reevaluate-setting 'emms-player-next-function)
-
-#+end_src
-
-***** whitespace-cleanup
-Cleanup some blank problems in all buffer or at region.
-
-***** delete-trailing-whitespace
-Delete trailing whitespace between START and END.
-
-*** Load file
-**** load
-You can use a ~load~ command to evaluate a complete file and thereby install all the functions and variables in the file into Emacs.
-
-Load a file by searching thru var ~load-path~. Argument should be just the file name without full path, such as ~(load "undo")~. It'll auto add “.elc” for compiled version if exist, or add “.el”, or with “.gz”.	Use this if the exact file path is not known in advance.
-
-#+begin_src emacs-lisp
-
-;; This evaluates, i.e., loads, the slowsplit.el file or if it exists,
-;; the faster, byte compiled slowsplit.elc file from the emacs
-;; sub-directory of your home directory.
-(load "~/emacs/slowsplit")
-
-#+end_src
-
-**** load-file
-Load a specific file. Load one specific file. (“.el” or “.elc” file name extentions are not auto added, but “.gz” is.) Use this when you don't want emacs to guess the file name extention of “.el”, “.elc” or none.
-
-**** require
-Load a package if it has not already been loaded. Checks the var ~features~, if symbol is not there, then call ~load~ to load it. File name is guessed from the feature name, or specified in the optional argument. Best used in elisp libraries or scripts, similar to other lang's “require” or “import”.
-
-**** autoload
-Load a file only when a function is called. Associate a function name with a file path. When the function is called, load the file, and execute the function. If you are writing a major mode, have your package installation go by ~autoload~ if possible. It saves startup time.
-
-Instead of installing a function by loading the file that contains it, or by evaluating the function definition, you can make the function available but not actually install it until it is first called. This is called *autoloading*.
-
-When you execute an autoloaded function, Emacs automatically evaluates the file that contains the definition, and then calls the function.
-
- ~autoload~ is a built-in function that takes up to five arguments, the final three of which are optional.
-
-The first argument is the name of the function to be autoloaded.
-The second is the name of the file to be loaded.
-The third argument is documentation for the function.
-The fourth tells whether the function can be called interactively.
-The fifth argument tells what type of object.
-
-~autoload~ can handle a keymap or macro as well as a function (the default is a function).
-
-#+begin_src emacs-lisp
-
-;; This expression autoloads the html-helper-mode function. It takes it
-;; from the html-helper-mode.el file (or from the byte compiled version
-;; html-helper-mode.elc, if that exists.) The file must be located in a
-;; directory specified by load-path.
-(autoload 'html-helper-mode
-  "html-helper-mode" "Edit HTML documents" t)
-
-#+end_src
-
-**** Feature, require, provide
-- ~features~ is a elisp symbol that represent a lisp package. It is a global variable, holding a list of elisp symbols that are features.
-- A package can call ~(provide 'symbol_name)~. When this code is evaluated, emacs will add the symbol name to the ~features~ list.
-- When the code ~(require 'symbol_name)~ is called, emacs check if that symbol name is already in the ~features~ list. If not, load it. (emacs will guess a file name based on the symbol name. Or, the ~require~ function may specify a file name in the 2nd argument.)
-
-The purpose of features is for emacs to know if a package is already loaded.
-
-The ~features~ variable and the functions {~provide~, ~require~}, is the mechanism.
-
-The ~require~ function checks the ~features~ variable to see if a symbol is already there, if not, then load the file.
-
-The ~provide~ function adds a symbol to the ~features~ list.
-
-**** Loading the File
-***** Load the File Manually
-Suppose you downloaded a simple emacs package on the web named ~xyz.el~. To use the package, all you have to do is to make emacs load the file.
-
-  1. ~M-x load-file~ then give the file path.
-  2. Now, emacs is aware of the package. To activate, call the command in the package. For example, if the file name is ~xyz.el~, then the command to activate it is typically ~xyz~ or ~xyz-mode~.
-
-***** Load File at Startup
-If you want emacs to load the file when it starts, put the file in the dir ~~/.emacs.d/lisp/~, (create that directory if it doesn't exist, by convention, this dir is for packages you manually installed.) then put the following in your emacs init file:
-
-#+begin_src emacs-lisp
-
-;; Tell emacs where is your personal elisp lib dir
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
-;; load the packaged named xyz.
-(load "xyz") ;; best not to include the ending “.el” or “.elc”
-
-#+end_src
-
-***** Byte Compile
-Elisp source code can be byte compiled. When a file is byte compiled, it loads faster, and the functions will run faster too (about 6 times faster). For simple packages, the difference in speed is not noticeable.
-
-To compile your code, call ~byte-compile-file~. Once you compiled the code, you'll get a file with suffix ~.elc~.
-
-You can byte-compile multiple files. In dired, press ~m~ to mark them (press ~u~ to unmark), then press ~B~ (~diredp-byte-compile-this-file~).
-
-***** Auto-Activation of Mode When Opening File
-This is usually setup by the package, but not always. Here's the basics:
-
-#+begin_src emacs-lisp
-
-;; setup files ending in “.js” to open in js2-mode
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-#+end_src
-
-**** site-wide
-In addition to your personal initialization file, Emacs automatically loads various site-wide initialization files, if they exist. These have the same form as your ~.emacs~ file, but are loaded by everyone.
-
-Two site-wide initialization files, ~site-load.el~ and ~site-init.el~, are loaded into Emacs and then dumped if a dumped version of Emacs is created, as is most common.
-
-Three other site-wide initialization files are loaded automatically each time you start Emacs, if they exist. These are ~site-start.el~ (it pretty much means a init file for all users of this emacs installation), which is loaded /before/ your ~.emacs~ file, and ~default.el~, and the terminal type file, which are both loaded /after/ your ~.emacs~ file.
-
-Settings and definitions in your ~.emacs~ file will overwrite conflicting settings and definitions in a ~site-start.el~ file, if it exists; but the settings and definitions in a ~default.el~ or terminal type file will overwrite those in your ~.emacs~ file. (You can prevent interference from a terminal type file by setting ~term-file-prefix~ to ~nil~.)
-
-The ~INSTALL~ file that comes in the distribution contains descriptions of the ~site-init.el~ and ~site-load.el~ files.
-
-The ~loadup.el~, ~startup.el~, and ~loaddefs.el~ files control loading. These files are in the lisp directory of the Emacs distribution and are worth perusing.
-
-The ~loaddefs.el~ file contains a good many suggestions as to what to put into your own ~.emacs~ file, or into a site-wide initialization file.
-
-*** Variables
-**** Buffer local variables
-You can set the value of a variable for the current buffer only using ~setq-local~. Any code that runs in that buffer will receive the buffer-local value instead of the global value!
-
-Why do this? There are many settings that should only be set per buffer, like editor settings for different programming languages and customization variables for major modes.
-
-If the variable isn’t already buffer-local, ~setq-local~ will make it so, but only for the current buffer!
-
-#+begin_src emacs-lisp
-
-(setq-local tab-width 4)
-
-;; some-value doesn't exist yet!
-(setq some-value 2)
-
-;; Make it buffer-local
-(setq-local some-value 4)
-
-#+end_src
-
-**** Making a variable local for all buffers
-You can make any variable local for all future buffers with the make-variable-buffer-local function:
-
-#+begin_src emacs-lisp
-
-(setq not-local-yet t)
-(make-variable-buffer-local 'not-local-yet)
-
-#+end_src
-
-If you are writing an Emacs Lisp package and want to provide a buffer-local variable, this is the way to do it!
-
-#+begin_src emacs-lisp
-
-;; Defining a variable with defvar and then making it buffer local
-(defvar new-buffer-local-var 311)
-(make-variable-buffer-local 'new-buffer-local-var)
-
-#+end_src
-
-**** Setting default values
-You might also want to set the default value for a buffer-local variable with ~setq-default~:
-
-Keep in mind that ~setq-default~ does not set the value in the current buffer, only future buffers!
-
-#+begin_src emacs-lisp
-
-(setq-default not-local-yet nil)
-
-(setq-default tab-width 2
-              evil-shift-width 2)
-
-;; BEWARE!  Unexpected results using buffer-local variables:
-(setq-default evil-shift-width tab-width)
-
-;; This will create a variable that doesn't exist
-(setq-default will-i-be-created t)
-
-#+end_src
-
-**** Defining customization variables
-Customizable variables are used to define user-facing settings for customizing the behavior of Emacs and packages.
-
-The primary difference between They show up in the customization UI (users can set them without code)
-
-The ~defcustom~ function allows you to define a customizable variable:
-
-#+begin_src emacs-lisp
-
-(defcustom my-custom-variable 42
-  "A variable that you can customize")
-
-#+end_src
-
-~defcustom~ takes some additional parameters after the documentation string:
-
-  -  ~:type~ - The expected value type
-  -  ~:group~ - The symbol that identifies the “group” this variable belongs to (defined with ~defgroup~)
-  -  ~:options~ - The list of possible values this variable can hold
-  -  ~:set~ - A function that will be invoked when this variable is customized
-  -  ~:get~ - A function that will be invoked when this variable is resolved
-  -  ~:initialize~ - A function to be used to initialize the variable when it gets defined
-  -  ~:local~ - When ~t~, automatically marks the variable as buffer-local
-
-**** Useful variables
-***** org-structure-template-alist
-An alist of keys and block types.
-
-~org-insert-structure-template~ will display a menu with this list of templates to choose from.  The block type is inserted, with ~#+BEGIN_~ and ~#+END_~ added automatically.
-
-*** Customization
-**** Keybindings
-***** Set key
-
-#+begin_src emacs-lisp
-
-;;Rebind the key C-x l to run the function make-symbolic-link
-(global-set-key (kbd "C-x l") 'make-symbolic-link)
-;; or
-(define-key global-map (kbd "C-x l") 'make-symbolic-link)
-
-;; Rebind for Lisp mode only.
-(define-key lisp-mode-map (kbd "C-x l") 'make-symbolic-link)
-
-;; With special characters
-(global-set-key (kbd "M-a") 'backward-char) ; Alt+a
-(global-set-key (kbd "C-a") 'backward-char) ; Ctrl+a
-(global-set-key (kbd "C-c t") 'backward-char) ; Ctrl+c t
-(global-set-key (kbd "<f9>") 'calendar) ; F9
-(global-set-key (kbd "<f7> <f8>") 'calendar)    ; F7 F8
-
-#+end_src
-
-***** Unset key
-
-#+begin_src emacs-lisp
-
-;; Make C-b undefined.
-(global-set-key (kbd "C-b") nil)
-(global-unset-key "C-b")
-
-#+end_src
-
-***** With hyper or super key
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "H-b") 'backward-word) ; H is for hyper
-(global-set-key (kbd "s-b") 'backward-word) ; lower case “s” is for super
-(global-set-key (kbd "M-H-b") 'backward-word) ; Meta+Hyper+b
-
-#+end_src
-
-***** Key sequence
-
-#+begin_src emacs-lisp
-
-(progn
-  ;; define a prefix keymap
-  (define-prefix-command 'my-modes-key-map)
-  (define-key my-modes-key-map (kbd "<f6>") 'visual-line-mode)
-  (define-key my-modes-key-map (kbd "<f7>") 'linum-mode)
-  (define-key my-modes-key-map (kbd "<f8>") 'whitespace-mode)
-  )
-
-(global-set-key (kbd "<f9>") my-modes-key-map)
-
-;; now, F9 F6 will call visual-line-mode
-;; F9 F7 for linum-mode
-;; F9 f8 for whitespace-mode
-
-#+end_src
-
-***** Substitute definition
-
-#+begin_src emacs-lisp
-
-;; Redefine all keys which now run next-line in Fundamental mode
-;; so that they run forward-line instead.
-(substitute-key-definition 'next-line 'forward-line
-                           global-map)
-
-#+end_src
-
-**** Load
-
-#+begin_src emacs-lisp
-
-;; Add a directory to the variable load-path.
-(add-to-list 'load-path "/path/to/lisp/libraries")
-
-;; add ~/emacs directory to the existing load path
-(setq load-path (cons "~/emacs" load-path))
-
-;; Load the installed Lisp library named foo (actually a file foo.elc or
-;; foo.el in a standard Emacs directory).
-(load "foo")
-;; When the argument to load is a relative file name, not starting
-;; with ‘/’ or ‘~’, load searches the directories in load-path
-
-;; Load the compiled Lisp file foo.elc from your home directory.
-(load "~/foo.elc")
-
-;; Add personal library path to load-path
-(push "~/.dotfiles/.emacs.d/lisp" load-pat)h
-
-#+end_src
-
-**** Major mode add-hook
-
-#+begin_src emacs-lisp
-
-;; Make Text mode the default mode for new buffers.
-(setq-default major-mode 'text-mode)
-
-
-;; turning on line number only for html-mode
-(add-hook 'html-mode-hook 'linum-mode)
-
-;; Turn on Auto Fill mode automatically in Text mode and related modes..
-(add-hook 'text-mode-hook 'auto-fill-mode)
-
-;; you don’t want Auto Fill mode turned on in LaTeX mode, which is one of
-;; the modes based on Text mode
-(add-hook 'latex-mode-hook (lambda () (auto-fill-mode -1)))
-
-;; remove a hook
-(remove-hook 'html-mode-hook 'linum-mode)
-
-
-;; binding keys only when Major Mode html-mode is active
-(defun my-html-mode-config ()
-  "Modify keymaps used by `html-mode'."
-  (local-set-key (kbd "C-c w") 'my-bold-word) ; add a key
-  (local-set-key (kbd "C-c C-p") nil) ; remove a key
-  (local-set-key (kbd "<C-left>") 'my-html-skip-tag-backward)
-  ;; more here
-  )
-;; add to hook
-(add-hook 'html-mode-hook 'my-html-mode-config)
-
-#+end_src
-
-**** Minor mode
-***** Change minor mode keys
-To change minor mode keys, you need to change of the mode's keymap.
-
-#+begin_src emacs-lisp
-
-(progn
-  ;; change isearch's keys to arrows
-  (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
-  (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward))
-
-#+end_src
-
-For some minor modes, you need to load it first, example:
-
-#+begin_src emacs-lisp
-
-(progn
-  ;; modify dired keys
-  (require 'dired ) ;  (provide 'dired) search name in source code
-;; search map in describe-function
-;;(define-key keymap_name-map (kbd "key") 'command_name)
-  (define-key dired-mode-map (kbd "o") 'other-window)
-  (define-key dired-mode-map (kbd "C-o") 'find-file))
-
-#+end_src
-
-***** Modify Keys
-~shell~ and ~shell-command~ M-! have many special keys. Suppose you want to change them. They both use a keymap named ~comint-mode-map~. The following is a example of redefining some of its keys.
-
-#+begin_src emacs-lisp
-
-(progn
-  ;; "change keybindings for shell related modes."
-   (define-key comint-mode-map (kbd "M-p") 'recenter)
-   ;; was comint-previous-input
-   (define-key comint-mode-map (kbd "M-n") 'nil)
-   ;; was comint-next-input
-
-;; rebind displaced commands that i still want a key
-(define-key comint-mode-map (kbd "<f11>") 'comint-previous-input)
-(define-key comint-mode-map (kbd "<f12>") 'comint-next-input))
-
-;; Here's a example of how to redefine keybinding in minibuffer
-(define-key minibuffer-local-map (kbd "M-r") 'kill-word)
-(define-key minibuffer-local-map (kbd "M-s") 'other-window)
-
-#+end_src
-
-**** defalias
-
-#+begin_src emacs-lisp
-
-;; Define an alias to be use with the ~query-replace-regexp~ function by
-;; typing ~like M-x qrr~.
-(defalias 'qrr 'query-replace-regexp)
-
-;; Always use ibuffer
-(defalias 'list-buffers 'ibuffer)
-
-#+end_src
-
-**** macro
-1. ~M-x name-last-kbd-macro~ and give it a name.
-2. ~M-x insert-kbd-macro~ This will insert the lisp code for a named kmacro at the cursor position.
-3. Copy ＆ Paste the code into your emacs init file.
-4. In any future emacs session, you can call your kmacro by name just like any emacs command.
-
-Once you've saved your macro with a name, you can also give it a keyboard shortcut, such as ~F8~.
-
-#+begin_src emacs-lisp
-
-;; macro for bold region, add two *
-(fset 'bold
-   (kmacro-lambda-form [?\C-c ?\C-x ?\C-f kp-multiply] 0 "%d"))
-(global-set-key (kbd "<f7>") 'bold)
-
-;; macro for code region, add tow =
-(fset 'code
-   (kmacro-lambda-form [?\C-c ?\C-x ?\C-f ?=] 0 "%d"))
-(global-set-key (kbd "<f8>") 'code)
-
-#+end_src
-
-**** External App
-
-
-#+begin_src emacs-lisp
-
-;; To open the current file or marked dired files in external app. (as if
-;; you double-clicked the file on desktop) It's useful for image files,
-;; PDF file, video, audio files.
-(defun xah-open-in-external-app (&optional Fname)
-  "Open the current file or dired marked files in external app.
-When called in emacs lisp, if Fname is given, open that.
-
-URL `http://xahlee.info/emacs/emacs/emacs_dired_open_file_in_ext_apps.html'
-Version: 2019-11-04 2023-04-05 2023-06-26"
-  (interactive)
-  (let (xfileList xdoIt)
-    (setq xfileList
-          (if Fname
-              (list Fname)
-            (if (string-equal major-mode "dired-mode")
-                (dired-get-marked-files)
-              (list buffer-file-name))))
-    (setq xdoIt (if (<= (length xfileList) 10) t
-                  (y-or-n-p "Open more than 10 files? ")))
-    (when xdoIt
-      (cond
-       ((string-equal system-type "windows-nt")
-        (let ((xoutBuf (get-buffer-create "*xah open in external app*"))
-              (xcmdlist (list "PowerShell" "-Command"
-                              "Invoke-Item" "-LiteralPath")))
-          (mapc
-           (lambda (x)
-             (message "%s" x)
-             (apply 'start-process
-                    (append (list "xah open in external app" xoutBuf)
-                            xcmdlist (list
-                                      (format "'%s'"
-                                              (if (string-match "'" x)
-                                                  (replace-match "`'" t t x) x)))
-                            nil)))
-           xfileList)
-          ;; (switch-to-buffer-other-window xoutBuf)
-          )
-        ;; old code. calling shell. also have a bug if filename contain apostrophe
-        ;; (mapc (lambda (xfpath) (shell-command
-        ;; (concat "PowerShell -Command \"Invoke-Item -LiteralPath\" " "'"
-        ;; (shell-quote-argument (expand-file-name xfpath)) "'"))) xfileList)
-        )
-       ((string-equal system-type "darwin")
-        (mapc (lambda (xfpath) (shell-command
-                                (concat "open "(shell-quote-argument xfpath))))
-              xfileList))
-       ((string-equal system-type "gnu/linux")
-        (mapc (lambda (xfpath)
-                (call-process shell-file-name nil 0 nil
-                              shell-command-switch
-                              (format "%s %s"
-                                      "xdg-open"
-                                      (shell-quote-argument xfpath))))
-              xfileList))
-       ((string-equal system-type "berkeley-unix")
-        (mapc (lambda (xfpath)
-                (let ((process-connection-type nil))
-                  (start-process "" nil "xdg-open" xfpath))) xfileList))))))
-
-#+end_src
-
-#+RESULTS:
-
-**** Configurations
-
-#+begin_src emacs-lisp
-
-;; flyspell-mode
-(add-hook 'text-mode-hook
-        '(lambda () (flyspell-mode 1)))
-
-(setq ispell-local-dictionary "espanol")
-
-
-;; Case conversion can be toggled on/off by typing ‘M-c’ in the
-;; minibuffer during search or disable case conversion
-(setq case-fold-search nil)
-
-;; In an interactive search, a space character stands for one or more
-;; whitespace characters (tabs are whitespace characters). You can use
-;; M-s SPC while searching or replacing to toggle between this behavior
-;; and treating spaces as literal spaces.
-(setq search-whitespace-regexp nil)
-
-
-;;Adjusting the configuration to various platforms and Emacs versions.
-;; Users typically want Emacs to behave the same on all systems, so the
-;; same init file is right for all platforms. However, sometimes it
-;; happens that a function you use for customizing Emacs is not available
-;; on some platforms or in older Emacs versions. To deal with that
-;; situation, put the customization inside a conditional that tests
-;; whether the function or facility is available, like this:
-(if (fboundp 'blink-cursor-mode)
-    (blink-cursor-mode 0))
-
-(if (boundp 'coding-category-utf-8)
-    (set-coding-priority '(coding-category-utf-8)))
-
-;; You can also simply disregard the errors that occur if the
-;; function is not defined.
-(ignore-errors (set-face-background 'region "grey75"))
-
-#+end_src
-
-**** Miscellaneous
-
-#+begin_src emacs-lisp
-
-;; Example of how to use Hydra package.
-(global-set-key (kbd "C-c m")
- (defhydra hydra-transpose (:color red)
-   "Transpose"
-    ("w" transpose-words "words")
-    ("o" org-transpose-words "Org mode words")
-    ("l" transpose-lines "lines")
-    ("q" nil "cancel" :color blue)))
-
-;; auto-saves buffers, when certain events happen (e.g. you switch
-;; between buffers, an Emacs frame loses focus)
-(use-package super-save
-  :defer 1
-  :diminish super-save-mode
-  :config
-  (super-save-mode +1))
-
-#+end_src
 
 * use-packages
 ** Install

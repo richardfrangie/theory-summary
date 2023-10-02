@@ -56,14 +56,15 @@ Helps us keep our Emacs packages up to date!  It will prompt you after a certain
 
 #+begin_src emacs-lisp
 
-(use-package auto-package-update
-   :custom
-   (auto-package-update-interval 7)
-   (auto-package-update-prompt-before-update t)
-   (auto-package-update-hide-results t)
-   :config
-   (auto-package-update-maybe)
-   (auto-package-update-at-time "09:00"))
+;; Disable while testing
+;; (use-package auto-package-update
+;;    :custom
+;;    (auto-package-update-interval 7)
+;;    (auto-package-update-prompt-before-update t)
+;;    (auto-package-update-hide-results t)
+;;    :config
+;;    (auto-package-update-maybe)
+;;    (auto-package-update-at-time "09:00"))
 
 #+end_src
 
@@ -143,37 +144,29 @@ Input from the mouse.
 
 #+end_src
 
-** Faces
-Support for multiple fonts.
-
-*** Basic Faces
-The standard faces of Emacs.
+** Cursor
 
 #+begin_src emacs-lisp
 
-(defvar efs/default-font-size 100)
-(defvar efs/default-variable-font-size 120)
+(use-package multiple-cursors
+  :bind
+  ("C-S-c C-S-c" . mc/edit-lines)
+  ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this))
 
-;; Set the default face
-(set-face-attribute 'default nil :font "Fira Code Retina"
-                                 :height efs/default-font-size)
 
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "JetBrains Mono"
-                                     :height efs/default-font-size)
+;; After type C-u C-SPC, can type C-SPC instead of C-u C-SPC to cycle
+;; through the mark ring.
+(setq set-mark-command-repeat-pop t)
 
-;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Cantarell"
-                                        :height efs/default-variable-font-size
-                                        :weight 'regular)
+;; You can make it store less positions for better use of jump.
+;; (setq mark-ring-max 6)
+;; (setq global-mark-ring-max 6)
+
+;; Disable cursor blinking altogethre.
+(blink-cursor-mode 0)
 
 #+end_src
-
-*** Faces
-Faces used by Dired.
-
-*** Mode Line Faces
-Faces used in the mode line.
 
 ** Theme
 [[https://github.com/hlissner/emacs-doom-themes][doom-themes]] is a great set of themes with a lot of variety and support for many different Emacs modes.
@@ -222,17 +215,37 @@ Contents of the mode line.
 
  #+end_src
 
-** Cursor
+** Faces
+Support for multiple fonts.
+
+*** Basic Faces
+The standard faces of Emacs.
 
 #+begin_src emacs-lisp
 
-(use-package multiple-cursors
-  :bind
-  ("C-S-c C-S-c" . mc/edit-lines)
-  ("C->" . mc/mark-next-like-this)
-  ("C-<" . mc/mark-previous-like-this))
+(defvar efs/default-font-size 100)
+(defvar efs/default-variable-font-size 125)
+
+;; Set the default face
+(set-face-attribute 'default nil :font "Fira Code Retina"
+                                 :height efs/default-font-size)
+
+;; Set the fixed pitch face
+(set-face-attribute 'fixed-pitch nil :font "JetBrains Mono"
+                                     :height efs/default-font-size)
+
+;; Set the variable pitch face
+(set-face-attribute 'variable-pitch nil :font "Cantarell"
+                                        :height efs/default-variable-font-size
+                                        :weight 'regular)
 
 #+end_src
+
+*** Faces
+Faces used by Dired.
+
+*** Mode Line Faces
+Faces used in the mode line.
 
 ** Minibuffer
 Controlling the behavior of the minibuffer.
@@ -309,6 +322,16 @@ It only works when there are only two windows."
 
 (global-set-key (kbd "C-c w") 'rf/yank-next-window)
 
+
+;; It is the opposite of fill-paragraph (emacswiki)
+(defun unfill-paragraph (&optional region)
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+        ;; This would override `fill-column' if it's an integer.
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
+
 #+end_src
 
 ** Configuration
@@ -356,26 +379,27 @@ Advanced replacement for ‘buffer-menu’.
 ;; Make ibuffer default.
 (defalias 'list-buffers 'ibuffer)
 
-
+;; Does not work, it throws this error at startup:
+;; Error (use-package): auto-package-update/:config: Error reading from stdin
 ;; Use human readable Size column instead of original one (EmacsWiki)
-(define-ibuffer-column size-h
-  (:name "Size" :inline t)
-  (cond
-   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
-   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
-   (t (format "%8d" (buffer-size)))))
+;; (define-ibuffer-column size-h
+;;   (:name "Size" :inline t)
+;;   (cond
+;;    ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+;;    ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+;;    ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+;;    (t (format "%8d" (buffer-size)))))
 
-;; Modify the default ibuffer-formats
-  (setq ibuffer-formats
-        '((mark modified read-only " "
-                (name 18 18 :left :elide)
-                " "
-                (size-h 9 -1 :right)
-                " "
-                (mode 16 16 :left :elide)
-                " "
-                filename-and-process)))
+;; ;; Modify the default ibuffer-formats
+;;   (setq ibuffer-formats
+;;         '((mark modified read-only " "
+;;                 (name 18 18 :left :elide)
+;;                 " "
+;;                 (size-h 9 -1 :right)
+;;                 " "
+;;                 (mode 16 16 :left :elide)
+;;                 " "
+;;                 filename-and-process)))
 
 #+end_src
 
@@ -395,6 +419,11 @@ Directional selection of windows in a frame.
 ;; corrupted desktop file. The desktop file path is controlled by
 ;; the variable desktop-dirname
 
+;;;;;; Testing.
+;; Delay restoring the desktop in daemon mode until the first 
+;; client connects.
+(add-hook 'server-after-make-frame-hook 'desktop-read)
+
 
 ;; Jump between visible windows, after assigning a number to each window
 (use-package ace-window)
@@ -410,6 +439,9 @@ Directional selection of windows in a frame.
 (global-set-key (kbd "C-c m") 'window-swap-states)
 ;; Move window
 (global-set-key (kbd "C-c p") 'windmove-up)
+(global-set-key (kbd "C-c n") 'windmove-down)
+(global-set-key (kbd "C-c b") 'windmove-left)
+(global-set-key (kbd "C-c f") 'windmove-right)
 
 #+end_src
 
@@ -572,13 +604,13 @@ It is a rich document editor, project planner, task and time tracker, blogging e
 
   ;; Configure org agenda.
   (setq org-agenda-files
-        '("~/Documents/Notes.org"))
+        '("~/Documents/Todo.org"))
 
   ;; Configure org TODO.
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "ACTIVE(a)" "REVIEW(r)" "HOLD(h)" "|"
-                    "FIXED(f)" "UNSOLVED(u)" "WAIT(w)" "CANCELLED(k)")))
+          (sequence "ACTIVE(a)" "REVIEW(r)" "|"
+                    "UNSOLVED(u)" "WAIT(w)")))
 
   (setq org-todo-keyword-faces
     '(("NEXT" . (:foreground "orange red" :weight bold))
@@ -741,7 +773,7 @@ Support for Emacs help systems.
   :diminish which-key-mode
   :config
   (which-key-mode)
-  (setq which-key-idle-delay 0.5))
+  (setq which-key-idle-delay 0.7))
 
 
 ;; Is an interactive interface for completion in minibuffer.
@@ -940,7 +972,7 @@ Is a project management library for Emacs which makes it a lot easier to navigat
   :config (projectile-mode)
   :custom ((projectile-completion-system 'ivy))
   :bind-keymap
-  ("C-c p" . projectile-command-map)
+  ("C-c j" . projectile-command-map)
   :init
   ;; NOTE: Set this to the folder where you keep your Git repos!
   (when (file-directory-p "~/Projects/Code")
@@ -1228,6 +1260,29 @@ File will save in Downloads Folder."
                       (substring (buffer-name) 0 -4)
                       ".html")))
 
+;;;;; Temporarily testing.
+(defun rf/sub-youtube-srt-html (filePath)
+  "Format srt sub-youtube file to display in html.
+
+File will save in Downloads Folder.
+Be careful, it overwrites file of the same name."
+  (interactive "f")
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (goto-char 1)
+    (while (search-forward "" nil t) (replace-match "" nil t))
+    (goto-char 1)
+    (flush-lines "^[0-9].*[0-9]$")
+    (goto-char 1)
+    (flush-lines "^[0-9]$")
+    (delete-duplicate-lines (goto-char 1) (point-max))
+    (mark-whole-buffer)
+    (org-html-convert-region-to-html)
+    (write-region 1 (point-max)
+		  (concat "~/Downloads/"
+			  (substring
+			   (file-name-nondirectory filePath) 0 -4)
+			  ".html"))))
 
 (defun rf/sentences-to-anki (beg end &optional asteri)
   "Format sentences written in org-mode to be viewed in anki.
