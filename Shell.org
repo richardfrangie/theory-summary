@@ -1,0 +1,2335 @@
+#+title: Shell
+#+date: 2023-08-25
+
+* File
+** Read
+*** cat file1 file2
+Concatenate file(s) and print on the standard output.
+
+*** less file
+Paginates output /file/.
+[ */word* search forward *?word* search backward *n* repeat  previous  search *N* repeat  previous  search, but in the reverse direction *M-S-<* begin document *M-S->* end document ]
+( ~more file~ similar to less but fewer features )
+( ~dmesg | less~ print or control the kernel ring buffer )
+
+*** head file
+Shows the first 10 lines of the /file/.
+[ /-n/ print the first X lines ]
+( ~tail file~ shows the last 10 lines )
+( ~tail +15 file~ print lines starting at line 15 )
+
+** Create
+*** touch file
+Create a /file/.
+Doesn’t change the file, but it does update the file’s modification timestamp.
+
+*** cat  <<EOF > file
+Create a /file/ with a large section of text by typing it  in to the standard input.
+The items ~EOF~ control the [[Here documents EOF][here document]].
+
+*** mktemp  /tmp/im1.XXXXXX
+Create temporary filenames. Converts the ~XXXXXX~ to a unique set of characters and creates an empty file with that name.
+[ /-d/ create a directory, not a file /-d/ dry run, do not create anything; merely print a name (unsafe) ]
+
+#+begin_src sh
+
+# This script shows the device interrupts that have occurred in the
+# last two seconds:
+#!/bin/sh
+TMPFILE1=$(mktemp /tmp/im1.XXXXXX)
+TMPFILE2=$(mktemp /tmp/im2.XXXXXX)
+trap "rm -f $TMPFILE1 $TMPFILE2; exit 1" INT
+# The trap command to create a signal handler to catch the signal that
+# CTRL-C generates and remove the temporary files.
+# You must use exit in the handler to explicitly end script execution.
+
+cat /proc/interrupts > $TMPFILE1
+sleep 2
+cat /proc/interrupts > $TMPFILE2
+diff $TMPFILE1 $TMPFILE2
+rm -f $TMPFILE1 $TMPFILE2
+
+#+end_src
+
+*** mkfifo file
+Create named pipes (FIFOs) with the given /file/.
+
+** Copy
+*** rsync -b file dir/
+Transfer /file/ from the current directory to the directory /dir/.
+[ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) ]
+( ~rsync -t *.c dir/~ transfer all files matching the pattern to the directory )
+( ~rsync -t *.c foo:dir/~ transfer all files matching the to the directory on the machine foo )
+
+*** cp -i file1 file2
+Copy /file1/ to /file2/.
+If copied to an existing file, the file keeps the inode number.
+[ /-i/ prompt before overwrite /-a/ same as -dR --preserve=all ]
+( ~cp -i file1 file2 dir~ copy files to directory )
+
+*** mv -i file1 file2
+Rename /file1/ to /file2/.
+[ /-i/ prompt before overwrite ]
+
+** Delete
+*** rm -i file
+Removes /file/.
+[ /-i/ prompt before every removal ]
+
+*** gio trash file
+Move /file/ to Trash folder.
+
+** Utilities
+*** lsof -p 123
+List the open files for a particular /123/ process ID.
+Open files and the processes using them, it can list network resources, dynamic libraries, pipes, and more.
+[ /+D/ search for all open instances  of  directory /-p/ listing of files for the processes ]
+( *COMMAND* the command name for the process that holds the file descriptor *FD* shows the purpose of the file, it can also list the file descriptor of the open file *DEVICE* the major and minor number of the device that holds the file *NAME* the filename )
+( ~lsof +D /usr~ displays entries for open files in /usr and all of its subdirectories )
+
+*** find dir -name file -print
+Find /file/ in /dir/.
+Options such as ~-name~ and ~-print~ are used in conjunction with ~-exec~.
+[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-prune/ if the file is a dir, don't descend into it /-xdev/ don't descend dir on other filesystems /-perm 644/ search by permission /-exec/ search by executable /-type d/ search by dir /-inum 123/ search by inode ]
+
+*** find . -name '*.gif' -print0 | xargs -0 file
+Verify that every file in the current directory ( /./ ) tree that ends with /.gif/ is actually a GIF image. This form changes the find output separator and the xargs argument delimiter from a newline to a NULL character, it's usefull to avoid errors arising from filenames that can include spaces and newlines.
+xargs reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the command one or more times with any initial- arguments followed by items read from standard input.
+You may need to add two dashes (--) to the end of your xargs command if there’s a chance that any of the target files start with a single dash (-). The double dash (--) tells a program that any arguments that follow are filenames, not options (not all programs support the use of a double dash).
+[ /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater ]
+( ~find . -name '*.gif' -exec file {} \;~ equivalent command but the syntax is somewhat tricky because need to supply braces )
+
+*** chmod +rx file
+Add read /r/ and execute /x/ permissions to /file/.
+( ~chmod 700 file~ add read and execute only to the user in absolute sintaxis )
+( ~chmod go-r file~ remove group and other read permissions )
+
+*** chown new_user file
+Change the owner of /file/ to /new_user/.
+[ /-R/ operate on files and directories recursively ]
+( ~chown new_user:new_group file~ change the owner and group )
+
+*** ln -s target linkname
+Make symbolic link. The new /linkname/ is the name of the symbolic link, the /target/ is the path of the file or directory that the link points to (absolute paths must be placed).
+[ /-s/ make symbolic link instead of hard links ]
+( ~ln target linkname~ create new hard link )
+
+*** file file
+Determine /file/ type.
+[ /-i/ mime ]
+
+*** stat file
+ Display /file/ status (birth, inode, block, device, type, group, permissions, size,...)
+
+*** md5sum
+Compute and check MD5 message digest.
+[ /-c/ read MD5 sums from the files and check them ]
+( ~md5sum file1 file2~ compute message digest of the files )
+
+** Compressing
+*** gzip file
+Compress /file/.
+[ /-d/ decompresses /-c/ sends the result to standard output ]
+( ~gunzip file.gz~ uncompress file.gz and remove the suffix )
+( ~gzip -d file.gz~ equivalent command to uncompress )
+
+*** tar zcvf archive.tar file1 file2
+Create an /archive.tar/ of files /file1/ and /file2/ and compress.
+[ /c/ create a new archive /v/ verbose /f/ archive file for tar to create /f -/ use standard input or output /t/ list the contents /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) ]
+( ~tar tvf archive.tar~ check the contents of archive.tar )
+( ~tar czpvf archive.tar file1 file2~ compress and create archive.tar )
+( ~tar czpvf archive.tar dir/~ compress and create all file inside dir folder )
+( ~tar cf - dir_orig |(cd dir_target; tar xvf -)~ archive the entire directory tree within dir_orig and then unpacks the archive into the new directory dir_target (this is useful because it preserves ownership and permissions, and it’s generally faster than others commands) )
+
+*** tar zxvf archive.tar
+Unpack /archive.tar/ and decompress.
+[ /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /x/ extract /p/ preserve permissions ]
+( ~tar xpvf archive.tar file1~ unpack just the file1 )
+( ~zcat file.tar.gz | tar xpvf -~ decompress and unpack )
+( ~tar xzpvf archive.tar file1 file2~ command equivalent to above )
+
+*** zip -rX new_dir dir
+Creates  the  archive new_dir.zip, containing all the files and directories in the directory /dir/.
+[ /-r/ recursive /-X/ do not save extra file attributes (more compatibility between different OS) ]
+Compatible with the ZIP archives on Windows systems.
+( ~unzip file.zip~ decompress file )
+( ~xz file~ compress file (compact little more than gzip) )
+( ~unxz file.xz~ decompress file )
+( ~bzip2 file~ compress file (compact little more than gzip) )
+( ~bunzip2 file.bz2~ decompress file )
+
+* Directory
+** Create
+*** mkdir dir
+Creates a new directory /dir/.
+[ /-p/ no error if existing, make parent directories as needed ]
+( ~mkdir -p dirParen/{dir1,dir2,dir3}~ create a main directory and three subdirectories )
+
+*** mktemp  -d /tmp/im1.XXXXXX
+Create temporary directory. Converts the ~XXXXXX~ to a unique set of characters and creates an empty file with that name.
+[ /-d/ create a directory, not a file /-d/ dry run, do not create anything; merely print a name (unsafe) ]
+
+** Copy
+*** cp -a dir_source dir_dest
+Copy /dir_dource/ to /dir_dest/ preserve all.
+[ /-a/ preserve all ]
+( ~cp -a dir_source/* dir_dest~ copy just file or dir inside the dir_sorce )
+
+** Delete
+*** rm -r dir
+Removes the directory /dir/ and its contents.
+Don’t use the ~-r~ flag with globs such as a star ~*~.
+[ /-r/ remove directories and their contents recursively ]
+
+*** gio trash dir
+Move /dir/ to Trash folder.
+
+*** gio --empty
+Empty the trash.
+
+** Utilities
+*** cd dir
+Change directory.
+( ~cd~ returns to the directory from which the shell was started )
+( ~cd -~ returns to the previous directory )
+( ~cd -1~ returns to the 1 last directory )
+
+*** ls -lh dir
+Lists the contents of a directory /dir/.
+[ /-l/ long listing format /-h/ human readable /-a/ all /-i/ inode numbers /-S/ sort by file size, largest first /--si/ powers of 1000 not 1024 ]
+( permissions ( *-* regular file *d* directory *b* block *c* character *p* pipe *s* sockect ) | hard links | owner | group | size | modification time | filename )
+
+*** du -h
+Estimate file space usage in current directory.
+~du~ output in most Linux distributions is in 1,024-byte blocks.
+[ /-s/ summarize /-m/ block-size 1M /-h/ human readable /-c/ produce a grand total ]
+( ~ncdu~ equivalent command )
+
+*** df
+View the size and utilization of your currently mounted filesystems.
+~df~ output in most Linux distributions is in 1,024-byte blocks.
+[ /-m/ block-size 1M /-h/ human readable ]
+( ~df dir~ view the info in the specific directory )
+
+*** stat dir
+ Display /dir/ status (birth, inode, block, device, type, group, permissions, size,...)
+( ~pwd~ print working directory )
+
+*** tree -d
+List contents of directories in a tree-like format.
+[ /-d/ list directories only /-L 3/ max display depth of the directory tree /-h/ print  the  size  of each file /--du/ for  each directory report its size as the accumulation of sizes of all its files and sub-directories ]
+
+*** gio list trash://
+List the Trash folder.
+
+* System
+** Processes
+*** top
+Display Linux processes.
+[ /-p/ only processes with specified process  IDs ]
+( *PR* The process’s priority. The lower the number, the higher the priority | *NI* negative nice value implies higher priority | *VIRT* Virtual memory used by the task | *RES* Resident memory used by the process | *SHR* Shared Memory size used by a task | *S* Status of the process (D Uninterruptible sleep R Running S Sleeping T Traced stopped Z Zombie) | *%CPU* The share of CPU time used by the process since the last update | *%MEM* The share of physical memory used )
+[ *y* Highlight running tasks  *x* Highlights the column  *b* Bold *?* help ]
+[ *<* , *>* choose how to sort the information *f* different statistics *SPC* Update ]
+[ *M* Sort by %MEM  *P* Sort by %CPU  *T* Sort by TIME+  *N* Sort by PID
+[ *u* only user's processes ]
+[ *1* Individual CPU Core Statistics  *t* CPU Usage Graph  *m* Memory Usage Graph *H* Threads ]
+[ *c* Full Command Line  *V* Process Hierarchy ]
+[ *k* kill process ]
+( ~top -p pid1 [-p pid2 ...]~ monitor one or more specific processes over time )
+( ~pidstat -p 123 1~ monitoring process 123, updating every second )
+( ~pidstat -p 123 1 -r~ monitoring process 123, report page faults and memory utilization )
+( ~pidstat -p 123 1 -d~ monitoring process 123, report I/O statistics )
+
+*** ps aux
+Report a snapshot of the current processes.
+[ /ax/ all processes /a/ all processes with a terminal (tty) /x/ all processes owned by you /u/ more detailed information on processes /-H/ show process hierarchy (forest) ]
+( *PID* process ID | *TTY* terminal device where the process is running | *STAT* process status (S sleeping, R running) | *TIME* amount of CPU time that the process has used so far | *COMMAND* be careful a process can change this field from its original value and the shell can perform glob expansion, and this field will reflect the expanded command instead of what you enter at the prompt )
+( ~ps u 123~ inspect the 123 process )
+( ~ps m~ display the thread information )
+( ~ps m -o pid,tid,command~ shows only the PIDs, TIDs, and command )
+( ~pidstat -p 123~ report statistics for 123 tasks )
+
+*** pidof name
+Find the process ID of a running program.
+( ~pgrep name~ equivalent tool )
+
+*** pstree -s 123
+Display a tree of parent processes of /123/ process.
+[ /-h/ highlight the current process and its ancestors /-H/ like  -h,  but  highlight the specified process instead /-s/ show parent processes of the specified process ]
+
+*** renice 20 pid
+Change the nice value to 20.
+Niceness  values range  from  -20 (most favorable to the process) to 19 (least favorable to the process).
+( ~nice -n 19 tar cvzf name.tgz name~ run a program with modified scheduling priority )
+
+*** kill 123
+Send the default signal, SIGTERM (terminate the process), to /123/.
+[ /-STOP/ freeze a process /-CONT/ continue running the process again /-KILL/ brutal way to terminate process /-9/ another notation for -KILL /-15/ another notation for -SIGTERM ]
+( ~kill -STOP 123~ freeze the 123 process )
+( ~kill 123 543 2341 3453~ send the default signal, SIGTERM, to all those processes )
+
+*** lsof -p 123
+List the open files for a particular /123/ process ID.
+Open files and the processes using them, it can list network resources, dynamic libraries, pipes, and more.
+[ /+D/ search for all open instances  of  directory /-p/ listing of files for the processes ]
+( *COMMAND* the command name for the process that holds the file descriptor *FD* shows the purpose of the file, it can also list the file descriptor of the open file *DEVICE* the major and minor number of the device that holds the file *NAME* the filename )
+( ~lsof +D /usr~ displays entries for open files in /usr and all of its subdirectories )
+
+*** strace
+System call trace. Prints all the system calls that a process makes.
+[ /-o save_file/ save the output in a file ]
+( ~strace cat /dev/null~ first lines of the output should show execve() in action, followed by a memory initialization call, brk() )
+( ~ltrace~ command tracks shared library calls )
+
+** Performance
+*** free
+Display amount of free and used memory in the system.
+[ /-h/ human readable ]
+
+*** vmstat
+Report virtual memory statistics.
+You’ll find it handy for getting a high-level view of how often the kernel is swapping pages in and out, how busy the CPU is, and how I/O resources are being utilized.
+[ /2/ statistics every two second /-d/ report disk statistics ]
+( *swap* for the pages pulled in and out of swap *io* for disk usage *system* for the number of times the kernel switches into kernel code *cpu* for the time used by different parts of the system )
+( *us* percentage of time the CPU is spending on user tasks *sy* system (kernel) tasks *id* idle time *wa* waiting for I/O )
+( *b* processes are blocked (prevented from running) while waiting for memory pages *so* swapped out, moving pages onto the disk *bi* blocks in *bo* blocks out )
+
+*** uptime
+How long the system has been running.
+The load average is the average number of processes currently ready to run. That is, it is an estimate of the number of processes that are capable of using the CPU at any given time—this includes processes that are running and those that are waiting for a chance to use the CPU. When thinking about a load average, keep in mind that most processes on your system are usually waiting for input (from the keyboard, mouse, or network, for example), meaning they’re not ready to run and shouldn’t contribute anything to the load average. Only processes that are actually doing something affect the load average.
+A load average of 0 is usually a good sign, because it means that your processor isn’t being challenged and you’re saving power. If a load average goes up to around 1, a single process is probably using the CPU nearly all of the time (single CPU system).
+( *load average* past 1 minute, past 5, past 15 )
+( ~w~ show who is logged on and what they are doing )
+
+*** iostat -p ALL
+Central Processing Unit (CPU) statistics and input/output statistics for /ALL/ devices and partitions.
+The sum of the partition columns won’t necessarily add up to the disk column. Although a read from sda1 also counts as a read from sda, keep in mind that you can read from sda directly, such as when reading the partition table.
+[ /2/ statistics every two second /-d/ report disk statistics /-2 d/ only disk statistic every two second /-p ALL/ all of the partition information]
+( *tps* average number of data transfers per second *kB_read/s* average number of kilobytes read per second *kB_wrtn/s* average number of kilobytes written per second *kB_read* total number of kilobytes read *kB_wrtn* total number of kilobytes written )
+( ~iotop~ simple top-like I/O monitor )
+
+*** time command
+Find out how much CPU time a /command/ uses during its lifetime.
+User time (*user*) is the number of seconds that the CPU has spent running the program’s own code. The system time (*sys*) is how much time the kernel spends doing the process’s work (reading files and directories,...). The real time (*real*) is the total time it took to run the process from start to finish, including the time that the CPU spent doing other tasks. Subtracting the user and system time from real time can give you a general idea of how long a process spends waiting for system and external resources. For example, the time spent waiting for a network server to respond to a request would show up in the elapsed time, but not in the user or system time.
+
+** Systemd
+*** journalctl -f
+Show the most recent messages in the journal, starting with the oldest.
+[ /-S/ (since) entries on or newer than the specified date /-U/ (until) entries on or older than the specified date /-f/ only the most recent entries  /--unit=/ specified systemd unit /-U/ until that time /-g/ grep /-r/ reverse output /-k/ only kernel messages /-n/ lines /-b/ start of the current boot /-F/ all possible data values the specified field ]
+( ~journalctl -S -4h~ messages from the past 4 hours in current time zone )
+( ~journalctl -S 06:00:00~ specific hour )
+( ~journalctl -S 13:30:00 -U 14:30:00~ specific timestat)
+( ~journalctl -S 2020-01-14~ specific day)
+( ~journalctl -S '2020-01-14 14:30:00'~ specific hour and day )
+( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
+( ~journalctl -F _SYSTEMD_UNIT~ list all units in the journal )
+( ~journalctl -u cron.service~ filter by systemd unit )
+( ~journalctl _PID=123~ search for messages from process ID 123 )
+( ~journalctl -g 'kernel.*memory'~ contain kernel followed somewhere by memory )
+( ~journalctl -r -b -1~ check whether the machine shut down cleanly on the last cycle )
+( ~journalctl -N~ list all available fields )
+( ~journalctl SYSLOG_IDENTIFIER=sudo~ find the sudo logs )
+
+*** systemctl list-units
+List of active units.
+[ /list-units/ list of active units /--all/ all units /--full/ full names of the units /list-timers/ llist timer units currently in memory /--type=inactive/ limit display to inactive unit types ]
+( ~systemctl list-unit-files~ list all installed unit files )
+( ~systemctl --type=service~ show all service units )
+( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
+
+*** systemctl status sshd.service
+Getting the status of a /sshd.service/ unit.
+[ /status/ status information ]
+
+*** systemctl start unit
+Activate /unit/.
+[ /active/ active one or more units /stop/ deactive one or more units /restart/ stop and then start /reload/ asks all units listed on the command line to reload their configuration ]
+( ~systemctl stop unit~ deactivate one unit specified )
+( ~systemctl restart unit~ stop and then start one unit specified )
+( ~systemctl reload unit~ reloads just the configuration for unit )
+( ~systemctl daemon-reload~ reloads all unit configurations )
+
+*** systemctl enable unit
+Enable one or more units or unit instances. This will create a set of symlinks, as encoded in the [Install] sections of the indicated unit files. After the symlinks have been created, the system manager configuration is reloaded (in a way equivalent to daemon-reload), in order to ensure the changes are taken into account immediately.
+( ~systemctl disable unit~ disable one unit or unit instances )
+
+*** systemctl cat unit
+Show backing files of one or more units. Prints the "fragment" and "drop-ins" (source files) of units.
+
+*** systemctl list-jobs
+Check the current jobs.
+
+*** systemctl -p UnitPath show
+Check the current systemd configuration search path.
+( ~pkg-config systemd --variable=systemdsystemunitdir~ see the system unit )
+( ~pkg-config systemd --variable=systemdsystemconfdir~ see the system configuration directories )
+
+*** systemd-analyze
+Used to determine system boot-up performance statistics and retrieve other state and tracing information from the system and service manager, and to verify the correctness of unit files.
+( ~systemd-analyze time~ prints the time spent in the kernel before userspace has been reached, the time spent in the initial RAM disk (initrd) before normal system userspace has been reached, and the time normal system userspace took to initialize )
+( ~systemd-analyze plot >bootup.svg~ plot a bootchart )
+
+** Utilities
+*** at
+Queue, examine, or delete jobs for later execution.
+Reads the commands from the standard input at a specified time. End the input with CTRL-D.
+This command is used to run a job once in the future without using cron.
+( ~atq~ check that the job has been scheduled )
+( ~atrm~ remove job )
+( ~at 22:30 30.09.15~ schedule jobs days into the future )
+( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
+
+*** (cd dir; ls)
+Executes the command /ls/ while in /dir/ and leaves the original shell intact.
+( ~(PATH=/usr/confusing:$PATH; uglyprogram)~ add a component to the path that might cause problems as a permanent change )
+( ~PATH=/usr/confusing:$PATH uglyprogram~ equivalent command that avoids the subshell )
+
+*** command &
+Detach a process /command/ from the shell and put it in the "background".
+( ~gunzip file.gz &~ decompress file in the background )
+( ~bg %123~ move to background )
+( ~fg %123~ bring to foreground )
+( ~jobs~ show suspended processes on current terminal )
+( ~disow %2~  remove jobs from the job table, or to mark jobs so that a SIGHUP signal is not sent to them if the parent shell receives it (useful for close the shell while keeping background jobs running) )
+
+*** bc
+An arbitrary precision calculator language.
+[ /ibase=N/ treat all numbers as base N /obase=N/ output all numbers in base N ]
+( ~echo "obase=2;240" | bc -l~ calculates 240 in binary basis )
+( ~echo "ibase=16; FF" | bc~ convert FF hex to decimal )
+
+*** shutdown -h now
+Make the machine halt immediately.
+[ /-h/ equivalent to --poweroff /-r/ reboot /-f/ force ]
+( ~shutdown -h +5~ halt in 5 minutes )
+( ~shutdown -r~ reboot the machine )
+
+*** man command
+See the manual page for the /command/.
+[ /-k/ search by keyword ]
+( ~man -k sort~ looking for a command to sort something )
+( ~man 5 passwd~ read the /etc/passwd file description )
+( ~info command~ access an info manual )
+( ~apropos command~ searches the descriptions for instances of keyword )
+( ~whereis command~ locate the binary, source, and manual page files for a command )
+
+*** dmidecode
+Display table that contains a description of the system's hardware components, as well as other useful pieces of information such as serial numbers and BIOS revision.
+( ~# dmidecode --type memory~ display the memory description )
+( ~# dmidecode --type system~ display the system description )
+
+*** dmesg
+View the messages in the kernel ring buffer.
+( ~who -r~ print current runlevel )
+
+*** # dbus-monitor --system
+Debug probe to print message bus messages. Is used to monitor messages going through a D-Bus message bus.
+( ~dbus-monitor --session~ )
+
+** I/O
+*** command1 | command2
+Send the standard output of a /command1/ to the standard input of another /command1/.
+
+*** command > file
+Send the output of /command/ to a /file/ instead of the terminal.
+The shell creates file if it does not already exist. If file exists, the shell erases (clobbers) the original file first.
+( ~command >> file~ append the output to the file instead of overwriting it )
+( ~command 2> error~ send the standard error to error )
+( ~command 2>> error~ append the standard error to error )
+
+*** command < file
+To channel a file to a program’s standard input.
+( ~<file command~ another syntax )
+( ~cat file | command~ equivalent command )
+( ~head < /proc/cpuinfo~ see the file header )
+
+*** command > file  2>  error
+Send standard output to /file/ and standard error to /error/.
+
+*** command > file  2>&1
+Send the standard error to the same place as stdout.
+( ~command 2>&1 > file~ send the standard error to the same place as stdout. There's no effect because both (stderr) and (stdout) are already going to the terminal. Then > file redirects (stdout) to file. But (stderr) is still going to the terminal )
+
+** Text
+*** echo
+Prints its arguments to the standard output.
+[ /-n/ don't output the trailing newline /-e/ enable interpretation of backslash scapes ]
+( ~echo .[^.]*~ match all dot files except current and parent dir )
+( ~echo .??*~ equivalent command )
+( ~echo n?me~ match with name, nome, ntme, ... )
+( ~echo -e "Hola.\nCómo estás?"~ print using newline )
+
+*** grep expression file
+Prints the lines from a /file/ or input stream that match an /expression/.
+[ /-i/ ignore-case /-v/ invert, to select non-matching lines /-E/ extended-regexp (EREs) /-G/ basic-regexp (BREs) /-q/ quiet, don't write anything to standard output /-c/ count matching lines ]
+( ~grep root /etc/*~ check every file in /etc that contains root )
+
+*** diff file1 file2
+See the differences between /file1/ and /file2/.
+[ /-i/ ignore case /-w/ ignore all white space ]
+( ~cmp file1 file2~ compare byte by byte )
+( ~diff -u file1 file2 > name.patch0~ make a patch by sending the differences )
+
+*** awk '{print $5}' file
+Prints the /5/ field (column) of the /file/.
+( ~| awk '{print $5}'~ print the 5 field of the previous output )
+( ~awk '($2=="Name") { print }' < file~ search Name in the 2 column and print that line )
+( ~awk '($2=="Name") { print $3,$4 }' < file~ search Name in the 2 column and print just 3 and 4 field )
+
+*** sed  's/exp/text/'  file
+Substitute the first match /exp/ by /text/ in each line of /file/ and send to standard output.
+In general, sed takes an address and an operation as one argument. The address is a set of lines (all lines by default), and the command determines what to do with the lines. With no file arguments, sed reads from the standard input.
+[ /s/ substitution /g/ global substitution /d/ delete ]
+( ~sed 's/:/%/' passwd~ replace first colon in each line of passwd file with a % )
+( ~sed 's/:/%/g' passwd~ replace all colon in each line of passwd file with a % )
+( ~sed 3,6d file~ deletes lines 3 to 6 )
+( ~sed '/exp/d' file~ deletes any line that matches the regular expression exp )
+
+*** | tr 'A-Z' 'a-z'
+Translate upcase to downcase.
+[ /-d/ delete ]
+( ~| tr -d '\n'~ concat all lines (delete all newline) )
+
+*** sort file
+Sort lines of text files.
+[ /-n/ numeric sort /-r/ reverse result ]
+( ~uniq file~ report or omit repeated lines )
+
+*** nl
+Number lines of files.
+[ /-bn/ number all lines ]
+
+*** wc file
+Print newline, word, and byte counts for each /file/ and a total line if more than one /file/ is specified.
+[ /-l/ print the newline counts /-w/ print the word counts /-/ read standard input ]
+
+*** xargs cmd arg
+Reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the /cmd/ command (default is echo) one or more times with any /arg/ initial-arguments followed by items read from standard input. Blank lines on the standard input are ignored.
+( ~| xargs~ joins all the lines from a pipe )
+( ~| xargs -n 1~ splits pupe elements separated by whitespace into lines )
+
+** Misc
+*** date
+Print or set the system date and time.
+( ~date +%s~ current time as the number of seconds since 12:00 midnight on January 1, 1970, UTC )
+( ~tzselect~ help you identify a time zone file )
+( ~export TZ=US/Central~ use a time zone other than the system default for just one shell session )
+
+*** which
+Returns the pathnames of the files (or links) which would be executed in the current environment. Also return the alias command.
+
+*** groups
+See what group you’re in.
+
+*** chsh
+Change login shell.
+( ~su user~ allows commands to be run with a substitute user )
+( ~passwd~ change user password )
+( ~chfn~ change real user name and information )
+
+*** adduser
+Add users.
+( ~userdel~ remove users )
+( ~groupadd name~ add the group )
+( ~groupdel name~ delete the group )
+( ~adduser name group~  join the user in the group )
+( ~deluser --remove-home name~ delete the user and his directory )
+
+*** set -C
+Avoid clobbering in bash.
+In some commands like ~command > file~ if file exists, the shell erases (clobbers) the original file first. Some shells have parameters that prevent clobbering.
+( ~set~ show list of enviroment variables )
+( ~set -x~ print all command (useful to debug) )
+
+*** pushd path
+Save the /path/ to return later with ~popd~ command.
+
+*** exit
+Cause normal process termination.
+( ~exec ls~ hack to close the shell )
+
+*** python3 -m http.server 8000
+This starts a basic web server on port /8000/ that makes the current directory available to any browser on the network. If the machine you run this on is at address 10.1.2.4, point the browser on the destination system to http://10.1.2.4:8000.
+
+* Network
+** App layer
+*** curl -# -o name URL
+Transfer data from server with the /URL/ and save to /name/ file.
+Does not allow recursive downloading unlike ~wget~.
+[ /-#/ progress bar /-o/ write output to <file> instead of stdout ]
+( ~curl --trace-ascii file http://www.example.org/~ record details about its communication )
+
+*** wget URL -o file
+Download the page with the /URL/ and save it in the /file/.
+Allows recursive downloads, supports several protocols and is licensed under GNU GPL while curl is licensed under MIT.
+[ /-E/ save HTML/CSS files with .html/.css extensions /-k/ make links in downloaded HTML point to local files /-p/ get all images, etc. needed to display HTML page /-m/ mirror /-np/ dont ascend to the parent directory when retrieving recursively]
+( ~wget -E -k -p URL~ download whole page from website )
+
+*** netcat
+netcat (or nc) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
+End the connection at any time by pressing CTRL-C.
+[ /-u/ specifies UDP /-4/ for IPv4 /-6/ for IPv6 ]
+( ~netcat host port~ open a TCP connection to a port )
+( ~netcat -l port_number~ listen on a particular port )
+
+*** telnet example.org 80
+User interface to the TELNET protocol to conect /example.org/ on port /80/.
+To get back to the shell, press ~CTRL-]~ on a line by itself and then press ~CTRL-D~.
+( ~telnet localhost 22222~ connect to localhost on port 222222 )
+
+#+begin_src sh
+
+# Connect to the IANA documentation example web server.
+telnet example.org 80
+# Enter these two lines.
+GET / HTTP/1.1
+Host: example.org
+# Press ENTER twice.
+# To terminate the connection, press CTRL-D.
+
+# This exercise demonstrates that:
+# The remote host has a web server process listening on TCP port 80.
+# telnet was the client that initiated the connection.
+
+#+end_src
+
+*** mail -s "Subject" mail@host.dom < file
+Process mail messages.
+[ /-s/ subject /-A/ attach file ]
+( ~echo | mail -s "Subject" -A file mail@host.dom~ equivalent command )
+( ~sendmail mail@host.dom~ reads a message from standard input until EOF or until it reads a line with only a . character, and arranges for delivery )
+
+** Transport layer
+*** netstat -nt
+Show the TCP connections currently open on the machine.
+[ /-n/ disable hostname resolution DNS /-t/ TCP port info /-u/ UDP port info /-l/ listening ports /-a/ every active port /-6/ show only IPv6 /-4/ show only IPv4 ]
+( ~netstat -t~ show TCP connections with host and port names )
+( ~netstat -ntl~ list all TCP ports that your machine is listening on )
+
+*** # lsof -n -P -i
+Shows users and process IDs for server and client programs currently using or listening to ports.
+[ /-i/  list all Internet network files /-n/ inhibits the conversion of network numbers to host  names /-W/ don't truncate IP addressses /-p/ PID and name program /-U/ listing of UNIX domain socket files /-P/ disable /etc/services port name lookups ]
+( ~# lsof -i~ show with host names and port names (slows down the output) )
+( ~# lsof -iTCP -sTCP:LISTEN~ show only the processes listening on TCP ports )
+( ~# lsof -iprotocol@host:port~ looking for a particular port (full syntax) )
+( ~# lsof -iTCP:ssh~ connections only on TCP with ssh service )
+( ~# lsof -iTCP:443~ connections only on TCP port 443 )
+( ~# lsof -i6TCP:443~ IPv6 connections only on TCP port 443 )
+( ~# lsof -U~ list of Unix domain sockets currently in use )
+
+*** nmap host
+Generic scan on a /host/. Network exploration POWERFULL tool and security / port scanner.
+
+*** netcat
+netcat (or nc) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
+End the connection at any time by pressing CTRL-C.
+[ /-u/ specifies UDP /-4/ for IPv4 /-6/ for IPv6 ]
+( ~netcat host port~ open a TCP connection to a port )
+( ~netcat -l port_number~ listen on a particular port )
+
+*** # tcpdump
+Puts the network interface card into promiscuous mode and reports on every packet that comes across (GUI alternative is Wireshark).
+[ /-i interface/ listen on interface /-e/ print the link-level header on each dump line /-n/ don't convert addresses /-N/ don't print donamin name qualification of host names  /-c 10/ print only the first 10 packages /-X/ also print the data of each packet /tcp/ TCP packets /udp/ UDP packets /ip/ IPv4 packets /ip6/ IPv6 packets /port 80/ TCP and-or UDP packets to-from port 80 /host host/ packets to or from host /net network/ packets to or from network /or/ specifies that the condition on either the left or right can be true to pass the filter /and/ requires both conditions to be true ]
+( ~# tcpdump tcp~ only TCP packets )
+( ~# tcpdump udp or port 80 or port 443~ web packets and UDP packets )
+
+*** ss
+Utility to investigate sockets, is used to dump socket statistics. It allows showing information similar to netstat. It can display more TCP and state information than other tools.
+
+*** # iptables -L
+Show the current configuration of iptables.
+[ /-L/ list  all rules in the selected chain /-P/ set the policy on a chain /-A INPUT/ appends a rule to the INPUT chain /-s/ specifies the source IP address /-j DROP/ tells the kernel to discard any packet matching the rule /-p tcp/ specify TCP packets only /--destination-port 25/ apply only to traffic to port 25 ]
+( ~# iptables -A INPUT -s 192.168.34.63 -j DROP~ drop packets from 192.168.34.63 host )
+( ~# iptables -P FORWARD DROP~ set the INPUT chain policy to DROP )
+( ~# iptables -D INPUT 3~ delete the 3 rule of the INPUT table )
+
+** IP layer
+*** ip address show
+Show the addresses that are active on the machine.
+[ /-6/ show ipv6 configuration ]
+( ~ifconfig~ equivalent command )
+( ~nmcli~ equivalent command but shows more info specially wireless connections )
+( ~nmcli connection show~ show all connections, type device uuid )
+( ~nmcli device status~ show state type connection )
+( ~# ip address add 192.168.1.2/24 dev eth0~ add an IP address and subnet for a kernel network interface )
+
+#+begin_src sh
+
+# The flag UP tells you that the interface is working.
+2: enp0s31f6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc
+fq_codel state UP group default qlen 1000
+# link/ether means MAC address on the physical layer.
+    link/ether 40:8d:5c:fc:24:1f brd ff:ff:ff:ff:ff:ff
+    inet 10.23.2.4/24 brd 10.23.2.255 scope global noprefixroute
+enp0s31f6
+       valid_lft forever preferred_lft forever
+    inet6 2001:db8:8500:e:52b6:59cc:74e9:8b6e/64 scope global
+dynamic noprefixroute
+       valid_lft 86054sec preferred_lft 86054sec
+    inet6 fe80::d05c:97f9:7be8:bca/64 scope link
+       valid_lft forever preferred_lft forever
+
+#+end_src
+
+*** ip route show
+Show routing table.
+[ /-4/ restrict the output ro IPv4 /-6/ show ipv6 configuration ]
+( ~route -n~ show IP instead of attempting to show hosts and networks by name )
+( ~ip -4 neigh~ current neighbour table in kernel (ARP cache) )
+( ~ip neigh del host dev interface~ delete an ARP cache entry )
+( ~# ip route add default via 192.168.1.1 dev eth0~ add routes, which is typically just a matter of setting the default gateway )
+( ~# ip route del default~ remove the default gateway )
+
+#+begin_src sh
+
+# Each line is a routing rule.
+default via 10.3.2.1 dev enp37s0 proto static metric 100
+# The entry for default (0.0.0.0/0) matches any address on the internet.
+# This is the default route, and the address configured as the
+# intermediary in the default route is the default gateway.
+# The mechanism is via 10.3.2.1, indicating that traffic using the
+# default route is to be sent to 10.3.2.1 (this is a router).
+# dev enp37s0 indicates that the physical transmission will happen on
+# that network interface.
+Welcome to the Emacs shell
+
+ ✘ ~/Documents $ 10.3.2.0/24 dev enp37s0 proto kernel scope link src 10.3.2.4 metric 100
+# 10.3.2.0/24 is a destination network, this is the host’s local subnet.
+# This rule says that the host can reach the local subnet directly
+# through its network interface, indicated by the dev enp37s0
+# mechanism label after the destination.
+
+#+end_src
+
+*** ping 8.8.8.8
+Sends ICMP echo request packets to a host /8.8.8.8/ that asks a recipient host to return the packet to the sender.
+A gap in the sequence numbers (icmp_req), usually means there’s some kind of connectivity problem. Packets shouldn’t be arriving out of order, because ping sends only one packet a second. If a response takes more than a second (1,000 ms) to arrive, the connection is extremely slow.
+The round-trip time is the total elapsed time between the moment that the request packet leaves and the moment that the response packet arrives. If there’s no way to reach the destination, the final router to see the packet returns an ICMP “host unreachable” packet to ping.
+[ /-4/ IPv4 only /-6/ IPv6 only /-A/ adaptive ping /-O/ report outstanding ICMP ECHO reply before sending next packet /-a/ audible ping ]
+
+*** traceroute
+Print the route packets trace to network host.
+
+*** dig host
+Dig output begins with information about the command issued and the name server(s) used, then prints the resolver flags in use, then decodes the DNS message received back as an answer. After printing the header fields and flags, the question is printed, followed by the answer, authority records, and additional records sections. Each of these sections contains zero or more resource records, which are printed in a human-readable format, beginning with the domain name, then the Time To Live, then the type code, and finally the data field. Finally, summary information is printed about how long the exchange required.
+( ~host www.example.com~ DNS lookup utility. Find the IP address behind a domain name )
+( ~host 8.8.8.8~ in reverse to try to discover the hostname behind the IP address )
+( ~whois host~ client for the whois directory service )
+
+*** hostname -I
+Show or set the system's host name.
+[ /-I/ all  network addresses of the host /-i/ network address(es) of the host name ]
+( ~hostnamectl~  query and change the system hostname and related settings )
+
+*** nm-online
+Show whether the network is up or down.
+
+*** iw
+Show  and change kernel space device and network configuration.
+
+* Device
+** Utilities
+*** lsscsi
+List the SCSI devices on the system.
+( identifies the address of the device on the system ( SCSI host adapter number | SCSI bus number | device SCSI ID | LUN logical unit number) | describes what kind of device it is |   |   |   | where to find the device file )
+( ~lsblk~ list block devices )
+( ~lsusb~ list USB devices )
+
+*** # blkid
+View a list of devices and the corresponding filesystems and UUIDs on the system.
+
+*** dd if=/dev/zero of=new_file bs=1024 count=1
+Copies a single /1024/ byte block from //dev/zero/ (a continuous stream of zero bytes) to /new_file/.
+~dd~ copies data in blocks of a fixed size. This is extremely useful when you are working with block and character devices. Its sole function is to read from an input file or stream and write to an output file or stream, possibly doing some encoding conversion on the way. One particularly useful ~dd~ feature with respect to block devices is that you can process a chunk of data in the middle of a file, ignoring what comes before or after.
+[ /if=file/ input file, default is the standard input /of=file/ output file, default is the standard output /bs=size/ block size /ibs=size, obs=size/ input and output block sizes /bs/ same block size for both input and output /count=num/ total number of blocks to copy /skip=num/ skip past the first num blocks in the input file or stream, and do not copy them to the output ]
+
+*** udevadm monitor
+To monitor uevents. It will print the received events for: UDEV - the event which udev sends out after rule processing and KERNEL - the kernel uevent.
+[ /--kernel/ see only kernel events /--udev/ see only udevd processing events ]
+( ~udevadm monitor --kernel~ watch the kernel event changes about partitions )
+( ~udevadm info --query=all --name=/dev/sda~ show the path and several other interesting attributes of the device )
+
+*** sync
+Synchronize cached writes to persistent storage.
+If for some reason you can’t unmount a filesystem before you turn off the system, be sure to run sync first.
+
+*** iostat -p ALL
+Central Processing Unit (CPU) statistics and input/output statistics for /ALL/ devices and partitions.
+The sum of the partition columns won’t necessarily add up to the disk column. Although a read from sda1 also counts as a read from sda, keep in mind that you can read from sda directly, such as when reading the partition table.
+[ /2/ statistics every two second /-d/ report disk statistics /-2 d/ only disk statistic every two second /-p ALL/ all of the partition information]
+( *tps* average number of data transfers per second *kB_read/s* average number of kilobytes read per second *kB_wrtn/s* average number of kilobytes written per second *kB_read* total number of kilobytes read *kB_wrtn* total number of kilobytes written )
+
+*** udevadm
+Controls the runtime behavior of systemd-udevd, requests kernel events, manages the event queue, and provides simple debugging mechanisms.
+
+*** mkswap
+Sets up a Linux swap area on a device or in a file.
+( ~swapon~ enable/disable devices and files for paging and swapping )
+
+** Filesystem
+*** # mkfs -t ext4 / dev / sdf2
+Create a filesystem /ext4/ partition on //dev/sdf2/.
+[ /-t/ type /-n/ check without modifying anything ]
+
+*** mount
+Show the current filesystem status of the system.
+
+*** # mount -t type device mountpoint
+Mount a filesystem manually.
+[ /-t/ filesystem type /-r/ mounts the filesystem in read-only mode /UUID/ mount a filesystem by its UUID /rw/ mounts the filesystem in read-write mode /exec/ enables execution of programs on the filesystem /nosuid/ disables setuid programs ]
+( ~# mount -t ext4 /dev/sdf2 /home/extra~  mount the Fourth Extended filesystem )
+( ~# mount UUID=b600fe63-d2e9-461c-a5cd-d3b373a5e1d2 /home/extra~ mount a filesystem by its UUID )
+( ~# mount -n -o remount /~ remounts the root directory in read-write mode )
+
+*** # umount mountpoint
+Unmount a filesystem.
+
+*** # fsck -n  /dev/sdb1
+Check and repair a Linux filesystem.
+Never use ~fsck~ on a mounted filesystem.
+[ /-n/ check the filesystem without modifying anything ]
+( ~e2fsck~ check a Linux ext2/ext3/ext4 file system )
+( ~debugfs~ interactive file system debugger )
+( ~debugfs~ undelete the specified inode number (revcover deleted files) )
+
+** Partition
+*** # parted -l
+Show system’s partition table.
+( ~# fdisk -l~ equivalent command )
+
+*** # fdisk /dev/sdd
+Creating a partition of the device.
+
+* Tools
+** rsync
+*** rsync -b file dir/
+Transfer /file/ from the current directory to the directory /dir/.
+[ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) ]
+( ~rsync -t *.c dir/~ transfer all files matching the pattern to the directory )
+( ~rsync -t *.c foo:dir/~ transfer all files matching the to the directory on the machine foo )
+
+*** rsync -a  dir  dest_dir
+Transfer /dir/  to /dest_dir/. With /-a/ option, transfer hierarchies with symbolic links, permissions, modes, and devices. This is not an exact replica, destination may keep some files.
+[ /-a/ archive mode is equivalent to -rlptgoD (no -A,-X,-U,-N,-H) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-c/ computes checksums of the files to see if they’re the same /--stats/ summary after the transfer ]
+( ~rsync -nva dir/ dest_dir~ run a trial without actually copying any files )
+( ~rsync -a dir dest_dir~ transfer everything (dir folder will be inside dest_dir) )
+( ~rsync -a --delete dir/ dest_dir~ make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with trailing-slash because can easily remove unrelated files this way) )
+
+*** rsync file1 file2 user@host:
+Copy a group of files /file1/, /fil2/ to the home directory, where /user/ is the username on /host/.
+[ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) ]
+( ~rsync file1 file2 host:~ if the username is the same on the two hosts )
+( ~rsync -t *.c host:dir_dest/~ transfer all files matching the pattern from the current directory to the directory dir_dest )
+
+*** rsync -az dir/ host:dest_dir
+Copies everything *inside* /dir/ to /dest_dir/ on /host/ without actually creating /dir/ on the destination host (*trailing-slash version*). With /-a/ option, transfer hierarchies with symbolic links, permissions, modes, and devices. This is not an exact replica, destination may keep some files.
+[ /-a/ archive mode is equivalent to -rlptgoD (no -A,-X,-U,-N,-H) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-z/ compress file data during the transfer /-c/ computes checksums of the files to see if they’re the same /--bwlimit/ limit the bandwidth /--stats/ summary after the transfer ]
+( ~rsync -nva dir/ host:dest_dir~ run a trial without actually copying any files )
+( ~rsync -az dir host:dest_dir~ transfer everything without *trailing-slash* (dir folder will be inside dest_dir) )
+( ~rsync -az --delete dir/ host:dest_dir~ make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
+( ~rsync -az --exclude=.git src host:~ exclude anything named .git )
+( ~rsync -az --exclude=/src/.git src host:~ exclude one specific item, specify an absolute path that starts with forward-slash this is not the root directory of the system but rather the base directory of the transfer )
+( ~rsync --bwlimit=100 -a dir host:dest_dir~ limit the bandwidth to 100Kbps )
+
+*** rsync -az host:src_dir dest_dir
+Transfer /src_dir/ on the remote system to /dest_dir/ on the local host.
+[ /--exclude/ exclude files matching PATTERN /-c/ computes checksums of the files to see if they’re the same /--ignore-existing/ doesn’t clobber files already on the target side /--backup/ doesn’t clobber files already on the target but rather renames these existing files by adding a ~ suffix to their names before transferring the new files /--suffix=s/ changes the suffix used with --backup from ~ to s /--update/ doesn’t clobber any file on the target that has a later date than the corresponding file on the source ]
+
+*** rsync  somehost.mydomain.com::
+List all the (listable) modules available from a  particular rsync daemon by leaving off the module name.
+
+** rclone
+*** rclone lsd remote:path/to/dir
+List all *directories*,containers,buckets in the path.
+[ /-R/ to make them recurse ]
+( ~rclone lsd~ list all the *dir objects* in the path with size and path )
+( ~rclone lsl~ list all the *file objects* in the path with size, *modification* time and path )
+( ~rclone lsd remote:~ list root dir in remote )
+( ~rclone lsf remote:path/dir -R~ list all file with /-R/ to make them recurse )
+
+*** rclone size remote:path/dir
+Return the total size and number of objects in remote:path.
+( ~rclone about remote:~ return free and used size )
+
+*** rclone check /local/path remote:path --size-only
+Check if the files in the source and destination match.
+[ /--size-only/ only compare the sizes not the hashes as well ]
+
+*** rclone mkdir remote:path
+Make the path if it doesn't already exist.
+( ~rclone rmdir remote:path~ remove the path )
+( ~rclone delete remote:path~ remove the contents of path )
+( ~rclone purge remote:path~ remove the path and all of its contents )
+
+*** rclone copy /local/path remote:path/dir
+Copy files from source to dest, skipping already copied.
+( ~rclone copy remote:file.ext /tmp/download~ the file (file.ext) on the remote  will be copy inside (/tmp/download) on the local )
+( ~rclone move source:path dest:path [flags]~ move files from source to dest )
+
+*** rclone sync -i /local/dir remote:path/dir
+Make source (/local/dir) and dest (path/dir) identical, modifying destination only. The destination path is used without the initial forward slash. It is always the contents of the directory that is synced, not the directory itself.
+(Doesn't transfer files that are identical on source and destination, testing by size and modification time or MD5SUM. Destination is updated to match source, including deleting files if necessary. If you don't want to delete files from destination, use the [[rclone copy /local/path remote:path/path/todir][rclone copy]] command instead.)
+(Source and destination paths are specified by the name you gave the storage system in the config file then the sub path, e.g. "remote:myfolder" to look at "myfolder" in Google drive.)
+[ /-i/ interactive /--dry-run/ test first /-P/ view real-time transfer statistics /--bwlimit 10M/ limit the upload and download bandwidth to 10 MiB/s ]
+( ~rclone dedupe drive:dupes~ to deal with "Duplicate object/directory found in source/destination - ignoring" errors )
+( ~rclone bisync~ bidirectional synchronization between two paths )
+( ~rclone sync --dry-run / local/dir  remote:path/dir~ test first )
+( ~rclone sync -i --bwlimit 75k:125k / local/dir  remote:path/dir~ sync local dir to remote dir with limit the upload bandwidth to 75 KiB/s and the download bandwidth to 125 KiB/s )
+( ~rclone sync -i --bwlimit 10M:off  / local/dir  remote:path/dir~ sync with the limit the upload bandwidth to /10/ MiB/s but the download bandwidth would be unlimited )
+
+*** rclone command --help
+For more information about a command.
+
+*** rclone config
+Enter an interactive configuration session.
+(https://rclone.org/docs/)
+
+** OpenSSH
+*** ssh remote_username@remote_host
+Log in to a remote host.
+You may omit /remote_username@/ if your local username is the same as on /remote_host/.
+[ /-port 123/ port to connect ot on the remote host ]
+
+*** tar zcvf - dir | ssh remote_host tar zxvf -
+Run pipelines to and from an ssh command, which copies a directory /dir/ to another host.
+
+*** scp user@host:file .
+Copy a /file/ from a remote host to the current directory.
+~SCP~ can only be used for transferring files, and it is non-interactive. ~SFTP~ is more elaborate, and allows interactive commands to do things like creating directories, deleting directories and files.
+( ~scp file user@host:dir~ copy a file from the local machine to a remote host )
+( ~scp user1@host1:file user2@host2:dir~ copy a file from one remote host to a second remote host )
+
+*** # ssh-keygen -t rsa -N '' -f /etc/ssh/ssh_host_rsa_key
+Create SSH protocol version 2 key.
+( ~# ssh-keygen -t dsa -N '' -f /etc/ssh/ssh_host_dsa_key~ )
+
+** docker
+*** docker build -t hlw_test .
+Build the image (reads the Dockerfile in the current directory and applies the identifier /hlw_test/ to the image).
+
+*** docker images
+Verify image.
+
+*** docker run -it hlw_test
+Start container with the /hlw_test/ image.
+
+*** docker ps
+Show the currently running containers.
+[ /-a/ see all ]
+
+*** rm
+Remove a terminated container.
+( ~rmi~ remove an image )
+
+* Git
+** Initializing & Recording
+*** git init
+Create a new subdirectory named ~.git~ that contains all  necessary repository files — a Git repository skeleton.
+[ /--bare/ initializes the repository without a working directory ]
+
+*** git clone <url>
+Get a copy of an existing Git repository.
+It creates a new directory, goes into it and runs ~git init~ to make it an empty Git repository, adds a remote (~git remote add~) to the URL that you pass it (by default named ~origin~), runs a ~git fetch~ from that remote repository and then checks out the latest commit into your working directory with ~git checkout~.
+[ /-o <name>/ rename default remote branch ]
+( ~git clone <url> <dir>~ clone the repository into another directory name )
+
+*** git add <file>
+Specify the file /file/ to be tracked or staged or merge-conflicted.
+( ~git add -A~ stage *all* (new, modified, deleted) files )
+( ~git add .~ stage all (new, modified, deleted) files in current folder (not higher directories) )
+( ~git add --ignore-removal .~ stage new and modified files only(*not delete files*) )
+( ~git add -u~ stage modified and deleted files only (*not new files*) )
+
+*** git status
+Determine which files are in which state.
+( *A* added | *M* modified | *?* not tracked ) ( *left-hand* column indicates the status of the *staging area* and the *right-hand* column indicates the status of the *working tree*) .
+[ /-s/ more simplified output ]
+( ~git ls-files~ to take a more raw look at what your staging area looks like )
+
+*** git commit
+Commit the changes. Just changes to anything that was staged. Records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
+[ /-v/ puts the diff of the changes /-m/ type commit message inline /-a/ automatically stage every file that is already tracked before doing the commit (includes all changed files. Skip the *git add*) ]
+( ~git commit -a -m 'whatever'~ commit, automatically stage and message inline )
+( ~git commit -a -S -m 'Signed commit'~ signing commits directly with GPG key )
+
+*** git show
+Show various types of objects in a simple and human readable way. Normally you would use this to show the information about a tag or a commit.
+
+*** git log
+Lists the commits made in that repository in reverse chronological order.
+
+** Difference
+*** git diff
+Show difference between working environment and staging area. Show *exactly* what was changed. (doesn’t show all changes made since last commit — only changes that are still unstaged)
+( ~git diff --staged~ between staging area and last commit )
+( ~git diff master branchB~ between two commits )
+( ~git diff A...B~ between branches )
+
+*** git diff master...contrib
+Shows you only the work your current topic branch has introduced since its common ancestor with *master* . (to do a ~diff~ between the last commit of the branch you’re on and its common ancestor with another branch)
+
+*** git diff --ours
+Show what the merge introduced. To compare your result to what you had in your branch before the merge.
+( ~git diff --theirs~ how the result of the merge differed from what was on their side )
+( ~git diff --base~ how the file has changed from both sides with )
+
+*** git diff -b
+Filter out whitespace differences.
+( ~git diff --check~ look for possible whitespace issues before committing )
+
+*** git difftool
+Launches an external tool to show difference between two trees.
+
+** Branching
+*** git branch
+List of current branchs.
+[ /-v/ last commit on each branch /--merged/ show which branches are already merged into the branch /--no-merged/ filter no merge branch /--all/ all branches /-vv/ see what tracking branches you have set up. List out your local branches with more information including what each branch is tracking and if your local branch is ahead, behind or both ]
+
+*** git branch name
+Create a new branch called /name/ .
+[ /-D/ force remove /-f/ Reset <branchname> to <start-point>, *even if <branchname> exists already*. Without -f, git branch refuses to change an existing branch /-m/ Move/rename a branch, together with its config and reflog /-M/ shortcut for -m -f allow renaming the branch even if the new branch name already exists ]
+( ~git branch -d namebranch~ delete the branch /namebranch/ )
+( ~git branch --move bad-name corrected-name~ replaces /bad-name/ branch with /corrected-name/ branch, but this change is only local for now )
+( ~git push --set-upstream origin corrected-name~  corrected branch name on the remote )
+( ~git push origin --delete bad-branch-name~ delete bad name from remote )
+( ~git checkout -b <branch> <remote>/<branch>~ to set up a local branch with a different name than the remote branch. Then, local branch /<branch>/ will automatically pull from /<remote>/<branch>/ )
+
+*** git switch -c <newbranch>
+Create a new branch and switch to it.
+[ /-c/ create ]
+( ~git branch newbranch ; git switch newbranch~ equivalent command )
+( ~git switch <name>~ to switch to an existing branch )
+( ~git switch -~ return to previously checked out branch )
+
+*** git checkout
+Switch branches and check content out into your working directory.
+
+*** git checkout --track origin/serverfix
+To start tracking branches .
+
+*** git branch -u origin/serverfix
+If you already have a local branch and want to set it to a remote branch you just pulled down, or want to change the upstream branch you’re tracking.
+[ /-u/ upstream to ]
+
+** Merging & Rebasing
+*** git merge namebranch
+Merge the /namebranch/ with the current branch.
+[ /--squash/  takes all the work on the merged branch and squashes it into one changeset producing the repository state as if a real merge happened, without actually making a merge commit. This means your future commit will have one parent only and allows you to introduce all the changes from another branch and then make more changes before recording the new commit /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature /-S/ sign the resulting merge commit itself ]
+( ~git merge origin/serverfix~ merge work into current working branch )
+( ~git merge --verify-signatures -S signed-branch~ verifies that every commit in the branch to be merged is signed and furthermore signs the resulting merge commit )
+
+*** git cherry-pick e43a6
+ It takes the change (patch) that was introduced in a commit and tries to reapply (re-introduce) it on the branch you’re currently on. This is useful to only take one or two commits from a branch individually rather than merging in the branch which takes all the changes or if you only have one commit on a topic branch and you’d prefer to cherry-pick it rather than run rebase.
+
+*** git rebase main
+Take all the changes that were committed on one branch and replay them on a different branch.
+(is basically an automated ~cherry-pick~. It determines a series of commits and then ~cherry-picks~ them one by one in the same order somewhere else)
+[ /-i/ interactive ]
+( ~git rebase <basebranch> <topicbranch>~ equivalent command whitout switch )
+
+*** git rebase --onto main server client
+Take the /client/ branch, figure out the patches since it diverged from the /server/ branch, and replay these patches in the /client/ branch as if it was based directly off the master branch instead.
+
+*** git mergetool
+A graphical tool to resolve merge conflicts.
+
+** Remotes
+*** git remote -v
+Lists the shortnames of each remote specified.
+[ /-v/ show URLs that Git has stored for the shortname ]
+
+*** git ls-remote
+Get a list of all the branches and tags and other references in the repository.
+(If the repository is on GitHub and you have any Pull Requests that have been opened, you’ll get these references that are prefixed with ~refs/pull/~ . These are basically branches, but since they’re not under ~refs/heads/~ you don’t get them normally when you clone or fetch from the server — the process of fetching ignores them normally)
+
+*** git remote show <remote>
+Show more information about particular remote.
+
+*** git remote add <shortname> <url>
+Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
+
+*** git remote rename <name1> <name2>
+Change a remote’s shortname, renaming /name1/ to /name2/ .
+(that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
+( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL. (when you rename a it repository) )
+
+*** git remote rm name
+Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
+( ~git remote remove name~ equivalent command )
+
+*** git fetch <remote>
+ Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on)
+[ /--all/ totally up to date ahead and behind numbers ]
+( ~git fetch origin refs/pull/958/head~ fetching the reference directly (connect to the /origin/ remote, and download the ref named /refs/pull/958/head/) )
+
+*** git pull
+Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
+[ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
+( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
+
+*** git push <remote> <branch>
+Push /branch/ to origin server /remote/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+[ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
+( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
+( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
+
+*** git request-pull origin/master myfork
+Take the base branch into which you want your topic branch pulled and the Git repository URL you want them to pull from, and produces a summary of all the changes you’re asking to be pulled.
+
+** Undoing Things
+*** git restore --staged <file>
+To unstage the file /file/.
+( ~git reset HEAD <file>~ to unstage the file /file/. It moves around the HEAD pointer and optionally changes the index or staging area )
+
+*** git restore <file>
+Discard changes in working directory of the file /file/. *Careful* any local changes made to that file are gone. Git just replaced that file with the last staged or committed version. (modify -> unmodify)
+
+*** git commit --amend
+ Redo last commit (if commit and then realize forgot to stage the changes in a file wanted to add to this commit). This command takes staging area and uses it for the commit. (Is used to modify the most recent commit. It combines changes in the staging environment with the latest commit, and creates a new commit. This new commit replaces the latest commit entirely)
+[ /--no-edit/ will allow you to make the amendment to your commit without changing its commit message ]
+( ~git commit --amend -m "an updated commit message"~ adding the /-m/ option allows you to pass in a new message from the command line without being prompted to open an editor )
+
+*** git reset
+We use when we want to move the repository back to a previous commit, discarding any changes made after that commit.
+[ /--hard/ change the working directory, this option makes it possible for this command to lose your work ]
+( ~git reset HEAD~1~ reset to the last commit and preserve changes done (move the HEAD pointer back one commit) )
+( ~git reset --soft HEAD~1~ reset to the last commit and preserve changes done and index(stage area) )
+( ~git reset --hard HEAD~1~ reset to the last commit and also remove all unstaged changes (files are reset to their state at last commit) )
+( ~git reflog~ reset (if destroy a commit, but then discover you needed it after all) )
+
+*** git revert
+Is essentially a reverse ~git cherry-pick~. It creates a new commit that applies the exact opposite of the change introduced in the commit you’re targeting, essentially undoing or reverting it. (we use when we want to take a previous commit and add it as a new commit, keeping the log intact.)
+(/reset/ if the commit being reset only exists *locally*. /revert/ creates a new commit that undoes the changes, so if the commit to revert has already been pushed to a shared repository, it is best to use revert as it doesn't overwrite commit history)
+( ~git revert -m 1 HEAD~ the /-m 1/ flag indicates which parent is the “mainline” and should be kept )
+
+*** git merge --abort
+Back out of the merge. (tries to revert back to your state before you ran the merge. The only cases where it may not be able to do this perfectly would be if you had unstashed, uncommitted changes in your working directory when you ran it)
+( ~git merge -Xignore-all-space whitespace~ if you see that you have a lot of whitespace issues in a merge, you can simply abort it and do it again (ignores whitespace *completely* when comparing lines) )
+
+*** git rm <file>
+Removes a file from Git (remove it from tracked files (remove it from staging area and also removes the file from working directory)).
+[ /-f/ force the removal (if modified the file or had already added it to the staging area) /--cached/ keep the file in working tree but remove it from staging area ]
+( ~git rm log/\*.log~ removes all files that have the /.log/ extension in the /log// directory (backslash (/\/) in front of the (/*/) is necessary because Git does its own filename expansion in addition to shell’s filename expansion) )
+( ~git rm \*~~ removes all files whose names end with a /~/ )
+( ~git rm --cached <file>~ only remove file from the staging area but leaving it in the working directory )
+
+*** git mv <from> <to>
+Rename a file. (Git doesn’t explicitly track file movement. If rename a file in Git, no metadata is stored in Git that tells it renamed the file)
+( ~mv file_from file_to ;git rm file_from ;git add file_to~ equivalent command )
+
+** Commit History
+*** git log
+Lists the commits made in that repository in reverse chronological order.
+[ /-p/ shows the difference (the *patch* output) introduced in each commit /-2/ limit the number of log entries displayed /--stat/ show statistics for files modified in each commit /--pretty=oneline/ show commits in an alternate format. Option values include *oneline* other option are *short*, *full*, *fuller* /--pretty=format/ specify own log output format /--graph/ display an ASCII graph of the branch and merge history beside the log output /--abbrev-commit/ show only the first few characters of the SHA-1 /--shortstat/ display only the changed/insertions/deletions line from the *--stat command* /--relative-date/ display the date in a relative format /--no-merges/ prevent the display of merge commits ]
+( ~git log --pretty=format:"%h - %an, %ar : %s"~ abbreviated commit hash - author name , author date relative : subject)
+( ~git log --since=2.weeks~ list of commits made in the last two weeks )
+( ~git log -S function_name~ find the last commit that added or removed a reference to a specific function )
+( ~git log -- path/to/file~ specify a directory or file name, you can limit the log output to commits that introduced a change to those files )
+( ~git log --pretty="%h - %s" --author='Junio C Hamano' --since="2008-10-01" --before="2008-11-01" --no-merges -- t/~ commits modifying test files in the Git source code history were committed by Junio Hamano in the month of October 2008 and are not merge commits )
+( ~git log --oneline --decorate --graph --all~ print out the history of your commits, showing where your branch pointers are and how your history has diverged )
+
+*** git log featureA..featureB
+Show what commits are unique to a branch relative to another branch.
+
+*** git log contrib --not master
+See what changes each commit introduces.
+[ /--not/ exclude commits in the *master* branch /-p/ append the diff introduced to each commit ]
+
+*** git log --show-signature -1
+To see and verify GPG signatures.
+( ~git log --pretty="format:%h %G? %aN  %s"~ check any signatures it finds and list them in its output )
+
+*** git log -S ZLIB_BUF_MAX --oneline
+Find out when the /ZLIB_BUF_MAX/ constant was originally introduced. Shows only those commits that changed the number of occurrences of that string.
+( ~git log -L :git_deflate_bound:zlib.c~ see every change made to the function /git_deflate_boun/. This will try to figure out what the bounds of that function are and then look through the history and show every change that was made to the function as a series of patches back to when the function was first created. If Git can’t figure out how to match a function or method in your programming language, you can also provide it with a regular expression )
+
+*** git shortlog
+Is used to summarize the output of ~git log~. (instead of listing out all of the commits it will present a summary of the commits grouped by author)
+( ~git shortlog --no-merges master --not v1.0.1~ gives you a summary of all the commits since your last release, if your last release was named /v1.0.1/ )
+
+*** git describe master
+Git generates a string consisting of the name of the most recent tag earlier than that commit, followed by the number of commits since that tag, followed finally by a partial SHA-1 value of the commit being described. (Because Git doesn’t have monotonically increasing numbers like 'v123' or the equivalent to go with each commit. This way, you can export a snapshot or build and name it something understandable to people)
+
+*** git archive master --prefix='project/' | gzip > `git describe master`.tar.gz
+Create an archive of the latest snapshot. If someone opens that tarball, they get the latest snapshot of your project under a project directory.
+( ~git archive master --prefix='project/' --format=zip > `git describe master`.zip~ create a zip archive in much the same way )
+
+*** gitk --all
+Graphical history viewer. (each dot represents a commit, the lines represent parent relationships, and refs are shown as colored boxes, the yellow dot represents HEAD, and the red dot represents changes that are yet to become a commit)
+[ /--all/ show commits reachable from any ref, not just HEAD ]
+( ~git gui~ tool for crafting commits )
+
+** Tagging
+*** git tag
+Listing the existing tags in alphabetical order. Is used to give a permanent bookmark to a specific point in the code history. Generally this is used for things like releases.
+[ /-l/ mandatory if using a wildcard ]
+( ~git tag -l "v1.8.5*"~ only in looking at the /1.8.5/ series )
+
+*** git tag v1.4-lw
+Create a [[Lightweight]] tag commit. The commit checksum stored in a file — no other information (don’t supply any of the -a, -s, or -m options, just provide a tag name).
+[ /-d/ delete tag (does not remove the tag from any remote servers) ]
+
+*** git tag -a v1.4 -m "my version 1.4"
+Create a [[Annotated]] tag commit.
+[ /-a/ annotated tag /-m/ specifies a tagging message /-d/ delete tag (does not remove the tag from any remote servers) ]
+( ~git tag -s v1.5 -m 'my signed 1.5 tag'~ sign tags with GPG private key )
+( ~git tag -v v1.4.2.1~ use GPG to verify the signature )
+( ~git tag -a v1.2 9fceb02~ create a tag that the commit checksum ends in /9fceb02/ )
+( ~git tag -a maintainer-pgp-pub <key>~ create a tag that points directly to it by specifying the new SHA-1 value that the ~hash-object~ command gave you )
+
+*** git show v1.4
+Shows the tagger information of /v1.4/ , the date the commit was tagged, and the annotation message before showing the commit information.
+
+*** git push origin <tagname>
+Push tags to a shared server after they've been created.
+( ~git push origin --tags~ will transfer all tags to the remote server that aren't there yet )
+( ~git push <remote> --tags~ will push both *lightweight* and *annotated* tags )
+( ~git push <remote> --follow-tags~ only *annotated* tags will be pushed to the remote (There's currently no option to push only lightweight tags) )
+
+*** git push origin --delete <tagname>
+Deleting a tag /tagname/ from a remote server.
+( ~git push <remote> :refs/tags/<tagname>~ equivalent command )
+
+*** git checkout v2.0.0
+Show the versions of files a tag is pointing to, although this puts your repository in “detached HEAD” state, which has some ill side effects. In “detached HEAD” state, if you make changes and then create a commit, the tag will stay the same, but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash.
+
+** Emails & Patch
+*** git format-patch
+Is used to generate a series of patches in mbox format that you can use to send to a mailing list properly formatted.
+
+*** git format-patch -M origin/master
+Prepare patches for e-mail submission. Prints out the names of the patch files it creates.
+[ /-M/ switch tells Git to look for renames ]
+
+*** git apply
+Applies a patch created with the ~git diff~ or even GNU diff command. It is similar to what the patch command might do with a few small differences. This command is an “apply all or abort all” model where either everything is applied or nothing is, whereas ~patch~ can partially apply patchfiles, leaving your working directory in a weird state.
+( ~git apply   / tmp/patch-ruby-client.patch~ apply patch saved in //tmp/patch-ruby-client.patch/ . This modifies the files in your working directory ( ~patch -p1~ equivalent command ) )
+
+*** git apply --check 01-see-if-this-helps.patch
+To see if a patch applies cleanly before you actually applying it. If there is no output, then the patch should apply cleanly. This command also exits with a non-zero status if the check fails.
+
+*** git am
+Is used to apply patches from an email inbox, specifically one that is mbox formatted. This is useful for receiving patches over email and applying them to your project easily.
+
+*** git am 0001-limit-log-function.patch
+To apply a patch generated by ~format-patch~ .
+[ /-i/ interactive mode ]
+( ~git imap-send~ uploads a mailbox generated with ~git format-patch~ into an IMAP drafts folder )
+( ~git send-email~ is used to send patches that are generated with ~git format-patch~ over email )
+
+*** git request-pull
+Is simply used to generate an example message body to email to someone. If you have a branch on a public server and want to let someone know how to integrate those changes without sending the patches over email, you can run this command and send the output to the person you want to pull the changes in.
+
+** Config & Help
+*** git config
+Get and set configuration variables.
+[ /--system/ reads and writes from the file ~/etc/gitconfig~ /--global/ reads and writes from the file ~~/.config/git/config~ and affects all of the repositories you work with on your system /--local/ reads and writes from the file ~.git/config~ this is the default option (each level overrides values in the previous level) ]
+
+*** git config --list --show-origin
+Show all settings and where they are coming from.
+( ~git config --list~ show all settings )
+
+*** git config --global alias.ci commit
+Set up an alias for a command /commit/ . Instead of typing ~git commit~, just need to type ~git ci~ .
+( ~git config --global alias.unstage 'reset HEAD --'~ correct the usability problem you encountered with unstaging a file )
+( ~git config --global alias.last 'log -1 HEAD'~ to add a /last/ command )
+
+*** git config --global alias.visual '!gitk'
+With character /!/ it run an external command, rather than a Git subcommand. Then ~git visual~  runs /gitk/ .
+
+*** git config --global user.name "John Doe"
+Set name on the system. (if you want to override this with a different name for specific projects, you can run the command without the /--global/ option)
+( ~git config --global user.email john@example.com~  set email on the system )
+( ~git config --global core.editor emacs~ set the editor /emacs/ )
+( ~git config --global init.defaultBranch main~ to set /main/ as the default branch name )
+
+*** git config --global user.signingkey 0A46826A!
+Configure Git to use signing things. Then Git will use your key by default to sign tags and commits if you want.
+
+*** git config --global rerere.enabled true
+When *rerere* is enabled, Git will keep a set of pre- and post-images from successful merges, and if it notices that there’s a conflict that looks exactly like one you’ve already fixed, it’ll just use the fix from last time, without bothering you with it. Whenever you do a merge that resolves conflicts, the resolution will be recorded in the cache in case you need it in the future.
+
+*** git config --global credential.helper cache
+Set up a “credential cache”. If you don’t want to type password every single time you push.
+
+*** git help command
+The manpage help for the /commad/ .
+( ~git add -h~ quick refresher on the available options for a Git command )
+( ~man gitignore~ show more details about file *.gitignore* )
+
+** Miscellaneous
+*** gpg -a --export F721C45A | git hash-object -w --stdin
+Can directly import the key into the Git database by exporting it and piping that through which writes a new blob with those contents into Git and gives you back the SHA-1 of the blob.
+
+*** git show maintainer-pgp-pub | gpg --import
+Can directly import your PGP key by pulling the blob directly out of the database and importing it into GPG.
+
+*** git instaweb --httpd=webrick
+Starts up an HTTPD server on port 1234 and then automatically starts a web browser that opens a page that shows how the project would look like.
+[ /--httpd/ start instaweb with a non-lighttpd handler ]
+( ~git instaweb --httpd=webrick --stop~ shut down the server )
+
+*** git rev-parse
+To take just about any string and turn it into an object SHA-1.
+
+*** git clean
+To remove unwanted files from working directory. This could include removing temporary build artifacts or merge conflict files.
+
+*** git stash
+Is used to temporarily store uncommitted work in order to clean out your working directory without having to commit unfinished work on a branch.
+
+*** git bisect
+Incredibly helpful debugging tool used to find which specific commit was the first one to introduce a bug or problem by doing an automatic binary search.
+
+*** git blame
+Command annotates the lines of any file with which commit was the last one to introduce a change to each line of the file and what person authored that commit. This is helpful in order to find the person to ask for more information about a specific section of your code.
+
+*** git grep
+Find any string or regular expression in any of the files in your source code, even older versions of your project. (this command is really fast and you can search through any tree in Git, not just the working directory)
+[ /-n/ print out the line numbers where Git has found matches /-c/ summarize the output by showing you only which files contained the search string and how many matches there were in each file /-p/ display the enclosing method or function for each matching string /--and/ ensures that multiple matches must occur in the same line of text /--break/ split up the output into a more readable format /--heading/ split up the output into a more readable format ]
+( ~git grep -p gmtime_r *.c~ )
+
+* Misc
+** Image
+*** mogrify -format png * .jpg
+Convert and compress all /jpg/ images in the current directory to /png/.
+( ~convert input.png   output.jpg~ convert the image format [ /-resize 30%/ resize /-quality 20%/ quality ] )
+
+*** jpegoptim -d dir -m 75 image.jpg
+Reduce JPG image to a quality of /75/ (suggested scale 60-80) and send to other directory /dir/.
+*Overwrites the original image* if the /-d dir/ option is not set. Interesting feature is that it accepts the exact size of the target file.
+[ /-n/ simulate compression and see what will be the size /-d/ save in other directory  /-S 100k/ try to optimize file to given size (percentage can also be used *-S 30%*) /-m 60/ sets  the  maximum  image quality factor (60 high quality-low size 10 low quality-high size) (disables lossless optimization mode, which is by default enabled) ]
+( ~jpegoptim -S 20k -d dir image.jpg~ reduce to specif size )
+( ~jpegoptim -n image.jpg~ only shows possible results )
+
+*** pngquant -f --ext .png -Q 70-95 image.png
+Converter and lossy PNG image.
+[ /-f/ overwrite existing output files /--ext .png/ file extension to use for output files instead of the default 'fs8.png' /-o file/ output to *file* name /-Q min-man/ will use the least amount of colors required to meet or exceed the max quality 0 worst to 100 perfect ]
+( ~pngquant 64 image.png~ resulting image will have /64/ colors )
+
+*** gifsicle -b --colors 256 file.gif
+To optimize (compress) /file.gif/. Reduce  the number of distinct colors in each output GIF to /256/.
+( ~gifsicle -e file.gif~ to explode /file.gif/ into its component frames )
+( ~gifsicle -I file.gif~  to print information )
+
+*** optipng -out output.png   input.png
+Reduce the PNG image to what thinks it's probably the most effective and rename it in a new /output/ file. *Overwrites the original image* if the /-out/ option is not set.
+[ /-out/  write  output  file to file /-dir/  write the output files to directory /-o/ select the optimization level (0 minimal effort 1 probably the most effective 2 higher enable) ]
+( ~optipng -out output -o1 input~ equivalent command )
+( ~pngquant -f --ext .png image.png; opting image.png~ a little more compression )
+
+** Compiling
+*** cc -o file file.c
+Compile the /file.c/ and give the name /file/.
+[ /-o/ place the output into <file> /-c/ compile and assemble, but do not link /-n/ prints the commands necessary for a build but prevents make from actually running any commands /-f file/ tells make to read from file instead of Makefile or makefile ]
+( ~cc file.c~ compile the file.c )
+
+*** cc -c file.c
+Create the object files.
+
+*** cc -o myprog main.o aux.o
+Compile and create an executable called /myprog/ from these two /main.o/, /aux.o/ object files.
+
+*** cc -o myprog object.o -lcurses
+Compile and create the executable /myprog/ with /object.o/ object file and link against /curses/ library.
+( ~cc -o myprog object.o -lcurses -L/usr/junk/lib -lcrud~ create myprog with libcrud.a library in /usr/lib )
+
+*** cc -c -I/usr/junk/include badinclude.c
+If the notfound.h header is found in /usr/junk/include, tell the compiler to add this directory to its search path.
+
+*** ldd prog
+Show what shared libraries a executable /prog/ uses.
+( ~ldd /bin/bash~ show shared libraries )
+
+#+begin_src sh
+
+ldd /bin/bash
+# linux-vdso.so.1 (0x00007ffe9c9ec000)
+# libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007f5d79c66000)
+# libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f5d79c60000)
+# libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5d79a8c000)
+# /lib64/ld-linux-x86-64.so.2 (0x00007f5d79dec000)
+
+## what the executable knows => where ld.so finds the library
+
+#+end_src
+
+** Install package
+*** ./configure --prefix=new_prefix
+Configure the package changing the prefix to /new_prefix/. By default, the install target from an autoconf-generated Makefile uses a prefix of /usr/local.
+[ /--bindir=dir/ installs executables in dir /--sbindir=dir/ installs system executables in dir /--libdir=dir/ installs libraries in dir /--disable-shared/ prevents the package from building shared libraries /--with-package=dir/ tells configure that package is in dir (this is handy when a necessary library is in a nonstandard location) ]
+
+*** make
+GNU make utility to maintain groups of programs.
+[ /-n/ dry-run print the commands that would be executed, but do not execute them ]
+
+*** # checkinstall make install
+Shows the settings pertaining to the package that you’re about to build, and gives you the opportunity to change them. When you proceed with the installation, checkinstall keeps track of all of the files to be installed on the system and puts them into a .deb file. You can then use dpkg to install (and remove) the new package.
+
+*** pkg-config --list-all
+Show all libraries that pkg-config knows about, including a brief description of each.
+( ~pkg-config --libs zlib~ find the libraries required for a popular compression library )
+
+*** patch -p0 < patch_file
+Apply the patch (becareful with current directory).
+
+** X Clients
+*** xwininfo
+Window information utility for X. Is a utility for displaying information about windows.
+( ~xlsclients -l~ list of all window IDs and clients )
+
+*** xev
+Creates a window and then asks the X server to send it events whenever anything happens to the window (such as it being moved, resized, typed in, clicked in, etc.).
+One common use is to extract keycodes and key symbols for different keyboards when remapping the keyboard.
+
+*** xinput --list
+Show input device configuration on the machine.
+( ~xinput --list-props 8~ view properties of the device number 8 )
+( ~xinput --set-button-map device 3 2 1~ reverse the order of mouse buttons (three-button mouse at device) )
+
+** yt-dlp
+*** sudo yt-dlp -U
+Update yt-dlp program to the latest stable version.
+Useful when you get errors.
+
+*** yt-dlp -F URL
+List available formats of each video.
+[ /-x/ extract-audio /-f 00/ download format 00 from the list -/f mp4/ download format mp4 /- r 4M/ limit-rate RATE, maximum download rate in bytes per second /-c/ continue, resume partially downloaded files/fragments ]
+( ~yt-dlp -f 'bv*+ba' URL~ the best available audio and the best available video )
+( ~yt-dlp -f best URL~ the best quality of video )
+
+*** yt-dlp --write-auto-subs --sub-lang en-orig --skip-download URL
+Download only the write *automatically* generate subtitle file in english original.
+[ /--convert-subs=srt/ convert file to srt ]
+( ~yt-dlp --write-subs --sub-lang en-orig --skip-download URL~ only the write subtitle )
+
+*** yt-dlp URL --downloader ffmpeg --downloader-args "ffmpeg_i:-ss 12 -to 123"
+Download only the portion from /12/ seconds to /123/ seconds.
+
+** ffmpeg
+*** ffmpeg -i name
+Video info.
+
+*** ffmpeg -i input.avi output.mp4
+ Convert an input media file to a different format, by re-encoding media streams.
+
+*** ffmpeg -i input.mp4 -ss 00:00 -to 00:10 -c copy output.mp4
+Cut the video.
+[ /-ss/ specifies the start time, e.g. 00:01:23.000 or 83 (in seconds) /-t/ specifies the duration of the clip (same format) /-to/ supply the end /-c copy/ copies the first video, audio, and subtitle bitstream from the input to the output file without re-encoding them. This won't harm the quality and make the command run within seconds ]
+
+*** ffmpeg -i input.mp4 -vn output.mp3
+Convert video files to audio files.
+( ~ffmpeg -i input.mp4 -an output.mp4~ removing audio stream from a video file )
+
+*** ffmpeg -i input -b:v 2500k -b:a 192k output
+Change the *bitrate* of the video file /inpuy/ to /2500k/ and audio to /192k/ .
+[ /-b:v 2500k/ only the video *bitrate* changes  /-b:a 192k/ only the audio *bitrate* changes /-vcodec libx264/ change the video *codec* /-vcodec libx265/ takes longer than *libx264* but weighs less /-vcodec copy -acodec mp3/ changes audio *codec* but keeps video *codec*, useful to save time ]
+
+*** ffmpeg -i origen -vf scale=iw/2:ih/2 destino
+Resize by dividing by /2/ (there are codecs that only allow to reduce or enlarge in multiplies of 4).
+
+*** ffmpeg -i input.mp4 -qscale:v 2 outpu.jpg
+Compress a video or image with quality /2/. Normal range for JPEG is 2-31 with 31 being the worst quality.
+
+* Script
+** Shell script
+A *shell script* (also known as a Bourne shell script) is a series of commands written in a file; the shell reads the commands from the file just as it would if you typed them into a terminal.
+
+Bourne shell scripts generally start with the line ~#!/bin/sh~, which indicates that the ~/bin/sh~ program should execute the commands in the script file. (Make sure that there’s no whitespace at the beginning of the script file.) The ~#!~ part is called a *shebang*.
+
+#+begin_src sh
+
+#!/bin/sh
+#grep r.*t /etc/passwd
+# Print something, then run ls
+echo About to run the ls command.
+ls
+
+#+end_src
+
+Running a script with a shebang is almost (but not quite) the same as running a command with your shell; for example, running a script called ~myscript~ causes the kernel to run ~/bin/sh myscript~.
+
+When writing scripts and working on the command line, remember what happens when the shell runs a command:
+1. Before running the command, the shell looks for variables, globs, and other substitutions and performs the substitutions if they appear.
+2. The shell passes the results of the substitutions to the command.
+
+#+begin_src sh
+
+# Let’s say you’re looking for all entries in /etc/passwd that match the
+# regular expression r.*t. You can run this command:
+grep r.*t /etc/passwd
+
+# It works most of the time, but sometimes it mysteriously fails. Why?
+# The answer is probably in your current directory. If that directory
+# contains files with names such as r.input and r.output, then the shell
+# expands r.*t to r.input r.output and creates this command:
+grep r.input r.output /etc/passwd
+
+#+end_src
+
+*Notes*:
+- The shebang doesn’t have to be ~#!/bin/sh~; it can be built to run anything on your system that accepts scripting input, such as ~#!/usr/bin/python~ to run Python programs. In addition, you might come across scripts with a different pattern that includes ~/usr/bin/env~. For example, you might see something like ~#!/usr/bin/env python~ as the first line. This instructs the ~env~ utility to run ~python~. The reason for this is fairly simple; ~env~ looks for the command to run in the current command path, so you don’t need a standardized location for the executable. The disadvantage is that the first matching executable in the command path might not be what you want.
+
+- Be aware of your shell script sizes. Keep your shell scripts short. Bourne shell scripts aren’t meant to be big.
+
+- You can’t change an environment variable with a shell script, because scripts run as subshells.
+
+- If a line in your shell script gets too long , making it difficult to read and manipulate in your text editor, you can split it up with a backslash ( ~\~ ).
+
+#+begin_src sh
+
+#!/bin/sh
+gs -q -dBATCH -dNOPAUSE -dSAFER \
+-sOutputFile=- -sDEVICE=pnmraw $@
+
+#+end_src
+
+** Exit codes‌
+When a Unix program finishes, it leaves an *exit code*, a numeric value also known as an error code or exit value, for the parent process that started the program. When the exit code is zero ~0~, it typically means that the program ran without a problem. However, if the program has an error, it usually exits with a number other than ~0~ (but not always).
+
+The shell holds the exit code of the last command in the [[$?]] special variable.
+
+If you intend to use a command’s exit code, you must use or store that code immediately after running the command (because the next command you run overwrites the previous code).
+
+When writing shell code, you may come across situations where your script needs to halt due to an error (such as a bad filename). Use exit ~1~ in your script to terminate and pass an exit code of ~1~ back to whatever parent process ran the script. (You can use different nonzero numbers if your script has various abnormal exit conditions.)
+
+Note that some programs, like ~diff~ and ~grep~, use nonzero exit codes to indicate normal conditions. For example, ~grep~ returns ~0~ if it finds something matching a pattern and ~1~ if it doesn’t and ~2~ if they encounter an actual problem.
+
+** Quotes
+- single quotes :: the easiest way to *create a literal* and make the shell leave a string alone is to enclose the entire string in single quotes ( ~'~ ). As far as the shell is concerned, all characters between two single quotes, including spaces, make up a single parameter.
+
+- double quotes :: double quotes ( ~"~ ) work just *like single quotes*, except that the shell *expands any variables* that appear within double quotes.
+
+#+begin_src sh
+
+echo "There is no * in my path: $PATH"   # double quotes
+# There is no * in my path: /sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+
+echo 'There is no * in my path: $PATH'   # single quotes
+# There is no * in my path: $PATH
+
+
+echo 'The first argument was "'$?'"'     # quotes inside quotes
+# The first argument was "0"
+
+
+echo "$(lsblk | grep sda)"   # exact output keeping the format
+# sda      8:0    0 119.2G  0 disk
+# |-sda1   8:1    0   128M  0 part /boot/efi
+# |-sda2   8:2    0     8G  0 part [SWAP]
+# |-sda3   8:3    0 111.1G  0 part /
+
+echo '$(lsblk | grep sda)'   # single quotes
+# $(lsblk | grep sda)
+
+echo $(lsblk | grep sda)     # string on a line separated by whitespace
+# sda 8:0 0 119.2G 0 disk |-sda1 8:1 0 128M 0 part /boot/efi |-sda2 8:2
+# 0 8G 0 part [SWAP] |-sda3 8:3 0 111.1G 0 part /
+
+#+end_src
+
+- literal single quotes‌ :: one way to pass a literal single quote to a command is to *place a backslash* before the single quote character. The backslash and quote must appear outside any pair of single quotes. A string such as ~'don\'t~ results in a syntax error.
+
+#+begin_src sh
+
+echo I don\'t like contractions inside shell scripts.
+# I don't like contractions inside shell scripts.
+
+#+end_src
+
+General rule to quote an entire string with no substitutions, follow this procedure:
+1. Change all instances of ~'~ (single quote) to ~'\''~ (single quote, backslash, single quote, single quote).
+2. Enclose the entire string in single quotes.
+
+#+begin_src sh
+
+echo 'this isn'\''t a forward slash: \'
+# this isn't a forward slash: \
+
+#+end_src
+
+** Variables
+*** $1, $2, ...
+~$1~, ~$2~, and all variables named as positive nonzero integers contain the values of the script parameters, or *arguments*.
+
+#+begin_src sh
+
+#!/bin/sh
+echo First argument: $1
+echo Third argument: $3
+
+# Running the script.
+$ ./name_file one two three
+# First argument: one
+# Third argument: three
+
+#+end_src
+
+*** $#‌
+This variable holds the *number of arguments* passed to a script.
+
+It's especially important when you’re running [[shift]] in a loop to pick through arguments. When ~$#~ is ~0~, no arguments remain, so ~$1~ is empty.
+
+#+begin_src sh
+
+#!/bin/sh
+echo How many argument are there? $#
+
+# Running the script.
+$ ./name_file one two three
+# How many argument are there? 3
+
+#+end_src
+
+*** $@
+This variable represents *all of a script’s arguments*.
+
+#+begin_src sh
+
+#!/bin/sh
+echo What are the arguments? $#
+
+# Running the script.
+$ ./name_file one two three
+# What are the arguments? one two three
+
+#+end_src
+
+*** $?
+This variable holds the [[Exit codes‌][exit code]] of the last command that the shell executed.
+
+#+begin_src sh
+
+#!/bin/sh
+echo What\'s the last exit code? $?
+
+# Running the script.
+./name_file
+What's the last exit code? 0
+
+#+end_src
+
+*** $$‌
+This variable holds the *process ID* of the shell.
+
+#+begin_src sh
+
+#!/bin/sh
+echo What\'s the process ID of the shell? $$
+
+# Running the script.
+./name_file
+# What's the process ID of the shell? 167893
+
+#+end_src
+
+*** $0‌
+This variable holds the *name of the script* and is useful for generating diagnostic messages.
+
+For example, say your script needs to report an invalid argument that is stored in the ~$BADPARM~ variable. You can print the diagnostic message with the following line so that the script name appears in the error message. All diagnostic error messages should go to the standard error. For writing to the standard error, you can use ~1>&2~.
+
+#+begin_src sh
+
+#!/bin/sh
+BADPARM="Some bad parameter."
+echo $0: bad option $BADPARM
+echo $0 bad argument $1
+echo $0: error to output $BADPARM 2>&1
+echo $0: output to error $BADPARM 1>&2
+
+# Running the script.
+./name_file one two three
+# ./name_file: bad option Some bad parameter.
+# ./name_file bad argument one
+# ./name_file: error to output Some bad parameter.
+# ./name_file: output to error Some bad parameter.
+
+# Running the script in this other way.
+./name_file one two three > out_file 2> error_file
+cat out_file
+# ./name_file: bad option Some bad parameter.
+# ./name_file bad argument one
+# ./name_file: error to output Some bad parameter.
+cat error_file
+# ./name_file: output to error Some bad parameter.
+
+#+end_src
+
+*** shift
+This built-in shell command can be used with argument variables to *remove the first argument* ~$1~ and advance the rest of the arguments so that ~$2~ becomes ~$1~, ~$3~ becomes ~$2~, and so on.
+
+#+begin_src sh
+
+#!/bin/sh
+echo Argument: $1
+shift
+echo Argument: $1
+shift
+echo Argument: $1
+
+# Running the script.
+./name_file one two three
+# Argument: one
+# Argument: two
+# Argument: three
+
+#+end_src
+
+** Conditionals‌
+*** [
+The ~[~ character is an actual program on a Unix system. All Unix systems have a command called ~[~ that performs tests for shell script conditionals.
+
+~[~ works: the exit code is ~0~ if the test is true and nonzero when the test fails. This program is also known as ~test~; the manual pages for ~test~ and ~[~ are the same (the shell doesn’t always run ~[~ ).
+
+#+begin_src sh
+
+[ hello = hello ];echo $?
+# 0
+
+[ hello = bye ]
+# returns 1
+
+#+end_src
+
+There are many possibilities for using commands other than ~[~ for tests. Here’s an
+example that uses ~grep~:
+
+#+begin_src sh
+
+#!/bin/sh
+if grep -q daemon /etc/passwd; then
+    echo The daemon user is in the passwd file.
+else
+    echo There is a problem. daemon is not in the passwd file.
+fi
+
+#+end_src
+
+*** Testing
+**** File Tests
+Most file tests are called *unary* operations because they require only one argument: the file to test.
+
+Three *binary* operators (tests that need two files as arguments) are used in file tests.
+
+| /Ope./ | /Tests for/        | /Ope./ | /Permission/ |
+|------+------------------+------+------------|
+| /-f/   | Regular file     | /-r/   | Readable   |
+| /-e/   | File exists      | /-w/   | Writable   |
+| /-s/   | file isn't empty | /-x/   | Executable |
+| /-d/   | Directory        | /-u/   | Setuid     |
+| /-h/   | Symbolic link    | /-g/   | Setgid     |
+| /-b/   | Block device     | /-k/   | "Sticky"   |
+| /-c/   | Character device |      |            |
+| /-p/   | Named pipe       |      |            |
+| /-S/   | Socket           |      |            |
+| /-nt/  | Newer than       |      |            |
+| /-ot/  | Older than       |      |            |
+| /-ef/  | Inode and device |      |            |
+
+#+begin_src sh
+
+[ -f file ]
+# returns true if file is a regular file.
+
+[ file1 -nt file2 ]; echo $?
+# returns true if file1 has a newer modification date than file2.
+
+[ file1 -ef file2 ]; echo $?
+# returns true if they share inode numbers and devices.
+
+#+end_src
+
+*Note*: If the ~test~ command is used on a symbolic link, it tests the actual object being linked to, not the link itself (except for the ~-h~ test). That is, if ~link~ is a symbolic link to a regular file, ~[ -f link ]~ returns an exit code of true ~0~.
+
+**** String Tests
+The binary string operator ~=~ returns true if its operands are equal.
+The ~!=~ operator that returns true if its operands are not equal.
+~-z~ Returns true if its argument is empty.
+~-n~ Returns true if its argument is not empty.
+
+#+begin_src sh
+
+[ hello = hello ];echo $?
+# 0
+
+[ hello != bye ]
+# returns 0
+
+[ -z "" ]
+# returns 0
+
+[ -n "something" ]
+# returns 0
+
+#+end_src
+
+**** Arithmetic Tests
+When working with numbers, use ~-eq~ instead of the equal sign.
+
+| /Ope./ | Returns true if          |
+|------+--------------------------|
+| /-eq/  | equal to                 |
+| /-ne/  | not equal to             |
+| /-lt/  | less than                |
+| /-gt/  | greater than             |
+| /-le/  | less than or equal to    |
+| /-ge/  | greater than or equal to |
+
+#+begin_src sh
+
+[ 1 -eq 1 ]
+# returns true.
+
+[ 01 -eq 1 ]
+# returns true.
+
+#+end_src
+
+*** if, then, else
+The words ~if~, ~then~, ~else~ and ~fi~ in the shell script are shell keywords.
+
+1. The shell runs the command after the ~if~ keyword and collects the exit code of that command.
+2. If the exit code is ~0~, the shell executes the commands that follow the ~then~ keyword, stopping when it reaches an ~else~ or ~fi~ keyword.
+3. If the exit code is not ~0~ and there’s an ~else~ clause, the shell runs the commands after the ~else~ keyword.
+4. The conditional ends at ~fi~.
+
+#+begin_src sh
+
+#!/bin/sh
+if [ "$1" = "hi" ]; then
+    echo 'The first argument was "hi"'
+else
+    echo -n 'The first argument was not "hi" -- '
+    echo It was '"'$1'"'
+fi
+
+# Running the script.
+./name_file bye
+# The first argument was not "hi" -- It was "bye"
+
+
+# Other way for using commands other than [ for tests.
+#!/bin/sh
+if grep -q daemon /etc/passwd; then
+    echo The daemon user is in the passwd file.
+else
+    echo There is a problem. daemon is not in the passwd file.
+fi
+
+#+end_src
+
+*Note*:
+Without quotes ~"~ in ~if [ "$1" = hi ]; then~ in the previous example, that is ~if [ $1 = hi ]; then~ it would throw an error if a user might run the script with no parameters. If ~$1~ is empty, the test reads ~[ = hi ]~, and the ~[~ command will abort with an error.
+
+*** elif
+The ~elif~ keyword lets you string ~if~ conditionals together.
+
+#+begin_src sh
+
+#!/bin/sh
+if [ "$1" = "hi" ]; then
+    echo 'The first argument was "hi"'
+elif [ "$2" = "bye" ]; then
+    echo 'The second argument was "bye"'
+else
+    echo 'The first argument was not "hi" and the second was not "bye"'
+fi
+
+# Running the script.
+./name_file hi hello
+# The first argument was "hi"
+./name_file hello bye
+# The second argument was "bye"
+./name_file hello seeya
+# The first argument was not "hi" and the second was not "bye"
+./name_file hi bye
+# The first argument was "hi"
+
+#+end_src
+
+*** case
+The ~case~ keyword forms another conditional construct that is exceptionally useful for matching strings. It does not execute any test commands and therefore does not evaluate exit codes. However, it can do pattern matching.
+
+1. The script matches ~$1~ against each case value demarcated with the ~)~ character.
+2. If a case value matches ~$1~, the shell executes the commands below the case until it encounters ~;;~, at which point it skips to the ~esac~ keyword.
+3. The conditional ends with ~esac~.
+
+#+begin_src sh
+
+#!/bin/sh
+case $1 in
+    Bye)
+	echo Fine, Bye.
+	;;
+    Hi|Hello)
+	echo Nice to see you.
+	;;
+    What*)
+	echo Whatever.
+	;;
+    *)
+	echo 'Huh?'
+	;;
+esac
+
+#+end_src
+
+*** ;
+It’s just the regular shell marker for the end of a command.
+
+Usually appears before ~then~  keyword because we want to put the ~then~ keyword on the same line. Without the semicolon, the shell passes ~then~ as a parameter to the ~[~ command, which often results in an error that isn’t easy to track. You can avoid the semicolon by placing the ~then~ keyword on a separate line.
+
+#+begin_src sh
+
+if [ "$1" = "hi" ]
+then
+    echo 'The first argument was "hi"'
+fi
+
+# It's the same as:
+if [ "$1" = "hi" ]; then
+    echo 'The first argument was "hi"'
+fi
+
+#+end_src
+
+*** !
+You can invert a test (that is, a logical not) by placing this operator before a test.
+
+#+begin_src sh
+
+#!/bin/sh
+if [ ! "$1" = hi ]; then
+    echo 'The first argument was not hi'
+fi
+
+# In this specific case of comparisons, you might see != used as an
+# alternative, but ! can be used with any of the condition tests.
+
+#+end_src
+
+*** &&, ||, -a, -o
+The ~command1 && command2~ command; runs ~command1~, and if the exit code is ~0~, the shell also runs ~command2~.
+
+The ~command1 || command2~ command; if the command before a ~||~ returns a nonzero exit code, the shell runs the second command.
+
+The constructs ~&&~ and ~||~ are often used in ~if~ tests, and in both cases, the exit code of the last command run determines how the shell processes the conditional. In the case of the ~&&~ construct, if the first command fails, the shell uses its exit code for the ~if~ statement, but if the first command succeeds, the shell uses the exit code of the second command for the conditional. In the case of the ~||~ construct, the shell uses the exit code of the first command if successful, or the exit code of the second if the first is unsuccessful.
+
+If the conditionals include the test command ~[~, can use ~-a~ and ~-o~ instead of ~&&~ and ~||~.
+
+#+begin_src sh
+
+#!/bin/sh
+if [ "$1" = hi ] || [ "$1" = bye ]; then
+    echo 'The first argument was "'$1'"'
+fi
+
+# The same that above but using -o instead of ||.
+#!/bin/sh
+if [ "$1" = hi -o "$1" = bye ]; then
+    echo 'The first argument was "'$1'"'
+fi
+
+#+end_src
+
+** Loops
+*** for
+The ~for~ loop (which is a “for each” loop) is the most common. ~for~ , ~in~ , ~do~ , and ~done~ are all shell keywords.
+
+1. Sets the variable ~str~ to the first of the four space-delimited values following the ~in~ keyword (~one~).
+2. Runs the ~echo~ command between the ~do~ and ~done~.
+3. Goes back to the ~for~ line, setting ~str~ to the next value (~two~), runs the commands between ~do~ and ~done~, and repeats the process until it’s through with the values following the ~in~ keyword.
+
+#+begin_src sh
+
+#!/bin/sh
+for str in one two three four; do
+    echo $str
+done
+# one
+# two
+# three
+# four
+
+#+end_src
+
+*** while, until
+The Bourne shell’s ~while~ loop uses exit codes, like the ~if~ conditional. You can break out of a ~while~ loop with the ~break~ statement.
+
+The Bourne shell also has an ~until~ loop that works just like ~while~, except that it breaks the loop when it encounters a zero exit code rather than a nonzero exit code.
+
+You shouldn’t need to use the ~while~ and ~until~ loops very often. In fact, if you find that you need to use ~while~, you should probably be using a language more appropriate to your task, such as Python or ~awk~.
+
+#+begin_src sh
+
+#!/bin/sh
+FILE=/tmp/whiletest.$$;
+echo firstline > $FILE
+
+while tail -10 $FILE | grep -q firstline; do
+# add lines to $FILE until tail -10 $FILE no longer prints "firstline"
+    echo -n Number of lines in $FILE:' '
+    wc -l $FILE | awk '{print $1}'
+    echo newline >> $FILE
+done
+
+rm -f $FILE
+
+#+end_src
+
+** Command substitution‌ $( )
+The Bourne shell can redirect a command’s standard output back to the shell’s own command line. That is, you can use a command’s output as an argument to another command, or you can store the command output in a shell variable by enclosing a command in ~$()~.
+
+Shells typically implement command substitution by creating a child process to run the first command with its standard output piped back to the shell, which reads that output, parsing it into words separated by whitespace. Because the shell can't know it has all the output from the child until the pipe closes or the child dies, it waits until then before it starts another child process to run the second command.
+
+*Note*: The traditional syntax for command substitution is to enclose the command in backticks ~``~ . The ~$()~ syntax is a newer form, but it is a POSIX standard.
+
+#+begin_src sh
+
+#!/bin/sh
+FLAGS=$(grep ^flags /proc/cpuinfo | sed 's/.*://' | head -1)
+echo Your processor supports:
+for f in $FLAGS; do
+    case $f in
+	fpu) MSG="floating point unit"
+	     ;;
+	3dnow) MSG="3DNOW graphics extensions"
+	       ;;
+	mtrr) MSG="memory type range register"
+	      ;;
+	*) MSG="unknown"
+	   ;;
+    esac
+    echo $f: $MSG
+done
+# This example is somewhat complicated because it demonstrates that you
+# can use both single quotes and pipelines inside the command
+# substitution.
+
+
+echo "$(lsblk | grep sda)"   # exact output keeping the format
+# sda      8:0    0 119.2G  0 disk
+# |-sda1   8:1    0   128M  0 part /boot/efi
+# |-sda2   8:2    0     8G  0 part [SWAP]
+# |-sda3   8:3    0 111.1G  0 part /
+
+echo '$(lsblk | grep sda)'   # single quotes
+# $(lsblk | grep sda)
+
+echo $(lsblk | grep sda)     # string on a line separated by whitespace
+# sda 8:0 0 119.2G 0 disk |-sda1 8:1 0 128M 0 part /boot/efi |-sda2 8:2
+# 0 8G 0 part [SWAP] |-sda3 8:3 0 111.1G 0 part /
+
+#+end_src
+
+** Utilities‌
+*** exec
+It's a built-in shell feature that replaces the current shell process with the program you name after ~exec~. It carries out the ~exec()~ system call. This feature is designed for saving system resources, but remember that there’s no return; when you run ~exec~ in a shell script, the script and shell running the script are gone, replaced by the new command.
+
+To test this in a shell window, try running ~exec cat~. After you press ~CTRL-D~ or ~CTRL-C~ to terminate the ~cat~ program, your window should disappear because its child process no longer exists.
+
+*** subshells
+A subshell, is an entirely new shell process that you can create just to run a command or two. The new shell has a copy of the original shell’s environment, and when the new shell exits, any changes you made to its shell environment disappear, leaving the initial shell to run as normal.
+
+#+begin_src sh
+
+# The following line executes the command uglyprogram while in uglydir
+# and leaves the original shell intact:
+(cd uglydir; uglyprogram)
+
+# The following line shows how to add a component to the path that might
+# cause problems as a permanent change:
+(PATH=/usr/confusing:$PATH; uglyprogram)
+# Same command but in built-in syntax that avoids the subshell.
+PATH=/usr/confusing:$PATH uglyprogram
+
+# Archive the entire directory tree within orig and then unpacks the
+# archive into the new directory target, which effectively duplicates
+# the files and folders in orig
+tar cf - orig | (cd target; tar xvf -)
+# Double-check this sort of command before you run it to make sure that
+# the target directory exists and is completely separate from the orig directory
+# You can check using this:
+[ -d orig -a ! orig -ef target ]
+
+#+end_src
+
+*** trap
+A common problem with scripts that employ temporary files is that if the script is aborted, the temporary files could be left behind. In the next example (if we didn't use the ~trap~ command), pressing ~CTRL-C~ before the second ~cat~ command leaves a temporary file in ~/tmp~. Avoid this if possible. Instead, use the ~trap~ command to create a signal handler to catch the signal that ~CTRL-C~ generates and remove the temporary files.
+
+#+begin_src sh
+
+# This script shows the device interrupts that have occurred in the
+# last two seconds:
+#!/bin/sh
+TMPFILE1=$(mktemp /tmp/im1.XXXXXX)
+TMPFILE2=$(mktemp /tmp/im2.XXXXXX)
+trap "rm -f $TMPFILE1 $TMPFILE2; exit 1" INT
+# The trap command to create a signal handler to catch the signal that
+# CTRL-C generates and remove the temporary files.
+# You must use exit in the handler to explicitly end script execution.
+
+cat /proc/interrupts > $TMPFILE1
+sleep 2
+cat /proc/interrupts > $TMPFILE2
+diff $TMPFILE1 $TMPFILE2
+rm -f $TMPFILE1 $TMPFILE2
+
+#+end_src
+
+*** Here documents EOF
+Say you want to print a large section of text or feed a lot of text to another command. Rather than using several ~echo~ commands, you can use the shell’s *here document* feature.
+
+The items ~EOF~ control the here document. ~<<EOF~ tells the shell to redirect all subsequent lines to the standard input of the command that precedes ~<<EOF~, which in the next example is ~cat~. The redirection stops as soon as the ~EOF~ marker occurs on a line by itself. Convention dictates that the marker be in all uppercase letters.
+
+#+begin_src sh
+
+#!/bin/sh
+DATE=$(date)
+cat <<EOF
+Date: $DATE
+
+The output above is from the Unix date command.
+It's not a very interesting command.
+EOF
+
+
+# Here is a way to transfer a file using anonymous ftp.
+#!/bin/sh
+# Usage:
+#     ftpfile machine file
+# set -x
+SOURCE=$1
+FILE=$2
+GETHOST="uname -n"
+BFILE=`basename $FILE`
+ftp -n $SOURCE <<EndFTP
+ascii
+user anonymous $USER@`$GETHOST`
+get $FILE /tmp/$BFILE
+EndFTP
+
+#+end_src
+
+*** Files in scripts‌
+To include code from another file in shell script, use the dot ( ~.~ ) operator.
+
+This method of inclusion is also called *sourcing* a file and is useful for reading variables (for example, in a shared configuration file) and other kinds of definitions. This is not the same as executing another script; when you run a script (as a command), it starts in a new shell, and you can’t get anything back other than the output and the exit code.
+
+#+begin_src sh
+
+# For example, This runs the commands in the file config.sh:
+. config.sh
+
+#+end_src
+
+*** Reading User Input‌
+The ~read~ command reads a line of text from the standard input and stores the text in a variable.
+
+This built-in shell command can be useful in conjunction with other shell features. With ~read~, you can create simple interactions, such as prompting a user to enter input instead of requiring them to list everything on the command line, and build “Are you sure?” confirmations preceding dangerous operations.
+
+#+begin_src sh
+
+# The following command stores the input in $var.
+read var
+
+#+end_src
+
+*** basename
+If you need to strip the extension from a filename or get rid of the directories in a full pathname, use the ~basename~ command.
+
+#+begin_src sh
+
+basename example.html .html
+# example
+basename /usr/local/bin/example
+# example
+
+# This script convert GIF image files to the PNG format.
+#!/bin/sh
+for file in *.gif; do
+    # exit if there are no files
+    if [ ! -f $file ]; then
+	exit
+    fi
+    b=$(basename $file .gif)
+    echo Converting $b.gif to $b.png...
+    giftopnm $b.gif | pnmtopng > $b.png
+done
+
+#+end_src
+
+*** expr‌
+If you need to use arithmetic operations in your shell scripts, the ~expr~ command can help (and even do some string operations).
+
+The ~expr~ command is a clumsy, slow way of doing math. If you find yourself using it frequently, you should probably be using a language like Python instead of a shell script.
+
+#+begin_src sh
+
+expr 1 + 2
+# 3
+
+#+end_src
+
+*** -e
+Stop shell when find a error.
+
+* Other
+** Variable
+*** VARIABLE=value
+Sets the value of the variable named /VARIABLE/ to /value/.
+To access this variable, use ~$VARIABLE~.
+
+*** export VARIABLE
+Make the /VARIABLE/ shell variable into an environment variable.
+
+*** PATH=$PATH:dir
+Append a directory name /dir/ to the end of the PATH variable.
+( ~PATH=dir:$PATH~ append to the beginning of the path )
+
+** CTRL
+*** CTRL-C
+To terminate a process that is running in the current terminal is the same as using ~kill~ to end the process with the ~INT~ (interrupt) signal.
+
+*** CTRL-D
+On an empty line stops the current standard input entry from the terminal with an EOF (end-of-file) message (and often terminates a program). Don’t confuse this with [[CTRL-C]], which usually terminates a program regardless of its input or output.
+
+*** CTRL-Z
+To send ~TSTP~ (similar to [[kill 123][STOP]]) signals to programs. This allows you to suspend and switch between programs you’re using. For example, you can send a ~TSTP~ signal with ~CTRL-Z~ and then start the process again by entering ~fg~ (bring to foreground) or ~bg~ (move to background).
+
+The background process may have problems if it needs to work with the standard input (or worse, read directly from the terminal). The best way to make sure that a background process doesn’t bother is to redirect its output (and possibly input).
+
+*** CTRL-R
+Prompt puts you in reverse isearch mode.
+
+*** CTRL-L
+To redraw the entire screen shell.
+
+*** CTRL-ALT-F1
+The first virtual console ~/dev/tty1~.
+
+*** CTRL-ALT-DEL
+On a virtual console, on most systems, this is some sort of reboot command using the ~shutdown~ command.
+
+*** SUPER L-impr pa
+Es una combinación de teclas "mágicas" que se puede presionar y el kernel responderá independientemente de lo que esté haciendo, a menos que esté completamente bloqueado. Presionar Alt-SysRq (PrtScr) seguido de una tecla hace la magia de rescatar el control del sistema.
+
+| kfa | description of action ( kfa = key following Alt-SysRq ) |
+|-----+---------------------------------------------------------|
+| r   | restore the keyboard from raw mode after X crashes      |
+| k   | kill all processes on the current virtual console (SAK) |
+| s   | sync all mounted filesystems to avoid data corruption   |
+| u   | remount all mounted filesystems read-only (umount)      |
+| e   | Send a SIGTERM to all processes, except for init        |
+| i   | Send a SIGKILL to all processes, except for init        |
+| b   | reboot the system without syncing or unmounting  disks  |
+| h   | display help                                            |
+| k   | SAK Kills all programs on the current virtual console   |
+| l   | Shows a stack backtrace for all active CPUs             |
+| m   | dump current memory info to your console                |
+| t   | list of current tasks and their info to your console    |
+| v   | Forcefully restores framebuffer console                 |
+| w   | dumps tasks that are in uninterruptable (blocked) state |
+
+*Notas*:
+- Algunos teclados pueden no tener una tecla etiquetada como 'SysRq'. La tecla 'SysRq' también se conoce como la tecla 'Imprimir pantalla' o 'Print screen'. Además, algunos teclados no pueden manejar tantas teclas presionadas al mismo tiempo, por lo que es posible que tenga mejor suerte presionando Alt, presione SysRq, suelte SysRq, presione <tecla de comando>, suelte todo.
+
+- Desde el terminal SSH, etc., puede usar la función Alt-SysRq escribiendo en "/proc/sysrq-trigger". Por ejemplo, "echo s > /proc/sysrq-trigger; echo u > /proc/sysrq-trigger" desde el indicador de shell raíz sincroniza y desmonta todos los sistemas de archivos montados.
+
+** Special Characters
+| /Char/       | /Name(s)/              | /Uses/                               |
+|------------+----------------------+------------------------------------|
+| /'*/         | star, asterisk       | Regular expression, glob character |
+| /./          | dot                  | Current dir, file/hostname delimit |
+| /'!/         | bang                 | Negation, command history          |
+| /¦/          | pipe                 | Command pipes                      |
+| ///          | (forward) slash      | Directory delimiter, search cmd    |
+| /\/          | backslash            | Literals, macros (never dirs)      |
+| /'$/         | dollar               | Variables, end of line             |
+| /'/          | tick, (single) quote | Literal strings                    |
+| /`/          | backtick, backquote  | Command substitution ()            |
+| /"/          | double quote         | Semi-literal strings               |
+| /'^/         | caret                | Negation, beginning of line        |
+| /~/          | tilde, squiggle      | Negation, directory shortcut       |
+| /'#/         | hash, sharp, pound   | Comments, preprocessor, substits   |
+| /[ ]/        | (square) brackets    | Ranges, test                       |
+| /{ }/        | braces, (curly)brack | Statement blocks, ranges           |
+| /$( )/       | parenteses           | Command substitution               |
+| /(cmd;cmd)/  |                      | Run cmd;cmd in a subshell          |
+| /{cmd;cmd;}/ |                      | Like (cmd;cmd) without a subshell  |
+| /'_/         | underscore, under    | Cheap substitute for a space       |
+| /&/          | unpersand            | Background job                     |
+| /%job/       | percentage           | Idendify job                       |
+| /((..))/     |                      | Arithmetic evaluation              |
+| /-e/         |                      | Stop shell when error              |
+
+| /Char/     | /Redirections/                                         |
+|----------+------------------------------------------------------|
+| />& file/  | Redirect stdout and stderr to file                   |
+| /m> file/  | Redirect output filedescriptor m to file             |
+| /m< file/  | Redirect input filedescriptor m from file            |
+| /m>> file/ | Append output filedescriptor m to file               |
+| /<&m/      | Take standard input from file descriptor m           |
+| />&m/      | Use file descriptor m as standard output             |
+| /<&-/      | Close standard input                                 |
+| />&-/      | Close standard output                                |
+| /m<&n/     | Connect input filedescriptor n to file descriptor m  |
+| /n>&m/     | Connect output filedescriptor n to file descriptor m |
+| /m<&-/     | Close input file descriptor m                        |
+| /m>&-/     | Close output file descriptor m                       |
+
+** Regex
+| /BRE(emacs)/ | /ERE/     | /Description regex/                           |
+|------------+---------+---------------------------------------------|
+| /\.[]^$*/    | /\.[]^$*/ | common metacharacters                       |
+| /\+\?\(\{/   |         | BRE only "\" escaped metacharacters         |
+|            | /+ ?(){}/ | ERE only non-"\" escaped metacharacters     |
+| /c/          | /c/       | match non-metacharacter "c"                 |
+| /\c/         | /\c/      | match a literal character "c" even if "c"   |
+|            |         | is metacharacter by itself                  |
+| /./          | /./       | match any character including newline       |
+| /'^/         | /'^/      | position at the beginning of a string       |
+| /'$/         | /'$/      | position at the end of a string             |
+| /\</         | /\</      | position at the beginning of a word         |
+| /\>/         | /\>/      | position at the end of a word               |
+| /[abc…]/     | /[abc…]/  | match any characters in "abc…"              |
+| /[^abc…]/    | /[^abc…]/ | match any characters except in "abc…"       |
+| /r*/         | /r*/      | match 0 or more regex identified by "r"     |
+| /r\+/        | /r+/      | match one or more regex identified by "r"   |
+| /r\?/        | /r?/      | match 0 or one regex identified by "r"      |
+| /r1\¦r2/     | /r1¦r2/   | match 1 of the regex identified by r1 or r2 |
+| /\(r1\¦r2\)/ | /(r1¦r2)/ | match 1 of the regex identified by r1 or r2 |
+|            |         | (¦=pipe) and treat it as a bracketed regex  |
+
+*Nota*: La expresión regular de emacs es básicamente BRE, pero se ha ampliado para tratar "+" y "?" como los metacaracteres como en ERE. Por lo tanto, no hay necesidad de escaparlos con "\" en la expresión regular de emacs.
+
+** Keystrokes
+| /Keys/ | /Action/                                            |
+|------+---------------------------------------------------|
+| /C-b/  | Move the cursor left                              |
+| /C-f/  | Move the cursor right                             |
+| /C-p/  | View the previous command (or move the cursor up) |
+| /C-n/  | View the next command (or move the cursor down)   |
+| /C-a/  | Move the cursor to the beginning of the line      |
+| /C-e/  | Move the cursor to the end of the line            |
+| /C-h/  | Erase the preceding character                     |
+| /C-w/  | Erase the preceding word                          |
+| /C-u/  | Erase from cursor to beginning of line            |
+| /C-k/  | Erase from cursor to end of line                  |
+| /C-y/  | Paste erased text (for example, from CTRL-U)      |
+
+** Absolute permission
+| /#/ | /Permission Type/        | /Symbol/ |
+|---+------------------------+--------|
+| 0 | no permission          | ---    |
+| 1 | execute                | -x-    |
+| 2 | write                  | -w-    |
+| 3 | execute + write        | -wx    |
+| 4 | read                   | r--    |
+| 5 | read + execute         | r-x    |
+| 6 | read + write           | rw-    |
+| 7 | read + write + execute | rwx    |
+
+* References
+- Manual pages (man pages).
+- How Linux Works by Brian Ward.
