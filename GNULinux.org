@@ -57,13 +57,43 @@ The *bottom level* of user space tends to consist of small components that perfo
   4. Mid- and high-level services (cron, printing, and so on).
   5. Login prompts, GUIs, and high-level applications, such as web servers.
 
+*** Packaging Systems
+**** Package Files
+The basic unit of software in a packaging system is the *package file*. A package file is a compressed collection of files that comprise the software package. A package may consist of numerous programs and data files that support the programs. In addition to the files to be installed, the package file also includes metadata about the package, such as a text description of the package and its contents. Additionally, many packages contain pre- and post-installation scripts that perform configuration tasks before and after the package installation.
+
+Package files are created by a person known as a *package maintainer*, often (but not always) an employee of the distribution vendor. The package maintainer gets the software in source code form from the *upstream provider* (the author of the program), compiles it, and creates the package metadata and any necessary installation scripts. Often, the package maintainer will apply modifications to the original source code to improve the program's integration with the other parts of the Linux distribution.
+
+**** Repositories
+While some software projects choose to perform their own packaging and distribution, most packages today are created by the distribution vendors and interested third parties.  Packages are made available to the users of a distribution in central repositories that may contain many thousands of packages, each specially built and maintained for the distribution.
+
+A distribution may maintain several different repositories for different stages of the software development life cycle. For example, testing, development and also have related third-party repositories.
+
+**** Dependencies
+Programs are seldom “standalone”; rather they rely on the presence of other software components to get their work done. Common activities, such as input/output for example, are handled by routines shared by many programs. These routines are stored in what are called *shared libraries*, which provide essential services to more than one program. If a package requires a shared resource such as a shared library, it is said to have a *dependency*. Modern package management systems all provide some method of *dependency resolution* to ensure that when a package is installed, all of its dependencies are installed, too.
+
+**** High and Low-level Package Tools
+Package management systems usually consist of two types of tools.
+
+  - Low-level tools which handle tasks such as installing and removing package files
+  - High-level tools that perform metadata searching and dependency resolution
+
+*** Compressing
+Data compression is the process of removing *redundancy* from data.
+
+Compression algorithms fall into two general categories.
+
+- Lossless :: Lossless compression preserves all the data contained in the original.  This means that when a file is restored from a compressed version, the restored file is exactly the same as the original, uncompressed version.
+- Lossy :: Lossy compression, on the other hand, removes data as the compression is performed to allow more compression to be applied. When a lossy file is restored, it does not match the original version; rather, it is a close approximation. Exam- ples of lossy compression are JPEG (for images) and MP3 (for music).
+
+A common file-management task often used in conjunction with compression is *archiving*. Archiving is the process of gathering up many files and bundling them together into a single large file.
+
 ** Processes and Threads
 *** Processes
 Is simply a state (or image) in memory.
 
 Running programs that the kernel manages.
 
-*** Threads‌
+*** Threads
 In Linux, some processes are divided into pieces called *threads*. A thread is very similar to a process—it has an identifier (thread ID, or TID), and the kernel schedules and runs threads just like processes. However, unlike separate processes, which usually don’t share system resources such as memory and I/O connections with other processes, all threads inside a single process share their system resources and some memory.
 
 Many processes have only one thread. A process with one thread is single-threaded, and a process with more than one thread is multithreaded. All processes start out single-threaded. This starting thread is usually called the main thread. The main thread may start new threads, making the process multithreaded, similar to the way a process can call ~fork()~ to start a new process.
@@ -101,7 +131,28 @@ $ cmd & -->|   Background    |--------------/
 
 #+end_src
 
-*** Control Groups (cgroups)‌
+*** Common Signals
+- HUP Hangup (1) :: this is a vestige of the good old days when terminals were attached to remote computers with phone lines and modems. The signal is used to indicate to programs that the controlling terminal has “hung up.” The effect of this signal can be demonstrated by closing a terminal session. The foreground program running on the terminal will be sent the signal and will terminate. This signal is also used by many daemon programs to cause a reinitialization. This means that when a daemon is sent this signal, it will restart and reread its configuration file. The Apache web server is an example of a daemon that uses the ~HUP~ signal in this way.
+
+- INT Interrupt (2) :: this performs the same function as a ~Ctrl-c~ sent from the terminal. It will usually terminate a program.
+
+- KILL Kill (9) :: this signal is special. Whereas programs may choose to handle signals sent to them in different ways, including ignoring them all together, the ~KILL~ signal is never actually sent to the target program. Rather, the kernel immediately terminates the process. When a process is terminated in this manner, it is given no opportunity to “clean up” after itself or save its work. For this reason, the ~KILL~ signal should be used only as a last resort when other termination signals fail.
+
+- TERM Terminate (15) :: this is the default signal sent by the kill command. If a program is still “alive” enough to receive signals, it will terminate.
+
+- CONT Continue (18) :: this will restore a process after a ~STOP~ or ~TSTP~ signal. This signal is sent by the ~bg~ and ~fg~ commands.
+
+- STOP Stop (19) :: this signal causes a process to pause without terminating. Like the ~KILL~ signal, it is not sent to the target process, and thus it cannot be ignored.
+
+- TSTP Terminal stop  (20) :: this is the signal sent by the terminal when ~Ctrl-z~ is pressed. Unlike the ~STOP~ signal, the ~TSTP~ signal is received by the program, but the program may choose to ignore it.
+
+- SEGV Segmentation violation (11) :: this signal is sent if a program makes illegal use of memory, that is, if it tried to write somewhere it was not allowed to write.
+
+- WINCH Window change (28) :: this is the signal sent by the system when a window changes size. Some programs , such as ~top~ and ~less~ will respond to this signal by redrawing themselves to fit the new window dimensions.
+
+- QUIT (3) :: quit.
+
+*** Control Groups (cgroups)
 The basic idea is that you place several processes into a cgroup, which allows you to manage the resources that they consume on a group-wide basis. For example, if you want to limit the amount of memory that a set of processes may cumulatively consume, a cgroup can do this.
 
 After creating a cgroup, you can add processes to it, and then use a *controller* to change how those processes behave. For example, there is a ~cpu~ controller allowing you to limit the processor time, a ~memory~ controller, and so on.
@@ -148,7 +199,7 @@ cgroups, because we can set up multiple controllers per cgroup.
 #+end_src
 
 ** I/O
-*** Standard Input and Standard Output‌
+*** Standard Input and Standard Output
 Unix processes use I/O streams to read and write data. Processes read data from input streams and write data to output streams. The source of an input stream can be a file, a device, a terminal window, or even the output stream from another process.
 
 Standard output is similar. The kernel gives each process a standard output stream where it can write its output. Standard input and output are often abbreviated as stdin and stdout.
@@ -202,6 +253,10 @@ Is a mechanism for inter-process communication using message passing. A pipeline
 This pipeline is a anonymous pipes, where data written by one process is buffered by the operating system until it is read by the next process, and this uni-directional channel disappears when the processes are completed.
 
 Each "~|~" tells the shell to connect the standard output of the command on the left to the standard input of the command on the right by an inter-process communication (IPC) mechanism called an (anonymous) pipe, implemented in the operating system. Pipes are unidirectional; data flows through the pipeline from left to right.
+
+In ~bash~ (and other shells such as ~sh~), pipelines create *subshells*. These are copies of the shell and its environment that are used to execute the command in the pipeline.
+
+Subshells in Unix-like systems create copies of the environment for the processes to use while they execute. When the processes finishes, the copy of the environment is destroyed. This means that *a subshell can never alter the environment of its parent process*.
 
 Ejemplo de [[https://www.danielclemente.com/][Daniel Clemente]]:
 Prueba un ~echo Hola | nano~ (no explicaré el | aquí), verás que no puedes escribir (lógico, porque la entrada la coge del ~echo Hola~, no de STDIN). Ahora prueba un ~cat | nano~, irá perfecto porque ~cat~ coge la entrada y la manda por la salida (pruébalo suelto, un cat). Pues, ¿por qué no pruebas a ponerlo todo como un sólo comando? Haz ~(echo Hola; cat) | nano~
@@ -260,11 +315,52 @@ Con Linux podemos crear fifos, y es muy sencillo: haz ~mkfifo fi~ y habrás crea
 
 Puedes hacer cosas muy raras con fifos: por ejemplo, imagínate que dices a ~cdrecord~ que te grabe la ISO ~mififo~ (se quedaría esperando a que le entre contenido al fifo) y después haces un ~wget servidorveloz.com/linux.iso -O mififo~ (esto especifica el fichero de destino). ¡Estarías grabando un CD al mismo tiempo que lo descargas! Usa la imaginación para descubrir otros utilidades...
 
+*** Printing
+**** A Brief History of Printing
+Printing on Unix-like systems goes way back to the beginning of the operating system. In those days, printers and how they were used were much different from today.
+
+Like computers, printers in the pre-PC era tended to be large, expensive, and centralized. The typical computer user of 1980 worked at a terminal connected to a computer some distance away. The printer was located near the computer and was under the watchful eyes of the computer’s operators.
+
+When printers were expensive and centralized, as they often were in the early days of Unix, it was common practice for many users to share a printer. To identify print jobs belonging to a particular user, a banner page displaying the name of the user was often printed at the beginning of each print job. The computer support staff would then load up a cart containing the day’s print jobs and deliver them to the individual users.
+
+*Character-Based Printers*
+The printer technology of the 80s was very different from today in two respects. First, printers of that period were almost always impact printers. Impact printers use a mechanical mechanism that strikes a ribbon against the paper to form character impressions on the page. Two of the popular technologies of that time were daisy-wheel printing and dot-matrix printing.
+
+The second, and more important characteristic of early printers was that printers used a fixed set of characters that were intrinsic to the device. For example, a daisy-wheel printer could only print the characters actually molded into the petals of the daisy wheel. This made the printers much like high-speed typewriters. As with most typewriters, they printed using monospaced (fixed width) fonts. This means that each character has the same width. Printing was done at fixed positions on the page, and the printable area of a page contained a fixed number of characters. Most printers printed ten characters per inch (CPI) horizontally and six lines per inch (LPI) vertically. Using this scheme, a US-letter sheet of paper is 85 characters wide and 66 lines high. Taking into account a small margin on each side, 80 characters was considered the maximum width of a print line. This explains why terminal displays (and our terminal emulators) are normally 80 characters wide. Using a monospaced font and and an 80 character wide terminal provides a What You See Is What You Get (WYSIWYG) view of printed output.
+
+Data is sent to a typewriter-like printer in a simple stream of bytes containing the characters to be printed. For example, to print an “a”, the ASCII character code 97 is sent. In addition, the low-numbered ASCII control codes provided a means of moving the printer’s carriage and paper, using codes for carriage return, line feed, form feed, and so on. Using the control codes, it’s possible to achieve some limited font effects, such as boldface, by having the printer print a character, backspace, and print the character again to get a darker print impression on the page.
+
+**** Graphical Printers
+The development of GUIs led to major changes in printer technology. As computers moved to more picture-based displays, printing moved from character-based to graphical techniques. This was facilitated by the advent of the low-cost laser printer which, instead of printing fixed characters, could print tiny dots anywhere in the printable area of the page. This made printing proportional fonts (like those used by typesetters), and even photographs and high-quality diagrams, possible.
+
+However, moving from a character-based scheme to a graphical scheme presented a formidable technical challenge. Here’s why: the number of bytes needed to fill a page using a character-based printer can be calculated this way (assuming 60 lines per page each containing 80 characters):
+
+60 X 80 = 4,800 bytes
+
+In comparison, a 300 dot per inch (DPI) laser printer (assuming an 8 by 10 inch print area per page) requires this many bytes:
+
+(8 X 300) X (10 X 300) / 8 = 900,000 bytes
+
+Many of the slow PC networks simply could not handle the nearly one megabyte of data required to print a full page on a laser printer, so it was clear that a clever invention was needed.
+
+That invention turned out to be the page description language (PDL). A page description language is a programming language that describes the contents of a page. Basically it says, “Go to this position, draw the character ‘a’ in 10 point Helvetica, go to this posi-tion...” until everything on the page is described. The first major PDL was PostScript from Adobe Systems, which is still in wide use today. The PostScript language is a complete programming language tailored for typography and other kinds of graphics and imaging. It includes built-in support for 35 standard, high-quality fonts, plus the ability to accept additional font definitions at runtime. At first, support for PostScript was built into the printers themselves. This solved the data transmission problem. While the typical PostScript program was very verbose in comparison to the simple byte stream of character-based printers, it was much smaller than the number of bytes required to represent the entire printed page.
+
+A PostScript printer accepted a PostScript program as input. The printer contained its own processor and memory (oftentimes making the printer a more powerful computer than the computer to which it was attached) and executed a special program called a PostScript interpreter, which read the incoming PostScript program and rendered the results into the printer’s internal memory, thus forming the pattern of bits (dots) that would be transferred to the paper. The generic name for this process of rendering something into a large bit pattern (called a bitmap) is raster image processor (RIP).
+
+As the years went by, both computers and networks became much faster. This allowed the RIP to move from the printer to the host computer, which, in turn, permitted high-quality printers to be much less expensive.
+
+Many printers today still accept character-based streams, but many low-cost printers do not. They rely on the host computer’s RIP to provide a stream of bits to print as dots. There are still some PostScript printers, too.
+
+**** Printing with Linux
+Modern Linux systems employ two software suites to perform and manage printing. The first, Common Unix Printing System (CUPS) provides print drivers and print-job management, and the second, Ghostscript, a PostScript interpreter, acts as a RIP.
+
+CUPS manages printers by creating and maintaining print queues.
+
 ** Shell
 *** Definition
 Is a program that runs commands, like the ones that users enter into a terminal window. These commands can be other programs or built-in (like ~exec()~) features of the shell. The shell also serves as a small programming environment.
 
-*** Shell Globbing (“Wildcards”)‌
+*** Shell Globbing (“Wildcards”)
 The simple glob character ~*~, tells the shell to match any number of arbitrary characters.
 
 The shell matches arguments containing globs to filenames, substitutes the filenames for those arguments, and then runs the revised command line. The substitution is called expansion because the shell substitutes all matching filenames for a simplified expression.
@@ -276,7 +372,7 @@ If you don’t want the shell to expand a glob in a command, enclose the glob in
 *Note*:
 It is important to remember that the shell performs expansions before running commands, and only then. Therefore, if a ~*~ makes it to a command without expanding, the shell won’t do anything more with it; it’s up to the command to decide what it wants to do.
 
-*** Environment and Shell Variables‌
+*** Environment and Shell Variables
 **** Shell variable
 The shell can store temporary variables, called *shell variables*, containing the values of text strings. Shell variables are very useful for keeping track of values in scripts, and some shell variables control the way the shell behaves.
 
@@ -344,7 +440,7 @@ umask 022
 
 #+end_src
 
-*** getty and login‌
+*** getty and login
 The ~getty~ program attaches to terminals and displays a login prompt. On most Linux systems, ~getty~ is uncomplicated because the system uses it only for logins on virtual terminals. In a process listing, it usually looks something like this (for example, when running on ~/dev/tty1~):
 
 #+begin_src sh
@@ -360,10 +456,25 @@ After you enter your login name, ~getty~ replaces itself with the ~login~ progra
 
 You’ll rarely even use ~getty~ and ~login~, because most users now log in either through a graphical interface such as ~gdm~ or remotely with ~SSH~, neither of which uses ~getty~ or ~login~.
 
+** Command
+A command can be one of four different things:
+
+ - an executable program :: like ~/usr/bin~.
+ - a command built into the shell itself ::  ~bash~ supports a number of commands internally called shell builtins. The ~cd~ command, for example, is a shell builtin.
+ - a shell function :: shell functions are miniature shell scripts incorporated into the environment.
+ - an alias  :: aliases are commands that we can define ourselves, built from other commands.
+
+*Note*:
+When square brackets appear in the description of a command's syntax, they indicate optional items. A vertical bar character indicates mutually exclusive items. In the case of the ~cd~ command above:
+
+~cd [-L|[-P[-e]]] [dir]~
+
+This notation says that the command ~cd~ may be followed optionally by either a ~-L~  or a ~-P~ and further, if the ~-P~ option is specified the ~-e~ option may also be included followed by the optional argument ~dir~.
+
 ** File Descriptor
 Is a number that a process uses together with the system libraries and kernel to identify and manipulate a file.
 
-** System Logging‌
+** System Logging
 Most system programs write their diagnostic output as messages to the *syslog* service. The traditional syslogd daemon performs this service by waiting for messages and, upon receiving one, sending it to an appropriate channel, such as a file or a database. On most contemporary systems, *journald* (which comes with systemd) does most of the work.
 
 The system logger is one of the most important parts of the system. When something goes wrong and you don’t know where to start, it’s always wise to check the log. If you have journald, you’ll do this with the ~journalctl~ command.
@@ -394,7 +505,7 @@ Desktop applications include certain common elements, such as buttons and menus,
 
 Toolkits usually consist of shared libraries and support files, such as images and theme information.
 
-*** Desktop Environments‌
+*** Desktop Environments
 Although [[Toolkits][toolkits]] provide the user with a uniform outward appearance, some details of a desktop require a degree of cooperation between different applications. For example, one application may wish to share data with another or update a common notification bar on a desktop. To provide for those needs, toolkits and other libraries are bundled into larger packages called desktop environments. GNOME, KDE, and Xfce are some common Linux desktop environments.
 
 Toolkits are at the core of most desktop environments, but to create a unified desktop, environments must also include numerous support files, such as icons and configurations, that make up themes. All of this is bound together with documents that describe design conventions, such as how application menus and titles should appear and how applications should react to certain system events.
@@ -534,7 +645,7 @@ ps aux
 
 #+end_src
 
-** Shutting Down System‌
+** Shutting Down System
 1. ~init~ asks every process to shut down cleanly.
 2. If a process doesn’t respond after a while, init kills it, first trying a ~TERM~ signal.
 3. If the ~TERM~ signal doesn’t work, init uses the ~KILL~ signal on any stragglers.
@@ -567,7 +678,7 @@ One of the kernel’s tasks is to split memory into many subdivisions, and it mu
 *** GRUB
 GRUB stands for Grand Unified Boot Loader. One of GRUB’s most important capabilities is filesystem navigation that allows for easy kernel image and configuration selection.
 
-*** How GRUB Works‌
+*** How GRUB Works
   1. The PC BIOS or firmware initializes the hardware and searches its boot-order storage devices for boot code.
   2. Upon finding the boot code, the BIOS/firmware loads and executes it. This is where GRUB begins.
   3. The GRUB core loads.
@@ -590,7 +701,7 @@ GRUB stands for Grand Unified Boot Loader. One of GRUB’s most important capabi
 - Device drivers :: The kernel acts as an interface between hardware and processes. It’s usually the kernel’s job to operate the hardware.
 - System calls and support Processes :: normally use system calls to communicate with the kernel.
 
-** Process Management‌
+** Process Management
 Process management describes the starting, pausing, resuming, scheduling, and terminating of processes.
 
  In practice, each process uses the CPU for a small fraction of a second, then pauses; then another process uses the CPU for another small fraction of a second; then another process takes a turn, and so on. The act of one process giving up control of the CPU to another process is called a [[Context switching][context switch]].
@@ -608,7 +719,7 @@ To understand how the context switch works, let’s think about a situation in w
 6. The kernel tells the CPU how long the time slice for the new process will last.
 7. The kernel switches the CPU into user mode and hands control of the CPU to the process.
 
-** Memory Management‌
+** Memory Management
 The kernel must manage memory during a context switch, which can be a complex job. The following conditions must hold:
 
 - The kernel must have its own private area in memory that user processes can’t access.
@@ -618,7 +729,7 @@ The kernel must manage memory during a context switch, which can be a complex jo
 
 When the process accesses some of its memory, the memory management unit MMU intercepts the access and uses a memory address map to translate the memory location from the process point of view into an actual physical memory location in the machine. The kernel must still initialize and continuously maintain and alter this memory address map. The implementation of a memory address map is called a *page table*.
 
-** System Calls and Support‌
+** System Calls and Support
 Perform specific tasks, an interaction between a process and the kernel.
 
 Two system calls, ~fork()~ and ~exec()~, are important to understanding how processes start:
@@ -655,7 +766,7 @@ A user process doesn’t actually need all of its memory pages to be immediately
 3. As the process runs, it might reach a point where the next instruction in its code isn’t in any of the pages that the kernel initially loaded. At this point, the kernel takes over, loads the necessary page into memory, and then lets the program resume execution.
 4. Similarly, if the program requires more working memory than was initially allocated, the kernel handles it by finding free pages (or by making room) and assigning them to the process.
 
-* systemd‌
+* systemd
 ** Daemon
 Is a computer program that runs as a background process, rather than being under the direct control of an interactive user.
 
@@ -707,7 +818,7 @@ On the system shown below, ~default.target~ groups the units necessary to start 
 
 #+end_src
 
-** Units and Unit Types‌
+** Units and Unit Types
 One way that systemd is more ambitious than previous versions of init is that it doesn’t just operate processes and services; it can also manage filesystem mounts, monitor network connection requests, run timers, and more. Each capability is called a *unit type*, and each specific function (such as a service) is called a *unit*. When you turn on a unit, you activate it. Each unit has its own configuration file.
 
 These are the most significant *unit types* that perform the boot-time tasks on a typical Linux system:
@@ -724,7 +835,7 @@ To activate units in a particular order, use the following dependency modifiers:
 
 When you use ordering, systemd waits until a unit has an active status before activating its dependent units.
 
-** Dependencies‌
+** Dependencies
 To accommodate the need for flexibility and fault tolerance, systemd offers several dependency types and styles.
 
 - Requires :: strict dependencies. When activating a unit with a ~Requires~ dependency unit, systemd attempts to activate the dependency unit. If the dependency unit fails, systemd also deactivates the dependent unit.
@@ -932,7 +1043,7 @@ Because the ~echo@.service~ unit supports multiple simultaneous instances, there
 
 If a service unit can do the work of accepting a connection, don’t put an ~@~ in its unit filename, and don’t put ~Accept=true~ in the socket unit. In this case, the service unit takes complete control of the socket from systemd, which in turn does not attempt to listen on the network port again until the service unit finishes.
 
-** Timer Units‌
+** Timer Units
 An alternative to creating a cron job for a periodic task is to build a systemd timer unit. For an entirely new task, you must create two units: a timer unit and a service unit. The reason for two units is that a timer unit doesn’t contain any specifics about the task to perform; it’s just an activation mechanism to run a service unit.
 
 Let’s look at a typical timer/service unit pair, starting with the timer unit. Let’s call this ~loggertest.timer~; as with other custom unit files, we’ll put it in [[ /etc/systemd/system]].
@@ -990,11 +1101,11 @@ Note the use of ~oneshot~ as the service type, indicating that the service is ex
 |  +--------------------------------------------+  +-----------+  |
 |  |  Partition                                 |  | Partition |  |
 |  |  +--------------------------------------+  |  |           |  |
-|  |  |        +--------------------------+  |  |  |           |  |
-|  |  |        |Filesystem Data Structures|  |  |  |           |  |
-|  |  |        +--------------------------+  |  |  |           |  |
-|  |  |                     |                |  |  |           |  |
-|  |  |                     v                |  |  |           |  |
+|  |  |      +----------------------------+  |  |  |           |  |
+|  |  |      | Filesystem Data Structures |  |  |  |           |  |
+|  |  |      +----------------------------+  |  |  |           |  |
+|  |  |                    |                 |  |  |           |  |
+|  |  |                    v                 |  |  |           |  |
 |  |  |  +--------------------------------+  |  |  |           |  |
 |  |  |  | File Data                      |  |  |  |           |  |
 |  |  |  |                                |  |  |  |           |  |
@@ -1010,7 +1121,7 @@ Note the use of ~oneshot~ as the service type, indicating that the service is ex
 ** Device Drivers
 A device is typically accessible only in kernel mode because improper access could crash the machine. A notable difficulty is that different devices rarely have the same programming interface, even if the devices perform the same task.
 
-** Device Files‌ ‌
+** Device Files
 - block device :: programs access data from a block device in fixed chunks. Disks can be easily split up into blocks of data. Because a block device’s total size is fixed and easy to index, processes have quick random access to any block in the device with the help of the kernel.
 
 - character device :: character devices work with data streams. You can only read characters from or write characters to character devices. Character devices don’t have a size; when you read from or write to one, the kernel usually performs a read or write operation on it. Printers directly attached to your computer are represented by character devices.
@@ -1050,55 +1161,11 @@ Number	Start	End	Size	File system	Name	Flags
 
 #+end_src
 
-** Creating a Partition Table‌
-1. You’ll start at the command prompt with the device name.
-  ~sudo fdisk /dev/sdd~
-
-2. First, print the current table with the ~p~ option.
-
-#+begin_src sh
-
-Disk /dev/sdd: 4 GiB, 4284481536 bytes, 8368128 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: dos
-Disk identifier: 0x88f290cc
-
-Device Boot Start End Sectors Size Id Type
-/dev/sdd1 2048 8368127 8366080 4G c W95 FAT32 (LBA)
-
-#+end_src
-
-You can delete the existing ones pressing ~d~
-
-Remember that ~fdisk~ doesn’t make changes until you explicitly write the partition table, so you haven’t yet modified the disk. If you make a mistake you can’t recover from, use the ~q~ option to quit ~fdisk~ without writing the changes.
-
-3. Now you’ll create the first 200MB partition with the ~n~ option (the default values are quite often what you want).
-
-4. When you’re finished laying out the partitions, use the ~p~ (print) option to review.
-
-#+begin_src sh
-
-Device    Boot Start	   End  Sectors	Size Id Type
-/dev/sdd1	  2048	 411647  409600	200M 83 Linux
-/dev/sdd2	411648	8368127 7956480	3.8G 83 Linux
-
-#+end_src
-
-5. When you’re ready to write the partition table, use the ~w~ option.
-
-Additionally,
-
-6. You can create a filesystem ~ext4~ partition on ~/dev/sdd1~ with this command.
-~sudo  mkfs -t ext4 /dev/sdd1~
-
-7. To mount the Fourth Extended filesystem found on the device ~/dev/sdd1~ on ~/home/extra~, use this command.
-~sudo mount -t ext4 /dev/sdd1 /home/extra~
-
 ** Swap Space
 *** Definition
 If you run out of real memory, the Linux virtual memory system can automatically move pieces of memory to and from disk storage. This is called *swapping* because pieces of idle programs are swapped to the disk in exchange for active pieces residing on the disk. The disk area used to store memory pages is called *swap space* (or just *swap*).
 
-*** Using a Disk Partition as Swap Space‌
+*** Using a Disk Partition as Swap Space
 To use an entire disk partition as swap, follow these steps:
 
 1. Make sure the partition is empty.
@@ -1108,7 +1175,7 @@ To use an entire disk partition as swap, follow these steps:
 After creating a swap partition, you can put a new swap entry in your ~/etc/fstab~ file to make the system use the swap space as soon as the machine boots. Here’s a sample entry that uses ~/dev/sda5~ as a swap partition:
 ~/dev/sda5 none swap sw 0 0~
 
-*** Using a File as Swap Space‌
+*** Using a File as Swap Space
 You can use a regular file as swap space if you’re in a situation where you would be forced to repartition a disk in order to create a swap partition. You shouldn’t notice any problems when doing this.
 
 Use these commands to create an empty file, initialize it as swap, and add it to the swap pool:
@@ -1124,6 +1191,36 @@ swapon swap_file
 Here, ~swap_file~ is the name of the new swap file, and ~num_mb~ is the desired size in megabytes.
 
 To remove a swap partition or file from the kernel’s active pool, use the ~swapoff~ command. Your system must have enough free remaining memory (real and swap combined) to accommodate any active pages in the part of the swap pool that you’re removing.
+
+*Example*:
+
+#+begin_src sh
+
+## Check current swap status.
+sudo swapon -s
+## Create the swap file (1024k*7168=7340032->7GB)
+sudo dd if=/dev/zero of=/swapfile bs=1024k count=7168
+## Set Swap Permissions.
+sudo chmod 600 /swapfile
+## Set up the file as Linux swap area.
+sudo mkswap /swapfile
+## Enable the swap.
+sudo swapon /swapfile
+## Make the swap file permanent adding the following
+## line at the end of the /etc/fstab file.
+/swapfile none swap sw 0 0
+
+## To verify that the swap is active.
+# sudo swapon --show
+
+## Remove Swap Space
+# swapoff /swapfile
+## Remove the swap file entry /swapfile none swap sw 0 0
+## from the /etc/fstab file.
+## Remove the swap file
+# sudo rm /swapfile
+
+#+end_src
 
 ** Major and Minor Numbers
  Char devices are accessed through names in the filesystem. Those names are called special files or device files or simply nodes of the filesystem tree; they are conventionally located in the [[ /dev]] directory. Special files for char drivers are identified by a ~c~ in the first column of the output of ~ls -l~. Block devices appear in [[ /dev]] as well, but they are identified by a ~b~.
@@ -1149,6 +1246,52 @@ ls -l /dev/vd*
 
 #+end_src
 
+** Creating a Partition Table
+1. You’ll start at the command prompt with the device name (first unmount it, if needed).
+  ~sudo fdisk /dev/sdd~
+
+2.  =m= will display the program menu.
+
+3. First, print the current table with the =p= option.
+
+#+begin_src sh
+
+Disk /dev/sdd: 4 GiB, 4284481536 bytes, 8368128 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: dos
+Disk identifier: 0x88f290cc
+
+Device Boot Start End Sectors Size Id Type
+/dev/sdd1 2048 8368127 8366080 4G c W95 FAT32 (LBA)
+
+#+end_src
+
+You can delete the existing ones pressing =d=.
+
+Remember that ~fdisk~ doesn’t make changes until you explicitly write the partition table, so you haven’t yet modified the disk. If you make a mistake you can’t recover from, use the =q= option to quit ~fdisk~ without writing the changes.
+
+4. Now you’ll create the first 200MB partition with the =n= option (the default values are quite often what you want).
+
+5. When you’re finished laying out the partitions, use the =p= (print) option to review.
+
+#+begin_src sh
+
+Device    Boot Start     End  Sectors	Size Id Type
+/dev/sdd1   2048	 411647  409600	200M 83 Linux
+/dev/sdd2	411648	8368127 7956480	3.8G 83 Linux
+
+#+end_src
+
+6. When you’re ready to write the partition table, use the =w= option.
+
+Additionally,
+
+7. You can create a filesystem ~ext4~ partition on ~/dev/sdd1~ with this command.
+  ~sudo  mkfs -t ext4 /dev/sdd1~
+
+8. To mount the Fourth Extended filesystem found on the device ~/dev/sdd1~ on ~/home/extra~, use this command.
+  ~sudo mount -t ext4 /dev/sdd1 /home/extra~
+
 * File system
 ** Definition
 Is a form of database; it supplies the structure to transform a simple block device into the sophisticated hierarchy of files and subdirectories that users can understand.
@@ -1161,13 +1304,22 @@ The Linux kernel does not talk to the PC BIOS interface or EFI to get data from 
 The workaround is to gather a small collection of kernel driver modules along with a few other utilities into an archive. The boot loader loads this archive into memory before running the kernel. Upon start, the kernel reads the contents of the archive into a temporary RAM filesystem (the initramfs), mounts it at ~/~, and performs the user-mode handoff to the init on the initramfs. Then, the utilities included in the initramfs allow the kernel to load the necessary driver modules for the real root filesystem. Finally, the utilities mount the real root filesystem and start the true init.
 
 ** Symbolic and hard links
+*** Symbolic link
 A *symbolic link* is a file that points to another file or a directory, effectively creating an alias (shortcut).
 
 Your system may also have links that point to other links, which are called chained symbolic links and can be a nuisance when you’re trying to track them down.
 
+*** Hard link
 ~ln~ creates a *hard link*, giving an additional real filename to a single file. The new filename has the status of the old one; it points (links) directly to the file data instead of to another filename as a symbolic link does.
 
-** Special-Purpose Filesystems‌
+By default, every file has a single hard link that gives the file its name.  When we create a hard link, we create an additional directory entry for a file. Hard links have two important limitations:
+
+ 1. A hard link cannot reference a file outside its own file system. This means a link cannot reference a file that is not on the same disk partition as the link itself.
+ 2. A hard link may not reference a directory.
+
+A hard link is indistinguishable from the file itself. Unlike a symbolic link, when we list a directory containing a hard link we will see no special indication of the link. When a hard link is deleted, the link is removed but the contents of the file itself continue to exist (that is, its space is not deallocated) until all links to the file are deleted.
+
+** Special-Purpose Filesystems
 Not all filesystems represent storage on physical media. Most versions of Unix have filesystems that serve as system interfaces. That is, rather than serving only as a means to store data on a device, a filesystem can represent system information, such as process IDs and kernel diagnostics. This idea goes back to the [[ /dev]] mechanism, which is an early model of using files for I/O interfaces.
 
 Some of the special filesystem types in common use on Linux include:
@@ -1177,7 +1329,7 @@ Some of the special filesystem types in common use on Linux include:
 - squashfs :: a type of read-only filesystem where content is stored in a compressed format and extracted on demand through a loopback device. One example use is in the snap package management system that mounts packages under the ~/snap~ directory.
 - overlay :: a filesystem that merges directories into a composite. Containers often use overlay filesystems.
 
-** Inside a Traditional Filesystem‌
+** Inside a Traditional Filesystem
 A traditional Unix filesystem has two primary components: a pool of data blocks where you can store data and a database system that manages the data pool. The database is centered around the inode data structure.
 
 An *inode* is a set of data that describes a particular file, including its type, permissions, and—perhaps most important—where in the data pool the file data resides. Inodes are identified by numbers listed in an inode table.
@@ -1251,15 +1403,128 @@ Inode structure of the filesystem shown in previous filesystem:
 
 #+end_src
 
-** The Permissions Mask‌
+*Note*: Portable Filenames
+To ensure that a filename is portable between multiple platforms (i.e., different types of computers and operating systems), care must be taken to limit which characters are included in a filename. There is a standard called the POSIX Portable Filename Character Set that can be used to maximize the chances that a filename will work across different systems. The standard is pretty simple. The only characters allowed are the uppercase letters ~A-Z~, the lowercase letters ~a-z~, the numerals ~0-9~, period ( ~.~ ), hyphen ( ~-~ ), and underscore ( ~_~ ). The standard further suggests that filenames not begin with a hyphen.
+
+** Permissions
+*** The Permissions Mask
 A shell’s built-in ~umask~ (permissions mask) facility sets the default permissions. Include the ~umask~ command in one of your startup files to make certain that any program you run creates files with your desired permissions. There are two reasonable choices:
 
 - ~077~ This mask is the most restrictive permissions mask; it doesn’t give any other users access to new files and directories. This is often appropriate on a multi-user system where you don’t want other users to look at any of your files. However, when set as the default, this mask can sometimes lead to problems when your users want to share files but don’t understand how to set permissions correctly.
 
 - ~022~ This mask gives other users read access to new files and directories. This can be a good choice on a single-user system because many daemons that run as pseudo-users won’t be able to see files and directories created with the more restrictive ~077~ umask.
 
-** setuide
+Everywhere a 1 appears in the binary value of the mask, an attribute is unset.
+
+| Original file | --- rw- rw- rw- | 0666 |
+| Mask          | 000 000 010 010 | 0022 |
+|---------------+-----------------+------|
+| Result        | --- rw- r-- r-- | 0644 |
+
+*** The setuide bit
 Meaning that when you execute the program, it runs as though the file owner is the user instead of you. Many programs use this setuid bit to run as root in order to get the privileges they need to change system files. One example is the passwd program, which needs to change the ~/etc/passwd~ file.
+
+*** The setgid bit
+Like the [[The setuide bit][setuid]] bit, changes the effective group ID from the real group ID of the real user to that of the file owner. If the setgid bit is set on a directory, newly created files in the directory will be given the group ownership of the directory rather the group ownership of the file's creator. This is useful in a shared directory when members of a common group need access to all the files in the directory, regardless of the file owner's primary group.
+
+*** The sticky bit
+This is a holdover from ancient Unix, where it was possible to mark an executable file as “not swappable.” On files, Linux ignores the sticky bit, but if applied to a directory, it prevents users from deleting or renaming files unless the user is either the owner of the directory, the owner of the file, or the superuser. This is often used to control access to a shared directory, such as [[ /tmp]].
+
+** Tasks
+*** Mounting and Unmounting Storage Devices
+
+#+begin_src sh
+
+# Viewing a List of Mounted File Systems
+mount
+# /dev/sda2 on / type ext4 (rw)
+# device /dev/sda2 is mounted as the root file system, is of type ext4,
+# and is both readable and writable
+
+# Unmount the disc with the umount command
+umount /dev/sdc
+
+# Create a new mount point for the disk.
+# First create a new directory.
+mkdir /mnt/cdrom
+# Mount the CD-ROM at the new mount point.
+mount -t iso9660 /dev/sdc /mnt/cdrom
+
+
+# Mount the flash drive (other example).
+sudo mkdir /mnt/flash
+sudo mount /dev/sdb1 /mnt/flash
+
+#+end_src
+
+*** Reformat the flash with a Linux file system
+To reformat the flash drive with a Linux native file system, rather than the FAT32 system for example. This involves two steps.
+
+- (optional) Create a new partition layout if the existing one is not to our liking.
+- Create a new, empty file system on the drive.
+
+1. First unmount it (if needed) and then invoke the ~fdisk~ program:
+
+#+begin_src sh
+
+sudo umount /dev/sdb1
+sudo fdisk /dev/sdb
+
+#+end_src
+
+2. Entering an =m= will display the program menu.
+
+3. The first thing we want to do is examine the existing partition layout. We do this by entering =p= to print the partition table for the device.
+
+#+begin_src sh
+
+Command (m for help): p
+
+Disk /dev/sdb: 16 MB, 16006656 bytes
+1 heads, 31 sectors/track, 1008 cylinders
+Units = cylinders of 31 * 512 = 15872 bytes
+
+   Device Boot  Start   End  Blocks  Id  System
+/dev/sdb1           2  1008  15608+   b   W95 FAT32
+# We see a 16 MB device with a single partition (1) that uses 1,006 of
+# the available 1,008 cylinders on the device. The partition is
+# identified as a Windows 95 FAT32 partition.
+
+#+end_src
+
+We see that the ~ID b~ is used to specify the existing *partition*. To see a list of the available *partition types*, we refer to the program menu.
+
+If we enter =l= at the prompt, a large list of possible types is displayed. Among them we see ~b~ for our existing partition type and ~83~ for Linux.
+
+4. We enter =t= (change a *partition's system* id) at the prompt and enter the new ID.
+
+#+begin_src sh
+
+Command (m for help): t
+Selected partition 1
+Hex code (type L to list codes): 83
+Changed system type of partition 1 to 83 (Linux)
+
+#+end_src
+
+5. This completes all the changes we need to make. Up to this point, the device has been untouched (all the changes have been stored in memory, not on the physical device), so we will write the modified partition table to the device and exit. To do this, we enter =w= at the prompt.
+
+Additionally, to create an ~ext4~ *file system* on the device, we use the ~-t~ option to specify the ~ext4~ system type, followed by the name of the device containing the partition we want to format.
+
+#+begin_src sh
+
+sudo mkfs -t ext4 /dev/sdb1
+
+#+end_src
+
+To reformat the device to its original FAT32 file system, specify ~vfat~ as the file system
+type.
+
+#+begin_src sh
+
+sudo mkfs -t vfat /dev/sdb1
+
+#+end_src
 
 * Directory Hierarchy
 ** /
@@ -1268,7 +1533,7 @@ Is normally a binary file that contains the kernel. A boot loader loads this fil
 
 ** /etc
 This core system configuration directory contains the user password, boot, device, networking, and other setup files.
-
+[[Login Shells
 The configurations for a single machine, such as user information ~/etc/passwd~ and network details ~/etc/network~, go into this directory. However, general application details, such as a distribution’s defaults for a user interface, don’t belong here. System default configuration files not meant to be customized also are usually found elsewhere, as with the prepackaged systemd unit files in ~/usr/lib/systemd~.
 
 *** /etc/passwd
@@ -1496,8 +1761,14 @@ deb-src http://deb.debian.org/debian/ bullseye main non-free contrib #Added by s
 
 *Nota*: suite name(codename)= stable(bullseye), testing(bookworm), unstable(siempre: sid).
 
+*** /etc/profile
+A global configuration script for [[Interactive shells][login shell]] sessions that applies to all users.
+
+*** /etc/bash.bashrc
+A global configuration script for [[Interactive shells][non-login shell]] sessions that applies to all users.
+
 ** /proc
-Provides system statistics through a browsable directory-and-file interface. The ~/proc~ directory contains information about currently running processes as well as some kernel parameters.
+It's a virtual file system maintained by the Linux kernel. Provides system statistics through a browsable directory-and-file interface. The ~/proc~ directory contains information about currently running processes as well as some kernel parameters. The files are readable and will give us a picture of how the kernel sees the computer.
 
 Each numbered directory inside ~/proc~ refers to the ID of a current process on the system; the files in each directory represent various aspects of that process. The directory ~/proc/self~ represents the current process. The Linux ~proc~ filesystem includes a great deal of additional kernel and hardware information in files like ~/proc/cpuinfo~. Keep in mind that the kernel design guidelines recommend moving information unrelated to processes out of ~/proc~ and into ~/sys~, so system information in ~/proc~ might not be the most current interface.
 
@@ -1514,7 +1785,7 @@ Los otros descriptores de archivos pueden ser archivos que ha abierto el proceso
 En la implementación tradicional de Unix, los descriptores de archivos se indexan en una tabla de descriptores de archivos por proceso mantenida por el kernel, que a su vez se indexa en una tabla de archivos de todo el sistema abierta por todos los procesos, llamada tabla de archivos. Esta tabla registra el modo con el que se ha abierto el archivo (u otro recurso): para lectura, escritura, anexión y posiblemente otros modos. También se indexa en una tercera tabla llamada tabla de inodos que describe los archivos subyacentes reales. Para realizar la entrada o la salida, el proceso pasa el descriptor de archivo al kernel a través de una llamada al sistema y el kernel accederá al archivo en nombre del proceso. El proceso no tiene acceso directo al archivo ni a las tablas de inodos.
 
 *** /proc/<pid>/cgroup
-List the v1 and v2 [[Control Groups (cgroups)‌][cgroups]] for any process.
+List the v1 and v2 [[Control Groups (cgroups)][cgroups]] for any process.
 Every line of output here starts with a number and is a different cgroup.
 
 - Numbers 2–12 are for cgroups v1. The controllers for those are listed next to the number.
@@ -1597,34 +1868,39 @@ This path has different purposes than ~/dev/sda~ filename, which is also a direc
 Contain all of the block devices available on a system. However, those are just symbolic links.
 
 *** /sys/fs/cgroup
-[[Control Groups (cgroups)‌][cgroups]] are accessed entirely through the filesystem, which is usually mounted as a cgroup2 filesystem under this directory.
-
-** /run
-Contains runtime data specific to the system, including certain process IDs, socket files, status records, and, in many cases, system logging.
-
-El directorio ~/run~ se monta como ~tmpfs~ en el proceso de arranque inicial. Esto permite escribir en él incluso cuando el directorio "~/~" está montado como de solo lectura. Esta es la nueva ubicación para el almacenamiento de archivos de estado transitorio y reemplaza varias ubicaciones descritas en Filesystem Hierarchy Standard.
-
-*** /run/systemd/system
-Archivos de configuración generados en tiempo de ejecución que anulan los archivos de configuración instalados.
+[[Control Groups (cgroups)][cgroups]] are accessed entirely through the filesystem, which is usually mounted as a cgroup2 filesystem under this directory.
 
 ** /var
 The variable subdirectory, where programs record information that can change over the course of time. System logging, user tracking, caches, and other files that system programs create and manage are here.
 
 *** /var/log
-If you have a version of syslogd, this directory should contain many files, most created by your syslog daemon. However, there will be a few files here that are maintained by other services
+Contains log files, records of various system activity.
 
-In addition, there may be further subdirectories containing logs.
+If you have a version of syslogd, this directory should contain many files, most created by your syslog daemon. However, there will be a few files here that are maintained by other services. In addition, there may be further subdirectories containing logs.
+
+*** /var/log/messages
+The main log file that show what the system is doing in near real-time. It's used to store non-debug and non-critical system messages. This includes messages with log levels such as =info,= =notice,= and =warn.= It’s often referred to as the “general system activity” log.
+
+Useful for real-time view to determine how the removable device is named when it is attached.
+
+*Tip*: Using the ~tail -f /var/log/messages~ technique is a great way to watch what the system is doing in near real-time.
+
+*** /var/log/syslog
+Is a standard logging facility. It collects messages of various programs and services including the kernel, and stores them, depending on setup, in a bunch of log files typically under [[ /var/log]]. It logs everything except authentication-related messages.
+
+In some datacenter setups there are hundreds of devices each with its own log; syslog comes in handy here too. One just sets up a dedicated syslog server which collects all the individual device logs over the network.
+
+En este se puede encontrar los mensajes ~anacron~.
 
 *** /var/log/journal
 Is where *journald* stores its (binary) logfiles.
 
+The journal is a component of [[systemd]]. It’s a centralized location for all messages logged by different components in a systemd-enabled Linux system. This includes kernel and boot messages, messages coming from syslog, or different services.
+
+The journal is controlled by the systemd-journald daemon. It collects information from different sources and loads the messages into the journal.
+
 *** /var/log/kern.log
 View the messages in the *kernel* ring buffer.
-
-*** / var/log/syslog
-Archivo que continen los mensajes ~syslog~.
-
-En este se puede encontrar los mensajes ~anacron~.
 
 *** /var/log/auth.log
 Containing the most recent *log* messages.
@@ -1656,6 +1932,14 @@ package-name_upstream-version-debian.revision_architecture.deb
 *** /var/www/html/index.html
 Archivo html que sirve para probar el servidor local apache2.
 
+** /run
+Contains runtime data specific to the system, including certain process IDs, socket files, status records, and, in many cases, system logging.
+
+El directorio ~/run~ se monta como ~tmpfs~ en el proceso de arranque inicial. Esto permite escribir en él incluso cuando el directorio "~/~" está montado como de solo lectura. Esta es la nueva ubicación para el almacenamiento de archivos de estado transitorio y reemplaza varias ubicaciones descritas en Filesystem Hierarchy Standard.
+
+*** /run/systemd/system
+Archivos de configuración generados en tiempo de ejecución que anulan los archivos de configuración instalados.
+
 ** /dev
  Contains device files.
 
@@ -1678,16 +1962,23 @@ The first pseudoterminal device.
 Contains the input of the several kernel devices (mouse, keyboard, touch-pad,...).
 
 *** /dev/null
-Es un archivo especial que descarta toda la información que se escribe en o se redirige hacia él. A su vez, no proporciona ningún dato a cualquier proceso que intente leer de él, devolviendo simplemente un EOF o fin de archivo.
+This file is a system device often referred to as a *bit bucket*, which accepts input and does nothing with it.
+
+Descarta toda la información que se escribe en o se redirige hacia él. A su vez, no proporciona ningún dato a cualquier proceso que intente leer de él, devolviendo simplemente un EOF o fin de archivo.
 
 ** /usr
 It contains a large directory hierarchy, including the bulk of the Linux system. ~/usr~ is where most of the user-space programs and data reside.
 
 *** /usr/local
-Is where administrators can install their own software. Its structure should look like that of ~/~ and ~/usr~.
+Is where administrators can install their own software (programs that are not included with the distribution). Its structure should look like that of ~/~ and ~/usr~.
+
+*** /usr/local/src
+Is where administrators can place the source code directory of a program for installation.
 
 *** /usr/bin
-Most Linux distributions install executables for nearly all packaged user software in this directory.
+Contains executable files that are not part of the core operating system. These are considered to be "system wide binaries". But in modern systems it is the same as the [[ /bin]].
+
+This directory are specified by the Linux Filesystem Hierarchy Standard to contain only files (executables for nearly all packaged user software) supplied and maintained by the Linux distributor.
 
 *** /usr/include
 Holds header files used by the C compiler.
@@ -1700,6 +1991,8 @@ Contains manual pages.
 
 *** /usr/share
 Contains files that should work on other kinds of Unix machines with no loss of functionality. These are usually auxiliary data files that programs and libraries read as necessary.
+
+This includes things such as default configuration files, icons, screen backgrounds, sound files, etc.
 
 *** /usr/share/doc
 Some packages dump their available documentation into this directory with no regard for online manual systems such as man or info. See this directory on your system if you find yourself searching for documentation.
@@ -1714,6 +2007,9 @@ Each file in this directory is a fontconfig configuration file.
 
 *** /usr/sbin/sendmail
 Send local emails.
+
+*** /usr/share/dict
+Contains a dictionaries.
 
 ** /boot
 Contains kernel boot loader files. These files pertain only to the very first stage of the Linux startup procedure, so you won’t find information about how Linux starts up its services in this directory.
@@ -1733,14 +2029,37 @@ Are modules that the kernel loads and unloads on demand during the course of nor
 ** /bin
 Contains ready-to-run programs (also known as executables), including most of the basic Unix commands such as ~ls~ and ~cp~.
 
+This directory contains executable files that are part of the core operating system (those required by the system for emergency repairs, booting, and single user mode). These files need to be accessible before [[ /usr]] gets mounted. (for instance, the ~mount~ command is in ~/bin/mount~). But in modern systems it is the same as the [[ /usr/bin]].
+
+This directory are specified by the Linux Filesystem Hierarchy Standard to contain only files supplied and maintained by the Linux distributor.
+
 ** /sbin
 The place for system executables. Programs in ~/sbin~ directories relate to system management, so regular users usually do not have ~/sbin~ components in their command paths.
+
+These are programs that perform vital system tasks that are generally reserved for the superuser.
 
 ** /home
 Holds home (personal) directories for regular users.
 
+*** /home/user/_bash_profile
+A user's personal startup file for [[Interactive shells][login shell]]. This can be used to extend or override settings in the global configuration script.
+
+*** /home/user/_bash_login
+If [[ /home/user/_bash_profile]] is not found, bash attempts to read this script ([[Interactive shells][login shell]]).
+
+*** /home/user/_profile
+If neither [[ /home/user/_bash_profile]] nor [[ /home/user/_bash_login]] is found, bash attempts to read this file. ([[Interactive shells][login shell]]) This is the default in Debian-based distributions, such as Ubuntu.
+
+*** /home/user/_bashrc
+A user's personal startup file for [[Interactive shells][non-login shell]]. It can be used to extend or override settings in the global configuration script.
+
+*** /home/user/local/share/Trash
+Trash folder.
+
 ** /tmp
-A storage area for smaller, temporary files. Any user may read to and write from ~/tmp~, but the user may not have permission to access another user’s files there.
+A storage area for smaller, temporary files created by various programs. Some configurations cause this directory to be emptied each time the system is rebooted.
+
+Any user may read to and write from ~/tmp~, but the user may not have permission to access another user’s files there.
 
 ** /media
 A base attachment point for removable media such as flash drives that is found in many distributions.
@@ -1752,17 +2071,32 @@ Almost all Linux systems include a temporary mount point, ~/mnt~, which is typic
 This may contain additional third-party software.
 
 ** /root
-Directorio home del superusuario.
+This is the home directory for the root account.
 
 ** /srv
 Archivos relativos a servidores web, FTP,...
 
 ** /lost+found
+Each formatted partition or device using a Linux file system, such as ext4, will have this directory. It is used in the case of a partial recovery from a file system corruption event.  Unless something really bad has happened to our system, this directory will remain empty.
+
 It provides a way to ~fsck~ (File System Check utility) to recover parts as small data structure.
 
 When ~fsck~ asks you about reconnecting an inode, it has found a file that doesn’t appear to have a name. When reconnecting such a file, ~fsck~ places the file in the ~lost+found~ directory in the filesystem, with a number as the filename. If this happens, you need to guess the name based on the file’s contents; the original filename is probably gone.
 
-* The C Compiler‌
+* The C Compiler
+** Compiling
+Compiling is the process of translating *source code* (the human-readable description of a program written by a programmer) into the native language of the computer’s processor.
+
+The computer’s processor (or [[CPU]]) works at an elemental level, executing programs in what is called *machine language*. This is a numeric code that describes extremely small operations, such as “add this byte,” “point to this location in memory,” or “copy this byte.” Each of these instructions is expressed in binary (ones and zeros). The earliest computer programs were written using this numeric code.
+
+This problem was overcome by the advent of *assembly language*, which replaced the numeric codes with (slightly) easier to use character mnemonics such as ~CPY~ (for copy) and ~MOV~ (for move). Programs written in assembly language are processed into machine language by a program called an *assembler*. Assembly language is still used today for certain specialized programming tasks, such as device drivers and embedded systems.
+
+We next come to what are called *high-level programming languages*. They are called this because they allow the programmer to be less concerned with the details of what the processor is doing and more with solving the problem at hand. The early ones (developed during the 1950s) include FORTRAN (designed for scientific and technical tasks) and COBOL (designed for business applications).
+
+Programs written in high-level programming languages are converted into machine language by processing them with another program, called a *compiler*. Some compilers translate high-level instructions into assembly language and then use an assembler to perform the final stage of translation into machine language.
+
+A process often used in conjunction with compiling is called *linking*. There are many common tasks performed by programs. Take, for instance, opening a file. Many programs perform this task, but it would be wasteful to have each program implement its own routine to open files. It makes more sense to have a single piece of programming that knows how to open files and to allow all programs that need it to share it. Providing support for common tasks is accomplished by what are called *libraries*. They contain multiple *routines*, each performing some common task that multiple programs can share. If we look in the [[ /lib]] and ~/usr/lib~ directories, we can see where many of them live. A program called a *linker* is used to form the connections between the output of the compiler and the libraries that the compiled program requires. The final result of this process is the *executable program* file, ready for use.
+
 ** Object file
 Is a binary file that a processor can almost understand, except that there are still a few loose ends. First, the operating system doesn’t know how to start up an object file, and second, you likely need to combine several object files and some system libraries to make a complete program.
 
@@ -1773,7 +2107,7 @@ Is a collection of common precompiled components that you can build into your pr
 
 Libraries come into play primarily at link time, when the linker program ~ld~ creates an executable from object files. Linking using a library is often called *linking against* a library.
 
-** Shared and Static Libraries‌
+** Shared and Static Libraries
 A library file ending with ~.a~ (such as ~libcurses.a~) is called a *static library*. When you link a program against a static library, the linker copies the necessary machine code from the library file into your executable. Once it does this, the final executable no longer needs the original library file when it runs, and because your executable has its own copy of the library code, the executable’s behavior is not subject to change if the ~.a~ file changes.
 
 Linking a program against a *shared library* doesn’t copy the code into the final executable; it just adds references to names in the code of the library file. When you run the program, the system loads the library’s code into the process memory space only when necessary. Many processes can share the same shared library code in memory. And if you need to slightly modify the library code, you can generally do so without recompiling any programs. When updating software on your Linux distribution, the packages that you’re updating can include shared libraries. When your update manager asks you to reboot your machine, sometimes it’s doing so to be sure that every part of your system is using new versions of shared libraries.
@@ -1792,7 +2126,7 @@ Preprocessor commands in the source code are called *directives*, and they start
 
 - Include files :: an ~#include~ directive instructs the preprocessor to include an entire file.
 - Macro definitions :: a line such as ~#define BLAH something~ tells the preprocessor to substitute ~something~ for all occurrences of ~BLAH~ in the source code.
-- Conditionals :: you can mark out certain pieces of code with ~#ifdef~, ~#if~, and ~#endif~. The ~#ifdef~ /MACRO/ directive checks to see whether the preprocessor macro /MACRO/ is defined, and ~#if condition~ tests to see whether ~condition~ is nonzero.
+- Conditionals :: you can mark out certain pieces of code with ~#ifdef~, ~#if~, and ~#endif~. The ~#ifdef~ =MACRO= directive checks to see whether the preprocessor macro =MACRO= is defined, and ~#if condition~ tests to see whether ~condition~ is nonzero.
 
 ** make
 *** Briefly
@@ -1829,7 +2163,7 @@ all: myprog      # (all) first target (is always the default)
                   # all depends on myprog
                   # myprog (is the rule for all and the target of OBJS)
 myprog: $(OBJS)  # Makefile uses the macro $(OBJS) in the dependencies
-	  $(CC) -o myprog $(OBJS) # The whitespace before $(CC) is a tab
+          $(CC) -o myprog $(OBJS) # The whitespace before $(CC) is a tab
 
 #+end_src
 
@@ -1888,7 +2222,16 @@ Makefile dependencies
 - depend :: this target creates dependencies by calling the compiler with ~-M~ to examine the source code.
 - all :: this is commonly the first target in the Makefile. You’ll often see references to this target instead of an actual executable.
 
-** Software Build Systems‌
+** Configure and Makefile
+*** Configure
+The configure program is a shell script that is supplied with the source tree. Its job is to analyze the build environment. Most source code is designed to be portable. That is, it is designed to build on more than one kind of Unix-like system. But to do that, the source code may need to undergo slight adjustments during the build to accommodate differences between systems. configure also checks to see that necessary external tools and components are installed.
+
+*** Makefile
+The *makefile* is a configuration file that instructs the ~make~ program exactly how to build the program. Without it, make will refuse to run.
+
+The ~make~ program takes as input a makefile (which is normally named ~Makefile~), which describes the relationships and dependencies among the components that comprise the finished program.
+
+** Software Build Systems
 *** Installing a package from C source code
 1. Unpack the source code archive.
 2. Configure the package (~./configure~).
@@ -1908,7 +2251,7 @@ If things really start to get unruly, you should create your own packages with ~
 - make check :: some packages come with a battery of tests to verify that the compiled programs work properly; the command ~make check~ runs those tests.
 - make install-strip :: this is like ~make install~ except it strips the symbol table and other debugging information from executables and libraries when installing. Stripped binaries require much less space.
 
-*** An autoconf example‌
+*** An autoconf example
 1. We'll install the GNU coreutils package in the own home directory.
 2. Get the package from http://ftp.gnu.org/gnu/coreutils/, unpack it, change to its directory.
 3. Configure it like this: ~./configure --prefix=$HOME/mycoreutils~.
@@ -2047,6 +2390,574 @@ One of the most frequent reasons to use a tool like top is to find out which pro
   -  ~N~ to sort by process ID
   -  ~T~ to sort by the running time
 
+*** Example
+
+- 14:59:20 :: the current time of day.
+- up 6:30 :: uptime. It is the amount of time since the machine was last booted.
+- load average: :: refers to the number of processes that are waiting to run, that is, the number of processes that are in a runnable state and are sharing the cpu. Values less than 1.0 indicate that the machine is not busy.
+- Cpu(s) :: this row describes the character of the activities that the CPU is performing.
+- 0.7%us :: 0.7 percent of the CPU is being used for user processes. This means processes outside the kernel.
+- 1.0%sy :: 1.0 percent of the CPU is being used for system (kernel) processes.
+- 0.0%ni :: 0.0 percent of the CPU is being used by “nice” (low-priority) processes.
+- 98.3%id :: 98.3 percent of the CPU is idle.
+- 0.0%wa :: 0.0 percent of the CPU is waiting for I/O.
+
+#+begin_src sh
+
+top - 14:59:20 up 6:30, 2 users, load average: 0.07, 0.02, 0.00
+Tasks:  109 total, 1 running, 106 sleeping, 0 stopped, 2 zombie
+Cpu(s): 0.7%us, 1.0%sy, 0.0%ni, 98.3%id, 0.0%wa, 0.0%hi, 0.0%si
+Mem:    319496k total, 314860k used,   4636k free,  19392k buff
+Swap:   875500k total, 149128k used, 726372k free, 114676k cach
+
+PID   USER  PR NI  VIRT  RES  SHR S %CPU %MEM   TIME+  COMMAND
+6244  me    39 19 31752 3124 2188 S  6.3  1.0 16:24.42 trackerd
+11071 me    20  0  2304 1092  840 R  1.3  0.3 00:00.14 top
+6180  me    20  0  2700 1100  772 S  0.7  0.3 00:03.66 dbus-dae
+6321  me    20  0 20944 7248 6560 S  0.7  2.3 02:51.38 multiloa
+4955  root  20  0 104m  9668 5776 S  0.3  3.0 02:19.39 Xorg
+1     root  20  0 2976   528  476 S  0 0  0.2 00:03.14 init
+2     root  15 -5    0     0    0 S  0.0  0.0 00:00.00 kthreadd
+3     root  RT -5    0     0    0 S  0.0  0.0 00:00.00 migratio
+4     root  15 -5    0     0    0 S  0.0  0.0 00:00.72 ksoftirq
+5     root  RT -5    0     0    0 S  0.0  0.0 00:00.04 watchdog
+6     root  15 -5    0     0    0 S  0.0  0.0 00:00.42 events/0
+7     root  15 -5    0     0    0 S  0.0  0.0 00:00.06 khelper
+41    root  15 -5    0     0    0 S  0.0  0.0 00:01.08 kblockd/
+67    root  15 -5    0     0    0 S  0.0  0.0 00:00.00 kseriod
+114   root  20  0    0     0    0 S  0.0  0.0 00:01.62 pdflush
+116   root  15 -5    0     0    0 S  0.0  0.0 00:02.44 kswapd0
+
+#+end_src
+
+** ps
+The STAT column is short for “state” and reveals the current status of the process.
+
+- R (running) :: this means that the process is running or ready to run.
+- S (sleeping) :: the process is not running; rather, it is waiting for an event, such as a keystroke or network packet.
+- D (uninterruptible sleep) :: the process is waiting for I/O such as a disk drive.
+- T (stopped) :: the process has been instructed to stop. More on this later in the chapter.
+- Z (a defunct or “zombie” process) :: this is a child process that has terminated but has not been cleaned up by its parent.
+- < (a high-priority process) :: it's possible to grant more importance to a process, giving it more time on the CPU. This property of a process is called niceness. A process with high priority is said to be less nice because it's taking more of the CPU's time, which leaves less for everybody else.
+- N (a low-priority process) :: a process with low priority (a “nice” process) will get processor time only after other processes with higher priority have been serviced.
+
+** find
+*** Overview
+GNU ~find~ searches the directory tree rooted at each given starting-point by evaluating the given expression from left to right, according to the rules of precedence, until the outcome is known (the left hand side is false for ~and~ operations, true for ~or~), at which point find moves on to the next file name.  If no starting-point is specified, ( ~.~ ) is assumed.
+
+*Informal syntax*: ~find dir [ [atttributes logical-relationship] ... ] action~
+
+~find~ allows actions to be performed based on the search results. There are a set of predefined actions and several ways to apply user-defined actions.
+
+By default, ~find~ evaluates from left to right. That is, the logical relationship between the tests and actions determines which of them are performed, so the order of the tests and actions is important.
+
+In the ~find~ command, there is, by default, an implied ~-and~ relationship between each test and action (that is, when no operator is present, ~-and~ is implied by default).
+
+The operators ~-and~, ~-or~ and ~-not~ can be abbreviated by ~-a~, ~-o~ and ~!~.
+
+#+begin_src sh
+
+# These commands are the same.
+find . -type f -name '*.bak' -print
+
+find . -type f -a -name '*.bak' -a -print
+
+find . -type f -and -name '*.bak' -and -print
+
+#+end_src
+
+*Warning*: use extreme caution when using the ~-delete~ action. Always test the command first by substituting the ~-print~ action for ~-delete~ to confirm the search results.
+
+*Dealing with Funny Filenames (-print0)*:
+Unix-like systems allow embedded spaces (and even newlines!) in filenames. This causes problems for programs like ~xargs~ that construct argument lists for other programs. An embedded space will be treated as a delimiter, and the resulting command will interpret each space-separated word as a separate argument. To overcome this, ~find~ and ~xargs~ allow the optional use of a null character as an argument separator. The ~find~ command provides the action ~-print0~, which produces null-separated output, and the ~xargs~ command has the ~--null~ (or ~-0~) option, which accepts null separated input.
+
+#+begin_src sh
+
+find . -iname '*.jpg' -print0 | xargs --null ls -l
+# Using this technique, we can ensure that all files, even those
+# containing embedded spaces in their names, are handled correctly.
+
+#+end_src
+
+*Note*: ~find~ does not produce results in sorted order. Its order is determined by the layout of the storage device.
+
+*** Tests
+Tests return a true or false value, usually on the basis of some property of a file we are considering. Adding the test ~-type~ limited the search to directories.
+
+#+begin_src sh
+
+# List only directories.
+find . -type d
+
+#+end_src
+
+| /Type/ | /Description/                   |
+|------+-------------------------------|
+| /b/    | Block special device file     |
+| /c/    | Character special device file |
+| /d/    | Directory                     |
+| /f/    | Regular file                  |
+| /l/    | Symbolic link                 |
+| /s/    | Socket                        |
+
+*** Test size
+We can also search by file size.
+
+We add the ~-size~ test followed by the string ~+1M~. The leading plus sign ( ~+~ )  indicates that we are looking for files larger than the specified number. A leading minus ( ~-~ )  sign would change the meaning of the string to be smaller than the specified number. Using no sign means, “match the value exactly.” The trailing letter ~M~ indicates that the unit of measurement is megabytes.
+
+#+begin_src sh
+
+# Match the wildcard *.jpg and are larger than one megabyte.
+find . -type f -name "*.jpg" -size +1M
+
+#+end_src
+
+| /Char/ | /Unit/                                  |
+|------+---------------------------------------|
+| /b/    | 512-byte blocks (default)             |
+| /c/    | Bytes                                 |
+| /w/    | 2-byte words                          |
+| /k/    | Kilobytes (units of 1024 bytes)       |
+| /M/    | Megabytes (units of 1048576 bytes)    |
+| /G/    | Gigabytes (units of 1073741824 bytes) |
+
+*** Table test
+The cases where a numeric argument is required, the ( ~+~ ) mean "files larger than the specified number" and ( ~-~ ) "files smaller than the specified number" and no sign means, "match the value exactly".
+
+| /Test/           | /Match/                                               |
+|----------------+-----------------------------------------------------|
+| /-empty/         | empty fs and ds                                     |
+| /-type c/        | fs of type c                                        |
+| /-size n/        | fs of size n                                        |
+| /-name pattern/  | fs a ds with the specified wildcard pattern         |
+| /-iname pattern/ | like the -name test but case-insensitive            |
+| /-perm mode/     | fs o ds that have permissions set to specified mode |
+| /-cmin n/        | fs o ds whose conts o atts last mod exactly n min   |
+| /-cnewer file/   | fs o ds whose conts o atts last mod more recently   |
+| /-ctime n/       | fs o ds whose conts o atts last mod n*24 hours      |
+| /-mmin n/        | fs o ds whose conts were last mod n minutes ago     |
+| /-mtime n/       | fs o ds whose conts were last mod n*24 hours ago    |
+| /-newer file/    | fs a ds whose conts were mod more recently than f * |
+| /-inum n/        | f with inode number n (find hardlinks to inode)     |
+| /-samefile name/ | similar -inum. fs share the same inode as file name |
+| /-user name/     | fs o ds belonging to user name                      |
+| /-nouser/        | f a ds that do not belong to a valid user *         |
+| /-group name/    | f o ds belonging to group.                          |
+| /-nogroup/       | fs a ds that do not belong to a valid group         |
+
+| /Abbreviation/ | /Name/                   |
+|--------------+------------------------|
+| /fs/           | files                  |
+| /fs o ds/      | files or directories   |
+| /f o ds/       | file or directories    |
+| /fs a ds/      | files and directories  |
+| /f a ds/       | file and directories   |
+| /conts/        | contents               |
+| /conts o atts/ | contents or attributes |
+| /mod/          | modified               |
+| /last mod/     | were last modified     |
+
+*Notes*: *
+- This ~-newer file~ is useful when writing shell scripts that perform file backups. Each time you make a backup, update a file (such as a log) and then use find to determine which files have changed since the last update.
+- This ~-nouser~ can be used to find files belonging to deleted accounts or to detect activity by attackers.
+
+*** Operators
+~find~ provides a way to combine tests using logical operators to create more complex logical relationships.
+
+#+begin_src sh
+
+# Looking for all the files with permissions that are not 0600 and the
+# directories with permissions that are not 0700.
+find . \( -type f -not -perm 0600 \) -o \( -type d -not -perm 0700 \)
+
+#+end_src
+
+| /Opt/  | /Match/                                                |
+|------+------------------------------------------------------|
+| /-and/ | if the tests on both sides of the operator are true  |
+| /-or/  | if a test on either side of the operator is true     |
+| /-not/ | if the test following the operator is false          |
+| /( )/  | Groups tests and operators to form larger expression |
+
+~( )~ This is used to control the precedence of the logical evaluations. By default, ~find~ evaluates from left to right. It is often necessary to override the default evaluation order to obtain the desired result. Even if not needed, it is helpful sometimes to include the grouping characters to improve the readability of the command. Note that since the parentheses have special meaning to the shell, they must be quoted when using them on the command line to allow them to be passed as arguments to find. Usually the backslash character is used to escape them.
+
+*** Predefined Actions
+~find~ allows actions to be performed based on the search results. There are a set of predefined actions and several ways to apply user-defined actions.
+
+#+begin_src sh
+
+# Every file in dir and its subdirectories is searched and when they are
+# found, they are deleted.
+find . -type f -name '*.bak' -delete
+
+# Could express this way to make the logical relationships easier to see.
+find . -type f -a -name '*.bak' -a -print
+
+#+end_src
+
+*Warning*: Extreme caution when using the ~-delete~ action. Always test the command first by substituting the ~-print~ action for ~-delete~ to confirm the search results.
+
+| /Action/  | /Description/                                      |
+|---------+--------------------------------------------------|
+| /-delete/ | delete the currently matching file               |
+| /-ls/     | perform the equivalent of ls -dils on match file |
+| /-print/  | output the full path of the matc file to stdout  |
+| /-quit/   | quit once a match has been made                  |
+
+*** User-Defined Actions
+We can also invoke arbitrary commands. The traditional way of doing this is with the ~-exec~ action. This action works like this:
+
+~-exec command {} ;~
+
+Here *command* is the name of a command, ~{}~ is a symbolic representation of the current pathname, and the semicolon ( ~;~ ) is a required delimiter indicating the end of the command. Note that the brace and semicolon characters have special meaning to the shell, so they must be quoted or escaped.
+
+#+begin_src sh
+
+# In this example -exec act like the -delete action.
+-exec rm '{}' ';'
+
+
+# It’s possible to execute a user-defined action interactively. By using
+# the -ok action in place of -exec
+find . -type f -name 'foo*' -ok ls -l '{}' ';'
+# < ls ... /home/me/bin/foo > ? y
+# -rwxr-xr-x 1 me me 224 2007-10-29 18:44 /home/me/bin/foo
+# < ls ... /home/me/foo.txt > ? y
+# -rw-r--r-- 1 me me 0 2016-09-19 12:53 /home/me/foo.txt
+
+#+end_src
+
+*Improving Efficiency*:
+When the ~-exec~ action is used, it launches a new instance of the specified command each time a matching file is found. There are times when we might prefer to combine all of the search results and launch a single instance of the command.
+
+By changing the trailing semicolon character to a plus sign, we activate the ability of ~find~ to combine the results of the search into an argument list for a single execution of the desired command.
+
+#+begin_src sh
+
+# This will execute ls each time a matching file is found.
+find . -type f -name 'foo*' -exec ls -l '{}' ';'
+# Lower performance since it launches a new instance of the specified
+# command each time a matching file is found.
+
+# Same results, but the system has to execute the ls command only once.
+find . -type f -name 'foo*' -exec ls -l '{}' +
+# Better performace since combine the results of the search into an
+# argument list for a single execution of the command.
+
+# Another approach with xargs command.
+find . -type f -name 'foo*' -print | xargs ls -l
+# The output of the find command piped into xargs, which, in turn,
+# constructs an argument list for the ls command and then executes it.
+
+#+end_src
+
+*Note*: While the number of arguments that can be placed into a command line is quite large, it’s not unlimited. It is possible to create commands that are too long for the shell to accept. When a command line exceeds the maximum length supported by the system, ~xargs~ executes the specified command with the maximum number of arguments possible and then repeats this process until standard input is exhausted. To see the maximum size of the command line, execute ~xargs~ with the ~--show-limits~ option.
+
+*** Regexp
+There is an important consideration to keep in mind when using regular expressions in ~find~ versus ~grep~. Whereas ~grep~ will print a line when the line *contains* a string that matches an expression, ~find~ requires that the pathname *exactly match* the regular expression.
+
+#+begin_src sh
+
+# Find every pathname that contains any character that is not a member
+# of the set: [-_./0-9a-zA-Z]
+# Such a scan would reveal pathnames that contain embedded spaces and
+# other potentially offensive characters.
+find . -regex '.*[^-_./0-9a-zA-Z].*'
+
+#+end_src
+
+*** Options
+We have the options. The options are used to control the scope of a ~find~ search.  They may be included with other tests and actions when constructing ~find~ expressions.
+
+| /Option/    | /Description/                                        |
+|-----------+----------------------------------------------------|
+| /-depth/    | Direct find to process a directory’s files before  |
+|           | dir itself (default when the -delete is specified) |
+| /-maxdepth/ | Set the max of levels that find will descend into  |
+|           | a directory tree when performing tests and actions |
+| /-mindepth/ | Set the min of levels that find will descend into  |
+|           | a directory tree before applying tests and actions |
+| /-mount/    | Direct find not to traverse directories that are   |
+|           | mounted on other file systems                      |
+
+** sort
+On computers, dates are usually formatted in ~YYYY-MM-DD~ order to make chronological sorting easy, but ours are in the American format of ~MM/DD/YYYY~. How can we sort this list in chronological order?
+
+Fortunately, sort provides a way. The key option allows specification of offsets within fields, so we can define keys within fields.
+
+#+begin_src sh
+
+sort -k 3.7nbr -k 3.1nbr -k 3.4nbr file_dates
+# Fedora     10      11/25/2008
+# Ubuntu     8.10    10/30/2008
+# SUSE       11.0    06/19/2008
+# By specifying -k 3.7, we instruct sort to use a sort key that begins
+# at the seventh character within the third field, which corresponds
+# to the start of the year. Likewise, we specify -k 3.1 and -k 3.4 to
+# isolate the month and day portions of the date. We also add the n
+# and r options to achieve a reverse numeric sort. The b option is
+# included to suppress the leading spaces (whose numbers vary from
+# line to line, thereby affecting the outcome of the sort) in the date
+# field.
+
+sort --key=1,1 --key=2n file_dates
+# Fedora       5       03/20/2006
+# Fedora       6       10/24/2006
+# Fedora       7       05/31/2007
+# Though we used the long form of the option for clarity, -k 1,1 -k 2n
+# would be exactly equivalent. In the first instance of the key
+# option, we specified a range of fields to include in the first
+# key. Since we wanted to limit the sort to just the first field, we
+# specified 1,1 which means “start at field 1 and end at field 1.” In
+# the second instance, we specified 2n, which means field 2 is the
+# sort key and that the sort should be numeric. An option letter may
+# be included at the end of a key specifier to indicate the type of
+# sort to be performed.
+
+sort -t ':' -k 7 /etc/passwd
+# me:x:1001:1001:Myself,,,:/home/me:/bin/bash
+# root:x:0:0:root:/root:/bin/bash
+# dhcp:x:101:102::/nonexistent:/bin/false
+# By specifying the colon character as the field separator, we can sort
+# on the seventh field.
+
+#+end_src
+
+** xargs
+~xargs~ reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the command (default is /bin/echo) one or more times with any initial-arguments followed by items read from standard input. Blank lines on the standard input are ignored.
+
+That is, ~xargs~ accepts input from standard input and converts it into an argument list for a specified command.
+
+#+begin_src sh
+
+# These command are the same.
+find . -type f -name 'foo*' -print | xargs ls -l
+
+find . -type f -name 'foo*' -exec ls -l '{}' ';'
+# Lower performance since it launches a new instance of the specified
+# command each time a matching file is found.
+
+find . -type f -name 'foo*' -exec ls -l '{}' +
+# Better performace since combine the results of the search into an
+# argument list for a single execution of the command.
+
+#+end_src
+
+*Dealing with Funny Filenames (-print0)*:
+Unix-like systems allow embedded spaces (and even newlines!) in filenames. This causes problems for programs like ~xargs~ that construct argument lists for other programs. An embedded space will be treated as a delimiter, and the resulting command will interpret each space-separated word as a separate argument. To overcome this, ~find~ and ~xargs~ allow the optional use of a null character as an argument separator. The ~find~ command provides the action ~-print0~, which produces null-separated output, and the ~xargs~ command has the ~--null~ (or ~-0~) option, which accepts null separated input.
+
+#+begin_src sh
+
+find . -iname '*.jpg' -print0 | xargs --null ls -l
+# Using this technique, we can ensure that all files, even those
+# containing embedded spaces in their names, are handled correctly.
+
+#+end_src
+
+*Note*: While the number of arguments that can be placed into a command line is quite large, it’s not unlimited. It is possible to create commands that are too long for the shell to accept. When a command line exceeds the maximum length supported by the system, ~xargs~ executes the specified command with the maximum number of arguments possible and then repeats this process until standard input is exhausted. To see the maximum size of the command line, execute ~xargs~ with the ~--show-limits~ option.
+
+** diff
+*** Default format
+In the default format, each group of changes is preceded by a *change command* in the form of *range operation range* to describe the *positions and types* of changes required to *convert the first file to the second file*.
+
+In this format, a range is a comma-separated list of the starting line and the ending line.
+
+| /Change/ | /Description/                                              |
+|--------+----------------------------------------------------------|
+| /r1ar2/  | Append the lines at the position r2 in the second        |
+|        | file to the position r1 in the first file                |
+| /r1cr2/  | Change (replace) the lines at position r1 with the       |
+|        | lines at the position r2 in the second file              |
+| /r1dr2/  | Delete the lines in the first file at position r1, which |
+|        | would have appeared at range r2 in the second file       |
+
+#+begin_src sh
+
+cat file1   cat file2
+# a         b
+# b         d
+# c         d
+# d         e
+
+diff file1 file2
+# 1d0
+# < a # < Means delete that line.
+# 4a4
+# > e # > Means add that line.
+
+#+end_src
+
+*** Context format
+The unified format is specified with the ~-c~ option.
+
+| /Indic/ | /Meaning/                                                |
+|-------+--------------------------------------------------------|
+| /blank/ | A line shown for context. It doesn't indicate          |
+|       | a difference between the two files                     |
+| /-/     | A line deleted. This line will appear in the           |
+|       | first file but not in the second file                  |
+| /+/     | A line added. This line will appear in the             |
+|       | second file but not in the first file                  |
+| /!/     | A line changed.The 2 version of line will be displayed |
+|       | , each in its respective section of change group       |
+
+#+begin_src sh
+
+cat file1   cat file2
+# a         b
+# b         d
+# c         d
+# d         e
+
+diff -c file1 file2
+# *** file1.txt 2008-12-23 06:40:13.000000000 -0500
+# --- file2.txt 2008-12-23 06:40:34.000000000 -0500
+# ***************
+# *** 1,4 ****  # lines 1 through 4 in the first file
+# - a
+#   b
+#   c
+#   d
+# --- 1,4 ----  # lines 1 through 4 in the second file
+#   b
+#   c
+#   d
+# + e
+
+#+end_src
+
+*** Unified format
+The unified format is specified with the ~-u~ option.
+
+~@@ -1,4 +1,4 @@~ This indicates the lines in the first file and the lines in the second file described in the change group. Following this are the lines themselves, with the default three lines of context. Each line starts with one of three possible characters listed below.
+
+| /Char/  | /Meaning/                                   |
+|-------+-------------------------------------------|
+| /blank/ | this line is shared by both files         |
+| /-/     | this line was removed from the first file |
+| /+/     | this line was added to the first file     |
+
+#+begin_src sh
+
+cat file1   cat file2
+# a         b
+# b         d
+# c         d
+# d         e
+
+diff -c file1 file2
+# --- file1.txt 2008-12-23 06:40:13.000000000 -0500
+# +++ file2.txt 2008-12-23 06:40:34.000000000 -0500
+# @@ -1,4 +1,4 @@
+# -a
+#  b
+#  c
+#  d
+# +e
+
+#+end_src
+
+*** Example
+
+#+begin_src sh
+
+cat a.txt   cat b.txt
+one         one
+two         two
+three       THREE
+four        FOUR
+five        FIVE
+six         six
+7           10
+8           9
+9           8
+10          7
+eleven      eleven
+twelve      twelve
+13          0
+14          13
+15          14
+16          15
+            16
+
+# diff show how to change the first file to match the second.
+diff -u a.txt b.txt
+--- a.txt	2023-09-28 12:32:42.998667401 -0400 # --- first file.
++++ b.txt	2023-09-28 12:32:41.958654590 -0400 # +++ second file.
+@@ -1,15 +1,16 @@
+# -1,15 show line 1 and the following 15 lines.
+# +1,16 show line 1 and the following 16 lines.
+# Show 3 lines before and after the change.
+# - deleted lines + add lines.
+# whitespace at the begining indicates the line doesn't change.
+ one
+ two
+-three
+-four
+-five
++THREE
++FOUR
++FIVE
+ six
+-7
+-8
+-9
+ 10
++9
++8
++7
+ eleven
+ twelve
++0
+ 13
+ 14
+ 15
+
+#+end_src
+
+** sed
+In general, sed takes an address and an operation as one argument. The address is a set of lines (every line by default), and the command determines what to do with the lines. With no file arguments, sed reads from the standard input.
+
+| /Address/     | /Description/                                     |
+|-------------+-------------------------------------------------|
+| /n/           | A line number where n is a positive integer     |
+| /$/           | The last line                                   |
+| /regexp/      | Lines matching a POSIX basic regexp             |
+| /addr1,addr2/ | A range of lines from addr1 to addr2, inclusive |
+| /addr1,+n/    | Match addr1 and the following n lines           |
+| /addr!/       | Match all lines except addr                     |
+| /first~step/  | Match the line represented by the number first, |
+|             | then each subsequent line at step intervals     |
+
+| /Command/     | /Description/                                      |
+|--------------+--------------------------------------------------|
+| /=/            | Output the current line number                   |
+| /a/            | Append text after the current line               |
+| /i/            | Insert text in front of the current line         |
+| /d/            | Delete the current line                          |
+| /p/            | Print the current line                           |
+| /q/            | Exit sed without processing any more lines       |
+| /Q/            | Exit sed without processing any more lines       |
+| /s/regex/rep// | Sub cont of replacement wherever regexp is found |
+| /y/set1/set2/  | Perform transliteration by converting characters |
+|              | from set1 to the corresponding charactrs in set2 |
+
+- /p/ By default, ~sed~ prints every line and only edits lines that match a specified address within the file. The default behavior can be overridden by specifying the ~-n~ option.
+- *replacement* may include the special character ~&~, which is equivalent to the text matched by regexp. In addition, replacement may include the sequences ~\1~ through ~\9~, which are the contents of the corresponding subexpressions in regexp. After the trailing slash following replacement, an optional flag may be specified to modify the s command’s behavior.
+
+*Notes*:
+- when any command has extra slashes in its regular expression, this would confuse sed when it tries to interpret the command, so it must be applied the backslashes to escape the offending characters.
+
+#+begin_src sh
+
+sed 's/([0-9]{2})/([0-9]{4})$\2-\1/' file
+# Application of backslashes to escape the offending characters.
+sed 's/\([0-9]\{2\}\)\/\([0-9]\{4\}\)$/\2-\1/' file
+
+#+end_src
+
+- ~sed~ does not support character ranges (for example, ~[a-z]~), nor does it support POSIX character classes.
+
 ** rsync
 Some tips on *how to exclude patterns*:
 
@@ -2152,90 +3063,6 @@ iptables -I INPUT 4 -s 192.168.34.37 -j ACCEPT
 
 #+end_src
 
-** diff
-
-#+begin_src sh
-
-cat a.txt   cat b.txt
-one         one
-two         two
-three       THREE
-four        FOUR
-five        FIVE
-six         six
-7           10
-8           9
-9           8
-10          7
-eleven      eleven
-twelve      twelve
-13          0
-14          13
-15          14
-16          15
-            16
-
-# diff show how to change the first file to match the second.
-diff -u a.txt b.txt
---- a.txt	2023-09-28 12:32:42.998667401 -0400 # --- first file.
-+++ b.txt	2023-09-28 12:32:41.958654590 -0400 # +++ second file.
-@@ -1,15 +1,16 @@
-# -1,15 show from 1 line to 15 of first file.
-# +1,16 show from 1 line to 16 of second file.
-# Show 3 lines before and after the change.
-# - deleted lines + add lines.
-# whitespace at the begining indicates the line doesn't change.
- one
- two
--three
--four
--five
-+THREE
-+FOUR
-+FIVE
- six
--7
--8
--9
- 10
-+9
-+8
-+7
- eleven
- twelve
-+0
- 13
- 14
- 15
-
-
-# diff show how to change the first file to match the second.
-diff a.txt b.txt
-# change from 3 line to 5 of first file to from 3 to 5 of second file.
-3,5c3,5
-< three # < means delete that line.
-< four
-< five
----
-> THREE # > means add that line.
-> FOUR
-> FIVE
-# delete from line 7 to 9 of the first file and sync from line 6.
-7,9d6
-< 7
-< 8
-< 9
-# add from line 8 to 10 of the second file and sync from line 10.
-10a8,10
-> 9
-> 8
-> 7
-# add the line 13 of the second file and sync from line 12.
-12a13
-> 0
-
-#+end_src
-
 ** tcpdump
 *** TCP Packets
  The general format of a tcp protocol line is:
@@ -2312,3 +3139,5 @@ In a typical traceroute session, a group of packets with TTL=1 are sent. A singl
 
 * References
 - How Linux Works by Brian Ward.
+- The Linux Command Line by William Shotts.
+- [[https://www.debian.org/doc/manuals/debian-reference/][Debian Reference]].

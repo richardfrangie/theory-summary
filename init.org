@@ -338,8 +338,17 @@ It only works when there are only two windows."
 
 #+begin_src emacs-lisp
 
+;;;; Default to an indentation size of 2 spaces since it's the norm for
+;;;; pretty much every language that System Crafters use.
+(setq-default tab-width 2)
+
+
+;;;; Use spaces instead of tabs for indentation
+(setq-default indent-tabs-mode nil)
+
+
 ;; Every buffer would be cleaned up before it’s saved.
-;; (add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 
 ;;;; Unobtrusively remove trailing whitespace.
@@ -414,15 +423,6 @@ Directional selection of windows in a frame.
 
 ;; save/restore opened files and windows config
 (desktop-save-mode 1) ; 0 for off
-;; To start emacs without opening last session's files, start it by:
-;; emacs --no-desktop, this is useful because sometimes you have a
-;; corrupted desktop file. The desktop file path is controlled by
-;; the variable desktop-dirname
-
-;;;;;; Testing.
-;; Delay restoring the desktop in daemon mode until the first 
-;; client connects.
-(add-hook 'server-after-make-frame-hook 'desktop-read)
 
 
 ;; Jump between visible windows, after assigning a number to each window
@@ -609,12 +609,13 @@ It is a rich document editor, project planner, task and time tracker, blogging e
   ;; Configure org TODO.
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "ACTIVE(a)" "REVIEW(r)" "|"
+          (sequence "ACTIVE(a)" "REVIEW(r)" "TESTING" "|"
                     "UNSOLVED(u)" "WAIT(w)")))
 
   (setq org-todo-keyword-faces
     '(("NEXT" . (:foreground "orange red" :weight bold))
       ("WAIT" . (:foreground "HotPink2" :weight bold))
+      ("TESTING" . (:foreground "DarkOrange1" :weight bold))
       ("REVIEW" . (:foreground "MediumPurple3" :weight bold))))
 
   (efs/org-font-setup))
@@ -745,12 +746,11 @@ that's just next to or an the point."
   (interactive)
   (rf/org-emphasize-marker ?\$))
 
-;; org-emphasize (*) bold with F5 and (~) code with F6
-(global-set-key (kbd "<f5>") 'rf/org-emphasize-bold)
-(global-set-key (kbd "<f6>") 'rf/org-emphasize-code)
-(global-set-key (kbd "<f7>") 'rf/org-emphasize-italic)
-;;;;; I'm testing this because Emacs throws an error when I startup
+;; org-emphasize (*) bold with F5, (~) code with F6 and others.
 (with-eval-after-load 'org
+  (define-key org-mode-map (kbd "<f5>") 'rf/org-emphasize-bold)
+  (define-key org-mode-map (kbd "<f6>") 'rf/org-emphasize-code)
+  (define-key org-mode-map (kbd "<f7>") 'rf/org-emphasize-italic)
   (define-key org-mode-map (kbd "<f8>") 'rf/org-emphasize-math))
 
 #+end_src
@@ -1241,26 +1241,6 @@ Code local to your site.
 
 #+begin_src emacs-lisp
 
-(defun rf/subtitle-srt-html ()
-  "Format srt subtitle file to display in html.
-
-File will save in Downloads Folder."
-  (interactive)
-  (beginning-of-buffer) ;; (goto-char 1)
-  (replace-string "<i>" "")
-;;(while (search-forward "<i>" nil t) (replace-match "" nil t))
-  (beginning-of-buffer) ;; (goto-char 1)
-;;(while (search-forward "</i>" nil t) (replace-match "" nil t))
-  (replace-string "</i>" "")
-  (beginning-of-buffer) ;; (goto-char 1)
-  (flush-lines "^[0-9]")
-  (mark-whole-buffer)
-  (org-html-convert-region-to-html)
-  (write-file (concat "~/Downloads/" ;; better use write-region
-                      (substring (buffer-name) 0 -4)
-                      ".html")))
-
-;;;;; Temporarily testing.
 (defun rf/sub-youtube-srt-html (filePath)
   "Format srt sub-youtube file to display in html.
 
@@ -1279,10 +1259,10 @@ Be careful, it overwrites file of the same name."
     (mark-whole-buffer)
     (org-html-convert-region-to-html)
     (write-region 1 (point-max)
-		  (concat "~/Downloads/"
-			  (substring
-			   (file-name-nondirectory filePath) 0 -4)
-			  ".html"))))
+                  (concat "~/Downloads/"
+                          (substring
+                           (file-name-nondirectory filePath) 0 -4)
+                          ".html"))))
 
 (defun rf/sentences-to-anki (beg end &optional asteri)
   "Format sentences written in org-mode to be viewed in anki.

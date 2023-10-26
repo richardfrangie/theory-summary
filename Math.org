@@ -1120,7 +1120,7 @@ Los objetos básicos de la geometría, que son las líneas y los planos se repre
 
 ** Álgebra de Boole
 *** Definición
-Is a branch of algebra. It differs from elementary algebra in two ways. First, the values of the variables are the truth values true and false, usually denoted $1$ and $0$, whereas in elementary algebra the values of the variables are numbers. Second, Boolean algebra uses logical operators such as conjunction (and) denoted as $\land$ , disjunction (or) denoted as $\lor$, and the negation (not) denoted as $\neg$. Elementary algebra, on the other hand, uses arithmetic operators such as addition, multiplication, subtraction, and division. Boolean algebra is therefore *a formal way of describing logical operations*, in the same way that elementary algebra describes numerical operations. 
+Is a branch of algebra. It differs from elementary algebra in two ways. First, the values of the variables are the truth values true and false, usually denoted $1$ and $0$, whereas in elementary algebra the values of the variables are numbers. Second, Boolean algebra uses logical operators such as conjunction (and) denoted as $\land$ , disjunction (or) denoted as $\lor$, and the negation (not) denoted as $\neg$. Elementary algebra, on the other hand, uses arithmetic operators such as addition, multiplication, subtraction, and division. Boolean algebra is therefore *a formal way of describing logical operations*, in the same way that elementary algebra describes numerical operations.
 
 *** Leyes de De Morgan
 Son un par de reglas de transformación que son ambas reglas de inferencia válidas. Las normas permiten la expresión de las conjunciones y disyunciones puramente en términos de vía negación.
@@ -1682,25 +1682,6 @@ Una de las diferencias entre el álgebra y el análisis es que este último recu
 *** Convergencia
 La idea de la convergencia es la de "aproximar" un objeto por otro, es decir, sustituir un objeto por otro que está próximo a él. Evidentemente, al hacerlo así se está cometiendo un error, error que en general dependerá de lo próximo que se encuentre el objeto sustituido del objeto sustituto. Para hacer esta sustitución de una manera sistemática, de forma que el error pueda ser elegido arbitrariamente pequeño, aparecen distintos tipos de conjuntos. Se obtiene así un proceso de sucesivas aproximaciones que, si todo va bien, terminarían llevándonos al objeto, aunque fuese después de un número infinito de aproximaciones. El más sencillo de estos conjuntos es una sucesión, es decir, una colección infinita (numerable) y ordenada de objetos, aunque con el mismo carácter de orden hay otros conjuntos que reflejan mejor el concepto de convergencia. (extracto del artículo [[https://es.wikipedia.org/wiki/Topolog%C3%ADa][Topología en wikipedia]])
 
-*** σ-algebra 
-A σ-algebra (also σ-field) on a set $X$ is a nonempty collection $\sum$ of subsets of $X$ closed under complement, countable unions, and countable intersections. The ordered pair $(X,\Sigma )$ is called a measurable space.
-
-The main use of σ-algebras is in the definition of measures; specifically, the collection of those subsets for which a given measure is defined is necessarily a σ-algebra. This concept is important in mathematical analysis as the foundation for Lebesgue integration, and in probability theory, where it is interpreted as the collection of events which can be assigned probabilities.
-
-If $X=\{a,b,c,d\}$ one possible σ-algebra on $X$  is $\Sigma =\{\varnothing ,\{a,b\},\{c,d\},\{a,b,c,d\}\}$ where  $\varnothing$ is the empty set. In general, a finite algebra is always a σ-algebra.
-
-If  $\{A_{1},A_{2},A_{3},\ldots \}$ is a countable partition of $X$ then the collection of all unions of sets in the partition (including the empty set) is a σ-algebra.
-
-A more useful example is the set of subsets of the real line formed by starting with all open intervals and adding in all countable unions, countable intersections, and relative complements and continuing this process (by transfinite iteration through all countable ordinals) until the relevant closure properties are achieved (a construction known as the Borel hierarchy). 
-
-*Motivation*:
-There are at least three key motivators for σ-algebras: defining measures, manipulating limits of sets, and managing partial information characterized by sets.
-
-*Measure*:
-A measure on $X$ is a function that assigns a non-negative real number to subsets of $X$ ; this can be thought of as making precise a notion of "size" or "volume" for sets. We want the size of the union of disjoint sets to be the sum of their individual sizes, even for an infinite sequence of disjoint sets.
-
-One would like to assign a size to every subset of $X$, but in many natural settings, this is not possible. For example, the axiom of choice implies that when the size under consideration is the ordinary notion of length for subsets of the real line, then there exist sets for which no size exists, for example, the Vitali sets. For this reason, one considers instead a smaller collection of privileged subsets of $X$. These subsets will be called the measurable sets. They are closed under operations that one would expect for measurable sets, that is, the complement of a measurable set is a measurable set and the countable union of measurable sets is a measurable set. Non-empty collections of sets with these properties are called σ-algebras.
-
 ** Cálculo Infinitesimal
 *** Definición
 Es el estudio del cambio y la continuidad. El cálculo infinitesimal se divide en dos áreas: cálculo diferencial y cálculo integral. El *cálculo diferencial* estudia cómo computar la función que describe el cambio de otra función de variables continuas (operación de orden superior llamada «derivada»), mientras que el *cálculo integral* estudia la operación inversa (antiderivadas e integrales) y las series infinitas. En su formulación contemporánea, ambos campos se fundamentan en el concepto de límite para poder calcular cambios infinitesimalmente pequeños; y se relacionan por medio del teorema fundamental del cálculo.
@@ -1879,7 +1860,7 @@ La integral de Riemann de una función $f$ sobre el intervalo $[a,b]$ es igual a
 
 Para todo $\varepsilon >0$ existe $\delta >0$ tal que, para cualquier partición etiquetada $[a,b]$ con paso más pequeño que $\delta$, se tiene
 
-$$\left|S - \sum _{i=1}^{n} f(t_{i}) \Delta _{i}\right | < \varepsilon$$ 
+$$\left|S - \sum _{i=1}^{n} f(t_{i}) \Delta _{i}\right | < \varepsilon$$
 
 , donde
 
@@ -2367,6 +2348,18 @@ Representado de esta manera, es muy sencillo deducir la fórmula de la suma de l
 $$\sum _{k=1}^{n}k={\frac {n(n+1)}{2}}$$
 
 Aunque a primera vista parece que la serie no tiene ningún valor significativo, puede ser manipulada para producir varios resultados matemáticamente interesantes.
+
+**** Sum of Sequence of Squares
+Theorem
+
+$$\forall n \in N : \sum_{i=1}^ni^2=\frac{n(n+1)(2n+1)}{6}$$
+
+[[https://proofwiki.org/wiki/Sum_of_Sequence_of_Squares][Proof by Summation of Summations]]
+
+\begin{array}{rcl}
+\sum_{i=1}^ni^2 &=& \sum_{i=1}^n\left(\sum_{j=i}^nj\right)\\
+                                  &=& \sum_{i=1}^n\left(\sum_{j=i}^nj - \sum_{j=i}^{i-1}j \right)
+\end{array}
 
 *** Progresión Geométrica
 **** Definición
@@ -3242,6 +3235,15 @@ Sea $X \in N(3,2)$ para calcular $P(X \le 3,5)$ se hace lo siguiente $P(X \le 3,
 - Las probabilidades en distribuciones continuas se calculan en partes o uniones de intervalos, debido a que las probabilidades en un punto son nulas. (por ejemplo, la probabilidad de que una persona en un grupo tenga la estatura de 1,53698 mts es prácticamente 0)
 - Cuando se tiene una variable aleatoria con distribución continua se tiene una función de densidad que es la que nos permite calcular probabilidades.
 
+** Central limit theorem
+The central limit theorem (CLT) establishes that, in many situations, for independent and identically distributed random variables, the sampling distribution of the standardized sample mean tends towards the standard normal distribution even if the original variables themselves are not normally distributed.
+
+The theorem is a key concept in probability theory because it implies that probabilistic and statistical methods that work for normal distributions can be applicable to many problems involving other types of distributions.
+
+An elementary form of the theorem states the following. Let $X_{1},X_{2},\dots ,X_{n}$ denote a random sample of $n$ independent observations from a population with overall expected value (average) $\mu$ and finite variance $\sigma ^{2}$, and let $\displaystyle {\bar {X}}_{n}$ denote the sample mean of that sample (which is itself a random variable). Then the limit as $n\to \infty$ of the distribution of $\displaystyle {\frac {{\bar {X}}_{n}-\mu }{\sigma _{{\bar {X}}_{n}}}}$ where $\displaystyle \sigma _{{\bar {X}}_{n}}={\frac {\sigma }{\sqrt {n}}}$ is the standard normal distribution.
+
+In other words, suppose that a large sample of observations is obtained, each observation being randomly produced in a way that does not depend on the values of the other observations, and that the average (arithmetic mean) of the observed values is computed. If this procedure is performed many times, resulting in a collection of observed averages, the central limit theorem says that if the sample size was large enough, the probability distribution of these averages will closely approximate a normal distribution.
+
 ** Método de Montecarlo y ley de los grandes números
 *** Método de Montecarlo
 Es un método no determinista o estadístico numérico, usado para aproximar expresiones matemáticas complejas y costosas de evaluar con exactitud. El método proporciona soluciones aproximadas a una gran variedad de problemas matemáticos posibilitando la realización de experimentos con muestreos de números pseudoaleatorios en una computadora. El método es aplicable a cualquier tipo de problema, ya sea estocástico o determinista. A diferencia de los métodos numéricos que se basan en evaluaciones en $N$ puntos en un espacio M-dimensional para producir una solución aproximada, el método de Montecarlo tiene un error absoluto de la estimación que decrece como $\frac{1}{\sqrt{N}}$ en virtud del teorema del límite central.
@@ -3281,6 +3283,34 @@ Una topología sobre un conjunto $X$ puede definirse como una colección $\tau$ 
 
 Como esta definición de una topología es la más utilizada, el conjunto $\tau$ de los conjuntos abiertos se llama comúnmente una topología sobre $X$.
 
+*** Definition by Morphocular
+Definition by [[][Morphocular]
+In Topology all shapes, curves, etc. are thought of as a collection or "set" of points. And any set of points, $S$, divides the space it lives in into three other sets:
+- the interior of S, consisting of all points that can be enclosed in a ball that's also contained in S
+- the exterior of S, consisting of all points that can be enclosed in balls that are completely disjoint from S
+- the boundary of S: points where any ball containing them, no matter how small, are only ever partially inside or outside S.
+
+A set that includes all of its boundary is called "closed", a set that includes none of its boundary is called "open", and a set that includes only part of its boundary isn't special enough to get a name.
+
+A "topological" or "metric" space is just a space where concepts like open, closed, interior, exterior, boundary, and so on make sense.
+
+** Compactness
+Definition by [[https://youtu.be/td7Nz9ATyWY?si=H9DM7QdrvBs8wzBy][Morphocular]]
+Is a property of *shapes*, or to be more precise, of *sets of points* in some kind of space.
+
+*Standard definition*:
+A subset $K$ of a topological (or metric) space is called compact if every open cover of $K$ has a finite subcover.
+
+- The important sets to pay attention to regarding compactness are the open sets.
+
+- Compact sets sort of "simulate" finite sets for topological purposes (compact sets $\approx$ finite sets topologically), in the sense that certain tricks or techniques that work on finite sets also work on compact sets.
+
+- A set is compact if and only if every sequence of points that stays within that set has a subsequence that converges to a point also in that set. That is, a compact set is a set which forces any sequence of points within it to form clusters that converge toward a point also within the compact set. This is called "sequential compactness" and it's equivalent to the standard notion of compactness except in certain more unusual topological spaces.
+
+- So this is how I like to think about compactness intuitively: a set is compact if it's small enough and solid enough that there's no way for a sequence inside it to escape to infinite distance, escape into a hole or edge, or escape thru infinite dimensions. In ordinary finite dimensional Euclidean space, this corresponds precisely to the sets that are closed and bounded, but that's not always enough for more exotic spaces.
+
+- You'll encounter the concept of compactness over and over again in higher math, where it tends to be an important ingredient in enabling many powerful constructs such as function spaces—where functions can be treated like infinite-dimensional vectors and studied as such. According to some, being able to understand compactness might even make the difference in being able to participate effectively in higher math.
+
 ** Conjunto conexo
 Es un subconjunto $C \subseteq X$ de un espacio topológico $( X , T )$ que no puede ser expresado como unión disjunta de dos conjuntos abiertos no vacíos de la topología. Intuitivamente, es el que aparece como una sola pieza, que no se puede 'dividir' o 'partir'. En el caso de que un conjunto no sea conexo, se dice que es disconexo.
 
@@ -3301,6 +3331,15 @@ Se va a definir la conexividad en forma negativa: Un conjunto $S$ se llama conex
 - Cualquier conjunto finito que contiene más de un punto, sea en la recta, el plano o el espacio geométrico usual.
 - El complementario de un punto en $\mathbb R$.
 - El conjunto formado por la unión de dos esferas disjuntas en $\mathbb R^n$.
+
+** Connected
+*** Standard Connectedness
+[[https://youtu.be/1QAqxiO8VHM?si=Tm875IgUngEGLmZ5][Morphocular]]
+A set is connected if it *cannot* be split into two sets that *don't touch*, where "*touch*" means the sets contain at least part of their *common boundary*.
+
+*** Path-Connectedness
+[[https://youtu.be/1QAqxiO8VHM?si=Tm875IgUngEGLmZ5][Morphocular]]
+A shape is *connected* whenever any two points within that shape can be joined together by a *path* that stays entirely within that shape.
 
 ** Conjunto cerrado
 Se dice que un subconjunto $C\subseteq X$ es cerrado en $(X,\tau )$ si su complemento $X\setminus C$ es un conjunto abierto.
@@ -3377,7 +3416,7 @@ Un camino euleriano es un camino que pasa por cada arista una y solo una vez.
 #+begin_src artist
 
   Dibujar la casa sin levantar el lápiz, es decir, encontrar
-  un camino que pase por todos las aristas sin repetir ninguna. 
+  un camino que pase por todos las aristas sin repetir ninguna.
           3
           *
          / \
@@ -3436,12 +3475,30 @@ $$\|x\|={\sqrt {\langle x,x\rangle }}$$
 $H$ es un espacio de Hilbert si es completo con respecto a esta norma. Completo en este contexto significa que cualquier sucesión de Cauchy de elementos del espacio converge a un elemento en el espacio, en el sentido que la norma de las diferencias tiende a cero. Cada espacio de Hilbert es así también un espacio de Banach (pero no viceversa).
 
 ** Teoría de la Medida
-*** Definición
+*** Brief
 Es una rama del análisis y de la geometría que investiga las medidas, las funciones medibles y la integración. Una medida de un conjunto es una forma sistemática y rigurosa de asignar un número a cada subconjunto apropiado de dicho conjunto. Intuitivamente, dicho número puede ser interpretado como una cierta medida del tamaño de dicho subconjunto. En este sentido, la medida es una generalización de los conceptos de "longitud","área", y "volumen". Dicha generalización se extiende tanto a mayores dimensiones (en el sentido de "hipervolúmenes") como a conceptos más abstractos, puesto que el conjunto sobre el que se aplica una medida no tiene por qué ser un subconjunto de un espacio geométrico. Un ejemplo sería la medida de Lebesgue: cuando se aplica en un espacio Euclídeo $\mathbb {R} ^{n}$ la medida de Lebesgue asigna los valores convencionales de longitud, área y volumen a subconjuntos apropiados del espacio Euclídeo $\mathbb {R} ^{n}$ n-dimensional. Por ejemplo, la medida de Lebesgue en el intervalo $[0,1]$ es la longitud de dicho intervalo en el sentido convencional de la misma -- específicamente, $1$.
 
 Técnicamente, una medida es una función que asigna un número real no-negativo $(0, +\infty)$ a ciertos subconjuntos de un conjunto $X$. La medida cumple una serie de propiedades: debe ser, por ejemplo, contable aditiva, en el sentido de que la medida de un subconjunto 'grande' puede siempre ser descompuesta en un número finito (o contablemente infinito) de subconjuntos disjuntos más pequeños, de tal modo que la medida sea la suma de las medidas de dichos subconjuntos más pequeños.
 
 La teoría de la medida se creó para disponer de un análisis detallado de la noción de longitud de los subconjuntos de puntos de la recta real y, de forma más general, área y volumen de subconjuntos de espacios euclídeos. En particular, esta teoría nos brinda una respuesta sistemática a la pregunta: ¿a qué subconjuntos de $\mathbb R$ se les puede asociar una longitud? Como se comprobó al desarrollar la teoría de conjuntos, es imposible asociar una longitud a cualquier subconjunto de $\mathbb R$ de tal manera que se cumplan las propiedades de invariancia por traslación y de aditividad con respecto a la unión conjuntos. Estos conjuntos se llaman no medibles.
+*** σ-algebra
+A σ-algebra (also σ-field) (sigma-algebra) on a set $X$ is a nonempty collection $\sum$ of subsets of $X$ closed under complement, countable unions, and countable intersections. The ordered pair $(X,\Sigma )$ is called a measurable space.
+
+The main use of σ-algebras is in the definition of measures; specifically, the collection of those subsets for which a given measure is defined is necessarily a σ-algebra. This concept is important in mathematical analysis as the foundation for Lebesgue integration, and in probability theory, where it is interpreted as the collection of events which can be assigned probabilities.
+
+If $X=\{a,b,c,d\}$ one possible σ-algebra on $X$  is $\Sigma =\{\varnothing ,\{a,b\},\{c,d\},\{a,b,c,d\}\}$ where  $\varnothing$ is the empty set. In general, a finite algebra is always a σ-algebra.
+
+If  $\{A_{1},A_{2},A_{3},\ldots \}$ is a countable partition of $X$ then the collection of all unions of sets in the partition (including the empty set) is a σ-algebra.
+
+A more useful example is the set of subsets of the real line formed by starting with all open intervals and adding in all countable unions, countable intersections, and relative complements and continuing this process (by transfinite iteration through all countable ordinals) until the relevant closure properties are achieved (a construction known as the Borel hierarchy).
+
+*Motivation*:
+There are at least three key motivators for σ-algebras: defining measures, manipulating limits of sets, and managing partial information characterized by sets.
+
+*Measure*:
+A measure on $X$ is a function that assigns a non-negative real number to subsets of $X$ ; this can be thought of as making precise a notion of "size" or "volume" for sets. We want the size of the union of disjoint sets to be the sum of their individual sizes, even for an infinite sequence of disjoint sets.
+
+One would like to assign a size to every subset of $X$, but in many natural settings, this is not possible. For example, the axiom of choice implies that when the size under consideration is the ordinary notion of length for subsets of the real line, then there exist sets for which no size exists, for example, the Vitali sets. For this reason, one considers instead a smaller collection of privileged subsets of $X$. These subsets will be called the measurable sets. They are closed under operations that one would expect for measurable sets, that is, the complement of a measurable set is a measurable set and the countable union of measurable sets is a measurable set. Non-empty collections of sets with these properties are called σ-algebras.
 
 *** Integral de Lebesgue
 **** Definición

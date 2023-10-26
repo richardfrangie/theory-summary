@@ -1,4 +1,4 @@
-#+title: Emacs Lisp
+#+title: EMACS Lisp
 #+date: 2022-05-20
 
 * Keybindings
@@ -268,6 +268,25 @@
 | /o/       | As above, but in another window |
 | /C-o/     | As both above,but no new window |
 
+*** Minibuffer
+
+| /C-M-m/   | ivy-call              | Run command, keep minibuffer |
+| /M-o/     | ivy-dispatching-done  | Show actions current match   |
+| /M-i/     | ivy-insert-current    | Insert match in the prompt   |
+| /C-c C-o/ | ivy-occur             | List match in new buffer     |
+| /C-p/     |                       | Focus in prompt              |
+| /M-j/     | ivy-yank-word         | Put Word at point in minibu  |
+| /S-SPC/   | ivy-restrict-to-match | Restrict list to prompt      |
+| /C-SPC/   | ivy-restrict-to-match | My alias for the above       |
+
+| /C-M-j/      | type RET in minibuffer                |
+| /C-j/ / /RET/  | exit-minibuffer                       |
+| /C-g/        | abort-recursive-edit                  |
+| /M-n/ / /down/ | next-history-element (work in swiper) |
+| /M-p/ / /up/   | previous-history-element              |
+| /M-s/        | next-matching-history-element         |
+| /M-r/        | previous-matching-history-element     |
+
 *** Frames
 
 | /C-x 5 o/ | switch-frame             |
@@ -364,6 +383,7 @@
 | /<-----/      | /<---/        | /<--/         | /<-/          |
 | kill-region | kill line b | b kill word | del chart b |
 | /C-w/         | /C-x DEL/     | /M-DEL/       | /DEL/         |
+|             | /C-0 C-k/     |             |             |
 
 *** Regexp
 
@@ -470,25 +490,6 @@
 | /cmd C-h/ | what valid keys follow cmd   |
 | /M-./     | xref-find-definition(cursor) |
 
-*** Minibuffer
-
-| /C-M-m/   | ivy-call              | Run command, keep minibuffer |
-| /M-o/     | ivy-dispatching-done  | Show actions current match   |
-| /M-i/     | ivy-insert-current    | Insert match in the prompt   |
-| /C-c C-o/ | ivy-occur             | List match in new buffer     |
-| /C-p/     |                       | Focus in prompt              |
-| /M-j/     | ivy-yank-word         | Put Word at point in minibu  |
-| /S-SPC/   | ivy-restrict-to-match | Restrict list to prompt      |
-| /C-SPC/   | ivy-restrict-to-match | My alias for the above       |
-
-| /C-M-j/      | type RET in minibuffer            |
-| /C-j/ / /RET/  | exit-minibuffer                   |
-| /C-g/        | abort-recursive-edit              |
-| /M-n/ / /down/ | next-history-element              |
-| /M-p/ / /up/   | previous-history-element          |
-| /M-s/        | next-matching-history-element     |
-| /M-r/        | previous-matching-history-element |
-
 *** shells
 
 | eshell         |                      |
@@ -529,14 +530,17 @@
 ** Miscellaneous
 *** Mix
 
-| /C-x C-c/   | finish-sesion           |
-| /C-x -/ / /+/ | zoom-in / out           |
-| /M-x/       | execute- extend-command |
-|           |                         |
-| /F10/       | menu-bar-open           |
-| /ESC x/     | same /M-x/ in no GUI term |
-|           |                         |
-| /C-h e/     | view-echo-area-messages |
+| /C-x -/ / /+/ | zoom-in / out              |
+| /M-x/       | execute- extend-command    |
+|           |                            |
+| /F10/       | menu-bar-open              |
+| /ESC x/     | same /M-x/ in no GUI term    |
+|           |                            |
+| /C-h e/     | view-echo-area-messages    |
+|           |                            |
+| /C-x C-c/   | finish-sesion              |
+| /C-x C-c/   | save-buffers-kill-terminal |
+|           | save-buffers-kill-emacs    |
 
 *** Calc
 
@@ -554,12 +558,13 @@
 | /m f/     | fraction mode  |
 | /m a/ / /'/ | algebraic mode |
 
-| /P/   | pi number                 |
-| /N/   | eval numerical aprox      |
-| /$/   | reference index of stack  |
-|     | 1: pi/6 -> sin($1) => 1/2 |
-| /c r/ | convert degrees radians   |
-| /c d/ | convert radians degrees   |
+| /P/        | pi number                  |
+| /pi M-RET/ | pi number (algebraic mode) |
+| /N/        | eval numerical aprox       |
+| /$/        | reference index of stack   |
+|          | 1: pi/6 -> sin($1) => 1/2  |
+| /c r/      | convert degrees radians    |
+| /c d/      | convert radians degrees    |
 
 | /TAB/   | exchange order results |
 | /=/     | eval expressions       |
@@ -951,8 +956,8 @@ This forms the basis of a simple, singly linked list structure whose contents ca
    +------+------+   +------+------+   +------+------+
    |  *   |   *----->|  *   |   *----->|  *   |   *-----> nil
    +--|---+------+   +--|---+------+   +--|---+------+
-      |		     |		       |
-      v		     v		       v
+      |        |           |
+      v        v           v
       1                 2                 3
 
 
@@ -1393,7 +1398,7 @@ The following table shows the possible values of current-prefix-arg.
 
 | /KEY INPUT/ | /current-prefix-arg/ | /VALUE/ |
 |-----------+--------------------+-------|
-| No called | nil                |     1 |
+| /No called/ | nil                |     1 |
 | /C-u -/     | Symbol -           |    -1 |
 | /C-u - 2/   | Number -2          |    -2 |
 | /C-u 1/     | Number 1           |     1 |
@@ -3389,7 +3394,7 @@ Note: I think the difference between ~with-temp-buffer~ and ~with-output-to-temp
       (setq amzLinkInsertPoint (point) )
 
       ;; get title from preceding Wikipedia link
-      (search-backward-regexp 
+      (search-backward-regexp
       "<a href=\"http://...wikipedia.org/wiki/[^\"]+?\">\\([^<]+?\\)</a>")
       (setq titleText (match-string 1 ) )
 
@@ -5538,6 +5543,8 @@ Check if a “feature” is loaded.
 *** Regexp
 Regular expressions have a syntax in which a few characters are *special constructs* and the rest are *ordinary*. An ordinary character matches that same character and nothing else. The special characters are ~$^.*+?[\~ .
 
+*Nota*: La expresión regular de emacs es básicamente BRE, pero se ha ampliado para tratar ~+~ y ~?~ como metacaracteres así como en ERE. Por lo tanto, no hay necesidad de escaparlos con ~\~ en la expresión regular de emacs.
+
 *** Special Characters
 **** . , * , + , ?
 ***** .
@@ -5756,21 +5763,23 @@ Matches any character whose syntax is not ~c~.
 
 *** Commands
 
-| C-M-s                | incremental forward search regexp         |
-| C-M-r                | incremental backward search regexp        |
-| query-replace-regexp | same, but query before each replacement   |
-| replace-regexp       | replace string matching regexp            |
-| dired-do-query-re    | replace maked files in dired              |
-| replace-string       | find & replace in 1 shot without asking   |
-| replace-regexp       | same replace-string but with regexp       |
-| highlight-regexp     | highlight strings matching regexp         |
-| unhighlight-regexp   | remove highlighting                       |
-| occur/list-match lin | show lines containing a match             |
-| multi-occur          | show lines in all buffers contain a match |
-| how-many             | count the number of strings match regexp  |
-| keep-lines           | delete all lines except contain match     |
-| flush-lines          | delete lines containing matches           |
-| align-regexp         | alig using strings match regex delimiters |
+| /Command/              | /Description/                               |
+|----------------------+-------------------------------------------|
+| /C-M-s/                | incremental forward search regexp         |
+| /C-M-r/                | incremental backward search regexp        |
+| /query-replace-regexp/ | same, but query before each replacement   |
+| /replace-regexp/       | replace string matching regexp            |
+| /dired-do-query-re/    | replace maked files in dired              |
+| /replace-string/       | find & replace in 1 shot without asking   |
+| /replace-regexp/       | same replace-string but with regexp       |
+| /highlight-regexp/     | highlight strings matching regexp         |
+| /unhighlight-regexp/   | remove highlighting                       |
+| /occur/list-match lin/ | show lines containing a match             |
+| /multi-occur/          | show lines in all buffers contain a match |
+| /how-many/             | count the number of strings match regexp  |
+| /keep-lines/           | delete all lines except contain match     |
+| /flush-lines/          | delete lines containing matches           |
+| /align-regexp/         | alig using strings match regex delimiters |
 
 Note that ~list-matching-lines~ is an alias for ~occur~ and ~delete-matching-lines~ is an alias for ~flush-lines~.
 
@@ -5899,7 +5908,71 @@ M-x replace-regexp RET \([0-9]+\)\. RET \1, RET
 ;;and replace it with
 "\1.\2."
 
+;; Digit or + or - sign.
+ [-+[:digit:]]
+
+;; Decimal number (-2 or 1.5 but not .2 or 1.).
+\(\+\|-\)?[0-9]+\(\.[0-9]+\)?
+
+;; Two consecutive, identical words.
+\&lt;\(\w+\) +\1\&gt;
+
+;; Word starting with an uppercase letter.
+\&lt;[[:upper:]]\w*
+
+;; Trailing whitespaces (note the starting SPC).
+ +$
+
 #+end_src
+
+*** Classes
+
+| /Character/    | /Class Description/                         |
+|--------------+-------------------------------------------|
+| /[:digit:]/    | a digit, same as [0-9]                    |
+| /[:alpha:]/    | a letter (an alphabetic character)        |
+| /[:alnum:]/    | a letter or a digit(an alphanumeric char) |
+| /[:upper:]/    | a letter in uppercase                     |
+| /[:lower:]/    | a letter in lowercase                     |
+| /[:graph:]/    | a visible character                       |
+| /[:print:]/    | a visible character plus the space char   |
+| /[:space:]/    | a whitespace char,typically [\t\r\n\v\f]  |
+| /[:blank:]/    | a space or tab character                  |
+| /[:xdigit:]/   | an hexadecimal digit                      |
+| /[:cntrl:]/    | a control character                       |
+| /[:ascii:]/    | an ascii character                        |
+| /[:nonascii:]/ | any non ascii character                   |
+
+*** Table
+
+| /Character/   | /Description/                                       |
+|-------------+---------------------------------------------------|
+| /./           | any char (but newline)                            |
+| /*/           | previous char or group, repeated 0 or more time   |
+| /+/           | previous char or group, repeated 1 or more time   |
+| /?/           | previous char or group, repeated 0 or 1 time      |
+| /^/           | start of line                                     |
+| /$/           | end of line                                       |
+| /[...]/       | any char between brackets                         |
+| /[^..]/       | any char not in the brackets                      |
+| /[a-z]/       | any char between a and z                          |
+| /\/           | prevents interpretation of following special char |
+| /\¦/          | or                                                |
+| /\w/          | word constituent                                  |
+| /\b/          | word boundary                                     |
+| /\sc/         | char with c syntax (e.g. \s- for whitespace char) |
+| /\( \)/       | start/end of group                                |
+| /\&lt; \&gt;/ | start/end of word (faulty rendering*)             |
+| /\_< \_>/     | start/end of symbol                               |
+| /\` \'/       | start/end of buffer/string                        |
+| /\1/          | string matched by the first group                 |
+| /\n/          | string matched by the nth group                   |
+| /\{3\}/       | previous char or group, repeated 3 times          |
+| /\{3,\}/      | previous char or group, repeated 3 or more times  |
+| /\{3,6\}/     | previous char or group, repeated 3 to 6 times     |
+| /\=/          | match succeeds if it is located at point          |
+
+/*/  faulty rendering: backslash + less-than and backslash + greater-than
 
 *** rx
 A nifty macro that generates regular expressions for you, from reasonably-comprehensible s-expressions. This notation is usually easier to read, write and maintain than regexp strings, and can be indented and commented freely. It requires a conversion into string form since that is what regexp functions expect, but that conversion typically takes place during byte-compilation rather than when the Lisp code using the regexp is run.
@@ -6031,7 +6104,7 @@ NOTES:
 - No funciona el comando para asignar variables ~var=variable~ .
 
 *Aliases*:
-A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~. 
+A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~.
 
 Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ (this defaults to something like ~~/.emacs.d/eshell/aliases~), which you can also edit directly (although you will have to manually reload it).
 
@@ -6807,8 +6880,8 @@ text block separated by blank lines. URL
 `http://xahlee.info/emacs/emacs/modernization_fill-paragraph.html'
 Version 2017-01-08"
   (interactive)
-  ;; This command symbol has a property “'compact-p”, the possible values 
-  ;; are t and nil. This property is used to easily determine whether to 
+  ;; This command symbol has a property “'compact-p”, the possible values
+  ;; are t and nil. This property is used to easily determine whether to
   ;; compact or uncompact, when this command is called again
   (let ( ($compact-p
           (if (eq last-command this-command)
