@@ -7,6 +7,10 @@ HyperText Markup Language is the standard markup language for documents designed
 
 An HTML document is composed of a tree of simple HTML nodes, such as *text nodes*, and HTML [[Element][elements]], which add semantics and formatting to parts of document. Each element can have HTML attributes specified. Elements can also have content, including other elements and text.
 
+*Note*: To be able to include angle brackets in the text of a document, even though they have a special meaning in HTML, yet another form of special notation has to be introduced. A plain opening angle bracket is written as ~&lt;~ (“less than”), and a closing bracket is written as ~&gt;~ (“greater than”). In HTML, an ampersand ( ~&~ ) character followed by a name or character code and a semicolon ( ~;~ ) is called an entity and will be replaced by the character it encodes.
+
+This is analogous to the way backslashes are used in JavaScript strings. Since this mechanism gives ampersand characters a special meaning, too, they need to be escaped as ~&amp;~. Inside attribute values, which are wrapped in double quotes, ~&quot;~ can be used to insert an actual quote character.
+
 ** Element
 *** Definition
 HTML elements are indicated in the document by HTML tags, enclosed in angle brackets (an element is not a tag). Tags may also enclose further tag markup between the start and end, including a mixture of tags and text. This indicates further (nested) elements, as children of the parent element.
@@ -33,12 +37,40 @@ A block-level element occupies the entire horizontal space of its parent element
 
 Two commonly used block elements are: [[p][<p>]] and [[div][<div>]]. The ~<p>~ element defines a paragraph in an HTML document. The ~<div>~ element defines a division or a section in an HTML document.
 
+Block-level elements have the following properties:
+
+  - Always start on a new line
+  - Take up as much horizontal space as possible (the full width of the container or browser window if there is no container)
+  - Will respect width and height CSS properties
+  - Horizontal and vertical margins both work
+
 *** Inline elements
 Inline elements are those which only occupy the space bounded by the tags defining the element, instead of breaking the flow of the content.
 
 An inline element does not start on a new line and only takes up as much width as necessary.
 
 If an inline element does not fit on a line, create a different box for each line on which it is present.
+
+Inline elements have the following properties:
+
+  - Do not start on a new line
+  - Only use as much horizontal space as required by the content
+  - Do not accept width and height CSS properties
+  - Margins will work horizontally, but not vertically
+  - Padding works on all sides, but the top and bottom may overlap other elements.
+
+*** inline-block
+The inline-block value is a strange combo of both block and inline.
+
+  - Elements accept width and height properties
+  - Elements can have vertical and horizontal padding on all sides
+  - Elements do not start on a new line
+  - There will often be a small gap between inline-block elements
+
+*** none
+The none value of the display property will cause an element not to display at all.
+
+This is similar to the visibility property with one important distinction. Setting display to none will cause the element to be removed from the document flow completely, and the space where it would have been will also be removed. Setting the visibility property to hidden will cause the element to be invisible, but the space the element occupies will still be reserved.
 
 ** Types of elements
 *** Structure
@@ -229,9 +261,11 @@ The ~<script>~ (meta) tag is used to embed a client-side script (JavaScript).
 
 #+begin_src html
 
-<script>
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script>
+<!-- Include a piece of JavaScript in a document. -->
+<script>alert("hello!");</script>
+
+<!-- Can be given an src attribute to fetch a script file from a URL. -->
+<script src="path/name.js"></script>
 
 #+end_src
 
@@ -857,7 +891,16 @@ The ~<audio>~ (block) tag is used to embed sound content in a document, such as 
 **** form
 The ~<form>~ (block) tag is used to create an HTML form for user input.
 
+The first example code describes a form with two fields: a small one asking for a name and a larger one to write a message in. When you click the Send button, the form is *submitted*, meaning that the content of its field is packed into an HTTP request and the browser navigates to the result of that request.
+
 #+begin_src html
+
+<form method="GET" action="example/message.html">
+  <p>Name: <input type="text" name="name"></p>
+  <p>Message:<br><textarea name="message"></textarea></p>
+  <p><button type="submit">Send</button></p>
+</form>
+
 
 <form action="/action_page.php" method="get">
   <label for="fname">First name:</label>
@@ -902,6 +945,15 @@ The ~<input>~ (inline) tag specifies an input field where the user can enter dat
   <input type="text" id="lname" name="lname"><br><br>
   <input type="submit" value="Submit">
 </form>
+
+
+<p><input type="text" value="abc"> (text)</p>
+<p><input type="password" value="abc"> (password)</p>
+<p><input type="checkbox" checked> (checkbox)</p>
+<p><input type="radio" value="A" name="choice">
+   <input type="radio" value="B" name="choice" checked>
+   <input type="radio" value="C" name="choice"> (radio)</p>
+<p><input type="file"> (file)</p>
 
 #+end_src
 
@@ -956,6 +1008,18 @@ The ~<button>~ (inline) tag defines a clickable button. Inside a ~<button>~ elem
 
 #+end_src
 
+*Note*: Some attributes can contain a JavaScript program. The [[button][<button>]] tag shown next (which shows up as a button) has an ~onclick~ attribute. The attribute’s value will be run whenever the button is clicked.
+
+#+begin_src html
+
+<button onclick="alert('Boom!');">DO NOT PRESS</button>
+<!-- Note that I had to use single quotes for the string in the onclick -->
+<!-- attribute because double quotes are already used to quote the whole -->
+<!-- attribute. I could also have used &quot;. -->
+
+#+end_src
+
+
 **** optgroup
 The ~<optgroup>~ (block) tag is used to group related options in a [[select][<select>]] element (drop-down list).
 
@@ -1006,7 +1070,8 @@ The ~<textarea>~ (inline) tag defines a multi-line text input control.
 
 <label for="w3review">Review of W3Schools:</label>
 
-<textarea id="w3review" name="w3review" rows="4" cols="50">
+<textarea id="w3review" name="w3review" placeholder="Something here..."
+          rows="4" cols="50">
   At w3schools.com you will learn how to make a website. They offer
   free tutorials in all web development technologies.
 </textarea>
@@ -1038,6 +1103,17 @@ Elements in HTML have attributes; these are additional values that configure the
 - All HTML elements can have *attributes*
 - Attributes are always specified in *the start tag*
 - Attributes usually come in name/value pairs like: ~name="value"~
+
+*Note*: Some attributes can contain a JavaScript program. The [[button][<button>]] tag shown next (which shows up as a button) has an ~onclick~ attribute. The attribute’s value will be run whenever the button is clicked.
+
+#+begin_src html
+
+<button onclick="alert('Boom!');">DO NOT PRESS</button>
+<!-- Note that I had to use single quotes for the string in the onclick -->
+<!-- attribute because double quotes are already used to quote the whole -->
+<!-- attribute. I could also have used &quot;. -->
+
+#+end_src
 
 *** id
 The ~id~ global attribute defines an identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking (using a fragment identifier), scripting, or styling (with CSS).
@@ -1148,9 +1224,9 @@ Understanding the DOM helps you design, debug and maintain your CSS because the 
 P
 ├─ "Let's use:"
 ├─ SPAN
-|  └─ "Cascading"
+│  └─ "Cascading"
 ├─ SPAN
-|  └─ "Style"
+│  └─ "Style"
 └─ SPAN
     └─ "Sheets"
 
@@ -1507,7 +1583,7 @@ article p span { }
 #+end_src
 
 **** Child combinator (>)
-It matches only those elements matched by the second selector that are the direct children of elements matched by the first. Descendant elements further down the hierarchy don't match.
+It matches only those elements matched by the second selector that are the *direct children* of elements matched by the first. Descendant elements further down the hierarchy don't match.
 
 #+begin_src css
 
@@ -1836,22 +1912,21 @@ When a user agent (such as your browser) lays out a document, it generates a box
 
 #+begin_src artist
 
-     +---------------------------------------------------------------+
-     |                                                               |
-     |   +-------------------------------------------------------+   |
-     |   | +--------------------------------------------------+  |   |
-     |   | |                                                  |  |   |
-     |   | |   +-----------------------------------------+    |  |   |
-     |   | |   |              content area               |    |  |   |
-     |   | |   +-----------------------------------------+    |  |   |
-     |   | |       padding area                               |  |   |
-     |   | +--------------------------------------------------+  |   |
-     |   +-----------------------------------^-------------------+   |
-     |          margin                       |                       |
-     +---------------------------------------|-----------------------+
-                                             |
-                                             |
-                                           border
+     +-----------------------------------------------------------------+
+     |                                                                 |
+     |   +---------------------------------------------------------+   |
+     |   |                                                         |   |
+     |   |   +-------------------------------------------------+   |   |
+     |   |   |                                                 |   |   |
+     |   |   |   +-----------------------------------------+   |   |   |
+     |   |   |   |              content area               |   |   |   |
+     |   |   |   +-----------------------------------------+   |   |   |
+     |   |   |       padding area                              |   |   |
+     |   |   +-------------------------------------------------+   |   |
+     |   |        border                                           |   |
+     |   +---------------------------------------------------------+   |
+     |          margin                                                 |
+     +-----------------------------------------------------------------+
 
 #+end_src
 
@@ -3022,7 +3097,7 @@ body {
 #+end_src
 
 ***** Flexible grids with the fr unit
-In addition to creating grids using lengths and percentages, we can use ~fr~. The ~fr~ unit represents one fraction of the available space in the grid container to flexibly size grid rows and columns.
+In addition to creating grids using lengths and percentages, we can use ~fr~. The ~fr~ unit represents one fraction of the *available* space in the grid container to flexibly size grid rows and columns.
 
 You can mix ~fr~ units with fixed length units. In this case, the space needed for the fixed tracks is used up first before the remaining space is distributed to the other tracks.
 
@@ -3311,11 +3386,11 @@ aside {
     border-right: 1px solid #999;
 }
 
-/*Line-based placement*/
+/* Line-based placement */
 
 header {
-    grid-column: 1 / 3;
-    grid-row: 1;
+    grid-column: 1 / 3; /* 1 column to 3 columbn */
+    grid-row: 1; /* 1 row */
 }
 
 article {
@@ -3531,9 +3606,10 @@ Like tables, grid layout enables an author to align elements into columns and ro
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
+/* Line-based placement */
 .one {
-  grid-column: 1 / 3;
-  grid-row: 1;
+  grid-column: 1 / 3; /* 1 column to 3 column */
+  grid-row: 1; /* 1 row */
 }
 .two {
   grid-column: 2 / 4;
@@ -4204,6 +4280,68 @@ Support for feature queries is very good across modern browsers. However, you sh
   <div class="item">Item Two</div>
   <div class="item">Item Three</div>
 </div>
+
+#+end_src
+
+*** Artist size and scrolling
+
+#+begin_src artist
+
+     -----
+       |
+       |    ┌-----------------------------------------------------┐  --------
+       |    |                                                     |      |
+ ---------  |   ┌---------------------------------------------┐   |      |
+     |      |   |                                         | ▲ |   |      |
+     |      |   |     padding                             |   |   |      |
+     |      |   |                                         |   |   |      |
+clientHeigh |   |          ┌-----------------------┐      | ═ |   |      |
+     |      |   |          |     content area      |      |   |   | offsetHeigh
+     |      |   |          |                       |      |   |   |      |
+     |      |   |          |                       |      | ▼ |   |      |
+ ---------  |   |-----------------------------------------+---|   |      |
+       |    |   |◀                    ║║║                ▶|   |   |      |
+       |    |   └---------------------------------------------┘   |      |
+       |    |  border                                             |      |
+       |    └-----------------------------------------------------┘  --------
+       |        |----------------clientWidth--------------|
+       |    |----------------------offsetWidth--------------------|
+       |        |---------------------------scrollWidth-----------------------|
+   scrollHeight            ┆                       ┆
+       |                   ┆                       ┆
+       |                   ┆                       ┆
+       |                   ┆     content area      ┆
+     -----                 └-----------------------┘
+
+#+end_src
+
+#+begin_src artist
+
+            ┌-----------------------------------------------------┐   --------
+            | Firefox                                       _ x □ |      |
+            ┌-----------------------------------------------------┐      |
+            |                                                     |      |
+  -------   |   ┌---------------------------------------------┐   |      |
+     |      |   |                                         | ▲ |   |      |
+     |      |   |     padding                             |   |   |      |
+     |      |   |                                         |   |   |      |
+     |      |   |          ┌-----------------------┐      | ═ |   |  outerHeigh
+ innerHeigh |   |          |     content area      |      |   |   |      |
+     |      |   |          |                       |      |   |   |      |
+     |      |   |          |                       |      | ▼ |   |      |
+     |      |   |-----------------------------------------+---|   |      |
+     |      |   |◀                    ║║║                ▶|   |   |      |
+  -------   |   └---------------------------------------------┘   |      |
+       |    |  border                                             |      |
+       |    └-----------------------------------------------------┘  --------
+       |        |----------------clientWidth--------------|
+       |    |----------------------offsetWidth--------------------|
+       |        |---------------------------scrollWidth-----------------------|
+   scrollHeight            ┆                       ┆
+       |                   ┆                       ┆
+       |                   ┆                       ┆
+       |                   ┆     content area      ┆
+     -----                 └-----------------------┘
 
 #+end_src
 
@@ -5270,7 +5408,7 @@ Navigation is the first step in loading a web page. It occurs whenever a user re
 
 #+begin_src artist
 
-  +-----------+                             +-------------+
+  +-----------+                              +-------------+
   |   PC      |--------www.example.com------>|     DNS     |
   |           |<-------93.184.216.34---------|             |
   |           |                              +-------------+
@@ -5282,7 +5420,7 @@ Navigation is the first step in loading a web page. It occurs whenever a user re
   |           |--------ClientHello---------->|             |
   |           |<--ServerHello-&-Certificate--|             |
   |           |--------ClientKey------------>|             |
-  |           |                             +-------------+
+  |           |                              +-------------+
   +-----------+
 
 #+end_src

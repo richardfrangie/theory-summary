@@ -66,6 +66,14 @@ Helps us keep our Emacs packages up to date!  It will prompt you after a certain
 ;;    (auto-package-update-maybe)
 ;;    (auto-package-update-at-time "09:00"))
 
+;; Testing new package update package
+;; (use-package auto-package-update
+;;    :ensure t
+;;    :config
+;;    (setq auto-package-update-delete-old-versions t
+;;          auto-package-update-interval 4)
+;;    (auto-package-update-maybe))
+
 #+end_src
 
 ** Basic Configurations
@@ -130,7 +138,22 @@ Fitting Emacs with its environment.
 ;; Answer the questions "yes" or "no" with "y" or "n".
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+
+;; Treat undo history as a tree.
+(use-package undo-tree
+    :ensure t)
+;;  :init (global-undo-tree-mode))
+
+
+;; Goto last change in current buffer.
+(use-package goto-chg
+    :ensure t)
+;; (global-set-key (kbd "C-? .") 'goto-last-change)
+;; (global-set-key (kbd "C-? ,") 'goto-last-change-reverse)
+
 #+end_src
+
+#+RESULTS:
 
 ** Mouse
 Input from the mouse.
@@ -265,7 +288,11 @@ Controlling the behavior of the minibuffer.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 
-;; unbind set-fill-column
+;; Remap the command <mouse-9> to TAB.
+(global-set-key (kbd "<mouse-9>") (kbd "TAB"))
+
+
+;; Unbind set-fill-column
 (global-unset-key (kbd "C-x f"))
 
 
@@ -283,16 +310,20 @@ Basic text editing facilities.
 
 #+begin_src emacs-lisp
 
+;;;; Check new bindings.
 ;; Duplicate line or region N times.
 (use-package duplicate-thing
-    :bind ("S-M-<down>" . duplicate-thing))
+    :bind ("S-M-<down>" . duplicate-thing)
+    :bind ("M-N" . duplicate-thing))
 
 
 ;; Drag stuff ARG lines down.
 (use-package drag-stuff
   :bind
   ("M-<down>" . drag-stuff-down)
+  ("M-n" . drag-stuff-down)
   ("M-<up>" . drag-stuff-up)
+  ("M-p" . drag-stuff-up)
   :config
   (drag-stuff-global-mode 1))
 
@@ -431,12 +462,13 @@ Directional selection of windows in a frame.
 
 
 ;; Transpose windows arrangement.
-(use-package transpose-frame
-    :bind ("C-c v" . transpose-frame))
+(use-package transpose-frame)
+    ;; :bind ("C-c v" . transpose-frame)
 
 
 ;; Swap window
-(global-set-key (kbd "C-c m") 'window-swap-states)
+;; (global-set-key (kbd "C-c m") 'window-swap-states)
+
 ;; Move window
 (global-set-key (kbd "C-c p") 'windmove-up)
 (global-set-key (kbd "C-c n") 'windmove-down)
@@ -644,10 +676,13 @@ It is a rich document editor, project planner, task and time tracker, blogging e
   ;; This is needed as of Org 9.2
   (require 'org-tempo)
 
-  (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
-  (add-to-list 'org-structure-template-alist '("json" . "src json")))
+  (add-to-list 'org-structure-template-alist '("sh" . "src sh \n"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp \n"))
+  (add-to-list 'org-structure-template-alist '("ts" . "src typescript \n"))
+  (add-to-list 'org-structure-template-alist '("js" . "src javascript \n"))
+  (add-to-list 'org-structure-template-alist '("cs" . "src css \n"))
+  (add-to-list 'org-structure-template-alist '("htm" . "src html \n"))
+  (add-to-list 'org-structure-template-alist '("ar" . "src artist \n")))
 
 
 ;; Change font size and color in latex org.
@@ -862,6 +897,17 @@ Default http://localhost:8080 . Set ~httpd-port~ to change the default port if n
 (use-package simple-httpd
   :ensure t)
 
+
+;; Publishes the live buffer through the local simple-httpd server.
+(use-package impatient-mode)
+
+
+;; Live web development with Emacs:
+(use-package skewer-mode)
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
+
 #+end_src
 
 * Communication
@@ -884,13 +930,13 @@ Enable IDE-like functionality for many different programming languages via "lang
   (lsp-headerline-breadcrumb-mode))
 
 (use-package lsp-mode
-;; To defer LSP server startup until the buffer is visible.
+  ;; To defer LSP server startup until the buffer is visible.
   :commands (lsp lsp-deferred) ; Use lsp-deferred instead of lsp.
   :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
-  (lsp-enable-which-key-integration t))
+  (lsp-enable-which-key-integration t)) ; pop-up descriptions bindings.
 
 
 ;; Set of UI enhancements  which make Emacs feel even more like
@@ -945,20 +991,38 @@ Bringing rich debugging capabilities to Emacs via the [[https://microsoft.github
 
 #+begin_src emacs-lisp
 
-(use-package dap-mode
-  :commands dap-debug
-  :custom
-  (lsp-enable-dap-auto-configure nil) ; Doesn't show UI.
-  ;; comment above and uncomment the one below for only certain functions.
+;; Make sure lsp-mode is active otherwise 'woekspaceFolder' (there are
+;; variables that will not be set) won't be available.
+(use-package dap-mode)
+  ;; ;; Dap-mode customized minimal experience.
+  ;; :commands dap-debug
+  ;; :custom
+  ;; (lsp-enable-dap-auto-configure nil) ; Doesn't show UI panels.
+  ;; :config
+  ;; (dap-ui-mode 1)
+  ;; (dap-tooltip-mode 1) ; use tooltips for mouse hover
+  ;; ;; if it is not enabled `dap-mode' will use the minibuffer.
+
+  ;; ;; Dap-mode customized some functions.
+  ;; :commands dap-debug
+  ;; :custom
+  ; ;;; Only certain functions.
   ;; (dap-auto-configure-features '(sessions locals tooltip))
-  :config
-  (dap-ui-mode 1)
-  (dap-tooltip-mode 1)
-  ;; Set up Node debugging
-  (require 'dap-node)
-  (dap-node-setup))    ; Automatically installs Node debug adapter if needed.
-  ;; (require 'dap-firefox)
-  ;; (dap-firefox-setup) ; Automatically installs firefox debug if needed.
+
+;; Set up Node debugging
+(require 'dap-node)
+(dap-node-setup)   ; Automatically installs Node debug adapter if needed.
+
+;; ;; Bind `C-c l d` to `dap-hydra` for easy access
+;; (general-define-key
+;;   :keymaps 'lsp-mode-map
+;;   :prefix lsp-keymap-prefix
+;;   "d" '(dap-hydra t :wk "debugger"))
+
+;; ;; Automatically trigger the hydra when the program hits a breakpoint by
+;; ;; using the following code (other way to set hydra).
+;; (add-hook 'dap-stopped-hook
+;;           (lambda (arg) (call-interactively #'dap-hydra)))
 
 #+end_src
 
@@ -1038,12 +1102,17 @@ Modes for editing programming languages.
   (setq-default web-mode-markup-indent-offset 2)
   (setq-default web-mode-attribute-indent-offset 2))
 
+
+;;; Testing:
+(with-eval-after-load 'mhtml-mode
+  (define-key mhtml-mode-map (kbd "C-c d") 'html-div))
+
 #+end_src
 
 *** Css
 Cascading Style Sheets (CSS) editing mode.
 
-*** JavaScript
+*** TypeScript
 Customization variables for JavaScript mode.
 
 #+begin_src emacs-lisp
@@ -1102,6 +1171,14 @@ Generic programming mode, from which others derive.
           (define-key paredit-mode-map (kbd "C-M-z") 'paredit-wrap-sexp)
           (define-key paredit-mode-map (kbd "C-M-d") nil))
 
+
+;; Minor mode to aggressively keep your code always indented.
+(use-package aggressive-indent
+    :ensure t)
+;;  :init (aggressive-indent-mode))
+;; (global-aggressive-indent-mode 1)
+;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+
 #+end_src
 
 * Applications
@@ -1150,6 +1227,7 @@ Command shell implemented entirely in Emacs Lisp.
 
 (use-package eshell
   :hook (eshell-first-time-mode . efs/configure-eshell)
+  :bind ("C-c r" . counsel-esh-history) ;;; Testing.
   :config
 
   (with-eval-after-load 'esh-opt
@@ -1157,6 +1235,7 @@ Command shell implemented entirely in Emacs Lisp.
     (setq eshell-visual-commands '("htop" "zsh" "vim")))
 
   (eshell-git-prompt-use-theme 'powerline))
+
 
 
 ;; Enhances eshell's completions with those that Fish is capable of.
@@ -1241,69 +1320,54 @@ Code local to your site.
 
 #+begin_src emacs-lisp
 
-(defun rf/sub-youtube-srt-html (filePath)
-  "Format srt sub-youtube file to display in html.
+  (defun rf/convert-srt-to-html (filePath)
+    "Format and convert srt subtitle file to html.
 
-File will save in Downloads Folder.
-Be careful, it overwrites file of the same name."
-  (interactive "f")
-  (with-temp-buffer
-    (insert-file-contents filePath)
-    (goto-char 1)
-    (while (search-forward "" nil t) (replace-match "" nil t))
-    (goto-char 1)
-    (flush-lines "^[0-9].*[0-9]$")
-    (goto-char 1)
-    (flush-lines "^[0-9]$")
-    (delete-duplicate-lines (goto-char 1) (point-max))
-    (mark-whole-buffer)
-    (org-html-convert-region-to-html)
-    (write-region 1 (point-max)
-                  (concat "~/Downloads/"
-                          (substring
-                           (file-name-nondirectory filePath) 0 -4)
-                          ".html"))))
+  File will save in Downloads Folder.
+  Be careful, it overwrites file of the same name."
+    (interactive "f")
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (goto-char 1)
+      (while (re-search-forward "\\|\\\\h" nil t) (replace-match "" nil t))
+      (goto-char 1)
+      (flush-lines "^[0-9].*[0-9]$")
+      (goto-char 1)
+      (flush-lines "^[0-9]$")
+      (delete-duplicate-lines (goto-char 1) (point-max))
+      (mark-whole-buffer)
+      (org-html-convert-region-to-html)
+      (write-region 1 (point-max)
+                    (concat "~/Downloads/"
+                            (substring
+                             (file-name-nondirectory filePath) 0 -4)
+                            ".html"))))
 
-(defun rf/sentences-to-anki (beg end &optional asteri)
-  "Format sentences written in org-mode to be viewed in anki.
+  (defun rf/toggle-org-hide-emphasis ()
+      "Toggle `org-hide-emphasis-markers'."
+      (interactive)
+      (if org-hide-emphasis-markers
+          (setq org-hide-emphasis-markers nil)
+        (setq org-hide-emphasis-markers t))
+      (org-mode-restart))
 
-Remove the asterisks that are in the headings and put tab between
-sentences. Use ASTERI to control how many asterisks are to be removed
-from the heading.
+  (defun rf/join-lines-of-sub-srt-file (filePath)
+    "Join lines of a subtitle sqrt file.
 
-Note: This function can be improved by using regexp but at the moment
-I don't know them well in Emacs, so this function works fine for what
-I want."
-  (interactive "r\np")
-  (let ((oldbuf (current-buffer))
-        lines
-        (count 0))
-    (if (equal asteri 1)
-        (setq asteri 4))
-    (setq name "buftem"
-          lines (/ (count-lines beg end) 3))
-    (with-current-buffer (get-buffer-create name)
-      (barf-if-buffer-read-only)
-      (erase-buffer)
-      (save-excursion
-        (insert-buffer-substring oldbuf beg end)
-        (beginning-of-buffer)
-        (progn (delete-region (point) (line-end-position))
-               (line-move  1)
-               (move-beginning-of-line 1)
-               (backward-delete-char-untabify 1))
-        (while (< count lines)
-          (delete-char (+ asteri 1))
-          (move-end-of-line 1)
-          (insert "\t")
-          (delete-forward-char 1)
-          (move-end-of-line 1)
-          (insert "\n")
-          (if (< (+ count 1) lines)
-              (delete-forward-char 2))
-          (setq count (1+ count)))
-        (call-interactively 'write-file)
-        (kill-buffer (buffer-name))))))
+  File will save in Downloads Folder."
+    (interactive "f")
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (goto-char 1)
+      (while (re-search-forward "\\([^[:digit:]]\\)
+  \\([^
+  [:digit:]]\\)" nil t)
+        (replace-match "\\1 \\2"))
+      (write-region 1 (point-max)
+                    (concat "~/Downloads/"
+                            (substring
+                             (file-name-nondirectory filePath) 0 -4)
+                            "-join-lines.srt"))))
 
 #+end_src
 

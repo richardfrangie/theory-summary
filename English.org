@@ -95,6 +95,11 @@ Los verbos pronominales funcionan igual que los verbos reflexivos, y es únicame
 - resultar ::
   Este plato que preparé *quedó* buenísimo.  ~This dish I prepared *turned out* great.~  -  ~This dish I prepared was delicious.~
 
+*** sino vs si no
+- en una palabra :: cuando contrapone una afirmación a algo previamente negado: ~Precisó que no tiene previsto despedir trabajadores [lo que se niega], *sino* que su intención es retomar el plan de prejubilaciones que inició en 2016 [lo que se afirma]~.
+
+- en dos palabras :: cuando introduce una oración *condicional negativa*: ~Trump amenaza con declarar el estado de emergencia *si no* se aprueba el presupuesto para el muro~.
+
 * Words
 ** Major word classes
 *** Brief
@@ -658,6 +663,8 @@ We use indefinite pronouns to speak generally about something *rather than menti
 - However, if we truly mean *every single individual* or the entire group together, we have to use /every-/ . To help us remember this rule, we can imagine various people or things and put an and in between them.
   ~Everyone has disappeared: the man /and/ the woman /and/ the child /and/ the old lady.~
   ~I will do *everything* if you help me: I will give you money /and/ I will help you do the washing up /and/ I will go to the cinema with you.~
+
+- /Everyone/ se conjuga en tercera persona porque se refiere a una persona de varias.
 
 **** Quantifiers
 ***** Definition
@@ -1374,6 +1381,19 @@ Interjections are mostly exclamation words (e.g. ~gosh!~, ~wow!~, ~oh!~), which 
   ~She’s not /aware/ of the rules of the road.~  -  ~Have you /considered/ changing your career?~
   ~Let’s /discuss/ the new schedule.~  -  ~She didn’t /mention/ where the keys were.~
 
+*** all the way - on the way
+**** all the way
+Todo el camino.
+~We ran *all the way* home.~ Corrimos todo el camino a casa.
+
+Totalmente.
+~Is the valve *all the way* open?~ ¿La válvula está totalmente abierta?
+
+**** on the way
+En camino.
+~Your package is *on the way*.~ o ~Your package is *on its way*.~  Tu paquete está en camino.
+~I'm *on the way* to the game.~ o ~I'm *on my way* to the game.~ Estoy en caminbo para el juego.
+
 *** any
 We use /any/ before nouns to refer to *indefinite or unknown quantities or an unlimited entity*.
 ~Did you bring *any* bread?~  (weak form) -  ~Mr Jacobson refused to answer *any* questions.~ (strong form)
@@ -1572,8 +1592,6 @@ When we use /home/ as an adverb we don't use the preposition /to/ (moving or tra
 
 *** mathematics
 /Mathematics/ is synonymous with /math/ and /math/ is more common.
-- En ingles no importa el número, los verbos en las matemáticas siempre son singulares ( ~nine is ...~   +nine are+ ). Se refiere al número en si no al número de cosas.
-- Igual siempre se dice /equals/ con la /s/ al final (es la /s/ de verbo en tercera persona no de plural).
 
 *Symbols*
 - + :: plus   ( ~2 + 2~ -> ~two plus two~ (dos mas dos) )
@@ -1595,10 +1613,15 @@ When we use /home/ as an adverb we don't use the preposition /to/ (moving or tra
 - resta :: subtraction
 - multiplicación :: multiplication
 - división :: division
+- raiz cuadrada :: square root
 
 *Others*
 - operaciones matemáticas :: mathematical operations
 - operandos :: operands
+
+*Notes*:
+- En ingles no importa el número, los verbos en las matemáticas siempre son singulares ( ~nine is ...~   +nine are+ ). Se refiere al número en si no al número de cosas.
+- Igual siempre se dice /equals/ con la /s/ al final (es la /s/ de verbo en tercera persona no de plural).
 
 *** mean
 - understanding :: to explain or *ask what a word or phrase refers to*. We form questions with /mean/ with the auxiliary verb /do/. ("significado")
@@ -2020,6 +2043,17 @@ Something moves but does not pass from one side to the other.
 Something moves passing over from one side to the other.
 ~A bird flew *over* the park.~ Un pájaro voló por encima del parque.
 
+*** accomplish - achieve
+**** accomplish
+Is something that you *complete successfully* (finished a task).
+
+~We *accomplished* our mission.~ this means you successfully completed your mission.
+
+**** achieve
+Is something you *reach or attain using effort*, like a goal or a mark.
+
+~I *achieved* first place in the test.~
+
 *** afraid - fear - scare
 **** afraid
 Asustado. Suele ir con el verbo to be. Decir malas noticias. Algo que se le tiene miedo.
@@ -2263,6 +2297,41 @@ Plural indefinite persons.
   - /Another/ is singular. We don’t use it with plural nouns.
   ~Other interesting places to visit include the old harbour and the castle.~  +Another interesting places to visit …+
 
+*** as long as - as far as - as soon as - as well as
+**** as long as
+We use it for *conditional conjunction* and it means /mientras que/ o /siempre y cuando/.
+
+/As long as/ and /as far as/ are both conjunctions. They are classified as *subordinating conjunctions*. They are used to *join clauses*.
+
+We use it:
+-  to express conditions :: *As long as* you study hard, you will...
+
+- to express a certain period of time :: You can stay here *as long as* you want.
+
+- to show requirements :: You can stay here *as long as* you pay more.
+
+-  to compare length :: My left leg is *as long as* my right leg.
+
+**** as far as
+Is combined with verbs such /as far as I understand/ or /as far as I can see/ /as far as I know/ and it means to my *knowledge* (sometime that you believe is true).
+~As far as I know, she wasn't coming with us.~ Hasta donde yo se,...
+
+/As long as/ and /as far as/ are both conjunctions. They are classified as *subordinating conjunctions*. They are used to *join clauses*.
+
+Can also be used to show *distance and degree*.
+~There were flowers *as far as* I could see.~ Había flores hasta donde alcanzaba la vista.
+
+We can also use /as far as/ for *opinion*.
+~We agree to that, *as far as* we are concerned.~ Estamos de acuerdo con eso, en lo que a nosotros respecta.
+
+**** as soon as
+It's a *time* phrase and it means /tan pronto como/.
+~Please call me *as soon as* you get home.~
+
+**** as well as
+In adition to.
+~To apply for the job you need to fill in this form *as well as* write...~ ... y también necesitas escribir...
+
 *** assure - ensure - insure
 **** assure
 Remover duda. Afirmar con seguridad. Generalmente seguido de pronombre objeto.
@@ -2493,6 +2562,17 @@ Prestar algo.
 ~Can you *lend* me the bike?~
 ~I never *lend* my CDs to anyone.~
 
+*** bring - take
+**** bring
+Conducir algo o a alguien al *mismo lugar* donde se encuentra la persona con la que uno habla.
+~I'm going to *bring* you something to eat.~ Te voy a traer algo de comer. (estamos juntos pero voy a salir y traer la comida)
+
+~What should I *bring* to the party?~ Qué debería llevar a la fiesta? (estamos hablando por teléfono pero nos encontraremos en la fiesta)
+
+**** take
+Conducir algo o a alguien a un *lugar alejado* de la persona con la que uno habla.
+~I'm going to *take* my wife to work.~ Voy a llevar a mi esposa al trabajo. (estoy junto a mi amigo)
+
 *** by - until
 **** by
 *Before or just at that time*. Focuses on the *end point*. (hasta ese momento.)
@@ -2503,6 +2583,19 @@ Prestar algo.
 Focuses on the period of *duration*. As a conjunction it's not interchangeable with /by/. (durante un momento al otro.)
 ~I'll be home *until* 9~. Estare en casa hasta las 9.
 ~I have *from* today *until* Monday to decide.~
+
+*** carry - worry
+**** carry
+Is a verb and it is used to show a certain feelings like affection and concern (*has a positive connotation*). It is also used when we want to show that something is important to us. Finally, care is used when we talk about living things, making sure that they have food, water, etc.
+
+~I *care* about Jane very much.~ This means I have strong feelings of love and affection for Jane.
+~I *care* about passing the exam.~ Passing the exam is important to me.
+
+**** worry
+Is a verb and it is used to show a certain feelings of anxiety, unease,  or *concern for difficult or negative situations*. We generally use worry + about + person/thing/situation.
+
+~I *worry* about Jane very much.~ This means I have strong feelings of anxiety for Jane. Perhaps she is sick or going through a difficult time in her life.
+~I *worry* about passing the exam.~ I am concerned that I may not pass the exam.
 
 *** celling - roof
 **** celling
@@ -2534,6 +2627,32 @@ We can also use it for *unexpected difficulties*. ~The project *ran into* a few 
 /Come across/ means "find", and is used mainly for *things and information*. /Come across/ is gentler than /run into/.
 ~I *came across* some old photos when I was looking through my grandmother's attic.~
 ~I *came across* some interesting facts when I was browsing the internet.~
+
+*** come - go
+**** come
+/Come/ y /go/ se toman desde la perspectiva de donde están las personas.
+
+~I'll *come* visit you on Saturday.~ Vendré a visitarte el sábado. (las personas están en el mismo lugar)
+
+~I'm coming.~ Voy. (las personas NO están en el mismo lugar)
+
+*Nota*: Si llamas a una persona y le dices /I'm going/ te preguntará, a donde vas? porque para ellos significa que te vas a otro lugar apartado de donde tú estas.
+
+~I'm going to *come* home for Christmas.~ Voy a ir a casa para la navidad. (las personas NO están en el mismo lugar)
+
+~Can we come to your party?~ Podemos ir a tu fiesta? (las personas NO están en el mismo lugar)
+
+**** go
+/Come/ y /go/ se toman desde la perspectiva de donde están las personas.
+
+~I'm *going* to the store.~ Voy a la tienda. (las personas están en el mismo lugar)
+
+**** come back - go back
+/Go back/ significa regresar a donde uno estaba antes, mientras que /come back/ significa regresar a donde se encuentra la persona que habla.
+
+Si yo estoy en casa de mi amigo, y voy a regresar a la mía, diría ~I'm going back to my house.~ porque mi casa es donde yo estaba antes.
+
+Si yo estoy en casa de mi amigo, y voy a regresar a la mía, pero luego voy a volver a la casa de él, diría ~I'll come back later.~ porque voy a regresar a donde estoy ahora.
 
 *** client - customer
 **** client
@@ -2780,7 +2899,7 @@ We don’t use /How is … like?/ to ask for a description of something.
 ~Have you ever had Korean kimchi? No. *What’* s it *like*?~  +How is it like?+
 
 **** What is … like?
-We use /What is … like?/ to ask for a *description* of someone or something (e.g. their *appearance*, their *character*, their *behaviour*).
+We use /What is … like?/ to ask for a *DESCRIPTION* of someone or something (e.g. their *appearance*, their *character*, their *behaviour*).
 ~What’s her new house *like*?~  -  ~What’s your new teacher *like*?~
 
 *** if - wheter - yes
@@ -3047,6 +3166,24 @@ Grito con enfasís, puede indicar enojo. *(shouting -> yelling -> screaming)*
 ~My mom *yelled* at me for breaking her vase.~
 ~"You're going to miss the bus!" I *yelled*.~
 
+*** set - set up - setup
+**** set
+Ajustar. To get something ready so that it comes into operation or can be used.
+
+~He *set* the alarm for 7 a.m.~
+
+**** set up
+Is a phrasal verb that means "*to arrange*" or "*to make arrangements*." In other words, a person can set up a setup.
+
+~Can you *set up* the birthday decorations now?~
+~Patty helped me *set* my new phone *up*.~
+
+**** setup
+Noun or adjective refer an arrangements of some kind. If you're writing about *an arranged* situation, use /setup/.
+
+~The *setup* for your new game system is so complicated.~
+~I can't read these *setup* instructions.~
+
 *** short - small
 **** short
 Para estatura.
@@ -3078,6 +3215,17 @@ We use /so/ + /adjective/ or /adverb/ phrase and /such/ + /noun phrase/.
 - We use /so/, not /such/, before adjectives or adverbs.
   ~Thank you. You’re *so kind*.~  +You’re such kind.+
   ~She always dresses *so elegantly*.~  +She always dresses such elegantly.+
+
+*** some time - sometime - sometimes
+/Some time/ significa una cantidad de tiempo indefinida. /Sometime/ significa /en algún momento/ . Y /sometimes/, significa /a veces/ .
+
+En el inglés hablado, se diferencian porque en /some time/ , el acento va sobre /time/ , y en /sometime/ , el acento va sobre /some/ .
+
+~I need *some time*.~ Necesito tiempo. (cantidad de tiempo no definida)
+
+~I'll do it *sometime*.~ Lo haré en algún momento.
+
+~I get confused *sometimes*.~ A veces me confundo.
 
 *** still - yet
 **** stil
@@ -3156,6 +3304,17 @@ Dos o varias opciones.
 ~Which the right answer?~
 
 ~Which phone did he choose?~ Qué teléfono escogió él?
+
+*** what's he like? - what does he like?
+**** what's he like?
+Used for *describing* a person's: character, habits, apperance, etc.
+
+~What's your new teacher like? He's smart.~
+
+**** what does he like?
+Used for talking about a person's *preferences*.
+
+~Mr. Jones like coffe but Mr. Smith likes tea.~
 
 *** whereas - while
 **** whereas
@@ -4065,6 +4224,11 @@ Ocurrirse una idea. Pensar en algo para decir. Proponer. Inventar. Whoever came 
 - I doubt a novice would *come up with* that particular word when using "apropos" or other aid.
 - Throughout history humans have *come up with* all kinds of clever ways to count things.
 
+**** Fall apart
+Desmonorarse
+
+- It's all falling apart. Todo se está desmoronando.
+
 **** Fall behind
 Progresar menos que otras personas. Quedarse atras. Retrasarse
 
@@ -4111,6 +4275,11 @@ Irse a dormir. Sonar despertador - Dejar de gustar. Estropearse caducar - Explot
 
 - It was only when I woke at 8 am, that I realised the alarm hadn’t *gone off*!
 
+**** Hand out
+Repartir. Dar algo a miembros del grupo
+
+- Another i called is from the card handed out from the street.
+
 **** Leave out
 Excluir una persona o algo. Omitir
 
@@ -4126,6 +4295,11 @@ To examine or consider carefully
 Admirar a alguien
 
 - Try to find someone that you look up to.
+
+**** Make up
+Inventar - Compensar - Recuperar- Maquillarse - Hacer las paces - Hacer un trabajo no realizado
+
+- Code is the text that *makes up* programs.
 
 **** Make out
 To manage to hear, see, or understand sth
@@ -4166,6 +4340,11 @@ Destacar
 Sacar - Eliminar - Tomar
 
 - It's for filling up the space left when they *take* the cool air *out* to burn it.
+
+**** Take up
+Comenzar algo - Emprender - Ocupar espacio
+
+-  So some characters, such as many emoji, *take up* two “character positions” in JavaScript strings.
 
 **** Talk out of
 Convencer a alguien de NO hacer algo
@@ -4496,9 +4675,6 @@ Vaciar completamente
 **** End up
 Terminar algo inesperado. Acabar en un lugar inesperado. She ended up marrying Paul
 
-**** Fall apart
-Desmonorarse
-
 **** Fall asleep
 Quedarse dormido
 
@@ -4680,9 +4856,6 @@ Crecer. Madurar. Hacerse mayor
 **** Hand in
 Entregar algo a una autoridad (un profesor, policía, jefe,...)
 
-**** Hand out
-Repartir. Dar algo a miembros del grupo
-
 **** Hand over
 Entregar algo a alguien con sus propias manos - Dar poder o control a otra persona
 
@@ -4814,9 +4987,6 @@ Revisar. Echar un vistazo a algo
 
 **** Look up
 Buscar y encontrar una información especifica
-
-**** Make up
-Inventar - Compensar - Recuperar- Maquillarse - Hacer las paces - Hacer un trabajo no realizado
 
 **** Meet up
 Encontrarse reunirse con alguien que ya se conoce para socializar (la diferencia entre meet y meet up es que meet up es informal y más sobre socializar, meet también se puede usar de la misma manera pero en un contexto poco más formal como presentarse o "I met my new neighbor", "In my job I meet new people every day" o de manera oficial "World leaders met to discuss climate change")
@@ -5103,9 +5273,6 @@ Contratar - Hacer algo extra
 
 **** Take over
 Tomar el control de algo. Encargarse. Formar responsabilidad
-
-**** Take up
-Comenzar algo - Emprender - Ocupar espacio
 
 **** Talk down
 Hablar con altidez (feo)
@@ -6739,7 +6906,7 @@ Second conditional if-clauses contain a *past tense*, while the main clause cont
 - making excuses :: ~I’m so sorry, if I *didn’t have* to work, I *would come* to your party.~
 
 *Notes*:
-- When we use the verb be in second conditional, we can use /were/ instead of /was/.. There is no change in meaning, although /were/ is sometimes considered more formal than /was/. The most common structure in this context is /if I were you/. It is practical for *giving advice*.
+- When we use the verb /be/ in second conditional, we can use /were/ instead of /was/. There is no change in meaning, although /were/ is sometimes considered more formal than /was/. The most common structure in this context is /if I were you/. It is practical for *giving advice*.
   ~If I /were/ you, I would go to Europe.~
   ~If it /were/ possible, I would stay in five-star hotels for the whole trip.~  = ~If it /was/ possible, …~
 
@@ -7290,13 +7457,18 @@ Whent "n" and "t" are next to each other and between vowels, and the second vowe
 
 ** IPA
 *** IPA Chart
-i:	ɪ	ʊ	u:		ɪə	eɪ
-e	ə	ɜ:	ɔ:		ʊə	ɔɪ	əʊ
-æ	ʌ	ɑ:	ɒ		eə	aɪ	aʊ
 
-p	f	t	θ	tʃ	s	ʃ	k
-b	v	d	ð	dʒ	z	ʒ	g
-h	m	n	ŋ	r	l	w	j
+#+begin_src artist
+
+i:    ɪ    ʊ    u:        ɪə    eɪ
+e    ə    ɜ:    ɔ:       ʊə    ɔɪ    əʊ
+æ    ʌ    ɑ:    ɒ        eə    aɪ    aʊ
+
+p    f    t    θ    tʃ    s    ʃ    k
+b    v    d    ð    dʒ    z    ʒ    g
+h    m    n    ŋ     r    l    w    j
+
+#+end_src
 
 *Silent and voiced consonants*:
 p	~pear~ - ~peer~		b	~bear~ - ~beer~                 m	~money~ - ~mom~
@@ -7619,6 +7791,7 @@ In some areas UE, the "ɔ" vowel has been replaced by "a".
 ~browser~	braʊ.zɚ
 
 ~business~	ˈbɪz.nɪs
+~cause~   kɑːz
 ~close~		kloʊz
 ~cousin~	ˈkʌz.ən
 ~dessert~	dɪˈzɝːt
@@ -8129,6 +8302,11 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
 ~rice~ (arroz)		raɪs
 ~raise~ (elevar)	reɪz
 
+**** run - ran - wrong
+run   ~rʌn~
+ran   ~ræn~
+wrong   ~rɑːŋ~
+
 *** S
 **** salmon - semen
 ~salmon~	sæm.ən
@@ -8197,6 +8375,11 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
 ~tried~	traɪd
 ~trade~	treɪd
 
+**** test - tech - text
+~test~    test
+~tech~    tek
+~text~    tekst
+
 *** V
 **** version - virgin
 ~version~	vɝː.ʒən
@@ -8235,6 +8418,411 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
 ~wrong~	rɑːŋ
 ~run~           rʌn
 
+** Songs
+*** Electronic
+**** Alan Walker, K-391, Tungevaag, Mangoo
+We used to hide under the covers
+Serenade each other with careless melodies
+Something buried deep inside us
+The major and the minor, we're like piano keys
+
+You played for me
+You played for me, oh
+You played for me
+
+I swear it, even in my sleep
+I hear it like the memory
+Of everything we used to be
+
+You played for me
+You played for me
+You played for me
+
+We couldn't stop the world from turning
+It was like a whirlwind, scattered us like leaves
+But I'm stuck inside a feeling, a song that never leaves
+We were like a symphony
+
+You played for me
+You played for me, oh
+You played for me
+
+I swear it, even in my sleep
+I hear it like the memory
+Of everything we used to be
+
+You played for me
+You played for me
+You played for me
+
+You and me
+You and me
+You and me
+You and me
+You and me
+You and me
+You played for me
+
+I swear it, even in my sleep
+I hear it like the memory
+Of everything we used to be
+You played for me
+**** Gareth Emery ft. Wayward Daughter - Reckless
+Pulling away pulling away
+Pulling the truth out of me watch it unravel
+Coming apart at the seams
+You've seen darkness and rain
+Heartache and pain nothing but memories left
+You're the only mistake that I
+Know I will never forget
+
+I held on to your heart
+And I played my part
+Knowing you couldn't let go
+I crushed it to sand in the palm of my hand
+If only you'd just get them, oh
+
+Why did you trust me, oh
+With something so precious?
+Oh, why did you love me?
+Oh, I'm sorry, I'm reckless
+
+Why did you? Why did you?
+
+All these things that I've done
+The battles I've won
+They've taken the fight out of me
+A twist of the knife
+Now, I'm just watching you bleed
+You knew from the start this
+Could tear you apart
+If only you'd just let me be
+You say we could be better
+But I know what's better for me
+
+Oh, why did you trust me, oh
+With something so precious?
+Oh, why did you love me?
+Oh, I'm sorry, I'm reckless
+
+Why did you?
+
+Oh, why did you trust me, oh
+With something so precious?
+Oh, why did you love me?
+Oh, I'm sorry, I'm reckless
+*** Electronic soft
+**** Ian van Dahl - Castles In The Sky
+Do you ever question your life?
+Do you ever wonder why?
+Do you ever see in your dreams
+All the castles in the sky?
+
+Oh tell me why
+Do we build castles in the sky?
+Oh tell me why
+Are the castles way up high.
+Please tell me why
+Do we build castles in the sky?
+Oh tell me why
+Are the castles way up high.
+
+Do you ever question your life?
+Do you ever wonder why?
+Do you ever see in your dreams
+All the castles in the sky?
+
+Oh tell me why
+Do we build castles in the sky?
+Oh tell me why
+Are the castles way up high.
+Please tell me why
+Do we build castles in the sky?
+Oh tell me why
+Are the castles way up high.
+
+**** Max Oazo Ft. Cami – Supergirl
+You can tell by the way
+She walks, that she's my girl
+You can tell by the way
+She talks, she rules the world
+
+You can see in her eyes
+That no one is her chain
+She's my girl
+My supergirl
+
+And then she'd say, "It's okay
+I got lost on the way
+But I'm a supergirl
+And supergirls don't cry"
+
+And then she'd say, 'It's alright
+I got home late last night
+But I'm a supergirl
+And supergirls just fly"
+But I'm a supergirl
+
+And then she'd say
+That nothing can go wrong
+When you're in love
+What can go wrong?
+Then she'd laugh
+The night turned into day
+Pushing her fear
+Further long
+
+And then she'd say, "It's okay
+I got lost on the way
+But I'm a supergirl
+And supergirls don't cry"
+
+And then she'd say, "It's alright
+I got home late last night
+But I'm a supergirl
+And supergirls just fly"
+But I'm a supergirl
+A super girl
+
+She's sowing seeds, she's burning trees
+She's sowing seeds, she's burning trees
+And she's a supergirl
+And she's a supergirl
+A supergirl
+She's sowing seeds, she's burning trees
+She's sowing seeds
+And she's a supergirl
+
+*** Zyzz
+****  Tiesto & Sneaky Sound System - I Will Be Here
+I will be here (I will be here)
+I will be here (I will be here)
+
+I don't know what went wrong
+If I did, wouldn't matter cause
+It just wasn't enough
+
+You know when the moment comes
+To be strong, show resistance
+And that's what we're led to believe
+
+When the big world falls apart
+And you think that the feeling will linger
+You need somewhere to start
+I will be here (I will be here)
+
+And when it all seems to fall apart
+You can't breathe
+You don't know what you're thinking
+You need somewhere to start
+I will be here (I will be here)
+
+Guess that things didn't work out
+It will soon disappear
+It will be miles away
+Away from here
+You might also like
+Century (Sultan + Ned Shepard Remix)
+Tiësto
+Jackie Chan
+Tiësto & Dzeko
+The Twelve Days of Christmas
+Christmas Songs
+You don't mind if life's not that pretty
+It will soon disappear
+It will be miles away
+Away from here
+
+When the big world falls apart
+And you think that the feeling will linger
+You need somewhere to start
+I will be here (I will be here)
+
+And when it all seems to fall apart
+You can't breathe
+You don't know what you're thinking
+You need somewhere to start
+I will be here (I will be here)
+
+Oh, oh, oh, oh-oh
+I will be here, I will be here
+Oh, oh, oh, oh-oh
+I will be here, I will be here
+Oh, oh, oh, oh-oh
+I will be here, I will be here
+Oh, oh, oh, oh-oh
+I will be here, I will be here
+Oh, oh, oh, oh-oh
+I will be here, I will be here
+Oh, oh, oh, oh-oh
+I will be here, I will be here
+
+*** Rap
+****  NEFFEX - The King Is Dead
+Let's go, moving silent, feel the violence
+The incitement, I know the assignment
+I'm taking over, I'm sick of mediocre
+I'll be the closer, I got a different motor
+I got a mission to win it
+Some ammunition to get it, don't need permission
+I finish, got an addiction that's gripping
+Got some convictions, I'm living
+Once I'm committed, I'm in it
+Got a prediction I'm winning, uh
+
+[Chorus]
+They're the pure bloods, I'm the hybrid
+They hate change, so, they try to push and fight it
+I stay steady, yeah, I've always been defiant
+Up against the beast, yeah, I'm up against a giant
+But now I'm gunning for their heads (Now I'm gunning for their heads)
+And I will die with no regrets (And I will die with no regrets)
+This needs to come to an end, I'm seeing all red
+
+[Drop]
+And now the king is dead
+And now the king is dead
+And now the king is dead
+(And now the king is dead)
+You might also like
+The Plague
+NEFFEX
+Seeing All Red
+NEFFEX
+The Curse
+NEFFEX
+[Verse 2]
+Welcome to the new regime
+We do what we want, yeah, we do anything
+Took everything to extreme
+'Cause we were suppressed when we had big dreams
+Yeah, it's a new machine
+All our energy coming from caffeine
+No pain, morphine
+This our world now we the Kings and Queens
+
+[Chorus]
+They're the pure bloods, I'm the hybrid
+They hate change, so, they try to push and fight it
+I stay steady, yeah, I've always been defiant
+Up against the beast, yeah, I'm up against a giant
+But now I'm gunning for their heads
+And I will die with no regrets
+This needs to come to an end, I'm seeing all red
+
+[Drop]
+And now the king is dead
+And now the king is dead
+And now the king is dead
+
+[Outro]
+You can't stop me, I'm a problem
+I can feel my adrenaline calling
+Blood pumps as my form starts evolving
+Better watch out or I'll put you in a coffin
+You can't stop me, I'm a problem
+I can feel my adrenaline calling
+Blood pumps as my form starts evolving
+Better watch out or I'll put you in a coffin
+You can't stop me. I'm a problem
+I can feel my adrenaline calling
+Blood pumps as my form starts evolving
+Better watch out or I'll put you in a coffin
+You can't stop me, I'm a problem
+I can feel my adrenaline calling
+Blood pumps as my form starts evolving
+Better watch out or I'll put you in a coffin
+****  NEFFEX - Soldier
+I spit raps like a heart attack,
+fast fatal hard impact
+Past painful scars in fact,
+I blast tasteful bars in packs
+
+I back up my actions, fact,
+don't ask, grab reactions, jacked
+Attack with every word then act
+with class, as they hear me snap
+
+I got nothing to lose,
+'cause I fought and felt the bruise
+Now I'm not the one confused,
+call the shots and they produce
+
+I ain't lost I'm finally loose,
+pick a noose over excuse
+I need the views to boost me to
+a new abuse of being used
+
+Everybody wants a piece now,
+y'all can rest in peace now
+Your dead to me so peace out,
+remember your discrete doubt
+
+Get ready for defeat now,
+I'm gon' make you bleed out
+Listen on repeat now
+and weed out all the weak now
+
+Get up and make a change,
+don't remember yesterday
+If you got something to say,
+speak your mind before your grave
+
+'Cause your life is yours to save,
+ain't nobody gonna change
+Everybody stays the same,
+so be different, make a name, huh?
+
+And just like a soldier
+I keep on moving forward
+Always getting closer
+I march until it's over
+X4
+
+It's ridiculous, I'm spitting
+this meticulous and limitless
+While others out there spitting shit,
+got hits up on the charts that sit
+
+I see why other artists quit,
+'cause people don't reward good shit
+They love to hate but hate to live,
+society you swing and miss
+
+And honestly, I get it,
+promise me you won't regret it
+Wasting energy, forget it,
+don't look back, go on get it
+
+Bite the bullet just a bit,
+bite your tongue and don't say shit
+Make your actions hard to miss,
+be a legend not a myth
+
+It's obnoxious that I'm conscious,
+rapping honesta as promised,
+try to harness, as an artist
+Stay modest, it's a long quest,
+
+I will not quit
+'Til ten thousand people going off
+when I drop this
+
+I gotta make it now,
+swear to god I'm breaking out
+Swear to god I'll take a bow,
+center stage with a crowd
+
+'Cause I got it figured out,
+I'm just honest and I'm loud
+Staying modest but I'm proud,
+no, I never had doubt, yea
+
+And just like a soldier
+I keep on moving forward
+Always getting closer
+I march until it's over
+X8
 ** Notes
 - Omit the "g" in the geriundo verb form.
   ~having~  ->  ~havin'~   -   ~talking~  ->  ~takin'~
@@ -8257,284 +8845,1383 @@ Main verbs aren't reduced. ~What have ...?~   wʌ_t hæv ...
 
 - The difference between ɜ:ʳ and əʳ is that ɜ:ʳ  is stressed as in ~bird~  bɜrd while the əʳ isn't stressed as in  ~mother~  mʌð·ər.
 
+- What did you do? Wha_di_jou do?.
+
 * Daily sentences
 ** Practice
-*** The Dark Side of Self Study
-[[https://youtu.be/g7MSfHEdxXs?si=b0pqD6_XVn_dlx28][The Math Sorcerer]]
-**** 2déjame realmente sacarlo a la luz/que lo diga
-let me just really get it out there
-
-**** 2dado suficiente tiempo y esfuerzo, cualquiera puede aprender por sí solo.
-given enough time and effort anyone can learn on their own
-
-**** 2y simplemente tienes este sentimiento perdido y confuso
-and you just have this lost and confused feeling
-
-**** 2Hay toneladas de videos. He hecho algunos yo mismo.
-there's tons of videos i've made a few myself
-
-**** 2pero es más fácil decirlo que hacerlo
-but it's easier said than done
-
-**** 2pero vas a salir mejor si lo haces
-but you're gonna come out better for doing it
-
-**** 1no dejes que te haga sentir estúpido
-don't let it make you feel stupid
-
-**** 1He escrito como un plan de juego
-i have written down like a game plan
-
-**** 2... ¿alguna vez lo hago?
- do i ever do it
-
-**** 2pero es así es como es
-but that's just how it is
-
-**** 1¿Lo hice?
-did i do it
-
-**** 2no hagas lo que hice
-don't do what i did
-
-**** 2Deberías seguir teniendo aquellos pensamientos incluso si nunca actúas en consecuencia/ellos porque sabes lo que algún día podrías hacer.
-you should keep having those thoughts even if you never act on them because you know what someday you might
-
-**** 2un camino difícil
-a difficult road
-
-**** 2quizás incluso sacaras/obtengas la nota más alta de la clase
-maybe you'll even get the highest grade in the class
-
-**** 2mi mayor logro cuando se trata de autoestudio
-my greatest accomplishment when it comes to self-study
-
-*** The linux command line
-**** Cómo funciona todo?
-How does it all work?
-
-**** No es que sea/es tan difícil, sino que es tan vasto.
-It's not that it's so hard, but rather it's so vast.
-
-**** Si resalta algún texto manteniendo presionado el botón izquierdo del mouse y arrastranndo el mouse sobre  el...
-If you highlight some text by holding down the left mouse button and dragging the mouse over it..
-
-**** no es raro(no común)
-It is not uncommon
-
-**** monitoreado de vez en cuando.
-monitored from time to time.
-
-**** Una cosa que debemos tomar de esto es lo abierto que es el sistema.
-One thing we should take away from this is how open the system is.
-
-**** La página más brutal de todas.
-The most brutal page of them all
-
-**** Puede parecer de esa manera pero está realmente haciendo exactamente lo que se supone que debe hacer.
-It might seem that way, but it's really doing exactly what it's supposed to do.
-
-**** Cuando me piden que explique la diferencia entre
-When I am asked to explain the difference between
-
-**** ...y compre uno todo nuevo y brillante en la caja. Te lo llevas a casa
-...and buy one all shiny new in the box. You take it home
-
-**** Después de un tiempo, pensó, te cansas del juego que vino con él, así que vuelves a la tienda y compras otro.
-After a while, though, you get tired of the game that came with it, so you go back to the store and buy another one.
-
-**** solo para que se les diga que tal juego no existe porque no hay demanda en el mercado para él.
-only to be told that no such game exists because there is no “market demand” for it.
-
-**** Los juegos estan *todos* sellados en sus cartuchos.
-The games are all sealed up in their cartridges.
-
-**** Después de un tiempo descubres que tienes tus propias ideas de qué hacer.
-After a while you discover that you have your own ideas of what to make.
-
-**** esto hace lo que quieres.
-It does what you want.
-
-**** Como podemos(posibilidad) recordar
-As we may recall
-
-**** , a su vez,
-, in turn,
-
-**** Haciendo esto, deberíamos conseguir que se vea así
-Doing so, we should get that looks like this
-
-**** Has preguntado alguna vez como ...
-Ever wonder how ...
-
-**** Por qué tantos diferentes?
-Why so many different ones?
-
-**** Mientras estas en eso, no es una mala idea
-While you're at it, it’s not a bad idea
-
-**** ... valdrá la pena(ph*) a largo plazo.
-will pay off in the long run.
-
-**** pueden haber pasado por alto un dispositivo particular.
-they may have overlooked a particular device.
-
-**** No ha liberado el código fuente de/para un controlador de Linux, ni ha liberado la documentación técnica para que alguien cree uno para ellos.
-It has neither released source code for a Linux driver, nor has it released the technical documentation for somebody to create one for them.
-
-**** Dedica un tiempo a conocer...
-Spend some time getting to know
-
-**** Cuando se trata de networking
-When it comes to networking,
-
-**** .De qué sirve una red al menos que podamos mover archivos a través de ella?
-***** Qué bueno es una read al menos ...
-What good is a network unless we can move files across it?
-
-**** .Antes de que existieran el navegador web, estaba el programa ftp.
-***** Antes de que hubiera el navegador web, había el programa ftp.
-Before there were web browsers, there was the ftp program.
-
-**** , casi todos lo hecho en FTP sobre internet es hecho por servidores FTP anonimos.
-, almost all FTP done over the Internet is done by anonymous FTP servers.
-
-**** Es torpe pero funciona.
-It’s clumsy, but it does work.
-
-**** , una cosa se ha vuelto muy clara
-, one thing has become abundantly clear:
-
-**** ...archivos que cumplan con criterios específicos.
-... files that meet specific criteria.
-
-**** Precediendo cada uno con un backslash hace el truco.
-Preceding each one with a backslash character does the trick.
-
-**** , por lo que ayuda a que vaya más rápido.
-, so it helps it go faster.
-
-**** A trabajar/Trabajemos un poco
-Let’s get some work done!
-
-**** Maravillate ante el poder de la línea de comandos.
-Marvel at the power of the command line!
-
-**** , ha habido una lucha por obtener la mayor cantidad de datos en el espacio disponible más pequeño.
-, there has been a struggle to get the most data into the smallest available space,
-
-**** (la técnica matemática usada para llevar a cabo la compresión).
-(the mathematical techniques used to carry out the compression)
-
-**** .Podemos pensar que es como ...
-***** Podemos pensar en eso es como
-We can think of it as being like
-
-**** Ahora todo lo que tenemos que hacer es adjuntar nuestro dispositivo externo y ...
-Now all we have to do is attach our external drive and
-
-**** .Sin embargo, para confundir más las cosas,
-***** ..., para ir mas lejos
-However, to further confuse things,
-
-**** Si bien puede no parecer aparente,
-*While* it may not seem apparent,
-
-**** incluyendo caracteres que de lo contrario serían interpretados como metacaracteres
-including characters that would otherwise be interpreted as metacharacters
-
-**** ..., permitir que los revisores del parche que lo evalúen rapidámente
-, allowing reviewers of the patch to quickly evaluate it.
-
-**** Después de pasar/estar/gastar el último par de capítulos manipulando texto,
-After spending the last couple of chapters manipulating text,
-
-**** Cuando las impresoras eran caras y centralizadas, como a menudo eran en los primeros días de Unix, era una práctica común
-When printers were expensive and centralized, as they often were in the early days of Unix, it was common practice for
-
-**** El shell lee este archivo y ejecuta/lleva a cabo los comandos como si hubieran sido ingresados ​​directamente
-The shell reads this file and carries out the commands as though they have been entered directly
-
-**** El shell es *algo* único, en que es ambas, un ...
-The shell is somewhat unique, in that it is both a ...
-
-**** Todo desde el símbolo # en adelante en la línea es ignorado.
-Everything from the # symbol onward on the line is ignored.
-
-**** ¿Por qué es esto? ¿Qué hace nuestro script diferente de otros programas? Pues resulta que nada.
-Why is this? What makes our script different from other programs? As it turns out, nothing.
-
-**** Esto cause que vim sangra una nueva línea con la misma cantidad que la línea que acaba de escribir.
-This causes vim to indent a new line the same amount as the line just typed.
-
-**** , resultará *ser* bastante útil/práctico.
-, it will turn out to be quite handy.
-
-**** Tenga en cuenta que para que las llamadas a funciones sean reconocidas como funciones del shell y no interpretadas como
-Note that for function calls to be recognized as shell functions and not interpreted as
-
-**** algunos programas se benefician de poder aceptar entradas directamente del usuario
-some programs benefit from being able to accept input directly from the user
-
-**** 0Sería prudente/conveniente incluir la validación de datos, por si acaso.
-it would be wise to include data validation, just in case.
-
-**** a.coger la tabla de cortar b.coger el cuchillo c.colocar la zanahoria en la tabla de cortar d.levantar el cuchillo e.avanzar la zanahoria f.cortar la zanahoria g.si la zanahoria entera está cortada en rodajas, entonces salir; si no/de lo contrario vaya al paso 4
-1.get cutting board 2.get knife 3.place carrot on cutting board 4.lift knife 5.advance carrot 6.slice carrot 7.if entire carrot sliced, then quit; else go to step 4
-
-**** 1Si te fuera dado cinco minutos para diseñar un dispositivo "que mate moscas", diseñaría un matamoscas. Si te fuera dado cinco meses, podría(tal vez) *idear* un "sistema antimoscas" guiado por láser en su lugar
-If you were given five minutes to design a device “that kills flies,” you designed a flyswatter. If you were given five months, you might come up with a laser-guided “anti-fly system” instead.
-
-**** 1Hay un dicho en el mundo del código abierto,
- There is a saying in the open-source world,
-
-**** 1.Una característica que faltaba hasta ahora en nuestros programas
-***** Una característica que ha estado faltando hasta ahora en nuestros programas
-One feature that has been missing from our programs so far
-
-**** 1Entonces, ¿para qué sirven las matrices?
-So what are arrays good for?
-
-**** 2Hemos visto cómo todos los sistemas operativos modernos son al menos multitarea, si no también multiusuario.
-We have seen how all modern operating systems are at least multitasking if not multiuser as well
-
-**** 3Al igual que con las tuberías ordinarias (sin nombre), los datos entran por un extremo y salen por el otro.
-As with ordinary (unnamed) pipes, data goes in one end and emerges out the other.
-
-**** 2Apenas arañamos la superficie en lo que respecta/en cuanto a a la línea de comando.
-we barely scratched the surface as far as the command line goes.
-
 *** New
-**** 3.una descripción matemática precisa; como tuvieras que hacerlo si, por ejemplo, estuvieras intentando programar una computadora para distinguir una forma conectada de una desconectada. Así que antes de continuar
-***** ...como si hubieras tenido que hacerlo...
-a precise mathematical description; like how you might have to if, say, you were trying to program a computer to distinguish a connected shape from a disconnected one. So before we go on
+**** ****va a haber un momento en este país
+there's going to be a time in this country
 
-**** 2.Quiero que se den cuenta del reto que supone.
-***** ¡Realmente quiero que ustedes aprecien el desafío que es ese!
-I really want you to appreciate what a challenge that is!
+**** **pero no hay excusa para que la gente no pueda hacer lo que quiere, tú puedes hacer lo que quieras.
+but there's no excuse for people not being able to do what they want you can do anything that you want to do
 
-**** 3El siguiente es el "exterior" de S, que son aquellos puntos que están fuera de S y lo suficientemente lejos de S como para que puedan estar rodeados por bolas que están completamente separadas de S.
-Next is the "exterior" of S which are those points that are outside S and far enough away from S that they can be surrounded by balls that are completely disjoint from S.
+**** **por lo tanto una persona pueda lograr lo que quiera
+so a person can accomplish anything that they want
 
-**** 3No dejes que eso sea un obstáculo, sea lo que sea lo que sientes que no tienes y que otras personas tenían.
-don't let that be a roadblock whatever it is that you feel that you don't have that other people had
+**** *La forma en que abordo/enfoco los problemas en matemáticas.
+the way I approach problems in mathematics
 
-**** 3¡Esto empeora los problemas!
- this makes problems worse!
+**** *ella lo empezó
+she started it
 
-**** 3No, no es eso;
-No, it's not that
+**** *ustedes ni siquiera estaban en eso
+you guys weren't even in it
 
-**** Pero así como todo teorema necesita una demostración, creo que toda definición necesita una motivación. ¡Y también es una habilidad matemática importante que debemos cultivar! Uno que me preocupa con demasiada frecuencia no se ejercita.
-But just as every theorem needs a proof, I think every definition needs a motivation. And it's an important mathematical skill to cultivate too! One that I worry too often goes unexercised.
+**** *Haz lo que quieras hacer
+do what you want to do
 
-**** Tómese un minuto para ejercitar ese músculo matemático y trate de comprender qué lo motivó, y también aprecie el trabajo que se realizó para elaborarlo.
-take a minute to flex that mathematical muscle and try to understand what motivated it, and also appreciate the work that went into crafting it
+**** *Creo que fui bastante claro, no estoy aquí para tomar fotografías de esta área.
+I think I was pretty clear, I'm not here to take pictures of this area
+
+**** *Debo asegurarme
+I gotta make sure
+
+**** *Ojalá no hubieran grabado eso
+I wish you guys wouldn't have recorded that
+
+**** *nos hizo/nos dio pasar un mal rato
+gave us a hard time
+
+**** *pudiste detenerla
+you were able to detain her
+
+**** *No puedo llevarte a la oficina porque tienes más de 18 años.
+I can't take you to the office cuz you are over 18
+
+**** *me vas a dejar seguir meando
+you going to let me keep pissing
+
+**** *Hasta el policia regaño a ese tonto.
+Even the policeman scolded that fool.
+
+**** *no dejes nunca de aprender intenta siempre superarte a ti mismo
+never stop learning always reach out to better yourself
+
+**** si los tiempos son dificiles lo bueno ni lo malo duran para siempre
+if times are hard good things nor bad things last forever
+
+**** *no tengan miedo de ir tras lo que necesitan,
+don't be afraid to go after what you need
+
+**** *¿qué tienes ahí con lo que puedas pagar?
+what do you have there that you can pay with
+
+**** *consíguelo chico
+get him boy
+
+**** ¿Qué acabas de sacar de tu bolsillo?
+what did you just take it out of your pocket
+
+**** ¿Cómo funcionó eso, Marge? ¿Lo arrestaron?
+How did that work out Marge? Did he get arrested?
+
+**** lo que mas me gusta es esa cosa
+what I like most is that thing
+
+**** Un día de estos estarás sentado en el porche de algún lugar y apenas sabrás lo que está pasando.
+one of these days you you'll be sitting on a front porch somewhere and you won't hardly know what's going on
+
+**** Sólo quería ver si iban a salir y decir o hacer algo estúpido
+I just wanted to see if they were going to come out and say or do something stupid
+
+**** me alejo de el
+I get away from him
+
+**** ¿Por qué alguien en su sano juicio/en su correcto pensamiento querría hacer eso?
+why would anybody in the right mind want to do that
+
+**** Cuando ese idiota dijo que la policía estaba en camino, deberías haber dicho que pensabas que ya estaban aquí porque te mostró su placa. Y una cosa más: nunca debes dejar que esos locos se acerquen tanto a ti, nunca sabes lo que pasa por sus cabezas vacías.
+ when that meat head said that the cops were on the way you should have said you thought they were already here cause he showed you his badge. and one more thing you should never let them nut jobs get that close to you ya never know what goes on in their empty heads
+
+**** ya tiene una curva de aprendizaje pronunciada
+it has a steep learning curve already
+
+**** desde que puedo recordar
+as long as I can remember
+
+**** Siempre me han encantado los números y los patrones.
+I have always loved numbers and patterns.
+
+**** saber como pensar matemáticamente puede ser una herramienta que puedes utilizar para resolver problemas de forma sistematica
+knowing how to think mathematically can be a tool that you can use to solve problems in a systematic way
+
+**** no te voy a poner tarea
+I'm not going to give you homework
+
+**** los abstraemos, Las rompemos en pedazos, hacemos analogías
+we abstract them, we break them up into pieces, we make analogies
+
+**** El problema ideal en el que trabajar es uno que apenas está fuera de su alcance.
+the idea problem to work on is one which is just barely outside of your reach
+
+**** No se trata tanto de si tienes éxito o fracasas en esa pregunta.
+it's not so much whether you succeed or fail at that question
+
+****  Tiene mucho sentido, ¿no? 😂😂😂😂
+Makes perfect sense huh?!?! 😂😂😂😂Makes a lot of sense, doesn't it? 😂😂😂😂
+
+**** Sólo he podido controlar estas áreas.
+I've only been able to get a handle of these areas
+
+**** Así que no pretendas ningún dominio de todas las matemáticas y creo que nadie puede hacerlo desde Hilbert.
+so don't claim any mastery of all of mathematics and I think nobody can do that since Hilbert
+
+**** como resulta/ resulta que (esto no es lo que bla bla bla)
+as it turns out
+
+**** vas a venir hacia mí
+you're going to come at me
+
+**** diciéndole a su esposa que se encontraría/estaría con un amigo
+telling his wife he was meeting a friend
+
+**** ¿Cómo es que ella no tiene trabajo?
+how come she hasn't got a job
+
+**** Me han ayudado mucho en el desafío que estoy enfrentando.
+Me han ayudado mucho en el desafío que estoy enfrentando.
+
+**** De ninguna manera es lo que quiero estar haciendo para el próximo.
+by no means what I want to be doing for the next
+
+**** habrá, si no ya, una demanda de científicos
+there will be, if not already, a demand for scientists
+
+**** Me niego a aceptar la derrota sin importar la edad.
+I refuse to accept defeat regardless of age
+
+**** Estarías encima de mí si me quitara esto.
+you would be all over me if I took this off
+
+**** Ver las mentes frágiles derretirse me hace reír...
+ Watching the fragile minds melt makes me laugh...
+
+**** Estoy seguro de que no es la primera vez que este portero hace el ridículo.
+ im sure this is not the first time this doorman has made a fool of himself
+
+*** Chunk
+*** Eloquent
+**** Para poder recuperarlos rápidamente, los navegadores realizarán varias solicitudes GET simultáneamente, en lugar de esperar las respuestas una por una.
+To be able to fetch those quickly, browsers will make several GET requests simultaneously, rather than waiting for the responses one at a time.
+
+**** Parece haber una regla no escrita de que cada formato necesita su propia forma de escapar de los caracteres.
+There seems to be an unwritten rule that every format needs its own way of escaping characters
+
+**** Antes de intercambiar datos, el cliente verifica que el servidor es quien dice ser pidiéndole que demuestre que tiene un certificado criptográfico emitido por una autoridad certificadora que el navegador reconoce.
+Before exchanging data, the client verifies that the server is who it claims to be by asking it to prove that it has a cryptographic certificate issued by a certificate authority that the browser recognizes.
+
+****  Esa restricción, junto con el hecho de que llenar los discos duros de las personas con basura no es realmente rentable,
+That restriction, along with the fact that filling up people’s hard drives with junk is not really profitable,
+
+**** dependiendo de lo que pida el cliente.
+depending on what the client asks for.
+
+*** My talks
+**** , que somos muchos que nunca habíamos visto alguno.
+, that there are many of us who have never seen one.
+
+**** , simplemente se creen que son  dueños de todo y quieren que los demás hagan lo que ellos quieren.
+, they simply believe they are owners of everything and want others to do what they want.
+
+**** Soy de los que piensan que siempre se puede responder amablemente al principio pero viendo a señoras como ella 15:37 creo que a veces no se debería, el problema es saber cuando es ese tipo de personas. Ella molesto con un montón de preguntas y como ella no escucho lo que queríá, entonces llama a la policía.
+I'm one of those who think you can always answer nicely at first but seeing ladies like her 15:37 I think sometimes you shouldn't, the problem is knowing when it's that kind of person. She annoyed with a lot of questions and since she didn't listen to what she wanted, then she calls the police.
+
+*** Free speech
+*** Eloquent JavaScript
+**** Puede abrir la aplicación adecuada y ponerse a trabajar.
+you can open the appropriate application and get to work
+
+**** Afortunadamente, si puedes superar ese hecho y tal vez incluso disfrutar del rigor de pensar en términos que las máquinas tontas pueden manejar, la programación puede ser gratificante.
+Fortunately, if you can get over that fact, and maybe even enjoy the rigor of thinking in terms that dumb machines can deal with, programming can be rewarding
+
+**** Estás bien, sólo tienes/necesitas que seguir así.
+You are fine—you just need to keep at it.
+
+**** y el conteo realizará un seguimiento del número que estamos viendo actualmente.
+and count will keep track of the number that we are currently looking at.
+
+**** La construcción while se encarga de eso.
+The while construct takes care of that
+
+**** Hay quienes dirán cosas terribles sobre JavaScript.
+There are those who will say terrible things about JavaScript.
+
+**** Todos estos datos se almacenan como largas secuencias de bits y, por tanto, son fundamentalmente iguales.
+All this data is stored as long sequences of bits and is thus fundamentally alike.
+
+**** Esto es una lástima
+This is a shame,
+
+**** Veámoslo más de cerca. - Echémosle un vistazo más de cerca.
+Let’s take a closer look at it.
+
+**** Más bien, sería infinito si la computadora tuviera una pila infinita. Tal como están las cosas, nos quedaremos sin espacio o "volaremos la pila".
+Rather, it would be infinite, if the computer had an infinite stack. As it is, we will run out of space, or “blow the stack”.
+
+**** Sin embargo, a menudo un programa trata conceptos tan complejos que renunciar a cierta eficiencia para que el programa sea más sencillo.
+Often, though, a program deals with such complex concepts that giving up some efficiency in order to make the program more straightforward is helpful.
+
+**** —lo cual generalmente no es así, ya que la mayoría del código simplemente no se ejecuta con la frecuencia suficiente como para tomar una cantidad significativa de tiempo.
+which it usually isn’t since most code simply isn’t executed often enough to take any significant amount of time
+
+**** ¡Misión cumplida! Pero justo cuando estamos a punto de enviarle el código al granjero
+Mission accomplished! But just as we are about to send the farmer the code
+
+**** ¿Qué tan inteligente y versátil debe ser nuestra función?
+How smart and versatile should our function be?
+
+**** No conseguirás trabajar de verdad
+You won’t get any real work done
+
+**** Los enlaces object1 y object2 captan el mismo objeto, razón por la cual/por lo que cambiar object1 también cambia el valor de object2.
+The object1 and object2 bindings grasp the same object, which is why changing object1 also changes the value of object2.
+
+**** El único paso que queda/falta es encontrar una correlación para cada tipo de evento que fue registrado y ver si algo destaca.
+The only step remaining is to find a correlation for every type of event that was recorded and see whether anything stands out.
+
+**** y aunque el lenguaje no se queja si intentas establecer nuevas propiedades en ellos,
+and though the language doesn’t complain if you try to set new properties on them,
+
+**** Por ejemplo, no es improbable querer nombrar algo max en uno de tus programas.
+ For example, it’s not unlikely to want to name something max in one of your programs.
+
+**** Volvamos brevemente a los dos últimos programas de ejemplo de la introducción
+Let’s briefly go back to the final two example programs in the introduction.
+
+**** pero su contenido habrá sido asignado a una nueva forma por la función.
+, but its content will have been mapped to a new form by the function.
+
+**** Cuando quedó claro que eso no iba a ser suficiente,
+When it became clear that wasn’t going to be enough,
+
+**** Para abordar estas preocupaciones,
+To address these concerns,
+
+**** Saqué una propiedad de un objeto vacío. ¡Magia!
+I pulled a property out of an empty object. Magic!
+
+**** Simplemente he estado ocultando información sobre la forma en que funcionan los objetos JavaScript.
+I have simply been withholding information about the way JavaScript objects work.
+
+**** Por confuso que sea,
+Confusing as it is,
+
+**** Y mientras estamos en eso,
+And while we're at it
+
+**** Pongamos en marcha un mundo virtual.
+Let’s start up a virtual world.
+
+**** No podemos explorar inmediatamente un lugar tan pronto como lo alcanzamos porque eso significaría que los lugares a los que se llega/alcanzan desde allí también serían explorados inmediatamente,
+We can’t immediately explore a place as soon as we reach it because that would mean places reached from there would also be explored immediately,
+
+**** lo que significa que todos los caminos que van desde ese lugar son revisados.
+which means all roads going from that place are looked at.
+
+**** Muchos errores vienen de estar confundido acerca del tipo de valor que entra o sale de una función.
+A lot of mistakes come from being confused about the kind of value that goes into or comes out of a function.
+
+**** Si tiene esa información escrita, es menos probable que se confunda.
+If you have that information written down, you’re less likely to get confused.
+
+**** podría devolver de nuevo un valor especial a su invocador para indicar que -fallo en hacer lo que se le pidió-.
+Or it could again return a special value to its caller to indicate that- it failed to do what it was asked.
+
+**** Está prohibido acceder directamente a la propiedad privada _content.
+Directly accessing the private _content property is forbidden.
+
+**** La mitad son barras invertidas,
+Half of it is backslashes,
+
+**** Este es un módulo para pasa/ir/alternar entre nombres de días y números
+This is a module for going between day names and numbers
+
+**** Pero siguen siendo una especie de truco con cinta adhesiva.
+But they remain a bit of a duct-tape hack.
+
+**** Solo tenga en cuenta que el código JavaScript que ejecuta a menudo no es el código tal como fue escrito.
+Just be aware that the JavaScript code you run is often not the code as it was written.
+
+**** tal como es/Sólo la forma en que es
+just the way it is
+
+**** Eso puede significar seguir las convenciones existentes.
+That may mean following existing conventions.
+
+**** si quisiéramos usar ese paquete, tendríamos que asegurarnos de que nuestro gráfico estuviera almacenado en el formato esperado
+So if we wanted to use that package, we’d have to make sure that our graph was stored in the format it expects.
+
+**** Esto es lo que habría hecho
+Here's what I would have done
+
+**** planificar con anticipación,
+plan ahead,
+
+**** pero uno que sea lo suficientemente potente como para expresar cualquier cálculo que se pueda imaginar.
+but one that is powerful enough to express any computation you can think of
+
+****  ,lo que transforma el programa en algo que puede evaluarse de manera más eficiente haciendo la mayor cantidad de trabajo posible por adelantado.
+, which transforms the program into something that can be evaluated more efficiently by doing as much work as possible in advance.
+
+**** Aunque el lenguaje de juguete de este capítulo no hace nada que no se pueda hacer mejor en JavaScript,
+Though the toy language in this chapter doesn’t do anything that couldn’t be done better in JavaScript,
+
+**** La técnica de representar osciloscopios como objetos simples, que ha hecho las cosas más cómodas hasta ahora, se interpondrá un poco en su camino en este punto.
+The technique of representing scopes as simple objects, which has made things convenient so far, will get in your way a little at this point.
+
+**** Las redes informáticas existen desde la década de 1950.
+Computer networks have been around since the 1950s
+
+**** Si colocas cables entre dos o más computadoras y les permites enviar datos de un lado a otro a través de estos cables,
+If you put cables between two or more computers and allow them to send data back and forth through these cable
+
+**** HTTP trata la red como un dispositivo en forma de flujo en el que se pueden colocar bits y hacer que lleguen al destino correcto
+HTTP treats the network as a streamlike device into which you can put bits and have them arrive at the correct destination
+
+**** Una conexión de este tipo actúa como un tubo de dos vías a través del cual pueden fluir bits: las máquinas de ambos extremos pueden introducir datos en él.
+Such a connection acts as a two-way pipe through which bits can flow—the machines on both ends can put data into it.
+
+**** Si todo va bien, el servidor devuelve un documento, que luego su navegador muestra en su pantalla.
+If all goes well, the server sends back a document, which your browser then displays on your screen.
+
+**** Las etiquetas han desaparecido por completo.
+tags are gone completely.
+
+**** Esto no debe tomarse como un estímulo para eliminarlos de los documentos HTML.
+This is not to be taken as an encouragement to drop these from HTML documents.
+
+**** Los navegadores suelen hacer cosas ridículas cuando los olvidas.
+Browsers will often do ridiculous things when you forget them
+
+**** Debe considerar que los metadatos del tipo de documento y del juego de caracteres están implícitamente presentes en los ejemplos, incluso cuando en realidad no se muestran en el texto.
+You should consider the doctype and the charset metadata to be implicitly present in examples, even when they are not actually shown in the text.
+
+**** ,y ellos no necesariamente tienen buenas intenciones
+, and they do not necessarily mean well.
+
+**** Sin embargo, el atractivo de la Web es que puedes navegar por ella sin confiar necesariamente en todas las páginas que visitas. Esta es la razón por la que los navegadores limitan severamente las cosas que puede hacer un programa JavaScript:
+Yet the attraction of the Web is that you can browse it without necessarily trusting all the pages you visit. This is why browsers severely limit the things a JavaScript program may do:
+
+**** Los desarrolladores web se quedaron no con una web unificada sino con dos o tres plataformas incompatibles.
+Web developers were left with not one unified Web but two or three incompatible platforms.
+
+**** Para empeorar la situación,
+To make things worse,
+
+**** La vida era dura para la gente que escribía páginas web.
+Life was hard for people writing web pages.
+
+**** Lo mismo ocurre con el DOM.
+The same goes for the DOM.
+
+**** En lugar de decir, por ejemplo, que el método
+
+**** en lo que respecta al DOM
+as far as the DOM is concerned
+
+**** la notación utilizada en las hojas de estilo para determinar a qué elementos se aplica un conjunto de estilos:
+the notation used in style sheets to determine which elements a set of styles apply to
+
+**** El estilo de navegador gráfico que utilizamos se diseñó teniendo en cuenta las interfaces del mouse, en una época en la que las pantallas táctiles eran raras
+The style of graphical browser that we use was designed with mouse interfaces in mind, at a time where touchscreens were rare.
+
+**** Para que la Web "funcionara" en los primeros teléfonos con pantalla táctil, los navegadores de esos dispositivos pretendían, hasta cierto punto, que los eventos táctiles eran eventos del mouse.
+To make the Web “work” on early touchscreen phones, browsers for those devices pretended, to a certain extent, that touch events were mouse events.
+**** Quiero que implementes un rastro de ratón.
+I want you to implement a mouse trail.
+
+**** Pero escribir juegos por diversión es divertido.
+But writing games for fun is amusing.
+
+**** Como todo parece cuadros de colores, dibujar no es complicado:
+Since everything looks like colored boxes, drawing is uncomplicated:
+
+**** en realidad es mejor en esto de lo que cabría esperar/ esperarías
+it is actually better at this than you would expect
+
+**** Mira si puedes vencerlos (los niveles de un juego de ejemplo). Me divertí mucho construyéndolos.
+See if you can beat those. I had quite a lot of fun building them.
+
+**** Esto puede llevarte bastante lejos, como el juego del capítulo anterior lo mostró.
+This can get you quite far, as the game in the previous chapter showed
+
+**** Pero estaríamos usando el DOM para algo para lo que no fue diseñado originalmente.
+But we’d be using the DOM for something that it wasn’t originally designed for.
+
+**** Desafortunadamente, estos son un poco más enredadas/complicados de dibujar.
+ These are unfortunately a bit more involved to draw.
+
+**** sólo tendrás que encontrar un valor adecuado mediante ensayo/prueba y error.
+you’ll just have to find a suitable value by trial and error.
+
+** My speech
+*** New
+**** ¿De qué era lo que estábamos hablando?
+What was it we were talking about?
+
+**** Porque estoy siendo filmado
+why am I being filmed
+
+**** sabes como te ves
+you know what you look like
+
+**** estábamos literalmente a punto de hacer eso (de irnos)
+we were literally about to do that
+
+**** El trono parece omnipotente desde lejos, pero no es lo que parece.
+The throne looks omnipotent from afar, but it is not as it seems.
+
+**** Los leales y los débiles pueden permanecer a tu lado pase lo que pase
+The loyal and dim may stay by your side no matter what
+
+**** el nuevo gobernante suele ser el mismo que el anterior, si no peor.
+ the new ruler is often the same as the old, if not worse.
+
+**** Sólo puedes hacer la vista gorda para comprenderlos,
+You can only turn a blind eye to understanding them,
+
+**** ¿Qué fue lo que hablamos ahorita?
+What was it that we talked about now?    - What did we talk about now?
+
+**** Me tardo más en pensar qué frase voy a construir que en la traducir de esa misma frase.
+It takes me longer to think about what sentence I'm going to construct than it does to translate that same sentence.
+
+**** y él dice que esto va a parecer muy espeluznante.
+and he goes this is going to seems very creepy
+
+**** *Salieron de allí y volvieron a entrar
+they came out of there and went back in there
+
+**** *la forma en que lo dijo es muy graciosa. Si supieran lo tonto que se ven. Después verán el video y dirán "oh que estúpido. Esto nos pasa a todo el mundo, hacemos cosas tontas en algún momento y después es que nos damos cuenta de lo tonto que fuimos.
+"a beautiful picture" haha the way he said it is so hilarious. If only they knew how dumb they look. Then they'll watch the video and say "oh how stupid. This happens to everybody, we do dumb things  at some point and then it's just that we realize how dumb we were
+
+*** Not confirmed
+**** ¿Cuánto tiempo llevas practicando?
+How long have you been practicing?
+
+**** Ponte a trabajar
+get to work
+
+**** No hace mucho que te interesa saber para qué vino aquí.
+it's don't long you're interested in what it came here for
+
+**** Necesito un archivo para solicitar la foto que ella me tom/tomó de mí.
+I need a file for request for the picture she took of me
+
+**** no desean darlo
+don't wish to give it
+
+**** Mientras hemos estado revisábando esos casos, ¿sabes lo que hemos encontrado?
+as we've been going through those cases you know what we've found?
+
+**** Ya me habría ido
+I would have already been gone
+
+**** ¿Con quién voy a hablar sobre una solicitud?
+who do I go to speak to about a for request
+
+**** Esto es lo que siempre ha sido antes de que ellos fueran filmados, años y años de dinero malgastado.
+this is what it's always been like before they were being filmed, years and years of misspent money,
+
+**** que te hacen preguntarte si hemos entrado en los límites exteriores del sentido común
+that make you question if we've entered the outer limits of common sense
+
+**** Eres libre de intentarlo, puede que no termine de la manera que te gusta.
+you're free to try, may not end the way you like it
+
+**** reto aceptado
+challenge accepted
+
+**** ¿Para qué vine aquí?
+what did I come here for
+
+**** puedo llenar esto (una planilla)
+I can fill this out
+
+**** ella no estaba apuntando en esa dirección
+she wasn't pointing that way
+
+**** Sólo cállate y déjame hacer todo.
+just be quiet and let me do everything
+
+**** No sabes qué estoy haciendo aquí ni por qué y realmente no es asunto tuyo.
+you don't know what I'm doing here or why and it's really none of your business
+**** Ellos podrían haber atrapado mucho antes
+they could have caught long before
+
+**** él cree que tiene autoridad
+he thinks he's got Authority
+
+**** ¿escuchaste ese sonido? eso es lo que pienso al respecto
+did you hear that sound? that's what I think about it
+
+**** si fuera a tu casa e hiciera eso
+if I came to your house and did that
+
+**** Me pregunto a donde fuiste
+I'm wondering where you went
+
+**** está a punto de volverse irreal
+it's about to get unreal
+
+**** ¿Estoy en tu casa?
+am I at your house
+
+**** ¿Qué solía ser esto?
+what did this used to be
+
+**** porque no tengo que hacerlo
+because I don't have to
+
+**** yo tampoco quiero discutir
+I don't want to argue either
+
+**** de que se trata
+what's it about
+
+**** Pensé que tal vez quieras salir con nosotros o algo
+I thought maybe you want to hang out with us or something
+
+**** y cuando pensabas que ya había terminado
+and when you thought it was already over
+
+**** lo he escuchado todo
+I've heard it all
 
 
-*** Buffer
-*** Practice
-*** Chunks
+**** ella se volverá inteligente
+she's going to get smart
+
+**** No entiendo por qué él hace eso.
+I don't understand why he does that.
+
+**** De acuerdo, acabas de hacer mi trabajo fácil, por cierto, soy abogada
+all right you just made my job easy by the way I'm attorney
+
+**** , me rasco aquí mismo en el cuello.
+ scratch me right here on my neck
+
+**** Nosotros no queremos entrar
+we don't want to come in
+
+**** Me encantan los policías estatales, veamos esto.
+I just love state troopers, let's watch this
+
+**** fuera de horario
+after hours
+
+**** Nos divertimos y ganamos dinero ¿Qué opinas de eso?
+We have fun and we make money. What about that?
+
+**** Espero chicos, se sientan muy bien consigo/sobre mismos.
+I hope guys you feel real good about yourself
+
+**** Estas equivocado en ambas ocasiones
+you're wrong on both occasions
+
+**** no estamos en su propiedad
+we're not standing on your property
+
+**** ahí va un camino de vergüenza
+there goes one walk of shame
+
+**** ¿Te debo una explicación?
+do I owe you an explanation
+
+**** ni siquiera has dado tu nombre
+you haven't even given your name
+
+**** -Esa agua pudo haber sido escupida, o incluso peor, algún liquido que ellos usan. Como permites eso?. Si no estas dispuesto a defenderte no deberías hacer estos vídeos.
+That water could have been spit, or even worse, some liquid they use. How do you allow that? If you are not willing to defend yourself you should not make these videos.
+
+**** en el pasado simplemente habría usado
+in the past I would have just used
+
+**** Creo que tiene algo que ver con tu paga extra de Navidad.
+I think it does have something to do with your Christmas bonus.
+
+**** se supone que no debes hacer eso
+you're not supposed to do that
+
+**** Oye, ¿qué pasa con esto?
+- Hey, what's with this?
+
+**** Sabes, lo triste es que Punk venía por mí y luego fue hacia ti.
+you know, the sad part is that punk was coming for me and then he went to you
+
+**** Te lo pedí educadamente pero no quieres
+I asked you politely but you don't want to
+
+**** puedes decirme lo que quieras no significa que vaya a escucharte
+you could tell me whatever you want don't mean I'm going listen to you
+
+**** Salió y trató de quitarme el equipo.
+came out tried to take my equipment away from me
+
+**** ¿Con quién estás?
+who are you with?
+
+**** que están un poco fuera de lo común
+that are just a little bit off the beaten path
+
+**** eso es lo que pedí
+that's what I asked for
+
+**** Deberías haber sido de frente con ella desde el principio. ¿Por qué estabas jugando ese juego? ¿No son estos videos para la educación?
+ You should have been up front with her from the start. Why were you playing that game? Aren't these videos for education.
+
+**** Descubrió que esa pared era más dura en su cabeza.
+he found out that wall was harder in his head
+
+**** y uno todavía está dentro
+and one's still inside
+
+**** Todos estan en eso (varias personas viendo/revisando algo)
+they're all in that
+
+**** ¿Qué es eso en el frente?
+what's that on the front
+
+**** Ellas salieron con eso
+They came out with that
+
+**** No podría decir que todo pasó muy rápido.
+I couldn't tell everything happened really quick
+
+**** ¿Por qué está tan enojada?
+why is she so mad
+
+**** y tu que crees? que crees tú que es?
+What do you think? What do you think it is?
+
+**** En cuanto tiempo lo hiciste? Lo hice en tres horas.
+How long did you do it? I did it in three hours.
+
+**** Qué otros idiomas aparte del ingles sabes hablar?
+What languages other than English can you speak?
+
+**** porque estoy grabando
+because I'm recording
+
+**** Ya no aguanto más
+I can't take it anymore
+
+**** He practicado de todo un poco, me enfoque en prácticar cómo funciona un sistema operativo, en este caso  GNU/Linux, la terminal, cómo funciona un editor de código y cómo programar en la web.
+I have practiced a little bit of everything, I focused on practicing how an operating system works, in this case GNU/Linux, a little bit of the terminal, how a code editor works and how to program on the web.
+
+**** ¿Qué estabamos hablando?
+What were we talking about?
+
+**** Ya que no me he/estado sentido bien en los últimos días,
+Since I haven't been feeling well for the last few days,
+
+**** esto sí lo voy a anotar.
+I am going to write this down.
+
+**** Ni siquiera podría hablar con otras personas en Internet menos presentar una entrevista de trabajo en ingles.
+I couldn't even talk to other people on the Internet, let alone present a job interview in English.
+
+**** como si una persona ejemplifica el comportamiento de todo un país.
+as if one person exemplifies the behavior of an entire country.
+
+**** ¿Por qué aprendiste primero GNU y no a programar?
+Why did you learn GNU first and not programming?
+
+**** como se dice en español?
+how do you say it in spanish?
+
+**** todavía estás aquí pensé que habias ido a comprar la comida
+you're still here I thought you went grocery shopping?
+
+**** mantente concentrado.
+stay foused
+
+**** Voy a ver una peli y luego voy a anotar las frases que no entendio y se las voy a mandar a un especialista
+I'm going to watch a movie and then write down the sentences I didn't understand and send them to a specialist.
+
+**** lo que tienes que hacer es, escribir todas las respuestas que usas diariamente y luego traducirlas
+what you have to do is, write down all the answers that you use on a daily basis and then translate them
+
+**** No sé si lo estoy diciendo bien
+I don't know if I'm saying it right
+
+**** Cuántas frases creaste?
+How many sentences did you create?
+
+**** bueno ya me estoy sintiendo mejor.
+Well, I'm feeling better now.
+
+**** Ya lo estamos haciendo.
+We are already doing it.
+
+**** que comentario sin sentido
+what a meaningless comment
+
+**** tengo que preguntarte
+I have to ask you
+
+**** ¿A qué hora vas a llegar?
+What time are you going to arrive?
+
+**** ¿Cómo fue tu viaje a Polonia?
+How was your trip to Poland?
+
+**** o te graduaste en la universidad?
+or did you graduate from college?
+
+**** No lo tomes mal, pero siempre pensé que los médicos eran más inteligentes.
+Don't take this the wrong way, but I always thought doctors were smarter.
+
+**** Vamos a hacer las oraciones que podamos antes de ir a comer
+Let's make as many sentences as we can before we go to lunch.
+
+
+**** ¿Podrías explicar todo el funcionamiento de Internet?
+Could you explain how the Internet works?
+
+**** No puedo creer que me cueste tanto aprender inglés.
+I can't believe it's so hard for me to learn English.
+**** Llevamos una hora practicando exactamente.
+We have been practicing for exactly one hour.
+
+**** vamos a hacer los dos últimos ejercicios del tema de eventos y comenzaremos con el nuevo tema
+We are going to do the last two exercises of the events topic and we will start with the new topic
+
+**** ¿Qué tipo de cosas has practicado?
+What kinds of things have you practiced?
+
+**** ese es el problema nada se me viene a la mente
+that's the problem nothing comes to mind
+
+**** ¿Qué estabamos hablando?
+What were we talking about?
+
+**** Para qué hiciste eso
+What did you do that for?
+
+**** Ya casi terminamos.
+We are almost done.
+
+**** me lo probaré (este vestido)
+I will try it on
+
+**** ya vamos a terminar
+we are going to finish
+
+**** un breve descanso y luego seguimos
+a short break and then we continue
+
+**** Ya no vas a ver videos ni otras cosas en inglés.
+You will no longer watch videos and other things in English.
+
+**** ¿Hasta qué hora piensas estudiar hoy?
+How late do you plan to study today?
+
+**** Eso es lo único que te falta.
+That's the only thing you're missing.
+
+**** No puedo creer que me cueste tanto aprender inglés.
+I can't believe it's so hard for me to learn English.
+
+**** Cuántas frases creaste?
+How many sentences did you create?
+
+**** Esta no me gusto, así que bórralo.
+I didn't like this one, so delete it.
+
+**** Ni siquiera podría hablar con otras personas en Internet menos presentar una entrevista de trabajo en ingles.
+I couldn't even talk to other people on the Internet, let alone present a job interview in English.
+
+**** Ya que no me he sentido bien en los últimos días,
+Since I haven't been feeling well for the last few days,
+
+**** ellos se quedaron sin nada.
+they were left with nothing.
+
+**** primero dime qué hiciste ayer?
+First tell me what did you do yesterday?
+
+**** bueno ya me estoy sintiendo mejor.
+Well, I'm feeling better now.
+
+**** el dinero no te da la felicidad
+money does not bring you happiness
+
+**** Qué es lo que iba a hacer?
+What was I going to do?
+
+**** Ya lo estamos haciendo.
+We are already doing it.
+
+**** lo que pasa es que aún no he practicado
+The thing is that I haven't practiced yet.
+
+**** esto sí lo voy a anotar.
+I am going to write this down.
+
+**** Esto me está costando pero creo que puedo hacerlo.
+This is hard for me but I think I can do it.
+
+**** Yo creo que a él ni barba le sale.
+I think he doesn't even have a beard.
+
+**** No te desconcentres, sigue.
+Don't lose focus, keep going.
+
+**** No voy a parar esta tarea hasta que se acabe el tiempo
+I will not stop this task until time is up
+
+**** Hice mal no debí estar pensando en eso.
+I did wrong I shouldn't have been thinking about it.
+
+**** No creo que se pueda hacer más
+I don't think that can be done anymore
+
+**** vamos a terminar eso y luego pasaremos a hacer la canción
+let's finish that and then we'll move on to making the song.
+
+**** Estoy pasando mucho tiempo pensando en qué frase voy a hacer.
+I'm spending a lot of time thinking about what sentence I'm going to make.
+
+**** todavía me quedan 15 minutos
+I still have 15 minutes left
+
+**** entonces vamos a hacer esto, vamos a pasar las oraciones al archivo
+so let's do this, let's move the sentences to the file.
+
+**** ¿Qué vas a hacer en estos 15 minutos que te quedan?
+What are you going to do in the 15 minutes you have left?
+
+**** Oh quedaba un minuto.
+Oh there was one minute left.
+
+**** Bueno, el primero que hacemos bien.
+Well, the first one we get right.
+
+**** Ok dilo otra vez
+Ok say it again
+
+**** Como me hubiera gustado no hacerle caso.  - Me hubiera gustado ignorarlo.  -  Ojalá no la hubiera escuchado.
+I wish I had not listened to her.  -  I would have liked to ignore him.
+
+**** Ya estamos haciendo eso.
+We are already doing that.
+
+**** ahora quedan 10 minutos
+now there are 10 minutes left
+
+**** tanto que piensas y cuando vas hablar no se te ocurre nada
+you think so much and when you go to speak, you can't think of anything.
+
+**** Estoy tardando mucho, pero es lo que tengo que hacer
+I'm taking too long but it's what I have to do.
+
+**** tantas frases que he escuchado de ese YouTuber y ninguna me sirve en mis conversaciones.
+so many phrases that I have heard from that YouTuber and none of them help me in my conversations.
+
+**** ¿Que tengo que hacer?
+What do I have to do?
+
+**** quiero que esto se acabe ya
+I want this to end now
+
+**** ayer me levante a las siete y media.
+yesterday I got up at half past seven.
+
+**** A mi lo que me dificulta el aprender ingles es que no practico el mejor ejercicio
+What makes it difficult for me to learn English is that I don't practice the best exercise
+
+**** Lo primero que voy a hacer hoy es
+The first thing I'm going to do today is
+
+**** ella tiene razón en lo que esta diciendo
+she is right in what she is saying
+
+**** esto me estresa y todavía me queda una hora más
+This is stressing me out and I still have one more hour left.
+
+**** Estoy viendo/chekiando el tiempo muchas veces porque estoy cansado y quiero terminar esto ya.
+I'm checking the time a lot because I'm tired and I want to finish this now.
+
+**** esa es una de las cosas que hacía cuando estaba practicando inglés hablar conmigo mismo
+that's one of the things I did when I was practicing English talking to myself.
+
+**** ese es un pensamiento erroneo
+that is a wrong thought
+
+**** deja de estar pensando en esas cosas
+stop thinking about those things
+
+**** Me desperté a las 9:00 porque ayer me acoste muy tarde
+I woke up at 9:00 because I went to bed very late yesterday.
+
+**** Esto me recuerda el capítulo de los Simpson de el Gato y el Raton.
+This reminds me of the Simpsons episode of Cat and Mouse.
+
+**** Cené con mi mamá, un pollo con pan y ensalada.
+I had dinner with my mom, a chicken with bread and salad.
+
+**** sigue diciéndome lo que hiciste ayer
+keep telling me what you did yesterday
+
+**** no te enamores de mi
+do not fall in love with me
+
+**** esto si puede ser un buen ejercicio
+this can be a good exercise
+
+**** Sigueme diciendo las otras cosas que necesitas hacer
+Keep telling me the other things you need to do.
+
+**** Estoy tardando mucho, pero tengo que hacerlo.
+I'm taking a long time but I have to do it.
+
+**** me esta picando el pecho
+my chest is itching
+
+**** bueno ya me siento mejor.
+Well, I feel better now.
+
+**** Bueno, ¿de qué vamos hablar?
+Well, what are we going to talk about?
+
+**** creo que eso no se puede hacer más
+I think that can't be done anymore.
+
+**** Este es el problema no se me ocurre nada
+This is the problem I can't think of anything
+
+**** Estás mirando mucho la hora y no puedes hacer eso.
+You're looking at the time a lot and you can't do that.
+
+**** Tengo sueño
+I'm sleepy
+
+**** Ok sigamos.
+Let's move on.
+
+**** Aquí viene esta señora.
+Here comes this lady.
+
+**** Ok sigamos. Esta es la primera.
+ok let's continue.This is the first one.
+
+**** nada más por ahora
+nothing more for now
+
+**** cual es tu nivel de inglés?
+What is your level of English?
+
+**** voy a terminar eso
+I'm going to finish that
+
+**** o no pasaría la prueba.
+I wouldn't pass the test.
+
+**** ¿Qué más podemos hacer hoy?
+What else can we do today?
+
+**** Yo no podría pasar la prueba ahora.
+I couldn't pass the test now.
+
+**** nos queda una hora para ir a entrenar
+we have one hour left to go train
+
+**** me esta doliendo la espalda
+my back is hurting
+
+**** Termino estas y ya no más.
+I finish these and no more.
+
+**** lo que vamos a hacer ahora es
+what we are going to do now is
+
+**** Ya hemos terminado por hoy.
+We're done for today.
+
+**** Voy a tomar una siesta
+I'm going to take a nap
+
+**** ¿Qué más hice?
+what else did I do?
+
+**** después de terminar la tarea de inglés tengo que
+after finishing the English homework I have to
+
+**** Qué vamos a hacer ahora?
+What are we going to do now?
+
+**** Bueno, ¿qué más puedo decir?
+Well, what else/more can I say?
+
+**** después de tomar una siesta, baje a mi cocina para hablar con mi mamá y luego sacar a pasear a mi perro
+after taking a nap, I go downstairs to my kitchen to talk to my mother and then walk my dog.
+
+**** no lo tomes a la ligera
+don't take it lightly
+
+**** o tal vez hasta las doce y media.
+or maybe until half past twelve.
+
+**** Es que el entrenamiento para una persona que tiene familiares que hablan ingles es más fácil que para una persona que no tiene familiares que hablen inglés.
+The training for a person who has an English-speaking family member is easier than for a person who does not have an English-speaking family member.
+
+**** Todavía quedan 10 minutos más.
+There are still 10 more minutes left.
+
+**** El mejor ejercicio que puedes hacer es practicar hablar con otras personas, si aún no lo haces te resultará muy difícil aprender inglés por tu cuenta.
+The best exercise you can do is to practice speaking with other people, if you don't already do it it will be very difficult for you to learn English on your own.
+
+**** Esta canción que esta sonando me gusta.
+I like this song that is playing.
+
+**** porque podrías arrepentirte
+because you might regret it
+
+**** Sí, creo que es mejor, hagamos eso.
+Yes, I think it's better, let's do that.
+
+**** no pienses en eso
+Do not think about that
+
+**** ves como el tiempo pasa lento
+you see how time passes slowly
+
+**** Todavía no nos has dicho lo que hiciste ayer.
+You still haven't told us what you did yesterday.
+
+**** ayer empece con mi clase de ingles de dos o 3 horas,
+ yesterday I started with my two or three hour English class,
+
+**** son un monton
+they are a lot
+
+**** No se porque pasa esto
+I don't know why this happens
+
+**** luego tome una siesta de 2 horas, fue un rato largo pero fue un buen ejercicio porque después me sientí mejor.
+then I took a two hour nap, it was a long time but it was a good exercise because I felt better afterwards.
+
+**** Estas veces son difíciles para mí pero luego creo que se volverá más fácil.
+These times are hard for me but then I think it will get easier.
+
+**** Me la paso viendo la hora y no debería hacer eso.
+I keep checking the time and I shouldn't do that.
+
+**** sigue así solo quedan dos minutos más
+keep it up there are only two more minutes left
+
+**** No será mejor escribir las frases y luego pasarlas al ordenador hablando?
+Wouldn't it be better to write the sentences and then move them to the computer talking?
+
+**** ¿Por qué (esa cosa) hace eso?
+Why does it do that?
+
+**** ayer no hubo muchos fuegos artificiales
+yesterday there were not many fireworks
+
+**** Me estoy quedando realmente estancado
+I'm getting really stuck
+
+**** esto, ahora, va a ser 1 hora, luego necesito aumentarlo a 2 horas
+this, now, is going to be 1 hour, then I need to increase it to 2 hours.
+
+**** Me esta dando sueño
+I am getting sleepy
+
+**** hemos construido pocas oraciones
+we have built few sentences
+
+**** ¿Qué voy a hacer hoy?
+What am I going to do today?
+
+**** No puedo creer cuanto tiempo ha pasado y que yo no pueda formar ni una oración.
+I can't believe how long it's been and I can't even form a sentence.
+
+**** llevo un sombrero negro
+I wear a black hat
+
+**** cuantas frases hemos construido?
+How many sentences have we built?
+
+**** Estamos a punto de terminar
+We are about to finish
+
+**** vas a hacer una pregunta y luego te responderé
+you're going to ask a question and then I'll answer you.
+
+**** cuantas frases construimos?
+How many sentences do we build?
+
+**** lo que voy a hacer hoy es
+what I'm going to do today is
+
+**** Me comí un batido y unos huevos revueltos
+I had a smoothie and some scrambled eggs
+
+**** Qué vas hacer en la tarde?
+What are you going to do this afternoon?
+
+**** no lo pienses
+Do not think it
+
+**** ¿Qué íbamos a hablar después?
+What were we going to talk about next?
+
+**** Me pondré un sombrero negro
+I'll wear a black hat
+
+**** Esto me estresa más que resolver un problema matematico
+This stresses me out more than solving a math problem.
+
+**** ¿Qué hiciste después?
+What did you do after?
+
+**** Ahora solo entreno haciendo barras pero despues me meteré en un gimnasio
+Right now I only train doing barbells but later I will join a gym.
+
+**** vamos a trabajar de esta manera
+we are going to work in this way
+
+**** hoy me vestire de esta forma
+today I will dress like this
+
+**** Intenté tomar una siesta pero no pude, así que me puse a estudiar.
+I tried to take a nap but couldn't, so I started studying.
+
+**** Me da lastima esta persona pero es que se pasa.
+I feel sorry for this person, but he goes too far.
+
+**** Lo que me resulta/encuentro más difícil es inventar una frase.
+What I find more difficult is to come up with a sentence.
+
+**** que tipo de ejercicio haces
+What kind of exercise do you do?
+
+**** si, en 30 minutos salgo a hacer ejercicio.
+yes, in 30 minutes I go out to exercise.
+
+**** ¿Qué te pusiste a estudiar?
+What did you start studying?
+
+**** Se me acabaron los hojas blancas, lo que significa que he escrito más de 500 páginas.
+I ran out of white paper, which means I have written over 500 pages.
+
+**** pues dinos porque quieres trabajar en nuestra empresa
+Well, tell us why you would like to work in our company.
+
+**** Me gustaría trabajar en esta empresa porque me gustaría practicar cómo se crea código para una empresa. En realidad, hasta ahora solo he practicado por mi cuenta.
+I would like to work at this company because I would like to practice how to create code for a company. Actually, I've only practiced on my own so far.
+
+**** Llevo practicando poco más de dos años. Es que realmente no sabía nada de computación y eso es lo que he practicado más.
+I've been practicing for a little over two years. I didn't really know anything about computers and that's what I've been practicing the most.
+
+**** ¿Algo más quieres agregar a la entrevista? Tiene usted alguna pregunta?
+Anything else you would like to add to the interview? Do you have any questions?
+
+**** No, por ahora, nada, pero después tal vez me surja una duda.
+No, for now, nothing, but later I might have a question.
+
+**** ahora sigamos creando más oraciones
+now let's continue creating more sentences
+
+**** de que hablas
+what do you talk about
+
+**** ¿Tienes miedo de no conseguir un trabajo?
+Are you afraid of not getting a job?
+
+**** Tengo un poco de miedo pero me siento bien porque he aprendido muchos temas, así que puedo buscar trabajo en otros campos o hacer algo por mi cuenta.
+I am a little scared but I feel good because I have learned a lot of topics, so I can look for work in other fields or do something on my own.
+
+**** cuanto te gustaria ganar?
+How much would you like to earn?
+
+**** trata/intenta construir cinco oraciones más
+try to construct five more sentences
+
+**** Tengo que ejercitar la mano porque me duele el dedo.
+I have to exercise my hand because my finger hurts.
+
+**** ¿Cuál sería la última frase que quieres agregar?
+What would be the last sentence you want to add?
+
+**** me gustaria hablar de computadoras
+I would like to talk about computers
+
+**** Tengo miedo a la oscuridad
+I'm afraid of darkness
+
+**** no tengo ni idea, no se cuanto son los salarios en la industria, yo opino que debería ganar lo justo para el tiempo que trabajaría y el tipo de trabajo.
+I have no idea, I don't know how much the salaries are in the sector, I think I should earn just enough for the time I would work and the type of work.
+
+**** ¿Tienes miedo de no poder conseguir un trabajo?
+Are you afraid of not being able to get a job?
+
+**** sobre que quieres hablar
+What do you want to talk about?
+
+*** Videos
+**** eso es todo lo que pido
+that's all I ask
+
+**** ¿Se le permite tomar fotografías mientras trabaja?
+is she allowed to take picture on while she's working
+
+**** Sólo estoy averiguando la información correcta para poner aquí.
+I'm just ascertaining the correct information to put on here
+
+**** Eres uno de los mejores auditores. Pronto obtendrás muchos suscriptores.
+you are one of the better auditors you'll get very many Subs soon
+
+**** entonces puedes terminar dando un paseo en el auto del sheriff
+so you may end up taking a ride in the sheriff car
+
+**** tienes mucho tiempo libre en tus manos
+you got a lot of free time on your hands
+
+**** tal vez tenga que hacer eso
+I might have to do that
+
+**** i incomodas a nuestros empleados estas en nuestra propiedad entonces si
+if you make our employees uncomfortable, you're standing on our property then yes
+
+**** tiene que haber algo
+There has to be something
+
+**** En cualquier vía tiene que haber un camino público correcto para que el tráfico de peatones pueda circular hacia arriba y hacia abajo por la vía.
+on any road there has to be a public right way for pedestrian traffic to travel up and down the roadway
+
+**** Llego aquí con mi hijo y todo lo que intento hacer es entrar.
+I pull up here with my son and all I'm trying to do is going inside
+
+**** Son personas llenas de inseguridades, por eso se molestan no por la privacidad.
+ They are people full of insecurities, that's why they get upset not because of privacy.
+
+*** Chunk
+**** y todo lo que intento hacer es
+and all I'm trying to do is
+
+**** No sabes qué estoy haciendo aquí
+you don't know what I'm doing here
+
+**** entonces qué hago
+so what do I do
+
+*** Free spech
+**** quién es éste
+who's this
+
+**** Date un paseo
+take a walk
+
+**** Puedes irte a casa y patear a tu perro esta noche, hombre, no me vas a decir qué hacer.
+you can go home and kick your dog tonight man you're not going to tell me what to do
+
+**** Nunca haria eso
+I would never do that
+
+**** o siguen/permanecen incómodos hasta que nos vamos
+or they remain uncomfortable until we go away
+
+**** sus sentimientos no son mi responsabilidad cómo se sienten depende de ellos, no de mí
+their feeling aren't my responsibility how they feel is on them not me
+
+**** yo nunca hubiera hecho eso
+I would have never do that
+
+**** No es de extrañar por qué su oficial es como él.
+no wonder why his officer is like him
+
+**** Yo no concenti que me hables
+I don't consent to you talking to me
+
+**** no tengo por qué gustarles
+they don't have to like me
+
+**** ¿Adónde fue?
+Where did she go
+
+**** Mis derechos no terminan donde comienzan tus sentimientos.
+my rights don't end where your feelings begin
+
+**** donde suele ir
+where does usually go
+
+**** *tu pareces que tienes un problema
+you seem like you have a problem
+
+**** *no significa nada
+it doesn't mean anything
+
+**** *entonces qué hago
+so what do I do
+
+**** *No dejes que tu ego se doblegue, simplemente despega
+don't let your ego kink in just take off
+
+**** *¿Cómo eres profesional haciendo eso? Me estás acosando.
+how are you professional doing that you're stalking me
+
+**** *Nosotros iremos desde allí
+we'll go from there
+
+**** Sólo porque quieras una respuesta no significa que la vayas a obtener.
+just because you want an answer doesn't mean you're going to get one
+
+**** eso depende de ti
+that's up to you
+
+**** ¿Qué pasó la última vez que estuvieron juntos?
+what happened the last time you guys were together
+
+**** ¿Cómo entras a la casa si cierras la puerta?
+how do you get in the house since you lock the door
+
+**** Vas a decirme que no sabías que mamá estaba ahí.
+you're going to tell me you didn't know Mom was in there
+
+**** todos los demás lo hacen
+everybody else does
+
+**** ¿Cuál es la preocupación? Eso es lo que me confunde.
+what's the concern that's what I'm confused about it
+
+**** Cual es el problema
+what's the issue
+
+**** hacer un pensamiento crítico
+do some critical thought
+
+**** Ella recordará esto por el resto de su vida.
+she'll remember this for the rest of her life
+
+**** Te pedí una tarjeta de presentación y eso fue lo que me diste.
+I asked you for a business card and that's what you gave me
+
+**** no pude resistir
+I couldn't resist
+
+**** así es como es
+that's how it is
+
+**** totalmente depende de ti
+totally up to you
+
+*** Confirmed
+**** ¿Qué pasa ahora, Simpson?
+What is it now, Simpson?
+**** que quieres que diga
+What do you want me to say
+
+**** No es de extrañar por qué su oficial es como él.
+no wonder why his officer is like him
+
+*** It's supposed to
+
+*** ???
+
 ** As they speak
 *** They say
 **** podemos centrarnos en unos elementos sobre otros, *sobre todo* si los *disponemos* de *forma poco habitual*.
@@ -8542,6 +10229,55 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 
 **** Se le pedirá
 You will be prompted / You will be asked
+
+**** Me *niego* a aceptar la derrota sin importar la edad.
+I *refuse* to accept defeat regardless of age
+
+**** *¿Cómo es que* ella no tiene trabajo?
+*how come she* hasn't got a job
+
+**** tiene que haber algo
+There has to be something
+
+**** en lo que respecta al DOM
+as far as the DOM is concerned
+
+**** .Las etiquetas *han desaparecido* por completo.
+***** las etiquetas se han ido por completo.
+tags *are gone* completely.
+
+**** Los desarrolladores web se quedaron *no con una web* unificada sino con dos o tres plataformas incompatibles.
+Web developers were left *with not one* unified Web but two or three incompatible platforms.
+
+**** en lo que *respecta* al DOM
+as far as the DOM *is concerned*
+
+**** haciendo la mayor cantidad de trabajo posible *por adelantado*.
+ doing as much work as possible in *advance*.
+
+**** *lo que significa* que se miran todos los caminos que van desde ese lugar.
+*which means* all roads going from that place are looked at.
+
+**** *Pongamos en marcha* un mundo virtual.
+*Let’s start up* a virtual world.
+
+**** *Tal como están las cosas*, nos quedaremos sin espacio o "volaremos la pila".
+*As it is*, we will run out of space, or “blow the stack”.
+
+**** Sé que hay mucha gente que *no se atreve* a abrir un libro y sentarse y hacerlo y creo que todo se reduce a simplemente empezar.
+I know there's a lot of people that *can't bring themselves* to open a book and sit down and do it and I think it comes down to just getting started
+
+**** y nadie se molesta *en cuestionar* nada de eso
+and no one bothers *to question* any of it
+
+**** Tienes que creer porque nadie más va a creer en ti *tanto como tú*.
+you have to believe because nobody else is going to believe in you *as much as you*
+
+**** Es fácil obtener el perdón *por equivocarse*; *tener razón* es lo que *te mete* en verdaderos problemas.
+It's easy to get forgiveness for *being wrong*; *being right* is what *gets* you into real trouble.
+
+**** de personas, *ya sean* personas que conoces en tu vida
+from people *whether it be* people you know in your life
 
 **** aquí X e Y tienen una distancia dada *por* un número real positivo
 here X and Y have a distance given *by* a positive real number (se usa by ya que es una oración en voz pasiva)
@@ -8632,7 +10368,7 @@ María *has* /just/ *sent* a message. (tiempo perfecto=acción recientemente ter
 **** No te preocupes, habrá reparado la moto *para entonces*.
 Don’t worry, he will have repaired the bike *by then*.
 
-**** , es el número de bits que se *transmiten* o procesan por unidad de tiempo.
+**** , es el número de bits que son *transmitidos* o procesan por unidad de tiempo.
 , is the number of bits that are *conveyed* or processed per unit of time.
 
 **** Ben esperaba ser elegido para el equipo de rugby, pero *no le fue muy bien* en las pruebas.
@@ -8660,16 +10396,18 @@ There aren’t any seats left. You’ll have to stand. +There aren’t some seat
 Tell them I don’t want to see anyone. +Tell them I don’t want to see someone.+
 
 **** Esa luz en el porche, todavía no la hemos arreglado. vs Aún no hemos arreglado la luz del porche.
-[header]That light in the porch,   we still haven’t fixed it. vs We still haven’t fixed the light in the porch. (Spoken English In speaking we can create focus and emphasis by using headers)
+[header]That light in the porch, we still haven’t fixed it. vs We still haven’t fixed the light in the porch. (Spoken English In speaking we can create focus and emphasis by using headers)
 
 **** Es muy aburrido, mi profesor de contabilidad. vs Mi profesor de contabilidad es muy aburrido.
 He’s so boring,[tail] my accountancy lecturer. vs My accountancy lecturer is so boring. (Spoken English In speaking we can create focus and emphasis by using tails)
+
 **** Estoy *harto* de ti
 I’m *sick* of you
+
 **** *No solo estuvo lloviendo* todo el día en la boda, sino que también la banda llegó tarde.
 *Not only was it raining* all day at the wedding but also the band was late. (to add emphasis, we can use not only at the beginning of a clause. When we do this, we invert the subject and the verb)
 
-**** *Ni por un momento pensé* que me ofrecerían el puesto, así que me sorprendió cuando lo conseguí.
+**** *Ni por un momento pensé* que me sería ofrecido el puesto/trabajo, así que me sorprendió cuando lo conseguí.
 *Not for a moment did I* think I would be offered the job, so I was amazed when I got it. (expressions beginning with not, we also invert the subject and verb after not + a prepositional phrase or a clause)
 
 **** La felicidad está *íntimamente* relacionada con la libertad
@@ -8682,10 +10420,10 @@ You can bold, slant, underline, color, texts, *but that's about it*.
 ***** ¿Qué debería tener que hacer esto con la lección de hoy?
 *what this should have to do* with today's lesson?
 
-**** Estoy nervioso por/sobre pedirle un aumento a mi jefe, pero *cuanto antes* supere/afronte eso, mejor
+**** Estoy nervioso por/sobre pedirle un aumento a mi jefe, pero *cuanto antes* supere/afronte eso, *mejor*
 I'm nervous about asking my boss for a raise, but *the sooner* I get it over with, the better
 
-**** , pero *dado que* esas opiniones brotan de valores que no incluyen la libertad,
+**** , pero *dado que* aquellas opiniones brotan de valores que no incluyen la libertad,
 , but *since* those opinions spring from values which do not include freedom,
 
 **** y se rellena *según sea necesario* para que todos se alineen con el elemento para el número más grande
@@ -8722,7 +10460,7 @@ Do you *remember losing* your first tooth? (remember + ing = past)
 **** Lamento decir que no puedes venir con nosotros
 I *regret to say* that you cannot come with us  (regret + infinitive = future)
 
-**** Me arrepiento de haber dicho que la odiaba
+**** Me arrepiento de decir que la odiaba
 I *regret saying* that I hated her (regret + ing = past)
 
 **** Traté de resolver este acertijo, pero no pude
@@ -8794,7 +10532,7 @@ You *asked for* it
 The movie *comes out* today
 
 **** ponerse a trabajar
-get to work. get down to work
+get to work/ get down to work
 
 **** Estoy molesto contigo
 I'm mad *at* you
@@ -8914,7 +10652,7 @@ The software is provided *as is*, without warranty of any kind
 **** ,y *lo que eso va a hacer* es alamacenar todos los archivos
 ... and *what that is going to do* is stage all the files
 
-**** ,ese es un buen *punto de partida* para todo *lo que viene*
+**** .,ese es un buen *punto de partida* para todo *lo que viene*
 ***** ,ese es un buen punto de partida para todo lo que sigue adelante
 ... that's a good *starting point* for everything *going forward*
 
@@ -8996,9 +10734,35 @@ She’s not feeling very well.
 
 **** Me gustaría *conocer* Roma.
 I'd like to *go* to Rome.  or  I'd like to *visit* Rome.
+**** Me niego a aceptar la derrota *sin importar* la edad.
+I refuse to accept defeat *regardless* of age
+
+**** diciéndole a su esposa que se *encontraría/estaría* con un amigo
+telling his wife he *was* meeting a friend
+
+**** *Hasta* el policia regaño a ese tonto.
+*Even* the policeman scolded that fool.
+
+**** Todo lo que hemos hecho hubiera sido *en vano*.
+Everything we've done would have been *for nothing*.
+
+**** *tengo la sensación* de que hay Algo que no me has dicho, Homero.
+Hmm. *I get the feeling* there's something you haven't told me, Homer.
 
 **** No *conozco* París
 I've never *been* to Paris.  or  I've never *visited* Paris.
+
+**** ¿ *Tienes miedo* de no poder conseguir un trabajo?
+*Are you afraid* of not being able to get a job?
+
+**** Pero no tiene nada *que ver* con ellos.
+but it has nothing *to do* with them
+
+**** Esto huele a pollo pero sabe a pescado.
+It smells like chicken but tastes like fish
+
+**** cuando se trata de *recibir* consejos
+when it comes to *taking* advice
 
 **** Sería *prudente/conveniente* incluir la validación de datos, por si acaso.
 it would be *wise* to include data validation, just in case.
@@ -9041,7 +10805,7 @@ The browser *then* works out the size of these
 **** se convierte *cada vez más pequeño*
 it becomes *smaller and smaller*
 
-**** *Tenga en cuenta* que la expansión ocurre a lo largo de la fila
+**** *Tenga en cuenta* que la expansión pasa a lo largo de la fila
 *Note that* the expansion happens right along the row
 
 **** *Han pasado* diez años
@@ -9086,7 +10850,8 @@ Do you *have* any ID?
 **** Te amo y *lo digo en serio*
 I love you and I *mean* it
 
-**** No *tardará* mucho en ...
+**** .No *tardará* mucho en ...
+***** No tomará mucho en ...
 It won't *take* long ...
 
 **** Entonces *sí* que sientes algo
@@ -9134,7 +10899,7 @@ He *became* a layer
 **** Ellos *se conocen*
 They *know each other*
 
-**** *Se puede* levantar con una palanca
+**** *Puede ser levantado* con una palanca
 It *can be* lifted with a lever
 
 **** Los Ángeles *queda* en ...
@@ -9144,8 +10909,7 @@ Los Angeles *is located* in ...
 We *have* a little salad left
 
 **** Esto *sirve* para limpiar el piso
-This *is used* to clean the floor
-This *is for* cleaning the floor
+This *is used* to clean the floor / This *is for* cleaning the floor
 
 **** Ellos *me dieron* por muerto
 They *considered* me dead
@@ -9222,8 +10986,13 @@ I *get* my nails *done* every week. (causitive verb)
 
 **** Ella le obliga a salir. -  Ella deja que el salga.
 She *makes* him leave. - She *lets* him leave. (causitive verbs)
+
 **** Pero vale la pena repetirlo:
 But it bears repeating:
+
+**** No es asunto tuyo
+It is none of your business
+
 **** .Si te resulta difícil hacer cosas, consigue un
 ***** Si tienes dificultades para ponerte a hacer cosas tu mismo, consigue un
 if you have a hard time getting yourself to do things getting a
@@ -9253,8 +11022,8 @@ Once again, *therein lies the rub*: it is rarely in response to anything that I�
 **** ¿Has probado alguna vez el kimchi coreano? No. *¿Cómo es?*
 Have you ever had Korean kimchi? No. *what's it like?*
 
-**** Cómo es el nuevo novio de Martina? (What is his personality like? Is he nice?) vs (What is his appearance like? Is he handsome?)
-What is Martina’s new boyfriend like?  vs  What does Martina’s new boyfriend look like?
+**** 3Cómo es el nuevo novio de Martina?  como es su personalidad? es bueno? vs como es su apariencia? es hermoso?
+What is Martina’s new boyfriend like?  (What is his personality like? Is he nice?) vs  What does Martina’s new boyfriend look like? (What is his appearance like? Is he handsome?)
 
 **** La universidad es muy diferente a la escuela, pero no te preocupes. Pronto te acostumbrarás.
 University is very different from school, but don’t worry. You’ll soon get used to it. (or, more formally, You’ll soon become used to it.)
@@ -9274,13 +11043,13 @@ She’s(has) just *gone to* the supermarket, she’ll be back soon. VS Oh no! Ca
 **** ¿ *Ya* has empezado este libro?  - Sí, *ya* lo he terminado. / No, *aún* no lo he empezado.
 Have you started this book *yet*?  -  Yes, I’ve *already* finished it. / No, I haven’t started it *yet*. (/already/ is used in positive sentences whereas /yet/ is used in negative sentences and questions.)
 
-**** La policía está decidida a atrapar al asesino. VS La policía confía en atrapar pronto al asesino.
+**** La policía está decidida a atrapar al asesino. VS La policía confía en que el asesino será atrapado pronto
 The police are determined to catch the murderer. (active infinitive) VS  The police are confident that the murderer will be caught soon. (passive infinitive form (infinitive + be + -ed form + main verb))
 
 **** ¡Vamos, hay trabajo que hacer! VS No había más trabajo que hacer, así que nos fuimos.
 Come on, there’s work to do!  (active infinitive) VS  There was no more work to be done, so we left. (passive infinitive form (infinitive + be + -ed form + main verb))
 
-**** Deja que te ayude. VS  No quiere que la ayuden.
+**** Deja que te ayude. VS  No quiere que la ayuden/ser ayudada.
 Let me help you.  (active infinitive) VS  She doesn’t want to be helped. (passive infinitive form (infinitive + be + -ed form + main verb))
 
 **** No!, "H" no va antes de "A". Va entre "G" y "I".
@@ -9289,7 +11058,7 @@ No, "H" doesn't go before "A". It goes between "G" and "I".
 **** Toma otro trozo de melón.
 Have another piece of melon.
 
-**** No quería conducir hasta casa, así que cogí un taxi. VS  Siempre prefiero que me lleve una persona local cuando estoy en un país extranjero.
+**** No quería conducir hasta casa, así que cogí un taxi. VS  Siempre prefiero ser llevado por una persona local cuando estoy en un país extranjero.
 I didn’t want to drive home, so I got a taxi.  (active infinitive) VS  I’d always prefer to be driven by a local person when I’m in a foreign country. (passive infinitive form (infinitive + be + -ed form + main verb))
 
 *** Phrasal verb
@@ -9339,8 +11108,20 @@ and yet they *turn out* to be extremely intricate (ocurre de una manera diferent
 **** Ella no es tan simpática
 She's not that (sinónimo de "so") nice
 
+**** Deja eso a un lado.
+Put that away.
+
 **** No hice nada.
 I did *nothing*. (stronger than) I didn’t do anything.
+
+****  de esos dispositivos pretendían, hasta cierto punto,
+ for those devices pretended, to a certain extent,
+
+**** por fin (ya llego el paquete que tanto espere)
+at last
+
+**** ... ¿alguna vez lo hago?
+ do i ever do it
 
 **** mi mayor logro cuando se trata de autoestudio
 my greatest accomplishment when it comes to self-study
@@ -9367,8 +11148,8 @@ The day before yesterday, we went to the movies
 ***** Puedes salir siempre que regreses a tiempo
 You can go out as long as you come back on time
 
-**** Shall we dance?
-Bailamos (peticiones, proposiciones)
+**** Bailamos (peticiones, proposiciones)
+Shall we dance?
 
 **** Nos vemos el lunes
 I'll see you Monday
@@ -9404,8 +11185,8 @@ Please taste this to see if it's missing something.
 **** Con quien fuiste?
 Who did you go with?
 
-**** Fuiste muy cruel con ella
-You were very cruel to (dirigiste tu crueldad hacia ella) her
+**** Fuiste muy cruel *con* ella
+You were very cruel *to* (dirigiste tu crueldad hacia ella) her
 
 **** En la casa de quién se encontraron?
 Whose house did you meet at?
@@ -9431,7 +11212,9 @@ He's the one who I danced with.
 **** Voy a bajar de peso porque necesito.
 I'm going to lose weight because I need to +loose weight+ .
 
-**** ...pero yo quiero ir (it's not necessary to put "go" at the end because it is an implied verb, but "to" is necessary to indicate that it was the verb mention
+**** ...pero yo quiero ir
+... but I want to (it's not necessary to put "go" at the end because it is an implied verb, but "to" is necessary to indicate that it was the verb mention
+
 **** Por cuánto lo vendió?
 How much did he sell it *for*?
 
@@ -9491,7 +11274,7 @@ Isn't there anything to eat?
 **** No pasó nada? (inseguro / incierto)
 Did nothing happen?
 
-**** Algo pasó (creo que paso algo pero no estoy seguro por eso pregunto)
+**** Algo pasó? (creo que paso algo pero no estoy seguro por eso pregunto)
 Did something happen?
 
 **** Pasó alguna cosa? (no se si paso habrá pasado algo solo pregunto)
@@ -9562,7 +11345,7 @@ I started going to bed at 10 for my health
 **** Empecé a acostarme a las 10 para dormir más
 I started going to bed at 10 to get more sleep
 
-**** Correr es bueno para la salud
+**** Correr es bueno para tu salud
 Running is good for your health
 
 **** Voy al parque
@@ -9909,6 +11692,99 @@ I read a lotta/(a lot of) books and stuff
 You're outta/(out of) time
 
 ** YouTube
+*** When You Just Don't Have It Together
+[[https://youtu.be/AmOBCqAKc4w?si=BotGiQWWn-KeiyHn][The Math Sorcerer]]
+**** Es fácil obtener el perdón por equivocarse; tener razón es lo que te mete en verdaderos problemas.
+It's easy to get forgiveness for being wrong; being right is what gets you into real trouble.
+
+**** Cualquier solución detallada y tediosa es propensa a errores porque los programadores se aburren.
+Any verbose and tedious solution is error-prone because programmers get bored.
+
+**** trabajarás para lograr/alcanzar/hacia ese objetivo.
+you will work towards that goal
+
+**** Harás lo que sea necesario para lograrlo.
+you will do whatever it takes to accomplish
+
+**** Hay mucha gente que lucha en la vida. Todos luchan. Nadie es a prueba de balas. Todos tienen problemas.
+there's a lot of people that struggle in life everyone struggles no one is Bulletproof everyone has problems
+
+**** no importa cuánto dinero tengas no importa lo guapo que seas no importa lo exitoso que seas todos tenemos problemas porque todos somos seres humanos y el truco es el secreto para salir de lo que sea es
+it doesn't matter how much money you have it doesn't matter how good looking you are it doesn't matter how successful you are everyone has problems because we're all human beings and the trick the secret to getting out of whatever it is
+
+**** si sientes que simplemente no tienes las cosas resueltas si sientes que simplemente te falta dirección y no sabes qué hacer y no sabes cómo arreglarlo
+if you feel like you just don't have things figured out if you feel like you're just you're lacking Direction and and you don't know what to do and you don't know how to fix it
+
+**** Con suerte, este video te pondrá/establecerá en algún camino.
+hopefully this video will set you on some path
+
+**** Puedes ir a Internet y puedes googlear, sabes, ¿Cómo hago XYZ y
+you can go on the internet and you can google you know how do I do XYZ and
+
+**** Si quieres obtener un título en matemáticas, entonces haz esto una prioridad.
+if you want to get a math degree then make that a priority
+
+**** descubre qué es lo que quieres hacer
+find out what it is you want to do
+
+**** ...ponerse en forma conseguir un mejor trabajo
+...getting in shape getting a better job
+
+**** ...o darte una reacción violenta por hablar/discutir de tus sueños
+ or give you backlash for discussing your dreams
+
+**** Sea lo que sea, tales objetivos tan elevados
+whatever it is such a lofty goals
+
+**** .No es solo como, oh sabes, realmente desearía tener mucho dinero y ser rico.
+***** ...realmente desearía que tuviera mucho dinero y fuera rico
+it's not just like, oh you know, I really wish I had a lot of money and I was rich
+
+**** tener algo un poco más concreto
+have something a little bit more concrete
+
+**** No quieres simplemente ser realmente inteligente, exitoso y tener sobrepeso.
+you don't want to just be really smart and successful and overweight
+
+**** tampoco quieres estar en buena forma y pobre
+you also don't want to be in great shape and poor
+
+**** trate de estar en buena forma trate de ser inteligente trate de tener éxito financiero trate de tener la mejor vida posible y establezca esas elevadas metas
+try to be in great shape try to be intelligent try to be financially successful try to have the best possible life and set those lofty goal
+
+**** Tienes que creer porque nadie más va a creer en ti tanto como tú.
+you have to believe because nobody else is going to believe in you as much as you
+
+**** Tu creencia en ti mismo es más importante que que alguien más crea en ti.
+your belief in yourself is more important than someone else believing in you
+
+**** no puedes buscar la confirmación de otras personas en esos momentos tienes que poder creer en tu objetivo
+you can't look to other people for confirmation in those times you have to be able to believe in your goal
+
+**** Úsa esto como motivación para seguir trabajando hacia tus objetivos porque nadie se preocupa por ti más que tú.
+use that as motivation to continue to work towards your goals because nobody cares about you more than you
+
+**** entonces, ¿cómo tú logras (esas cosas)
+so how do you accomplish them
+
+**** hay todo tipo de cosas que puedes buscar en internet puedes buscar cosas que te darán un plan
+there's all kinds of stuff you can look up on the internet you can look up stuff that'll give you a plan
+
+**** y eventualmente lo consiguirás siempre y cuando tengas esos objetivos realmente amplios y
+and eventually you'll get there as long as you have those really big picture goals and
+
+**** porque así somos como humanos tendemos a criticar y analizar las cosas
+because that's how we are as humans we tend to criticize and analyze things
+
+**** así que mantén tu meta en secreto, crea metas elevadas y luego descubre cómo trabajar para lograrlas.
+so keep your goal secret create lofty goals and then find out how to work towards them
+
+**** ¿Qué puedo hacer para arreglar las cosas en mi vida? Realmente se reduce a querer algo y creer que puedes hacerlo.
+what can I do to fix things in my life it really comes down to wanting something and believing that you can do it
+
+**** si quieres algo y crees que puedes lograrlo no importa lo realista que sea si realmente quieres algo y crees que puedes hacerlo vas a salir ahí fuera y vas a trabajar en ello todos los días o casi todos los días y creo que ese es el primer paso para averiguar lo que quieres bien y luego ir a por ello
+if you want something and you believe that you can accomplish it it doesn't matter how realistic it is if you really want something and you believe you can do it you're going to get out there and you're going to work on it every single day or almost every day and I think that's the first step to figure out what you want right and then go for it
+
 *** The 3 Biggest Mistakes College Students Make (and How to Avoid Them)
 [[https://youtu.be/f0TJOP27coQ?si=qoKkaYLP0QI92WBJ][The Math Sorcerer]]
 **** cuanto mejor seas tomando las pruebas, mejor te desenvolveras estudiando
@@ -10189,6 +12065,201 @@ The smartest guy I ever knew was extremely balanced and he took care of himself 
 **** .He visto cómo se esfuerzan
 ***** He visto cómo luchan
 I've seen how they struggle
+
+*** The Only Math Video You Will Ever Need
+[[https://youtu.be/BsIWw1lWV-A?si=JpakT70jJy0l95UK][The Math Sorcerer]]
+**** El truco es conseguir que lo hagas tú mismo.
+the trick is to get yourself to do it
+
+**** El truco es tener esa fuerza de voluntad para construir esa disciplina.
+the trick is to have that willpower to build that discipline
+
+**** es tratar de hacer tu mismo al menos un problema al día
+ is try to get yourself to do at least one problem a day
+
+**** porque sólo porque te guste algo no significa que lo vayas a hacer
+because just because you like something doesn't mean you're going to do it
+
+**** Porque una vez que encuentres tu razón te vas a volver imparable.
+because once you find your reason you are going to become Unstoppable
+
+**** te vas a convertir en una fuerza imparable que puede aprender matemáticas y vas a llegar a ser muy bueno en eso/ello
+you are going to become an Unstoppable force that can just learn math and you're going to get really good at it
+
+**** no tengo ganas de hacer matematicas
+I don't feel like doing math
+
+**** simplemente no tienes una razón lo suficientemente fuerte no es que seas vago porque la mayoría de nosotros no somos vagos
+you just don't have a strong enough reason it's not that you're lazy because most of us aren't lazy
+
+**** trabajamos duro vemos las recompensas nos sentimos bien cuando tenemos éxito
+we work hard we see the rewards we feel good when we have success
+
+**** .Lo que importa es que nosotros mismos hagamos el trabajo, porque una vez que haces el trabajo, vas obtener algunos resultados
+***** ponernos a hacer nosotros mismos el trabajo es lo que importa, porque una vez que haces el trabajo, vas obtener algunos resultados
+it's getting ourselves to do the work that matters because once you do the work you're going to get some results
+
+**** pero vas a salir mejor que cuando entraste te vas a volver más fuerte mucho más fuerte
+but you're going to come out better than when you came in you're going to become stronger much stronger
+
+**** Digo esto porque las personas evolucionan con el tiempo
+I say this because people evolve over time
+
+**** tienes toda tu vida por delante
+you've got your whole life ahead of you
+
+**** y eso surgió en la conversación de alguna manera.
+and that came up in the conversation somehow
+
+**** Cuando fui a la escuela de posgrado me fue asignado un asesor al que nunca había conocido.
+when I went to graduate school I was assigned an advisor I had never met him
+
+**** Nunca lo había conocido, todo lo que tenía era el número de su habitación y su nombre.
+I had never met him all I had was his room number and his name
+
+**** No lo escuché
+I did not listen to him
+
+**** .¿Quién se ha creido que es? ¿Quién se cree esta *persona* que es?
+***** Quién este *tipo* piensa que es...
+who did this guy think he is? who does this person think he is?
+
+**** En la segunda razón, es una que tenía, esta me ayudó cuando era estudiante, dejó de funcionar en la escuela de posgrado
+In the second reason is one I had this one helped me when I was an undergraduate it stopped working in grad school
+
+**** ¿vas a *ser* el mejor? no, el mundo no funciona de esa manera, muchas veces trabajamos muy muy duro y no conseguimos los resultados que queremos, eso pasa es normal, es cómo te enfrentas/lidias con esos fracasos, cómo te levantas del suelo y vuelves, eso es lo que separa a la gente que tiene éxito y la gente que fracasa
+are you going to be the best? no, the world doesn't work that way, a lot of times we work really really hard and we don't get the results we want, that happens it's normal, it's how you deal with those failures, how you get up off the ground and come back at it again that's what separates people who succeed and people who fail
+
+**** Está bien ser competitivo pero no seas autodestructivo.
+it's okay to be competitive but don't be self-destructive
+
+**** Algunas personas son de esa manera, así que si tú eres así/de esa manera, intenta verlo como una competencia sana, haz lo mejor que puedas.
+some people are that way so if you're that way try to view it as healthy competition do your best
+
+**** No tenía tantos libros porque no tenía dinero.
+I didn't have that many books because I didn't have any money
+
+**** fue simplemente horrible, fue tan difícil, sacrifiqué relaciones, fue tan doloroso es una lucha para todos nosotros
+it just was horrible it was so hard I sacrificed relationships I'm so painful it is a struggle for all of us
+
+**** esa fue la razon por la que fui a la universidad no fui a la universidad a estudiar matematicas no no no no fui a la universidad porque queria una vida mejor estaba cansado de trabajar en fabricas de acero y gasolineras no hay nada malo con eso pero yo solo queria algo mas
+it was the reason I went to college I didn't go to college to study math no no no no no I went to college because I wanted a better life right I was tired of working at steel factories and gas stations there's nothing wrong with that but I just wanted something else
+
+**** Me senté al frente de la clase y yo era ese tipo muy divertido, bueno, no me senté al frente, me senté atrás, pero recuerdo haber corregido al maestro, uh, varias veces, fila del medio, corregí al maestro. bastantes veces
+I sat in the front of the class and I was that guy like too much fun well I didn't sit in the front I sat in the back but I remember correcting the teacher uh quite a few times middle row middle row I corrected the teacher quite a few times
+
+**** en cualquier caso, fui a la universidad porque quería mejorar mi vida y luego accidentalmente descubrí las matemáticas, las matemáticas básicamente me fueron impuestas. Reprobé el examen de ingreso en matemáticas.
+in any case I went to college because I wanted to better my life and then I accidentally discovered math math was basically forced on me I failed the entrance exam in mathematics I
+
+**** Hice eso por un corto tiempo y luego terminé dejando mi trabajo.
+I did that for a little while and then I ended up quitting my job
+
+**** 1esta es tu única oportunidad esta es tu única vida
+this is your one shot this is your one life
+
+**** que la gente va a la universidad porque están tratando de hacer una vida mejor, así que dales un respiro.
+that people go to college because they're trying to make a better life right so give them a break
+
+**** necesitas esas razones para hacer bien las matemáticas necesitas encontrar tus razones porque cuando encuentres tus razones vas a pododer tener éxito en cualquier cosa si tienes una razón para hacer algo, lo vas a hacer
+you need those reasons to do mathematics right you need to find your reasons because when you find your reasons you're going to be able to succeed in anything right if you have a reason to do anything you're going to do it
+
+**** Si tus razones no son lo suficientemente fuertes, necesitas reevaluar. Que está pasando aquí, ya sabes, has un poco de pensamiento profundo, sal a caminar.
+if your reasons are not strong enough you need to reevaluate what's going on here you know do some deep thinking here go for a walk
+
+**** aclara tu cabeza y trata de descubrir qué es lo que quieres hacer con tu vida y luego ve por ello al 100 por ciento.
+clear your head space and try to figure out what it is you want to do with your life and then go for it 100 percent
+
+*** The Dark Side of Self Study
+[[https://youtu.be/g7MSfHEdxXs?si=b0pqD6_XVn_dlx28][The Math Sorcerer]]
+**** déjame realmente sacarlo a la luz/que lo diga
+let me just really get it out there
+
+**** dado suficiente tiempo y esfuerzo, cualquiera puede aprender por sí solo.
+given enough time and effort anyone can learn on their own
+
+**** y simplemente tienes este sentimiento perdido y confuso
+and you just have this lost and confused feeling
+
+**** Hay toneladas de videos. He hecho unos pocos yo mismo.
+there's tons of videos i've made a few myself
+
+**** pero es más fácil decirlo que hacerlo
+but it's easier said than done
+
+**** pero vas a salir mejor si lo haces
+but you're gonna come out better for doing it
+
+**** no dejes que te haga sentir estúpido
+don't let it make you feel stupid
+
+**** He escrito como un plan de juego
+i have written down like a game plan
+
+**** ... ¿alguna vez lo hago?
+ do i ever do it
+
+**** pero es así es como es
+but that's just how it is
+
+**** ¿Lo hice?
+did i do it
+
+**** no hagas lo que hice
+don't do what i did
+
+**** Deberías seguir teniendo aquellos pensamientos incluso si nunca actúas en consecuencia/ellos porque sabes lo que algún día podrías hacer.
+you should keep having those thoughts even if you never act on them because you know what someday you might
+
+**** un camino difícil
+a difficult road
+
+**** quizás incluso sacaras/obtengas la nota más alta en la clase
+maybe you'll even get the highest grade in the class
+
+**** mi mayor logro cuando se trata de autoestudio
+my greatest accomplishment when it comes to self-study
+
+*** DIRECT and INDIRECT objects | levels A2 - C1 plus TEST!
+[[https://www.youtube.com/watch?v=LK-D8uQ1pbo][Arnel's]]
+**** Todo el camino hasta C1 con ejemplos como
+All the way up to C1 with examples like
+
+**** .Me falta algo
+***** Me estoy perdiendo de algo
+I'm missing something
+
+**** *A quién* conocerá Amy? Amy conocerá a *Toby* (object)
+*Whom* will Amy meet? Amy will meet *Toby*. (whom asks about the object)
+
+**** *Quién* conocerá a Toby? *Amy* conocerá a Toby (subject)
+*Who* will meet Toby? *Amy* will meet Toby. (who asks about the subject)
+
+**** Así que realmente no importa cómo cambies el sujeto o el objeto directo
+So it doesn't really matter how you change the subject or the direct object
+
+**** Le hice un sándwich a mi abuelo
+I made my grandpa a sandwich
+
+**** Estamos leyendo un libro a los niños
+We are reading the children a book
+
+**** Eso no es lo que queremos decir
+That's not what we mean
+
+**** Un policía me estaba haciendo preguntas
+A policeman was asking me questions
+
+**** Entonces, ¿por qué dedico tanto tiempo a hablarles sobre los verbos transitivos e intransitivos?
+So why am I spending so much time telling  you about transitive and intransitive verbs?
+
+**** Regrese
+I am back
+
+**** Creo que estás empezando a hacerte una idea de lo que quiero que hagas en estas pequeñas pruebas
+I think you're starting to get idea of what I want you to do in this little tests
+
+**** no importa cuán complejas se vean las oraciones
+it doesn't matter how complex a sentences looks
 
 ***  You’ll Be Glad EVERY Day That You MASTERED These Questions!
 [[https://www.youtube.com/watch?v=GC8sVqk1J8c][Rachel's English]]
@@ -10485,48 +12556,6 @@ What your favorite teams? I would say, I follow Philly teams because of David, a
 
 **** Has estado en algún evento deportivo en vivo estos años? Si, he ido. Llevamos a mi hijo mayor a un juego de los 76rs este año
 Have you been to any live sporting events this years? I did. We took my oldest son to a 76rs game this year
-
-*** DIRECT and INDIRECT objects | levels A2 - C1 plus TEST!
-[[https://www.youtube.com/watch?v=LK-D8uQ1pbo][Arnel's]]
-**** Todo el camino hasta C1 con ejemplos como
-All the way up to C1 with examples like
-
-**** .Me falta algo
-***** Me estoy perdiendo de algo
-I'm missing something
-
-**** *A quién* conocerá Amy? Amy conocerá a *Toby* (object)
-*Whom* will Amy meet? Amy will meet *Toby*. (whom asks about the object)
-
-**** *Quién* conocerá a Toby? *Amy* conocerá a Toby (subject)
-*Who* will meet Toby? *Amy* will meet Toby. (who asks about the subject)
-
-**** Así que realmente no importa cómo cambies el sujeto o el objeto directo
-So it doesn't really matter how you change the subject or the direct object
-
-**** Le hice un sándwich a mi abuelo
-I made my grandpa a sandwich
-
-**** Estamos leyendo un libro a los niños
-We are reading the children a book
-
-**** Eso no es lo que queremos decir
-That's not what we mean
-
-**** Un policía me estaba haciendo preguntas
-A policeman was asking me questions
-
-**** Entonces, ¿por qué dedico tanto tiempo a hablarles sobre los verbos transitivos e intransitivos?
-So why am I spending so much time telling  you about transitive and intransitive verbs?
-
-**** Regrese
-I am back
-
-**** Creo que estás empezando a hacerte una idea de lo que quiero que hagas en estas pequeñas pruebas
-I think you're starting to get idea of what I want you to do in this little tests
-
-**** no importa cuán complejas se vean las oraciones
-it doesn't matter how complex a sentences looks
 
 ** Movies - Series
 *** Obi Wan Kenobi Part V
@@ -10849,6 +12878,91 @@ But he has to keep going to school
 
 **** , y tuve que renunciar a ellos
 , and I had to give them up
+
+*** Simpsons Roasting on an Open Fire (S01E01)
+**** "Así que supongo que la vida continúa.
+"So I guess life goes on.
+
+**** ¡Ay! Dejalo.
+- Ow! Quit it.
+
+****  tengo la sensación de que hay Algo que no me has dicho, Homero.
+Hmm. I get the feeling there's something you haven't told me, Homer.
+
+**** Marge, ¿no has terminado ya esa estúpida carta?
+Marge, haven't you finished that stupid letter yet?
+
+**** ¿Incluso cuando están locos?
+Even when they're nuts?
+
+**** ¿Qué pasa ahora, Simpson?
+What is it now, Simpson?
+
+**** - ¿Qué pasa, Flandes?
+What is it, Flanders?
+
+**** Sí. Se está haciendo tarde.
+Yeah. It's getting late.
+
+**** ¿Dónde has estado escondiendo el dinero de Navidad?
+Where have you been hiding the Christmas money?
+
+**** Oh, ¿podemos quedarnos con él?
+Oh, can we keep him,
+
+**** debemos insistir en un pago en efectivo por adelantado.
+we must insist on a cash payment up front.
+
+**** Hablando de la vida que sigue,
+"Speaking of life going on,
+
+**** De alguna manera dudo que Homero está emocionado.
+Somehow I doubt that Homer is excited.
+
+**** Oye, se te cayó la chuleta de cerdo.
+Hey, you dropped your pork chop.
+
+**** Eso sólo deja la pequeña Maggie. ¡Oh, mira! (de tres que ya ha analizado solo falta ella)
+That just leaves little Maggie. Oh, look!
+
+**** ¡Vaya! Qué lío/desastre/desorden tenemos aquí.
+- Oh, my! What a mess we've got here.
+
+**** ¡Oh, eso también lo sabía!
+Oh, I knew that one too!
+
+**** Voy directo a la bañera.
+I'm heading straight for the tub.
+
+**** conseguí un trabajo a tiempo parcial trabajando como Santa en el centro comercial.
+I got me a part-timejob working as a Santa down at the mall.
+
+**** y te hace parecer muy peligroso.
+and it makes you look so dangerous.
+
+**** No te merezco tanto como un tipo con una billetera gorda...
+I don't deserve you as much as a guy with a fat wallet...
+
+**** de todos los hombres podrías haberte casado,
+of all the men you could've married,
+
+**** ¡Estaba saliendo a conseguir uno!
+I was just on my way out to get one!
+
+**** Bueno, desearía que no lo hicieras...
+Well, I wish you wouldn't...
+
+**** solo Tendremos que estirar tu aguinaldo...
+We'll just have to stretch your Christmas bonus...
+
+**** porque aparte de que tiene/del hecho las mismas debilidades que todos los seres humanos.
+because aside from the fact he has the same frailties as all human beings.
+
+**** Oye, ¿qué pasa con esto?
+- Hey, what's with this?
+
+**** Creo que tiene algo que ver con tu paga extra de Navidad.
+I think it does have something to do with your Christmas bonus.
 
 ** Miscellaneous
 *** Quotes
@@ -11530,108 +13644,200 @@ with no regard for online manual
 **** , este directorio contiene archivos de biblioteca que contienen código que puede utilizar el ejecutable.
 , this directory holds library files containing code that executables can use.
 
-*** The Only Math Video You Will Ever Need
-[[https://youtu.be/BsIWw1lWV-A?si=JpakT70jJy0l95UK][The Math Sorcerer]]
-**** El truco es conseguir que lo hagas tú mismo.
-the trick is to get yourself to do it
+*** The linux command line
+**** Cómo funciona todo?
+How does it all work?
 
-**** El truco es tener esa fuerza de voluntad para construir esa disciplina.
-the trick is to have that willpower to build that discipline
+**** No es que sea/es tan difícil, sino que es tan vasto.
+It's not that it's so hard, but rather it's so vast.
 
-**** es tratar de hacer tu mismo al menos un problema al día
- is try to get yourself to do at least one problem a day
+**** Si resalta algún texto manteniendo presionado el botón izquierdo del mouse y arrastranndo el mouse sobre  el...
+If you highlight some text by holding down the left mouse button and dragging the mouse over it..
 
-**** porque sólo porque te guste algo no significa que lo vayas a hacer
-because just because you like something doesn't mean you're going to do it
+**** no es raro(no común)
+It is not uncommon
 
-**** Porque una vez que encuentres tu razón te vas a volver imparable.
-because once you find your reason you are going to become Unstoppable
+**** monitoreado de vez en cuando.
+monitored from time to time.
 
-**** te vas a convertir en una fuerza imparable que puede aprender matemáticas y vas a llegar a ser muy bueno en eso/ello
-you are going to become an Unstoppable force that can just learn math and you're going to get really good at it
+**** Una cosa que debemos tomar de esto es lo abierto que es el sistema.
+One thing we should take away from this is how open the system is.
 
-**** no tengo ganas de hacer matematicas
-I don't feel like doing math
+**** La página más brutal de todas.
+The most brutal page of them all
 
-**** simplemente no tienes una razón lo suficientemente fuerte no es que seas vago porque la mayoría de nosotros no somos vagos
-you just don't have a strong enough reason it's not that you're lazy because most of us aren't lazy
+**** Puede parecer de esa manera pero está realmente haciendo exactamente lo que se supone que debe hacer.
+It might seem that way, but it's really doing exactly what it's supposed to do.
 
-**** trabajamos duro vemos las recompensas nos sentimos bien cuando tenemos éxito
-we work hard we see the rewards we feel good when we have success
+**** Cuando me piden que explique la diferencia entre
+When I am asked to explain the difference between
 
-**** .Lo que importa es que nosotros mismos hagamos el trabajo, porque una vez que haces el trabajo, vas obtener algunos resultados
-***** ponernos a hacer nosotros mismos el trabajo es lo que importa, porque una vez que haces el trabajo, vas obtener algunos resultados
-it's getting ourselves to do the work that matters because once you do the work you're going to get some results
+**** ...y compre uno todo nuevo y brillante en la caja. Te lo llevas a casa
+...and buy one all shiny new in the box. You take it home
 
-**** pero vas a salir mejor que cuando entraste te vas a volver más fuerte mucho más fuerte
-but you're going to come out better than when you came in you're going to become stronger much stronger
+**** Después de un tiempo, pensó, te cansas del juego que vino con él, así que vuelves a la tienda y compras otro.
+After a while, though, you get tired of the game that came with it, so you go back to the store and buy another one.
 
-**** Digo esto porque las personas evolucionan con el tiempo
-I say this because people evolve over time
+**** solo para que se les diga que tal juego no existe porque no hay demanda en el mercado para él.
+only to be told that no such game exists because there is no “market demand” for it.
 
-**** tienes toda tu vida por delante
-you've got your whole life ahead of you
+**** Los juegos estan *todos* sellados en sus cartuchos.
+The games are all sealed up in their cartridges.
 
-**** y eso surgió en la conversación de alguna manera.
-and that came up in the conversation somehow
+**** Después de un tiempo descubres que tienes tus propias ideas de qué hacer.
+After a while you discover that you have your own ideas of what to make.
 
-**** Cuando fui a la escuela de posgrado me fue asignado un asesor al que nunca había conocido.
-when I went to graduate school I was assigned an advisor I had never met him
+**** esto hace lo que quieres.
+It does what you want.
 
-**** Nunca lo había conocido, todo lo que tenía era el número de su habitación y su nombre.
-I had never met him all I had was his room number and his name
+**** Como podemos(posibilidad) recordar
+As we may recall
 
-**** No lo escuché
-I did not listen to him
+**** , a su vez,
+, in turn,
 
-**** .¿Quién se ha creido que es? ¿Quién se cree esta *persona* que es?
-***** Quién este *tipo* piensa que es...
-who did this guy think he is? who does this person think he is?
+**** Haciendo esto, deberíamos conseguir que se vea así
+Doing so, we should get that looks like this
 
-**** En la segunda razón, es una que tenía, esta me ayudó cuando era estudiante, dejó de funcionar en la escuela de posgrado
-In the second reason is one I had this one helped me when I was an undergraduate it stopped working in grad school
+**** Has preguntado alguna vez como ...
+Ever wonder how ...
 
-**** ¿vas a *ser* el mejor? no, el mundo no funciona de esa manera, muchas veces trabajamos muy muy duro y no conseguimos los resultados que queremos, eso pasa es normal, es cómo te enfrentas/lidias con esos fracasos, cómo te levantas del suelo y vuelves, eso es lo que separa a la gente que tiene éxito y la gente que fracasa
-are you going to be the best? no, the world doesn't work that way, a lot of times we work really really hard and we don't get the results we want, that happens it's normal, it's how you deal with those failures, how you get up off the ground and come back at it again that's what separates people who succeed and people who fail
+**** Por qué tantos diferentes?
+Why so many different ones?
 
-**** Está bien ser competitivo pero no seas autodestructivo.
-it's okay to be competitive but don't be self-destructive
+**** Mientras estas en eso, no es una mala idea
+While you're at it, it’s not a bad idea
 
-**** Algunas personas son de esa manera, así que si tú eres así/de esa manera, intenta verlo como una competencia sana, haz lo mejor que puedas.
-some people are that way so if you're that way try to view it as healthy competition do your best
+**** ... valdrá la pena(ph*) a largo plazo.
+will pay off in the long run.
 
-**** No tenía tantos libros porque no tenía dinero.
-I didn't have that many books because I didn't have any money
+**** pueden haber pasado por alto un dispositivo particular.
+they may have overlooked a particular device.
 
-**** fue simplemente horrible, fue tan difícil, sacrifiqué relaciones, fue tan doloroso es una lucha para todos nosotros
-it just was horrible it was so hard I sacrificed relationships I'm so painful it is a struggle for all of us
+**** No ha liberado el código fuente de/para un controlador de Linux, ni ha liberado la documentación técnica para que alguien cree uno para ellos.
+It has neither released source code for a Linux driver, nor has it released the technical documentation for somebody to create one for them.
 
-**** esa fue la razon por la que fui a la universidad no fui a la universidad a estudiar matematicas no no no no fui a la universidad porque queria una vida mejor estaba cansado de trabajar en fabricas de acero y gasolineras no hay nada malo con eso pero yo solo queria algo mas
-it was the reason I went to college I didn't go to college to study math no no no no no I went to college because I wanted a better life right I was tired of working at steel factories and gas stations there's nothing wrong with that but I just wanted something else
+**** Dedica un tiempo a conocer...
+Spend some time getting to know
 
-**** Me senté al frente de la clase y yo era ese tipo muy divertido, bueno, no me senté al frente, me senté atrás, pero recuerdo haber corregido al maestro, uh, varias veces, fila del medio, corregí al maestro. bastantes veces
-I sat in the front of the class and I was that guy like too much fun well I didn't sit in the front I sat in the back but I remember correcting the teacher uh quite a few times middle row middle row I corrected the teacher quite a few times
+**** Cuando se trata de networking
+When it comes to networking,
 
-**** en cualquier caso, fui a la universidad porque quería mejorar mi vida y luego accidentalmente descubrí las matemáticas, las matemáticas básicamente me fueron impuestas. Reprobé el examen de ingreso en matemáticas.
-in any case I went to college because I wanted to better my life and then I accidentally discovered math math was basically forced on me I failed the entrance exam in mathematics I
+**** .De qué sirve una red al menos que podamos mover archivos a través de ella?
+***** Qué bueno es una read al menos ...
+What good is a network unless we can move files across it?
 
-**** Hice eso por un corto tiempo y luego terminé dejando mi trabajo.
-I did that for a little while and then I ended up quitting my job
+**** .Antes de que existieran el navegador web, estaba el programa ftp.
+***** Antes de que hubiera el navegador web, había el programa ftp.
+Before there were web browsers, there was the ftp program.
 
-**** 1esta es tu única oportunidad esta es tu única vida
-this is your one shot this is your one life
+**** , casi todos lo hecho en FTP sobre internet es hecho por servidores FTP anonimos.
+, almost all FTP done over the Internet is done by anonymous FTP servers.
 
-**** que la gente va a la universidad porque están tratando de hacer una vida mejor, así que dales un respiro.
-that people go to college because they're trying to make a better life right so give them a break
+**** Es torpe pero funciona.
+It’s clumsy, but it does work.
 
-**** necesitas esas razones para hacer bien las matemáticas necesitas encontrar tus razones porque cuando encuentres tus razones vas a pododer tener éxito en cualquier cosa si tienes una razón para hacer algo, lo vas a hacer
-you need those reasons to do mathematics right you need to find your reasons because when you find your reasons you're going to be able to succeed in anything right if you have a reason to do anything you're going to do it
+**** , una cosa se ha vuelto muy clara
+, one thing has become abundantly clear:
 
-**** Si tus razones no son lo suficientemente fuertes, necesitas reevaluar. Que está pasando aquí, ya sabes, has un poco de pensamiento profundo, sal a caminar.
-if your reasons are not strong enough you need to reevaluate what's going on here you know do some deep thinking here go for a walk
+**** ...archivos que cumplan con criterios específicos.
+... files that meet specific criteria.
 
-**** aclara tu cabeza y trata de descubrir qué es lo que quieres hacer con tu vida y luego ve por ello al 100 por ciento.
-clear your head space and try to figure out what it is you want to do with your life and then go for it 100 percent
+**** Precediendo cada uno con un backslash hace el truco.
+Preceding each one with a backslash character does the trick.
+
+**** , por lo que ayuda a que vaya más rápido.
+, so it helps it go faster.
+
+**** A trabajar/Trabajemos un poco
+Let’s get some work done!
+
+**** Maravillate ante el poder de la línea de comandos.
+Marvel at the power of the command line!
+
+**** , ha habido una lucha por obtener la mayor cantidad de datos en el espacio disponible más pequeño.
+, there has been a struggle to get the most data into the smallest available space,
+
+**** (la técnica matemática usada para llevar a cabo la compresión).
+(the mathematical techniques used to carry out the compression)
+
+**** .Podemos pensar que es como ...
+***** Podemos pensar en eso es como
+We can think of it as being like
+
+**** Ahora todo lo que tenemos que hacer es adjuntar nuestro dispositivo externo y ...
+Now all we have to do is attach our external drive and
+
+**** .Sin embargo, para confundir más las cosas,
+***** ..., para ir mas lejos
+However, to further confuse things,
+
+**** Si bien puede no parecer aparente,
+*While* it may not seem apparent,
+
+**** incluyendo caracteres que de lo contrario serían interpretados como metacaracteres
+including characters that would otherwise be interpreted as metacharacters
+
+**** ..., permitir que los revisores del parche que lo evalúen rapidámente
+, allowing reviewers of the patch to quickly evaluate it.
+
+**** Después de pasar/estar/gastar el último par de capítulos manipulando texto,
+After spending the last couple of chapters manipulating text,
+
+**** Cuando las impresoras eran caras y centralizadas, como a menudo eran en los primeros días de Unix, era una práctica común
+When printers were expensive and centralized, as they often were in the early days of Unix, it was common practice for
+
+**** El shell lee este archivo y ejecuta/lleva a cabo los comandos como si hubieran sido ingresados ​​directamente
+The shell reads this file and carries out the commands as though they have been entered directly
+
+**** El shell es algo único, en que es ambas, un ...
+The shell is somewhat unique, in that it is both a ...
+
+**** Todo desde el símbolo # en adelante en la línea es ignorado.
+Everything from the # symbol onward on the line is ignored.
+
+**** ¿Por qué es esto? ¿Qué hace nuestro script diferente de otros programas? Pues resulta que nada.
+Why is this? What makes our script different from other programs? As it turns out, nothing.
+
+**** Esto cause que vim sangra una nueva línea con la misma cantidad que la línea que acaba de escribir.
+This causes vim to indent a new line the same amount as the line just typed.
+
+**** , resultará ser bastante útil/práctico.
+, it will turn out to be quite handy.
+
+**** Tenga en cuenta que para que las llamadas a funciones sean reconocidas como funciones del shell y no interpretadas como
+Note that for function calls to be recognized as shell functions and not interpreted as
+
+**** algunos programas se benefician de poder aceptar entradas directamente del usuario
+some programs benefit from being able to accept input directly from the user
+
+**** Sería prudente/conveniente incluir la validación de datos, por si acaso.
+it would be wise to include data validation, just in case.
+
+**** a.coger la tabla de cortar b.coger el cuchillo c.colocar la zanahoria en la tabla de cortar d.levantar el cuchillo e.avanzar la zanahoria f.cortar la zanahoria g.si la zanahoria entera está cortada en rodajas, entonces salir; si no/de lo contrario vaya al paso 4
+1.get cutting board 2.get knife 3.place carrot on cutting board 4.lift knife 5.advance carrot 6.slice carrot 7.if entire carrot sliced, then quit; else go to step 4
+
+**** Si te fuera dado cinco minutos para diseñar un dispositivo "que mate moscas", diseñaría un matamoscas. Si te fuera dado cinco meses, podría(tal vez) *idear* un "sistema antimoscas" guiado por láser en su lugar
+If you were given five minutes to design a device “that kills flies,” you designed a flyswatter. If you were given five months, you might come up with a laser-guided “anti-fly system” instead.
+
+**** Hay un dicho en el mundo del código abierto,
+ There is a saying in the open-source world,
+
+**** .Una característica que faltaba hasta ahora en nuestros programas
+***** Una característica que ha estado faltando hasta ahora en nuestros programas
+One feature that has been missing from our programs so far
+
+**** Entonces, ¿para qué sirven las matrices?
+So what are arrays good for?
+
+**** Hemos visto cómo todos los sistemas operativos modernos son al menos multitarea, si no también multiusuario.
+We have seen how all modern operating systems are at least multitasking if not multiuser as well
+
+**** Al igual que con las tuberías ordinarias (sin nombre), los datos entran por un extremo y emerge por el otro.
+As with ordinary (unnamed) pipes, data goes in one end and emerges out the other.
+
+**** Apenas arañamos la superficie en lo que respecta/en cuanto a a la línea de comando.
+we barely scratched the surface as far as the command line goes.
 
 * Timer
 ** Review
@@ -11803,6 +14009,126 @@ CLOCK: [2023-04-17 Mon 08:07]--[2023-04-17 Mon 08:16] =>  0:09
 :END:
 ** Sentences
 :LOGBOOK:
+CLOCK: [2024-02-21 Wed 13:37]--[2024-02-21 Wed 13:51] =>  0:14
+CLOCK: [2024-02-21 Wed 11:36]--[2024-02-21 Wed 12:18] =>  0:42
+CLOCK: [2024-02-20 Tue 10:07]--[2024-02-20 Tue 10:37] =>  0:30
+CLOCK: [2024-02-19 Mon 15:08]--[2024-02-19 Mon 16:49] =>  1:41
+CLOCK: [2024-02-17 Sat 07:58]--[2024-02-17 Sat 09:02] =>  1:04
+CLOCK: [2024-02-16 Fri 10:27]--[2024-02-16 Fri 11:42] =>  1:15
+CLOCK: [2024-02-15 Thu 11:09]--[2024-02-15 Thu 12:41] =>  1:32
+CLOCK: [2024-02-14 Wed 09:16]--[2024-02-14 Wed 10:23] =>  1:07
+CLOCK: [2024-02-13 Tue 09:09]--[2024-02-13 Tue 10:36] =>  1:27
+CLOCK: [2024-02-12 Mon 08:48]--[2024-02-12 Mon 09:41] =>  0:53
+CLOCK: [2024-02-11 Sun 12:10]--[2024-02-11 Sun 13:03] =>  0:53
+CLOCK: [2024-02-09 Fri 09:19]--[2024-02-09 Fri 10:12] =>  0:53
+CLOCK: [2024-02-08 Thu 12:04]--[2024-02-08 Thu 13:04] =>  1:00
+CLOCK: [2024-02-07 Wed 09:15]--[2024-02-07 Wed 09:30] =>  0:15
+CLOCK: [2024-02-05 Mon 11:23]--[2024-02-05 Mon 11:34] =>  0:11
+CLOCK: [2024-02-04 Sun 12:19]--[2024-02-04 Sun 12:32] =>  0:13
+CLOCK: [2024-02-03 Sat 09:46]--[2024-02-03 Sat 10:06] =>  0:20
+CLOCK: [2024-02-02 Fri 11:09]--[2024-02-02 Fri 11:23] =>  0:14
+CLOCK: [2024-01-31 Wed 09:39]--[2024-01-31 Wed 09:52] =>  0:13
+CLOCK: [2024-01-25 Thu 14:55]--[2024-01-25 Thu 15:00] =>  0:05
+CLOCK: [2024-01-24 Wed 14:04]--[2024-01-24 Wed 14:09] =>  0:05
+CLOCK: [2024-01-22 Mon 14:16]--[2024-01-22 Mon 14:18] =>  0:02
+CLOCK: [2024-01-21 Sun 09:41]--[2024-01-21 Sun 09:44] =>  0:03
+CLOCK: [2024-01-20 Sat 12:21]--[2024-01-20 Sat 12:29] =>  0:08
+CLOCK: [2024-01-19 Fri 10:11]--[2024-01-19 Fri 10:28] =>  0:17
+CLOCK: [2024-01-17 Wed 10:07]--[2024-01-17 Wed 10:21] =>  0:14
+CLOCK: [2024-01-16 Tue 13:52]--[2024-01-16 Tue 14:19] =>  0:27
+CLOCK: [2024-01-15 Mon 08:51]--[2024-01-15 Mon 09:29] =>  0:38
+CLOCK: [2024-01-13 Sat 15:01]--[2024-01-13 Sat 15:21] =>  0:20
+CLOCK: [2024-01-13 Sat 12:44]--[2024-01-13 Sat 13:01] =>  0:17
+CLOCK: [2024-01-10 Wed 13:00]--[2024-01-10 Wed 13:41] =>  0:41
+CLOCK: [2024-01-09 Tue 16:10]--[2024-01-09 Tue 17:00] =>  0:50
+CLOCK: [2024-01-09 Tue 15:21]--[2024-01-09 Tue 16:04] =>  0:43
+CLOCK: [2024-01-09 Tue 13:53]--[2024-01-09 Tue 14:03] =>  0:10
+CLOCK: [2024-01-04 Thu 10:47]--[2024-01-04 Thu 10:52] =>  0:05
+CLOCK: [2023-12-30 Sat 09:46]--[2023-12-30 Sat 09:51] =>  0:05
+CLOCK: [2023-12-29 Fri 08:21]--[2023-12-29 Fri 08:30] =>  0:09
+CLOCK: [2023-12-28 Thu 08:45]--[2023-12-28 Thu 08:58] =>  0:13
+CLOCK: [2023-12-25 Mon 09:31]--[2023-12-25 Mon 09:49] =>  0:18
+CLOCK: [2023-12-23 Sat 12:09]--[2023-12-23 Sat 12:19] =>  0:10
+CLOCK: [2023-12-22 Fri 10:01]--[2023-12-22 Fri 10:12] =>  0:11
+CLOCK: [2023-12-21 Thu 08:57]--[2023-12-21 Thu 09:18] =>  0:21
+CLOCK: [2023-12-20 Wed 10:15]--[2023-12-20 Wed 10:32] =>  0:17
+CLOCK: [2023-12-19 Tue 12:08]--[2023-12-19 Tue 12:25] =>  0:17
+CLOCK: [2023-12-15 Fri 11:39]--[2023-12-15 Fri 11:51] =>  0:12
+CLOCK: [2023-12-14 Thu 14:09]--[2023-12-14 Thu 14:25] =>  0:16
+CLOCK: [2023-12-13 Wed 08:34]--[2023-12-13 Wed 09:00] =>  0:26
+CLOCK: [2023-12-11 Mon 10:22]--[2023-12-11 Mon 10:52] =>  0:30
+CLOCK: [2023-12-10 Sun 10:28]--[2023-12-10 Sun 10:40] =>  0:12
+CLOCK: [2023-12-10 Sun 09:30]--[2023-12-10 Sun 10:18] =>  0:48
+CLOCK: [2023-12-09 Sat 09:44]--[2023-12-09 Sat 10:30] =>  0:46
+CLOCK: [2023-12-08 Fri 11:47]--[2023-12-08 Fri 12:02] =>  0:15
+CLOCK: [2023-12-08 Fri 11:01]--[2023-12-08 Fri 11:45] =>  0:44
+CLOCK: [2023-12-07 Thu 11:20]--[2023-12-07 Thu 11:35] =>  0:15
+CLOCK: [2023-12-07 Thu 10:51]--[2023-12-07 Thu 11:15] =>  0:24
+CLOCK: [2023-12-06 Wed 13:14]--[2023-12-06 Wed 13:27] =>  0:13
+CLOCK: [2023-12-05 Tue 08:54]--[2023-12-05 Tue 09:21] =>  0:27
+CLOCK: [2023-12-04 Mon 08:56]--[2023-12-04 Mon 9:50] =>  0:54
+CLOCK: [2023-12-02 Sat 10:28]--[2023-12-02 Sat 11:39] =>  1:11
+CLOCK: [2023-12-01 Fri 10:31]--[2023-12-01 Fri 10:52] =>  0:21
+CLOCK: [2023-12-01 Fri 09:22]--[2023-12-01 Fri 10:09] =>  0:47
+CLOCK: [2023-11-30 Thu 12:00]--[2023-11-30 Thu 12:24] =>  0:24
+CLOCK: [2023-11-30 Thu 10:52]--[2023-11-30 Thu 11:59] =>  1:07
+CLOCK: [2023-11-30 Thu 09:55]--[2023-11-30 Thu 10:13] =>  0:18
+CLOCK: [2023-11-29 Wed 09:54]--[2023-11-29 Wed 11:02] =>  1:08
+CLOCK: [2023-11-28 Tue 10:40]--[2023-11-28 Tue 11:50] =>  1:10
+CLOCK: [2023-11-27 Mon 10:11]--[2023-11-27 Mon 11:00] =>  0:49
+CLOCK: [2023-11-27 Mon 08:52]--[2023-11-27 Mon 10:03] =>  1:11
+CLOCK: [2023-11-25 Sat 09:46]--[2023-11-25 Sat 10:41] =>  0:55
+CLOCK: [2023-11-24 Fri 09:32]--[2023-11-24 Fri 11:00] =>  1:28
+CLOCK: [2023-11-24 Fri 09:02]--[2023-11-24 Fri 09:13] =>  0:11
+CLOCK: [2023-11-23 Thu 10:31]--[2023-11-23 Thu 11:40] =>  1:09
+CLOCK: [2023-11-23 Thu 10:00]--[2023-11-23 Thu 10:25] =>  0:25
+CLOCK: [2023-11-23 Thu 09:06]--[2023-11-23 Thu 09:44] =>  0:38
+CLOCK: [2023-11-22 Wed 13:40]--[2023-11-22 Wed 14:40] =>  1:00
+CLOCK: [2023-11-22 Wed 10:38]--[2023-11-22 Wed 11:53] =>  1:15
+CLOCK: [2023-11-21 Tue 10:00]--[2023-11-21 Tue 12:50] =>  2:50
+CLOCK: [2023-11-21 Tue 09:48]--[2023-11-21 Tue 10:00] =>  0:12
+CLOCK: [2023-11-20 Mon 10:12]--[2023-11-20 Mon 10:50] =>  0:38
+CLOCK: [2023-11-18 Sat 12:10]--[2023-11-18 Sat 12:46] =>  0:36
+CLOCK: [2023-11-17 Fri 09:47]--[2023-11-17 Fri 10:45] =>  0:58
+CLOCK: [2023-11-17 Fri 09:19]--[2023-11-17 Fri 09:37] =>  0:18
+CLOCK: [2023-11-16 Thu 09:55]--[2023-11-16 Thu 11:00] =>  1:05
+CLOCK: [2023-11-15 Wed 12:07]--[2023-11-15 Wed 12:53] =>  0:46
+CLOCK: [2023-11-14 Tue 11:51]--[2023-11-14 Tue 12:34] =>  0:43
+CLOCK: [2023-11-14 Tue 09:52]--[2023-11-14 Tue 09:58] =>  0:06
+CLOCK: [2023-11-14 Tue 08:57]--[2023-11-14 Tue 09:12] =>  0:15
+CLOCK: [2023-11-13 Mon 10:09]--[2023-11-13 Mon 10:58] =>  0:49
+CLOCK: [2023-11-13 Mon 09:34]--[2023-11-13 Mon 10:03] =>  0:29
+CLOCK: [2023-11-12 Sun 11:58]--[2023-11-12 Sun 12:28] =>  0:30
+CLOCK: [2023-11-11 Sat 11:58]--[2023-11-11 Sat 12:04] =>  0:06
+CLOCK: [2023-11-11 Sat 11:29]--[2023-11-11 Sat 11:58] =>  0:29
+CLOCK: [2023-11-11 Sat 10:47]--[2023-11-11 Sat 10:56] =>  0:09
+CLOCK: [2023-11-10 Fri 10:40]--[2023-11-10 Fri 10:47] =>  0:07
+CLOCK: [2023-11-10 Fri 10:22]--[2023-11-10 Fri 10:40] =>  0:18
+CLOCK: [2023-11-10 Fri 10:02]--[2023-11-10 Fri 10:13] =>  0:11
+CLOCK: [2023-11-09 Thu 09:54]--[2023-11-09 Thu 10:07] =>  0:13
+CLOCK: [2023-11-09 Thu 09:32]--[2023-11-09 Thu 09:54] =>  0:22
+CLOCK: [2023-11-09 Thu 09:14]--[2023-11-09 Thu 09:31] =>  0:17
+CLOCK: [2023-11-08 Wed 11:56]--[2023-11-08 Wed 12:10] =>  0:14
+CLOCK: [2023-11-08 Wed 11:28]--[2023-11-08 Wed 11:56] =>  0:28
+CLOCK: [2023-11-08 Wed 10:39]--[2023-11-08 Wed 10:51] =>  0:12
+CLOCK: [2023-11-07 Tue 10:41]--[2023-11-07 Tue 11:06] =>  0:25
+CLOCK: [2023-11-06 Mon 13:27]--[2023-11-06 Mon 13:49] =>  0:22
+CLOCK: [2023-11-06 Mon 10:38]--[2023-11-06 Mon 10:41] =>  0:03
+CLOCK: [2023-11-06 Mon 10:14]--[2023-11-06 Mon 10:36] =>  0:22
+CLOCK: [2023-11-05 Sun 12:45]--[2023-11-05 Sun 13:24] =>  0:39
+CLOCK: [2023-11-05 Sun 11:43]--[2023-11-05 Sun 12:21] =>  0:38
+CLOCK: [2023-11-05 Sun 11:18]--[2023-11-05 Sun 11:35] =>  0:17
+CLOCK: [2023-11-04 Sat 15:50]--[2023-11-04 Sat 16:28] =>  0:38
+CLOCK: [2023-11-04 Sat 14:01]--[2023-11-04 Sat 15:22] =>  1:21
+CLOCK: [2023-11-03 Fri 14:40]--[2023-11-03 Fri 15:16] =>  0:36
+CLOCK: [2023-11-03 Fri 12:44]--[2023-11-03 Fri 14:33] =>  1:49
+CLOCK: [2023-11-02 Thu 13:48]--[2023-11-02 Thu 14:26] =>  0:38
+CLOCK: [2023-11-01 Wed 12:45]--[2023-11-01 Wed 13:15] =>  0:30
+CLOCK: [2023-10-30 Mon 12:58]--[2023-10-30 Mon 13:27] =>  0:29
+CLOCK: [2023-10-28 Sat 11:57]--[2023-10-28 Sat 12:35] =>  0:38
+CLOCK: [2023-10-27 Fri 11:57]--[2023-10-27 Fri 12:22] =>  0:25
+CLOCK: [2023-10-27 Fri 11:06]--[2023-10-27 Fri 11:30] =>  0:24
+CLOCK: [2023-10-26 Thu 11:24]--[2023-10-26 Thu 12:11] =>  0:47
 CLOCK: [2023-10-25 Wed 09:42]--[2023-10-25 Wed 11:32] =>  1:50
 CLOCK: [2023-10-24 Tue 10:47]--[2023-10-24 Tue 11:48] =>  1:01
 CLOCK: [2023-10-24 Tue 09:22]--[2023-10-24 Tue 09:37] =>  0:15
@@ -11997,6 +14323,124 @@ CLOCK: [2023-04-19 Wed 10:44]--[2023-04-19 Wed 11:08] =>  0:24
 CLOCK: [2023-04-18 Tue 11:03]--[2023-04-18 Tue 11:31] =>  0:28
 CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
+** Speaking
+:LOGBOOK:
+CLOCK: [2024-03-09 Sat 11:46]--[2024-03-09 Sat 13:00] =>  1:14
+CLOCK: [2024-03-08 Fri 11:37]--[2024-03-08 Fri 11:55] =>  0:18
+CLOCK: [2024-03-08 Fri 10:10]--[2024-03-08 Fri 11:31] =>  1:21
+CLOCK: [2024-03-05 Tue 11:30]--[2024-03-05 Tue 11:53] =>  0:23
+CLOCK: [2024-03-05 Tue 10:19]--[2024-03-05 Tue 11:28] =>  1:09
+CLOCK: [2024-03-03 Sun 11:51]--[2024-03-03 Sun 13:02] =>  1:11
+CLOCK: [2024-03-02 Sat 14:05]--[2024-03-02 Sat 14:17] =>  0:12
+CLOCK: [2024-03-02 Sat 13:20]--[2024-03-02 Sat 13:25] =>  0:05
+CLOCK: [2024-03-02 Sat 12:22]--[2024-03-02 Sat 13:16] =>  0:54
+CLOCK: [2024-03-01 Fri 10:20]--[2024-03-01 Fri 11:54] =>  1:34
+CLOCK: [2024-02-29 Thu 11:55]--[2024-02-29 Thu 12:06] =>  0:11
+CLOCK: [2024-02-29 Thu 10:38]--[2024-02-29 Thu 10:39] =>  0:01
+CLOCK: [2024-02-29 Thu 09:54]--[2024-02-29 Thu 10:38] =>  0:44
+CLOCK: [2024-02-28 Wed 09:13]--[2024-02-28 Wed 09:32] =>  0:19
+CLOCK: [2024-02-28 Wed 08:52]--[2024-02-28 Wed 09:13] =>  0:21
+CLOCK: [2024-02-27 Tue 10:55]--[2024-02-27 Tue 11:45] =>  0:50
+CLOCK: [2024-02-27 Tue 10:29]--[2024-02-27 Tue 10:50] =>  0:21
+CLOCK: [2024-02-26 Mon 09:47]--[2024-02-26 Mon 10:24] =>  0:37
+CLOCK: [2024-02-26 Mon 08:56]--[2024-02-26 Mon 09:23] =>  0:27
+CLOCK: [2024-02-25 Sun 12:52]--[2024-02-25 Sun 13:54] =>  1:02
+CLOCK: [2024-02-25 Sun 09:26]--[2024-02-25 Sun 09:57] =>  0:31
+CLOCK: [2024-02-24 Sat 09:11]--[2024-02-24 Sat 11:18] =>  2:07
+CLOCK: [2024-02-23 Fri 10:10]--[2024-02-23 Fri 12:01] =>  1:51
+CLOCK: [2024-02-22 Thu 11:52]--[2024-02-22 Thu 13:20] =>  1:28
+CLOCK: [2024-02-21 Wed 14:24]--[2024-02-21 Wed 14:30] =>  0:06
+CLOCK: [2024-02-20 Tue 17:07]--[2024-02-20 Tue 18:37] =>  1:30
+CLOCK: [2024-02-17 Sat 09:49]--[2024-02-17 Sat 10:02] =>  0:13
+CLOCK: [2024-02-14 Wed 10:49]--[2024-02-14 Wed 11:20] =>  0:31
+CLOCK: [2024-02-13 Tue 10:49]--[2024-02-13 Tue 11:29] =>  0:40
+CLOCK: [2024-02-12 Mon 10:25]--[2024-02-12 Mon 10:45] =>  0:20
+CLOCK: [2024-02-12 Mon 09:42]--[2024-02-12 Mon 10:16] =>  0:34
+CLOCK: [2024-02-09 Fri 11:10]--[2024-02-09 Fri 11:28] =>  0:18
+CLOCK: [2024-02-09 Fri 10:43]--[2024-02-09 Fri 10:58] =>  0:15
+CLOCK: [2024-02-08 Thu 13:21]--[2024-02-08 Thu 13:51] =>  0:30
+CLOCK: [2024-02-08 Thu 13:05]--[2024-02-08 Thu 13:21] =>  0:16
+CLOCK: [2024-02-07 Wed 10:55]--[2024-02-07 Wed 11:25] =>  0:30
+CLOCK: [2024-02-07 Wed 10:26]--[2024-02-07 Wed 10:35] =>  0:09
+CLOCK: [2024-02-07 Wed 09:43]--[2024-02-07 Wed 10:15] =>  0:32
+CLOCK: [2024-02-05 Mon 14:40]--[2024-02-05 Mon 15:08] =>  0:28
+CLOCK: [2024-02-04 Sun 19:59]--[2024-02-04 Sun 20:11] =>  0:12
+CLOCK: [2024-02-04 Sun 13:32]--[2024-02-04 Sun 13:55] =>  0:23
+CLOCK: [2024-02-04 Sun 12:41]--[2024-02-04 Sun 13:22] =>  0:41
+CLOCK: [2024-02-03 Sat 11:28]--[2024-02-03 Sat 12:31] =>  1:03
+CLOCK: [2024-02-03 Sat 10:06]--[2024-02-03 Sat 10:59] =>  0:53
+CLOCK: [2024-02-01 Thu 10:41]--[2024-02-01 Thu 11:41] =>  1:00
+CLOCK: [2024-02-01 Thu 09:01]--[2024-02-01 Thu 10:20] =>  1:19
+CLOCK: [2024-01-31 Wed 09:56]--[2024-01-31 Wed 10:37] =>  0:41
+CLOCK: [2024-01-30 Tue 09:40]--[2024-01-30 Tue 11:40] =>  2:00
+CLOCK: [2024-01-30 Tue 09:07]--[2024-01-30 Tue 09:28] =>  0:21
+CLOCK: [2024-01-28 Sun 09:36]--[2024-01-28 Sun 10:03] =>  0:27
+CLOCK: [2024-01-28 Sun 09:13]--[2024-01-28 Sun 09:20] =>  0:07
+CLOCK: [2024-01-27 Sat 16:20]--[2024-01-27 Sat 17:00] =>  0:40
+CLOCK: [2024-01-26 Fri 13:09]--[2024-01-26 Fri 14:04] =>  0:55
+CLOCK: [2024-01-25 Thu 15:01]--[2024-01-25 Thu 16:00] =>  0:59
+CLOCK: [2024-01-24 Wed 14:39]--[2024-01-24 Wed 15:03] =>  0:24
+CLOCK: [2024-01-24 Wed 14:16]--[2024-01-24 Wed 14:37] =>  0:21
+CLOCK: [2024-01-23 Tue 13:15]--[2024-01-23 Tue 13:20] =>  0:05
+CLOCK: [2024-01-23 Tue 13:20]--[2024-01-23 Tue 14:00] =>  0:40
+CLOCK: [2024-01-22 Mon 14:18]--[2024-01-22 Mon 14:27] =>  0:09
+CLOCK: [2024-01-21 Sun 09:44]--[2024-01-21 Sun 10:12] =>  0:28
+CLOCK: [2024-01-20 Sat 12:29]--[2024-01-20 Sat 12:55] =>  0:26
+CLOCK: [2024-01-19 Fri 10:52]--[2024-01-19 Fri 11:44] =>  0:52
+CLOCK: [2024-01-17 Wed 11:01]--[2024-01-17 Wed 11:10] =>  0:09
+CLOCK: [2024-01-17 Wed 10:23]--[2024-01-17 Wed 11:01] =>  0:38
+CLOCK: [2024-01-16 Tue 15:21]--[2024-01-16 Tue 16:02] =>  0:41
+CLOCK: [2024-01-15 Mon 10:23]--[2024-01-15 Mon 11:31] =>  1:08
+CLOCK: [2024-01-15 Mon 09:30]--[2024-01-15 Mon 10:20] =>  0:50
+CLOCK: [2024-01-13 Sat 15:22]--[2024-01-13 Sat 15:43] =>  0:21
+CLOCK: [2024-01-10 Wed 15:01]--[2024-01-10 Wed 15:19] =>  0:18
+CLOCK: [2024-01-10 Wed 14:35]--[2024-01-10 Wed 15:01] =>  0:26
+CLOCK: [2024-01-10 Wed 13:43]--[2024-01-10 Wed 13:54] =>  0:11
+CLOCK: [2024-01-06 Sat 16:23]--[2024-01-06 Sat 17:14] =>  0:51
+CLOCK: [2024-01-05 Fri 11:58]--[2024-01-05 Fri 13:01] =>  1:03
+CLOCK: [2024-01-04 Thu 10:52]--[2024-01-04 Thu 12:12] =>  1:20
+CLOCK: [2023-12-30 Sat 11:07]--[2023-12-30 Sat 12:01] =>  0:54
+CLOCK: [2023-12-30 Sat 10:00]--[2023-12-30 Sat 11:03] =>  1:03
+CLOCK: [2023-12-29 Fri 10:36]--[2023-12-29 Fri 11:30] =>  0:54
+CLOCK: [2023-12-29 Fri 09:28]--[2023-12-29 Fri 10:04] =>  0:36
+CLOCK: [2023-12-28 Thu 08:58]--[2023-12-28 Thu 09:52] =>  0:54
+CLOCK: [2023-12-25 Mon 11:12]--[2023-12-25 Mon 12:16] =>  1:04
+CLOCK: [2023-12-25 Mon 10:07]--[2023-12-25 Mon 10:56] =>  0:49
+CLOCK: [2023-12-23 Sat 12:20]--[2023-12-23 Sat 13:06] =>  0:46
+CLOCK: [2023-12-22 Fri 11:30]--[2023-12-22 Fri 12:31] =>  1:01
+CLOCK: [2023-12-22 Fri 10:12]--[2023-12-22 Fri 10:58] =>  0:46
+CLOCK: [2023-12-21 Thu 10:19]--[2023-12-21 Thu 11:18] =>  0:59
+CLOCK: [2023-12-21 Thu 09:19]--[2023-12-21 Thu 09:44] =>  0:25
+CLOCK: [2023-12-20 Wed 10:54]--[2023-12-20 Wed 11:56] =>  1:02
+CLOCK: [2023-12-20 Wed 10:35]--[2023-12-20 Wed 10:51] =>  0:16
+CLOCK: [2023-12-19 Tue 12:30]--[2023-12-19 Tue 12:47] =>  0:17
+CLOCK: [2023-12-15 Fri 12:14]--[2023-12-15 Fri 12:29] =>  0:15
+CLOCK: [2023-12-14 Thu 15:15]--[2023-12-14 Thu 15:29] =>  0:14
+CLOCK: [2023-12-13 Wed 09:00]--[2023-12-13 Wed 09:20] =>  0:20
+CLOCK: [2023-12-09 Sat 11:02]--[2023-12-09 Sat 12:02] =>  1:00
+CLOCK: [2023-12-09 Sat 10:33]--[2023-12-09 Sat 11:02] =>  0:29
+CLOCK: [2023-12-05 Tue 10:09]--[2023-12-05 Tue 10:39] =>  0:30
+CLOCK: [2023-12-05 Tue 09:39]--[2023-12-05 Tue 10:03] =>  0:24
+CLOCK: [2023-05-04 Thu 09:33]--[2023-05-04 Thu 09:51] =>  0:18
+CLOCK: [2023-05-01 Mon 09:50]--[2023-05-01 Mon 11:22] =>  1:32
+CLOCK: [2023-04-29 Sat 12:03]--[2023-04-29 Sat 12:13] =>  0:10
+CLOCK: [2023-04-28 Fri 09:59]--[2023-04-28 Fri 10:07] =>  0:08
+CLOCK: [2023-04-26 Wed 09:09]--[2023-04-26 Wed 09:36] =>  0:27
+CLOCK: [2023-04-25 Tue 09:29]--[2023-04-25 Tue 12:09] =>  2:40
+CLOCK: [2023-04-21 Fri 11:14]--[2023-04-21 Fri 12:02] =>  0:48
+CLOCK: [2023-04-20 Thu 12:10]--[2023-04-20 Thu 12:49] =>  0:39
+CLOCK: [2023-04-19 Wed 09:00]--[2023-04-19 Wed 10:32] =>  1:32
+CLOCK: [2023-04-18 Tue 08:43]--[2023-04-18 Tue 10:22] =>  1:39
+CLOCK: [2023-04-17 Mon 08:17]--[2023-04-17 Mon 10:16] =>  1:59
+:END:
+** Song
+:LOGBOOK:
+CLOCK: [2023-12-25 Mon 13:00]--[2023-12-25 Mon 13:20] =>  1:30
+CLOCK: [2023-12-20 Wed 11:56]--[2023-12-20 Wed 13:04] =>  1:08
+CLOCK: [2023-04-19 Wed 11:30]--[2023-04-19 Wed 11:49] =>  0:19
+CLOCK: [2023-04-18 Tue 11:59]--[2023-04-18 Tue 12:20] =>  0:21
+CLOCK: [2023-04-17 Mon 11:26]--[2023-04-17 Mon 11:44] =>  0:18
+:END:
 ** Video
 :LOGBOOK:
 CLOCK: [2023-10-24 Tue 11:49]--[2023-10-24 Tue 12:56] =>  1:07
@@ -12026,26 +14470,6 @@ CLOCK: [2023-07-13 Thu 10:12]--[2023-07-13 Thu 11:25] =>  1:13
 CLOCK: [2023-06-28 Wed 14:27]--[2023-06-28 Wed 14:48] =>  0:21
 CLOCK: [2023-05-29 Mon 08:51]--[2023-05-29 Mon 09:13] =>  0:22
 CLOCK: [2023-05-17 Wed 10:30]--[2023-05-17 Wed 12:21] =>  1:51
-:END:
-** Song
-:LOGBOOK:
-CLOCK: [2023-04-19 Wed 11:30]--[2023-04-19 Wed 11:49] =>  0:19
-CLOCK: [2023-04-18 Tue 11:59]--[2023-04-18 Tue 12:20] =>  0:21
-CLOCK: [2023-04-17 Mon 11:26]--[2023-04-17 Mon 11:44] =>  0:18
-:END:
-** Speaking
-:LOGBOOK:
-CLOCK: [2023-05-04 Thu 09:33]--[2023-05-04 Thu 09:51] =>  0:18
-CLOCK: [2023-05-01 Mon 09:50]--[2023-05-01 Mon 11:22] =>  1:32
-CLOCK: [2023-04-29 Sat 12:03]--[2023-04-29 Sat 12:13] =>  0:10
-CLOCK: [2023-04-28 Fri 09:59]--[2023-04-28 Fri 10:07] =>  0:08
-CLOCK: [2023-04-26 Wed 09:09]--[2023-04-26 Wed 09:36] =>  0:27
-CLOCK: [2023-04-25 Tue 09:29]--[2023-04-25 Tue 12:09] =>  2:40
-CLOCK: [2023-04-21 Fri 11:14]--[2023-04-21 Fri 12:02] =>  0:48
-CLOCK: [2023-04-20 Thu 12:10]--[2023-04-20 Thu 12:49] =>  0:39
-CLOCK: [2023-04-19 Wed 09:00]--[2023-04-19 Wed 10:32] =>  1:32
-CLOCK: [2023-04-18 Tue 08:43]--[2023-04-18 Tue 10:22] =>  1:39
-CLOCK: [2023-04-17 Mon 08:17]--[2023-04-17 Mon 10:16] =>  1:59
 :END:
 ** Quotes
 :LOGBOOK:

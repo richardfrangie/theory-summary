@@ -1526,6 +1526,12 @@ sudo mkfs -t vfat /dev/sdb1
 
 #+end_src
 
+** ACL
+An access-control list (ACL) is a list of permissions associated with a system resource (object or facility). An ACL specifies which users or system processes are granted access to resources, as well as what operations are allowed on given resourcess. Each entry in a typical ACL specifies a subject and an operation. For instance, If a file object has an ACL that contains ~(Alice: read,write; Bob: read)~, this would give Alice permission to read and write the file and give Bob permission only to read it.
+
+** Filesystem ACLs
+A filesystem ACL is a data structure (usually a table) containing entries that specify individual user or group rights to specific system objects such as programs, processes, or files. These entries are known as access-control entries (ACEs). Each accessible object contains an identifier to its ACL. The privileges or permissions determine specific access rights, such as whether a user can read from, write to, or execute an object. In some implementations, an ACE can control whether or not a user, or group of users, may alter the ACL on an object.
+
 * Directory Hierarchy
 ** /
 *** /vmlinuz
@@ -2005,9 +2011,6 @@ To set your system’s time zone manually, either copy one of the files in ~/usr
 *** /usr/share/fontconfig/conf.avail
 Each file in this directory is a fontconfig configuration file.
 
-*** /usr/sbin/sendmail
-Send local emails.
-
 *** /usr/share/dict
 Contains a dictionaries.
 
@@ -2053,8 +2056,9 @@ If neither [[ /home/user/_bash_profile]] nor [[ /home/user/_bash_login]] is foun
 *** /home/user/_bashrc
 A user's personal startup file for [[Interactive shells][non-login shell]]. It can be used to extend or override settings in the global configuration script.
 
-*** /home/user/local/share/Trash
+*** /home/dot.local/share/Trash
 Trash folder.
+*Note*: ~dot.local~ is actually ~.local~.
 
 ** /tmp
 A storage area for smaller, temporary files created by various programs. Some configurations cause this directory to be emptied each time the system is rebooted.
@@ -3136,6 +3140,40 @@ Traceroute transmits packets with small TTL values. Recall that the TTL (Time To
 #+end_src
 
 In a typical traceroute session, a group of packets with TTL=1 are sent. A single router should respond, using the IP address of the interface it transmits the ICMP Timeout messages on, which should be the same as the interface it received the original packets on. The user is told this IP address, and DNS is used to convert this into a symbolic domain address. Also, round trip times are reported for each packet in the group. Traceroute reports any additional ICMP messages (such as destination unreachables) using a rather cryptic syntax - !N means network unreachable, !H means host unreachable, etc. Once this first group of packets has been processed (this can take 10 seconds or no time at all), the second group (TTL=2) begins transmitting, and the whole process repeats.
+
+** Wireshark
+*** Filter packets
+**** Filter by protocol
+1. On the bar "Apply a display filter.."
+2. Protocol name (for example: dns)
+
+**** Filter by IP address
+1. On the bar "Apply a display filter.."
+2. ip.addr == 192.168.1.1
+
+**** Filter by source IP address
+1. On the bar "Apply a display filter.."
+2. ip.src == 192.168.1.1
+
+**** Filter by destination IP address
+1. On the bar "Apply a display filter.."
+2. ip.dst == 192.168.1.1
+
+*** Save filter packets
+**** Filter by IP address
+1. Clicking on the plus button to add a new display filter (+ sign at the end of the bar "Apply a display filter..")
+2. ip.addr == 192.168.1.1
+
+**** Filter by source IP address
+1. Clicking on the plus button to add a new display filter (+ sign at the end of the bar "Apply a display filter..")
+2. ip.src == 192.168.1.1
+
+**** Filter by destination IP address
+1. Clicking on the plus button to add a new display filter (+ sign at the end of the bar "Apply a display filter..")
+2. ip.dst == 192.168.1.1
+
+*** More expressions
+https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html
 
 * References
 - How Linux Works by Brian Ward.

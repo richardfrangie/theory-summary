@@ -48,7 +48,7 @@ Create temporary filenames. Converts the ~XXXXXX~ to a unique set of characters 
 
 ** Copy
 *** rsync -b file dir/
-Transfer /file/ from the current directory to the directory /dir/.
+Transfer/copy /file/ from the current directory to the directory /dir/.
 [ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) ]
 ( ~rsync -t *.c dir/~ transfer all files matching the pattern to the directory )
 ( ~rsync -t *.c foo:dir/~ transfer all files matching the to the directory on the machine foo )
@@ -91,7 +91,8 @@ List current directory and its subdirectories.
 *** find dir -name file -print
 Find /file/ in /dir/. Be carefull of shell expansion, try to use quotes in the files names.
 Options such as ~-name~ and ~-print~ are used in conjunction with ~-exec~.
-[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater ]
+[ /-name/ base of file name,the path with the leading directories removed /-iname/ like -name, but the match is case insensitive /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-size n/ file uses less than, more than or  exactly  n  units  of  space, rounding up ]
+( ~find . -size -9k~ list files larger than 9 mibi bytes )
 
 *** find . -name '*.gif' -print0 | xargs -0 file
 Verify that every file in the current directory ( /./ ) tree that ends with /.gif/ is actually a GIF image. This form changes the find output separator and the xargs argument delimiter from a newline to a NULL character, it's usefull to avoid errors arising from filenames that can include spaces and newlines.
@@ -102,6 +103,7 @@ You may need to add two dashes (--) to the end of your xargs command if there’
 
 *** chmod +rx file
 Add read /r/ and execute /x/ permissions to /file/.
+( ~chmod 755 file~ equivalent to above, sets execution permission for all user )
 ( ~chmod 700 file~ add read and execute only to the user in absolute sintaxis )
 ( ~chmod u+x file~ add execute for the owner )
 ( ~chmod +x file~ add execute for all, equivalent to a+x )
@@ -246,6 +248,9 @@ Lists the contents of a directory /dir/.
 ( ~ls /usr/bin | pr -3 -t~ bin programs in 3 column omited headears and footers )
 ( ~ls -d */~ only show the directories in the current path )
 
+*** find . -maxdepth 1 -type d
+Only show the directories in the current path.
+
 *** du -h
 Estimate file space usage in current directory.
 ~du~ output in most Linux distributions is in 1,024-byte blocks.
@@ -263,8 +268,9 @@ View the size and utilization of your currently mounted filesystems.
 ( ~pwd~ print working directory )
 
 *** tree -d
-List contents of directories in a tree-like format.
+List contents of directories in a tree-like format. Show only directories and subdirectories.
 [ /-d/ list directories only /-L 3/ max display depth of the directory tree /-h/ print  the  size  of each file /--du/ for  each directory report its size as the accumulation of sizes of all its files and sub-directories ]
+( ~tree -d -L 1~ only show the directories in the current path )
 
 *** gio list trash://
 List the Trash folder.
@@ -273,11 +279,11 @@ List the Trash folder.
 ** Processes
 *** top
 Display Linux processes.
-[ /-p/ only processes with specified process  IDs ]
+[ /-p/ only processes with specified process  IDs /-b/ batch mode, it doesn't accept any interactive inputs /-n 3/ run top with 10 updates, then exit ]
 ( *PR* The process’s priority. The lower the number, the higher the priority | *NI* Nice value, negative nice value implies higher priority | *VIRT* Virtual memory used by the task | *RES* Resident memory used by the process | *SHR* Shared Memory size used by a task | *S* Status of the process (D uninterruptible sleep R running S sleeping T traced stopped Z zombie) | *%CPU* The share of CPU time used by the process since the last update | *%MEM* The share of physical memory used )
 [ *y* Highlight running tasks  *x* Highlights the column  *b* Bold *?* help ]
-[ *<* , *>* choose how to sort the information *f* different statistics *SPC* Update ]
-[ *M* Sort by %MEM  *P* Sort by %CPU  *T* Sort by TIME+  *N* Sort by PID
+[ *<* , *>* choose how to sort the information *f* different statistics *R* reverse sort order *SPC* Update ]
+[ *M* Sort by %MEM  *P* Sort by %CPU  *T* Sort by TIME+  *N* Sort by PID ]
 [ *u* only user's processes ]
 [ *1* Individual CPU Core Statistics  *t* CPU Usage Graph  *m* Memory Usage Graph *H* Threads ]
 [ *c* Full Command Line  *V* Process Hierarchy ]
@@ -286,6 +292,7 @@ Display Linux processes.
 ( ~pidstat -p 123 1~ monitoring process 123, updating every second )
 ( ~pidstat -p 123 1 -r~ monitoring process 123, report page faults and memory utilization )
 ( ~pidstat -p 123 1 -d~ monitoring process 123, report I/O statistics )
+( ~top -b -n 1 > file.txt~ dump top output as plain text to a file )
 
 *** ps aux
 Report a snapshot of the current processes belonging to every user.
@@ -374,11 +381,12 @@ User time (*user*) is the number of seconds that the CPU has spent running the p
 ** Systemd
 *** journalctl -f
 Show the most recent messages in the journal, starting with the oldest.
-[ /-S/ (since) entries on or newer than the specified date /-U/ (until) entries on or older than the specified date /-f/ only the most recent entries  /--unit=/ specified systemd unit /-U/ until that time /-g/ grep /-r/ reverse output /-k/ only kernel messages /-n/ lines /-b/ start of the current boot /-F/ all possible data values the specified field ]
+[ /-S/ (since) entries on or newer than the specified date /-f/ only the most recent entries  /-u/ specified systemd unit /-U/ until that time /-g/ grep /-r/ reverse output /-k/ only kernel messages /-n/ lines /-b/ start of the current boot /-F/ all possible data values the specified field ]
 ( ~journalctl -S -4h~ messages from the past 4 hours in current time zone )
 ( ~journalctl -S 06:00:00~ specific hour )
 ( ~journalctl -S 13:30:00 -U 14:30:00~ specific timestat)
-( ~journalctl -S 2020-01-14~ specific day)
+( ~journalctl -S 2020-01-14~ from that day)
+( ~journalctl -S 2020-01-13 -U 2020-01-14~ specific day)
 ( ~journalctl -S '2020-01-14 14:30:00'~ specific hour and day )
 ( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
 ( ~journalctl -F _SYSTEMD_UNIT~ list all units in the journal )
@@ -478,10 +486,10 @@ Prints its arguments to the standard output.
 ( ~echo Front-{A,B,C}-Back~ brace expansion )
 ( ~echo Number_{1..5}~ brace expanded with a leading portion (preamble) and a trailing portion (postscript) )
 
-*** grep pattern file
+*** grepattern file
 Prints the lines from a /file/ or input stream that match an /pattern/.
 When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on the command line, it's vital that they be enclosed in quotes to prevent the shell from attempting to expand them.
-[ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-E/ extended-regexp (EREs) /-G/ basic-regexp (BREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search ]
+[ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-G/ basic-regexp (BREs) /-E/ extended-regexp (EREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search /-F/ fixed strings, not regular expressions ]
 ( ~grep root /etc/*~ check every file in /etc that contains root )
 ( ~grep -h '.zip' files*.txt~ match to thing like bunzip2, gunzip, gzip,... )
 ( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
@@ -493,10 +501,22 @@ See the differences between /file1/ and /file2/.
 ( ~comm file1 file2~ compare two *sorted* files line by line )
 
 *** awk '{print $5}' file
-Prints the /5/ field (column) of the /file/.
+Prints the /5/ field (column) of the /file/ (columns are separated by spaces by default).
+( ~awk -F\t '{print $12 , $7}'~ print 12th atd 7th column, Tab is the separator )
 ( ~| awk '{print $5}'~ print the 5 field of the previous output )
 ( ~awk '($2=="Name") { print }' < file~ search Name in the 2 column and print that line )
 ( ~awk '($2=="Name") { print $3,$4 }' < file~ search Name in the 2 column and print just 3 and 4 field )
+
+*** cut
+Extract a section of text *from a line* and output the extracted section to standard output. *By default, fields must be separated by a single tab character*.
+[ /-c list/ extract the portion of the line defined by list /-f list/ extract one or more fields from the line as defined by list /-d delim/ when -f is specified, use delim as the field delimiting character /--complement/ extract the entire line of text, except for those portions specified by -c and/or -f ]
+( ~cut -c 7-10 file~ extract character positions 7 through 10 )
+( ~cut -f 3 file~ extract third field *separate by tab* )
+( ~cut -d ':' -f 1 /etc/passwd~ first field separate by colon : )
+( ~expand file~ convert tabs to spaces )
+( ~unexpand file~ substitute tabs for spaces )
+( ~paste file1 file2~  write lines (adds columns to a file) consisting of the sequentially corresponding lines from each FILE, separated by TABs )
+( ~join file1 file2~ for each pair of input lines *with identical join fields*, write a line to standard output )
 
 *** sed  's/exp/text/'  file
 Substitute the first match /exp/ by /text/ in each line of /file/ and send to standard output.
@@ -530,17 +550,6 @@ Sort lines of text file(s).
 ( ~sort file |uniq -d file~ report repeated lines in *sort* file )
 ( ~ls -l | sort -nk 5~ sort list based on 5 filed (size) )
 ( ~sort -k 1,1 -k 2n file_dates~ sort start at field 1 and end at field 1, sort at field 2 numerically )
-
-*** cut
-Extract a section of text *from a line* and output the extracted section to standard output. *By default, fields must be separated by a single tab character*.
-[ /-c list/ extract the portion of the line defined by list /-f list/ extract one or more fields from the line as defined by list /-d delim/ when -f is specified, use delim as the field delimiting character /--complement/ extract the entire line of text, except for those portions specified by -c and/or -f ]
-( ~cut -c 7-10 file~ extract character positions 7 through 10 )
-( ~cut -f 3 file~ extract third field *separate by tab* )
-( ~cut -d ':' -f 1 /etc/passwd~ first field separate by colon : )
-( ~expand file~ convert tabs to spaces )
-( ~unexpand file~ substitute tabs for spaces )
-( ~paste file1 file2~  write lines (adds columns to a file) consisting of the sequentially corresponding lines from each FILE, separated by TABs )
-( ~join file1 file2~ for each pair of input lines *with identical join fields*, write a line to standard output )
 
 *** wc file
 Print newline, word, and byte counts for each /file/ and a total line if more than one /file/ is specified.
@@ -579,7 +588,8 @@ Executes the command /ls/ while in /dir/ and leaves the original shell intact.
 The bc program reads a file written in its own C-like language and executes it. A bc script may be a separate file, or it may be read from standard input. The bc language supports quite a few features including variables, loops, and programmer-defined functions.
 [ /ibase=N/ treat all numbers as base N /obase=N/ output all numbers in base N ]
 ( ~echo "obase=2;240" | bc -l~ calculates 240 in binary basis )
-( ~echo "ibase=16; FF" | bc~ convert FF hex to decimal )
+( ~echo "obase=10; ibase=16; FF" | bc~ convert FF hex to decimal )
+( ~echo "obase=2; ibase=16; FF" | bc~ convert FF hex to binary )
 ( ~echo Five divided by two equals $((5/2))~ arithmetic expansion )
 ( ~bc <<< "2+2"~ the ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts )
 
@@ -656,6 +666,8 @@ Change login shell.
 History of commands that have been entered.
 ( ~history | grep echo~ list the command used with echo )
 ( ~!88~ expand into the contents of the 88th line in the history list )
+( ~script file~ record an entire shell session and store it in a file )
+( ~cat typescript~ read the scriptfile produced when executing the script command )
 
 *** exit
 Cause normal process termination.
@@ -758,17 +770,19 @@ Display table that contains a description of the system's hardware components, a
 
 * Network
 ** App layer
+*** wget URL file
+Download *only* the *raw* page with the /URL/.
+Allows recursive downloads, supports several protocols and is licensed under GNU GPL while curl is licensed under MIT.
+[ /-E/ save HTML/CSS files with .html/.css extensions /-H/ enable spanning across hosts when doing recursive retrieving /-k/ make links in downloaded HTML point to local files /-K/ when converting a file, back up the original version with a .orig suffix /-p/ download all the files that are necessary to display a given HTML page (inlined images, sounds, and referenced stylesheets) /-np/ dont ascend to the parent directory when retrieving recursively /-c/ continue getting a partially-downloaded file /-r/ recursive /-l depth/ max subdir that Wget will recurse into to dept ]
+( ~wget -E -H -k -K -p URL~ download *whole* page from website, this includes such things as inlined images, sounds, and referenced stylesheets )
+( ~wget -r -l 2 -p URL~ *recursive* download up to 3 pages and their files, will cause e.g. 1.html, 1.gif, 2.html, 2.gif, 3.html, and 3.gif to be downloaded )
+
 *** curl -# -o name URL
 Transfer data from server with the /URL/ and save to /name/ file.
 Does not allow recursive downloading unlike ~wget~.
-[ /-#/ progress bar /-o/ write output to <file> instead of stdout ]
-( ~curl --trace-ascii file http://www.example.org/~ record details about its communication )
-
-*** wget URL -o file
-Download the page with the /URL/ and save it in the /file/.
-Allows recursive downloads, supports several protocols and is licensed under GNU GPL while curl is licensed under MIT.
-[ /-E/ save HTML/CSS files with .html/.css extensions /-k/ make links in downloaded HTML point to local files /-p/ get all images, etc. needed to display HTML page /-m/ mirror /-np/ dont ascend to the parent directory when retrieving recursively]
-( ~wget -E -k -p URL~ download whole page from website )
+[ /-I/ fetch the headers only /-#/ progress bar /-o/ write output to <file> instead of stdout /-v/ verbose  during the operation. Useful for debugging and seeing what's going on "under the  hood" ]
+( ~curl --trace-ascii fileName https://eloquentjavascript.net/author~ record details about its communication )
+( ~curl -v URL | head -50~ show more info like handshake, header,... )
 
 *** netcat
 netcat (or nc) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
@@ -841,7 +855,7 @@ Shows users and process IDs for server and client programs currently using or li
 Generic scan on a /host/. Network exploration POWERFULL tool and security / port scanner.
 
 *** netcat
-netcat (or nc) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
+netcat (or ~nc~) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
 End the connection at any time by pressing CTRL-C.
 [ /-u/ specifies UDP /-4/ for IPv4 /-6/ for IPv6 ]
 ( ~netcat host port~ open a TCP connection to a port )
@@ -1045,12 +1059,13 @@ Display a list of packages satisfying certain criteria. It supports glob(7) patt
 ( ~dpkg -l~ list the installed packages )
 
 *** apt update
-Is used to download package information from all configured sources.
+Sync package index files from sources.
 Users are recommended to use the new apt(8) command for interactive usage and use the apt-get(8) and apt-cache(8) commands in the shell script.
 
 *** apt upgrade
 Updating packages from a repository.
 Is used to install available upgrades of all packages currently installed on the system from the sources configured via sources.list(5). New packages will be installed if required to satisfy dependencies, but existing packages will never be removed. If an upgrade for a package requires the removal of an installed package the upgrade for this package isn't performed.
+( ~apt-get dist-upgrade~ update OS kernel, and others )
 
 *** apt search pattern
 Can be used to search for the given regex term(s) in the list of available packages and display matches.
@@ -1059,6 +1074,7 @@ Can be used to search for the given regex term(s) in the list of available packa
 *** apt show name
 Show information about the given package(s) including its dependencies, installation and download size, sources the package is available from, the description of the packages content and much more.
 ( ~apt-cache show name~ equivalent command )
+( ~apt-get showpkg name~ show a package's dependencies )
 
 *** apt-cache policy name
 Displays version of package and if it's installed on the system )
@@ -1071,6 +1087,7 @@ Downloaded the package from a repository and installed with full dependency reso
 Uninstalled the package.
 Note that removing a package leaves its configuration files on the system. On the other hand you can get rid of these leftovers by calling *purge* even on already removed packages. Note that this does not affect any data or configuration stored in your home directory.
 ( ~apt purge name~ remove the package and any configuration files )
+( ~apt autoremove name~ remove packages that were automatically installed to satisfy dependencies )
 
 *** dpkg -i name
 Installing a package from a package file.
@@ -1155,6 +1172,7 @@ The destination path is used without the initial forward slash. It is always the
 ( ~rclone sync --dry-run / local/dir  remote:path/dir~ test first )
 ( ~rclone sync -i --bwlimit 75k:125k / local/dir  remote:path/dir~ sync local dir to remote dir with limit the upload bandwidth to 75 KiB/s and the download bandwidth to 125 KiB/s )
 ( ~rclone sync -i --bwlimit 10M:off  / local/dir  remote:path/dir~ sync with the limit the upload bandwidth to /10/ MiB/s but the download bandwidth would be unlimited )
+( =rclone sync -P ~/Frangie remotedrive:Frangie= sync my Frangie folder with my google drive )
 
 *** rclone command --help
 For more information about a command.
@@ -1162,6 +1180,7 @@ For more information about a command.
 *** rclone config
 Enter an interactive configuration session.
 (https://rclone.org/docs/)
+( ~rclone config file~ show path of configuration file in use )
 
 ** OpenSSH
 *** ssh remote_username@remote_host
@@ -1221,7 +1240,7 @@ Reduce JPG image to a quality of /75/ (suggested scale 60-80) and send to other 
 ( ~jpegoptim -n image.jpg~ only shows possible results )
 
 *** pngquant -f --ext .png -Q 70-95 image.png
-Converter and lossy PNG image.
+Converter and lossy PNG image (overwrite).
 [ /-f/ overwrite existing output files /--ext .png/ file extension to use for output files instead of the default 'fs8.png' /-o file/ output to *file* name /-Q min-man/ will use the least amount of colors required to meet or exceed the max quality 0 worst to 100 perfect ]
 ( ~pngquant 64 image.png~ resulting image will have /64/ colors )
 
@@ -1287,8 +1306,31 @@ Change volume 150%.
  Convert an input media file to a different video encoder /libx264/, which is a H.264 encoder.
 ( ~ffmpeg -i input.flv -vcodec libx264 -acodec aac output.mp4~ convert an input media file to a different video codec libx264 and audio encoder aac, which is the built-in FFmpeg AAC encoder )
 
+*** ffmpeg -txt_format text -i input.mp4 out.srt
+Read and/or extract subtitles from embedded subtitles tracks.
+
+** npm
+*** npm ls
+Llist locally installed packages present in the node_modules folder of a project.
+( ~npm ls -g~ list globally installed packages )
+
+*** npm install foo
+Add the /foo/ dependency to your project.
+( ~npm install~ install all the dependencies in your project )
+
+*** npm test
+Run this project's tests.
+
+*** npm run foo
+Run the script named /foo/.
+
+*** npm command -h
+Quick help on /command/.
+( ~npm -l~ display usage info for all commands )
+( ~npm help term~ search for help on term )
+
 * Git
-** Initializing & Recording
+** Basics
 *** git init
 Create a new subdirectory named ~.git~ that contains all  necessary repository files — a Git repository skeleton.
 [ /--bare/ initializes the repository without a working directory ]
@@ -1299,20 +1341,20 @@ It creates a new directory, goes into it and runs ~git init~ to make it an empty
 [ /-o <name>/ rename default remote branch ]
 ( ~git clone <url> <dir>~ clone the repository into another directory name )
 
-*** git add <file>
-Specify the file /file/ to be tracked or staged or merge-conflicted.
-( ~git add -A~ stage *all* (new, modified, deleted) files )
-( ~git add .~ stage all (new, modified, deleted) files in current folder (not higher directories) )
-( ~git add --ignore-removal .~ stage new and modified files only(*not delete files*) )
-( ~git add -u~ stage modified and deleted files only (*not new files*) )
-
 *** git status
 Determine which files are in which state.
 ( *A* added | *M* modified | *?* not tracked ) ( *left-hand* column indicates the status of the *staging area* and the *right-hand* column indicates the status of the *working tree*) .
 [ /-s/ more simplified output ]
 ( ~git ls-files~ to take a more raw look at what your staging area looks like )
 
-*** git commit
+*** git add <file>
+Specify the file /file/ to be tracked or staged or merge-conflicted.
+( ~git add -A~ stage *all* (new, modified, deleted) files )
+( ~git add .~ stage all (new, modified, deleted) files in current folder (not higher directories) )
+( ~git add --ignore-removal .~ stage new and modified files only (*not delete files*) )
+( ~git add -u~ stage modified and deleted files only (*not new files*) )
+
+*** git commit -m "message"
 Commit the changes. Just changes to anything that was staged. Records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
 [ /-v/ puts the diff of the changes /-m/ type commit message inline /-a/ automatically stage every file that is already tracked before doing the commit (includes all changed files. Skip the *git add*) ]
 ( ~git commit -a -m 'whatever'~ commit, automatically stage and message inline )
@@ -1323,6 +1365,60 @@ Show various types of objects in a simple and human readable way. Normally you w
 
 *** git log
 Lists the commits made in that repository in reverse chronological order.
+
+*** git pull
+Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
+[ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
+( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
+
+*** git push <remote> <branch>
+Push /branch/ to origin server /remote/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+[ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
+( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
+( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
+
+** Remotes
+*** git remote -v
+Lists the shortnames of each remote specified.
+[ /-v/ show URLs that Git has stored for the shortname ]
+
+*** git ls-remote
+Get a list of all the branches and tags and other references in the repository.
+(If the repository is on GitHub and you have any Pull Requests that have been opened, you’ll get these references that are prefixed with ~refs/pull/~ . These are basically branches, but since they’re not under ~refs/heads/~ you don’t get them normally when you clone or fetch from the server — the process of fetching ignores them normally)
+
+*** git remote show <remote>
+Show more information about particular remote.
+
+*** git remote add <shortname> <url>
+Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
+
+*** git remote rename <name1> <name2>
+Change a remote’s shortname, renaming /name1/ to /name2/ .
+(that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
+( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL. (when you rename a it repository) )
+
+*** git remote rm name
+Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
+( ~git remote remove name~ equivalent command )
+
+*** git fetch <remote>
+ Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on)
+[ /--all/ totally up to date ahead and behind numbers ]
+( ~git fetch origin refs/pull/958/head~ fetching the reference directly (connect to the /origin/ remote, and download the ref named /refs/pull/958/head/) )
+
+*** git pull
+Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
+[ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
+( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
+
+*** git push <remote> <branch>
+Push /branch/ to origin server /remote/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+[ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
+( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
+( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
+
+*** git request-pull origin/master myfork
+Take the base branch into which you want your topic branch pulled and the Git repository URL you want them to pull from, and produces a summary of all the changes you’re asking to be pulled.
 
 ** Difference
 *** git diff
@@ -1398,49 +1494,6 @@ Take the /client/ branch, figure out the patches since it diverged from the /ser
 
 *** git mergetool
 A graphical tool to resolve merge conflicts.
-
-** Remotes
-*** git remote -v
-Lists the shortnames of each remote specified.
-[ /-v/ show URLs that Git has stored for the shortname ]
-
-*** git ls-remote
-Get a list of all the branches and tags and other references in the repository.
-(If the repository is on GitHub and you have any Pull Requests that have been opened, you’ll get these references that are prefixed with ~refs/pull/~ . These are basically branches, but since they’re not under ~refs/heads/~ you don’t get them normally when you clone or fetch from the server — the process of fetching ignores them normally)
-
-*** git remote show <remote>
-Show more information about particular remote.
-
-*** git remote add <shortname> <url>
-Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
-
-*** git remote rename <name1> <name2>
-Change a remote’s shortname, renaming /name1/ to /name2/ .
-(that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
-( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL. (when you rename a it repository) )
-
-*** git remote rm name
-Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
-( ~git remote remove name~ equivalent command )
-
-*** git fetch <remote>
- Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on)
-[ /--all/ totally up to date ahead and behind numbers ]
-( ~git fetch origin refs/pull/958/head~ fetching the reference directly (connect to the /origin/ remote, and download the ref named /refs/pull/958/head/) )
-
-*** git pull
-Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
-[ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
-( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
-
-*** git push <remote> <branch>
-Push /branch/ to origin server /remote/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
-[ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
-( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
-( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
-
-*** git request-pull origin/master myfork
-Take the base branch into which you want your topic branch pulled and the Git repository URL you want them to pull from, and produces a summary of all the changes you’re asking to be pulled.
 
 ** Undoing Things
 *** git restore --staged <file>

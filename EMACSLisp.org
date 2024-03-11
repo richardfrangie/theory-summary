@@ -115,6 +115,8 @@
 | /C-c C-x C-b/ | org-toggle-inline-images        |
 | /C-c C-e #/   | org-export-dispatch             |
 | /C-c C-o/     | org-open-at-point (go to link)  |
+|             |                                 |
+| /C-c C-,/     | org-insert-structure-template   |
 
 ** Files
 *** Files
@@ -233,9 +235,12 @@
 | /M-o ?/         | show command bindings         |
 |               |                               |
 | /C-x ^/         | enlarge-window                |
+| /C-u - 2 C-x ^/ | shrinks by 2 lines            |
 |               | shrink-window                 |
 | /C-x }/         | enlarge-window-horizontally   |
 | /C-x {/         | shrink-window-horizontally    |
+| /C-x +/         | balance-windows               |
+| /C-x -/         | shrink-window-if-larger-than  |
 
 *** Buffer
 
@@ -270,22 +275,18 @@
 
 *** Minibuffer
 
-| /C-M-m/   | ivy-call              | Run command, keep minibuffer |
-| /M-o/     | ivy-dispatching-done  | Show actions current match   |
-| /M-i/     | ivy-insert-current    | Insert match in the prompt   |
-| /C-c C-o/ | ivy-occur             | List match in new buffer     |
-| /C-p/     |                       | Focus in prompt              |
-| /M-j/     | ivy-yank-word         | Put Word at point in minibu  |
-| /S-SPC/   | ivy-restrict-to-match | Restrict list to prompt      |
-| /C-SPC/   | ivy-restrict-to-match | My alias for the above       |
-
-| /C-M-j/      | type RET in minibuffer                |
-| /C-j/ / /RET/  | exit-minibuffer                       |
-| /C-g/        | abort-recursive-edit                  |
-| /M-n/ / /down/ | next-history-element (work in swiper) |
-| /M-p/ / /up/   | previous-history-element              |
-| /M-s/        | next-matching-history-element         |
-| /M-r/        | previous-matching-history-element     |
+| /C-j/ / /RET/ | ivy-alt-done          | type RET in minibuffer       |
+| /M-i/       | ivy-insert-current    | Insert match in the prompt   |
+| /M-n/       |                       | Insert symb get at point buf |
+| /M-j/       | ivy-yank-word         | Insert word get at point buf |
+| /M-o/       | ivy-dispatching-done  | Show actions current match   |
+| /C-c C-o/   | ivy-occur             | List match in new buffer     |
+| /C-M-m/     | ivy-call              | Run command, keep minibuffer |
+|           |                       |                              |
+| /M-n/       |                       | next-history-element         |
+| /M-p/       |                       | previous-history-element     |
+| /S-SPC/     | ivy-restrict-to-match | Restrict list to prompt      |
+| /C-SPC/     | ivy-restrict-to-match | My alias for the above       |
 
 *** Frames
 
@@ -307,10 +308,17 @@
 
 *** Cursor
 
-| /C-</         | mc/previous-next(duplicat up) |
-| /C->/         | mc/mark-next(duplicate down)  |
-| /C-S-c C-S-c/ | mc/edit-lines(mark to cursor) |
-| /C-u C-x =/   | what-cursor-position          |
+| /C-</         | mc/previous-next(duplicat up)   |
+| /C->/         | mc/mark-next(duplicate down)    |
+| /C-S-c C-S-c/ | mc/edit-lines(mark to cursor)   |
+| /C-u C-x =/   | what-cursor-position            |
+|             |                                 |
+|             | mc/mark-all-dwim                |
+|             | mc/mark-all-in-region           |
+|             | mc/mark-all-in-region-regexp    |
+|             | mc/mark-next-word-like-this     |
+|             | mc/mark-previous-word-like-this |
+|             | mc/mark-sgml-tag-pair           |
 
 *** Move cursor
 
@@ -419,7 +427,7 @@
 | /X/      | halt at current location (will restart from there later) |
 
 ** Code
-*** Sexpresions
+*** Sexpresions Elisp
 
 | /C-M-f/      | paredit-forward      |
 | /C-M-b/      | paredit-backward     |
@@ -431,6 +439,8 @@
 | /C-M-SPC/    | mark-sexp            |
 | /C-M-z/      | paredit-wrap-sexp    |
 | /C-=/        | er/expand-region     |
+|            | (/=/ to expand again   |
+|            | /-/ to contract)       |
 |            |                      |
 | /M-s/        | paredit-splice-sexp  |
 | /M-J/        | paredit-join-sexp    |
@@ -471,6 +481,71 @@
 | /M-x edebu func/ | edebug-defun(within/next to) |
 | /C-x C-e/        | to revaluate & cancel edebug |
 
+*** Html
+**** Create
+| /C-c C-t/   | sgml-tag                  |
+|           | web-mode-element-insert   |
+| /C-c RET/   | html-paragraph            |
+| /C-c d/     | html-div                  |
+| /C-c 1/     | html-headline-1           |
+| /C-c 2/     | html-headline-2           |
+|           | web-mode-element-wrap     |
+|           | web-mode-snippet-insert   |
+|           |                           |
+|           | web-mode-file-link        |
+| /C-c C-c h/ | html-href-anchor          |
+| /C-c C-c n/ | html-name-anchor          |
+| /C-c C-c #/ | html-id-anchor            |
+| /C-c C-c i/ | html-image                |
+| /C-c C-c u/ | html-unordered-list       |
+| /C-c C-c o/ | html-ordered-list         |
+| /C-c C-c l/ | html-list-item            |
+
+**** Edit
+
+| /C-c //     | sgml-close-tag            |
+| /C-c C-a/   | sgml-attributes           |
+|           | web-mode-element-rename   |
+|           | web-mode-element-kill     |
+|           | web-mode-buffer-indent    |
+
+**** Navigate
+
+| /C-c C-b/   | sgml-skip-tag-backward    |
+| /C-c C-f/   | sgml-skip-tag-forward     |
+| /C-c C-d/   | sgml-delete-tag           |
+|           | web-mode-navigate         |
+|           | web-mode-element-previous |
+|           | web-mode-element-next     |
+
+**** Mark
+
+|           | mc/mark-sgml-tag-pair     |
+|           | er/mark-html-attribute    |
+|           | web-mode-fold-or-unfold   |
+| /C-c TAB/   | sgml-tags-invisible       |
+|           |                           |
+
+**** Browser
+
+| /C-c C-v/ | browse-url-of-buffer         |
+|         | browse-url-of-region         |
+|         | browse-url-of-firefox        |
+|         | impatient-mode               |
+|         | run-skewer                   |
+|         | skewer-mode                  |
+|         | skewer-html-mode             |
+|         | js2-mode                     |
+|         | skewer-repl                  |
+|         |                              |
+| /C-x C-e/ | Evaluatebeforepoint          |
+| /C-M-x/   | Evaluatetop-levelaroundpoint |
+| /C-c C-k/ | Loadthecurrentbuffer         |
+| /C-c C-z/ | SelecttheREPLbuffer          |
+
+**** Note
+The web-mode functions don't necessarily run correctly, in case they misbehave, switch to web-mode momentarily.
+
 ** Help - Terminal
 *** Help
 
@@ -485,31 +560,25 @@
 | /C-h s/   | describe-syntax              |
 | /C-h P/   | describe-package             |
 | /C-h o/   | describe-symbol              |
+| /C-h l/   | Show last 300 input keystrok |
 |         |                              |
 | /C-h C-h/ | help-for-help                |
 | /cmd C-h/ | what valid keys follow cmd   |
 | /M-./     | xref-find-definition(cursor) |
 
-*** shells
+*** Eshell
 
-| eshell         |                      |
-| /C-c C-n/        | go forward           |
-| /C-c C-p/        | back forward         |
-|                | counsel-esh-history  |
-| /clear 1/        | command clean eshell |
-| /C-2 M-x eshell/ | open second eshell   |
-|                |                      |
-| vterm          |                      |
-| /C-n/            | next command         |
-| /C-p/            | previous command     |
-| /C-2 M-x vterm/  | open different vterm |
-|                |                      |
-| term           |                      |
-| /C-c C-k/        | char-mode            |
-| /C-c C-j/        | line-mode            |
-| /C-2 M-x term/   | open different term  |
+| /M-r/            | eshell history           |
+| /M-n/            | eshell-next-matching     |
+| /M-p/            | eshell-previous-matching |
+| /C-c C-n/        | eshell-next-prompt       |
+| /C-c C-p/        | eshell-previous-prompt   |
+| /C-c C-l/        | eshell-list-history      |
+|                | counsel-esh-history      |
+| /C-2 M-x eshell/ | open second eshell       |
 
 *** Terminal
+**** Commands
 
 | /emacs -q/              | open without load init file       |
 | /emacs -q -l path/      | open with differen init file      |
@@ -524,8 +593,21 @@
 | /emacs --script path/   | run like --batch with --load=path |
 | /emacs --script nam.el/ | run emacs lisp script in shell    |
 |                       |                                   |
+| /C-x C-c/               | save-buffers-kill-terminal        |
 | /M-!/                   | shell-command                     |
 | /C-u M-!/               | shell cmd(sameBuffer)             |
+
+**** vterm
+
+| /C-n/            | next command             |
+| /C-p/            | previous command         |
+| /C-2 M-x vterm/  | open different vterm     |
+
+**** term
+
+| /C-c C-k/        | char-mode                |
+| /C-c C-j/        | line-mode                |
+| /C-2 M-x term/   | open different term      |
 
 ** Miscellaneous
 *** Mix
@@ -693,10 +775,11 @@ By official emacs documentation, the key space for users are the function keys ~
 
 *** Functions M-x
 
-| /M-x/ | auto-package-update-now |
-|     |                         |
-| /M-x/ | desktop-save            |
-| /M-x/ | desktop-read            |
+| /M-x/ | auto-package-update-now          |
+| /M-x/ | list-packages (U upgrade, x exe) |
+|     |                                  |
+| /M-x/ | desktop-save                     |
+| /M-x/ | desktop-read                     |
 
 * Elisp
 ** Elisp
@@ -2244,14 +2327,14 @@ that uses recursion."
                                (1+ counter)     ; counter
                                number)))        ; number
 (triangle-initialization 7)
-;; (triangle-recursive-helper  0    1       7) ;; Immediately call
-;; (triangle-recursive-helper  1    2       7) ;; Immediately call
-;; (triangle-recursive-helper  3    3       7)
-;; (triangle-recursive-helper  6    4       7)
-;; (triangle-recursive-helper 10    5       7)
-;; (triangle-recursive-helper 15    6       7)
-;; (triangle-recursive-helper 21    7       7)
-;; (triangle-recursive-helper 28    8       7)
+;; (triangle-recursive-helper  0    0       7) ;; Immediately call
+;; (triangle-recursive-helper  1    1       7) ;; Immediately call
+;; (triangle-recursive-helper  3    2       7)
+;; (triangle-recursive-helper  6    3       7)
+;; (triangle-recursive-helper 10    4       7)
+;; (triangle-recursive-helper 15    5       7)
+;; (triangle-recursive-helper 21    6       7)
+;; (triangle-recursive-helper 28    7       7)
 ;; => 28
 
 
@@ -5943,6 +6026,33 @@ M-x replace-regexp RET \([0-9]+\)\. RET \1, RET
 | /[:ascii:]/    | an ascii character                        |
 | /[:nonascii:]/ | any non ascii character                   |
 
+*Syntax Class Usage*:
+One must remember that *syntax classes must be used within square brackets*, as one would in specifying any other sequence to match or reject: e.g. ~[[:upper:]\|[:digit:]\.]~. This is easy to overlook when using square-bracket-delimited syntax classes, since they include their own square brackets! E.g., if searching for a single whitespace character in a regexp, this
+
+#+begin_src emacs-lisp
+
+[:space:]
+
+#+end_src
+
+will *fail*. Just remember to add a 2nd/outer pair of square brackets: e.g., this
+
+#+begin_src emacs-lisp
+
+[[:space:]]
+
+#+end_src
+
+will succeed in finding a single whitespace character, this
+
+#+begin_src emacs-lisp
+
+[[:space:]]*
+
+#+end_src
+
+will succeed in finding zero-or-more single whitespace characters, etc.
+
 *** Table
 
 | /Character/   | /Description/                                       |
@@ -6013,6 +6123,14 @@ Here is an ~rx~ regexp that matches a block comment in the C programming languag
 #+end_src
 
 *** Notes
+- For backslash escaping (magic vs literal), Emacs uses a mixture of BRE and ERE. Like in ERE, Emacs supports unescaped ~+~ , ~?~ . Like in BRE, Emacs supports escaped ~\(~ , ~\)~ , ~\|~ , ~\{~ , ~\}~ .
+- GNU extensions to regular expressions supported by Emacs include ~\w~ , ~\W~ , ~\b~ , ~\B~ , ~\<~ , ~\>~ , ~\`~  , ~\'~ (start and end of buffer)
+- No ~\s~ like in PCRE; whitespace is matched by ~\s-~ .
+- No ~\d~ like in PCRE; use ~[0-9]~ or ~[[:digit:]]~
+- No lookahead and no lookbehind like in PCRE
+- Emacs regexp can match characters by syntax using mode-specific syntax tables ( ~\sc~ , ~\s-~ , ~\s ~ ) or by categories ( ~\cc~ , ~\cg~ ).
+
+
 - By default, the case of the replaced text is smartly dependent on the matched text. For example, if you want to replace ~dragon~ for ~here~ in this ~{here, Here, HERE}~ the result will be ~{dragon, Dragon, DRAGON}~. If you want the letter case of your replacement string be exactly as you have it, you need to set the variable ~case-replace~ to ~nil~.
 
 - When using ~[a-z]~, it is not case sensitive by default. Case sensitivity is controlled by the variable ~case-fold-search~. Call ~toggle-case-fold-search~ to toggle it.
@@ -6072,38 +6190,450 @@ Internal data structure that records key bindings to commands or other keymap.
 
 When an event type is bound to a keymap, that keymap is used to search for the next input event; this continues until a command is found. Mode-specific keymaps overwrite the global ~(mode-map)~ that all buffers share.
 
-** Terminals
+** Terminals and shells
 *** eshell
-~eshell~ is a shell written entirely in emacs lisp. Note: it is not a bash emulator. Eshell is a shell by itself, but similar to bash or other shells.
+**** It's a shell
+While eshell may look like a shell, like Bash you should view it as a REPL with parenthesis-less s-expressions.
 
-~eshell~ is good especially on Microsoft Windows where bash is not installed. Eshell is also super fast on startup. If you are a emacs lisp programer, you might prefer eshell because direct access to emacs lisp and better integration with emacs.
+Like a shell, everything is a string except for the first command. Actually don't have to put strings or quotes around this to make it a string.
 
-Tricks:
-- redirect to buffers - along with the above, you can also do things like ~ls >> #<buffer *scratch*>~ to output the result from ls to the scratch buffer
-- ~/dev/clip~ and ~/dev/kill~ - you can redirect shell commands to the emacs clipboard and killring
+As a shell:
+- Concept of a current directory
+- ~popd~, ~pushd~, and ~dirs~
+- Globbing Expressions
+- Quotes often optional
 
-Personally (Xah Lee), i used shell from 1998 to 2013, and eshell now. But i always have a real terminal app open, for running any command i'm not familiar with. For any serious command, such as starting a server, or any command that has logs, i run it in a real terminal app, with no tie to emacs.
+#+begin_src sh
 
-Is Emacs’ own shell implementation written in Emacs Lisp. It provides you with a cross-platform implementation of the common GNU utilities you would find on Linux (~ls~, ~rm~, ~mv~, ~grep~, etc). It also allows you to call Emacs Lisp functions directly from the shell and you can even set up aliases (like aliasing ~vim~ to ~find-file~). Eshell is also an Emacs Lisp REPL which allows you to evaluate full expressions at the shell.
+#Doesn't this:
+ls -d /tmp
+# look like this =:
+(ls "-d" "/tmp")
 
-The downsides to Eshell are that it can be harder to configure than other packages due to the particularity of where you need to set some options for them to go into effect, the lack of shell completions (by default) for some useful things like Git commands, and that REPL programs sometimes don’t work as well.
+#+end_src
 
-- REPL de Emacs Lisp, permite llamar a las funciones o evaluar comandos de Emacs Lisp directamente desde el shell, incluso puede configurar alias ~alias ffo "find-file-other-window $1"~ y proporciona una manera sencilla de hacer nuestros scripts en elisp en lugar de bash u otros.
-- Puede correr comandos en la shell como ~find-file~, ~dired~, ...,  también correr funciones ~(+ 20 5)~  (presionando /TAB/ se puede completar las funciones).
-- Puede usar comandos con pipe para enviar salida a un buffer ~echo "Hello" > #<buffer test-buffer>~.
-- La sintaxis de la subshell es un poco diferente se utiliza ~${ }~ en vez de ~$( )~.
-- Soporta TRAMP (controlar remotamente otra maquina).
-- Programas que leen input (como lenguajes REPLs, como por ejemplo "node") y herramientas que dependen de la configuración de los ambientes de shell (nvm, virtualenv) pueden funcionar incorrectamente.
-- ~*ls~ (se coloca delante para poderlo usar).
+**** It's a REPL
+Lisp expressions work within parens.
 
-NOTES:
-- Los enlaces duros y simbólicos funcionan diferente a lo esperado. Cuando se modifica el archivo original que tiene un hard link creado con eshell, cambia su valor de ~inode~ .
-- Los comandos ~trap~ , ~alias~ dan problemas.
-- No permite crear redirecciones tales como ~cat << Whatever~ .
-- Comandos que impliquen opciones que manipulan enlaces simbólicos como ~cp -a dir dirNew~  dan problema.
-- No funciona el comando para asignar variables ~var=variable~ .
+- Unlike shell, EShell:
+  - Commands can be executables or Emacs functions
+  - Distinguishes strings, numbers, and lists
 
-*Aliases*:
+- EShell is marriage of two syntax parsers:
+  - Lisp Expressions (as soon as type in parentheses it's going into lisp parser)
+  - Shell Expressions (if remove parentheses it now types it into shell parser)
+  - A single line can mix the two!
+
+Without parens, Eshell is in "shell mode", wich means that words are strings, and variables need to be prefixed with dollar signs.
+
+#+begin_src sh
+
+(+ 8 8)
+# 16
+# or
++ 8 8
+# 16
+
+# mix two
+- 3 (+ 1 2)
+# 0
+
+
+# Parentheses with $
+echo $answer1:$answer2
+# 41:42
+echo $answer1:(+ $answer2 10)
+# Unknown predicate character ‘+’
+echo $answer1:$(+ answer2 10)
+# 41:52
+echo $answer1:${+ answer2 10} # with {} going to shell mode
+# 41:52
+
+#+end_src
+
+**** Eshell’s Parsers
+*Lisp* parser:
+  - ~( ... )~
+  - ~$( ... )~ … useful for string evaluation
+
+*Shell* parser:
+  - no parens … in other words, the default
+  - ~{ ... }~
+  - ~${ ... }~ … useful for string evaluation
+  - reference variables with ~$~
+
+#+begin_src sh
+
+setq ANSWER 42   # ← Normal Emacs variable
+# 42
+
+numberp ANSWER  # ← Use  to get value.
+# t
+
+setq UNANSWER "41"
+# 41
+
+stringp UNANSWER
+# t
+
+mod ANSWER 5    # ← Forgot the  with shell parser
+# Wrong type argument: number-or-marker-p, "ANSWER"
+
+mod ANSWER 5   # ← Math without expr
+# 2
+
+(mod ANSWER 5)  # ← Lisp doesn't need  for vars
+# 2
+
+(mod ANSWER 5)
+# Symbol's value as variable is void: ANSWER
+
+echo UNANSWER:ANSWER
+# 41:42
+
+echo UNANSWER:(mod ANSWER 5)
+# Malformed modification time modifier `m'
+
+echo UNANSWER:(mod ANSWER 5)
+# 41:2
+
+echo ANSWER:{mod ANSWER 5}
+# 42:2
+
+#+end_src
+
+**** Subshell rules
+- with ~(...)~ , eshell treats it as Lisp-expressions.
+- with ~{...}~ , eshell follows these shell-like rules:
+  - looks like a number, it's a number
+  - otherwise, converted to string (quotes, like in shells, grops words)
+  - what about functions and executables?
+    - first, fuctions start with ~eshell/~
+    - next are executables orn your ~$PATH~
+    - then matching Lidp functions
+    - you can switch this order (see ~eshell-prefer-lisp-funcitons~ variable)
+
+Shells can call subshells which return their outputlike a function call.
+
+#+begin_src sh
+
+# This bash command, you can have a subshell:
+$(cat files.txt)
+# is the same as:
+{ cat files.txt }
+
+#+end_src
+
+**** Wildcard and Globbin’ Filters
+The wildcard actually crates a list.
+
+#+begin_src sh
+
+touch 'English.org Shell.org init.org'
+
+ls *.org
+# English.org  Shell.org  init.org
+
+echo *.org
+# ("English.org" "Shell.org" "init.org")
+
+length *.org
+# 3
+
+#+end_src
+
+*Globbin’ Filters*:
+- The ~*~ glob-thing has filters
+- Great if you can remember the syntax:
+  - ~.~ for files
+  - ~/~ for directories
+  - ~r~ if readable
+  - ~w~ if writable
+  - ~L~ filtering based on file size
+  - ~m~ filtering on modification time
+- The filters can be stacked, e.g. . ~L~
+
+ ~C-c M-q~ ( ~eshell-display-predicate-help~ )
+
+#+begin_src sh
+
+ls *(.)
+# README  and go.py  pi.py  pi.rb
+
+ls *(^/)   # ← Inverse of directories are often files
+# README  and go.py  pi.py  pi.rb
+
+
+#+end_src
+
+Demonstrate combining modifiers by listing all files with more than 50 bytes to them:
+
+#+begin_src sh
+
+ls *(.L+50)
+# README  pi.py
+
+#+end_src
+
+After creating three files (using the ~touch~ executable), we can list all empty files (that is, those that have less than 1 byte):
+
+#+begin_src sh
+
+ls *(L-1)
+# and go.py  goo.py  grip.py  swam.py
+
+#+end_src
+
+Or those modified less than 40 seconds ago:
+
+#+begin_src sh
+
+ls *(.ms-40)
+# README  and go.py  goo.py  grip.py  pi.py  pi.rb  src  swam.py  tests
+
+
+#+end_src
+
+Modified after we modified ~goo.py~:
+
+#+begin_src sh
+
+ls *(.m-'goo.py')
+# grip.py  swam.py
+
+#+end_src
+
+And before we modified ~goo.py~:
+
+#+begin_src sh
+
+ls *(.m+'goo.py')
+# README  and go.py  pi.py  pi.rb
+
+#+end_src
+
+I can get a list of my journal entries larger than 5000 bytes, and open ~dired~ showing only those files:
+
+#+begin_src sh
+
+dired ~/journal/2017*(L+5000)
+
+#+end_src
+
+**** Set variable
+~Setq~ to create variable, those are global Emacs variables available everywhere.
+This variable asssignment doesn't work as you might expect, as ~setq~ in Eshell is still ~setq~, and it assigns variables in pairs.
+
+*Note*: dollar sign ~$~ of variable does not work within a list.
+
+#+begin_src sh
+
+setq file text.org
+# text.org
+echo $file
+# text.org
+
+
+# The wildcard actually crates a list.
+setq all-org *.org
+# ("English.org" "Shell.org" "init.org")
+echo $all-org
+# ("English.org" "Shell.org" "init.org")
+
+
+# To make a list, use listify
+setq some { listify fileA.org fileB.org }
+# ("fileA.org" "fileB.org")
+
+
+# Other examples
+setq ANSWER 50
++ ANSWER 49
+# Wrong type argument: number-or-marker-p, "ANSWER"
++ $ANSWER 49
+# 99
+
+
+# Parentheses with $
+echo $answer1:$answer2
+# 41:42
+echo $answer1:(+ $answer2 10)
+# Unknown predicate character ‘+’
+echo $answer1:$(+ answer2 10)
+# 41:52
+echo $answer1:${+ answer2 10} # with {} going to shell mode
+# 41:52
+
+#+end_src
+
+**** Shell-like Loops
+- Syntactic sugar around ~loop~.
+- Code following ~in~ is a generate list
+- Use trailing ~{ ... }~ for side-effects
+
+#+begin_src sh
+
+for i in A B C; do echo $i; done
+# do: command not found
+# done: command not found
+
+
+for i in A B C { echo "Hello $i" }
+# Hello A
+# Hello B
+# Hello C
+
+
+for i in A B C { echo Hello $i }
+# ("Hello" "A")
+# ("Hello" "B")
+# ("Hello" "C")
+
+
+# A list can be generated in any way, like with Lisp:
+for N in (number-sequence 1 5) { + 10 $N }
+# 11
+# 12
+# 13
+# 14
+# 15
+
+# You cannot replace the action with a lisp
+for N in (number-sequence 1 5) ( + 10 $N )
+#
+# but if you put it inside a shell mode then you
+# can run Lisp as the action
+for N in (number-sequence 1 5) {( + 10 $N )}
+# 11
+# 12
+# 13
+# 14
+# 15
+
+#+end_src
+
+**** Write your Own Functions
+Eshell is Emacs: you can write Emacs functions instead shell scripts and other pretty features.
+
+- Functions for Eshell: ~eshell/~
+- They do not need to be ~interactive~
+- Functions should assume ~&rest~ for arguments:
+
+#+begin_src sh
+
+(defun eshell/do-work (&rest args)
+  "Do some work in an optional directory."
+  (let ((some-dir (if args
+                       (pop args)
+                    default-directory)))
+    (message "Work in %s" some-dir)))
+
+#+end_src
+
+Using &rest allows your functions to behave more like shell functions:
+
+#+begin_src sh
+
+do-work
+# Work in /tmp/testing/
+
+do-work /home/howard/bin
+# Work in /home/howard/bin
+
+#+end_src
+
+**** Function or Executable?
+What about the executable ~find~ vs. Emacs’ ~find~ function?
+
+*Precedence Order*:
+  - Eshell aliases
+  - Emacs functions that being with ~eshell/~ prefix
+  - Normal Emacs functions (don’t need to be ~interactive~)
+  - Shell executables
+  - Of course, this is customizable:
+
+~eshell-prefer-lisp-functions~ prefer Lisp functions to external commands
+~eshell-prefer-lisp-variables~ prefer Lisp variables to environmentals
+
+To demonstrate the precedence order for eshell commands, I created a script called foobar that simply contains:
+
+#+begin_src sh
+
+#!/bin/sh
+echo "Called: executable"
+
+#+end_src
+
+Without anything else, this will be called:
+
+ #+begin_src sh
+
+which foobar
+# /home/howard/bin/foobar
+
+foobar
+# Called: executable
+
+#+end_src
+
+We now create a regular Emacs function in Lisp (notice that it isn’t interactive):
+
+#+begin_src sh
+
+(defun foobar ()
+  "Called: function")
+
+#+end_src
+
+It now takes precedence over the executable:
+
+#+begin_src sh
+
+which foobar
+# foobar is a Lisp function
+
+foobar
+# Called: function
+
+#+end_src
+
+Create another Lisp function, this has the ~eshell/~ prefix. Again, no need to make interactive:
+
+#+begin_src sh
+
+
+(defun eshell/foobar ()
+  "Called: eshell function")
+
+#+end_src
+
+And this new function over-shadows the others:
+
+#+begin_src sh
+
+which foobar
+# eshell/foobar is a Lisp function
+
+foobar
+# Called: eshell function
+
+#+end_src
+
+Finally, we define an alias, and demonstrate that it over-shadows all the others:
+
+#+begin_src sh
+
+alias foobar 'echo "Called: alias"'
+
+which foobar
+# foobar is an alias, defined as "echo "Called: alias""
+
+foobar
+# Called: alias
+
+#+end_src
+
+**** Aliases
 A common alias for ~ls -l~, and would be defined with the command invocation ~alias ll 'ls -l $*'~ ; with this defined, running ~ll foo~ in Eshell will actually run ~ls -l foo~.
 
 Aliases defined (or deleted) by the alias command are automatically written to the file named by ~eshell-aliases-file~ (this defaults to something like ~~/.emacs.d/eshell/aliases~), which you can also edit directly (although you will have to manually reload it).
@@ -6111,6 +6641,26 @@ Aliases defined (or deleted) by the alias command are automatically written to t
 Note that unlike aliases in Bash, arguments must be handled explicitly. Typically the alias definition would end in ~$*~ to pass all arguments along. More selective use of arguments via ~$1~, ~$2~, etc., is also possible. For example, alias ~mcd 'mkdir $1 && cd $1'~ would cause ~mcd foo~ to create and switch to a directory called ~foo~.
 
 *Warning*: if this doesn't work and get the error ~command not found~ , remove the quote, e.g. type the command ~alias ll ls -l $*~  instead of ~alias ll 'ls -l $*'~.
+
+*Note*: Example alias from Howard Abrams (Emacs hacker who has a YouTube channel)
+~alias ee 'find-file-other-window $1'~
+
+**** Notes
+- ~cd =~ list all recent directories, and ~cd -2~ to get to that directory
+- ~clear 1~  command that clean eshell
+- REPL de Emacs Lisp, permite llamar a las funciones o evaluar comandos de Emacs Lisp directamente desde el shell, incluso puede configurar alias ~alias ffo "find-file-other-window $1"~ y proporciona una manera sencilla de hacer nuestros scripts en elisp en lugar de bash u otros.
+- Puede correr comandos en la shell como ~find-file~, ~dired~, ...,  también correr funciones ~(+ 20 5)~  (presionando /TAB/ se puede completar las funciones).
+- Puede usar comandos con pipe para enviar salida a un buffer ~echo "Hello" > #<buffer test-buffer>~ o para adjuntar ~ls >> #<buffer *scratch*>~.
+- La sintaxis de la subshell es un poco diferente se utiliza ~${ }~ en vez de ~$( )~.
+- Soporta TRAMP (controlar remotamente otra maquina).
+- Programas que leen input (como lenguajes REPLs, como por ejemplo "node") y herramientas que dependen de la configuración de los ambientes de shell (nvm, virtualenv) pueden funcionar incorrectamente.
+- ~*ls~ (se coloca delante para poderlo usar).
+- ~/dev/clip~ and ~/dev/kill~ - you can redirect shell commands to the emacs clipboard and killring
+
+*Warning*:
+- Los enlaces duros y simbólicos funcionan diferente a lo esperado. Cuando se modifica el archivo original que tiene un hard link creado con eshell, cambia su valor de ~inode~ .
+- Comandos que impliquen opciones que manipulan enlaces simbólicos como ~cp -a dir dirNew~  dan problema.
+- No permite crear redirecciones tales como ~cat << Whatever~ .
 
 *** vterm
 Is an improved terminal emulator package which uses a compiled native module to interact with the underlying terminal applications. This enables it to be much faster than ~term-mode~ and to also provide a more complete terminal emulation experience.
@@ -6833,6 +7383,20 @@ An alist of keys and block types.
 
 ~org-insert-structure-template~ will display a menu with this list of templates to choose from.  The block type is inserted, with ~#+BEGIN_~ and ~#+END_~ added automatically.
 
+**** org-hide-emphasis-markers
+Non-nil mean font-lock should hide the emphasis marker characters.
+
+**** company-active-map
+Keymap that is enabled during an active completion.
+
+**** lsp-ui-sideline-enable
+Whether or not to enable ‘lsp-ui-sideline’.
+
+The info line at the end.
+
+**** lsp mode toggle
+Whenever you have a buffer width that's kind of narrow things get jammed up together with the code and it starts to get a little bit distracting so i tend to allow only minimal information there if at all. You can toggle this on and off using =C-c l T= and then some toggle code action.
+
 *** Misc
 **** command-history
 Examine commands from command-history in a buffer.
@@ -6917,13 +7481,180 @@ Set contents of Emacs register named REGISTER to VALUE.  Returns VALUE.
 **** flymake-mode
 Habílita el modo flymake (verificador de sintaxis sobre la marcha).
 
+**** package-refresh-contents
+Download descriptions of all configured ELPA packages.
+
+For each archive configured in the variable package-archives, inform Emacs about the latest versions of all packages it offers, and make them available for download.
+
+Note: when you try to install something appear an error like says "a package is not found using use package" just run the ~package-refresh-contents~ command and that will get everything fixed up for you.
+
+*** Lsp-mode
+**** lsp
+Entry point for the server startup.
+
+**** company-mode
+"complete anything"; is an in-buffer completion framework.
+
+It's like completion-at-point but this is a gennerally better interface for it.
+
+**** completion-at-point
+Perform completion on the text around point.
+
+**** lsp-find-definition
+Find definitions of the symbol under point.
+
+**** lsp-ui-peek-find-definitions
+Find definitions to the IDENTIFIER at point.
+
+**** xref-find-definitions
+Find the definition of the identifier at point.
+
+**** lsp-ui-peek-find-references
+Find references to the IDENTIFIER at point.
+
+**** lsp-rename
+Rename the symbol (and all references to it) under point to NEWNAME.
+
+**** lsp-headerline-breadcrumb-mode
+Toggle breadcrumb on headerline.
+
+Sets a little header line up at the top of each buffer that show the hierarchy of where you are in the file and then symbols that are in the file so the class you're in the method you're in etc.
+
+**** flycheck-list-errors
+Show the error list for the current buffer.
+
+**** lsp-execute-code-action
+Execute code action ACTION. For example, when text under the caret has a suggestion to apply a fix from an lsp-server, calling this function will do so.
+
+Press (C-c l a a) on the point (cursor) to apply the action available for that line to fix a suggestion.
+
+**** lsp-format-buffer
+Ask the server to format this document.
+
+**** treemacs
+Initialise or toggle treemacs.
+
+**** lsp-ivy-workspace-symbol
+Search against WORKSPACES with PROMPT and INITIAL-INPUT.
+
+Quicker symbol searching.
+
+**** lsp-treemacs-symbols
+Show symbols view.
+
+**** lsp-treemacs-references
+Show the references for the symbol at point.
+
+**** lsp-ui-doc-focus-frame
+Focus into lsp-ui-doc-frame.
+
+Put the cursor inside the doc frame (info window about function or something).
+
+**** lsp-describe-session
+Will show the current projects roots + the started servers and allows inspecting the server capabilities.
+
+*** Dap-mode
+**** dap-debug
+Run debug configuration DEBUG-ARGS.
+
+**** dap-debug-last
+Debug last configuration.
+
+Don't ask again for the configuration template (Node Run Configuration).
+
+**** dap-debug-recent
+Debug last configuration.
+
+**** dap-breakpoint-toggle
+Toggle breakpoint on the current line.
+
+**** dap-breakpoint-log-message
+Set breakpoint log message for the breakpoint at point.
+
+Useful for not having to write print statements (console.log()) in the code and for the loops which print every iteration.
+
+Note: first activate 'dap-breakpoint-toggle'.
+
+#+begin_src javascript
+
+Debbuger is printing the {i} varaible.
+=
+console.log("Debbuger is printing the" i "varaible.")
+
+#+end_src
+
+**** dap-ui-expressions-add
+Add expressions in the window to be monitored. For example, add the variable ~i~ and when the code is executed, it will tell you how the value ~i~ is updated through the breakpoints.
+
+**** dap-breakpoint-condition
+Set breakpoint condition for the breakpoint at point.
+
+#+begin_src javascript
+
+// js code.
+for (let i = 0; i < 10; i ++) {
+  console.log("i is", i);
+}
+
+// emacs prompt (condition).
+i === 5
+
+// The loop pause at five.
+i is 0
+i is 1
+i is 2
+i is 3
+i is 4
+
+#+end_src
+
+**** dap-ui-repl
+Start an adapter-specific REPL.
+
+This could be used to evaluate JavaScript in a browser.
+
+Evaluate things in the console as you are debugging (type commands to inspect the variables or even to change them).
+
+You can even change values at runtime by placing them in the window repl (for instance ~i=8~) to see what behavior might happen in the given case, that could be another useful debugging strategy that does not require you to change the code itself.
+
+**** dap-hydra
+It will pull up this nice little command palette at the bottom that gives you all of the commands that you could use for your debugging so next continue step in step out restart also things for like showing the locals the stack frame.
+
+The buttons that appear at the top of the window when debugging with breakpoints can be accessed with commands (dap-continue, dap-next, dap-step-in, dap-step-out, dap-disconnect, dap-debug-restart) or with hydra.
+
+**** dap-disconnect
+Disconnect from the currently active session.
+
+**** dap-tooltip-at-point
+Show information about the variable under point.
+
+**** dap-ui-show-many-windows
+Show auto configured feature windows.
+
+**** dap-ui-hide-many-windows
+Hide all debug windows when sessions are dead.
+
+**** dap-ui-sessions
+Show currently active sessions.
+
+**** dap-auto-configure-features
+Windows to auto show on debugging when in dap-ui-auto-configure-mode.
+
+Useful variable to enable or disable windows that show e.g. breakpoint, local, session, etc.
+
+**** dap-register-debug-template
+Register configuration template CONFIGURATION-NAME.
+
+**** dap-debug-edit-template
+Edit registered template DEBUG-ARGS.
+
 * Notes
 ** Org
 *** Markup
 **** Énfasis y monoespacio
 Se pueden énfasis en palabras como *bold*, /italic/, _underlined_, =verbatim= and ~code~, y, también, +strike-through+.
 
-Para que no se vea la sintaxis en el documento se puede setear en ~nil~ la variable ~org-fontify-emphasized-text~.
+Para que se esconda el énfasis marcado de caracteres se setea ~t~ la variable ~org-hide-emphasis-markers~.
 
 #+begin_example
 
@@ -7021,6 +7752,9 @@ $\sum _{k=1}^{n}m=mn$
 [[file:Emacs-guide.org][Emacs-Guide]]
 # or
 [[file:Emacs-guide.org]]
+
+
+[[file:~/path/Emacs-guide.org::Outline][Outline]]
 
 # Adjuntar una búsqueda a un enlace de fichero, junto con una explicación:
 [[file:~/code/main.c::255]]                 Encontrar línea 255
@@ -7477,6 +8211,9 @@ You can also include lisp code in your template. For example, you might want to 
 #+end_example
 
 *** IDE (Daniel)
+I don't used an IDE, but I have Emacs, which does most of the things I want. I can navigate through code (even code outside the project). It warns me of syntax errors. I can navigate to files in the project, and look for text inside (helm-git-grep).
+I do the debugging outside Emacs: in Python, through ipdb.
+
 Option 1, the „cheap“ but good enough option:
 - helm-git-grep (with helm, of course), and just typing a few letters of where I want to go. For instance, if I want to go to where a function is defined, I type „name def“ (or „def name“ or „name d“ or „f.name“ or „f na“, … Helm does fuzzy matching and finds it)
 - for syntax errors: flymake
@@ -7551,6 +8288,7 @@ Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pue
 #+end_src
 
 *** Box Drawing Unicode
+
 |        | /0/ | /1/ | /2/ | /3/ | /4/ | /5/ | /6/ | /7/ |
 |--------+---+---+---+---+---+---+---+---|
 | /U+250x/ | ─ | ━ | │ | ┃ | ┄ | ┅ | ┆ | ┇ |
@@ -7586,6 +8324,62 @@ Cuando se utiliza *line* para crear líneas, con el caracter ~>~ y ~<~ se le pue
 | /U+256x/ | ╨ | ╩ | ╪ | ╫ | ╬ | ╭ | ╮ | ╯ |
 |--------+---+---+---+---+---+---+---+---|
 | /U+257x/ | ╸ | ╹ | ╺ | ╻ | ╼ | ╽ | ╾ | ╿ |
+
+*** Geometric Shapes
+
+#+begin_src artist
+
+          0   1   2   3   4   5   6   7
+  U+25Ax  ■   □   ▢   ▣   ▤   ▥   ▦   ▧
+  U+25Bx  ▰   ▱   ▲   △   ▴   ▵   ▶   ▷
+  U+25Cx  ◀   ◁   ◂   ◃   ◄   ◅   ◆   ◇
+  U+25Dx  ◐   ◑   ◒   ◓   ◔   ◕   ◖   ◗
+  U+25Ex  ◠   ◡   ◢   ◣   ◤   ◥   ◦   ◧
+  U+25Fx  ◰   ◱   ◲   ◳   ◴   ◵   ◶   ◷
+
+            8   9   A   B   C   D   E   F
+  U+25Ax  ▨   ▩   ▪   ▫   ▬   ▭   ▮   ▯
+  U+25Bx  ▸   ▹   ►   ▻   ▼   ▽   ▾   ▿
+  U+25Cx  ◈   ◉   ◊   ○   ◌   ◍   ◎   ●
+  U+25Dx  ◘   ◙   ◚   ◛   ◜   ◝   ◞   ◟
+  U+25Ex  ◨   ◩   ◪   ◫   ◬   ◭   ◮   ◯
+  U+25Fx  ◸   ◹   ◺   ◻   ◼   ◽  ◾  ◿
+
+#+end_src
+
+*** Dingbats
+
+#+begin_src artist
+
+            0   1   2   3   4   5   6   7
+   U+270x   ✀   ✁   ✂   ✃   ✄   ✅  ✆   ✇
+   U+271x   ✐   ✑   ✒   ✓   ✔   ✕   ✖   ✗
+   U+272x   ✠   ✡   ✢   ✣   ✤   ✥   ✦   ✧
+   U+273x   ✰   ✱   ✲   ✳   ✴   ✵   ✶   ✷
+   U+274x   ❀   ❁   ❂   ❃   ❄   ❅   ❆   ❇
+   U+275x   ❐   ❑   ❒   ❓  ❔  ❕  ❖   ❗
+   U+276x   ❠   ❡   ❢   ❣   ❤   ❥   ❦   ❧
+   U+277x   ❰   ❱   ❲   ❳   ❴   ❵   ❶   ❷
+   U+278x   ➀   ➁   ➂   ➃   ➄   ➅   ➆   ➇
+   U+279x   ➐   ➑   ➒   ➓   ➔   ➕  ➖  ➗
+   U+27Ax   ➠   ➡   ➢   ➣   ➤   ➥   ➦   ➧
+   U+27Bx   ➰  ➱   ➲   ➳   ➴   ➵   ➶   ➷
+
+            8   9   A   B   C   D   E   F
+   U+270x   ✈   ✉   ✊  ✋  ✌   ✍   ✎   ✏
+   U+271x   ✘   ✙   ✚   ✛   ✜   ✝   ✞   ✟
+   U+272x   ✨  ✩   ✪   ✫   ✬   ✭   ✮   ✯
+   U+273x   ✸   ✹   ✺   ✻   ✼   ✽   ✾   ✿
+   U+274x   ❈   ❉   ❊   ❋   ❌  ❍   ❎  ❏
+   U+275x   ❘   ❙   ❚   ❛   ❜   ❝   ❞   ❟
+   U+276x   ❨   ❩   ❪   ❫   ❬   ❭   ❮   ❯
+   U+277x   ❸   ❹   ❺   ❻   ❼   ❽   ❾   ❿
+   U+278x   ➈   ➉   ➊   ➋   ➌   ➍   ➎   ➏
+   U+279x   ➘   ➙   ➚   ➛   ➜   ➝   ➞   ➟
+   U+27Ax   ➨   ➩   ➪   ➫   ➬   ➭   ➮   ➯
+   U+27Bx   ➸   ➹   ➺   ➻   ➼   ➽   ➾   ➿
+
+#+end_src
 
 ** Packages
 *** Keybindings
@@ -7667,6 +8461,24 @@ It's a rss for youtube in emacs. I might like it because it shows the transcript
 
 https://github.com/karthink/elfeed-tube
 
+**** multiple-cursors
+The ~mc/list-file~ variable has the path to the file that keeps track of the preferences for running commands with multiple cursors.
+
+**** emmet-mode
+https://github.com/smihica/emmet-mode
+
+Good mode to write html and css.
+
+**** counsel-css
+https://github.com/hlissner/emacs-counsel-css
+
+counsel-css is an ivy-mode backend for css selectors (works for SCSS, LESS and Stylus too). It also has a hook to integrate its parser into Imenu.
+
+This is an alternative to helm-css-scss. The parser was lifted borrowed from helm-css-scss, so much of the credit is his.
+
+Other package: GNU Emacs as a lightweight Web IDE (HTML + JS + CSS)
+https://lists.gnu.org/archive/html/emacs-devel/2020-02/msg00180.html
+
 ** Miscellaneous
 *** Keyboard
 **** Keyboard Shortcut vs Launch Buttons
@@ -7724,6 +8536,41 @@ Run Emacs with the configuration:
 #+begin_src shell
 
 emacs -Q -l demo.el
+
+#+end_src
+
+*** defadvice functions
+Advising Emacs Lisp Functions
+
+When you need to modify a function defined in another library, or when you need to modify a hook like foo-function, a process filter, or basically any variable or object field which holds a function value, you can use the appropriate setter function, such as fset or defun for named functions, setq for hook variables, or set-process-filter for process filters, but those are often too blunt, completely throwing away the previous value.
+
+The advice feature lets you add to the existing definition of a function, by advising the function. This is a cleaner method than redefining the whole function.
+
+#+begin_src emacs-lisp
+
+(defun my-double (x)
+  (* x 2))
+
+(my-double 5) ;; 10
+
+
+(defun my-increase (x)
+  (+ x 1))
+(advice-add 'my-double :filter-return #'my-increase)
+
+(my-double 5) ;; 11
+
+#+end_src
+
+*** html,css,js server
+The one that has worked best for me is ~eslint~, I haven't tried it much either.
+
+*** Swiper
+How to search for two words together?
+
+#+begin_src emacs-lisp
+
+\(one two\)
 
 #+end_src
 
@@ -7902,6 +8749,123 @@ Emacs's abbrev feature lets you type a short word and expand into a full word or
 Descargar el paquete ~texlive~, esto debería ser suficiente ya que el paquete trae todos los paquetes necesarios para trabajar con LaTeX, sin embargo debido a un error ~org-compile-file: File "/tmp/orgtexrJsNOr.dvi" wasn’t produced.  Please adjust ‘dvipng’ part of ‘org-preview-latex-process-alist’~ también arrojaba lo siguiente ~! LaTeX Error: File `ulem.sty' not found.,~ se necesito descargar el paquete adicional ~texlive-plain-generic~ para obtener ~ulem~.
 
 Para exportar de org a LaTeX pdf se necesito instalar el paquete ~texlive-latex-extra~ para obtener ~wrapfig~ que soluciona el error ~! LaTeX Error: File `wrapfig.sty' not found~.
+
+** Use a live web server to view web files
+*** impatien-mode
+Enable the web server provided by simple-httpd: ~M-x httpd-start~
+
+Publish buffers by enabling the minor mode impatient-mode. ~M-x impatient-mode~
+
+And then point your browser to http://localhost:8080/imp/, select a buffer, and watch your changes appear as you type!
+
+If you are editing HTML that references resources in other files (like CSS) you can enable impatient-mode on those buffers as well. This will cause your browser to live refresh the page when you edit a referenced resource.
+
+*Note*: Useful to use it only with html and css. With JS it gives problems, it does (although it doesn't work very well) but using this meta tag ~<meta http-equiv="refresh" content="3" >~ that instruct the browser to refresh every three seconds.
+
+*Note*: I think the problem happens when variables are declared with "let", when the program reloads the code it see the variable "let" assigned again. I think that when the package was created it didn't give problem because at that time JS used "var" in the variables, and nothing happens when it's declared again.
+
+*** skewer-mode
+**** To skewer your own document
+1. Start the HTTP server (~httpd-start~ or ~httpd-serve-directory~)
+2. Add this tag at the end (~<script src="http://localhost:8080/skewer"></script>~) of the ~index.html~ file (check your httpd-port)
+3. ~M-x run-skewer~ to attach a browser to Emacs
+4. Visit the document from your browser. Can be through:
+   - http://localhost:8080/index.html (~http-server-directory~ => ~~/Downloads/Project-folder~)
+   - http://localhost:8000/Project-folder/ (server directory => ~~/Downloads~)
+   - file:///home/richard/Downloads/Project-folder/index.html
+5. Enabled respective mode (.html -> ~skewer-mode~ and ~skewer-html-mode~ , .js -> ~skewer-mode~ and ~js2-mode~ (optional enable ~lsp~ ) or .css ->  ~skewer-mode~ and ~skewer-css-mode~)
+6. From a ~js2-mode~ buffer with ~skewer-mode~ minor mode enabled, send forms to the browser to evaluate
+7. Evaluate each statement (~C-x C-e~) or the entire buffer (~C-c C-k~). The results should be displayed on the server opened by skewer or the one you open yourself, and also is echoed in the minibuffer.
+
+Note: to simple test (provided blank document), enable ~httpd-start~ run ~run-skewer~ to open skewer demo, create a empty ~js~ file, type some comands, enable ~js2-mode~ and ~skewer-mode~, and evaluate the statements. Skewer demo URL http://127.0.0.1:8080/skewer/demo.
+
+**** How to evalutationg expressions
+https://github.com/skeeto/skewer-mode
+The keybindings for evaluating expressions in the browser are just like the Lisp modes. These are provided by the minor mode ~skewer-mode~.
+
+  - C-x C-e :: Evaluate the form before the point and display the result in the minibuffer. If given a prefix argument, insert the result into the current buffer.
+  - C-M-x :: Evaluate the top-level form around the point.
+  - C-c C-k :: Load the current buffer.
+  - C-c C-z :: Select the REPL buffer.
+
+The result of the expression is *echoed in the minibuffer*.
+
+Additionally, ~css-mode~ and ~html-mode~ get similar sets of bindings for modifying the CSS rules and HTML on the current page.
+
+*CSS*:
+  - C-x C-e :: Load the declaration at the point.
+  - C-M-x :: Load the entire rule around the point (point must be inside the tag).
+  - C-c C-k :: Load the current buffer as a stylesheet.
+
+*HTML*:
+  - C-M-x :: Load the HTML tag immediately around the point (point must be inside the tag).
+
+*Note*: ~run-skewer~ uses ~browse-url~ to launch the browser. This may require further setup depending on your operating system and personal preferences.
+
+Multiple browsers and browser tabs can be attached to Emacs at once. JavaScript forms are sent to all attached clients simultaneously, and each will echo back the result individually. Use ~list-skewer-clients~ to see a list of all currently attached clients.
+
+Sometimes Skewer's long polls from the browser will timeout after a number of hours of inactivity. If you find the browser disconnected from Emacs for any reason, use the browser's console to call ~skewer()~ to reconnect. This avoids a page reload, which would lose any fragile browser state you might care about.
+
+**** Format document example
+The format should be like this
+
+#+begin_src html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Something</title>
+    <link rel="stylesheet" href="./syle.css">
+  </head>
+  <body>
+    <h1>Here</h1>
+    <p>START</p>
+    <img src="img/cat.png" id="cat" style="position: absolute">
+    <img src="img/hat.png" id="hat" style="position: absolute">
+    <script src="./javascript.js"></script>
+    <p>LAST</p>
+    <script src="http://localhost:8080/skewer"></script>
+    <p>REALLY LAST</p>
+  </body>
+</html>
+
+#+end_src
+
+and not like this (can also be done by just opening a js file and typing but will only see the js not the html or css)
+
+#+begin_src javascript
+
+<!doctype html>
+
+<style>body { min-height: 200px }</style>
+<img src="img/cat.png" id="cat" style="position: absolute">
+<img src="img/hat.png" id="hat" style="position: absolute">
+
+<script>
+  let cat = document.querySelector("#cat");
+  let hat = document.querySelector("#hat");
+
+  let angle = 0;
+  let lastTime = null;
+  function animate(time) {
+      if (lastTime != null) angle += (time - lastTime) * 0.001;
+      lastTime = time;
+      cat.style.top = (Math.sin(angle) * 40 + 40) + "px";
+      cat.style.left = (Math.cos(angle) * 220 + 230) + "px";
+
+      // Your extensions here.
+
+      requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+</script>
+
+#+end_src
+
+**** REPL
+A REPL into the browser can be created with ~M-x skewer-repl~ , or ~C-c C-z~. This should work like a console within the browser. Messages can be logged to this REPL with ~skewer.log()~ (like ~console.log()~).
+
+Results of expressions evaluated in the REPL are printed more verbosely than in the minibuffer, when possible. This may help in debugging.
 
 * use-packages
 ** Install
