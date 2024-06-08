@@ -288,11 +288,18 @@ Es un conjunto no vacío totalmente ordenado tal que todo subconjunto no vacío 
 
 ** Funciones
 *** Definición
-Definición alternativa de función
+Una función $f(x)$ es una regla que se le asigna a cada elemento de un conjunto $A$ para hacerlo corresponder con un único elemento de otro conjunto $B$.
+Entonces se dice que $y = f(x)$ seimpre que $x \in A$ e $y \in B$.
+$A\subseteq  \mathbb{R}$   $B\subseteq  \mathbb{R}$
+
+*Definición alternativa de función*
 Una función $f:X \rightarrow Y$ es un subconjunto $G(f)$ del producto cartesiano $X \times Y$ que verifica que:
 $$\forall x \in X \, | \, \exists ! \,\, y \in Y : (x,y) \in G(f)$$
 
 donde $\exists !$ significa que existe un único.
+
+*Definición como relación*
+Una función es una *relación* que relaciona un elemento del conjunto de salida con un elemento del conjunto de llegada.
 
 *** Clasificación de las funciones
 
@@ -1660,15 +1667,33 @@ El término "geodésico" proviene de la palabra geodesia, la ciencia de medir el
 Rama de la matemática cuyo significado etimológico es 'la medición de los triángulos'. Deriva de los términos griegos τριγωνοϛ trigōnos 'triángulo' y μετρον metron 'medida'. En términos generales, la trigonometría es el estudio de las razones trigonométricas: seno, coseno, tangente, cotangente, secante y cosecante.
 
 La trigonometría se dedicada al estudio de la relación entre los lados y ángulos de un triángulo rectángulo y una circunferencia. Con este propósito se definieron una serie de funciones, las que han sobrepasado su fin original para convertirse en elementos matemáticos estudiados en sí mismos y con aplicaciones en los campos más diversos.
-
-*** Seno
+*** Relaciones trigonométricas
+**** Seno
 E seno de un ángulo $\alpha$ de un triángulo rectángulo se define como la razón entre el cateto opuesto a dicho ángulo y la hipotenusa:
 
 $$\operatorname {sen} \alpha ={\frac {a}{c}}={\frac {Cateto\,Opuesto}{Hipotenusa}}$$
 
 Esta razón no depende del tamaño del triángulo rectángulo escogido sino que es una función dependiente del ángulo $\alpha$.
 
-*Propiedades*:
+*** Funciones trigonométricas
+Dada una circunferencia de radio $r$, considerando un punto sobre la circunferencia de coordenadas $(a,b)$ y el ángulo $\alpha$ en posición normal asociado al punto, se define:
+
+$\sin(\alpha) = \frac{ordenada \, del \, punto}{radio} = \frac{b}{r}$
+
+$\cos(\alpha) = \frac{abscisa \, del \, punto}{radio} = \frac{a}{r}$
+
+$\tan(\alpha) = \frac{ordenada \, del \, punto}{abscisa \, del \, punto} = \frac{b}{a}$
+
+$\csc(\alpha) = \frac{1}{\sin(\alpha)}$
+
+*Nota*: los valores que toman las funciones son independientes del valor del radio de la circunferencia $r$, por lo tanto, para mayou simplicidad, se puede considerar $r=1$.
+
+*Nota*: la variable $\alpha$ debe especificarse en unidades de radianes, puesto que las funciones son de variable real.
+
+*** Seno
+$$\sin \alpha = \frac{Ordenada\,de\,P(x,y)}{Distancia\,de\,P(x,y)\,a\,O(0,0)}$$
+
+Propiedades*:
 El seno es una *función impar*, es decir:
 
 $$\operatorname {sen} \;(-x)=-\operatorname {sen}(x)$$
@@ -1684,11 +1709,6 @@ $$\operatorname {sen} \alpha =\cos\left(\alpha- \frac{\pi}{2}\right)$$
 Como *serie de Taylor*
 
 $$\begin{aligned}\operatorname {sen} x&=x-{\frac {x^{3}}{3!}}+{\frac {x^{5}}{5!}}-{\frac {x^{7}}{7!}}+\cdots \\\\&=\sum _{n=0}^{\infty }{\frac {(-1)^{n}x^{2n+1}}{(2n+1)!}}\\\end{aligned}$$
-
-
-NOTA: Definición del seno general (incluye angulos obtusos) dada por la profesora Baragatti.
-
-$$\sin \alpha = \frac{Ordenada\,de\,P(x,y)}{Distancia\,de\,P(x,y)\,a\,O(0,0)}$$
 
 * Análisis
 ** Definiciones

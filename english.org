@@ -2301,22 +2301,18 @@ Plural indefinite persons.
 **** as long as
 We use it for *conditional conjunction* and it means /mientras que/ o /siempre y cuando/.
 
-/As long as/ and /as far as/ are both conjunctions. They are classified as *subordinating conjunctions*. They are used to *join clauses*.
-
 We use it:
--  to express conditions :: *As long as* you study hard, you will...
-
-- to express a certain period of time :: You can stay here *as long as* you want.
+- to express conditions :: *As long as* you study hard, you will...
 
 - to show requirements :: You can stay here *as long as* you pay more.
 
--  to compare length :: My left leg is *as long as* my right leg.
+- to express a certain period of time :: You can stay here *as long as* you want.
+
+- to compare length :: My left leg is *as long as* my right leg.
 
 **** as far as
-Is combined with verbs such /as far as I understand/ or /as far as I can see/ /as far as I know/ and it means to my *knowledge* (sometime that you believe is true).
+It's classified as *subordinating conjunctions* (join caluses). It's combined with verbs such /as far as I understand/ or /as far as I can see/ /as far as I know/ and it means to my *knowledge* (sometime that you believe is true).
 ~As far as I know, she wasn't coming with us.~ Hasta donde yo se,...
-
-/As long as/ and /as far as/ are both conjunctions. They are classified as *subordinating conjunctions*. They are used to *join clauses*.
 
 Can also be used to show *distance and degree*.
 ~There were flowers *as far as* I could see.~ Había flores hasta donde alcanzaba la vista.
@@ -8850,184 +8846,333 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** ****va a haber un momento en este país
-there's going to be a time in this country
+**** +Mira, esto podría haber terminado hace mucho tiempo, cariño.
+see it could have been over a long time ago sweetie pie
 
-**** **pero no hay excusa para que la gente no pueda hacer lo que quiere, tú puedes hacer lo que quieras.
-but there's no excuse for people not being able to do what they want you can do anything that you want to do
+**** Casi no valdría la pena hacer un vídeo sobre esto.
+this almost wouldn't even be worth making a video about
 
-**** **por lo tanto una persona pueda lograr lo que quiera
-so a person can accomplish anything that they want
+**** +James me dijo que si hubiera sabido quién era ella, habría impugnado la denuncia de privacidad.
+James told me that had he known who she was he would have challenged the privacy complaint
 
-**** *La forma en que abordo/enfoco los problemas en matemáticas.
-the way I approach problems in mathematics
+**** +Bueno... si no te hubieras detenido, nadie lo habría sabido.
+Well… if you hadn’t stopped no one would have known
 
-**** *ella lo empezó
-she started it
+**** +si lo había hecho él mismo se arrepintió y cambió de opinión
+whether he had done it himself regretted and changed his mind
 
-**** *ustedes ni siquiera estaban en eso
-you guys weren't even in it
+**** +poco después, el detective Armstrong comienza a interrogar a Michael con preguntas básicas como el tipo de trabajo que realiza.
+not long after detective Armstrong starts by questioning Michael with basic questions such as the type of work he does
 
-**** *Haz lo que quieras hacer
-do what you want to do
+**** +Creo que tienes algunas preguntas que estabas tratando de hacerme hace un minuto
+ I think you've got some questions that you were trying to ask me a minute ago
 
-**** *Creo que fui bastante claro, no estoy aquí para tomar fotografías de esta área.
-I think I was pretty clear, I'm not here to take pictures of this area
+**** +Para ser completamente honesto contigo, ninguno de nosotros tiene idea de lo que está pasando.
+to be perfectly honest with you neither one one of us have an idea of what's going on
 
-**** *Debo asegurarme
-I gotta make sure
+**** +Solo *quiero* aclarar antes de que te haga cualquier pregunta o que me hagas cualquier pregunta.
+I just want to clarify before before I ask you any questions or you ask me any questions
 
-**** *Ojalá no hubieran grabado eso
-I wish you guys wouldn't have recorded that
+**** +No sé si empiezo a abrumarme
+I don't know if I start getting overwhelmed
 
-**** *nos hizo/nos dio pasar un mal rato
-gave us a hard time
+**** +Me aseguro de que todo esté bien antes de que se publique.
+I make sure everything's right before it gets released
 
-**** *pudiste detenerla
-you were able to detain her
+**** +Que es lo que haces por ellos?
+what is it that you do for them
 
-**** *No puedo llevarte a la oficina porque tienes más de 18 años.
-I can't take you to the office cuz you are over 18
+**** +...si alguna vez ha estado en el ejército
+if he has ever been in the military
 
-**** *me vas a dejar seguir meando
-you going to let me keep pissing
+**** +He sido autorizado como clasificado pero actualmente no trabajo en un programa clasificado
+I've been cleared classified but I don't work on a classified program currently
 
-**** *Hasta el policia regaño a ese tonto.
-Even the policeman scolded that fool.
+**** +¿por cuánto tiempo estuviste ahí?
+how long were you there?
 
-**** *no dejes nunca de aprender intenta siempre superarte a ti mismo
-never stop learning always reach out to better yourself
+**** +No es seguro, pero puede ser *que* no quiera correr el riesgo de mentir sobre asuntos pequeños y, en cambio, centrarse en ocultar su crimen.
+it's not certain but it may be that he does not not want to risk lying about small matters and instead focus on hiding his crime
 
-**** si los tiempos son dificiles lo bueno ni lo malo duran para siempre
-if times are hard good things nor bad things last forever
+**** +¿Qué espectáculo/programa es?
+what show is it?
 
-**** *no tengan miedo de ir tras lo que necesitan,
-don't be afraid to go after what you need
+**** +No sé si siquiera había oído hablar de eso. - Ni siquiera sé si he oído hablar de él.
+I don't know that I even heard of it
 
-**** *¿qué tienes ahí con lo que puedas pagar?
-what do you have there that you can pay with
+**** +He vuelto a hacer ejercicio recientemente.
+been *getting back* into working out recently
 
-**** *consíguelo chico
-get him boy
+**** +Aquí Michael se esta refiriendo a su hijo y a su hija usando el tiempo presente como para mostrar que no recuerda lo que les pasó/que pasó con ellos.
+here Michael is referring to his son and daughter using the present tense as if to show he doesn't remember what happened to them
 
-**** ¿Qué acabas de sacar de tu bolsillo?
-what did you just take it out of your pocket
+**** +que Michael parece haber captado con demasiada facilidad
+which Michael seems to have caught on too easily
 
-**** ¿Cómo funcionó eso, Marge? ¿Lo arrestaron?
-How did that work out Marge? Did he get arrested?
+**** +No sé por qué dije eso
+I don't know why I said that
 
-**** lo que mas me gusta es esa cosa
-what I like most is that thing
+**** +Puedo pensar que el otro día mi esposa estaba... hemos estado trabajando/ últimamente, no hemos tenido dificultades ni un poquito.
+I can think it as the other day my wife was ... we've been working lately we haven't been struggling a little bit.
 
-**** Un día de estos estarás sentado en el porche de algún lugar y apenas sabrás lo que está pasando.
-one of these days you you'll be sitting on a front porch somewhere and you won't hardly know what's going on
+**** He estado tratando de trabajar en ello, estaba yendo/iba a terapia, no he ido en algunas semanas.
+I've been trying to work on it, I was going to counseling, haven't been in a few weeks.
 
-**** Sólo quería ver si iban a salir y decir o hacer algo estúpido
-I just wanted to see if they were going to come out and say or do something stupid
+**** ella tenía un arma y decía/estaba diciendo que era su única salida.
+she had one gun and was saying it was her only way out.
 
-**** me alejo de el
-I get away from him
+**** el lunes no estaba funcionando
+Monday weren't working
 
-**** ¿Por qué alguien en su sano juicio/en su correcto pensamiento querría hacer eso?
-why would anybody in the right mind want to do that
+**** +¿Dónde los escondiste?
+where'd (did) you hide those at?
 
-**** Cuando ese idiota dijo que la policía estaba en camino, deberías haber dicho que pensabas que ya estaban aquí porque te mostró su placa. Y una cosa más: nunca debes dejar que esos locos se acerquen tanto a ti, nunca sabes lo que pasa por sus cabezas vacías.
- when that meat head said that the cops were on the way you should have said you thought they were already here cause he showed you his badge. and one more thing you should never let them nut jobs get that close to you ya never know what goes on in their empty heads
+**** y quién podría haber tenido una crisis nerviosa que resulto en
+and who might have had a breakdown which resulted in
 
-**** ya tiene una curva de aprendizaje pronunciada
-it has a steep learning curve already
+**** pero claramente él no ha pensado bien el plan.
+but he clearly hasn't thought the plan through
 
-**** desde que puedo recordar
-as long as I can remember
+**** ¿Sabes quién fue el que hizo eso a ella? - ¿Sabes quién se lo hizo?
+do you know who it was that done it to her? - Do you know who did it to her?
 
-**** Siempre me han encantado los números y los patrones.
-I have always loved numbers and patterns.
+**** He estado tratando de resolver/trabajar en los problemas que han sucedido.
+I've been trying to work through the issues that have happened.
 
-**** saber como pensar matemáticamente puede ser una herramienta que puedes utilizar para resolver problemas de forma sistematica
-knowing how to think mathematically can be a tool that you can use to solve problems in a systematic way
+**** +y mi hija se abre a mí mucho más
+and my daughter opens up to me a lot more
 
-**** no te voy a poner tarea
-I'm not going to give you homework
+**** +estudiar de qué se trataba y algunas de las cosas que enseñé
+study what it was about and kind of some of the things that I taught
 
-**** los abstraemos, Las rompemos en pedazos, hacemos analogías
-we abstract them, we break them up into pieces, we make analogies
+**** El detective comienza a preguntarle a Michael sobre los eventos que tuvieron/tomaron lugar antes de que el fuera traido.
+The detective starts asking Michael about the events that took place before he was brought in.
 
-**** El problema ideal en el que trabajar es uno que apenas está fuera de su alcance.
-the idea problem to work on is one which is just barely outside of your reach
+**** +Todavía estaba despierto
+i was still awake
 
-**** No se trata tanto de si tienes éxito o fracasas en esa pregunta.
-it's not so much whether you succeed or fail at that question
+**** +antes de acostarme en el sofá
+before I laid down on the couch
 
-****  Tiene mucho sentido, ¿no? 😂😂😂😂
-Makes perfect sense huh?!?! 😂😂😂😂Makes a lot of sense, doesn't it? 😂😂😂😂
+**** y mi esposa vino a ver cómo estaba
+and my wife actually came out to just check on me
 
-**** Sólo he podido controlar estas áreas.
-I've only been able to get a handle of these areas
+**** +hablamos y no necesariamente lo recordaría una hora después,
+we talk and I wouldn't necessarily remember it an hour later,
 
-**** Así que no pretendas ningún dominio de todas las matemáticas y creo que nadie puede hacerlo desde Hilbert.
-so don't claim any mastery of all of mathematics and I think nobody can do that since Hilbert
+**** +No quería reiterar cada conversación.
+I didn't want to reiterate every conversation
 
-**** como resulta/ resulta que (esto no es lo que bla bla bla)
-as it turns out
+**** +Desde que te despertaste
+From the time you woke up
 
-**** vas a venir hacia mí
-you're going to come at me
+**** +Y simplemente veo, tal vez puedas reconstruir
+and just kind of see, maybe you can piece together
 
-**** diciéndole a su esposa que se encontraría/estaría con un amigo
-telling his wife he was meeting a friend
+**** +y por qué no podemos recordarlo
+and why we can't remember it
 
-**** ¿Cómo es que ella no tiene trabajo?
-how come she hasn't got a job
+**** +¿Recuerdas lo que comiste en el desayuno?
+do you remember what you ate for breakfast
 
-**** Me han ayudado mucho en el desafío que estoy enfrentando.
-Me han ayudado mucho en el desafío que estoy enfrentando.
+**** +no recuerdas nada en lo absoluto
+you don't remember at all
 
-**** De ninguna manera es lo que quiero estar haciendo para el próximo.
-by no means what I want to be doing for the next
+**** +en lo que trabajé hoy
+what I worked on today
 
-**** habrá, si no ya, una demanda de científicos
-there will be, if not already, a demand for scientists
+**** Se me ocurrió la idea cuando llegué a trabajar un lunes por la mañana y antes de poder empezar a trabajar tuve que iniciar manualmente unos diez servicios.
+I came up with the idea when I got to work one Monday morning and before I could start working I had to manually start ten or so services.
 
-**** Me niego a aceptar la derrota sin importar la edad.
-I refuse to accept defeat regardless of age
+**** +Creo que fue un desafío personal, pero sé que no debo participar en él.
+ I think it was a personal challenge but i know not to play into it.
 
-**** Estarías encima de mí si me quitara esto.
-you would be all over me if I took this off
+**** + creo que me perdí la parte más divertida, el tipo de lentes se veía muy gracioso. Igual me divirtió cuando se emociono pensando que te escapabas.
+I think I missed the funniest part, the glasses guy looked really funny. I still amused me when he got excited thinking you were running away.
 
-**** Ver las mentes frágiles derretirse me hace reír...
- Watching the fragile minds melt makes me laugh...
+**** +Ya no veo más videos en facebook ahora siempre los veo por aquí.
+I don't watch videos on Facebook anymore, now I always see them here.
 
-**** Estoy seguro de que no es la primera vez que este portero hace el ridículo.
- im sure this is not the first time this doorman has made a fool of himself
+**** +¿Le pegaste a él en el ojo?
+did you hit him in the eye
+
+**** Tuve que quitárselo de encima, así que tuve que darle un puñetazo en el costado de la cabeza para detener el ataque.
+I had to get him off of him, so I had to punch him in the side of the head to stop the attack
+
+**** +Eso es lo que no quieres, saca a ese tipo de la calle.
+that's what you don't want, get that guy off the street
+
+**** +Él está tratando de sacarme de la oficina de correos.
+He trying to rip me out of the post office
+
+**** ¿Es eso algo con lo que estás de acuerdo?
+is that something you okay with?
+
+**** +no te revisaremos(chequeo medico) hasta que las cámaras se apaguen
+we won't be checking you out until the cameras off
+
+**** +porqué es eso
+why is that
+
+**** +si te gustaría ser visto(revisado por los medicos) apaga la cámara, estaremos encantados de hacerlo
+if you'd like to be seen turn the camera off, we be happy to.
+
+**** +Ellos pueden hacer lo que quieran
+they can do whatever they want
+
+**** +no voy a hacer eso
+I'm not going to do that
+
+**** +...pero tus ambas manos tienen que estar abajo
+...but your both hands have to be down
+
+**** +¿Por qué esperas eso?
+Why do you expect that?
+
+**** La perfección es finalmente alcanzada no cuando ya no hay nada que añadir, sino cuando ya no hay nada que quitar.
+Perfection is finally attained not when there is no longer anything to add, but when there is no longer anything to take away.
+
+**** +Siempre el mismo comentario de un miedoso que espera que los demás hagan el trabaja sucio por él, porque el nunca ha tenido valor para nada. Si te molesta tanto ve tu y has lo que dices,  no esperes a la "wrong person" perdedor.
+Always the same comment from a fearful person who expects others to do his dirty work for him, because he has never had courage for anything. If he bothers you so much, go ahead and do what you say, don't wait for the "wrong person" loser.
+
+**** +¿Recuerdas que la policía vino a tu casa esta tarde?
+do you remember the police coming to your house this evening
+
+**** +Es sorprendente cómo Michael puede recordar infinidad de información.
+it's amazing how Michael can remember countless information
+
+**** cuales son esos tres momentos
+what are those three moments
+
+**** No lo vi venir No me protegí
+I didn't see it coming I didn't protect myself
+
+**** Sentí que les había fallado a los niños
+I felt like I failed the kids
+
+**** Estamos en un lugar realmente malo en lo que respecta a las finanzas.
+we are in a really bad place as far as financials go
+
+**** fue un golpe (emocional) para mi
+it was a hit to me
+
+**** ¿Cuáles son sus días libres?
+what are her off days?
+
+**** Nosotros estábamos siendo bastante juguetones
+we were being pretty playful
+
+**** Nosotros enviamos algunos textos juguetones
+we were sending some playful texts
+
+**** ¿A qué hora crees que fue?
+about what time you think that was?
+
+**** Estoy tan por encima de mi cabeza
+I'm in so far over my head
+
+**** Si fuera un genio nunca habría hablado con la policía.
+if he was a genius he would have never talked to the police
+
+**** solo está haciendo un intento realmente tonto de engañar al detective.
+he's just playing a really silly attempt at deceiving the detective.
+
+**** su actuación no era digna de un Oscar
+his performance wasn't worthy of an Oscar
+
+**** tú vas a ser llevado a la cárcel de Collin.
+you are going to be taken over to the Collin Jail.
+
+**** Me pillaste hace un minuto, cada vez que usaba el tiempo pasado en lugar del presente.
+you caught me a minute ago, whenever I used past tense instead of present tense.
+
+**** esto es lo que necesito que hagas
+here's what I need you to do
+
+**** Manos en la pared, solo mira/cara hacia la pared.
+hands on the wall, just face the wall
+
+**** a quién pillaron robando una galleta
+who got caught stealing a cookie
+
+**** Mike no te caigas encima de mí
+Mike don't fall down on me
+
+**** Si vas a estar así, siéntate en la silla.
+if you're going to be like that , sit down on the chair
+
+**** Es impactante que Michael pensara que podía burlar al detective.
+it's shocking that Michael thought he could outsmart the detective
+
+**** quien no se dio cuenta
+who didn't catch on to it
+
+**** Creo entender lo que dices, pero creo que eso casi nunca pasas. En varios videos que he visto la policia ellos no hace eso, por ejemplo no se si has visto el canal de Lana, ella pone los videos de la camara corporal de los policias cuando hablan con los agresores, yo siempre pense que los policias le decian que era ilegal asaltar a una persona y todo eso, pero no más bien se ponen departe de ellos y le dicen, que ellos son unos acosadores vagos que estan buscando alguna cosa para demandarlos a ellos o la policia.
+I think I understand what you're saying, but I think that almost never happens. In several videos that I have seen, the police do not do that, for example, I don't know if you have seen Lana's channel, she plays the videos from the police body camera when they talk to the people who call the police, I always thought that the police told them that it was illegal to assault a person and all that, but they just took their side and told them that they were lazy stalkers who were looking for something to sue them or the police.
+
+**** y de vez en cuando me sorprendo con sus capacidades.
+and time to time I get surprise with their capabilities.
+
+**** Deberías volver cuando por fin tengas la cámara 360. Yo lo haría si estuviera allí. Esos policias y ese chico en verdad me cabrearon.
+You should come back when you finally get the 360 camera. I would if I were there. Those cops and that guy really pissed me off.
 
 *** Chunk
-*** Eloquent
-**** Para poder recuperarlos rápidamente, los navegadores realizarán varias solicitudes GET simultáneamente, en lugar de esperar las respuestas una por una.
-To be able to fetch those quickly, browsers will make several GET requests simultaneously, rather than waiting for the responses one at a time.
+**** Pero la mayoría de ellos son
+but most of them are
 
-**** Parece haber una regla no escrita de que cada formato necesita su propia forma de escapar de los caracteres.
-There seems to be an unwritten rule that every format needs its own way of escaping characters
+**** No le molestará, está acostumbrado, sabe lo que hace.
+it won't bother him, he's used to it, he knows what he's doing
 
-**** Antes de intercambiar datos, el cliente verifica que el servidor es quien dice ser pidiéndole que demuestre que tiene un certificado criptográfico emitido por una autoridad certificadora que el navegador reconoce.
-Before exchanging data, the client verifies that the server is who it claims to be by asking it to prove that it has a cryptographic certificate issued by a certificate authority that the browser recognizes.
+**** él sabe exactamente lo que puede y no puede hacer
+he knows exactly what he can and can't do
 
-****  Esa restricción, junto con el hecho de que llenar los discos duros de las personas con basura no es realmente rentable,
-That restriction, along with the fact that filling up people’s hard drives with junk is not really profitable,
+**** Apuesto que ella le vendría bien/podría usar algo de esto.
+I'll bet she could use some of this
 
-**** dependiendo de lo que pida el cliente.
-depending on what the client asks for.
+**** no quiero que lo hagas
+I don't want you to do it
+
+**** o bueno eso es ciertamente parte de ello
+or well that's certainly part of it
+
+**** ...para hacer nuestro desarrollo
+to make our development
+
+**** Por lo que yo sé
+as far as I know
+
+**** Quiero que sepas
+I want you to know
+
+**** no dije eso en absoluto.
+I didn't say that at all
+
+**** le di uno de nuestros números de línea directa
+I gave him one of our hotline numbers
+
+**** , es que lo que nosotros decimos cuando
+, is that what we mean when
+
+**** Nosotros hacemos todas estas cosas
+we do all these things
+
+**** Entonces, ¿por qué perderíamos el tiempo tratando de agradarles?
+So why would we waste our time trying to make them like us?
+
+**** Entonces, ¿es esto lo que nuestra red está haciendo realmente?
+so is this what our network is actually doing?
+
+
+**** No sé si siquiera había oído hablar de eso.
+I don't know that I even heard of it
+
+**** qué va a hacer él?
+what is he going to do?
+
+**** por qué es importate
+why it's important
 
 *** My talks
-**** , que somos muchos que nunca habíamos visto alguno.
-, that there are many of us who have never seen one.
-
-**** , simplemente se creen que son  dueños de todo y quieren que los demás hagan lo que ellos quieren.
-, they simply believe they are owners of everything and want others to do what they want.
-
-**** Soy de los que piensan que siempre se puede responder amablemente al principio pero viendo a señoras como ella 15:37 creo que a veces no se debería, el problema es saber cuando es ese tipo de personas. Ella molesto con un montón de preguntas y como ella no escucho lo que queríá, entonces llama a la policía.
-I'm one of those who think you can always answer nicely at first but seeing ladies like her 15:37 I think sometimes you shouldn't, the problem is knowing when it's that kind of person. She annoyed with a lot of questions and since she didn't listen to what she wanted, then she calls the police.
-
-*** Free speech
 *** Eloquent JavaScript
 **** Puede abrir la aplicación adecuada y ponerse a trabajar.
 you can open the appropriate application and get to work
@@ -9254,6 +9399,8 @@ But we’d be using the DOM for something that it wasn’t originally designed f
 
 **** sólo tendrás que encontrar un valor adecuado mediante ensayo/prueba y error.
 you’ll just have to find a suitable value by trial and error.
+
+****
 
 ** My speech
 *** New
@@ -10230,6 +10377,109 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 **** Se le pedirá
 You will be prompted / You will be asked
 
+**** Es *inofensivo hacerlo*.
+It is *harmless to do so*.
+
+**** ...si *alguna vez* ha estado en el ejército
+if he has *ever* been in the military
+
+**** Sigue así y *estaré observando* (pendiente, atento (de lo que viene)).
+Keep it up and *I’ll be watching*
+
+**** El detective comienza a preguntarle a Michael sobre los eventos que *tuvieron* lugar antes de que lo trajeran.
+The detective starts asking Michael about the events that *took* place before he was brought in.
+
+**** poco después, el detective Armstrong comienza a *interrogar* a Michael
+not long after detective Armstrong starts by *questioning* Michael
+
+**** Creo que fue un desafío personal, pero sé que no debo *participar en él*.
+ I think it was a personal challenge but i know not to *play into it*.
+
+**** Si se hace mal/hazlo mal y las consecuencias pueden ser catastróficas.
+Get it wrong, and the consequences can be catastrophic
+
+
+**** solo quiero que tengas una buena noche  - Sólo quiero tener una buena noche
+I just want you to have a good night  - I just want to have a good night
+
+**** Cuando tienes a alguien que ha dejado de ser tan irritable en tu cara, lo mejor para ti es simplemente *alejarte*.
+when you do get somebody that's done being ornery like that in your face it's in your best interest to just *walk away*  -  When you have someone who has stopped being so irritable in your face, the best thing for you to do is just walk away.
+
+**** Voy a llegar al estadio. - Voy a buscar al gerente.
+I'm going to *get to* the stadium. - I'm going to *get* the manager.
+
+**** No puedo entregártelo
+I can't get it to you
+
+**** *hacer* una pausa antes de *tomar* una decisión
+*take* a pause before you *make* a decision
+
+**** Si amas algo y tu agenda es *tener éxito* y ganar, es un cierto precio que tienes que pagar
+if you love something and your agenda is *to be successful* and to win it's a certain price you have to pay
+
+**** ¿Cómo era realmente tu ética de trabajo y durante cuánto tiempo te *mantuviste* disciplinado?
+what was really your work ethic like and for how long did you *stay* disciplined?
+
+**** y como me *atengo/apego* a los fundamentos, simplemente los alcanzó
+and because i *stick* to the fundamentals it just caught up to them
+
+**** +Entonces fue cuando me senté y dije, esto va a *requerir* un poco de *reflexión*
+so that's when i sat down and said, this is going *to take* some *thought*
+
+**** Este estilo de módulos proporciona aislamiento, *hasta cierto punto*,
+This style of modules provides isolation, *to a certain degree*,
+
+**** ; es más, pueden notar comportamientos en/sobre nosotros de los que *ni siquiera somos conscientes*
+;moreover, they can notice behaviors about us that *we aren't even aware of*.
+
+**** *En el fondo*, sabemos lo que queremos, y cuanto más nos *mantenemos fieles* a eso, más auténticos nos volvemos y menos nos conformamos con lo que otras personas quieren que seamos.
+*Deep inside*, we know what we want, and the more we *stay true* to that, the more authentic we become, and the less we conform to what other people want us to be
+
+**** Por lo tanto, la retroalimentación que recibimos *de los demás* puede ser útil, pero la verdad finalmente se esconde dentro de nosotros mismos.
+Therefore, the feedback we get *from others* can be helpful, but the truth ultimately hides within ourselves.
+
+**** ¿Cuál es la mejor esperanza *para lo que* podrían estar haciendo esas capas intermedias?
+What is the best hope *for what* those middle layers might be doing?
+
+**** *gran parte del* aprendizaje automático se reduce a tener una buena comprensión del álgebra lineal, *por lo que para cualquiera de ustedes que desee* una buena comprensión visual de las matrices
+*so much of* machine learning just comes down to having a good grasp of linear algebra, *so for any of you who want* a nice visual understanding for matrices
+
+**** se está *esforzando cada vez más* para hacer esto
+it's trying *harder and harder* to do this
+
+**** , representa cuánto cree el sistema que una imagen *determinada* corresponde a un dígito *determinado*.
+, represents how much the system thinks that a given image corresponds with a given digit.
+
+**** *asegúrese* de presupuestar el tiempo para ello
+*be sure* you budget the time for it
+
+**** hubo una vez *en la que* estaba intentando entender una transformación geométrica muy complicada
+there was one time *when* I was trying to understand a very complicated geometric transformation
+
+**** Tienes a alguien *con quien compartir* que capta completamente ese sentimiento.
+you have someone *to share with who* completely gets that feeling
+
+**** Esa es la mentalidad que debes *adoptar* en estos campos.
+that is the mindset that that you need to *take* in in these fields
+
+****  y escribes otros detalles en la pizarra y *todo cuadra* y luego se chocan unos a otros los cinco
+and you write other details on the Blackboard and everything *checks out* and then you give each other high fives
+
+**** pero entonces uno de nosotros, al revisar, notó que había un caso que *habíamos pasado por alto* en uno de los argumentos y había un vacío
+but then one of us when proofreading noticed that there was one case *we had missed* in one of the arguments and there was a gap
+
+**** y simplemente *adoptar una mentalidad* en la que el objetivo no es necesariamente resolver el problema de forma rápida o eficiente.
+and just *getting into a mindset* where um the goal is not necessarily to solve the problem quickly or efficientl
+
+**** puede ayudarte a ver *el camino a seguir*
+it can help you see *the way forward*
+
+**** a veces nos preguntamos si tenemos *lo que hay que tener*
+sometimes we wonder whether we have *what it takes*
+
+**** ¿ *Cómo es que* ella no tiene trabajo?
+*how come* she hasn't got a job
+
 **** Me *niego* a aceptar la derrota sin importar la edad.
 I *refuse* to accept defeat regardless of age
 
@@ -10734,6 +10984,9 @@ She’s not feeling very well.
 
 **** Me gustaría *conocer* Roma.
 I'd like to *go* to Rome.  or  I'd like to *visit* Rome.
+**** No, no, no *llegues* a esas conclusiones tan rápido;
+No, no, don't *reach* those some conclusions so fast;
+
 **** Me niego a aceptar la derrota *sin importar* la edad.
 I refuse to accept defeat *regardless* of age
 
@@ -10992,6 +11245,9 @@ But it bears repeating:
 
 **** No es asunto tuyo
 It is none of your business
+
+**** , como si se sintiera tan seguro de que este ruido aleatorio es un 5 como de que una imagen real de un 5 es un 5.
+, as if it feels as sure that this random noise is a 5 as it does that an actual image of a 5 is a 5.
 
 **** .Si te resulta difícil hacer cosas, consigue un
 ***** Si tienes dificultades para ponerte a hacer cosas tu mismo, consigue un
@@ -14325,6 +14581,81 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Speaking
 :LOGBOOK:
+CLOCK: [2024-06-08 Sat 15:20]--[2024-06-08 Sat 15:36] =>  0:16
+CLOCK: [2024-06-08 Sat 12:22]--[2024-06-08 Sat 14:25] =>  2:03
+CLOCK: [2024-06-07 Fri 09:12]--[2024-06-07 Fri 11:10] =>  1:58
+CLOCK: [2024-06-05 Wed 09:36]--[2024-06-05 Wed 11:32] =>  1:56
+CLOCK: [2024-06-04 Tue 08:50]--[2024-06-04 Tue 09:51] =>  1:01
+CLOCK: [2024-05-31 Fri 18:04]--[2024-05-31 Fri 18:25] =>  0:21
+CLOCK: [2024-05-30 Thu 11:10]--[2024-05-30 Thu 11:42] =>  0:32
+CLOCK: [2024-05-29 Wed 17:00]--[2024-05-29 Wed 18:32] =>  1:32
+CLOCK: [2024-05-28 Tue 10:39]--[2024-05-28 Tue 11:45] =>  1:06
+CLOCK: [2024-05-27 Mon 14:44]--[2024-05-27 Mon 16:42] =>  1:58
+CLOCK: [2024-05-18 Sat 12:20]--[2024-05-18 Sat 13:54] =>  1:34
+CLOCK: [2024-05-17 Fri 10:18]--[2024-05-17 Fri 11:20] =>  1:02
+CLOCK: [2024-05-16 Thu 10:27]--[2024-05-16 Thu 11:41] =>  1:14
+CLOCK: [2024-05-15 Wed 11:52]--[2024-05-15 Wed 12:49] =>  0:57
+CLOCK: [2024-05-14 Tue 10:27]--[2024-05-14 Tue 11:28] =>  1:01
+CLOCK: [2024-05-11 Sat 09:38]--[2024-05-11 Sat 10:48] =>  1:10
+CLOCK: [2024-05-10 Fri 14:01]--[2024-05-10 Fri 14:47] =>  0:46
+CLOCK: [2024-05-09 Thu 13:49]--[2024-05-09 Thu 14:07] =>  0:18
+CLOCK: [2024-05-08 Wed 09:55]--[2024-05-08 Wed 11:04] =>  1:09
+CLOCK: [2024-05-07 Tue 10:25]--[2024-05-07 Tue 11:49] =>  1:24
+CLOCK: [2024-05-06 Mon 14:51]--[2024-05-06 Mon 15:51] =>  1:00
+CLOCK: [2024-05-04 Sat 11:15]--[2024-05-04 Sat 12:41] =>  1:26
+CLOCK: [2024-05-03 Fri 09:56]--[2024-05-03 Fri 11:58] =>  2:02
+CLOCK: [2024-05-02 Thu 08:26]--[2024-05-02 Thu 09:11] =>  0:45
+CLOCK: [2024-05-01 Wed 09:39]--[2024-05-01 Wed 10:20] =>  0:41
+CLOCK: [2024-04-30 Tue 10:02]--[2024-04-30 Tue 11:32] =>  1:30
+CLOCK: [2024-04-29 Mon 11:10]--[2024-04-29 Mon 11:44] =>  0:34
+CLOCK: [2024-04-28 Sun 12:35]--[2024-04-28 Sun 13:20] =>  0:45
+CLOCK: [2024-04-27 Sat 10:42]--[2024-04-27 Sat 11:19] =>  0:37
+CLOCK: [2024-04-26 Fri 09:56]--[2024-04-26 Fri 10:26] =>  0:30
+CLOCK: [2024-04-25 Thu 12:42]--[2024-04-25 Thu 13:32] =>  0:50
+CLOCK: [2024-04-24 Wed 09:34]--[2024-04-24 Wed 10:47] =>  1:13
+CLOCK: [2024-04-23 Tue 09:37]--[2024-04-23 Tue 10:14] =>  0:37
+CLOCK: [2024-04-22 Mon 10:03]--[2024-04-22 Mon 10:32] =>  0:29
+CLOCK: [2024-04-21 Sun 11:23]--[2024-04-21 Sun 11:43] =>  0:20
+CLOCK: [2024-04-20 Sat 11:48]--[2024-04-20 Sat 12:08] =>  0:20
+CLOCK: [2024-04-19 Fri 12:32]--[2024-04-19 Fri 12:55] =>  0:23
+CLOCK: [2024-04-18 Thu 15:00]--[2024-04-18 Thu 15:30] =>  0:30
+CLOCK: [2024-04-17 Wed 13:52]--[2024-04-17 Wed 14:15] =>  0:23
+CLOCK: [2024-04-16 Tue 12:31]--[2024-04-16 Tue 12:50] =>  0:19
+CLOCK: [2024-04-15 Mon 17:21]--[2024-04-15 Mon 17:35] =>  0:14
+CLOCK: [2024-04-14 Sun 12:28]--[2024-04-14 Sun 12:57] =>  0:29
+CLOCK: [2024-04-13 Sat 11:57]--[2024-04-13 Sat 12:14] =>  0:17
+CLOCK: [2024-04-12 Fri 13:13]--[2024-04-12 Fri 13:37] =>  0:24
+CLOCK: [2024-04-11 Thu 11:48]--[2024-04-11 Thu 12:30] =>  0:42
+CLOCK: [2024-04-10 Wed 12:21]--[2024-04-10 Wed 13:06] =>  0:45
+CLOCK: [2024-04-09 Tue 12:49]--[2024-04-09 Tue 13:34] =>  0:45
+CLOCK: [2024-04-08 Mon 11:42]--[2024-04-08 Mon 12:222] =>  0:40
+CLOCK: [2024-04-01 Mon 09:51]--[2024-04-01 Mon 10:35] =>  0:44
+CLOCK: [2024-03-31 Sun 14:06]--[2024-03-31 Sun 14:46] =>  0:40
+CLOCK: [2024-03-30 Sat 11:50]--[2024-03-30 Sat 12:43] =>  0:53
+CLOCK: [2024-03-29 Fri 15:44]--[2024-03-29 Fri 16:23] =>  0:39
+CLOCK: [2024-03-28 Thu 13:00]--[2024-03-28 Thu 13:41] =>  0:41
+CLOCK: [2024-03-27 Wed 11:54]--[2024-03-27 Wed 12:38] =>  0:44
+CLOCK: [2024-03-27 Wed 11:35]--[2024-03-27 Wed 11:43] =>  0:08
+CLOCK: [2024-03-26 Tue 13:28]--[2024-03-26 Tue 14:01] =>  0:33
+CLOCK: [2024-03-25 Mon 10:42]--[2024-03-25 Mon 11:31] =>  0:49
+CLOCK: [2024-03-24 Sun 12:56]--[2024-03-24 Sun 13:11] =>  0:15
+CLOCK: [2024-03-23 Sat 16:07]--[2024-03-23 Sat 17:01] =>  0:54
+CLOCK: [2024-03-23 Sat 13:45]--[2024-03-23 Sat 13:49] =>  0:04
+CLOCK: [2024-03-22 Fri 09:17]--[2024-03-22 Fri 11:15] =>  1:58
+CLOCK: [2024-03-21 Thu 09:06]--[2024-03-21 Thu 10:36] =>  1:30
+CLOCK: [2024-03-20 Wed 09:33]--[2024-03-20 Wed 10:25] =>  0:52
+CLOCK: [2024-03-19 Tue 08:36]--[2024-03-19 Tue 09:13] =>  0:37
+CLOCK: [2024-03-18 Mon 14:45]--[2024-03-18 Mon 14:59] =>  0:14
+CLOCK: [2024-03-16 Sat 12:51]--[2024-03-16 Sat 13:15] =>  0:24
+CLOCK: [2024-03-15 Fri 10:27]--[2024-03-15 Fri 10:33] =>  0:06
+CLOCK: [2024-03-15 Fri 10:03]--[2024-03-15 Fri 10:27] =>  0:24
+CLOCK: [2024-03-14 Thu 11:16]--[2024-03-14 Thu 11:24] =>  0:08
+CLOCK: [2024-03-14 Thu 10:42]--[2024-03-14 Thu 11:16] =>  0:34
+CLOCK: [2024-03-13 Wed 08:59]--[2024-03-13 Wed 09:11] =>  0:12
+CLOCK: [2024-03-13 Wed 08:21]--[2024-03-13 Wed 08:59] =>  0:38
+CLOCK: [2024-03-13 Wed 07:43]--[2024-03-13 Wed 08:08] =>  0:25
+CLOCK: [2024-03-12 Tue 16:07]--[2024-03-12 Tue 16:28] =>  0:21
+CLOCK: [2024-03-12 Tue 15:05]--[2024-03-12 Tue 16:03] =>  0:58
 CLOCK: [2024-03-09 Sat 11:46]--[2024-03-09 Sat 13:00] =>  1:14
 CLOCK: [2024-03-08 Fri 11:37]--[2024-03-08 Fri 11:55] =>  0:18
 CLOCK: [2024-03-08 Fri 10:10]--[2024-03-08 Fri 11:31] =>  1:21
@@ -14443,6 +14774,11 @@ CLOCK: [2023-04-17 Mon 11:26]--[2023-04-17 Mon 11:44] =>  0:18
 :END:
 ** Video
 :LOGBOOK:
+CLOCK: [2024-03-27 Wed 13:12]--[2024-03-27 Wed 16:42] =>  3:30
+CLOCK: [2024-03-26 Tue 15:39]--[2024-03-26 Tue 16:37] =>  0:58
+CLOCK: [2024-03-21 Thu 12:17]--[2024-03-21 Thu 13:10] =>  0:53
+CLOCK: [2024-03-20 Wed 10:39]--[2024-03-20 Wed 11:56] =>  1:17
+CLOCK: [2024-03-15 Fri 11:30]--[2024-03-15 Fri 13:22] =>  1:52
 CLOCK: [2023-10-24 Tue 11:49]--[2023-10-24 Tue 12:56] =>  1:07
 CLOCK: [2023-10-23 Mon 10:56]--[2023-10-23 Mon 11:31] =>  0:35
 CLOCK: [2023-10-18 Wed 11:44]--[2023-10-18 Wed 17:16] =>  5:32

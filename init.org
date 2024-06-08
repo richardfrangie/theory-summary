@@ -153,8 +153,6 @@ Fitting Emacs with its environment.
 
 #+end_src
 
-#+RESULTS:
-
 ** Mouse
 Input from the mouse.
 
@@ -176,6 +174,10 @@ Input from the mouse.
   ("C-S-c C-S-c" . mc/edit-lines)
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this))
+
+
+;; Binding mouse events
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 
 
 ;; After type C-u C-SPC, can type C-SPC instead of C-u C-SPC to cycle
@@ -216,7 +218,7 @@ Input from the mouse.
 ** Mode Line
 Contents of the mode line.
 
- #+begin_src emacs-lisp
+#+begin_src emacs-lisp
 
 ;; Fixes the issue of icons disappearing in modeline.
 (use-package nerd-icons
@@ -229,14 +231,102 @@ Contents of the mode line.
 
 ;; Is a very attractive and rich mode line configuration for Emacs.
 (use-package doom-modeline
-  :init (doom-modeline-mode 1)
+  ;; :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)
            (doom-modeline-buffer-file-name-style 'truncate-except-project)))
 ;; NOTE: The first time you load your configuration on a new machine,
 ;; you'll need to run M-x all-the-icons-install-fonts after installing
 ;; this package so that mode line icons display correctly.
 
- #+end_src
+
+;; Hidden minor modes from the mode line
+(defvar hidden-minor-modes
+  '(abbrev-mode drag-stuff-mode ivy-mode counsel-mode
+  yas-minor-mode eldoc-mode buffer-face-mode visual-line-mode
+  org-indent-mode which-key-mode help-mode company-mode
+  company-box-mode paredit-mode lsp-lens-mode skewer-css-mode
+  skewer-html-mode skewer-mode projectile-mode))
+
+(defun purge-minor-modes ()
+  (interactive)
+  (dolist (x hidden-minor-modes nil)
+    (let ((trg (cdr (assoc x minor-mode-alist))))
+      (when trg
+        (setcar trg "")))))
+
+(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
+
+
+;;;; Edit the mode line
+;; Function from Emacs 29.
+(defun mode-line-window-selected-p ()
+  "Return non-nil if we're updating the mode line for the selected window.
+This function is meant to be called in `:eval' mode line
+constructs to allow altering the look of the mode line depending
+on whether the mode line belongs to the currently selected window
+or not."
+  (let ((window (selected-window)))
+    (or (eq window (old-selected-window))
+  (and (minibuffer-window-active-p (minibuffer-window))
+       (with-selected-window (minibuffer-window)
+         (eq window (minibuffer-selected-window)))))))
+
+(defvar-local rf-mode-line-modes-hide
+    '(:eval
+      (when (mode-line-window-selected-p)
+        mode-line-modes))
+  "Only display modes on the visible screen.")
+(put 'rf-mode-line-modes-hide 'risky-local-variable t)
+
+(setq-default mode-line-format
+              '("%e"
+                mode-line-front-space
+                mode-line-mule-info
+                mode-line-client
+                mode-line-modified
+                mode-line-remote
+                mode-line-frame-identification
+                mode-line-buffer-identification
+                "   "
+                mode-line-position
+                (vc-mode vc-mode)
+                "  "
+                rf-mode-line-modes-hide
+                mode-line-misc-info
+                mode-line-end-spaces))
+
+
+;; Bastien Guerry (https://bzg.fr/en/emacs-hide-mode-line/)
+;; This minor mode helps me switching it on and off.
+;; Just use M-x hidden-mode-line-mode RET and you're done.
+(defvar-local hidden-mode-line-mode nil)
+
+(define-minor-mode hidden-mode-line-mode
+  "Minor mode to hide the mode-line in the current buffer."
+  :init-value nil
+  :global t
+  :variable hidden-mode-line-mode
+  :group 'editing-basics
+  (if hidden-mode-line-mode
+      (setq hide-mode-line mode-line-format
+            mode-line-format nil)
+    (setq mode-line-format hide-mode-line
+          hide-mode-line nil))
+  (force-mode-line-update)
+  ;; Apparently force-mode-line-update is not always enough to
+  ;; redisplay the mode-line
+  (redraw-display)
+  (when (and (called-interactively-p 'interactive)
+             hidden-mode-line-mode)
+    (run-with-idle-timer
+     0 nil 'message
+     (concat "Hidden Mode Line Mode enabled.  "
+             "Use M-x hidden-mode-line-mode to make the mode-line appear."))))
+
+;; If you want to hide the mode-line in every buffer by default
+;; (add-hook 'after-change-major-mode-hook 'hidden-mode-line-mode)
+
+#+end_src
 
 ** Faces
 Support for multiple fonts.
@@ -333,7 +423,7 @@ Basic text editing facilities.
 
 #+begin_src emacs-lisp
 
-;; Toggle Delete Selection mode.
+;; Toggle Delete Selection mode (replace region highlight).
 (delete-selection-mode 1)
 
 
@@ -388,6 +478,18 @@ It only works when there are only two windows."
 ;; (use-package ws-butler
 ;;   :hook ((text-mode . ws-butler-mode)
 ;;          (prog-mode . ws-butler-mode)))
+
+
+;; Comparing files ‘ediff’
+;;To make ediff to be horizontally split
+(setq ediff-split-window-function 'split-window-horizontally)
+;; To make ediff operate on selected-frame
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;;(setq ediff-keep-variants nil)
+;;(setq ediff-make-buffers-readonly-at-startup nil)
+;;(setq ediff-merge-revisions-with-ancestor t)
+;;(setq ediff-show-clashes-only t)
 
 #+end_src
 
@@ -805,7 +907,6 @@ Support for Emacs help systems.
 ;; entered incomplete command (a prefix) in a popup.
 (use-package which-key
   :defer 0
-  :diminish which-key-mode
   :config
   (which-key-mode)
   (setq which-key-idle-delay 0.7))
@@ -813,7 +914,6 @@ Support for Emacs help systems.
 
 ;; Is an interactive interface for completion in minibuffer.
 (use-package ivy
-  :diminish
 ;; Swiper is an alternative to isearch that uses Ivy to show matches.
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
@@ -863,6 +963,7 @@ Support for Emacs help systems.
 ;; Adds a lot of very helpful information (describe-function will show
 ;; the source code, where a function is being called, ...).
 (use-package helpful
+  :diminish help-mode
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -904,9 +1005,9 @@ Default http://localhost:8080 . Set ~httpd-port~ to change the default port if n
 
 ;; Live web development with Emacs:
 (use-package skewer-mode)
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
+;; (add-hook 'js2-mode-hook 'skewer-mode)
+;; (add-hook 'css-mode-hook 'skewer-css-mode)
+;; (add-hook 'html-mode-hook 'skewer-html-mode)
 
 #+end_src
 
@@ -919,8 +1020,8 @@ Support for programming in other languages.
 ** Tools
 Programming tools.
 
-*** LSP Mode
-Enable IDE-like functionality for many different programming languages via "language servers".
+*** Language server
+LSP Mode Enable IDE-like functionality for many different programming languages via "language servers".
 
 #+begin_src emacs-lisp
 
@@ -935,6 +1036,9 @@ Enable IDE-like functionality for many different programming languages via "lang
   :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")
+  ;;;; Testing if lsp disable modeline statics (doesn't work)
+  (setq lsp-modeline-diagnostics-enable nil)
+  (setq lsp-modeline-code-actions-enable nil)
   :config
   (lsp-enable-which-key-integration t)) ; pop-up descriptions bindings.
 
@@ -945,12 +1049,13 @@ Enable IDE-like functionality for many different programming languages via "lang
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-position 'bottom))
-
+;; lsp-ui-doc-show-with-mouse ;; When non-nil, move the mouse pointer
+                              ;; over a symbol to show the doc
 
 ;; Integrates Ivy with lsp-mode to make it easy to search for things by
 ;; name in your code.
 (use-package lsp-ivy
-  :after lsp)
+  :after lsp-mode)
 
 
 ;; Provides nice tree views for symbols in a file, references of a
@@ -982,6 +1087,7 @@ Enable IDE-like functionality for many different programming languages via "lang
 
   ;; Completions with icons and better overall presentation.
   (use-package company-box
+  :diminish company-box-mode
   :hook (company-mode . company-box-mode))
 
 #+end_src
@@ -1109,11 +1215,21 @@ Modes for editing programming languages.
 
 #+end_src
 
-*** Css
+*** CSS
 Cascading Style Sheets (CSS) editing mode.
 
-*** TypeScript
+*** JavaScript
 Customization variables for JavaScript mode.
+
+#+begin_src emacs-lisp
+
+;; (setq js-indent-level 2)
+;; (setq js2-basic-offset 2)
+
+#+end_src
+
+*** TypeScript
+Customization variables for TypeScript mode.
 
 #+begin_src emacs-lisp
 
@@ -1157,6 +1273,7 @@ Generic programming mode, from which others derive.
 ;; Helps keep parentheses balanced and adds many keys for moving
 ;; S-expressions and moving around in S-expressions.
 (use-package paredit
+  :diminish paredit-mode
   :hook (prog-mode . enable-paredit-mode)
   :config (define-key paredit-mode-map (kbd "<M-down>") nil)
           (define-key paredit-mode-map (kbd "<M-up>") nil)
@@ -1213,8 +1330,8 @@ Command shell implemented entirely in Emacs Lisp.
   ;; Truncate buffer for performance.
   (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
-  ;; Use completion-at-point to provide completions in eshell
-  (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
+  ;; Use completion-at-point to provide completions in eshell (doesn't work)
+  ;; (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
 
   ;; Initialize the shell history
   (eshell-hist-initialize)
@@ -1374,5 +1491,6 @@ Code local to your site.
 * References
   - [[https://www.gnu.org/software/emacs/manual/html_mono/emacs.htm][The GNU Emacs Editor Manual]]
   - [[https://github.com/daviwil/emacs-from-scratch/blob/master/init.el][System Crafters Scratch]]
+  - [[https://www.youtube.com/watch?v=48JlgiBpw_I][System Crafters Youtube]]
   - [[https://config.daviwil.com/emacs][System Crafters Daviwil]]
   - [[https://wilkesley.org/~ian/xah/][∑XAH]]

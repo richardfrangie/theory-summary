@@ -2018,7 +2018,7 @@ Contains a dictionaries.
 Contains kernel boot loader files. These files pertain only to the very first stage of the Linux startup procedure, so you won’t find information about how Linux starts up its services in this directory.
 
 *** /boot/vmlinuz
-Is normally a binary file that contains the kernel. A boot loader loads this file into memory and sets it in motion when the system boots. Once the boot loader starts the kernel, the main kernel file is no longer used by the running system.
+Is normally a binary file that contains the kernel A boot loader loads this file into memory and sets it in motion when the system boots. Once the boot loader starts the kernel, the main kernel file is no longer used by the running system.
 
 *** /boot/grub
 The GRUB configuration directory.

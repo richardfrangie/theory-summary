@@ -1039,8 +1039,8 @@ This forms the basis of a simple, singly linked list structure whose contents ca
    +------+------+   +------+------+   +------+------+
    |  *   |   *----->|  *   |   *----->|  *   |   *-----> nil
    +--|---+------+   +--|---+------+   +--|---+------+
-      |        |           |
-      v        v           v
+      |                 |                 |
+      v                 v                 v
       1                 2                 3
 
 
@@ -7397,7 +7397,58 @@ The info line at the end.
 **** lsp mode toggle
 Whenever you have a buffer width that's kind of narrow things get jammed up together with the code and it starts to get a little bit distracting so i tend to allow only minimal information there if at all. You can toggle this on and off using =C-c l T= and then some toggle code action.
 
+*** Comparing
+**** ediff
+Alternative to [[diff]] much more sophisticated.
+
+Provides a convenient way of simultaneous browsing through the differences between a pair (or a triple) of files or buffers. The files being compared, file-A, file-B, and file-C (if applicable) are shown in separate windows (side by side, one above the other or in separate frames) and the differences are highlighted as you step through them. You can also copy difference regions from one buffer to another (and recover old differences if you change your mind).
+
+Ediff also supports merging operations on files and buffers, including merging using ancestor versions. Both comparison and merging operations can be performed on directories, i.e. by pairwise comparison of files in those directories.
+
+You can ignore whitespace or case sensitivity interactively, on the fly:
+  - Whitespace sensitivity :: toggle with ` ~##~ ’ (~‘ediff-toggle-skip-similar’~).
+  - Case sensitivity :: toggle with ` ~#c~ ’ (~‘ediff-toggle-ignore-case’~). This assumes that you’ve loaded library Lisp:ediff+.el and that you are using ` ~diff(1)~ ’ as ~‘ediff-diff-program’~. (Toggling case-sensitivity is available in vanilla GNU Emacs 22, so Lisp:ediff+.el is mainly useful for older Emacs versions.)
+
+**** ediff3
+Run Ediff on three files, FILE-A, FILE-B, and FILE-C.
+
+**** ediff-buffers
+Run Ediff on a pair of buffers, BUFFER-A and BUFFER-B.
+
+**** compare-windows
+Compare text in *current window with text in another window*.
+
+Comparison starts at point in each window, after pushing each initial point value on the mark ring in its respective buffer. Then it moves point forward in each window, one character at a time, until it reaches characters that don't match. Then the command exits.
+
+If point in the two windows is followed by non-matching text when the command starts, it tries heuristically to advance up to matching text in the two windows, and then exits. So if you use ~M-x compare-windows~ repeatedly, each time it either skips one matching range or finds the start of another.
+
+With a numeric argument, ~compare-windows~ ignores changes in whitespace. If the variable ~compare-ignore-case~ is non-~nil~, the comparison ignores differences in case as well. If the variable ~compare-ignore-whitespace~ is non-~nil~, ~compare-windows~ normally ignores changes in whitespace, and a prefix argument turns that off.
+
+**** smerge-makeup-conflict
+See the differences between two *blocks of text in the same buffer*.
+
+Uses point and mark for two of the relevant positions and previous marks
+for the other ones. By default, makes up a 2-way conflict, with a ~C-u~ prefix, makes up a 3-way conflict.
+
+- go to the beginning of the first bloc, ~C-SPC~
+- go the beginning of the second bloc, ~C-SPC~
+- go to the end of the second bloc, ~M-x smerge-makeup-conflict RET~
+- then you can use ~C-c ^ R~ or ~C-c ^ =~ to view the differences.
+
+Note that this works better if the two blocs are pretty much consecutive.
+
+**** diff
+Prompts for two file names, using the minibuffer, and displays the differences between the two files in a buffer named ‘*diff*’. This works by running the ~diff~ program, using options taken from the variable ~diff-switches~.
+
+After running ~M-x diff~, you can use ~C-x `~ to visit successive changed locations in the two source files, as in Compilation mode. (see Compilation Mode.) In the ‘*diff*’ buffer, you can move to a particular hunk of changes and type C-c C-c (diff-goto-source) to visit the corresponding source location.
+
+**** diff-backup
+Compares a specified file with its most recent backup.
+
 *** Misc
+**** pwd
+Show the current default directory.
+
 **** command-history
 Examine commands from command-history in a buffer.
 **** apropos
@@ -7410,9 +7461,6 @@ Examine commands from command-history in a buffer.
 M-x apropos RET print\|insert\|column RET
 
 #+end_src
-
-**** compare-windows
-Compare text in current window with text in another window.
 
 **** custom-reevaluate-setting
 Reset the value of SYMBOL by re-evaluating its saved or standard value.
@@ -7486,8 +7534,8 @@ Download descriptions of all configured ELPA packages.
 
 For each archive configured in the variable package-archives, inform Emacs about the latest versions of all packages it offers, and make them available for download.
 
-Note: when you try to install something appear an error like says "a package is not found using use package" just run the ~package-refresh-contents~ command and that will get everything fixed up for you.
-
+*Note*: when you try to install something appear an error like says "a package is not found using use package" just run the ~package-refresh-contents~ command and that will get everything fixed up for you.
+** Useful modes
 *** Lsp-mode
 **** lsp
 Entry point for the server startup.
@@ -7503,11 +7551,17 @@ Perform completion on the text around point.
 **** lsp-find-definition
 Find definitions of the symbol under point.
 
+**** xref-find-definitions
+Find the definition of the identifier at point.
+
 **** lsp-ui-peek-find-definitions
 Find definitions to the IDENTIFIER at point.
 
-**** xref-find-definitions
-Find the definition of the identifier at point.
+**** lsp-find-references
+Find references of the symbol under point.
+
+**** xref-find-references
+Find references to the identifier at point.
 
 **** lsp-ui-peek-find-references
 Find references to the IDENTIFIER at point.
@@ -7647,6 +7701,75 @@ Register configuration template CONFIGURATION-NAME.
 
 **** dap-debug-edit-template
 Edit registered template DEBUG-ARGS.
+
+*** Multiple-cursors-mode
+**** mc/mark-next-like-this
+Find and mark the next part of the buffer matching the currently active region
+If no region is active add a cursor on the next line.
+
+**** mc/mark-previous-like-this
+Find and mark the previous part of the buffer matching the currently active region. If no region is active ,add a cursor on the previous line.
+
+**** mc/mark-all-like-this
+Find and mark all parts of the buffer matching the currently active region, while also keeping the current region.
+
+**** mc/edit-lines
+When you have an active region that spans multiple lines, the following will add a cursor to each line.
+
+**** mc/mark-next-like-this-word
+Adds a cursor and region at the next part of the buffer forwards that matches the current region, if no region is selected it selects the word at the point. (words in the same or following lines)
+
+**** mc/mark-next-word-like-this
+Like mc/mark-next-like-this but only for whole words. (just the words in the following lines)
+
+**** mc/mark-all-in-region
+Prompts for a string to match in the region, adding cursors to all of them.
+
+**** mc/mark-all-dwim
+Tries to be smart about marking everything you want. Can be pressed multiple times.
+
+**** mc/add-cursor-on-click
+Add a cursor where you click, or remove a fake cursor that is already there (~C-S-<mouse-1>~).
+
+**** mc/mark-more-like-this-extended
+Use arrow keys to quickly mark/skip next/previous occurrences.
+
+**** mc/insert-numbers
+Insert increasing numbers for each cursor, top to bottom.
+
+**** mc/insert-letters
+Insert increasing letters for each cursor, top to bottom.
+
+**** set-rectangular-region-anchor
+Think of this one as `set-mark` except you're marking a rectangular region. It is an exceedingly quick way of adding multiple cursors to multiple lines.
+
+**** Notes
+- To get out of ~multiple-cursors-mode~, press ~<return>~ or ~C-g~. The latter will first *disable multiple regions before disabling multiple cursors*. If you want to insert a newline in ~multiple-cursors-mode~, use ~C-j~.
+
+- Sometimes you end up with cursors outside of your view. You can scroll the screen to center on each cursor with ~C-v~ and ~M-v~ or you can press ~C-'~ to hide all lines without a cursor, press ~C-'~ again to unhide.
+
+- If you get out of ~multiple-cursors-mode~ and yank - it will yank only from the ~kill-ring~ of main cursor. To yank from the ~kill-rings~ of every cursor use ~yank-rectangle~, normally found at ~C-x r y~.
+
+- It is possible to set multiple-cursors to "run-for-all" for every command except for those that are listed in ~mc/cmds-to-run-once~. To enable this set ~mc/always-run-for-all~ to non-nil. Add commands to be run once to ~mc/cmds-to-run-once~ in ".mc-lists.el".
+
+  Multiple-cursors uses two lists of commands to know what to do: the run-once list and the run-for-all list. It comes with a set of defaults, but it would be beyond silly to try and include all the known Emacs commands.
+
+  So that's why multiple-cursors occasionally asks what to do about a command. It will then remember your choice by saving it in ~~/.emacs.d/.mc-lists.el~. You can change the location with:
+
+  ~(setq mc/list-file "/my/preferred/file")~
+
+  NB! Make sure to do so before requiring multiple-cursors.
+
+- Redo might screw with your cursors. Undo works very well.
+
+*** Electric-pair-mode
+**** electric-pair-mode
+Toggle automatic parens pairing (Electric Pair mode).
+
+Electric Pair mode is a global minor mode.  When enabled, typing an open parenthesis automatically inserts the corresponding closing parenthesis, and vice versa.  (Likewise for brackets, quotes, etc.).  If the region is active, the parentheses (brackets, etc.) are inserted around the region instead.
+
+**** electric-pair-local-mode
+Toggle ~electric-pair-mode~ only in this buffer.
 
 * Notes
 ** Org
@@ -8461,9 +8584,6 @@ It's a rss for youtube in emacs. I might like it because it shows the transcript
 
 https://github.com/karthink/elfeed-tube
 
-**** multiple-cursors
-The ~mc/list-file~ variable has the path to the file that keeps track of the preferences for running commands with multiple cursors.
-
 **** emmet-mode
 https://github.com/smihica/emmet-mode
 
@@ -8478,6 +8598,136 @@ This is an alternative to helm-css-scss. The parser was lifted borrowed from hel
 
 Other package: GNU Emacs as a lightweight Web IDE (HTML + JS + CSS)
 https://lists.gnu.org/archive/html/emacs-devel/2020-02/msg00180.html
+
+** Mode line
+*** Brief
+A mode line construct can be either a single string, a single Lisp symbol, or a list. For lists, the first element in the list determines how the list is interpreted. Nesting mode line constructs for recursive processing is very common.
+
+|     | /Input Method and Coding System/                              |
+|-----+-------------------------------------------------------------|
+| /-/   | No code conversion, except possibly end-of-line translation |
+| /'=/  | No code conversion or end-of-line translation               |
+| /1/   | ISO Latin 1 code conversion                                 |
+| /U/   | Unicode (typically UTF-8)                                   |
+|     |                                                             |
+|     | /End Of Line/                                                 |
+|-----+-------------------------------------------------------------|
+| /:/   | (Unix) Line feed - Unix, Linux, MacOS X                     |
+| /'//  | (MAC) Carriage return - classic Macintosh (not MacOS X)     |
+| /\/   | (DOS) Both - Microsoft, DEC, RFCs                           |
+|     |                                                             |
+|     | /Buffer Modification/                                         |
+|-----+-------------------------------------------------------------|
+| /**/  | modified since last save                                    |
+| /--/  | not modified since last save                                |
+| /%*/  | read-only, but modified                                     |
+| /%%/  | read-only, not modified                                     |
+|     | /Cursor Position/                                             |
+|-----+-------------------------------------------------------------|
+| /Top/ | the beginning of the buffer is shown in the window          |
+| /Bot/ | the end of the buffer is shown in the window                |
+| /All/ | all of the buffer is shown in the window                    |
+| /xx%/ | % of the buffer above the top of the window ( visible text) |
+
+*** Single string
+A mode line construct can be a single string. When rendered by ‘ ~format-mode-line~ ’, this yields the same string, with any ~%-constructs~ replaced with their values. Note that ~%-construct~ replacement in simple strings only happens at the top-level.
+
+#+begin_src emacs-lisp
+
+(setq example-construct "buffer: %b")
+;; buffer: *scratch*
+
+#+end_src
+
+*** Single Lisp symbol
+A mode line construct can be a single Lisp symbol. When rendered, symbols are evaluated for their value. The symbols ‘ ~t~ ’ and ‘ ~nil~ ’ are ignored, as are any symbols whose value is void. A symbol whose value is a string is not subject to ~%-construct~ replacement.
+
+#+begin_src emacs-lisp
+
+(setq example-construct emacs-version)
+
+(setq mode-line-format nil)
+;; disable mode line
+
+#+end_src
+
+*** List of constructs
+A mode line construct can be a list of mode constructs. Such a list must start with either a string, or another list. When rendered, the list elements(s) are processed recursively as mode line constructs, and the results concatenated into one string. Strings in such a list are subject to ~%-construct~ processing.
+
+#+begin_src emacs-lisp
+
+(setq example-construct (list "Emacs version: " emacs-version))
+
+#+end_src
+
+*** Field width
+A list starting with an integer specifies a field width. The remainder of the list is processed recursively, as above. If the width is positive, the resulting string is space padded on the right to that width as needed. If the width is negative, it is truncated as needed.
+
+#+begin_src emacs-lisp
+
+;; FIXME example for positive padded
+
+;; limit path display to 70 characters
+(setq example-construct (list -70 "File: %f"))
+
+#+end_src
+
+*** Eval form
+A list starting with ~:eval~ causes the rest of the list to be evaluated as a Lisp form, and uses the result as the string to display. If the Lisp evaluation loads any files, it may cause infinite recursion and crash Emacs, so don’t do that.
+
+#+begin_src emacs-lisp
+
+(setq mode-line-format '("%e" "Hello world!" (:eval (format " Buffer: %s" (buffer-name)))))
+;; Hello world! Buffer: *scratch*
+
+#+end_src
+
+*** Propertize
+A list starting with ~:propertize~ will process the second list element as a mode line construct, taking the remaining elements as *text properties to add to the resulting string*.
+
+#+begin_src emacs-lisp
+
+(setq mode-line-format '("%e" "Hello world!" (:eval (format " Buffer: %s" (propertize (buffer-name) 'face 'error)))))
+;; Hello world! Buffer: *scratch*
+;; but "*scratch*" in red color
+
+(setq mode-line-format '("%e" "Hello world!" (:eval (propertize (capitalize (symbol-name major-mode)) 'face 'bold))))
+;; MODE: Lisp-Interaction-Mode
+
+#+end_src
+
+*** defvar-local
+Declares local variables, it is useful to use it in “mode-line” to make its construction more comfortable and easier to read.
+
+#+begin_src emacs-lisp
+
+(defvar-local rf-modeline-buffer '(:eval (format " Buffer: %s"
+                 (propertize (buffer-name) 'face 'error)))
+              "Mode line construct to display the buffer.")
+(defvar-local rf-modeline-major-mode '(:eval (propertize
+                 (capitalize (symbol-name major-mode)) 'face 'bold))
+              "Mode line construct to display the major mode.")
+
+(setq-default mode-line-format '("%e" "Hello world!"
+  (:eval (format " Buffer: %s" (propertize (buffer-name) 'face 'error)))
+  (:eval (propertize (capitalize (symbol-name major-mode)) 'face 'bold))))
+;; is equivalent to
+(setq-default mode-line-format '("%e" "Hello world!" rf-modeline-buffer
+          rf-modeline-major-mode)
+
+#+end_src
+
+*Note* the variable must have a risky local variable property:
+
+#+begin_src emacs-lisp
+
+(put 'rf-modeline-buffer 'risky-local-variable t)
+;; or many variable at once in dolist
+(dolist (construct '(rf-modeline-buffer
+                     rf-modeline-major-mode))
+    (put construct 'risky-local-variable t))
+
+#+end_src
 
 ** Miscellaneous
 *** Keyboard
@@ -8566,11 +8816,216 @@ The advice feature lets you add to the existing definition of a function, by adv
 The one that has worked best for me is ~eslint~, I haven't tried it much either.
 
 *** Swiper
-How to search for two words together?
 
 #+begin_src emacs-lisp
 
+;; search for two words together
 \(one two\)
+
+
+;; search only the exact word
+\bword\b
+
+#+end_src
+
+*** Hydra
+How to use defhydra
+
+#+begin_src emacs-lisp
+
+    (defhydra hydra-buffers (:color blue :hint nil)
+              "
+                                                                       ╭─────────┐
+     Move to Window         Switch                  Do                 │ Buffers │
+  ╭────────────────────────────────────────────────────────────────────┴─────────╯
+           ^_k_^          [_b_] switch (ido)       [_d_] kill the buffer
+           ^^↑^^          [_i_] ibuffer            [_r_] toggle read-only mode
+       _h_ ←   → _l_      [_a_] alternate          [_u_] revert buffer changes
+           ^^↓^^          [_s_] switch (helm)      [_w_] save buffer
+           ^_j_^
+  --------------------------------------------------------------------------------
+              "
+              ("<tab>" hydra-master/body "back")
+              ("<ESC>" nil "quit")
+              ("a" joe-alternate-buffers)
+              ("b" ido-switch-buffer)
+              ("d" joe-kill-this-buffer)
+              ("i" ibuffer)
+              ("h" buf-move-left  :color red)
+              ("k" buf-move-up    :color red)
+              ("j" buf-move-down  :color red)
+              ("l" buf-move-right :color red)
+              ("r" read-only-mode)
+              ("s" helm-buffers-list)
+              ("u" joe-revert-buffer)
+              ("w" save-buffer))
+
+    (defhydra hydra-window (:color blue :hint nil)
+            "
+                                                                       ╭─────────┐
+     Move to      Size    Scroll        Split                    Do    │ Windows │
+  ╭────────────────────────────────────────────────────────────────────┴─────────╯
+        ^_k_^           ^_K_^       ^_p_^    ╭─┬─┐^ ^        ╭─┬─┐^ ^         ↺ [_u_] undo layout
+        ^^↑^^           ^^↑^^       ^^↑^^    │ │ │_v_ertical ├─┼─┤_b_alance   ↻ [_r_] restore layout
+    _h_ ←   → _l_   _H_ ←   → _L_   ^^ ^^    ╰─┴─╯^ ^        ╰─┴─╯^ ^         ✗ [_d_] close window
+        ^^↓^^           ^^↓^^       ^^↓^^    ╭───┐^ ^        ╭───┐^ ^         ⇋ [_w_] cycle window
+        ^_j_^           ^_J_^       ^_n_^    ├───┤_s_tack    │   │_z_oom
+        ^^ ^^           ^^ ^^       ^^ ^^    ╰───╯^ ^        ╰───╯^ ^
+  --------------------------------------------------------------------------------
+            "
+            ("<tab>" hydra-master/body "back")
+            ("<ESC>" nil "quit")
+            ("n" joe-scroll-other-window :color red)
+            ("p" joe-scroll-other-window-down :color red)
+            ("b" balance-windows)
+            ("d" delete-window)
+            ("H" shrink-window-horizontally :color red)
+            ("h" windmove-left :color red)
+            ("J" shrink-window :color red)
+            ("j" windmove-down :color red)
+            ("K" enlarge-window :color red)
+            ("k" windmove-up :color red)
+            ("L" enlarge-window-horizontally :color red)
+            ("l" windmove-right :color red)
+            ("r" winner-redo :color red)
+            ("s" split-window-vertically :color red)
+            ("u" winner-undo :color red)
+            ("v" split-window-horizontally :color red)
+            ("w" other-window)
+            ("z" delete-other-windows))
+
+
+#+end_src
+
+*** Errors in skewer mode
+**** Run a function twice animation
+Error: if I put the point after requestAnimationFrame(animate) and press C-x C-e in skewer-mode, the animation runs faster and if press again it runs even faster. The animation seems to run on top of the previous one, making it twice as fast each time.
+
+#+begin_src html
+
+
+<!doctype>
+<html>
+  <head>
+    <title>Animation</title>
+    <link rel="stylesheet" href="css/proof.css">
+  </head>
+  <body>
+    <p><img src="img/cat.png" style="position: relative"></p>
+    <script src="code/script.js"></script>
+    <script src="http://localhost:8080/skewer"></script>
+  </body>
+</html>
+
+#+end_src
+
+#+begin_src javascript
+
+let cat = document.querySelector("img");
+let angle = Math.PI / 2;
+function animate(time, lastTime) {
+    if (lastTime != null) {
+        // from the second call onwards
+        angle += (time - lastTime) * 0.001;
+    }
+    // Note that styles usually need units.
+    cat.style.top = (Math.sin(angle) * 20) + "px";
+    cat.style.left = (Math.cos(angle) * 200) + "px";
+    requestAnimationFrame(newTime => animate(newTime, time));
+}
+requestAnimationFrame(animate);
+
+#+end_src
+
+**** Run a function twice pixel editor
+Error: I'm trying to create a pixel editor in the browser for practice. If I change the variable from "dot" and put the pointer after the last line and press C-x C-e in "skewer-mode", it gives me the following error (ReferenceError: canvas is not defined). That code is to paint a point where the pointer is, but when I change the variable in the browser it starts to paint 2 points, instead of one, as if the previous function continues executing with the new function.
+
+If I start to execute C-x C-e in the first line to load the "canvas" variable, don't give me an error, but keep going painting two point instead of one, as should be.
+
+#+begin_src html
+
+<!doctype>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="css/editor.css">
+    <title>Pixel Art Editor</title>
+  </head>
+
+  <body>
+
+    <div id="canvas"></div>
+
+    <button id="pincel">Pincel</button>
+    <button id="color">Color</button>
+    <button id="eraser">Eraser</button>
+    <select id="figure">
+      <option value="rectangle">Rectangle</option>
+      <option value="circle">Circle</option>
+    </select>
+    <button id="undo">Undo</button>
+    <button id="save">Save</button>
+
+    <script src="code/editor.js"></script>
+    <script src="http://localhost:8080/skewer"></script>
+
+  </body>
+</html>
+
+#+end_src
+
+#+begin_src javascript
+
+let canvas = document.querySelector("#canvas");
+canvas.addEventListener("click", e => {
+    let dot = document.createElement("div");
+    dot.className = "dot";
+    dot.style.left = (e.pageX - 4) + "px";
+    dot.style.top = (e.pageY - 4) + "px";
+    canvas.appendChild(dot);
+});
+
+#+end_src
+
+**** Mail
+Hello, sorry, a simple question about "skewer". I have an animation, with this function "requestAnimationFrame(animate);" I made some changes and then press C-x C-e, then the animation runs twice as fast as before, and if I run it again even faster, it looks like the function runs twice (I have httpd and skewer all configured as it says on github). The same thing happens if I put a handler, something like "canvas.addEventListener("click", e => {" in this example I paint a point in the browser, but when I modify the coordinates, two points are painted instead of one like It should be, it's like two functions are left running. The other things work fine for me but these errors don't. I'm relatively new with js and emacs, are these bugs or am I doing something wrong? This is a good package and I've been trying to use it for days, well, thanks, greetings from Venezuela.
+
+*** Emacs plugin for js by Eloquent
+https://ternjs.net/
+Tern is a stand-alone code-analysis engine for JavaScript. It is intended to be used with a code editor plugin to enhance the editor's support for intelligent JavaScript editing. Features provided are:
+
+    Autocompletion on variables and properties
+    Function argument hints
+    Querying the type of an expression
+    Finding the definition of something
+    Automatic refactoring
+
+https://ternjs.net/doc/manual.html#emacs
+
+*** Auto-close quote or brackets
+When I type quotes or brackets in html, css or js, a space is automatically inserted before the symbol. To disable this, you need to disable the paredit mode and if you want to autocomplete pair symbols, you need to enable the electic pair mode.
+
+#+begin_src emacs-lisp
+
+;; Call it interactively. (is only active in the local buffer)
+(electric-pair-local-mode &optional ARG)
+
+;; Is activated in all buffers
+(electric-pair-mode 1)
+
+#+end_src
+
+When using electric-pair-mode in org-mode, I would like to tell electric-pair-mode not to act on angle brackets < and > any longer.
+
+The inhibit-predicate did the trick. I use the following hook in my .emacs file:
+
+#+begin_src emacs-lisp
+
+(add-hook 'org-mode-hook (lambda ()
+                             (setq-local electric-pair-inhibit-predicate
+                                         `(lambda (c)
+                                         (if (char-equal c ?<) t
+                 (,electric-pair-inhibit-predicate c))))))
 
 #+end_src
 
@@ -8752,20 +9207,21 @@ Para exportar de org a LaTeX pdf se necesito instalar el paquete ~texlive-latex-
 
 ** Use a live web server to view web files
 *** impatien-mode
-Enable the web server provided by simple-httpd: ~M-x httpd-start~
+Works perfectly well with HTML and CSS, with JS it might cause problems due to browser cache. One way to be able to sometimes use JS is to include the meta tag ~<meta http-equiv="refresh" content="1" >~ (refresh the page every sec) at the beginning and comment it out and uncomment it to update the JS.
 
-Publish buffers by enabling the minor mode impatient-mode. ~M-x impatient-mode~
-
-And then point your browser to http://localhost:8080/imp/, select a buffer, and watch your changes appear as you type!
+*Activate the impatien-mode*:
+1. Enable the web server provided by simple-httpd: ~M-x httpd-start~ or ~M-x httpd-serve-directory~
+2. Publish each buffers that you want to edit by enabling the minor mode impatient-mode on it: ~M-x impatient-mode~
+3. Point your browser to http://localhost:8080/imp/, and watch your changes appear as you type!
 
 If you are editing HTML that references resources in other files (like CSS) you can enable impatient-mode on those buffers as well. This will cause your browser to live refresh the page when you edit a referenced resource.
-
-*Note*: Useful to use it only with html and css. With JS it gives problems, it does (although it doesn't work very well) but using this meta tag ~<meta http-equiv="refresh" content="3" >~ that instruct the browser to refresh every three seconds.
 
 *Note*: I think the problem happens when variables are declared with "let", when the program reloads the code it see the variable "let" assigned again. I think that when the package was created it didn't give problem because at that time JS used "var" in the variables, and nothing happens when it's declared again.
 
 *** skewer-mode
 **** To skewer your own document
+Works perfectly well in JS, HTML and CSS, following the steps below, but it only updates values (I really don't know if it can create new values), that is, it doesn't create new values, for example, in HTML it doesn't render new tags it only updates existing ones, in JS depending on what you want to do, it may create new things.
+
 1. Start the HTTP server (~httpd-start~ or ~httpd-serve-directory~)
 2. Add this tag at the end (~<script src="http://localhost:8080/skewer"></script>~) of the ~index.html~ file (check your httpd-port)
 3. ~M-x run-skewer~ to attach a browser to Emacs
@@ -8773,11 +9229,23 @@ If you are editing HTML that references resources in other files (like CSS) you 
    - http://localhost:8080/index.html (~http-server-directory~ => ~~/Downloads/Project-folder~)
    - http://localhost:8000/Project-folder/ (server directory => ~~/Downloads~)
    - file:///home/richard/Downloads/Project-folder/index.html
+   - http://127.0.0.1:8080/skewer/demo (totally empty but renders new tags)
 5. Enabled respective mode (.html -> ~skewer-mode~ and ~skewer-html-mode~ , .js -> ~skewer-mode~ and ~js2-mode~ (optional enable ~lsp~ ) or .css ->  ~skewer-mode~ and ~skewer-css-mode~)
 6. From a ~js2-mode~ buffer with ~skewer-mode~ minor mode enabled, send forms to the browser to evaluate
 7. Evaluate each statement (~C-x C-e~) or the entire buffer (~C-c C-k~). The results should be displayed on the server opened by skewer or the one you open yourself, and also is echoed in the minibuffer.
 
 Note: to simple test (provided blank document), enable ~httpd-start~ run ~run-skewer~ to open skewer demo, create a empty ~js~ file, type some comands, enable ~js2-mode~ and ~skewer-mode~, and evaluate the statements. Skewer demo URL http://127.0.0.1:8080/skewer/demo.
+
+#+begin_src html
+
+<!-- Original document -->
+<p>This is a paragraph</p>
+
+<!-- After use skewer -->
+<p>This is a paragraph inside the document</p> <!-- update tag (works fine) -->
+<p>This is a new tag</p> <!-- create new tag (doesn't work) -->
+
+#+end_src
 
 **** How to evalutationg expressions
 https://github.com/skeeto/skewer-mode
@@ -8925,7 +9393,8 @@ Solo necesita especificar ~:defer~ si sabe con certeza que algún otro paquete h
 (use-package ace-jump-mode
   :defer t
   :init  (autoload 'ace-jump-mode "ace-jump-mode" nil t)
-         (bind-key "C-." 'ace-jump-mode)) ; El "autoload" setea la carga automática más no carga el paquete
+         (bind-key "C-." 'ace-jump-mode)) ; El "autoload" setea la carga
+                                          ; automática más no carga el paquete
 ;; Equivalentemente
 (use-package ace-jump-mode
   :bind ("C-." . ace-jump-mode))
@@ -9144,9 +9613,7 @@ Para cambiar el string minor mode en la ~mode-line~.
 
 * References
   - [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
-  - [[https://www.youtube.com/watch?v=48JlgiBpw_I][System Crafters Youtube]]
-  - [[https://github.com/daviwil/emacs-from-scratch/blob/master/init.el][System Crafters Scratch]]
-  - [[https://config.daviwil.com/emacs][System Crafters Daviwil]]
-  - [[https://orgmode.org/orgguide.html][Org Mode Compact Guide]]
   - [[https://www.gnu.org/software/emacs/manual/html_mono/emacs.htm][The GNU Emacs Editor Manual]]
+  - [[https://orgmode.org/orgguide.html][Org Mode Compact Guide]]
+  - [[https://www.youtube.com/watch?v=48JlgiBpw_I][System Crafters Youtube]]
   - [[https://wilkesley.org/~ian/xah/][∑XAH]]
