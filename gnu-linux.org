@@ -58,6 +58,13 @@ The *bottom level* of user space tends to consist of small components that perfo
   5. Login prompts, GUIs, and high-level applications, such as web servers.
 
 *** Packaging Systems
+**** Brief
+You may know some software like Firefox, GIMP, etc, but what they really are is just lots and lots of files that have been compiled into one. The people (or sometimes a single person) that write this software are known as upstream providers, they compile their code and write up how to get it installed.
+
+These upstream providers work on getting new software out and update existing software. When they are ready to release it to the world, they send their package to package maintainers who handle getting this piece of software in the hands of the users. These package maintainers review, manage, and distribute this software in the form of packages. So instead of downloading packages/software one by one from random sites (like on Windows), there is something better -- called package repositories in Debian.
+
+Repositories are just a central storage location for packages. Many online repositories hold lots of packages. Your machine doesn't know where to look for these repositories unless you explicitly tell it where to look. Debian already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system (if a user did a net-install). On a Debian system, this sources file is the ~/etc/apt/sources.list~ file. Your machine will know to look there and check for any source repositories you added.
+
 **** Package Files
 The basic unit of software in a packaging system is the *package file*. A package file is a compressed collection of files that comprise the software package. A package may consist of numerous programs and data files that support the programs. In addition to the files to be installed, the package file also includes metadata about the package, such as a text description of the package and its contents. Additionally, many packages contain pre- and post-installation scripts that perform configuration tasks before and after the package installation.
 
@@ -74,8 +81,156 @@ Programs are seldom “standalone”; rather they rely on the presence of other 
 **** High and Low-level Package Tools
 Package management systems usually consist of two types of tools.
 
-  - Low-level tools which handle tasks such as installing and removing package files
-  - High-level tools that perform metadata searching and dependency resolution
+  - Low-level tools which handle tasks such as installing and removing package files, like ~dpkg~.
+  - High-level tools that perform metadata searching and dependency resolution, like ~apt~.
+
+~apt~ provides a high-level command line interface for debian's package management system, with all the necessary tools in one place. ~apt~ aims to provide a simple, efficient way of handling packages for end users.
+
+**** Debian packages
+***** Brief
+ All packages that are included in the official Debian distribution are free according to the Debian Free Software Guidelines. This assures free use and redistribution of the packages and their complete source code. The official Debian distribution is what is contained in the /main/ section of the Debian archive.
+
+As a service to our users, we also provide packages in separate sections that cannot be included in the /main/ distribution due to either a restrictive license or legal issues. They include:
+
+- contrib :: packages in this area are freely licensed by the copyright holder but depend on other software that is not free.
+- non-free :: packages in this area have some onerous license condition restricting use or redistribution of the software.
+- non-free-firmware :: this section is restricted to device firmware. While packages in this area basically have the same underlying license restrictions as those in non-free, a special exception has been made for them: even if not being DFSG-free, packages from non-free-firmware are allowed to be included in the official installation images.
+
+*Note* that same packages might appear in several distributions, but with different version numbers.
+
+***** Package lists
+Package lists in the:
+  - stable distribution :: this is the latest official release of the Debian distribution. This is stable and well tested software, which changes only if major security or usability fixes are incorporated. The current "stable" distribution is version 12, codenamed /bookworm/. It was initially released as version 12.0 on June 10th, 2023.
+  - testing distribution :: this area contains packages that are intended to become part of the next stable distribution. There are strict criteria a package in unstable must obey before it can be added to testing. Note that "testing" does not get the timely security updates from the security team. The main advantage of using this distribution is that it has more recent versions of software. The current "testing" distribution is /trixie/.
+  - unstable distribution ::  this area contains the most recent packages in Debian. Once a package has met our criterion for stability and quality of packaging, it will be included in testing. "unstable" is also not supported by the security team. The "unstable" distribution is always called /sid/.
+
+Corollaries to this in the commercial world are /Development/, /Testing/, and /Production/.
+
+***** Unstable
+Debian Unstable is not strictly a release, but rather a rolling development version of the Debian distribution containing the latest packages that have been introduced into Debian.
+
+While other release code names progress in time from being "testing" to being "stable", Sid is forever doomed to being unstable. Sid will always be the unstable branch. When the current "testing" repository becomes mature and is released, "testing" becomes the latest "stable" release. From there, a new "testing" repository will be created with the next planned code name, and packages will continue to trickle down from Sid into "testing" just as before.
+
+Sid is where packages go after they've been uploaded by their maintainer, and cleared for release by the FTP master. When packages have met certain criteria, they are automatically moved from Sid to the current "testing" repository. The "Unstable" repository is updated every 6 hours.
+
+Sid exclusively gets security updates through its package maintainers. The Debian Security Team only maintains security updates for the current "stable" release.
+
+***** Unstable installation
+Ways to get set up on Sid:
+
+  1. Use the current "stable" installer to install a minimal stable system (*recommended*).
+     - Change your apt sources to point to "unstable".
+     - Run ~apt update~ and ~apt full-upgrade~.
+
+  2. Use the current "testing" installer to install a minimal (next) stable system.
+     - Change your apt sources to point to "unstable".
+     - Run ~apt update~ and ~apt full-upgrade~.
+
+  3. Use the Unstable "mini.iso" image.
+     - Download the "mini.iso" for your CPU architecture located here: https://d-i.debian.org/daily-images/ under */daily/netboot/
+     - During the installation choose "Advanced options" -> "Expert install".
+     - In the step "Choose a mirror of the Debian archive" choose version "sid - unstable"
+
+If you are already using a stable system use the method described above for upgrading to unstable changing your apt sources from "stable" (or the codename for the current stable) to "unstable".
+
+***** sources.list
+****** Format
+The entries in this file normally follow this format:
+
+#+begin_src sh
+
+deb http://site.example.com/debian distribution comp1 comp2 comp3
+deb-src http://site.example.com/debian distribution comp1 comp2 comp3
+
+#+end_src
+
+****** Archive type
+The first word on each line, ~deb~ or ~deb-src~, indicates the type of archive. *Deb* indicates that the archive contains binary packages (deb), the pre-compiled packages that we normally use. *Deb-src* indicates source packages, which are the original program sources plus the Debian control file (.dsc) and the diff.gz containing the changes needed for packaging the program.
+
+****** Repository URL
+The next entry on the line is a URL to the repository that you want to download the packages from.
+
+****** Distribution
+The 'distribution' can be either the release code name / alias ( stretch, buster, bullseye, bookworm, sid) or the release class (oldoldstable, oldstable, stable, testing, unstable) respectively.
+
+****** Component
+
+- main :: consists of DFSG-compliant packages, which do not rely on software outside this area to operate. These are the only packages considered part of the Debian distribution.
+
+- contrib :: packages contain DFSG-compliant software, but have dependencies not in main (possibly packaged for Debian in non-free).
+
+- non-free :: contains software that does not comply with the DFSG.
+
+****** Examples sources.list
+******* Debian Stable
+Below is an example of a sources.list for Debian 12/Bookworm (stable) released 10th June 2023.
+
+#+begin_src sh
+
+deb http://deb.debian.org/debian bookworm main non-free-firmware
+deb-src http://deb.debian.org/debian bookworm main non-free-firmware
+
+deb http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware
+deb-src http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware
+
+deb http://deb.debian.org/debian bookworm-updates main non-free-firmware
+deb-src http://deb.debian.org/debian bookworm-updates main non-free-firmware
+
+#+end_src
+
+If you need the contrib, non-free and non-free-firmware components, add contrib non-free non-free-firmware after main. For example, for Debian 12/Bookworm:
+
+#+begin_src sh
+
+deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian-security/ bookworm-security main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+
+#+end_src
+
+******* Backports
+If you need the Backports, contrib, and non-free components, add bookworm-backports lines. For example, for Debian 12/Bookworm:
+
+#+begin_src sh
+
+# Append the following line to the bottom of the file:
+deb http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware
+
+# Now that you have added the repository, update APT's cache to include
+# the backports in the list of available packages:
+apt update
+
+#+end_src
+
+******* Debian Unstable
+If you need the Debian Unstable, then change the distribution to unstable. Note that Updates and Security is not used since Unstable is a rolling development version consisting of the latest packages. That is, unstable main will be the only entry in sources.list.
+
+#+begin_src sh
+
+deb http://deb.debian.org/debian/ unstable main
+deb-src http://deb.debian.org/debian/ unstable main
+
+#+end_src
+
+******* Mirror
+Brazil is the closest mirror, this example is for debian unstable.
+
+#+begin_src sh
+
+deb http://ftp.br.debian.org/debian/ unstable main
+deb-src http://ftp.br.debian.org/debian/ unstable main
+
+# or
+deb ftp.br.debian.org/debian/ unstable main
+deb-src ftp.br.debian.org/debian/ unstable main
+
+#+end_src
 
 *** Compressing
 Data compression is the process of removing *redundancy* from data.
@@ -1539,7 +1694,7 @@ Is normally a binary file that contains the kernel. A boot loader loads this fil
 
 ** /etc
 This core system configuration directory contains the user password, boot, device, networking, and other setup files.
-[[Login Shells
+
 The configurations for a single machine, such as user information ~/etc/passwd~ and network details ~/etc/network~, go into this directory. However, general application details, such as a distribution’s defaults for a user interface, don’t belong here. System default configuration files not meant to be customized also are usually found elsewhere, as with the prepackaged systemd unit files in ~/usr/lib/systemd~.
 
 *** /etc/passwd
@@ -1911,6 +2066,15 @@ View the messages in the *kernel* ring buffer.
 *** /var/log/auth.log
 Containing the most recent *log* messages.
 
+*** /var/lib/apt/lists/*
+Find package information.
+
+*** /var/lib/dpkg/available
+List of available packages from repositories.
+
+*** /var/lib/dpkg/status
+Status of installed and available packages. This file contains information about whether a package is marked for removal or not, whether it is installed or not, etc. A package marked reinst-required is broken and requires re-installation.
+
 *** /var/spool/cron/crontabs
 Each user can have their own crontab file, usually found in this directory. Normal users can’t write to this directory; the ~crontab~ command installs, lists, edits, and removes a user’s crontab.
 
@@ -1981,6 +2145,22 @@ Is where administrators can install their own software (programs that are not in
 *** /usr/local/src
 Is where administrators can place the source code directory of a program for installation.
 
+*** /usr/local/share/fonts
+Install a font manually by downloading the appropriate ~.ttf~ or ~otf~ files and placing them into ~/usr/local/share/fonts~ (system-wide), ~~/.local/share/fonts~ (user-specific) or ~~/.fonts~ (user-specific). These files should have the permission 644 (-rw-r--r--), otherwise they may not be usable.
+
+Fonts can be added system-wide to Debian by installing the appropriate package. As default system-wide fonts will be installed into [[/usr/share/fonts]] by the package-manager.
+
+*** /usr/share/fonts
+Fonts can be added system-wide to Debian by installing the appropriate package. As default system-wide fonts will be installed into ~/usr/share/fonts~ by the package-manager.
+
+*Notes*:
+- For most uses, you’ll want TrueType (TTF) and OpenType (OTF) fonts – these packages start with ~fonts-~.
+- Some fonts might have a -variable build, which are known as (VF), variable font.
+- Some non-free font downloader packages are in ~contrib~, which you will need to add to your ~sources~ if not present.
+
+*Manually*
+Install a font manually by downloading the appropriate ~.ttf~ or ~otf~ files and placing them into [[/usr/local/share/fonts]] (system-wide), ~~/.local/share/fonts~ (user-specific) or ~~/.fonts~ (user-specific). These files should have the permission 644 (-rw-r--r--), otherwise they may not be usable.
+
 *** /usr/bin
 Contains executable files that are not part of the core operating system. These are considered to be "system wide binaries". But in modern systems it is the same as the [[ /bin]].
 
@@ -1999,6 +2179,10 @@ Contains manual pages.
 Contains files that should work on other kinds of Unix machines with no loss of functionality. These are usually auxiliary data files that programs and libraries read as necessary.
 
 This includes things such as default configuration files, icons, screen backgrounds, sound files, etc.
+
+It typically contains architecture-independent (shared) data. This means it holds files that are not specific to the architecture of your machine, such as certain shell scripts, man pages, locale information, and other miscellaneous system-wide data.
+
+This is particularly useful in networked environments where multiple machines can share a common data source, thereby saving storage and ensuring consistency.
 
 *** /usr/share/doc
 Some packages dump their available documentation into this directory with no regard for online manual systems such as man or info. See this directory on your system if you find yourself searching for documentation.
@@ -2056,7 +2240,7 @@ If neither [[ /home/user/_bash_profile]] nor [[ /home/user/_bash_login]] is foun
 *** /home/user/_bashrc
 A user's personal startup file for [[Interactive shells][non-login shell]]. It can be used to extend or override settings in the global configuration script.
 
-*** /home/dot.local/share/Trash
+*** /home/carlos/dot.local/share/Trash
 Trash folder.
 *Note*: ~dot.local~ is actually ~.local~.
 

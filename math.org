@@ -2018,8 +2018,8 @@ The present-day notion of logarithms comes from Leonhard Euler, who *connected* 
 The logarithm of base $b$ is the inverse operation, that provides the output $y$ from the input $x$. That is, $\displaystyle y=\log _{b}x$ is equivalent to $\displaystyle x=b^{y}$ if $b$ is a positive real number.
 
 
-Otra forma de ver la definición:
-El logaritmo en base $10$ de un número dice cuantos *pasos* de tamaño $10$ se tiene que dar para alacanzar dicho número (cuantas veces se tiene que multiplicar por $10$ a $10$), por ejemplo $\log_{10} 1000 = 3$ quiere decir que se necesitan $3$ multiplicaciones por $10$ para llegar a $1000$. Otro ejemplo, la propiedad  $\log_{b}xy=\log_{b}x+\log_{b}y$ se puede leer así: los pasos (multiplicaciones por $b$) para llegar a $xy$ es igual a los pasos para llegar a $x$ más los pasos para llegar a $y$.
+*Otra forma de ver la definición*
+El logaritmo en base $10$ de un número dice cuantos *pasos* de tamaño $10$ se tiene que dar para alacanzar dicho número (cuantas veces se tiene que multiplicar por $10$ a $10$) otra forma de verlo es como la cantidad de veces que se *divide* dicho número entre $10$ hasta llegar a uno, por ejemplo $\log_{10} 1000 = 3$ quiere decir que se necesitan $3$ multiplicaciones por $10$ para llegar a $1000$. Otro ejemplo, la propiedad  $\log_{b}xy=\log_{b}x+\log_{b}y$ se puede leer así: los pasos (multiplicaciones por $b$) para llegar a $xy$ es igual a los pasos para llegar a $x$ más los pasos para llegar a $y$.
 
 $\log_{10} 1000 = 3$ equivalentemente $10^3=1000$.
 

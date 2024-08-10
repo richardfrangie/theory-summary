@@ -86,6 +86,7 @@ Los verbos pronominales funcionan igual que los verbos reflexivos, y es únicame
 - adquirir cierta cualidad o estado ::
   Tras la explosión, me *quedé* sin palabras.  ~After the explosion, I was speechless.~
 
+
 - acordar algo ::
   *Quedamos* en que tú te encargas de todo.  ~We *agreed* that you take care of everything.~
 
@@ -1946,10 +1947,10 @@ We use it as a determiner, a demonstrative pronoun and a relative pronoun. We al
 - alguien le toca su turno :: ~I'm done, so you're *up*.~ Ya terminé, así que te toca.
 
 *** used to
-We use used to when we refer to things in the past which are no longer true. It can refer to repeated actions or to a state or situation.
+We use /used to/ when we refer to things in the past which are no longer true. It can refer to repeated actions or to a state or situation.
 
 - used to + infinitive :: done or experienced in the past, but no longer done or experienced.
-  ~He *used to work* on Saturdays.~ Solía trabajar los sábados pero ya no.  ~He usually *works* on Saturdays.~ Suele trabajar los sábados. (hábito en presente)
+  ~He *used to work* on Saturdays.~ Solía trabajar los sábados (pero ya no).  ~He usually *works* on Saturdays.~ Suele trabajar los sábados. (hábito en presente)
 
 - to be + used to + noun/ 'ing'/ pronoun :: means ‘be accustomed to’ or ‘be familiar with’. It can refer to the past, present or future.
   ~He *is used to working* on Saturdays.~ Está acostumbrado a trabajar los sábados.
@@ -1977,7 +1978,7 @@ We use used to when we refer to things in the past which are no longer true. It 
 - We normally make tags after /used to/ with auxiliary /did/.
   ~He used to be your boss, *did he*?~  -  ~We used to love going to the museum, *didn’t we*?~
 
-- ~There used to be.~ = Solía existir antes pero ya no.
+- ~There used to be.~ = Solía existir antes (pero ya no).
 
 *** view
 - noun :: an opinion, belief, or idea, or a way of thinking about something.
@@ -8846,275 +8847,78 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** +Mira, esto podría haber terminado hace mucho tiempo, cariño.
-see it could have been over a long time ago sweetie pie
+**** +Si bien eshell puede parecer un shell, como Bash, debes verlo como un REPL con expresiones s sin paréntesis.
+While eshell may look like a shell, like Bash, you should view it as a REPL with parenthesis-less s-expressions.
 
-**** Casi no valdría la pena hacer un vídeo sobre esto.
-this almost wouldn't even be worth making a video about
+**** +En la semana veo el que acabas de publicar.
+I'll watch the one you just published during the week.
 
-**** +James me dijo que si hubiera sabido quién era ella, habría impugnado la denuncia de privacidad.
-James told me that had he known who she was he would have challenged the privacy complaint
+**** +No todo funciona como me gustaría que funcionara
+not everything works as I would like it to work
 
-**** +Bueno... si no te hubieras detenido, nadie lo habría sabido.
-Well… if you hadn’t stopped no one would have known
+**** +Desde el cambio de nombre, ha sido simplificado para ofrecer/servir simplemente archivos
+Since the name change, it's been stripped down to simply serve files
 
-**** +si lo había hecho él mismo se arrepintió y cambió de opinión
-whether he had done it himself regretted and changed his mind
+**** +haciéndome sentir un un poco de vergüenza y mucha alegría :-)
+making me feeling a little bit of shame and a lot of joy :-)
 
-**** +poco después, el detective Armstrong comienza a interrogar a Michael con preguntas básicas como el tipo de trabajo que realiza.
-not long after detective Armstrong starts by questioning Michael with basic questions such as the type of work he does
+**** +Lo bien que la descarga funciona en la práctica puede variar un poco/puede ser un poco variable. Un modo simple o un conjunto de algunos/unos pocos comandos normalmente está bien; algo de lujo podría no estar configurado para deshacerse por completo.
+Quite how well unloading works in practice can be a bit variable. A plain mode or set of a few commands is normally fine, anything fancy might not be setup to completely undo itself.
 
-**** +Creo que tienes algunas preguntas que estabas tratando de hacerme hace un minuto
- I think you've got some questions that you were trying to ask me a minute ago
+**** +, y tiene un coste/ y viene con un costo:
+, and it does come at a cost:
 
-**** +Para ser completamente honesto contigo, ninguno de nosotros tiene idea de lo que está pasando.
-to be perfectly honest with you neither one one of us have an idea of what's going on
+**** +Para ejecutar los ganchos predeterminados, se me ocurrió esto, que es realmente estúpido o realmente genial.
+To run the default hooks, I came up with this, which is either really stupid or really cool.
 
-**** +Solo *quiero* aclarar antes de que te haga cualquier pregunta o que me hagas cualquier pregunta.
-I just want to clarify before before I ask you any questions or you ask me any questions
+**** +No estoy aquí para responder preguntas personales que tengas conmigo.
+I'm not here to answer personal question that you have with me
 
-**** +No sé si empiezo a abrumarme
-I don't know if I start getting overwhelmed
+**** +Si compila Emacs con esta bandera, como he hecho y sigo haciendo,
+If you do compile Emacs with this flag, as I have and still do
 
-**** +Me aseguro de que todo esté bien antes de que se publique.
-I make sure everything's right before it gets released
 
-**** +Que es lo que haces por ellos?
-what is it that you do for them
+**** , merece más que la pena a largo plazo. Cualquier herramienta que utilices a menudo merece el tiempo dedicado a aprender a dominarla.
+, it is more than worthwhile in the long run. Any tool you use often deserves the time spent learning to master it
 
-**** +...si alguna vez ha estado en el ejército
-if he has ever been in the military
+**** En el segundo en que me tocara, descubriría lo mala que era su idea/su idea fue
+The second it touched me, he would find out how bad his idea was
 
-**** +He sido autorizado como clasificado pero actualmente no trabajo en un programa clasificado
-I've been cleared classified but I don't work on a classified program currently
+**** Les dije a todos que les mostraría los números de fin de mes. El canal está creciendo, sin duda.
+Told everyone I would show the end of the months numbers. The channel is growing, no doubt.
 
-**** +¿por cuánto tiempo estuviste ahí?
-how long were you there?
+**** Cuando esté presente, el modo empresa se configurará automáticamente y simplemente funcionará.
+When present, company-mode will be auto-configured and it will just work.
 
-**** +No es seguro, pero puede ser *que* no quiera correr el riesgo de mentir sobre asuntos pequeños y, en cambio, centrarse en ocultar su crimen.
-it's not certain but it may be that he does not not want to risk lying about small matters and instead focus on hiding his crime
+**** El soporte de SQLite, de una forma u otra, existe desde hace algún tiempo.
+SQLite support, in one form or another, has been around for a while.
 
-**** +¿Qué espectáculo/programa es?
-what show is it?
+**** en cuanto a los invitados no quiero que se sientan incómodos
+as far as the guests I don't wnat them to feel uncomfortable
 
-**** +No sé si siquiera había oído hablar de eso. - Ni siquiera sé si he oído hablar de él.
-I don't know that I even heard of it
+**** Cambio mecánico que es poco probable que afecte al uso diario si usas cabezeras.
+Mechanical change that is unlikely to affect day-to-day use if you use outline.
 
-**** +He vuelto a hacer ejercicio recientemente.
-been *getting back* into working out recently
+**** moverse mediante la expresión s, tomará un poco de tiempo acostumbrarse,
+Moving by s-expression will take a bit of getting used to,
 
-**** +Aquí Michael se esta refiriendo a su hijo y a su hija usando el tiempo presente como para mostrar que no recuerda lo que les pasó/que pasó con ellos.
-here Michael is referring to his son and daughter using the present tense as if to show he doesn't remember what happened to them
+**** haciendolo (equis cosa) menos conocido de lo que debería ser;
+making it less known than it should be;
 
-**** +que Michael parece haber captado con demasiada facilidad
-which Michael seems to have caught on too easily
+**** ¿Qué sería de Emacs sin Emacs Lisp?
+what would Emacs be without Emacs Lisp?
 
-**** +No sé por qué dije eso
-I don't know why I said that
+**** Las macros de teclado se malinterpretan y pueden hacer mucho más de lo que la mayoría de la gente cree que pueden hacer.
+Keyboard macros are misunderstood, and they can do an awful lot more than most people think they can do.
 
-**** +Puedo pensar que el otro día mi esposa estaba... hemos estado trabajando/ últimamente, no hemos tenido dificultades ni un poquito.
-I can think it as the other day my wife was ... we've been working lately we haven't been struggling a little bit.
+**** Parece útil. Tendría que usarlo por un tiempo para determinar qué tan confiable es.
+Seems useful. I’d have to use it for a while to determine how reliable it is.
 
-**** He estado tratando de trabajar en ello, estaba yendo/iba a terapia, no he ido en algunas semanas.
-I've been trying to work on it, I was going to counseling, haven't been in a few weeks.
+**** Es fantasticamente avanzado y vale la pena aprenderlo si haces muchas matemáticas.
+It’s fantastically advanced, and well worth learning if you do a lot of mathematics.
 
-**** ella tenía un arma y decía/estaba diciendo que era su única salida.
-she had one gun and was saying it was her only way out.
-
-**** el lunes no estaba funcionando
-Monday weren't working
-
-**** +¿Dónde los escondiste?
-where'd (did) you hide those at?
-
-**** y quién podría haber tenido una crisis nerviosa que resulto en
-and who might have had a breakdown which resulted in
-
-**** pero claramente él no ha pensado bien el plan.
-but he clearly hasn't thought the plan through
-
-**** ¿Sabes quién fue el que hizo eso a ella? - ¿Sabes quién se lo hizo?
-do you know who it was that done it to her? - Do you know who did it to her?
-
-**** He estado tratando de resolver/trabajar en los problemas que han sucedido.
-I've been trying to work through the issues that have happened.
-
-**** +y mi hija se abre a mí mucho más
-and my daughter opens up to me a lot more
-
-**** +estudiar de qué se trataba y algunas de las cosas que enseñé
-study what it was about and kind of some of the things that I taught
-
-**** El detective comienza a preguntarle a Michael sobre los eventos que tuvieron/tomaron lugar antes de que el fuera traido.
-The detective starts asking Michael about the events that took place before he was brought in.
-
-**** +Todavía estaba despierto
-i was still awake
-
-**** +antes de acostarme en el sofá
-before I laid down on the couch
-
-**** y mi esposa vino a ver cómo estaba
-and my wife actually came out to just check on me
-
-**** +hablamos y no necesariamente lo recordaría una hora después,
-we talk and I wouldn't necessarily remember it an hour later,
-
-**** +No quería reiterar cada conversación.
-I didn't want to reiterate every conversation
-
-**** +Desde que te despertaste
-From the time you woke up
-
-**** +Y simplemente veo, tal vez puedas reconstruir
-and just kind of see, maybe you can piece together
-
-**** +y por qué no podemos recordarlo
-and why we can't remember it
-
-**** +¿Recuerdas lo que comiste en el desayuno?
-do you remember what you ate for breakfast
-
-**** +no recuerdas nada en lo absoluto
-you don't remember at all
-
-**** +en lo que trabajé hoy
-what I worked on today
-
-**** Se me ocurrió la idea cuando llegué a trabajar un lunes por la mañana y antes de poder empezar a trabajar tuve que iniciar manualmente unos diez servicios.
-I came up with the idea when I got to work one Monday morning and before I could start working I had to manually start ten or so services.
-
-**** +Creo que fue un desafío personal, pero sé que no debo participar en él.
- I think it was a personal challenge but i know not to play into it.
-
-**** + creo que me perdí la parte más divertida, el tipo de lentes se veía muy gracioso. Igual me divirtió cuando se emociono pensando que te escapabas.
-I think I missed the funniest part, the glasses guy looked really funny. I still amused me when he got excited thinking you were running away.
-
-**** +Ya no veo más videos en facebook ahora siempre los veo por aquí.
-I don't watch videos on Facebook anymore, now I always see them here.
-
-**** +¿Le pegaste a él en el ojo?
-did you hit him in the eye
-
-**** Tuve que quitárselo de encima, así que tuve que darle un puñetazo en el costado de la cabeza para detener el ataque.
-I had to get him off of him, so I had to punch him in the side of the head to stop the attack
-
-**** +Eso es lo que no quieres, saca a ese tipo de la calle.
-that's what you don't want, get that guy off the street
-
-**** +Él está tratando de sacarme de la oficina de correos.
-He trying to rip me out of the post office
-
-**** ¿Es eso algo con lo que estás de acuerdo?
-is that something you okay with?
-
-**** +no te revisaremos(chequeo medico) hasta que las cámaras se apaguen
-we won't be checking you out until the cameras off
-
-**** +porqué es eso
-why is that
-
-**** +si te gustaría ser visto(revisado por los medicos) apaga la cámara, estaremos encantados de hacerlo
-if you'd like to be seen turn the camera off, we be happy to.
-
-**** +Ellos pueden hacer lo que quieran
-they can do whatever they want
-
-**** +no voy a hacer eso
-I'm not going to do that
-
-**** +...pero tus ambas manos tienen que estar abajo
-...but your both hands have to be down
-
-**** +¿Por qué esperas eso?
-Why do you expect that?
-
-**** La perfección es finalmente alcanzada no cuando ya no hay nada que añadir, sino cuando ya no hay nada que quitar.
-Perfection is finally attained not when there is no longer anything to add, but when there is no longer anything to take away.
-
-**** +Siempre el mismo comentario de un miedoso que espera que los demás hagan el trabaja sucio por él, porque el nunca ha tenido valor para nada. Si te molesta tanto ve tu y has lo que dices,  no esperes a la "wrong person" perdedor.
-Always the same comment from a fearful person who expects others to do his dirty work for him, because he has never had courage for anything. If he bothers you so much, go ahead and do what you say, don't wait for the "wrong person" loser.
-
-**** +¿Recuerdas que la policía vino a tu casa esta tarde?
-do you remember the police coming to your house this evening
-
-**** +Es sorprendente cómo Michael puede recordar infinidad de información.
-it's amazing how Michael can remember countless information
-
-**** cuales son esos tres momentos
-what are those three moments
-
-**** No lo vi venir No me protegí
-I didn't see it coming I didn't protect myself
-
-**** Sentí que les había fallado a los niños
-I felt like I failed the kids
-
-**** Estamos en un lugar realmente malo en lo que respecta a las finanzas.
-we are in a really bad place as far as financials go
-
-**** fue un golpe (emocional) para mi
-it was a hit to me
-
-**** ¿Cuáles son sus días libres?
-what are her off days?
-
-**** Nosotros estábamos siendo bastante juguetones
-we were being pretty playful
-
-**** Nosotros enviamos algunos textos juguetones
-we were sending some playful texts
-
-**** ¿A qué hora crees que fue?
-about what time you think that was?
-
-**** Estoy tan por encima de mi cabeza
-I'm in so far over my head
-
-**** Si fuera un genio nunca habría hablado con la policía.
-if he was a genius he would have never talked to the police
-
-**** solo está haciendo un intento realmente tonto de engañar al detective.
-he's just playing a really silly attempt at deceiving the detective.
-
-**** su actuación no era digna de un Oscar
-his performance wasn't worthy of an Oscar
-
-**** tú vas a ser llevado a la cárcel de Collin.
-you are going to be taken over to the Collin Jail.
-
-**** Me pillaste hace un minuto, cada vez que usaba el tiempo pasado en lugar del presente.
-you caught me a minute ago, whenever I used past tense instead of present tense.
-
-**** esto es lo que necesito que hagas
-here's what I need you to do
-
-**** Manos en la pared, solo mira/cara hacia la pared.
-hands on the wall, just face the wall
-
-**** a quién pillaron robando una galleta
-who got caught stealing a cookie
-
-**** Mike no te caigas encima de mí
-Mike don't fall down on me
-
-**** Si vas a estar así, siéntate en la silla.
-if you're going to be like that , sit down on the chair
-
-**** Es impactante que Michael pensara que podía burlar al detective.
-it's shocking that Michael thought he could outsmart the detective
-
-**** quien no se dio cuenta
-who didn't catch on to it
-
-**** Creo entender lo que dices, pero creo que eso casi nunca pasas. En varios videos que he visto la policia ellos no hace eso, por ejemplo no se si has visto el canal de Lana, ella pone los videos de la camara corporal de los policias cuando hablan con los agresores, yo siempre pense que los policias le decian que era ilegal asaltar a una persona y todo eso, pero no más bien se ponen departe de ellos y le dicen, que ellos son unos acosadores vagos que estan buscando alguna cosa para demandarlos a ellos o la policia.
-I think I understand what you're saying, but I think that almost never happens. In several videos that I have seen, the police do not do that, for example, I don't know if you have seen Lana's channel, she plays the videos from the police body camera when they talk to the people who call the police, I always thought that the police told them that it was illegal to assault a person and all that, but they just took their side and told them that they were lazy stalkers who were looking for something to sue them or the police.
-
-**** y de vez en cuando me sorprendo con sus capacidades.
-and time to time I get surprise with their capabilities.
-
-**** Deberías volver cuando por fin tengas la cámara 360. Yo lo haría si estuviera allí. Esos policias y ese chico en verdad me cabrearon.
-You should come back when you finally get the 360 camera. I would if I were there. Those cops and that guy really pissed me off.
+**** También puede personalizar 'major-mode-remap-alist' para activar automáticamente algunos modos basados en tree-sitter para los mismos archivos para los que se activaría un modo "incorporado".
+You can also customize 'major-mode-remap-alist' to automatically turn on some tree-sitter based modes for the same files for which a "built-in" mode would be turned on.
 
 *** Chunk
 **** Pero la mayoría de ellos son
@@ -9169,8 +8973,17 @@ I don't know that I even heard of it
 **** qué va a hacer él?
 what is he going to do?
 
+**** ¿Cómo me veo?
+what do I look like
+
+**** entonces ¿qué voy a hacer?
+so what am I going to do?
+
 **** por qué es importate
 why it's important
+
+**** ¿Cómo generan ganancias las empresas?
+how do business generate profit?
 
 *** My talks
 *** Eloquent JavaScript
@@ -10377,6 +10190,27 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 **** Se le pedirá
 You will be prompted / You will be asked
 
+**** +¿Puedo buscar buffers por modo principal, proyecto en ivy-switch-buffer? - No, *hasta donde yo sé*, no puedes ahora.
+Can I search buffers by major-mode, project in ivy-switch-buffer? - No, *as far as I know*, you can not right now.
+
+**** Las teclas de función envían eventos de entrada *tal como* lo hacen las teclas de caracteres
+Function keys send input events *just as* character keys do
+
+**** pero en este punto esas son sólo *conjeturas* descabelladas sobre errores difíciles de razonar
+but at this point those are just wild *guesses* about hard bugs to reason about.
+
+**** Nos *dirigimos* en esta dirección y luego cortamos por ese camino.
+we *were headed* this way and then we cut down that road
+
+**** Funciona de forma *muy parecida* a la variable a
+It works *much like* the variable A
+
+**** Tantas cosas que ni siquiera puedo encontrar el tiempo para leer todo el documento, *y mucho menos* recordar nada de él.
+Soooo much stuff, I can't even find the time to read that whole document, *let alone* remember any of it.
+
+**** estudiar *de qué se trataba* y algunas de las cosas que enseñé
+study *what it was about* and kind of some of the things that I taught
+
 **** Es *inofensivo hacerlo*.
 It is *harmless to do so*.
 
@@ -10984,6 +10818,15 @@ She’s not feeling very well.
 
 **** Me gustaría *conocer* Roma.
 I'd like to *go* to Rome.  or  I'd like to *visit* Rome.
+**** ¿Alguna vez has notado que siempre tiene que haber una persona que quiera *tener una discusión*, incluso si le hablas con calma y respeto?
+ever notice there always has to be one person who wants *to have an argument* even if you are speaking calm and respectfully to them
+
+**** tal vez haya algunas *desventajas*
+maybe there are some *downsides*
+
+**** , con todos los inconvenientes y beneficios que ello *conlleva*.
+with all the drawbacks and benefits that *bring*.
+
 **** No, no, no *llegues* a esas conclusiones tan rápido;
 No, no, don't *reach* those some conclusions so fast;
 
@@ -11245,6 +11088,15 @@ But it bears repeating:
 
 **** No es asunto tuyo
 It is none of your business
+
+**** Eso es todo lo que se necesita.
+that’s all it takes
+
+**** Todo se reduce al modo y la característica.
+It comes down to the mode and the feature
+
+**** esto es lo que necesito que hagas
+here's what I need you to do
 
 **** , como si se sintiera tan seguro de que este ruido aleatorio es un 5 como de que una imagen real de un 5 es un 5.
 , as if it feels as sure that this random noise is a 5 as it does that an actual image of a 5 is a 5.
@@ -14265,6 +14117,8 @@ CLOCK: [2023-04-17 Mon 08:07]--[2023-04-17 Mon 08:16] =>  0:09
 :END:
 ** Sentences
 :LOGBOOK:
+CLOCK: [2024-07-27 Sat 10:34]--[2024-07-27 Sat 12:21] =>  1:47
+CLOCK: [2024-07-07 Sun 11:56]--[2024-07-07 Sun 12:26] =>  0:30
 CLOCK: [2024-02-21 Wed 13:37]--[2024-02-21 Wed 13:51] =>  0:14
 CLOCK: [2024-02-21 Wed 11:36]--[2024-02-21 Wed 12:18] =>  0:42
 CLOCK: [2024-02-20 Tue 10:07]--[2024-02-20 Tue 10:37] =>  0:30
@@ -14581,6 +14435,56 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Speaking
 :LOGBOOK:
+CLOCK: [2024-08-09 Fri 09:19]--[2024-08-09 Fri 10:20] =>  1:01
+CLOCK: [2024-08-08 Thu 10:56]--[2024-08-08 Thu 11:57] =>  1:01
+CLOCK: [2024-08-07 Wed 08:59]--[2024-08-07 Wed 10:00] =>  1:01
+CLOCK: [2024-08-05 Mon 08:49]--[2024-08-05 Mon 9:49] =>  1:00
+CLOCK: [2024-08-02 Fri 08:45]--[2024-08-02 Fri 10:05] =>  1:20
+CLOCK: [2024-08-01 Thu 9:22]--[2024-08-01 Thu 10:52] =>  1:30
+CLOCK: [2024-07-31 Wed 09:30]--[2024-07-31 Wed 10:15] =>  0:45
+CLOCK: [2024-07-30 Tue 09:12]--[2024-07-30 Tue 11:12] =>  2:00
+CLOCK: [2024-07-29 Mon 08:50]--[2024-07-29 Mon 09:35] =>  0:45
+CLOCK: [2024-07-28 Sun 08:53]--[2024-07-28 Sun 09:08] =>  0:15
+CLOCK: [2024-07-26 Fri 09:46]--[2024-07-26 Fri 10:31] =>  0:45
+CLOCK: [2024-07-25 Thu 09:20]--[2024-07-25 Thu 11:31] =>  2:11
+CLOCK: [2024-07-22 Mon 09:45]--[2024-07-22 Mon 10:30] =>  0:45
+CLOCK: [2024-07-19 Fri 09:41]--[2024-07-19 Fri 10:30] =>  0:49
+CLOCK: [2024-07-18 Thu 08:41]--[2024-07-18 Thu 10:28] =>  1:47
+CLOCK: [2024-07-17 Wed 08:14]--[2024-07-17 Wed 10:32] =>  2:18
+CLOCK: [2024-07-16 Tue 12:40]--[2024-07-16 Tue 13:34] =>  0:54
+CLOCK: [2024-07-15 Mon 09:08]--[2024-07-15 Mon 10:18] =>  1:10
+CLOCK: [2024-07-13 Sat 09:11]--[2024-07-13 Sat 11:48] =>  2:37
+CLOCK: [2024-07-12 Fri 09:20]--[2024-07-12 Fri 10:34] =>  1:14
+CLOCK: [2024-07-11 Thu 08:55]--[2024-07-11 Thu 10:10] =>  1:15
+CLOCK: [2024-07-10 Wed 09:34]--[2024-07-10 Wed 10:30] =>  0:56
+CLOCK: [2024-07-09 Tue 10:45]--[2024-07-09 Tue 12:05] =>  1:20
+CLOCK: [2024-07-08 Mon 08:34]--[2024-07-08 Mon 10:14] =>  1:40
+CLOCK: [2024-07-05 Fri 08:59]--[2024-07-05 Fri 10:32] =>  1:33
+CLOCK: [2024-07-04 Thu 09:57]--[2024-07-04 Thu 12:27] =>  2:30
+CLOCK: [2024-07-03 Wed 09:10]--[2024-07-03 Wed 10:49] =>  1:39
+CLOCK: [2024-07-02 Tue 08:56]--[2024-07-02 Tue 10:40] =>  1:44
+CLOCK: [2024-07-01 Mon 08:44]--[2024-07-01 Mon 10:00] =>  1:16
+CLOCK: [2024-06-30 Sun 08:56]--[2024-06-30 Sun 09:25] =>  0:29
+CLOCK: [2024-06-29 Sat 13:12]--[2024-06-29 Sat 14:57] =>  1:45
+CLOCK: [2024-06-28 Fri 09:11]--[2024-06-28 Fri 11:02] =>  1:51
+CLOCK: [2024-06-27 Thu 09:25]--[2024-06-27 Thu 11:15] =>  1:50
+CLOCK: [2024-06-26 Wed 09:28]--[2024-06-26 Wed 11:32] =>  2:04
+CLOCK: [2024-06-25 Tue 09:10]--[2024-06-25 Tue 10:42] =>  1:32
+CLOCK: [2024-06-24 Mon 10:16]--[2024-06-24 Mon 11:36] =>  1:20
+CLOCK: [2024-06-23 Sun 12:28]--[2024-06-23 Sun 12:46] =>  0:18
+CLOCK: [2024-06-23 Sun 09:25]--[2024-06-23 Sun 10:01] =>  0:36
+CLOCK: [2024-06-21 Fri 10:57]--[2024-06-21 Fri 11:56] =>  0:59
+CLOCK: [2024-06-20 Thu 10:24]--[2024-06-20 Thu 11:23] =>  0:59
+CLOCK: [2024-06-19 Wed 09:47]--[2024-06-19 Wed 11:14] =>  1:27
+CLOCK: [2024-06-18 Tue 09:26]--[2024-06-18 Tue 10:41] =>  1:15
+CLOCK: [2024-06-17 Mon 14:36]--[2024-06-17 Mon 16:06] =>  1:30
+CLOCK: [2024-06-15 Sat 12:19]--[2024-06-15 Sat 13:34] =>  1:15
+CLOCK: [2024-06-14 Fri 09:53]--[2024-06-14 Fri 11:42] =>  1:49
+CLOCK: [2024-06-13 Thu 09:00]--[2024-06-13 Thu 11:15] =>  2:15
+CLOCK: [2024-06-12 Wed 07:52]--[2024-06-12 Wed 9:52] =>  2:00
+CLOCK: [2024-06-11 Tue 09:39]--[2024-06-11 Tue 11:21] =>  1:42
+CLOCK: [2024-06-10 Mon 15:11]--[2024-06-10 Mon 16:41] =>  1:30
+CLOCK: [2024-06-09 Sun 08:55]--[2024-06-09 Sun 09:20] =>  0:25
 CLOCK: [2024-06-08 Sat 15:20]--[2024-06-08 Sat 15:36] =>  0:16
 CLOCK: [2024-06-08 Sat 12:22]--[2024-06-08 Sat 14:25] =>  2:03
 CLOCK: [2024-06-07 Fri 09:12]--[2024-06-07 Fri 11:10] =>  1:58

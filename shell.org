@@ -21,11 +21,15 @@ Shows the last 10 lines of the /file/.
 ( ~tail +15 file~ print lines starting at line 15 )
 ( ~tail -15 file~ output the last 15 lines )
 ( ~tail -f file~ continues to monitor the file, and when new lines are appended, they immediately appear on the display )
+(  ~tail -f /var/log/messages~ watch what the system is doing in near real-time )
 
 ** Create
 *** touch file
 Set or update the access, change, and modify times of /file/. If a filename argument is that of a nonexistent file, an empty /file/ is created.
 ( ~touch dir/dir-{01..10}/file-{A..Z}~ create a file from A to Z inside each dir from 01 to 10 )
+*** echo 'content here' > name
+Writes content to a file. If the file does not already exist, it creates it.
+( ~echo 'content here' >> name~ append the output to the file instead of overwriting it )
 
 *** cat  <<EOF > file
 Create a /file/ with a large section of text by typing it  in to the standard input.
@@ -60,7 +64,7 @@ If copied to an existing file, the file keeps the inode number.
 ( ~cp -i file1 file2 dir~ copy files to directory )
 
 *** mv -i file1 file2
-Move /file1/ to /file2/. If /file2/ exists, it is overwritten with the contents of /file1/. If /file2/ does not exist, it is created. In either case, /file1/ ceases to exist.
+Move/remove /file1/ to /file2/. If /file2/ exists, it is overwritten with the contents of /file1/. If /file2/ does not exist, it is created. In either case, /file1/ ceases to exist.
 [ /-i/ prompt before overwrite /-u/ update, only move files that either don't exist, or are newer than the existing corresponding files in the destination directory ]
 
 ** Delete
@@ -87,6 +91,8 @@ Make symbolic link. The new /linkname/ is the name of the symbolic link, the /ta
 *** find dir
 List current directory and its subdirectories.
 [ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-prune/ if the file is a dir, don't descend into it /-xdev/ don't descend dir on other filesystems /-perm 644/ search by permission /-exec/ search by executable /-type d/ search by dir /-inum 123/ search by inode /-regex pattern/ matches regular expression pattern ]
+( ~find . -maxdepth 1 -type d -name 'emacs*'~ search only directories starting with emacs in the current directory )
+( ~find . -maxdepth 1 -type d -name 'emacs*' -printf '%f\n'~ equivalent to above, but listing without ./ at the beginning )
 
 *** find dir -name file -print
 Find /file/ in /dir/. Be carefull of shell expansion, try to use quotes in the files names.
@@ -242,7 +248,7 @@ Change directory.
 
 *** ls -lh dir
 Lists the contents of a directory /dir/.
-[ /-l/ long listing format /-h/ human readable /-a/ all /-i/ inode numbers /-d/ list directories themselves, not their contents /-S/ sort by file size, largest first /-t/ sort by time, newest first /--si/ powers of 1000 not 1024 /-r/ reverse order /-A/ almost-all, don't list implied . and .. ]
+[ /-l/ long listing format /-h/ human readable /-a/ all /-i/ inode numbers /-d/ list directories themselves, not their contents /-S/ sort by file size, largest first /-t/ sort by time, newest first /--si/ powers of 1000 not 1024 /-r/ reverse order /-A/ almost-all, don't list implied . and .. /-1/ single-column ]
 ( permissions ( *-* regular file *d* directory *l* symbolic link *b* block *c* character *p* pipe *s* sockect ) | hard links | owner | group | size | modification time | filename )
 ( *r* file-read/dir-list *w* file-write/dir-create *x* file-execute/dir-enter )
 ( ~ls /usr/bin | pr -3 -t~ bin programs in 3 column omited headears and footers )
@@ -254,8 +260,10 @@ Only show the directories in the current path.
 *** du -h
 Estimate file space usage in current directory.
 ~du~ output in most Linux distributions is in 1,024-byte blocks.
-[ /-s/ summarize /-m/ block-size 1M /-h/ human readable /-c/ produce a grand total /-d/ --max-depth ]
+[ /-s/ summarize /-m/ block-size 1M /-h/ human readable /-c/ produce a grand total /-d/ --max-depth /-a/ write counts for all files, not just directories ]
 ( ~ncdu~ equivalent command )
+( ~du -d 1 |sort -nr~ sorting folders according to size )
+( ~du --max-depth=1 $(echo /home/*) 2> /dev/null |sort -nr~ sorting home folders ignoring errors )
 
 *** df
 View the size and utilization of your currently mounted filesystems.
@@ -380,7 +388,7 @@ User time (*user*) is the number of seconds that the CPU has spent running the p
 
 ** Systemd
 *** journalctl -f
-Show the most recent messages in the journal, starting with the oldest.
+Show only the most recent journal entries, starting with the oldest, and *continuously* (real-time) print new entries as they are appended to the journal.
 [ /-S/ (since) entries on or newer than the specified date /-f/ only the most recent entries  /-u/ specified systemd unit /-U/ until that time /-g/ grep /-r/ reverse output /-k/ only kernel messages /-n/ lines /-b/ start of the current boot /-F/ all possible data values the specified field ]
 ( ~journalctl -S -4h~ messages from the past 4 hours in current time zone )
 ( ~journalctl -S 06:00:00~ specific hour )
@@ -396,13 +404,16 @@ Show the most recent messages in the journal, starting with the oldest.
 ( ~journalctl -r -b -1~ check whether the machine shut down cleanly on the last cycle )
 ( ~journalctl -N~ list all available fields )
 ( ~journalctl SYSLOG_IDENTIFIER=sudo~ find the sudo logs )
+(  ~tail -f /var/log/messages~ watch what the system is doing in near real-time )
 
 *** systemctl list-units
 List of active units.
 [ /list-units/ list of active units /--all/ all units /--full/ full names of the units /list-timers/ llist timer units currently in memory /--type=inactive/ limit display to inactive unit types ]
+( ~systemctl --user list-units~ talk to the service manager of the calling user, rather than the service manager of the system (some units are shown here and not if you use list-units only) )
 ( ~systemctl list-unit-files~ list all installed unit files )
 ( ~systemctl --type=service~ show all service units )
 ( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
+( ~service --status-all~ list of all running and not running services using System V )
 
 *** systemctl status sshd.service
 Getting the status of a /sshd.service/ unit.
@@ -446,6 +457,8 @@ The shell creates file if it does not already exist. If file exists, the shell e
 ( ~command >> file~ append the output to the file instead of overwriting it )
 ( ~command 2> error~ send the standard error to error )
 ( ~command 2>> error~ append the standard error to error )
+( ~echo "Hello" > #<buffer test-buffer>~ send the stdout to Emacs buffer )
+( ~ls >> #<buffer *scratch*>~ append the stdout to Emacs buffer )
 
 *** command < file
 To channel a file to a program’s standard input.
@@ -493,6 +506,7 @@ When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on th
 ( ~grep root /etc/*~ check every file in /etc that contains root )
 ( ~grep -h '.zip' files*.txt~ match to thing like bunzip2, gunzip, gzip,... )
 ( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
+( ~cp `ls dir |grep -Ev 'exclude1|exclude2' newDir`~ copy all files in dir except some files to newDir )
 
 *** diff file1 file2
 See the differences between /file1/ and /file2/.
@@ -567,53 +581,9 @@ Print newline, word, and byte counts for each /file/ and a total line if more th
 *** xargs cmd arg
 Reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the /cmd/ command (default is echo) one or more times with any /arg/ initial-arguments followed by items read from standard input. Blank lines on the standard input are ignored.
 ( ~| xargs~ joins all the lines from a pipe )
-( ~| xargs -n 1~ splits pupe elements separated by whitespace into lines )
+( ~| xargs -n 1~ splits pipe elements separated by whitespace into lines )
 
 ** Utilities
-*** at
-Queue, examine, or delete jobs for later execution.
-Reads the commands from the standard input at a specified time. End the input with CTRL-D.
-This command is used to run a job once in the future without using cron.
-( ~atq~ check that the job has been scheduled )
-( ~atrm~ remove job )
-( ~at 22:30 30.09.15~ schedule jobs days into the future )
-( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
-
-*** (cd dir; ls)
-Executes the command /ls/ while in /dir/ and leaves the original shell intact.
-( ~(PATH=/usr/confusing:$PATH; uglyprogram)~ add a component to the path that might cause problems as a permanent change )
-( ~PATH=/usr/confusing:$PATH uglyprogram~ equivalent command that avoids the subshell )
-
-*** bc
-The bc program reads a file written in its own C-like language and executes it. A bc script may be a separate file, or it may be read from standard input. The bc language supports quite a few features including variables, loops, and programmer-defined functions.
-[ /ibase=N/ treat all numbers as base N /obase=N/ output all numbers in base N ]
-( ~echo "obase=2;240" | bc -l~ calculates 240 in binary basis )
-( ~echo "obase=10; ibase=16; FF" | bc~ convert FF hex to decimal )
-( ~echo "obase=2; ibase=16; FF" | bc~ convert FF hex to binary )
-( ~echo Five divided by two equals $((5/2))~ arithmetic expansion )
-( ~bc <<< "2+2"~ the ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts )
-
-*** man command
-See the manual page for the /command/.
-[ /-k/ search by keyword (same as apropos command) ]
-( ~man -k sort~ looking for a command to sort something )
-( ~man 5 passwd~ read the /etc/passwd file description )
-( ~info command~ access an info manual )
-( ~apropos command~ searches the descriptions for instances of keyword )
-
-*** whereis command
-Locate the binary, source, and manual page files for a command.
-( ~which command~ display an executable's location )
-( ~type command~ indicate how a command name is interpreted )
-( ~help command~ get help for shell builtins )
-( ~whatis~ display one-line manual page descriptions )
-
-*** shutdown -h now
-Make the machine halt immediately.
-[ /-h/ equivalent to --poweroff /-r/ reboot /-f/ force ]
-( ~shutdown -h +5~ halt in 5 minutes )
-( ~shutdown -r~ reboot the machine )
-
 *** sudo
 Execute a command as another user.
 ( ~su user~ allows commands to be run with a substitute user )
@@ -621,33 +591,6 @@ Execute a command as another user.
 Welcome to the Emacs shell
 
  ~/Documents $
-*** source file
-Execute commands from a file in the current shell.
-( ~source ~.bashrc~ reread the modified .bashrc file )
-
-*** set
-Show list of enviroment, shell variables and shell functions.
-[ /-e/ exit immediately if a command exits with a non-zero status /-C/ disallow existing regular files to be overwritten by redirection of output /-x/ print commands and their arguments as they are executed ]
-( ~printenv~ only display the environment variables )
-( ~printenv variable~ list the value of a specific variable )
-( ~set -x~ print all command (useful to debug) )
-( ~set -C~ avoid clobbering in bash. In some commands like (command > file) if file exists, the shell erases (clobbers) the original file first. Some shells have parameters that prevent clobbering )
-
-*** pushd path
-Save the /path/.
-( ~popd~ return to the save path )
-
-** Misc
-*** date
-Print or set the system date and time.
-( ~date +%s~ current time as the number of seconds since 12:00 midnight on January 1, 1970, UTC )
-( ~tzselect~ help you identify a time zone file )
-( ~export TZ=US/Central~ use a time zone other than the system default for just one shell session )
-
-*** id
-Print real and effective user and group IDs.
-( ~groups~ see what group you’re in )
-
 *** adduser
 Add users.
 ( ~userdel~ remove users )
@@ -662,12 +605,95 @@ Change login shell.
 ( ~passwd~ change password )
 ( ~passwd user~ change password of the user )
 
+*** (cd dir; ls)
+Executes the command /ls/ while in /dir/ and leaves the original shell intact.
+( ~(PATH=/usr/confusing:$PATH; uglyprogram)~ add a component to the path that might cause problems as a permanent change )
+( ~PATH=/usr/confusing:$PATH uglyprogram~ equivalent command that avoids the subshell )
+
+*** at
+Queue, examine, or delete jobs for later execution.
+Reads the commands from the standard input at a specified time. End the input with CTRL-D.
+This command is used to run a job once in the future without using cron.
+( ~atq~ check that the job has been scheduled )
+( ~atrm~ remove job )
+( ~at 22:30 30.09.15~ schedule jobs days into the future )
+( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
+
+*** bc
+The bc program reads a file written in its own C-like language and executes it. A bc script may be a separate file, or it may be read from standard input. The bc language supports quite a few features including variables, loops, and programmer-defined functions.
+[ /ibase=N/ treat all numbers as base N /obase=N/ output all numbers in base N ]
+( ~echo "obase=2;240" | bc -l~ calculates 240 in binary basis )
+( ~echo "obase=10; ibase=16; FF" | bc~ convert FF hex to decimal )
+( ~echo "obase=2; ibase=16; FF" | bc~ convert FF hex to binary )
+( ~echo Five divided by two equals $((5/2))~ arithmetic expansion )
+( ~bc <<< "2+2"~ the ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts )
+
+*** shutdown -h now
+Make the machine halt immediately.
+[ /-h/ equivalent to --poweroff /-r/ reboot /-f/ force ]
+( ~shutdown -h +5~ halt in 5 minutes )
+( ~shutdown -r~ reboot the machine )
+( ~shutdown -r now~ reboot the machine now )
+
+*** source file
+Execute commands from a file in the current shell.
+( ~source ~.bashrc~ reread the modified .bashrc file )
+
+** Info
+*** man command
+See the manual page for the /command/.
+[ /-k/ search by keyword (same as apropos command) ]
+( ~man -k sort~ looking for a command to sort something )
+( ~man 5 passwd~ read the /etc/passwd file description )
+( ~info command~ access an info manual )
+( ~apropos command~ searches the descriptions for instances of keyword )
+
+*** whereis command
+Locate the binary, source, and manual page files for a command.
+( ~which command~ display an executable's location )
+( ~type command~ indicate how a command name is interpreted )
+( ~whatis~ display one-line manual page descriptions )
+( ~help command~ get help for shell builtins )
+*** date
+Print or set the system date and time.
+( ~date +%s~ current time as the number of seconds since 12:00 midnight on January 1, 1970, UTC )
+( ~tzselect~ help you identify a time zone file )
+( ~export TZ=US/Central~ use a time zone other than the system default for just one shell session )
+
+*** id
+Print real and effective user and group IDs.
+( ~groups~ see what group you’re in )
+
+*** uname -a
+Print system information.
+[ /-a/ all information /-n/ network node hostname /-p/ processor type /-o/ operating system ]
+( ~lsb_release -a~ system information like distribution name )
+
 *** history
 History of commands that have been entered.
 ( ~history | grep echo~ list the command used with echo )
 ( ~!88~ expand into the contents of the 88th line in the history list )
 ( ~script file~ record an entire shell session and store it in a file )
 ( ~cat typescript~ read the scriptfile produced when executing the script command )
+
+*** fc-list
+List available fonts.
+( ~fc-list :spacing=mono~ view a list of monospaced client-side fonts )
+( ~fc-match -s helvetica~ show an ordered list of fonts matching a pattern )
+( ~fc-cache -fv~ rebuilds cached list of fonts in ~/.cache/fontconfig )
+
+*** set
+Show list of enviroment, shell variables and shell functions.
+[ /-e/ exit immediately if a command exits with a non-zero status /-C/ disallow existing regular files to be overwritten by redirection of output /-x/ print commands and their arguments as they are executed ]
+( ~printenv~ only display the environment variables )
+( ~printenv variable~ list the value of a specific variable )
+( ~set -x~ print all command (useful to debug) )
+( ~set -C~ avoid clobbering in bash. In some commands like (command > file) if file exists, the shell erases (clobbers) the original file first. Some shells have parameters that prevent clobbering )
+
+** Miscellaneous
+*** pushd path
+Save the /path/.
+( ~popd~ return to the save path )
 
 *** exit
 Cause normal process termination.
@@ -682,6 +708,7 @@ After we define our alias, we can use it anywhere the shell would expect a comma
 *** python3 -m http.server 8000
 This starts a basic web server on port /8000/ that makes the current directory available to any browser on the network. If the machine you run this on is at address 10.1.2.4, point the browser on the destination system to http://10.1.2.4:8000.
 
+* Miscellaneous
 ** Compiling
 *** cc -o file file.c
 Compile the /file.c/ and give the name /file/.
@@ -952,6 +979,7 @@ Sends ICMP echo request packets to a host /8.8.8.8/ that asks a recipient host t
 A gap in the sequence numbers (icmp_req), usually means there’s some kind of connectivity problem. Packets shouldn’t be arriving out of order, because ping sends only one packet a second. If a response takes more than a second (1,000 ms) to arrive, the connection is extremely slow.
 The round-trip time is the total elapsed time between the moment that the request packet leaves and the moment that the response packet arrives. If there’s no way to reach the destination, the final router to see the packet returns an ICMP “host unreachable” packet to ping.
 [ /-4/ IPv4 only /-6/ IPv6 only /-A/ adaptive ping /-O/ report outstanding ICMP ECHO reply before sending next packet /-a/ audible ping ]
+( ~ping -OA 8.8.8.8~ send ICMP reporting outstanding and adaptive ping )
 
 *** traceroute
 Print the route packets trace to network host.
@@ -1056,25 +1084,38 @@ Creating a partition of the device.
 *** apt list
 Display a list of packages satisfying certain criteria. It supports glob(7) patterns for matching package names.
 [ /--installed/ list installed /--upgradeable/ list upgradeable /--all-versions/ list all available versions ]
+( ~dpkg -S name~ search for a filename from installed packages (show path) )
 ( ~dpkg -l~ list the installed packages )
+( ~cat /var/lib/dpkg/status~ status of installed and available packages )
+( ~dpkg-query -l '*'~ check status of all packages)
+( ~dpkg -L name~ list files installed by a package )
+( ~dpkg --get-selections > packages.dpkg~ save a list of installed packages (useful if you find you need to reinstall Debian), and to install all packages in new system ~apt install $(cat packages.dpkg | awk '{print $1}')~ )
 
 *** apt update
-Sync package index files from sources.
+Retrieve a fresh copy of the package lists from the configured sources.
 Users are recommended to use the new apt(8) command for interactive usage and use the apt-get(8) and apt-cache(8) commands in the shell script.
 
 *** apt upgrade
-Updating packages from a repository.
+Updating all packages from a repository without removing any (safe upgrade).
 Is used to install available upgrades of all packages currently installed on the system from the sources configured via sources.list(5). New packages will be installed if required to satisfy dependencies, but existing packages will never be removed. If an upgrade for a package requires the removal of an installed package the upgrade for this package isn't performed.
-( ~apt-get dist-upgrade~ update OS kernel, and others )
+( ~apt-get dist-upgrade~ update packages (has a "smart" conflict resolution system) )
+( ~apt full-upgrade~ performs the function of upgrade but will remove currently installed packages if this is needed to upgrade the system as a whole (usually issued while doing system upgrades))
+( ~apt upgrade name~ upgrade a package name )
+( ~apt --simulate upgrade~ see which packages would be installed )
 
 *** apt search pattern
 Can be used to search for the given regex term(s) in the list of available packages and display matches.
 ( ~apt-cache search pattern~ equivalent command )
+( ~dpkg-query -l '*<name>*'~ search packages only by name (note the * in the command show all possible name packages) )
+( ~dpkg -S /path/to/file~ find out what debian package a particular file belongs to )
+( ~apt-cache rdepends name~ determine which packages depend on a specific package )
 
 *** apt show name
 Show information about the given package(s) including its dependencies, installation and download size, sources the package is available from, the description of the packages content and much more.
 ( ~apt-cache show name~ equivalent command )
 ( ~apt-get showpkg name~ show a package's dependencies )
+( ~apt info name~ detailed information about a package )
+( ~apt show name -a~ view all available versions of a package )
 
 *** apt-cache policy name
 Displays version of package and if it's installed on the system )
@@ -1082,17 +1123,102 @@ Displays version of package and if it's installed on the system )
 
 *** apt install name
 Downloaded the package from a repository and installed with full dependency resolution.
+( ~apt-cache depends name~ to dependencies of a package )
+( ~apt reinstall name~ reinstall a package )
+( ~apt reinstall <package> $(apt-cache depends --recurse --installed <package> ||grep '[ ]')~ reinstall a package and all dependencies )
+( ~apt install name/bookworm-backports~ install name from bookworm-backports, preferring dependencies from stable (bookworm is the stable version) )
+( ~apt install name/bookworm-backports dependency/bookworm-backports~  install a newer version of name and all its reverse dependencies from bookworm-backports instead of the older one from Debian stable release )
 
 *** apt remove name
 Uninstalled the package.
 Note that removing a package leaves its configuration files on the system. On the other hand you can get rid of these leftovers by calling *purge* even on already removed packages. Note that this does not affect any data or configuration stored in your home directory.
-( ~apt purge name~ remove the package and any configuration files )
-( ~apt autoremove name~ remove packages that were automatically installed to satisfy dependencies )
+( ~apt purge name~ remove the package and all its configuration and data files (caution) )
+( ~apt autoremove name~ remove packages that were automatically installed to satisfy dependencies (packages which you have installed explicitly/directly via install are also never proposed for automatic removal) )
+( ~apt-get --simulate remove name~ no action; perform a simulation of events that would occur based on the current system state but do not actually change the system )
+( ~apt clean~ remove cached package files already installed )
+( ~apt autoclean~ retain a local cache of only the most recent versions )
 
-*** dpkg -i name
+*** dpkg -i name.deb
 Installing a package from a package file.
 If a package file has been downloaded from a source other than a repository, it can be installed directly (though without dependency resolution) using a low-level tool.
-( ~dpkg -i name~ update an existing installation of package  to the new version )
+( ~dpkg -i name.deb~ update an existing installation of package  to the new version )
+
+** npm
+*** npm ls
+List locally installed packages present in the node_modules folder of a project.
+[ /-g/ global /--depth nth/ show nth dependencies ]
+( ~npm ls -g~ list globally installed packages )
+( ~npm list --depth 0~ list installed packages and dependencies no dependencies of dependency )
+( ~npm config get prefix~ show the folder where the global packages are installed )
+( ~npm list name~ search dependencies of this package )
+( ~npm root -g~ check where the package are installed )
+( ~npm ls --all -g~ show all global dependencies )
+( ~npm ls --package-lock-only~ show the dependency tree of a project that doesn't contain a node_modules folder based on its package-lock.json file )
+
+*** npm search name
+Search the /name/ package.
+( ~npm s name~ equivalent command )
+( ~npm show name~ show info about package )
+( ~npm show @vue/cli versions~ shows the available versions of the @vue/cli package )
+
+*** npm install name
+Add the /name/ dependency to your project.
+Install the package (will use ^ . . . only allow minor version upgrades and patches) and all its dependencies in the node_modules/ folder, while updating the package.json file by adding the package and its version as a dependency of the project.
+[ /-g/ global, without associating it with the project /-D/ or /--save-dev/ as a development dependency /-P/ or /--save-prod/ as a production dependecy (default) /install/ or /i/ or /add/ install ]
+( ~npm i name~ equivalent command )
+( ~npm install~ install all the dependencies in your project )
+( ~npm install lit-element@2.3.1~ install lit-element version 2.3.1 (won't allow upgrades to other versions) )
+( ~npm install --save-prod name~ switch installed package from development to production )
+( ~npm outdated~ integrated unit update system )
+( ~npm dedupe~ check packages and unify dependencies )
+
+*** npm uninstall name
+Uninstall package.
+[ /uninstall/ or /r/ or /remove/ or /unlink/ or /rm/ uninstall ]
+( ~npm r name~ equivalent command )
+( ~npm uninstall -g name~ uninstall packages globally )
+
+*** npm init -y
+Initialize a project in npm non-iteratively.
+[ /-y/ non-iteratively ]
+
+*** npm test
+Run this project's tests.
+
+*** npm run name
+Run the script named /name/.
+( ~npm run~ shows available tasks )
+( ~cat package.json | jq .scripts~ shows the scripts of package.json )
+( ~npm run start~ usually used for project startup tasks )
+( ~npm run dev~ usually used to start local development servers )
+( ~npm run serve~ usually used to start local development servers )
+( ~npm run build~ builds the final files to upload to the production web )
+( ~npm run test~ usually starts a battery of tests )
+( ~npm run deploy~ usually deploys the webapp built with build to the production web )
+
+*** npm command -h
+Quick help on /command/.
+( ~npm -l~ display usage info for all commands )
+( ~npm help term~ search for help on term )
+
+*** npm doctor
+checks the status of the npm installation.
+( ~npm config set prefix '~/.npm-global'~ changes the default path where packages are installed from usr to .npm-global , then set export PATH=~/.npm-global/bin:$PATH )
+
+*** npx
+Run CLI packages installed at project level (or uninstalled).
+npx check if the package is installed in node_modules/.bin. If it is, run it. If it is not, it will look for it in the system (globally installed). If it is, it runs it. If it is not found, it will install it temporarily and run it.
+( ~npx ./node_modules/.bin/name~ equivalent command )
+( ~cat package.json | jq .devDependencies,.dependencies~ show dependencies development and dependencies production )
+( ~cat package.json | jq .dependencies | jq -r 'keys[]' | xargs npx npm-size~ size of packages )
+
+*** npm docs name
+Access the documentation homepage of the /name/ package.
+( ~npm home name~ equivalent command )
+( ~npm repo name~ access the repository of the name package )
+( ~npm issues name~ access the name package issues page)
+( ~npm bugs name~ equivalent to the above command )
+( ~npm audit~ shows info about the security problem )
 
 ** rsync
 *** rsync -b file dir/
@@ -1136,11 +1262,18 @@ List all the (listable) modules available from a  particular rsync daemon by lea
 
 ** rclone
 *** rclone lsd remote:path/to/dir
-List all *directories*,containers,buckets in the path.
+List all *directories objects*,containers,buckets in the path.
 [ /-R/ to make them recurse ]
-( ~rclone lsd remote:~ list all the *dir objects* in the path with size and path )
+( ~rclone ls remote~ list size and path of every objects only )
 ( ~rclone lsl remote:~ list all the *file objects* in the path with size, *modification* time and path )
-( ~rclone lsf remote:path/dir -R~ list all file with /-R/ to make them recurse )
+( ~rclone lsf remote:~ list all file and dir in easy to parsr format )
+( ~rclone lsjson remote:~ list objects and directories in JSON format )
+( =rclone lsd remotedrive:= list all directories objects )
+
+*** rclone tree
+List the contents of the remote in a tree like fashion.
+[ /-d/ list directories only /--level int/ descend only level directories deep /-s/ size /-r/ reverse ]
+( ~rclone tree remotemega: --level 2~ descend 2 levels (folder and subfolders) )
 
 *** rclone size remote:path/dir
 Return the total size and number of objects in remote:path.
@@ -1208,24 +1341,6 @@ Copy a /file/ from a remote host to the current directory.
 *** # ssh-keygen -t rsa -N '' -f /etc/ssh/ssh_host_rsa_key
 Create SSH protocol version 2 key.
 ( ~# ssh-keygen -t dsa -N '' -f /etc/ssh/ssh_host_dsa_key~ )
-
-** docker
-*** docker build -t hlw_test .
-Build the image (reads the Dockerfile in the current directory and applies the identifier /hlw_test/ to the image).
-
-*** docker images
-Verify image.
-
-*** docker run -it hlw_test
-Start container with the /hlw_test/ image.
-
-*** docker ps
-Show the currently running containers.
-[ /-a/ see all ]
-
-*** rm
-Remove a terminated container.
-( ~rmi~ remove an image )
 
 ** Image
 *** mogrify -format png * .jpg
@@ -1309,25 +1424,23 @@ Change volume 150%.
 *** ffmpeg -txt_format text -i input.mp4 out.srt
 Read and/or extract subtitles from embedded subtitles tracks.
 
-** npm
-*** npm ls
-Llist locally installed packages present in the node_modules folder of a project.
-( ~npm ls -g~ list globally installed packages )
+** docker
+*** docker build -t hlw_test .
+Build the image (reads the Dockerfile in the current directory and applies the identifier /hlw_test/ to the image).
 
-*** npm install foo
-Add the /foo/ dependency to your project.
-( ~npm install~ install all the dependencies in your project )
+*** docker images
+Verify image.
 
-*** npm test
-Run this project's tests.
+*** docker run -it hlw_test
+Start container with the /hlw_test/ image.
 
-*** npm run foo
-Run the script named /foo/.
+*** docker ps
+Show the currently running containers.
+[ /-a/ see all ]
 
-*** npm command -h
-Quick help on /command/.
-( ~npm -l~ display usage info for all commands )
-( ~npm help term~ search for help on term )
+*** rm
+Remove a terminated container.
+( ~rmi~ remove an image )
 
 * Git
 ** Basics
@@ -1346,6 +1459,7 @@ Determine which files are in which state.
 ( *A* added | *M* modified | *?* not tracked ) ( *left-hand* column indicates the status of the *staging area* and the *right-hand* column indicates the status of the *working tree*) .
 [ /-s/ more simplified output ]
 ( ~git ls-files~ to take a more raw look at what your staging area looks like )
+( ~git status -s~ more simplied output )
 
 *** git add <file>
 Specify the file /file/ to be tracked or staged or merge-conflicted.
@@ -1365,6 +1479,8 @@ Show various types of objects in a simple and human readable way. Normally you w
 
 *** git log
 Lists the commits made in that repository in reverse chronological order.
+( ~git log --oneline --decorate --graph --all~ better view )
+( ~git shortlog~ Is used to summarize the output of git log )
 
 *** git pull
 Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
@@ -1395,7 +1511,7 @@ Add a new remote Git repository as a shortname (link to a repository). Is a mana
 *** git remote rename <name1> <name2>
 Change a remote’s shortname, renaming /name1/ to /name2/ .
 (that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
-( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL. (when you rename a it repository) )
+( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL (when you rename a it repository (first rename the host repository in the github setting e.g.)) )
 
 *** git remote rm name
 Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
@@ -2608,6 +2724,11 @@ Es una combinación de teclas "mágicas" que se puede presionar y el kernel resp
 - Algunos teclados pueden no tener una tecla etiquetada como 'SysRq'. La tecla 'SysRq' también se conoce como la tecla 'Imprimir pantalla' o 'Print screen'. Además, algunos teclados no pueden manejar tantas teclas presionadas al mismo tiempo, por lo que es posible que tenga mejor suerte presionando Alt, presione SysRq, suelte SysRq, presione <tecla de comando>, suelte todo.
 
 - Desde el terminal SSH, etc., puede usar la función Alt-SysRq escribiendo en "/proc/sysrq-trigger". Por ejemplo, "echo s > /proc/sysrq-trigger; echo u > /proc/sysrq-trigger" desde el indicador de shell raíz sincroniza y desmonta todos los sistemas de archivos montados.
+
+*** CTRL-SHIFT-x-*
+Paste all files in a directory.
+
+*Note*: first type ~*~ in the terminal and then press =CTRL-SHIFT-x-*=.
 
 ** Keystrokes
 *** History commands
