@@ -2787,6 +2787,24 @@ Plural nouns and non-countable nouns.
 ~More sugar than flour.~
 ~I’m *happier* today than I was yesterday~
 
+*** fill in - fill out
+**** Fill in
+fill in - "in" means to fill (write) something "*in that space*".  So it's appropriate for "the blank", which is a location.
+
+Se usa más en el Reino Unido. Tanto para campos como para el formulario.
+
+~Fill in a field.~
+~You always “fill in” the blanks.~ (meaning put a response on the blank line.)
+
+**** Fill out
+fill out - "out" means "*completely*", so it's appropriate for something more substantial than a single entry, such as a form.
+
+Proviene de Estados Unidos. Para muchos es un sinónimo de /fill in/, para otros en Estados Unidos se usaría /fill in/ para *rellenar los campos* y /fill out/ para el *formulario entero*.
+
+~Fill out the form.~
+~You “fill out” a form.~ (meaning you fill in *each blank line on an entire form*.)
+~You “fill out” your wardrobe.~ (meaning you buy more clothes so that you have all types of clothing that you might need — such a casual, dressy, and everyday clothes.))
+
 *** following - next
 **** following
 Next comes immediately after; following may *come anytime after*.
@@ -8847,78 +8865,173 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** +Si bien eshell puede parecer un shell, como Bash, debes verlo como un REPL con expresiones s sin paréntesis.
-While eshell may look like a shell, like Bash, you should view it as a REPL with parenthesis-less s-expressions.
+**** +; el desarrollador del programa propietario se ve tentado a diseñar el programa para maltratar a sus usuarios.
+; the proprietary program's developer is tempted to design the program to mistreat its users.
 
-**** +En la semana veo el que acabas de publicar.
-I'll watch the one you just published during the week.
+**** +Ceder a esa tentación se ha vuelto cada vez más frecuente
+Yielding to that temptation has become ever more frequent;
 
-**** +No todo funciona como me gustaría que funcionara
-not everything works as I would like it to work
+**** +Mantendremos toda nuestra base de datos de informes de errores abierta a la vista del público en todo momento.
+We will keep our entire bug report database open for public view at all times.
 
-**** +Desde el cambio de nombre, ha sido simplificado para ofrecer/servir simplemente archivos
-Since the name change, it's been stripped down to simply serve files
+**** +y enlaces al manual para temas más avanzados o para cuando algo salga mal.
+and links to the manual for more advanced topics or for when things go wrong.
 
-**** +haciéndome sentir un un poco de vergüenza y mucha alegría :-)
-making me feeling a little bit of shame and a lot of joy :-)
+**** +pero también son bastante potentes y un movimiento en falso te puede costar.
+; but they are also quite powerful and a false move can cost you.
 
-**** +Lo bien que la descarga funciona en la práctica puede variar un poco/puede ser un poco variable. Un modo simple o un conjunto de algunos/unos pocos comandos normalmente está bien; algo de lujo podría no estar configurado para deshacerse por completo.
-Quite how well unloading works in practice can be a bit variable. A plain mode or set of a few commands is normally fine, anything fancy might not be setup to completely undo itself.
+**** +¿Tienes en tu escritorio algunos archivos antiguos que no has abierto desde hace tiempo?
+Have some old files you haven't opened in awhile on your desktop?
 
-**** +, y tiene un coste/ y viene con un costo:
-, and it does come at a cost:
+**** +Pero antes de dejarnos llevar por la generosidad de Apple,
+But before we get too carried away about Apple's generosity
 
-**** +Para ejecutar los ganchos predeterminados, se me ocurrió esto, que es realmente estúpido o realmente genial.
-To run the default hooks, I came up with this, which is either really stupid or really cool.
+**** +Si eres nuevo en Unix, probablemente deberías salir, comprar algunos libros y leer un poco.
+If you are new to Unix, you probably should go out and buy some books and do some reading.
 
-**** +No estoy aquí para responder preguntas personales que tengas conmigo.
-I'm not here to answer personal question that you have with me
+**** +Uno/se selecciona principalmente respuestas ya sea por
+one mostly selects answers either by
 
-**** +Si compila Emacs con esta bandera, como he hecho y sigo haciendo,
-If you do compile Emacs with this flag, as I have and still do
+**** +, podrías intentar adivinar la clave con un ataque de fuerza bruta,
+, you could try to guess the key with a brute force attack,
 
+**** +El orden en el que son listados puede diferir del que usted está acostumbrado.
+The order they are listed in may differ from what you are used to.
 
-**** , merece más que la pena a largo plazo. Cualquier herramienta que utilices a menudo merece el tiempo dedicado a aprender a dominarla.
-, it is more than worthwhile in the long run. Any tool you use often deserves the time spent learning to master it
+**** +La forma más sencilla de suscribirse a una o más de estas listas es visitar la página de suscripción a la lista de correo de Debian y completar el formulario que encontrará allí.
+The easiest way to subscribe to one or more of these lists is visit Debian's mailing list subscription page and fill out the form you'll find there.
 
-**** En el segundo en que me tocara, descubriría lo mala que era su idea/su idea fue
-The second it touched me, he would find out how bad his idea was
+**** +El espacio en disco es barato hoy en día, pero ¿por qué tirar tu dinero?
+Disk space is cheap nowadays, but why throw your money away?
 
-**** Les dije a todos que les mostraría los números de fin de mes. El canal está creciendo, sin duda.
-Told everyone I would show the end of the months numbers. The channel is growing, no doubt.
+**** +(esto)Hará preguntas de configuración, como cuando se instaló el paquete por primera vez.
+It will ask configuration questions, much like when the package was first installed.
 
-**** Cuando esté presente, el modo empresa se configurará automáticamente y simplemente funcionará.
-When present, company-mode will be auto-configured and it will just work.
+**** +*Podrás* ir más allá y obtener información respecto la protección de la privacidad,
+You will be able to go further and obtain information concerning the privacy protection,
 
-**** El soporte de SQLite, de una forma u otra, existe desde hace algún tiempo.
-SQLite support, in one form or another, has been around for a while.
+**** +Todo empezó con un pequeño, *pero sólido* grupo de hackers de software libre,
+Everything started with a little, but solid, group of free software hackers,
 
-**** en cuanto a los invitados no quiero que se sientan incómodos
-as far as the guests I don't wnat them to feel uncomfortable
+**** +, pero también *contra* tus propios errores
+, but also against your own mistakes
 
-**** Cambio mecánico que es poco probable que afecte al uso diario si usas cabezeras.
-Mechanical change that is unlikely to affect day-to-day use if you use outline.
+**** +así que no dude en probar otros *entornos*.
+so don’t hesitate to test other environments.
 
-**** moverse mediante la expresión s, tomará un poco de tiempo acostumbrarse,
-Moving by s-expression will take a bit of getting used to,
+**** +cualquier tipo de dato o producto que no queramos alterar
+any kind of data or product that we don't want tempered with
 
-**** haciendolo (equis cosa) menos conocido de lo que debería ser;
-making it less known than it should be;
+**** +Puede examinar y editar este archivo a su gusto una vez completada la instalación.
+You can examine and edit this file to your liking after the installation is complete.
 
-**** ¿Qué sería de Emacs sin Emacs Lisp?
-what would Emacs be without Emacs Lisp?
+**** +GNU/Linux también tiene menos probabilidades de fallar
+GNU/Linux is also less likely to crash,
 
-**** Las macros de teclado se malinterpretan y pueden hacer mucho más de lo que la mayoría de la gente cree que pueden hacer.
-Keyboard macros are misunderstood, and they can do an awful lot more than most people think they can do.
+**** , es posible que pueda arreglárselas con *algo menos* del hardware recomendado que se enumera en la siguiente tabla.
+, you might manage with less than some of the recommended hardware listed in the table below.
 
-**** Parece útil. Tendría que usarlo por un tiempo para determinar qué tan confiable es.
-Seems useful. I’d have to use it for a while to determine how reliable it is.
+**** realizar cambios en/a la partición de un disco es una acción intrínsecamente peligrosa y sólo debería realizarse/ser hecha después de haber realizado una copia de seguridad completa de todos los datos.
+making changes to the partitioning of a disk is an inherently dangerous action and should only be done after having made a full backup of all data.
 
-**** Es fantasticamente avanzado y vale la pena aprenderlo si haces muchas matemáticas.
-It’s fantastically advanced, and well worth learning if you do a lot of mathematics.
+**** Está escrito por el mismo autor que el gestor de arranque syslinux y, por lo tanto, es menos probable que cause problemas.
+It's written by the same author as the syslinux bootloader and is therefore least likely to cause issues.
 
-**** También puede personalizar 'major-mode-remap-alist' para activar automáticamente algunos modos basados en tree-sitter para los mismos archivos para los que se activaría un modo "incorporado".
-You can also customize 'major-mode-remap-alist' to automatically turn on some tree-sitter based modes for the same files for which a "built-in" mode would be turned on.
+**** Tenga en cuenta que el uso del disco varía ampliamente según/en función/dado la configuración del sistema.
+Note that disk usage varies widely given system configuration
+
+**** Los datos temporales creados por los programas probablemente *irán* a este directorio.
+temporary data created by programs will most likely go in this directory.
+
+**** +La misión de este manual no es ser exhaustiva
+The mission of this manual is not to be comprehensive –
+
+**** +para lidiar no solo con espacio de memoria insuficiente, sino también con la funcionalidad de suspensión o hibernación.
+, to deal not only with insufficient memory space, but also with the suspend or hibernation functionality.
+
+**** +Debian está desarrollado muy minuciosamente.
+Debian is developed very thoroughly.
+
+**** +Pero entonces... ¿cómo vamos a hacerlo/lograrlo/conseguirlo?
+But then … how are we going to make it?
+
+**** +La distribución Experimental no es una distribución Debian per se, sino más bien un repositorio donde se prueban las versiones alfa o beta del software.
+The Experimental distribution is not a Debian distribution per se, but rather a repository where alpha or beta software versions are tested.
+
+**** +La “nube” está de moda estos días.
+The “cloud” is fashionable these days.
+
+**** Uno de los principales intereses del software libre es que permite a personas cualificadas auditar el código del programa,
+One of the major interests of the free software is that it allows skilled people to audit the program code,
+
+**** La mayoría de los usuarios nunca han tenido que instalar un sistema previamente, y eso podría ser un poco aterrador
+Most of the users never had to install a system previously, and that could be a little freaking
+
+**** si hubiera optado por un conjunto de CD de Debian
+Had you opted for a Debian CD set - If you had opted for a set of Debian CD's
+
+**** La wiki oficial de la comunidad está muy bien hecha y te brindará/provee una ayuda eficiente y completa (no es necesario reinventar la rueda).
+The official wiki of the community is very well done and will provide you with an efficient and complete help (no need to reinvent the wheel
+
+**** La ventana principal aparece y revela... muchas herramientas con las que divertirse...
+The main window pops up and unveils … lots of tools to have fun with …
+
+**** En primer lugar, hay que saber/uno debe saber que existen(verb) varias ramas de la distribución Debian en paralelo.
+First of all, one must know that several Debian distribution branches exist in parallel.
+
+**** cuando se incluyen todas las funciones buscadas/objetivas/apuntadas por los equipos de Debian
+when all the features targeted by the Debian teams are included,
+
+**** y después de un período de congelación del software y búsqueda/caza de errores(bug),
+and after a period of software freeze and bug hunting,
+
+**** Quizás pienses *que* estas informaciones son aparentemente inofensivas,
+You may think that these information are seemingly harmless,
+
+**** o simplemente compartir tus recursos, le sugerimos encarecidamente que cree otra cuenta de usuario
+or simply share your resources, we strongly suggest you create another user account
+
+**** +Cuanto más segura/fuerte sea mi contraseña, más difícil es memorizarla. ¿No es así?
+ The stronger my password is, the more difficult it is to memorize it. Isn’t it ?
+
+**** los datos de los demás usuarios son legibles por usted, y los suyos también,
+the data of the other users are readable by you, and yours too
+
+**** *¡Y esto no es en vano! ... y adquiera el hábito de guardar sus datos en un medio externo y de forma regular.
+ and this is not for nothing! ... and get into the habit of saving your data on an external medium and on a regular basis.
+
+**** *Seguramente te topaste con estos mensajes de advertencia que hablaban de hacer una copia de seguridad de tus datos...
+You certainly ran into these warning messages talking about backing up your data …
+
+**** , siempre *dejarás* un rastro detrás de ti.
+you will always leave a trail behind you.
+
+**** No puede garantizar su anonimato cuando se enfrenta a alguna tecnología de seguimiento avanzada como las huellas dactilares
+ It cannot guarantee your anonymity when facing some advanced tracking technology like the fingerprinting
+
+**** Deja de hacer como todos los demás, aunque/incluso supuestamente “no tengas nada que ocultar”.
+Stop doing like everyone else, even if supposedly “you have nothing to hide”.
+
+**** Esta funcionalidad no debe impedirle mantener algo de sentido común..
+This functionality must not prevent you to keep some common sense
+
+**** Corresponde a cada uno definir su “vida privada” y no difundirla/esparcirla en la red…
+It is up to everyone to define his “private life” and not spread it on the web
+
+**** La Fundación Linux se asocia con los principales desarrolladores del mundo
+The Linux Foundation partners with the world’s leading developers
+
+**** Imagínese un mundo en el que cada ser humano pueda compartir libremente la suma de todo el conocimiento. Ese es nuestro compromiso
+Imagine a world in which every single human being can freely share in the sum of all knowledge. That’s our commitment.
+
+**** , Wikimedia se esfuerza por
+, Wikimedia strives to
+
+**** con un conjunto completo de herramientas para desarrolladores y creadores de todo tipo.
+with a complete set of tools for developers and makers of all kinds.
+
+**** Tenía mucho tiempo que no entraba a Facebook. En estos días entre en facebook y me aparecieron un montón de vídeos tuyos. Tenían un montón de vistas, cientos de miles, pero lo que me molestó mucho fue, que ellos cortan la pantalla inferior y desaparecen tu logotipo. No me gustan las marcas de agua, pero usted debería ponerla un poco más alto.
+I haven't been on Facebook for a long time. I went on Facebook few days ago and a bunch of your videos appeared. They had a lot of views, hundreds of thousands, but what really bothered was that they cut off the bottom screen and disappear your logo. I don't like watermarks, but you should put it a little higher.
 
 *** Chunk
 **** Pero la mayoría de ellos son
@@ -10189,6 +10302,9 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 
 **** Se le pedirá
 You will be prompted / You will be asked
+
+**** Puede examinar y editar este archivo *a su gusto* una vez completada la instalación.
+You can examine and edit this file *to your liking* after the installation is complete.
 
 **** +¿Puedo buscar buffers por modo principal, proyecto en ivy-switch-buffer? - No, *hasta donde yo sé*, no puedes ahora.
 Can I search buffers by major-mode, project in ivy-switch-buffer? - No, *as far as I know*, you can not right now.
@@ -14435,6 +14551,20 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Speaking
 :LOGBOOK:
+CLOCK: [2024-08-24 Sat 09:09]--[2024-08-24 Sat 11:59] =>  2:50
+CLOCK: [2024-08-23 Fri 08:52]--[2024-08-23 Fri 10:37] =>  1:45
+CLOCK: [2024-08-22 Thu 08:51]--[2024-08-22 Thu 10:40] =>  1:49
+CLOCK: [2024-08-21 Wed 09:14]--[2024-08-21 Wed 10:44] =>  1:30
+CLOCK: [2024-08-20 Tue 09:02]--[2024-08-20 Tue 10:17] =>  1:15
+CLOCK: [2024-08-19 Mon 08:37]--[2024-08-19 Mon 10:00] =>  1:23
+CLOCK: [2024-08-18 Sun 08:56]--[2024-08-18 Sun 10:26] =>  1:30
+CLOCK: [2024-08-17 Sat 09:32]--[2024-08-17 Sat 10:32] =>  1:00
+CLOCK: [2024-08-16 Fri 08:54]--[2024-08-16 Fri 10:13] =>  1:19
+CLOCK: [2024-08-15 Thu 09:15]--[2024-08-15 Thu 10:00] =>  0:45
+CLOCK: [2024-08-14 Wed 09:29]--[2024-08-14 Wed 10:11] =>  0:42
+CLOCK: [2024-08-13 Tue 09:31]--[2024-08-13 Tue 10:01] =>  0:30
+CLOCK: [2024-08-12 Mon 09:04]--[2024-08-12 Mon 9:49] =>  0:45
+CLOCK: [2024-08-10 Sat 08:59]--[2024-08-10 Sat 09:57] =>  0:58
 CLOCK: [2024-08-09 Fri 09:19]--[2024-08-09 Fri 10:20] =>  1:01
 CLOCK: [2024-08-08 Thu 10:56]--[2024-08-08 Thu 11:57] =>  1:01
 CLOCK: [2024-08-07 Wed 08:59]--[2024-08-07 Wed 10:00] =>  1:01

@@ -1,11 +1,12 @@
 #+title: Shell
 #+date: 2023-08-25
 
-* File
-** Read
+* Files
+** View
 *** cat file1 file2
 Concatenate file(s) and print on the standard output.
 [ /-A/ display non-printing characters /-n/ number all output lines /-s/ suppress repeated empty output lines ]
+( ~cat file~ displays the contents of a file )
 
 *** less file
 Paginates output /file/. Less supports [[POSIX BRE vs ERE][extended regular expressions]].
@@ -20,8 +21,8 @@ Shows the last 10 lines of the /file/.
 ( ~head file~ shows the first 10 lines )
 ( ~tail +15 file~ print lines starting at line 15 )
 ( ~tail -15 file~ output the last 15 lines )
-( ~tail -f file~ continues to monitor the file, and when new lines are appended, they immediately appear on the display )
-(  ~tail -f /var/log/messages~ watch what the system is doing in near real-time )
+( ~tail -f file~ dynamicaly displays last line of file )
+( ~tail -f /var/log/messages~ watch what the system is doing in near real-time )
 
 ** Create
 *** touch file
@@ -65,47 +66,25 @@ If copied to an existing file, the file keeps the inode number.
 
 *** mv -i file1 file2
 Move/remove /file1/ to /file2/. If /file2/ exists, it is overwritten with the contents of /file1/. If /file2/ does not exist, it is created. In either case, /file1/ ceases to exist.
+
 [ /-i/ prompt before overwrite /-u/ update, only move files that either don't exist, or are newer than the existing corresponding files in the destination directory ]
+*** scp files user@host:path
+Copy files to other machine (and vice versa).
 
 ** Delete
 *** rm -i file
 Removes /file/.
-[ /-i/ prompt before every removal ]
+[ /-i/ prompt before every removal /-f/ remove the write-protected file ]
 
 *** gio trash file
 Move /file/ to Trash folder.
 
 ** Utilities
-*** lsof -p 123
-List the open files for a particular /123/ process ID.
-Open files and the processes using them, it can list network resources, dynamic libraries, pipes, and more.
-[ /+D/ search for all open instances  of  directory /-p/ listing of files for the processes ]
-( *COMMAND* the command name for the process that holds the file descriptor *FD* shows the purpose of the file, it can also list the file descriptor of the open file *DEVICE* the major and minor number of the device that holds the file *NAME* the filename )
-( ~lsof +D /usr~ displays entries for open files in /usr and all of its subdirectories )
-
-*** ln -s target linkname
-Make symbolic link. The new /linkname/ is the name of the symbolic link, the /target/ is the path of the file or directory that the link points to (absolute paths must be placed).
+*** ln -s source link
+Create a symbolic link from source to link.
+The new /link/ is the name of the symbolic link, the /source/ is the path of the file or directory that the link points to (absolute paths must be placed).
 [ /-s/ make symbolic link instead of hard links ]
-( ~ln target linkname~ create new hard link )
-
-*** find dir
-List current directory and its subdirectories.
-[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-prune/ if the file is a dir, don't descend into it /-xdev/ don't descend dir on other filesystems /-perm 644/ search by permission /-exec/ search by executable /-type d/ search by dir /-inum 123/ search by inode /-regex pattern/ matches regular expression pattern ]
-( ~find . -maxdepth 1 -type d -name 'emacs*'~ search only directories starting with emacs in the current directory )
-( ~find . -maxdepth 1 -type d -name 'emacs*' -printf '%f\n'~ equivalent to above, but listing without ./ at the beginning )
-
-*** find dir -name file -print
-Find /file/ in /dir/. Be carefull of shell expansion, try to use quotes in the files names.
-Options such as ~-name~ and ~-print~ are used in conjunction with ~-exec~.
-[ /-name/ base of file name,the path with the leading directories removed /-iname/ like -name, but the match is case insensitive /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-size n/ file uses less than, more than or  exactly  n  units  of  space, rounding up ]
-( ~find . -size -9k~ list files larger than 9 mibi bytes )
-
-*** find . -name '*.gif' -print0 | xargs -0 file
-Verify that every file in the current directory ( /./ ) tree that ends with /.gif/ is actually a GIF image. This form changes the find output separator and the xargs argument delimiter from a newline to a NULL character, it's usefull to avoid errors arising from filenames that can include spaces and newlines.
-xargs reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the command one or more times with any initial- arguments followed by items read from standard input.
-You may need to add two dashes (--) to the end of your xargs command if there’s a chance that any of the target files start with a single dash (-). The double dash (--) tells a program that any arguments that follow are filenames, not options (not all programs support the use of a double dash).
-[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater ]
-( ~find . -name '*.gif' -exec file {} \;~ equivalent command but the syntax is somewhat tricky because need to supply braces )
+( ~ln source link~ create a hard link from source to link )
 
 *** chmod +rx file
 Add read /r/ and execute /x/ permissions to /file/.
@@ -122,70 +101,211 @@ Change the owner of /file/ to /new_user/.
 ( ~# chown :admins~ changes the group owner to the group admins )
 ( ~# chown new_user:new_group file~ change the owner and group )
 
+*** lsof -p 123
+List the open files for a particular /123/ process ID.
+Open files and the processes using them, it can list network resources, dynamic libraries, pipes, and more.
+[ /+D/ search for all open instances  of  directory /-p/ listing of files for the processes ]
+( *COMMAND* the command name for the process that holds the file descriptor *FD* shows the purpose of the file, it can also list the file descriptor of the open file *DEVICE* the major and minor number of the device that holds the file *NAME* the filename )
+( ~lsof +D /usr~ displays entries for open files in /usr and all of its subdirectories )
+
+** Search
+*** find path options
+Search for file corresponding to options in path.
+[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-prune/ if the file is a dir, don't descend into it /-xdev/ don't descend dir on other filesystems /-perm 644/ search by permission /-exec/ search by executable /-type d/ search by dir /-type f/ search by file /-inum 123/ search by inode /-regex pattern/ matches regular expression pattern ]
+( ~find -name pattern~ search for file with a pattern )
+( ~find -type f/d/l~ search by filetype: f=file, d=directory, l=link )
+( ~find -exec cmd~ execute cmd on the found files )
+( ~find . -name "*.png" -exec cp {} $HOME/tmp/ \;~ search for all png files, then copy all files to tmp directory (‘{}’ stands for found files) )
+
+*** find dir -name file -print
+Search /file/ in /dir/. Be carefull of shell expansion, try to use quotes in the files names.
+[ /-name/ base of file name,the path with the leading directories removed /-iname/ like -name, but the match is case insensitive /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-size n/ file uses less than, more than or  exactly  n  units  of  space, rounding up ]
+( ~find . -size -9k~ search files larger than 9 mibi bytes )
+
+*** find . -name '*.gif' -print0 | xargs -0 file
+Verify that every file in the current directory ( /./ ) tree that ends with /.gif/ is actually a GIF image. This form changes the find output separator and the xargs argument delimiter from a newline to a NULL character, it's usefull to avoid errors arising from filenames that can include spaces and newlines.
+xargs reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the command one or more times with any initial- arguments followed by items read from standard input.
+You may need to add two dashes (--) to the end of your xargs command if there’s a chance that any of the target files start with a single dash (-). The double dash (--) tells a program that any arguments that follow are filenames, not options (not all programs support the use of a double dash).
+[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater ]
+( ~find . -name '*.gif' -exec file {} \;~ equivalent command but the syntax is somewhat tricky because need to supply braces )
+
+*** find dir
+Search all files with relative path in current directory and its subdirectories.
+( ~find $PWD~ search all files with absolute path in the current dir and its subdirs )
+( ~find $PWD -type f~ search only files with absolute path in current dir and its subdirs )
+( ~find $PWD -type d~ search only dirs with absolute path in current dir and its subdirs )
+( ~find $PWD -maxdepth 2~ search all files with absolute path with 2 depth )
+( ~find . -maxdepth 1 -type d~ search only directories in the current path )
+( ~find . -maxdepth 1 -type d -name 'emacs*'~ search only directories starting with emacs word in the current directory )
+( ~find . -maxdepth 1 -type d -name 'emacs*' -printf '%f\n'~ equivalent to above, but listing without ./ at the beginning )
+
+*** xargs cmd arg
+Reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the /cmd/ command (default is echo) one or more times with any /arg/ initial-arguments followed by items read from standard input. Blank lines on the standard input are ignored.
+( ~| xargs~ joins all the lines from a pipe )
+( ~| xargs -n 1~ splits pipe elements separated by whitespace into lines )
+
+** Analisys
+*** du -h file
+Display size of the file /file/.
+[ /-h/ human readable ]
+
 *** file file
 Determine /file/ type.
 [ /-i/ mime ]
 ( ~stat file~ display file status: birth, inode, block, device, type, group, permissions, size,... )
 
-*** md5sum file
-Compute and check MD5 message digest.
-[ /-c/ read MD5 sums from the files and check them ]
-( ~md5sum file1 file2~ compute message digest of the files )
+*** echo
+Prints its arguments to the standard output.
+[ /-n/ don't output the trailing newline /-e/ enable interpretation of backslash scapes ]
+( ~echo .[^.]*~ match all dot files except current and parent dir )
+( ~echo n?me~ match with name, nome, ntme, ... )
+( ~echo -e "Hola.\nCómo estás?"~ print using newline )
+( ~echo Hola.\\nCómo estás~ print using newline )
+( ~echo Front-{A,B,C}-Back~ brace expansion )
+( ~echo Number_{1..5}~ brace expanded with a leading portion (preamble) and a trailing portion (postscript) )
 
-** Compressing
-*** gzip file
-Compress one or more files. The permissions and timestamp are preserved. gzip is the predominant compression program, with bzip2 being a close second.
-[ /-d/ decompresses (this causes gzip to act like gunzip) /-c/ sends the result to standard output and keep the original files /-f/ force compression even if a compressed version of the original file already exists /-l/ list compression statistics for each file compressed /-r/ recursive /-t/ tested the integrity of the compressed version /-number/ set amount of compression, number is an integer in the range of 1 (fastest, least compression) to 9 (slowest, most compression) ]
-( ~gunzip file.gz~ uncompress file.gz and remove the suffix )
-( ~gunzip -c file.gz | less~ only to view the contents )
-( ~zcap file.gz | less~ equivalent command to gunzip -c )
-( ~gzip -d file.gz~ equivalent command to uncompress )
-( ~ls dir | gzip > file.gz~ create a compressed version of a dir list )
-( ~find . -name 'file-A' | tar cf - --files-from=- | gzip > dir.tgz~ find produce a list of matching files and piped them into tar, the .tgz extension is the conventional for gzip-compressed tar files (.tar.gz is also used) )
+*** grep pattern file
+Prints the lines from a /file/ or input stream that match an /pattern/.
+When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on the command line, it's vital that they be enclosed in quotes to prevent the shell from attempting to expand them.
+[ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-G/ basic-regexp (BREs) /-E/ extended-regexp (EREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search /-F/ fixed strings, not regular expressions ]
+( ~grep root /etc/*~ check every file in /etc that contains root )
+( ~grep -h '.zip' files*.txt~ match to thing like bunzip2, gunzip, gzip,... )
+( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
+( ~cp `ls dir |grep -Ev 'exclude1|exclude2' newDir`~ copy all files in dir except some files to newDir )
 
-*** bzip2 file
-Similar to [[gzip file][gzip]] but uses a different compression algorithm that achieves higher levels of compression at the cost of compression speed.
-( ~bunzip2 file.bz2~ decompress file )
+*** diff file1 file2
+See the differences between /file1/ and /file2/.
+[ /-i/ ignore case /-w/ ignore all white space /-u/ patch syntax ]
+( ~cmp file1 file2~ compare byte by byte )
+( ~comm file1 file2~ compare two *sorted* files line by line )
 
-*** tar cvf archive.tar file1 file2
-Create an /archive.tar/ of files /file1/ and /file2/.
-Be carefull, the default for pathnames is relative, rather than absolute. *
-[ /c/ create a new archive /v/ verbose /f/ archive file for tar to create /f -/ use standard input or output specifying the name /t/ list the contents /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /j/ automatically invoke bzip2 /x/ extract an archive /r/ append specified pathnames to the end of an archive ]
-( ~tar tvf archive.tar~ check the contents of archive.tar )
-( ~tar ztvf archive.tar.gz~ check the contents of archive.tar.gz )
-( ~tar cjvf archive.tbz file1 file2~ compress and create archive.tar using bzip2 )
-( ~tar czvf archive.tgz file1 file2~ compress and create archive.tar using gzip )
-( ~tar czvf archive.tgz dir/~ compress and create all file inside dir folder )
+*** wc file
+Print newline, word, and byte counts for each /file/ and a total line if more than one /file/ is specified.
+[ /-l/ print the newline counts /-w/ print the word counts /-/ read standard input ]
+
+** Text Processing
+*** nl
+Number lines of files or standar input.
+( ~nl -i 2 -v 5 file~ set numering increment to 2 and set first line number to 5)
+
+*** sort file
+Sort lines of text file(s).
+[ /-n/ numeric sort (sorting on numeric rather alphabetic values) /-r/ reverse result /-u/ removes duplicates from the sorted output /-k/ sort based on a key field rather than the entire line /-b/ ignore leading blanks, sorting based on the first non-whitespace character on the line /-f/ --ignore-case /--output=file/ send output to file rather than stdout /-t/ --field-separator=char ]
+( ~sort file |uniq file~ omit repeated lines in *sort* file )
+( ~sort file |uniq -d file~ report repeated lines in *sort* file )
+( ~ls -l | sort -nk 5~ sort list based on 5 filed (size) )
+( ~sort -k 1,1 -k 2n file_dates~ sort start at field 1 and end at field 1, sort at field 2 numerically )
+
+*** awk '{print $5}' file
+Prints the /5/ field (column) of the /file/ (columns are separated by spaces by default).
+( ~awk -F\t '{print $12 , $7}'~ print 12th atd 7th column, Tab is the separator )
+( ~| awk '{print $5}'~ print the 5 field of the previous output )
+( ~awk '($2=="Name") { print }' < file~ search Name in the 2 column and print that line )
+( ~awk '($2=="Name") { print $3,$4 }' < file~ search Name in the 2 column and print just 3 and 4 field )
+
+*** cut
+Extract a section of text *from a line* and output the extracted section to standard output. *By default, fields must be separated by a single tab character*.
+[ /-c list/ extract the portion of the line defined by list /-f list/ extract one or more fields from the line as defined by list /-d delim/ when -f is specified, use delim as the field delimiting character /--complement/ extract the entire line of text, except for those portions specified by -c and/or -f ]
+( ~cut -c 7-10 file~ extract character positions 7 through 10 )
+( ~cut -f 3 file~ extract third field *separate by tab* )
+( ~cut -d ':' -f 1 /etc/passwd~ first field separate by colon : )
+
+*** fold -w 20 file
+Break lines of text at a specified width.
+( ~fmt -cw 50 file~ reformat this text to fit a 50-character-wide column )
+( ~fmt -cw 50 -p '#' file~ format only the comments and leave the code untouched )
+
+*** pr -l 50 -w 80 file
+Paginate text, define a page of 80 colum wide and 50 lines long.
+( ~ls /usr/bin | pr -3 -t~ print bin programs in 3 column omited headears and footers )
+
+*** tr
+Is used to *transliterate* characters. Transliteration is the process of changing characters from one alphabet to another.
+[ /-d/ delete /-s/ replace each sequence of a repeated character with a single occurrence of that character ]
+( ~| tr 'A-Z' 'a-z'~ translate upcase to downcase )
+( ~| tr '[:lower:]' '[:upper:]'~ translate upcase to downcase )
+( ~| tr 'A-Z' 'a'~ convert multiple characters to a single character )
+( ~| tr -d '\n'~ concat all lines (remove all newline character) )
+( ~tr -d '\r' < dos_file > unix_file~ convert MS-DOS text to Unix-style text (remove all carriage return character) )
+( ~echo "SECRET frperg" | tr a-zA-Z n-za-mN-ZA-M~ perform the encoding or decoding ROT13 (method that moves each character 13 places up the alphabet) )
+( ~echo "aaabbbccc" | tr -s ab~ squeeze” (delete) repeated instances of a character )
+
+*** sed  's/exp/text/'  file
+Substitute the first match /exp/ by /text/ in each line of /file/ and send to standard output.
+In general, sed takes an address and an operation as one argument. The address is a set of lines (every line by default), and the command determines what to do with the lines. With no file arguments, sed reads from the standard input.
+[ /s/ substitution /p/ print /g/ global substitution /d/ delete /-n/ suppress automatic printing of pattern space (not to print every line by default) /-f/ add  the  contents of script-file ]
+( ~|sed '1s/hey/HEY/'~ replace hey in first line of stdin with HEY )
+( ~sed 's/:/%/' passwd~ replace first colon in each line of passwd file with a % )
+( ~sed 's/:/%/g' passwd~ replace all colon in each line of passwd file with a % )
+( ~sed 3,6d file~ deletes lines 3 to 6 )
+( ~sed '/exp/d' file~ deletes any line that matches the regular expression exp )
+( ~sed -n '1,5p' file~ print a range of lines, starting with line 1 and continuing to line 5 )
+( ~sed -n '/ regexp/p' file~ print lines that match with regexp )
+( ~sed -i 's/laxy/lazy/; s/jimped/jumped/' file~ replace two misspellings in file )
+( ~sed -f script file~ apply some complex changes using a script )
+
+*** paste file1 file2
+Write lines (adds columns to a file) consisting of the sequentially corresponding lines from each FILE, separated by TABs.
+( ~join file1 file2~ for each pair of input lines *with identical join fields*, write a line to standard output )
+
+*** expand file
+Convert tabs to spaces.
+( ~unexpand file~ substitute tabs for spaces )
+
+*** aspell check file
+Spelling checker, check various types of text files, including HTML documents, C/C++ programs, email messages.
+( ~aspell -H check file.html~ check spelling of an HTML file )
+
+** Archives
+*** tar cvf archive.tar file
+Create an /archive.tar/ of file /file/.
+[ /c/ create a new archive /v/ verbose /f/ name of the archive file for tar to create /f -/ use standard input or output specifying the name /t/ list the contents /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /j/ automatically invoke bzip2 /x/ extract an archive /r/ append specified pathnames to the end of an archive ]
+( ~tar cvf archive.tar file1 file2~ create a tar of files file1 and file2 )
+( ~tar cvf archive.tar dir~ create a tar of the dir directory )
+( ~tar cvf archive.tar dir/~ create a tar of all file inside the dir folder )
+( ~tar cvf archive.tar ~~/dir~ create a tar with full path of the dir directory )
+( ~tar tvf archive.tar~ check the contents of tar )
 ( ~tar cf - dir_orig |(cd dir_target; tar xvf -)~ archive the entire directory tree within dir_orig and then unpacks the archive into the new directory dir_target (this is useful because it preserves ownership and permissions, and it’s generally faster than others commands) )
-
-#+begin_src sh
-
-# Example of difference between relative and absolute pathname. *
-tar cf file.tar dir
-cd some_dir
-tar xf file tar ; ls
-# dir
-
-tar cf file.tar ~/dir
-cd some_dir
-tar xf file tar ; ls
-# home/user/dir
-# It re-created the dir home/user/dir relative to current working dir
-
-#+end_src
 
 *** tar xvf archive.tar
 Unpack /archive.tar/.
 [ /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /j/ automatically invoke bzip2 /x/ extract /p/ preserve permissions /--wildcards/ use wildcards ]
-( ~tar xzvf archive.tgz~ unpack and decompress using gzip )
-( ~tar xjvf archive.tgz~ unpack and decompress using bzip2 )
 ( ~tar xvf archive.tar file1~ unpack just the file1 )
 ( ~tar xf dir.tar --wildcards 'home/path/dir*'~ extract only files matching the specified pathname including the wildcard dir* )
-( ~zcat file.gz~ decompress gz file )
+
+*** tar czvf archive.tar.gz file
+Compress and create tar using gzip.
+[ /c/ create a new archive /v/ verbose /f/ name of the archive file for tar to create /f -/ use standard input or output specifying the name /t/ list the contents /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /j/ automatically invoke bzip2 /x/ extract an archive /r/ append specified pathnames to the end of an archive ]
+( ~tar czvf archive.tgz file~ equivalent to command below (different ext) )
+( ~tar cjvf archive.tbz file~ compress and create tar using bzip2 )
+
+*** tar xzvf archive.tar.gz
+Unpack and decompress using gzip.
+[ /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /j/ automatically invoke bzip2 /x/ extract /p/ preserve permissions /--wildcards/ use wildcards ]
+( ~tar xzvf archive.tgz~ equivalent to command below (different ext) )
+( ~tar xjvf archive.tgz~ unpack and decompress using bzip2 )
+
+*** gzip file
+Compress one or more files.
+The permissions and timestamp are preserved. gzip is the predominant compression program, with bzip2 being a close second.
+[ /-d/ decompresses (this causes gzip to act like gunzip) /-c/ sends the result to standard output and keep the original files /-f/ force compression even if a compressed version of the original file already exists /-l/ list compression statistics for each file compressed /-r/ recursive /-t/ tested the integrity of the compressed version /-number/ set amount of compression, number is an integer in the range of 1 (fastest, least compression) to 9 (slowest, most compression) ]
+( ~ls dir | gzip > file.gz~ create a compressed version of a dir list )
+( ~find . -name 'file-A' | tar cf - --files-from=- | gzip > dir.tgz~ find produce a list of matching files and piped them into tar, the .tgz extension is the conventional for gzip-compressed tar files (.tar.gz is also used) )
+
+*** zcat file.gz
+Decompress gz file.
+Compressed  files  can be restored to their original form using ~gzip -d~ or ~gunzip~.
+( ~gunzip file.gz~ decompress gz file )
+( ~gzip -d file.gz~ decompress gz file )
+( ~gunzip -c file.gz | less~ only to view the contents )
 ( ~zcat file.tar.gz | tar xpvf -~ decompress and unpack tar file )
 ( ~zcat /usr/share/man/man1/ls.1.gz |groff -mandoc -T ascii |less~ simulate the man cmd )
 ( ~zcat /usr/share/man/man1/ls.1.gz | groff -mandoc > ls.ps~ create PostScript file from ls man page )
 ( ~ps2pdf file.ps file.pdf~ convert the PostScript file into a Portable Document Format (PDF) )
+
+*** bzip2 file
+Similar to [[gzip file][gzip]] but uses a different compression algorithm that achieves higher levels of compression at the cost of compression speed.
+( ~bunzip2 file.bz2~ decompress file )
 
 *** zip -rX file dir
 Creates the archive file.zip, containing all the files and directories in the directory /dir/.
@@ -196,13 +316,15 @@ The zip program is both a compression tool and an archiver and its format is fam
 ( ~unzip file.zip file1 file2~ extract selectively files )
 ( ~xz file~ compress file (compact little more than gzip) )
 ( ~unxz file.xz~ decompress file )
+( ~unrar x file.rar~ extract .rar file )
 
-* Directory
+* Directories
 ** Create
 *** mkdir dir
 Creates a new directory /dir/.
 [ /-p/ no error if existing, make parent directories as needed ]
-( ~mkdir -p dir_parent/{dir1,dir2}~ create a main directory and subdirectories )
+( ~mkdir -p dirA/dirB~ creation of parent directory if needed )
+( ~mkdir -p dir_parent/{dir1,dir2}~ create a main directory and 2 subdirectories )
 ( ~mkdir -p dir_parent/dir-{01..10}~ create a main dir and 10 subdirs )
 
 *** mv dir1 dir2
@@ -232,6 +354,7 @@ A trailing slash on the source changes this behavior to avoid creating an additi
 Removes the directory /dir/ and its contents.
 Don’t use the ~-r~ flag with globs such as a star ~*~.
 [ /-r/ remove directories and their contents recursively, this means that if a directory being deleted has subdirectories, delete them too. To delete a directory, this option must be specified ]
+( ~rmdir dirA~ remove the empty directory )
 
 *** gio trash dir
 Move /dir/ to Trash folder.
@@ -239,36 +362,50 @@ Move /dir/ to Trash folder.
 *** gio trash --empty
 Empty the trash.
 
+*** rm -Rf ~/.local/share/Trash/*
+Emptying the user trash-bins (or wastebaskets).
+( ~rm -Rf /root/dot.local/share/Trash/*~ emptying the administrator's trash-bins (note that /dot.local is actually /.local) )
+( ~rm -Rf /media/your_id/your_disk/dot.Trash_1000/*~ emptying the external trash-bins, locates on your external disks (note that /dot.Trash is actually /.Trash))
+
 ** Utilities
 *** cd dir
 Change directory.
-( ~cd~ returns to the directory from which the shell was started )
+( ~cd~ change to home directory )
 ( ~cd -~ returns to the previous directory )
-( ~cd -1~ returns to the 1 last directory )
+( ~cd -2~ returns to the 2 last directory )
 
 *** ls -lh dir
 Lists the contents of a directory /dir/.
-[ /-l/ long listing format /-h/ human readable /-a/ all /-i/ inode numbers /-d/ list directories themselves, not their contents /-S/ sort by file size, largest first /-t/ sort by time, newest first /--si/ powers of 1000 not 1024 /-r/ reverse order /-A/ almost-all, don't list implied . and .. /-1/ single-column ]
+[ /-l/ long listing format /-h/ human readable /-a/ all /-i/ inode numbers /-d/ list directories themselves, not their contents /-S/ sort by file size, largest first /-t/ sort by time, newest first /--si/ powers of 1000 not 1024 /-r/ reverse order /-A/ almost-all, don't list implied . and .. /-1/ single-column /-o/ like -l, but do not list group information /-g/ like -l, but do not list owner ]
 ( permissions ( *-* regular file *d* directory *l* symbolic link *b* block *c* character *p* pipe *s* sockect ) | hard links | owner | group | size | modification time | filename )
 ( *r* file-read/dir-list *w* file-write/dir-create *x* file-execute/dir-enter )
 ( ~ls /usr/bin | pr -3 -t~ bin programs in 3 column omited headears and footers )
 ( ~ls -d */~ only show the directories in the current path )
 
-*** find . -maxdepth 1 -type d
-Only show the directories in the current path.
+*** find dir
+Search all files with relative path in current directory and its subdirectories.
+[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-prune/ if the file is a dir, don't descend into it /-xdev/ don't descend dir on other filesystems /-perm 644/ search by permission /-exec/ search by executable /-type d/ search by dir /-type f/ search by file /-inum 123/ search by inode /-regex pattern/ matches regular expression pattern ]
+( ~find $PWD~ search all files with absolute path in the current dir and its subdirs )
+( ~find $PWD -type f~ search only files with absolute path in current dir and its subdirs )
+( ~find $PWD -type d~ search only dirs with absolute path in current dir and its subdirs )
+( ~find $PWD -maxdepth 2~ search all files with absolute path with 2 depth )
+( ~find . -maxdepth 1 -type d~ search only directories in the current path )
+( ~find . -maxdepth 1 -type d -name 'emacs*'~ search only directories starting with emacs word in the current directory )
+( ~find . -maxdepth 1 -type d -name 'emacs*' -printf '%f\n'~ equivalent to above, but listing without ./ at the beginning )
 
-*** du -h
-Estimate file space usage in current directory.
+*** du -h dir
+Display the estimate file space usage in the /dir/ directory.
 ~du~ output in most Linux distributions is in 1,024-byte blocks.
 [ /-s/ summarize /-m/ block-size 1M /-h/ human readable /-c/ produce a grand total /-d/ --max-depth /-a/ write counts for all files, not just directories ]
 ( ~ncdu~ equivalent command )
 ( ~du -d 1 |sort -nr~ sorting folders according to size )
+( ~du -bs * |sort -nr~ list all files in the current dir sorted by decreasing size )
 ( ~du --max-depth=1 $(echo /home/*) 2> /dev/null |sort -nr~ sorting home folders ignoring errors )
 
 *** df
 View the size and utilization of your currently mounted filesystems.
 ~df~ output in most Linux distributions is in 1,024-byte blocks.
-[ /-m/ block-size 1M /-h/ human readable /--total/ produce a gran total ]
+[ /-m/ block-size 1M /-h/ human readable /--total/ produce a gran total /-T/ print file system type ]
 ( ~df dir~ view the info in the specific directory )
 
 *** stat dir
@@ -286,7 +423,7 @@ List the Trash folder.
 * System
 ** Processes
 *** top
-Display Linux processes.
+List processes running on the system in a semi-graphical table.
 [ /-p/ only processes with specified process  IDs /-b/ batch mode, it doesn't accept any interactive inputs /-n 3/ run top with 10 updates, then exit ]
 ( *PR* The process’s priority. The lower the number, the higher the priority | *NI* Nice value, negative nice value implies higher priority | *VIRT* Virtual memory used by the task | *RES* Resident memory used by the process | *SHR* Shared Memory size used by a task | *S* Status of the process (D uninterruptible sleep R running S sleeping T traced stopped Z zombie) | *%CPU* The share of CPU time used by the process since the last update | *%MEM* The share of physical memory used )
 [ *y* Highlight running tasks  *x* Highlights the column  *b* Bold *?* help ]
@@ -304,8 +441,7 @@ Display Linux processes.
 
 *** ps aux
 Report a snapshot of the current processes belonging to every user.
-Using the options without the leading dash invokes the command with “BSD style” behavior.
-[ /ax/ all processes /a/ all processes with a terminal (tty) /x/ all processes owned by you /u/ more detailed information on processes /c/ simple name of executable /-H/ show process hierarchy (forest) ]
+[ /ax/ all processes /a/ all processes with a terminal (tty) /x/ all processes owned by you /u/ more detailed user-oriented format information on processes /c/ simple name of executable /-H/ show process hierarchy (forest) ]
 ( *PID* process ID | *VSZ* virtual memory size | *RSS* resident set size. This is the amount of physical memory (RAM) the process is using in kilobytes | *TTY* terminal device where the process is running | *STAT* process status (S sleeping, R running D uninterruptible sleep T stooped Z zombie < high-priority N low-priority ) | *START* time when the process started | *TIME* amount of CPU time that the process has used so far | *COMMAND* be careful a process can change this field from its original value and the shell can perform glob expansion, and this field will reflect the expanded command instead of what you enter at the prompt )
 ( ~ps u 123~ inspect the 123 process )
 ( ~ps m~ display the thread information )
@@ -313,20 +449,23 @@ Using the options without the leading dash invokes the command with “BSD style
 ( ~ps -ax -o %mem,pid,comm |sort~ list of all processes sorted by memory usage )
 ( ~pidstat -p 123~ report statistics for 123 tasks )
 
-*** pstree -s 123
-Display a tree of parent processes of /123/ process.
+*** pstree
+Print all process in a tree.
 [ /-h/ highlight the current process and its ancestors /-H/ like  -h,  but  highlight the specified process instead /-s/ show parent processes of the specified process ]
+( ~pstree -s 123~ display a tree of parent processes of 123 process )
 
 *** pidof name
 Find the process ID of a running program.
 ( ~pgrep name~ equivalent tool )
 
-*** kill 123
-Send the default signal, SIGTERM or TERM (terminate the process), to /123/.
+*** kill signal pid
+Kill a process using its pid.
 [ /-STOP/ freeze a process /-CONT/ continue running the process again /-KILL/ brutal way to terminate process /-9/ another notation for -KILL /-15/ another notation for -SIGTERM /-TSTP/ terminal stop /-INT/ interrupt /-HUP/ hangup ]
+( ~kill 123~ send the default signal, SIGTERM or TERM (terminate the process) )
+( ~kill 123 3453~ send the default signal, SIGTERM, to all those processes )
 ( ~kill -STOP 123~ freeze the 123 process )
-( ~kill 123 543 2341 3453~ send the default signal, SIGTERM, to all those processes )
 ( ~killall xlogo~ send signals to multiple processes matching a specified program or username )
+( ~pkill signal name~ kill a process using its name )
 
 *** command &
 Detach a process /command/ from the shell and put it in the "background".
@@ -370,8 +509,8 @@ You’ll find it handy for getting a high-level view of how often the kernel is 
 
 *** uptime
 How long the system has been running.
-The load average is the *average number of processes currently ready to run*. That is, it is an estimate of the number of processes that are capable of using the CPU at any given time—this includes processes that are running and those that are waiting for a chance to use the CPU. When thinking about a load average, keep in mind that most processes on your system are usually waiting for input (from the keyboard, mouse, or network, for example), meaning they’re not ready to run and shouldn’t contribute anything to the load average. Only processes that are actually doing something affect the load average.
-A load average of 0 is usually a good sign, because it means that your processor isn’t being challenged and you’re saving power. If a load average goes up to around 1, a single process is probably using the CPU nearly all of the time (single CPU system).
+The load average is the *average number of processes currently ready to run* (see if the process waiting list is not too long). That is, it is an estimate of the number of processes that are capable of using the CPU at any given time—this includes processes that are running and those that are waiting for a chance to use the CPU. When thinking about a load average, keep in mind that most processes on your system are usually waiting for input (from the keyboard, mouse, or network, for example), meaning they’re not ready to run and shouldn’t contribute anything to the load average. Only processes that are actually doing something affect the load average.
+A load average of 0 is usually a good sign, because it means that your processor isn’t being challenged and you’re saving power. If a load average goes up to around 1, a single process is probably using the CPU nearly all of the time (one process is running while another one is waiting) (single CPU system).
 ( *load average* past 1 minute, past 5, past 15 )
 ( ~w~ show who is logged on and what they are doing )
 
@@ -447,6 +586,13 @@ Used to determine system boot-up performance statistics and retrieve other state
 ( ~systemd-analyze time~ prints the time spent in the kernel before userspace has been reached, the time spent in the initial RAM disk (initrd) before normal system userspace has been reached, and the time normal system userspace took to initialize )
 ( ~systemd-analyze plot >bootup.svg~ plot a bootchart )
 
+*** systemctl poweroff
+Shuts down system.
+( ~systemctl halt~  halts system )
+( ~systemctl reboot~  reboots system )
+( ~systemctl suspend~  suspends system )
+( ~systemctl hibernate~  hibernates system )
+
 ** I/O
 *** command1 | command2
 Send the standard output of a /command1/ to the standard input of another /command1/.
@@ -488,127 +634,55 @@ Read from standard input and write to standard output and files.
 *** grep  pattern  file_match  file_doesnt_exist
 Command to test rederictions. The first line sends the match to standard output (terminal screen) and the second line sends the error to the standar error (terminal screen).
 
-** Text
-*** echo
-Prints its arguments to the standard output.
-[ /-n/ don't output the trailing newline /-e/ enable interpretation of backslash scapes ]
-( ~echo .[^.]*~ match all dot files except current and parent dir )
-( ~echo n?me~ match with name, nome, ntme, ... )
-( ~echo -e "Hola.\nCómo estás?"~ print using newline )
-( ~echo Hola.\\nCómo estás~ print using newline )
-( ~echo Front-{A,B,C}-Back~ brace expansion )
-( ~echo Number_{1..5}~ brace expanded with a leading portion (preamble) and a trailing portion (postscript) )
-
-*** grepattern file
-Prints the lines from a /file/ or input stream that match an /pattern/.
-When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on the command line, it's vital that they be enclosed in quotes to prevent the shell from attempting to expand them.
-[ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-G/ basic-regexp (BREs) /-E/ extended-regexp (EREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search /-F/ fixed strings, not regular expressions ]
-( ~grep root /etc/*~ check every file in /etc that contains root )
-( ~grep -h '.zip' files*.txt~ match to thing like bunzip2, gunzip, gzip,... )
-( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
-( ~cp `ls dir |grep -Ev 'exclude1|exclude2' newDir`~ copy all files in dir except some files to newDir )
-
-*** diff file1 file2
-See the differences between /file1/ and /file2/.
-[ /-i/ ignore case /-w/ ignore all white space ]
-( ~cmp file1 file2~ compare byte by byte )
-( ~comm file1 file2~ compare two *sorted* files line by line )
-
-*** awk '{print $5}' file
-Prints the /5/ field (column) of the /file/ (columns are separated by spaces by default).
-( ~awk -F\t '{print $12 , $7}'~ print 12th atd 7th column, Tab is the separator )
-( ~| awk '{print $5}'~ print the 5 field of the previous output )
-( ~awk '($2=="Name") { print }' < file~ search Name in the 2 column and print that line )
-( ~awk '($2=="Name") { print $3,$4 }' < file~ search Name in the 2 column and print just 3 and 4 field )
-
-*** cut
-Extract a section of text *from a line* and output the extracted section to standard output. *By default, fields must be separated by a single tab character*.
-[ /-c list/ extract the portion of the line defined by list /-f list/ extract one or more fields from the line as defined by list /-d delim/ when -f is specified, use delim as the field delimiting character /--complement/ extract the entire line of text, except for those portions specified by -c and/or -f ]
-( ~cut -c 7-10 file~ extract character positions 7 through 10 )
-( ~cut -f 3 file~ extract third field *separate by tab* )
-( ~cut -d ':' -f 1 /etc/passwd~ first field separate by colon : )
-( ~expand file~ convert tabs to spaces )
-( ~unexpand file~ substitute tabs for spaces )
-( ~paste file1 file2~  write lines (adds columns to a file) consisting of the sequentially corresponding lines from each FILE, separated by TABs )
-( ~join file1 file2~ for each pair of input lines *with identical join fields*, write a line to standard output )
-
-*** sed  's/exp/text/'  file
-Substitute the first match /exp/ by /text/ in each line of /file/ and send to standard output.
-In general, sed takes an address and an operation as one argument. The address is a set of lines (every line by default), and the command determines what to do with the lines. With no file arguments, sed reads from the standard input.
-[ /s/ substitution /p/ print /g/ global substitution /d/ delete /-n/ suppress automatic printing of pattern space (not to print every line by default) /-f/ add  the  contents of script-file ]
-( ~|sed '1s/hey/HEY/'~ replace hey in first line of stdin with HEY )
-( ~sed 's/:/%/' passwd~ replace first colon in each line of passwd file with a % )
-( ~sed 's/:/%/g' passwd~ replace all colon in each line of passwd file with a % )
-( ~sed 3,6d file~ deletes lines 3 to 6 )
-( ~sed '/exp/d' file~ deletes any line that matches the regular expression exp )
-( ~sed -n '1,5p' file~ print a range of lines, starting with line 1 and continuing to line 5 )
-( ~sed -n '/ regexp/p' file~ print lines that match with regexp )
-( ~sed -i 's/laxy/lazy/; s/jimped/jumped/' file~ replace two misspellings in file )
-( ~sed -f script file~ apply some complex changes using a script )
-
-*** tr
-Is used to *transliterate* characters. Transliteration is the process of changing characters from one alphabet to another.
-[ /-d/ delete /-s/ replace each sequence of a repeated character with a single occurrence of that character ]
-( ~| tr 'A-Z' 'a-z'~ translate upcase to downcase )
-( ~| tr '[:lower:]' '[:upper:]'~ translate upcase to downcase )
-( ~| tr 'A-Z' 'a'~ convert multiple characters to a single character )
-( ~| tr -d '\n'~ concat all lines (remove all newline character) )
-( ~tr -d '\r' < dos_file > unix_file~ convert MS-DOS text to Unix-style text (remove all carriage return character) )
-( ~echo "SECRET frperg" | tr a-zA-Z n-za-mN-ZA-M~ perform the encoding or decoding ROT13 (method that moves each character 13 places up the alphabet) )
-( ~echo "aaabbbccc" | tr -s ab~ squeeze” (delete) repeated instances of a character )
-
-*** sort file
-Sort lines of text file(s).
-[ /-n/ numeric sort (sorting on numeric rather alphabetic values) /-r/ reverse result /-u/ removes duplicates from the sorted output /-k/ sort based on a key field rather than the entire line /-b/ ignore leading blanks, sorting based on the first non-whitespace character on the line /-f/ --ignore-case /--output=file/ send output to file rather than stdout /-t/ --field-separator=char ]
-( ~sort file |uniq file~ omit repeated lines in *sort* file )
-( ~sort file |uniq -d file~ report repeated lines in *sort* file )
-( ~ls -l | sort -nk 5~ sort list based on 5 filed (size) )
-( ~sort -k 1,1 -k 2n file_dates~ sort start at field 1 and end at field 1, sort at field 2 numerically )
-
-*** wc file
-Print newline, word, and byte counts for each /file/ and a total line if more than one /file/ is specified.
-[ /-l/ print the newline counts /-w/ print the word counts /-/ read standard input ]
-( ~nl~ number lines of files or standar input )
-( ~nl -i 2 -v 5 file~ set numering increment to 2 and set first line number to 5)
-( ~fold -w 20 file~ break lines of text at a specified width )
-( ~fmt -cw 50 file~ reformat this text to fit a 50-character-wide column )
-( ~fmt -cw 50 -p '#' file~ format only the comments and leave the code untouched )
-( ~pr -l 50 -w 80 file~ paginate text, define a page of 80 colum wide and 50 lines long )
-( ~ls /usr/bin | pr -3 -t~ print bin programs in 3 column omited headears and footers )
-( ~aspell check file~ spelling checker, check various types of text files, including HTML documents, C/C++ programs, email messages )
-( ~aspell -H check file.html~ check spelling of an HTML file )
-
-*** xargs cmd arg
-Reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the /cmd/ command (default is echo) one or more times with any /arg/ initial-arguments followed by items read from standard input. Blank lines on the standard input are ignored.
-( ~| xargs~ joins all the lines from a pipe )
-( ~| xargs -n 1~ splits pipe elements separated by whitespace into lines )
-
 ** Utilities
-*** sudo
-Execute a command as another user.
-( ~su user~ allows commands to be run with a substitute user )
-( ~su -~ start a shell for the superuser and his environment is loaded )
-Welcome to the Emacs shell
+*** whoami
+Print the current user id and name.
+( ~who~ print all usernames currently logged in )
+( ~groups~ see what group you’re in )
 
- ~/Documents $
+*** id
+Print user and group id's (uid & gid).
+( ~id user~ print user and group id's (root only) )
+( ~groups~ see what group you’re in )
+
 *** adduser
-Add users.
-( ~userdel~ remove users )
-( ~groupadd name~ add the group )
-( ~groupdel name~ delete the group )
-( ~adduser name group~  join the user in the group )
-( ~deluser --remove-home name~ delete the user and his directory )
+Add a user or group to the system.
+[ /--ingroup/ set the group /--group/ add a user group /--uid/ choose UID /--home/ override the home directory  /--shell/ override the shell /--system/ add the system user ]
+( ~adduser name~  add a normal user )
+( ~adduser --group name~ add a user group (addgroup) )
+( ~addgroup --system name~ add a system group )
+
+*** deluser
+Remove a user or group from the system.
+[ /--force name/ remove the root acoount /--remove-home name/ delete the user and his home directory /--remove-all-files name/ delete the user and all his files /--backup name/ backup all files before deleting ]
+( ~deluser name~ remove a user from the system )
+( ~deluser --group name~ remove group from the system )
+( ~deluser group name~ remove a user from specific group )
+
+*** passwd
+Change the password of the current user.
+( ~passwd user~ change password of the user )
+
+*** sudo
+Switch to administrator mode, superuser
+( ~su~ start a shell for the superuser )
+( ~su -~ start a shell for the superuser and his environment is loaded )
+( ~su user~ allows commands to be run with a substitute user )
 
 *** chsh
 Change login shell.
 ( ~chfn~ change real user name and information )
-( ~passwd~ change password )
-( ~passwd user~ change password of the user )
+( ~tty~ print the current terminal's name )
 
-*** (cd dir; ls)
-Executes the command /ls/ while in /dir/ and leaves the original shell intact.
-( ~(PATH=/usr/confusing:$PATH; uglyprogram)~ add a component to the path that might cause problems as a permanent change )
-( ~PATH=/usr/confusing:$PATH uglyprogram~ equivalent command that avoids the subshell )
+*** shutdown -h now
+Power off the machine immediately. /now/ is an alias for "+0", i.e. for triggering an immediate shurdown. If no time argument is specified, "+1" is implied.
+[ /-h/ equivalent to --poweroff /-r/ reboot /-f/ force ]
+( ~poweoff~ equivalent to above command )
+( ~systemctl poweroff~ equivalent to above command )
+( ~shutdown -h +5~ halt in 5 minutes )
+( ~shutdown -r~ reboot the machine )
+( ~reboot~ equivalent to above command )
+( ~shutdown -r now~ reboot the machine now )
 
 *** at
 Queue, examine, or delete jobs for later execution.
@@ -619,29 +693,9 @@ This command is used to run a job once in the future without using cron.
 ( ~at 22:30 30.09.15~ schedule jobs days into the future )
 ( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
 
-*** bc
-The bc program reads a file written in its own C-like language and executes it. A bc script may be a separate file, or it may be read from standard input. The bc language supports quite a few features including variables, loops, and programmer-defined functions.
-[ /ibase=N/ treat all numbers as base N /obase=N/ output all numbers in base N ]
-( ~echo "obase=2;240" | bc -l~ calculates 240 in binary basis )
-( ~echo "obase=10; ibase=16; FF" | bc~ convert FF hex to decimal )
-( ~echo "obase=2; ibase=16; FF" | bc~ convert FF hex to binary )
-( ~echo Five divided by two equals $((5/2))~ arithmetic expansion )
-( ~bc <<< "2+2"~ the ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts )
-
-*** shutdown -h now
-Make the machine halt immediately.
-[ /-h/ equivalent to --poweroff /-r/ reboot /-f/ force ]
-( ~shutdown -h +5~ halt in 5 minutes )
-( ~shutdown -r~ reboot the machine )
-( ~shutdown -r now~ reboot the machine now )
-
-*** source file
-Execute commands from a file in the current shell.
-( ~source ~.bashrc~ reread the modified .bashrc file )
-
 ** Info
 *** man command
-See the manual page for the /command/.
+See the manual page for the /command/ and configurations files.
 [ /-k/ search by keyword (same as apropos command) ]
 ( ~man -k sort~ looking for a command to sort something )
 ( ~man 5 passwd~ read the /etc/passwd file description )
@@ -660,14 +714,12 @@ Print or set the system date and time.
 ( ~tzselect~ help you identify a time zone file )
 ( ~export TZ=US/Central~ use a time zone other than the system default for just one shell session )
 
-*** id
-Print real and effective user and group IDs.
-( ~groups~ see what group you’re in )
-
 *** uname -a
 Print system information.
-[ /-a/ all information /-n/ network node hostname /-p/ processor type /-o/ operating system ]
+[ /-a/ all information /-r/ kernel release /-n/ network node hostname /-p/ processor type /-o/ operating system ]
 ( ~lsb_release -a~ system information like distribution name )
+( ~cat /proc/version~ version of the Linux kernel used, its name, the version of the compiler used )
+( ~dpkg -l | egrep "linux-(header|image)"~ list all kernels installed )
 
 *** history
 History of commands that have been entered.
@@ -691,6 +743,11 @@ Show list of enviroment, shell variables and shell functions.
 ( ~set -C~ avoid clobbering in bash. In some commands like (command > file) if file exists, the shell erases (clobbers) the original file first. Some shells have parameters that prevent clobbering )
 
 ** Miscellaneous
+*** (cd dir; ls)
+Executes the command /ls/ while in /dir/ and leaves the original shell intact.
+( ~(PATH=/usr/confusing:$PATH; uglyprogram)~ add a component to the path that might cause problems as a permanent change )
+( ~PATH=/usr/confusing:$PATH uglyprogram~ equivalent command that avoids the subshell )
+
 *** pushd path
 Save the /path/.
 ( ~popd~ return to the save path )
@@ -698,6 +755,19 @@ Save the /path/.
 *** exit
 Cause normal process termination.
 ( ~exec ls~ hack to close the shell )
+
+*** source file
+Execute commands from a file in the current shell.
+( ~source ~.bashrc~ reread the modified .bashrc file )
+
+*** bc
+The bc program reads a file written in its own C-like language and executes it. A bc script may be a separate file, or it may be read from standard input. The bc language supports quite a few features including variables, loops, and programmer-defined functions.
+[ /ibase=N/ treat all numbers as base N /obase=N/ output all numbers in base N ]
+( ~echo "obase=2;240" | bc -l~ calculates 240 in binary basis )
+( ~echo "obase=10; ibase=16; FF" | bc~ convert FF hex to decimal )
+( ~echo "obase=2; ibase=16; FF" | bc~ convert FF hex to binary )
+( ~echo Five divided by two equals $((5/2))~ arithmetic expansion )
+( ~bc <<< "2+2"~ the ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts )
 
 *** alias name='string'
 After we define our alias, we can use it anywhere the shell would expect a command.
@@ -709,6 +779,28 @@ After we define our alias, we can use it anywhere the shell would expect a comma
 This starts a basic web server on port /8000/ that makes the current directory available to any browser on the network. If the machine you run this on is at address 10.1.2.4, point the browser on the destination system to http://10.1.2.4:8000.
 
 * Miscellaneous
+** Encryption
+*** gpg --list-key
+Show all public keys currently stored in your local GPG keyring.
+( ~gpg --list-key keyID~ show the public key currently stored )
+
+*** gpg --keyserver keyring.debian.org --recv-keys E145360
+Fetch a key from the server /keyring.debian.org/ and put into local GPG keyring.
+[ /--keyserver/ specifies the keyserver to use for operations like fetching keys /--recv-keys/ imports public keys from a keyserver into your local GPG keyring ]
+
+*** gpg --verify SHA512SUMS.sign SHA512SUMS
+Verify the authenticity and integrity of a file using a digital signature.
+
+*** sha512sum file
+Compute SHA512 message digest.
+
+*** sha512sum -c --ignore-missing file
+Vverify file integrity against a checksum /file/. It compares the calculated SHA-512 hash of each file with the values listed in the checksum /file/.
+[ /-c/ read SHA512 sums from the files and check them /--ignore-missing/ skip any files listed in the checksum file that are not found on your system ]
+( ~echo "sha512sum-of-the-file  file" |sha256sum -c~ check the sha256sum with sha256sum string and file )
+( ~md5sum file~ compute and check MD5 message digest )
+( ~md5sum file1 file2~ compute message digest of the files )
+
 ** Compiling
 *** cc -o file file.c
 Compile the /file.c/ and give the name /file/.
@@ -790,11 +882,6 @@ Show input device configuration on the machine.
 Program displays the X Window System logo. Useful for testing windows.
 ( ~xeyes~ a follow the mouse X demo )
 
-*** dmidecode
-Display table that contains a description of the system's hardware components, as well as other useful pieces of information such as serial numbers and BIOS revision.
-( ~# dmidecode --type memory~ display the memory description )
-( ~# dmidecode --type system~ display the system description )
-
 * Network
 ** App layer
 *** wget URL file
@@ -846,9 +933,10 @@ Process mail messages.
 ( ~sendmail mail@host.dom~ reads a message from standard input until EOF or until it reads a line with only a . character, and arranges for delivery )
 
 ** Transport layer
-*** netstat -nt
-Show the TCP connections currently open on the machine.
+*** netstat
+Displays the use of the network by the processes.
 [ /-n/ disable hostname resolution DNS /-t/ TCP port info /-u/ UDP port info /-l/ listening ports /-a/ every active port /-r/ kernel’s network routing table, this shows how the network is configured to send packets from network to network /-6/ show only IPv6 /-4/ show only IPv4 /-i/  a table of all network interfaces /-e/ extend additional information, use this option twice for maximum detail /-ie/ network interfaces in more detail ]
+( ~netstat -nt~ show the TCP connections currently open on the machine )
 ( ~netstat -t~ show TCP connections with host and port names )
 ( ~netstat -ntl~ list all TCP ports that your machine is listening on )
 
@@ -867,9 +955,10 @@ default      192.168.1.1  0.0.0.0          UG   0      0    0  eth0
 
 #+end_src
 
-*** # lsof -n -P -i
-Shows users and process IDs for server and client programs currently using or listening to ports.
+*** # lsof
+Detailed list of file and network usage.
 [ /-i/  list all Internet network files /-n/ inhibits the conversion of network numbers to host  names /-W/ don't truncate IP addressses /-p/ PID and name program /-U/ listing of UNIX domain socket files /-P/ disable /etc/services port name lookups ]
+( ~# lsof -n -P -i~ shows users and process IDs for server and client programs currently using or listening to ports )
 ( ~# lsof -i~ show with host names and port names (slows down the output) )
 ( ~# lsof -iTCP -sTCP:LISTEN~ show only the processes listening on TCP ports )
 ( ~# lsof -iprotocol@host:port~ looking for a particular port (full syntax) )
@@ -905,7 +994,10 @@ Show the current configuration of iptables.
 ( ~# iptables -D INPUT 3~ delete the 3 rule of the INPUT table )
 
 ** IP layer
-*** ip address show
+*** ip
+Show and manipulate network interfaces, routing, network devices and tunnels.
+
+*** ip address
 Show the addresses that are active on the machine.
 [ /-6/ show ipv6 configuration ]
 ( ~ifconfig~ equivalent command )
@@ -913,6 +1005,7 @@ Show the addresses that are active on the machine.
 ( ~nmcli connection show~ show all connections, type device uuid )
 ( ~nmcli device status~ show state type connection )
 ( ~# ip address add 192.168.1.2/24 dev eth0~ add an IP address and subnet for a kernel network interface )
+( ~ip address show enp0s3 | grep "inet " | tr -s " " ":" | cut -d: -f3~ displays its locap IP on enp0s3 )
 
 #+begin_src sh
 
@@ -932,7 +1025,7 @@ dynamic noprefixroute
 
 #+end_src
 
-*** ip route show
+*** ip route
 Show routing table.
 [ /-4/ restrict the output ro IPv4 /-6/ show ipv6 configuration ]
 ( ~route -n~ show IP instead of attempting to show hosts and networks by name )
@@ -974,14 +1067,14 @@ default      192.168.1.1  0.0.0.0          UG   0      0    0  eth0
 
 #+end_src
 
-*** ping 8.8.8.8
-Sends ICMP echo request packets to a host /8.8.8.8/ that asks a recipient host to return the packet to the sender.
+*** ping machine
+Sends ICMP echo request packets (ping) to a host /machine/ that asks a recipient host to return the packet to the sender.
 A gap in the sequence numbers (icmp_req), usually means there’s some kind of connectivity problem. Packets shouldn’t be arriving out of order, because ping sends only one packet a second. If a response takes more than a second (1,000 ms) to arrive, the connection is extremely slow.
 The round-trip time is the total elapsed time between the moment that the request packet leaves and the moment that the response packet arrives. If there’s no way to reach the destination, the final router to see the packet returns an ICMP “host unreachable” packet to ping.
 [ /-4/ IPv4 only /-6/ IPv6 only /-A/ adaptive ping /-O/ report outstanding ICMP ECHO reply before sending next packet /-a/ audible ping ]
 ( ~ping -OA 8.8.8.8~ send ICMP reporting outstanding and adaptive ping )
 
-*** traceroute
+*** traceroute machine
 Print the route packets trace to network host.
 [ /-T/ use TCP SYN for probes (useful for router that don't provide identifying info) /-I/ use ICMP ECHO for probes ]
 
@@ -992,9 +1085,9 @@ Dig output begins with information about the command issued and the name server(
 ( ~host 8.8.8.8~ in reverse to try to discover the hostname behind the IP address )
 ( ~whois host~ client for the whois directory service )
 
-*** hostname -I
+*** hostname
 Show or set the system's host name.
-[ /-I/ all  network addresses of the host /-i/ network address(es) of the host name ]
+[ /-i/ the ip network address(es) of the host name /-I/ all ip network addresses of the host ]
 ( ~hostnamectl~  query and change the system hostname and related settings )
 
 *** nm-online
@@ -1003,17 +1096,45 @@ Show whether the network is up or down.
 *** iw
 Show  and change kernel space device and network configuration.
 
+*** curl ifconfig.me
+Displays public IP.
+
 * Device
-** Utilities
+** Hardware
 *** lsscsi
 List the SCSI devices on the system.
 ( identifies the address of the device on the system ( SCSI host adapter number | SCSI bus number | device SCSI ID | LUN logical unit number) | describes what kind of device it is |   |   |   | where to find the device file )
-( ~lsblk~ list block devices )
-( ~lsusb~ list USB devices )
 
-*** # blkid
-View a list of devices and the corresponding filesystems and UUIDs on the system.
+*** lspci
+Lists connected PCI devices.
+( ~lspci | egrep "3D|Display|VGA"~ display the graphics card model )
+( ~lspci | grep -i "net" | cut -d: -f3~ show the Wifi card model )
+( ~lspci | grep -i audio | cut -d: -f3~ show the soundcard model )
 
+*** lsusb
+Lists connected USB devices.
+
+*** lsblk
+Prints all block devices (except RAM disks) in a  tree-like format  by  default.
+( ~lsblk -S~ info about SCSI devices only (model, serial, vendor,...) )
+( ~lsblk -o NAME,MODEL,SERIAL,SIZE,STATE -d~ show all block devices (name, model, size,...) )
+( ~# blkid~ view a list of devices and the corresponding filesystems and UUIDs on the system )
+
+*** lscpu
+Display information about the CPU architecture.
+
+*** dmidecode
+Display table that contains a description of the system's hardware components, as well as other useful pieces of information such as serial numbers and BIOS revision.
+( ~# dmidecode --type memory~ display the memory description )
+( ~# dmidecode --type system~ display the system description )
+( ~lshw -short~ display the system info )
+( ~inxi -F~ display a full system information )
+
+*** cat /proc/cpuinfo
+Displays processor information.
+( ~cat /proc/partitions~ displays mounted partitions )
+
+** Utilities
 *** dd if=/dev/zero of=new_file bs=1024 count=1
 Copies a single /1024/ byte block from //dev/zero/ (a continuous stream of zero bytes) to /new_file/. Warning!: *Always double-check input and output before pressing enter!*
 Data definiton or destroy disk ~dd~ *copies data in blocks* of a fixed size. This is extremely useful when you are working with block and character devices. Its sole function is to read from an input file or stream and write to an output file or stream, possibly doing some encoding conversion on the way. One particularly useful ~dd~ feature with respect to block devices is that you can process a chunk of data in the middle of a file, ignoring what comes before or after.
@@ -1044,6 +1165,7 @@ Controls the runtime behavior of systemd-udevd, requests kernel events, manages 
 *** mkswap
 Sets up a Linux swap area on a device or in a file.
 ( ~swapon~ enable/disable devices and files for paging and swapping )
+( ~swapon --show~ display  a definable table of swap areas )
 
 ** Filesystem
 *** # mkfs -t ext4 / dev / sdf2
@@ -1083,21 +1205,22 @@ Creating a partition of the device.
 ** apt
 *** apt list
 Display a list of packages satisfying certain criteria. It supports glob(7) patterns for matching package names.
-[ /--installed/ list installed /--upgradeable/ list upgradeable /--all-versions/ list all available versions ]
-( ~dpkg -S name~ search for a filename from installed packages (show path) )
-( ~dpkg -l~ list the installed packages )
-( ~cat /var/lib/dpkg/status~ status of installed and available packages )
-( ~dpkg-query -l '*'~ check status of all packages)
-( ~dpkg -L name~ list files installed by a package )
-( ~dpkg --get-selections > packages.dpkg~ save a list of installed packages (useful if you find you need to reinstall Debian), and to install all packages in new system ~apt install $(cat packages.dpkg | awk '{print $1}')~ )
+[ /--installed/ list installed /--upgradeable/ list upgradeable /--all-versions/ list all available versions /-a/ versions and archive areas of available packages ]
+( ~apt list '?obsolete'~ list obsolete packages, useful when upgraded system (it's possible that some packages are no longer available on the new repositories) )
+
+*** apt-mark
+Show, set and unset various settings for a package.
+( ~apt-mark showauto~ print a list of automatically installed packages )
+( ~apt-mark showmaual~ print a list of manually installed packages )
 
 *** apt update
 Retrieve a fresh copy of the package lists from the configured sources.
 Users are recommended to use the new apt(8) command for interactive usage and use the apt-get(8) and apt-cache(8) commands in the shell script.
+( ~apt update && apt full-upgrade && apt autoclean~ update the repositories information + update your system + clean the packages in cache )
 
 *** apt upgrade
-Updating all packages from a repository without removing any (safe upgrade).
-Is used to install available upgrades of all packages currently installed on the system from the sources configured via sources.list(5). New packages will be installed if required to satisfy dependencies, but existing packages will never be removed. If an upgrade for a package requires the removal of an installed package the upgrade for this package isn't performed.
+Install newest versions of all packages currently installed from a repository without removing any (safe upgrade).
+Is used to install available upgrades of all packages currently installed on the system from the sources configured via sources.list. New packages will be installed if required to satisfy dependencies, but existing packages will never be removed. If an upgrade for a package requires the removal of an installed package the upgrade for this package isn't performed.
 ( ~apt-get dist-upgrade~ update packages (has a "smart" conflict resolution system) )
 ( ~apt full-upgrade~ performs the function of upgrade but will remove currently installed packages if this is needed to upgrade the system as a whole (usually issued while doing system upgrades))
 ( ~apt upgrade name~ upgrade a package name )
@@ -1114,8 +1237,8 @@ Can be used to search for the given regex term(s) in the list of available packa
 Show information about the given package(s) including its dependencies, installation and download size, sources the package is available from, the description of the packages content and much more.
 ( ~apt-cache show name~ equivalent command )
 ( ~apt-get showpkg name~ show a package's dependencies )
-( ~apt info name~ detailed information about a package )
 ( ~apt show name -a~ view all available versions of a package )
+( ~apt info name~ detailed information about a package )
 
 *** apt-cache policy name
 Displays version of package and if it's installed on the system )
@@ -1132,16 +1255,48 @@ Downloaded the package from a repository and installed with full dependency reso
 *** apt remove name
 Uninstalled the package.
 Note that removing a package leaves its configuration files on the system. On the other hand you can get rid of these leftovers by calling *purge* even on already removed packages. Note that this does not affect any data or configuration stored in your home directory.
-( ~apt purge name~ remove the package and all its configuration and data files (caution) )
-( ~apt autoremove name~ remove packages that were automatically installed to satisfy dependencies (packages which you have installed explicitly/directly via install are also never proposed for automatic removal) )
+( ~apt purge name~ remove the package and all its configuration and data files )
+( ~apt autoremove name~ auto remove unecessary packages that no other packages depend on. Packages that were automatically installed to satisfy dependencies (packages which you have installed explicitly/directly via install are also never proposed for automatic removal) )
 ( ~apt-get --simulate remove name~ no action; perform a simulation of events that would occur based on the current system state but do not actually change the system )
-( ~apt clean~ remove cached package files already installed )
-( ~apt autoclean~ retain a local cache of only the most recent versions )
+( ~apt remove '?obsolete'~ remove obsolete packages, useful when upgraded system (it's possible that some packages are no longer available on the new repositories) )
+
+*** apt clean
+Remove local cached package files already installed.
+The commands below are listed to continue with the total system cleanup.
+( ~apt autoremove --purge~ delete useless packages, unecessary dependencies, and old configuration files )
+( ~apt autoclean~ remove the local cache of the obsolete packages, retain a local cache of only the most recent versions )
+( ~dpkg --list | awk '/^rc/ {print $2}'~ and ~apt purge $(dpkg --list | awk '/^rc/ {print $2}')~ list and purge configuration files that have remained in place despite the removal of applications (note that slash bar / ^rc / in the commands) )
+( ~rm -Rf ~/.local/share/Trash/*~ emptying the user trash-bins )
+( ~rm -Rf ~/.cache/*~ if (using the tools described above) you detect that a folder becomes too fat, remove this cache folder )
+( ~rm -Rf ~/.thumbnails~ if necessary, remove the thumbnails folder )
+
+*** apt depends name
+List all packages needed by the one given.
+( ~apt rdepends name~ reverse dependencies, list all packages that need the one given )
+( ~apt-cache rdepends --installed name~ like above but limit it to packages that are installed on your system )
+
+** dpkg
+*** dpkg -l
+List packages matching given pattern.
+[ /-S/ search for a filename from installed packages /-l/  list packages by pattern /-L/ list files installed to your system from package-name ]
+( ~dpkg -s name~ determine whether a package is installed )
+( ~dpkg -S name~ search for a filename from  (show path) )
+( ~dpkg -L name~ list files installed by a package )
+( ~dpkg --get-selections > packages.dpkg~ save a list of installed packages (useful if you find you need to reinstall Debian), and to install all packages in new system ~apt install $(cat packages.dpkg | awk '{print $1}')~ )
+
+*** dpkg-query
+Show information about packages listed in the dpkg database.
+( ~dpkg-query --show -f '${Package} ${Version} ${Section}\n'~ list packages installed from a particular sections/component (main, contrib, non-free, ...) )
+( ~dpkg-query -l '*'~ check status of all packages)
+( ~dpkg-query -l '*<name>*'~ search packages only by name (note the * in the command show all possible name packages) )
 
 *** dpkg -i name.deb
 Installing a package from a package file.
-If a package file has been downloaded from a source other than a repository, it can be installed directly (though without dependency resolution) using a low-level tool.
+Dpkg is a software utility handling the packages, like does apt, but *without managing the dependencies*. This means that if you use dpkg to install external packages, you need to install the “dependent” packages one by one from your terminal.
+An error message will let you know if some dependencies are missing. Then simply install them the classic way with apt (apt install dependency_1 dependency_2 ...). Then relaunch the installation of your external package (dpkg -i name).
+[ /-I/ package information /-c/ list contents of package file /-S/ wich package a file belongs to /-V/ audit check sums of installed packages ]
 ( ~dpkg -i name.deb~ update an existing installation of package  to the new version )
+( ~dpkg --purge package_name~ remove an external package )
 
 ** npm
 *** npm ls
@@ -1261,6 +1416,12 @@ Transfer /src_dir/ on the remote system to /dest_dir/ on the local host.
 List all the (listable) modules available from a  particular rsync daemon by leaving off the module name.
 
 ** rclone
+*** rclone config
+Enter an interactive configuration session.
+(https://rclone.org/docs/)
+( ~rclone config show~ print (decrypted) config file, or the config for a single remote )
+( ~rclone config file~ show path of configuration file in use )
+
 *** rclone lsd remote:path/to/dir
 List all *directories objects*,containers,buckets in the path.
 [ /-R/ to make them recurse ]
@@ -1310,11 +1471,6 @@ The destination path is used without the initial forward slash. It is always the
 *** rclone command --help
 For more information about a command.
 
-*** rclone config
-Enter an interactive configuration session.
-(https://rclone.org/docs/)
-( ~rclone config file~ show path of configuration file in use )
-
 ** OpenSSH
 *** ssh remote_username@remote_host
 Log in to a remote host.
@@ -1354,9 +1510,11 @@ Reduce JPG image to a quality of /75/ (suggested scale 60-80) and send to other 
 ( ~jpegoptim -S 20k -d dir image.jpg~ reduce to specif size )
 ( ~jpegoptim -n image.jpg~ only shows possible results )
 
-*** pngquant -f --ext .png -Q 70-95 image.png
-Converter and lossy PNG image (overwrite).
+*** pngquant -Q 70-95 image.png
+Converter and lossy PNG image.
+*Overwrites the original image* if these /-f --ext.png/ options are not set.
 [ /-f/ overwrite existing output files /--ext .png/ file extension to use for output files instead of the default 'fs8.png' /-o file/ output to *file* name /-Q min-man/ will use the least amount of colors required to meet or exceed the max quality 0 worst to 100 perfect ]
+( ~pngquant -f --ext .png -Q 70-95 image.png~ overwrites the original images )
 ( ~pngquant 64 image.png~ resulting image will have /64/ colors )
 
 *** gifsicle -b --colors 256 file.gif
@@ -2841,6 +2999,18 @@ Everywhere a 1 appears in the binary value of the mask (~umask~ command), an att
 | Mask          | 000 000 010 010 | 0022 |
 |---------------+-----------------+------|
 | Result        | --- rw- r-- r-- | 0644 |
+
+** Signal usd by kill/pkil
+
+| Signal | Mode | Action                                       |
+|--------+------+----------------------------------------------|
+| /-1/     | HUP  | Reload the process configuration file        |
+| /-2/     | INT  | Interrupt the process                        |
+| /-3/     | QUIT | Quit the process                             |
+| /-9/     | KILL | Kill the process (to avoid, try '-15' first) |
+| /-15/    | TERM | Complete the process properly                |
+| /-18/    | STOP | Freeze the process                           |
+| /-20/    | CONT | Resume execution of a frozen process         |
 
 * Script
 ** Shell script

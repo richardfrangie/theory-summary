@@ -57,7 +57,7 @@ The *bottom level* of user space tends to consist of small components that perfo
   4. Mid- and high-level services (cron, printing, and so on).
   5. Login prompts, GUIs, and high-level applications, such as web servers.
 
-*** Packaging Systems
+*** Packaging systems
 **** Brief
 You may know some software like Firefox, GIMP, etc, but what they really are is just lots and lots of files that have been compiled into one. The people (or sometimes a single person) that write this software are known as upstream providers, they compile their code and write up how to get it installed.
 
@@ -232,6 +232,16 @@ deb-src ftp.br.debian.org/debian/ unstable main
 
 #+end_src
 
+***** Debian Mirrors
+Debian is distributed (aka mirrored) on hundreds of servers worldwide, all offering the same content. This way we can provide better access to our archive.
+
+You can find the following content on our mirror servers:
+
+- Debian Packages (debian/) :: the Debian package pool: this includes the vast majority of .deb packages, installation material, and the sources.
+- CD Images (debian-cd/) :: the repository of CD images: Jigdo files and ISO image files.
+    See the list of Debian mirrors that include the debian-cd/ archive.
+- Old Releases (debian-archive/) :: the archive of older Debian versions, released in the past.
+
 *** Compressing
 Data compression is the process of removing *redundancy* from data.
 
@@ -241,6 +251,131 @@ Compression algorithms fall into two general categories.
 - Lossy :: Lossy compression, on the other hand, removes data as the compression is performed to allow more compression to be applied. When a lossy file is restored, it does not match the original version; rather, it is a close approximation. Exam- ples of lossy compression are JPEG (for images) and MP3 (for music).
 
 A common file-management task often used in conjunction with compression is *archiving*. Archiving is the process of gathering up many files and bundling them together into a single large file.
+
+*** Cron job management
+Any jobs under the purview of the system administrator should be in [[ /etc]], since they are configuration files. If you have a root cron job for daily, weekly, or monthly runs, put them in [[ /etc/cron.daily][/etc/cron.{daily,weekly,monthly}]]. These are invoked from [[ /etc/crontab]], and will run in alphabetic order, which serializes them.
+
+On the other hand, if you have a cron job that (a) needs to run as a special user, or (b) needs to run at a special time or frequency, you can use either [[ /etc/crontab]], or, better yet, [[ /etc/cron.d][/etc/cron.d/whatever]]. These particular files also have an extra field that allows you to stipulate the user account under which the cron job runs.
+
+In either case, you just edit the files and cron will notice them automatically. There is no need to run a special command.
+
+*** Apt
+**** Backports
+***** Brief
+Debian Backports provides new packages with new features on supported Debian stable releases.
+
+*Note* (debian the beginners handbook): … what do you mean exactly by “backports” ? Nothing to do, in fact, with the “backdoors” used to spy on computers running proprietary systems… The backport is a mechanism allowing an application currently hold in the Debian development repositories, to be *ported back* to the “stable” version.
+
+As a matter of Backports policy, packages in the stable-backports suite are taken from Debian testing; however, in rare cases such as security updates, packages are taken from unstable. Backports Policy permits this exclusively when such packages will be part of the next Debian stable release. In any case, the new packages are recompiled for use on Debian stable. Backports are expected to make use of the versions of libraries available in Debian stable whenever possible; however, when required, the backporting of additional dependencies is permitted.
+
+Backports cannot be tested as extensively as Debian stable, and are thus supported on a best-effort basis; there is a risk of incompatibilities with other components in Debian stable, so backports should be used with care! That said, Debian Backports Policy does not allow backports of libraries that would break all dependent packages in stable (eg: new Qt 5.x releases), and by virtue of this, Debian Backports are considered generally safe when used as intended on an individual package basis.
+
+The coinstallability of all available backports is not tested, and it is strongly recommended to opt-into the use of specific backported packages on an as-needed basis.
+
+***** Adding the repository
+As root, or using sudo, open your ~sources.list~ file (Nano is the recommended editor for new users):
+
+#+begin_src sh
+
+sudo apt edit-sources
+
+#+end_src
+
+Append the following line to the bottom of the file:
+
+#+begin_src sh
+
+deb http://deb.debian.org/debian bookworm-backports main
+
+#+end_src
+
+Run ~apt update~.
+
+***** Installing backports on the command line
+The backports repository is low-priority by default. So, if you want to install a backported package, you will have to state that explicitly.
+
+For example:
+
+#+begin_src sh
+
+sudo apt install cockpit/bookworm-backports
+
+#+end_src
+
+This will attempt to install Cockpit from bookworm-backports, preferring dependencies from stable. Sometimes backports depend on other backports, and it is necessary to specify these dependencies aswell.
+
+(Dependency is just a stand in for a theoretical backport dependency)
+
+#+begin_src sh
+
+sudo apt install cockpit/bookworm-backports dependency/bookworm-backports
+
+#+end_src
+
+Another option is to use the ~-t~ target release flag, but this can sometimes lead to unnecessarily downloading dependencies from backports.
+
+#+begin_src sh
+
+sudo apt -t bookworm-backports install cockpit
+
+#+end_src
+
+The ~-t~ option here specifies ~bookworm-backports~ as the target release. This would install a newer version of Cockpit and all its reverse dependencies from bookworm-backports instead of the older one from Debian stable release.
+
+*** Setting up your system to use e-mail
+**** Brief
+There are three main functions that make up an e-mail system. First there is the Mail User Agent (MUA) which is the program a user actually uses to compose and read mails. Then there is the Mail Transfer Agent (MTA) that takes care of transferring messages from one computer to another. And last there is the Mail Delivery Agent (MDA) that takes care of delivering incoming mail to the user's inbox.
+
+These three functions can be performed by separate programs, but they can also be combined in one or two programs. It is also possible to have different programs handle these functions for different types of mail.
+
+On Linux and Unix systems ~mutt~ is historically a very popular MUA. Like most traditional Linux programs it is text based. It is often used in combination with ~exim~ or ~sendmail~ as MTA and ~procmail~ as MDA.
+
+With the increasing popularity of graphical desktop systems, the use of graphical e-mail programs like GNOME's ~evolution~, KDE's ~kmail~ or Mozilla's ~thunderbird~ has becoming more popular. These programs combine the function of a MUA, MTA and MDA, but can — and often are — also be used in combination with the traditional Linux tools.
+
+**** Default e-mail configuration
+Even if you are planning to use a graphical mail program, it would be useful, to have a traditional MTA/MDA installed and correctly set up on your Debian GNU/Linux system. Reason is that various utilities running on the system can send important notices by e-mail to inform the system administrator of (potential) problems or changes.
+
+For this you can install ~exim4~ and ~mutt~ with ~apt install exim4 mutt~. ~exim4~ is a combination MTA/MDA that is relatively small but very flexible. By default it will be configured to only handle e-mail local to the system itself and e-mails addressed to the system administrator (root account) will be delivered to the regular user account created during the installation.
+
+When system e-mails are delivered they are added to a file in [[ /var/mail/$username]]. The e-mails can be read using ~mutt~.
+
+**** Sending e-mails outside the system
+As mentioned earlier, the installed Debian system is only set up to handle e-mail local to the system, not for sending mail to others nor for receiving mail from others.
+
+If you intend to use a graphical mail program and use a mail server of your Internet Service Provider (ISP) or your company, there is not really any need to configure ~exim4~ for handling external e-mail. Just configure your favorite graphical mail program to use the correct servers to send and receive e-mail (how is outside the scope of this manual).
+
+However, in that case you may need to configure individual utilities to correctly send e-mails. One such utility is ~reportbug~, a program that facilitates submitting bug reports against Debian packages. By default it expects to be able to use ~exim4~ to submit bug reports.
+
+To correctly set up ~reportbug~ to use an external mail server, please run the command ~reportbug --configure~ and answer “no” to the question if an MTA is available. You will then be asked for the SMTP server to be used for submitting bug reports.
+
+**** Configuring the exim4 mail transport agent
+If you would like your system to also handle external e-mail, you will need to reconfigure the ~exim4~ package or another alternative.
+
+#+begin_src sh
+
+sudo dpkg-reconfigure exim4-config
+
+#+end_src
+
+After entering that command (as root), you will be asked if you want split the configuration into small files. If you are unsure, select the default option.
+
+Next you will be presented with several common mail scenarios. Choose the one that most closely resembles your needs.
+
+- internet site :: your system is connected to a network and your mail is sent and received directly using SMTP. On the following screens you will be asked a few basic questions, like your machine's mail name, or a list of domains for which you accept or relay mail.
+
+- mail sent by smarthost :: in this scenario your outgoing mail is forwarded to another machine, called a “smarthost”, which takes care of sending the message on to its destination. The smarthost also usually stores incoming mail addressed to your computer, so you don't need to be permanently online. That also means you have to download your mail from the smarthost via programs like fetchmail.
+
+    In a lot of cases the smarthost will be your ISP's mail server, which makes this option very suitable for dial-up users. It can also be a company mail server, or even another system on your own network.
+
+- mail sent by smarthost; no local mail :: this option is basically the same as the previous one except that the system will not be set up to handle mail for a local e-mail domain. Mail on the system itself (e.g. for the system administrator) will still be handled.
+
+- local delivery only :: this is the option your system is configured for by default.
+
+- no configuration at this time :: choose this if you are absolutely convinced you know what you are doing. This will leave you with an unconfigured mail system — until you configure it, you won't be able to send or receive any mail and you may miss some important messages from your system utilities.
+
+If none of these scenarios suits your needs, or if you need a finer grained setup, you will need to edit configuration files under the /etc/exim4 directory after the installation is complete. More information about exim4 may be found under /usr/share/doc/exim4; the file README.Debian.gz has further details about configuring exim4 and explains where to find additional documentation.
+
+Note that sending mail directly to the Internet when you don't have an official domain name, can result in your mail being rejected because of anti-spam measures on receiving servers. Using your ISP's mail server is preferred. If you still do want to send out mail directly, you may want to use a different e-mail address than is generated by default. If you use exim4 as your MTA, this is possible by adding an entry in /etc/email-addresses.
 
 ** Processes and Threads
 *** Processes
@@ -1056,8 +1191,7 @@ systemctl status test1.target test2.target
 
 #+end_src
 
-4. If your unit file has an ~[Install]~ section, you need to “enable” the unit
-before activating it (the [Install] section is another way to create a dependency).
+4. If your unit file has an ~[Install]~ section, you need to “enable” the unit before activating it (the [Install] section is another way to create a dependency).
 
 #+begin_src sh
 
@@ -1074,8 +1208,7 @@ systemctl stop test1.target
 
 #+end_src
 
-2. If the unit has an ~[Install]~ section, disable the unit to remove any symbolic
-links created by the dependency system. Disabling a unit that is implicitly enabled (that is, does not have an [Install] section) has no effect.
+2. If the unit has an ~[Install]~ section, disable the unit to remove any symbolic links created by the dependency system. Disabling a unit that is implicitly enabled (that is, does not have an [Install] section) has no effect.
 
 #+begin_src sh
 
@@ -1687,15 +1820,96 @@ An access-control list (ACL) is a list of permissions associated with a system r
 ** Filesystem ACLs
 A filesystem ACL is a data structure (usually a table) containing entries that specify individual user or group rights to specific system objects such as programs, processes, or files. These entries are known as access-control entries (ACEs). Each accessible object contains an identifier to its ACL. The privileges or permissions determine specific access rights, such as whether a user can read from, write to, or execute an object. In some implementations, an ACE can control whether or not a user, or group of users, may alter the ACL on an object.
 
-* Directory Hierarchy
+** Directories and partitions
+The following is a list of important considerations regarding directories and partitions.
+
+- / :: root partition / must always physically contain /etc, /bin, /sbin, /lib, /dev and /usr, otherwise you won't be able to boot. This means that you should provide at least 600–750MB of disk space for the root partition including /usr, or 5–6GB for a workstation or a server installation.
+
+- /var :: variable data like news articles, e-mails, web sites, databases, the packaging system cache, etc. will be placed under this directory. The size of this directory depends greatly on the usage of your system, but for most people will be dictated by the package management tool's overhead. If you are going to do a full installation of just about everything Debian has to offer, all in one session, setting aside 2 or 3 GB of space for /var should be sufficient. If you are going to install in pieces (that is to say, install services and utilities, followed by text stuff, then X, ...), you can get away with 300–500 MB. If hard drive space is at a premium and you don't plan on doing major system updates, you can get by with as little as 30 or 40 MB.
+
+- /tmp :: temporary data created by programs will most likely go in this directory. 40–100MB should usually be enough. Some applications — including archive manipulators, CD/DVD authoring tools, and multimedia software — may use /tmp to temporarily store image files. If you plan to use such applications, you should adjust the space available in /tmp accordingly.
+
+- /home :: every user will put his personal data into a subdirectory of this directory. Its size depends on how many users will be using the system and what files are to be stored in their directories. Depending on your planned usage you should reserve about 100MB for each user, but adapt this value to your needs. Reserve a lot more space if you plan to save a lot of multimedia files (pictures, MP3, movies) in your home directory.
+
+* Filesystem hierarchy
 ** /
 *** /vmlinuz
 Is normally a binary file that contains the kernel. A boot loader loads this file into memory and sets it in motion when the system boots. Once the boot loader starts the kernel, the main kernel file is no longer used by the running system.
 
+** /bin
+Contains ready-to-run programs (also known as executables), including most of the basic Unix commands such as ~ls~ and ~cp~.
+
+This directory contains executable files that are part of the core operating system (those required by the system for emergency repairs, booting, and single user mode). These files need to be accessible before [[ /usr]] gets mounted. (for instance, the ~mount~ command is in ~/bin/mount~). But in modern systems it is the same as the [[ /usr/bin]].
+
+This directory are specified by the Linux Filesystem Hierarchy Standard to contain only files supplied and maintained by the Linux distributor.
+
+** /boot
+Contains kernel boot loader files. These files pertain only to the very first stage of the Linux startup procedure, so you won’t find information about how Linux starts up its services in this directory.
+
+*** /boot/vmlinuz
+Is normally a binary file that contains the kernel A boot loader loads this file into memory and sets it in motion when the system boots. Once the boot loader starts the kernel, the main kernel file is no longer used by the running system.
+
+*** /boot/grub
+The GRUB configuration directory.
+
+** /dev
+ Contains device files.
+
+*** /dev/sd*
+These are the current hard disks connected to Linux systems. These devices represent entire disks.
+
+*** /dev/sr*
+Optical storage drives. This devices are read only, and they are used only for reading from discs.
+
+*** /dev/tty
+This device is the controlling terminal of the current process. If a program is currently reading from and writing to a terminal, this device is a synonym for that terminal. A process does not need to be attached to a terminal.
+
+*** /dev/tty1
+The first virtual console, which is the one you see when you press ~CTRL-ALT-F1~ or ~ALT-F1~.
+
+*** /dev/pts/0
+The first pseudoterminal device.
+
+*** /dev/input
+Contains the input of the several kernel devices (mouse, keyboard, touch-pad,...).
+
+*** /dev/null
+This file is a system device often referred to as a *bit bucket*, which accepts input and does nothing with it.
+
+Descarta toda la información que se escribe en o se redirige hacia él. A su vez, no proporciona ningún dato a cualquier proceso que intente leer de él, devolviendo simplemente un EOF o fin de archivo.
+
 ** /etc
+Host-specific system configuration.
+
 This core system configuration directory contains the user password, boot, device, networking, and other setup files.
 
 The configurations for a single machine, such as user information ~/etc/passwd~ and network details ~/etc/network~, go into this directory. However, general application details, such as a distribution’s defaults for a user interface, don’t belong here. System default configuration files not meant to be customized also are usually found elsewhere, as with the prepackaged systemd unit files in ~/usr/lib/systemd~.
+
+*** /etc/apt/sources.list
+Archivo que utiliza APT que enlista las "fuentes" en donde se encuentran los paquetes. El archivo puede contener varios tipos de líneas. APT sabe como interpretar líneas del tipo http, ftp, file (archivos locales, p.e., un directorio que contiene un CD-ROM) y ssh.
+
+#+begin_src sh
+
+#servidor oficial
+deb http://security.debian.org/debian-security bullseye-security main non-free contrib
+#paquetes fuente (normalmente usados para probar o recompilar)
+deb-src http://security.debian.org/debian-security bullseye-security main non-free contrib
+
+deb http://deb.debian.org/debian bullseye-proposed-updates main non-free contrib
+
+#servidor de actualizaciones de seguridad
+deb http://deb.debian.org/debian/ bullseye main non-free contrib
+#paquetes fuente (normalmente usados para probar o recompilar)
+deb-src http://deb.debian.org/debian/ bullseye main non-free contrib #Added by software-properties
+
+#+end_src
+
+- La primera palabra en cada línea indica el tipo de archivo: /deb/ paquetes binarios pre-compilados que normalmente se usan. /deb-src/  paquetes fuente que son los códigos originales.
+- El primer argumento es la URL raiz de los archivos Debian.
+- El segundo argumento es el nombre de la distribución.
+- El tercer argumento y los siguientes son la lista de nombres de área de archivo válidos del archivo de Debian: /main/ cumple con DFSG y sin dependencias con *non-free* . /contrib/ cumple con DFSG pero con dependencias con *non-free* . /non-free/ no cumple con DFSG.
+
+*Nota*: suite name(codename)= stable(bullseye), testing(bookworm), unstable(siempre: sid).
 
 *** /etc/passwd
 This plaintext file maps usernames to user IDs.
@@ -1896,37 +2110,51 @@ This is the ssh client system-wide configuration file.
 *** /etc/fonts/conf.d
 Each file in this directory is a fontconfig configuration file. These files are normally installed in [[ /usr/share/fontconfig/conf.avail]] and then symlinked here, allowing them to be easily installed and then enabled/disabled by adjusting the symlinks.
 
-*** /etc/apt/sources.list
-Archivo que utiliza APT que enlista las "fuentes" en donde se encuentran los paquetes. El archivo puede contener varios tipos de líneas. APT sabe como interpretar líneas del tipo http, ftp, file (archivos locales, p.e., un directorio que contiene un CD-ROM) y ssh.
-
-#+begin_src sh
-
-#servidor oficial
-deb http://security.debian.org/debian-security bullseye-security main non-free contrib
-#paquetes fuente (normalmente usados para probar o recompilar)
-deb-src http://security.debian.org/debian-security bullseye-security main non-free contrib
-
-deb http://deb.debian.org/debian bullseye-proposed-updates main non-free contrib
-
-#servidor de actualizaciones de seguridad
-deb http://deb.debian.org/debian/ bullseye main non-free contrib
-#paquetes fuente (normalmente usados para probar o recompilar)
-deb-src http://deb.debian.org/debian/ bullseye main non-free contrib #Added by software-properties
-
-#+end_src
-
-- La primera palabra en cada línea indica el tipo de archivo: /deb/ paquetes binarios pre-compilados que normalmente se usan. /deb-src/  paquetes fuente que son los códigos originales.
-- El primer argumento es la URL raiz de los archivos Debian.
-- El segundo argumento es el nombre de la distribución.
-- El tercer argumento y los siguientes son la lista de nombres de área de archivo válidos del archivo de Debian: /main/ cumple con DFSG y sin dependencias con *non-free* . /contrib/ cumple con DFSG pero con dependencias con *non-free* . /non-free/ no cumple con DFSG.
-
-*Nota*: suite name(codename)= stable(bullseye), testing(bookworm), unstable(siempre: sid).
-
 *** /etc/profile
 A global configuration script for [[Interactive shells][login shell]] sessions that applies to all users.
 
 *** /etc/bash.bashrc
 A global configuration script for [[Interactive shells][non-login shell]] sessions that applies to all users.
+
+*** /etc/netwok/interfaces
+Interface configuration (if not controlled via network-manager).
+
+*** /etc/default
+Default values for many daemons and services.
+
+** /home
+Holds home (personal) directories for regular users.
+
+*** /home/user/_bash_profile
+A user's personal startup file for [[Interactive shells][login shell]]. This can be used to extend or override settings in the global configuration script.
+
+*** /home/user/_bash_login
+If [[ /home/user/_bash_profile]] is not found, bash attempts to read this script ([[Interactive shells][login shell]]).
+
+*** /home/user/_profile
+If neither [[ /home/user/_bash_profile]] nor [[ /home/user/_bash_login]] is found, bash attempts to read this file. ([[Interactive shells][login shell]]) This is the default in Debian-based distributions, such as Ubuntu.
+
+*** /home/user/_bashrc
+A user's personal startup file for [[Interactive shells][non-login shell]]. It can be used to extend or override settings in the global configuration script.
+
+*** /home/user/dot.local/share/Trash
+The user trash-bins (or wastebaskets) folder. *Note*: ~dot.local~ is actually ~.local~.
+
+The other two trash-bins are:
+- The administrator wastebasket : ~/root/.local/share/Trash~
+- The external wastebaskets : locates on your external disks, they are usually named ~/media/your_id/your_disk/.Trash_1000~
+
+** /lib
+An abbreviation for library, this directory holds library files containing code that executables can use. This directory should not contain static libraries.
+
+*** /lib/modules
+Are modules that the kernel loads and unloads on demand during the course of normal system operation.
+
+** /media
+A base attachment point for removable media such as flash drives that is found in many distributions.
+
+** /mnt
+Mount point for mounting a file system temporarily.
 
 ** /proc
 It's a virtual file system maintained by the Linux kernel. Provides system statistics through a browsable directory-and-file interface. The ~/proc~ directory contains information about currently running processes as well as some kernel parameters. The files are readable and will give us a picture of how the kernel sees the computer.
@@ -1999,6 +2227,9 @@ Show how much real memory is being used for caches and buffers.
 *** /proc/cpuinfo
 Incluye gran cantidad de información adicional sobre el kernel y el hardware.
 
+*** /proc/version
+Version of the Linux kernel used, its name, the version of the compiler used.
+
 *** /proc/partitions
 Full partition information.
 
@@ -2017,8 +2248,28 @@ Contains the amount of time the system has been running.
 *** /proc/sys
 Contiene interfaces para cambiar ciertos parámetros del kernel en tiempo de ejecución. (Se puede hacer lo mismo mediante el comando especializado ~sysctl(8)~ o su archivo de precarga/configuración ~/etc/sysctl.conf~ ).
 
+** /root
+This is the home directory for the root account.
+
+** /run
+Contains runtime variable data specific to the system, including certain process IDs, socket files, status records, and, in many cases, system logging.
+
+El directorio ~/run~ se monta como ~tmpfs~ en el proceso de arranque inicial. Esto permite escribir en él incluso cuando el directorio "~/~" está montado como de solo lectura. Esta es la nueva ubicación para el almacenamiento de archivos de estado transitorio y reemplaza varias ubicaciones descritas en Filesystem Hierarchy Standard.
+
+*** /run/systemd/system
+Archivos de configuración generados en tiempo de ejecución que anulan los archivos de configuración instalados.
+
+** /sbin
+Essential system binaries.
+
+Programs in ~/sbin~ directories relate to system management, so regular users usually do not have ~/sbin~ components in their command paths.
+
+These are programs that perform vital system tasks that are generally reserved for the superuser.
+
 ** /sys
- This directory is similar to [[ /proc]] in that it provides a device and system interface.
+Virtual directory for system information.
+
+This directory is similar to [[ /proc]] in that it provides a device and system interface.
 
 *** /sys/devices
 To provide a uniform view for attached devices based on their actual hardware attributes, the Linux kernel offers the sysfs interface through a system of files and directories.
@@ -2031,8 +2282,77 @@ Contain all of the block devices available on a system. However, those are just 
 *** /sys/fs/cgroup
 [[Control Groups (cgroups)][cgroups]] are accessed entirely through the filesystem, which is usually mounted as a cgroup2 filesystem under this directory.
 
+** /tmp
+A storage area for smaller, temporary files created by various programs. Some configurations cause this directory to be emptied each time the system is rebooted.
+
+Any user may read to and write from ~/tmp~, but the user may not have permission to access another user’s files there.
+
+** /usr
+Secondary hierarchy. It contains a large directory hierarchy, including the bulk of the Linux system. ~/usr~ is where most of the user-space programs and data reside.
+
+*** /usr/local
+Is where administrators can install their own software (programs that are not included with the distribution). Its structure should look like that of ~/~ and ~/usr~.
+
+*** /usr/local/src
+Is where administrators can place the source code directory of a program for installation.
+
+*** /usr/local/share/fonts
+Install a font manually.
+
+Install a font manually by downloading the appropriate ~.ttf~ or ~otf~ files and placing them into ~/usr/local/share/fonts~ (system-wide), ~~/.local/share/fonts~ (user-specific) or ~~/.fonts~ (user-specific). These files should have the permission 644 (-rw-r--r--), otherwise they may not be usable.
+
+Fonts can be added system-wide to Debian by installing the appropriate package. As default system-wide fonts will be installed into [[/usr/share/fonts]] by the package-manager.
+
+*** /usr/share/fonts
+Fonts can be added system-wide to Debian by installing the appropriate package. As default system-wide fonts will be installed into ~/usr/share/fonts~ by the package-manager.
+
+*Notes*:
+- For most uses, you’ll want TrueType (TTF) and OpenType (OTF) fonts – these packages start with ~fonts-~.
+- Some fonts might have a -variable build, which are known as (VF), variable font.
+- Some non-free font downloader packages are in ~contrib~, which you will need to add to your ~sources~ if not present.
+
+*Manually*
+Install a font manually by downloading the appropriate ~.ttf~ or ~otf~ files and placing them into [[/usr/local/share/fonts]] (system-wide), ~~/.local/share/fonts~ (user-specific) or ~~/.fonts~ (user-specific). These files should have the permission 644 (-rw-r--r--), otherwise they may not be usable.
+
+*** /usr/bin
+Contains executable files that are not part of the core operating system. These are considered to be "system wide binaries". But in modern systems it is the same as the [[ /bin]].
+
+This directory are specified by the Linux Filesystem Hierarchy Standard to contain only files (executables for nearly all packaged user software) supplied and maintained by the Linux distributor.
+
+*** /usr/include
+Holds header files used by the C compiler.
+
+*** /usr/lib/systemd/user
+Another system unit directory.
+
+*** /usr/man
+Contains manual pages.
+
+*** /usr/share
+Contains files that should work on other kinds of Unix machines with no loss of functionality. These are usually auxiliary data files that programs and libraries read as necessary.
+
+This includes things such as default configuration files, icons, screen backgrounds, sound files, etc.
+
+It typically contains architecture-independent (shared) data. This means it holds files that are not specific to the architecture of your machine, such as certain shell scripts, man pages, locale information, and other miscellaneous system-wide data.
+
+This is particularly useful in networked environments where multiple machines can share a common data source, thereby saving storage and ensuring consistency.
+
+*** /usr/share/doc
+Some packages dump their available documentation into this directory with no regard for online manual systems such as man or info. See this directory on your system if you find yourself searching for documentation.
+
+*** /usr/share/zoneinfo
+This directory contains a lot of time zones and aliases for time zones.
+
+To set your system’s time zone manually, either copy one of the files in ~/usr/share/zoneinfo~ to ~/etc/localtime~ (or make a symbolic link) or change it with your distribution’s time zone tool. The command-line program ~tzselect~ may help you identify a time zone file.
+
+*** /usr/share/fontconfig/conf.avail
+Each file in this directory is a fontconfig configuration file.
+
+*** /usr/share/dict
+Contains a dictionaries.
+
 ** /var
-The variable subdirectory, where programs record information that can change over the course of time. System logging, user tracking, caches, and other files that system programs create and manage are here.
+The variable subdirectory date, where programs record information that can change over the course of time. System logging, user tracking, caches, and other files that system programs create and manage are here.
 
 *** /var/log
 Contains log files, records of various system activity.
@@ -2102,167 +2422,11 @@ package-name_upstream-version-debian.revision_architecture.deb
 *** /var/www/html/index.html
 Archivo html que sirve para probar el servidor local apache2.
 
-** /run
-Contains runtime data specific to the system, including certain process IDs, socket files, status records, and, in many cases, system logging.
-
-El directorio ~/run~ se monta como ~tmpfs~ en el proceso de arranque inicial. Esto permite escribir en él incluso cuando el directorio "~/~" está montado como de solo lectura. Esta es la nueva ubicación para el almacenamiento de archivos de estado transitorio y reemplaza varias ubicaciones descritas en Filesystem Hierarchy Standard.
-
-*** /run/systemd/system
-Archivos de configuración generados en tiempo de ejecución que anulan los archivos de configuración instalados.
-
-** /dev
- Contains device files.
-
-*** /dev/sd*
-These are the current hard disks connected to Linux systems. These devices represent entire disks.
-
-*** /dev/sr*
-Optical storage drives. This devices are read only, and they are used only for reading from discs.
-
-*** /dev/tty
-This device is the controlling terminal of the current process. If a program is currently reading from and writing to a terminal, this device is a synonym for that terminal. A process does not need to be attached to a terminal.
-
-*** /dev/tty1
-The first virtual console, which is the one you see when you press ~CTRL-ALT-F1~ or ~ALT-F1~.
-
-*** /dev/pts/0
-The first pseudoterminal device.
-
-*** /dev/input
-Contains the input of the several kernel devices (mouse, keyboard, touch-pad,...).
-
-*** /dev/null
-This file is a system device often referred to as a *bit bucket*, which accepts input and does nothing with it.
-
-Descarta toda la información que se escribe en o se redirige hacia él. A su vez, no proporciona ningún dato a cualquier proceso que intente leer de él, devolviendo simplemente un EOF o fin de archivo.
-
-** /usr
-It contains a large directory hierarchy, including the bulk of the Linux system. ~/usr~ is where most of the user-space programs and data reside.
-
-*** /usr/local
-Is where administrators can install their own software (programs that are not included with the distribution). Its structure should look like that of ~/~ and ~/usr~.
-
-*** /usr/local/src
-Is where administrators can place the source code directory of a program for installation.
-
-*** /usr/local/share/fonts
-Install a font manually by downloading the appropriate ~.ttf~ or ~otf~ files and placing them into ~/usr/local/share/fonts~ (system-wide), ~~/.local/share/fonts~ (user-specific) or ~~/.fonts~ (user-specific). These files should have the permission 644 (-rw-r--r--), otherwise they may not be usable.
-
-Fonts can be added system-wide to Debian by installing the appropriate package. As default system-wide fonts will be installed into [[/usr/share/fonts]] by the package-manager.
-
-*** /usr/share/fonts
-Fonts can be added system-wide to Debian by installing the appropriate package. As default system-wide fonts will be installed into ~/usr/share/fonts~ by the package-manager.
-
-*Notes*:
-- For most uses, you’ll want TrueType (TTF) and OpenType (OTF) fonts – these packages start with ~fonts-~.
-- Some fonts might have a -variable build, which are known as (VF), variable font.
-- Some non-free font downloader packages are in ~contrib~, which you will need to add to your ~sources~ if not present.
-
-*Manually*
-Install a font manually by downloading the appropriate ~.ttf~ or ~otf~ files and placing them into [[/usr/local/share/fonts]] (system-wide), ~~/.local/share/fonts~ (user-specific) or ~~/.fonts~ (user-specific). These files should have the permission 644 (-rw-r--r--), otherwise they may not be usable.
-
-*** /usr/bin
-Contains executable files that are not part of the core operating system. These are considered to be "system wide binaries". But in modern systems it is the same as the [[ /bin]].
-
-This directory are specified by the Linux Filesystem Hierarchy Standard to contain only files (executables for nearly all packaged user software) supplied and maintained by the Linux distributor.
-
-*** /usr/include
-Holds header files used by the C compiler.
-
-*** /usr/lib/systemd/user
-Another system unit directory.
-
-*** /usr/man
-Contains manual pages.
-
-*** /usr/share
-Contains files that should work on other kinds of Unix machines with no loss of functionality. These are usually auxiliary data files that programs and libraries read as necessary.
-
-This includes things such as default configuration files, icons, screen backgrounds, sound files, etc.
-
-It typically contains architecture-independent (shared) data. This means it holds files that are not specific to the architecture of your machine, such as certain shell scripts, man pages, locale information, and other miscellaneous system-wide data.
-
-This is particularly useful in networked environments where multiple machines can share a common data source, thereby saving storage and ensuring consistency.
-
-*** /usr/share/doc
-Some packages dump their available documentation into this directory with no regard for online manual systems such as man or info. See this directory on your system if you find yourself searching for documentation.
-
-*** /usr/share/zoneinfo
-This directory contains a lot of time zones and aliases for time zones.
-
-To set your system’s time zone manually, either copy one of the files in ~/usr/share/zoneinfo~ to ~/etc/localtime~ (or make a symbolic link) or change it with your distribution’s time zone tool. The command-line program ~tzselect~ may help you identify a time zone file.
-
-*** /usr/share/fontconfig/conf.avail
-Each file in this directory is a fontconfig configuration file.
-
-*** /usr/share/dict
-Contains a dictionaries.
-
-** /boot
-Contains kernel boot loader files. These files pertain only to the very first stage of the Linux startup procedure, so you won’t find information about how Linux starts up its services in this directory.
-
-*** /boot/vmlinuz
-Is normally a binary file that contains the kernel A boot loader loads this file into memory and sets it in motion when the system boots. Once the boot loader starts the kernel, the main kernel file is no longer used by the running system.
-
-*** /boot/grub
-The GRUB configuration directory.
-
-** /lib
-An abbreviation for library, this directory holds library files containing code that executables can use. This directory should not contain static libraries.
-
-*** /lib/modules
-Are modules that the kernel loads and unloads on demand during the course of normal system operation.
-
-** /bin
-Contains ready-to-run programs (also known as executables), including most of the basic Unix commands such as ~ls~ and ~cp~.
-
-This directory contains executable files that are part of the core operating system (those required by the system for emergency repairs, booting, and single user mode). These files need to be accessible before [[ /usr]] gets mounted. (for instance, the ~mount~ command is in ~/bin/mount~). But in modern systems it is the same as the [[ /usr/bin]].
-
-This directory are specified by the Linux Filesystem Hierarchy Standard to contain only files supplied and maintained by the Linux distributor.
-
-** /sbin
-The place for system executables. Programs in ~/sbin~ directories relate to system management, so regular users usually do not have ~/sbin~ components in their command paths.
-
-These are programs that perform vital system tasks that are generally reserved for the superuser.
-
-** /home
-Holds home (personal) directories for regular users.
-
-*** /home/user/_bash_profile
-A user's personal startup file for [[Interactive shells][login shell]]. This can be used to extend or override settings in the global configuration script.
-
-*** /home/user/_bash_login
-If [[ /home/user/_bash_profile]] is not found, bash attempts to read this script ([[Interactive shells][login shell]]).
-
-*** /home/user/_profile
-If neither [[ /home/user/_bash_profile]] nor [[ /home/user/_bash_login]] is found, bash attempts to read this file. ([[Interactive shells][login shell]]) This is the default in Debian-based distributions, such as Ubuntu.
-
-*** /home/user/_bashrc
-A user's personal startup file for [[Interactive shells][non-login shell]]. It can be used to extend or override settings in the global configuration script.
-
-*** /home/carlos/dot.local/share/Trash
-Trash folder.
-*Note*: ~dot.local~ is actually ~.local~.
-
-** /tmp
-A storage area for smaller, temporary files created by various programs. Some configurations cause this directory to be emptied each time the system is rebooted.
-
-Any user may read to and write from ~/tmp~, but the user may not have permission to access another user’s files there.
-
-** /media
-A base attachment point for removable media such as flash drives that is found in many distributions.
-
-** /mnt
-Almost all Linux systems include a temporary mount point, ~/mnt~, which is typically used for testing.
+** /srv
+Data for services provided by the system.
 
 ** /opt
-This may contain additional third-party software.
-
-** /root
-This is the home directory for the root account.
-
-** /srv
-Archivos relativos a servidores web, FTP,...
+Add-on application software packages. This may contain additional third-party software.
 
 ** /lost+found
 Each formatted partition or device using a Linux file system, such as ext4, will have this directory. It is used in the case of a partial recovery from a file system corruption event.  Unless something really bad has happened to our system, this directory will remain empty.
@@ -2579,7 +2743,6 @@ One of the most frequent reasons to use a tool like top is to find out which pro
   -  ~T~ to sort by the running time
 
 *** Example
-
 - 14:59:20 :: the current time of day.
 - up 6:30 :: uptime. It is the amount of time since the machine was last booted.
 - load average: :: refers to the number of processes that are waiting to run, that is, the number of processes that are in a runnable state and are sharing the cpu. Values less than 1.0 indicate that the machine is not busy.

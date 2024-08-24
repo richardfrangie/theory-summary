@@ -22,7 +22,8 @@
 |                |                                    |
 | /TAB/            | org-cycle (expand header)          |
 | /S-TAB/          | org-shifttab(expandHeader)         |
-| /M-# S-TAB/      | only headlines level #             |
+| /M-# S-TAB/      | all headlines at level #           |
+| /C-# C-c TAB/    | only current headlines at level #  |
 | /S-TAB-TAB/      | outline-show-all                   |
 | /C-u C-u TAB/    | org-set-startup-visibility         |
 
@@ -361,6 +362,7 @@
 | /M-j/     | ivy-yank-word (sub-word at point)          |
 | /M-w/     | ivy-kill-ring-save                         |
 | /M-r/     | ivy-toggle-regex (toggle input regexp)     |
+| /M-n/     | ivy-next-history-el (sele symbol at point) |
 | /C-c C-o/ | ivy-occur (current candidates to a buffer) |
 |         |                                            |
 | /TAB/C-j/ | restart completetion from that dir         |
