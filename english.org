@@ -3032,6 +3032,17 @@ Conocer, pero en el sentido de conocer por primera vez, y solo se usa con person
 ~She *meets* new people all the time.~ Ella *conoce* gente nueva todo el tiempo.
 ~We haven't *met*.~ No nos hemos *conocido*.
 
+*** large - long
+**** large
+Refers to the overall size or *volume* of something, indicating that it is big or extensive. (*grande*)
+~My dog is *large*, she has *long* legs.~
+~My pants are too *large*, I need to wear my belt super tight so they stay on.~
+
+**** long
+Specifically describes the length or *horizontal* distance of something (horizontal extent of an object). (*largo*)
+~That house is really large but you can't see it because it's at the end of a very *long* driveway.~
+~My pants are too *long*, you can't even see my feet when I wear them.~
+
 *** look for - look up - search for - seek
 **** look for
 Sinónimo de *search*. Para buscar algo o alguien, particularmente encontrar *algo que se necesita o esta perdido*. Normalmente en presente continuo.
@@ -3068,6 +3079,13 @@ Buscar en el sentido de tratar de *lograr algo por lo general intangible*.
 ~I *missed* the bus.~
 ~I *miss* the target .~
 ~I *miss* you.~ Te extraño.
+
+*** lose - loose
+**** lose
+Is a verb used to describe the act of failing to keep or retain something, such as “losing a game” or “losing your wallet.” It focuses on the concept of not maintaining possession or control.
+
+**** loose
+Primarily functions as an adjective, meaning something that is not tightly fixed or is free, such as “a loose screw” or “loose clothing.” It can also be a verb, meaning to release or set something free, though this usage is less common.
 
 *** mr - mrs
 **** woman
@@ -6738,7 +6756,7 @@ When /what/, /who/, /which/ or /whose/ is the *subject* or part of the subject, 
 
 ~Paul lives in this house. Who lives in this house?~ El sujeto es /Paul/, estoy preguntando por él, no lleva auxiliar.  -  ~I met Paul yesterday. Who *did* you meet yesterday?~ El sujeto es /I/, estoy preguntado por el objeto /Paul/, por eso se usa auxiliar.
 
-~Do you drinks coffee?~ (general)  -  ~Who drinks coffee?~ (subject)  -  ~What do you drink?~ (object)
+~Do you drink coffee?~ (general)  -  ~Who drinks coffee?~ (subject)  -  ~What do you drink?~ (object)
 
 ~So who lives there?~ -> ~So who does live there?~ emphatic question (add auxiliary for emphasis).
 
@@ -8865,173 +8883,176 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** +; el desarrollador del programa propietario se ve tentado a diseñar el programa para maltratar a sus usuarios.
-; the proprietary program's developer is tempted to design the program to mistreat its users.
+**** +Esto se hace/esto es hecho independientemente de si una propiedad es un dato o un accesorio.
+This is made regardless whether a property is data or an accessor.
 
-**** +Ceder a esa tentación se ha vuelto cada vez más frecuente
-Yielding to that temptation has become ever more frequent;
+**** +Imagínate cómo contratarías a la gente; tendrías que hacer un test.
+Imagine how you would hire people; you would have to do a test.
 
-**** +Mantendremos toda nuestra base de datos de informes de errores abierta a la vista del público en todo momento.
-We will keep our entire bug report database open for public view at all times.
+**** +Simplemente empieza a probar. Puedes empezar a hacer entrevistas pero rechazando todas las ofertas. Para ganar experiencia en la búsqueda de empleo.
+Just start trying. You can start interviewing but rejecting all offers. To get experience in looking for jobs.
 
-**** +y enlaces al manual para temas más avanzados o para cuando algo salga mal.
-and links to the manual for more advanced topics or for when things go wrong.
+**** +Si gastas tiempo y dinero en encontrar un buen empleado, querrás conservarlo.
+If you spend time and money to find a good employee, you want to keep him.
 
-**** +pero también son bastante potentes y un movimiento en falso te puede costar.
-; but they are also quite powerful and a false move can cost you.
+**** +, y que puede ser cierto que la AI se roba la info de todos y después te la vende.
+, and that it may be true that AI steals everyone's work, and then resells it to you.
 
-**** +¿Tienes en tu escritorio algunos archivos antiguos que no has abierto desde hace tiempo?
-Have some old files you haven't opened in awhile on your desktop?
+**** +He notado que las capacidades del software son increíblemente limitadas.
+I've noticed that the software capabilities are just incredibly limited
 
-**** +Pero antes de dejarnos llevar por la generosidad de Apple,
-But before we get too carried away about Apple's generosity
+**** +y básicamente esto es todo lo que puedes hacer en el tablero.
+and basically this is all you can do on the board
 
-**** +Si eres nuevo en Unix, probablemente deberías salir, comprar algunos libros y leer un poco.
-If you are new to Unix, you probably should go out and buy some books and do some reading.
+**** +o los bootcamp estan quebrando, yo no hice ninguno, siempre me parecieron extraños, pero parece ser cierto que es más complejo conseguir trabajo ahora.
+Or the bootcamp are going out of business, I didn't do any, they always seemed strange to me, but it seems to be true that it's more difficult to get a job now.
 
-**** +Uno/se selecciona principalmente respuestas ya sea por
-one mostly selects answers either by
+**** +Es como decir, ¿quieres esta versión específica de Python?
+it's like oh do you want this one specific version of python
 
-**** +, podrías intentar adivinar la clave con un ataque de fuerza bruta,
-, you could try to guess the key with a brute force attack,
+**** +Sí, ¡sigue buscando! Un trabajo es la forma más fácil de tener un ingreso estable de dinero durante algún tiempo. Puedes dejarlo cuando quieras y probar otras cosas.
+Yes, keep searching! A job is the easiest way to have stable money income for some time. You can leave it when you want and try other things.
 
-**** +El orden en el que son listados puede diferir del que usted está acostumbrado.
-The order they are listed in may differ from what you are used to.
+**** +Gracias por los consejos, estoy cerca de ponerme en eso, aunque me da un poco de miedo.
+Thanks for the, I'm close to getting on that, although I'm a little afraid of it.
 
-**** +La forma más sencilla de suscribirse a una o más de estas listas es visitar la página de suscripción a la lista de correo de Debian y completar el formulario que encontrará allí.
-The easiest way to subscribe to one or more of these lists is visit Debian's mailing list subscription page and fill out the form you'll find there.
+**** *Quería tener una conversación sobre lo que iba a pasar en el
+I wanted to have a conversation about for what was going to happen in the
 
-**** +El espacio en disco es barato hoy en día, pero ¿por qué tirar tu dinero?
-Disk space is cheap nowadays, but why throw your money away?
+**** *Pero antes de que entremos en eso es importante hablar sobre por qué deberías intentar hacer predicciones.
+but before we get into that it's important to talk about why you should try making prediction
 
-**** +(esto)Hará preguntas de configuración, como cuando se instaló el paquete por primera vez.
-It will ask configuration questions, much like when the package was first installed.
+**** Ellas caen presa del sesgo retrospectivo donde
+they fall prey to the hindsight bias where
 
-**** +*Podrás* ir más allá y obtener información respecto la protección de la privacidad,
-You will be able to go further and obtain information concerning the privacy protection,
+**** Habría predicho *totalmente* ese resultado/salida exacto.
+I totally would have predicted that exact outcome
 
-**** +Todo empezó con un pequeño, *pero sólido* grupo de hackers de software libre,
-Everything started with a little, but solid, group of free software hackers,
+**** +Pero lo estan viendo desde el futuro.
+but they're seeing it from the future
 
-**** +, pero también *contra* tus propios errores
-, but also against your own mistakes
+**** Y predicciones realmente malas que ellos hicieron que absolutamente no se hicieron realidad.
+and really bad predictions that they made that absolutely didn't come true
 
-**** +así que no dude en probar otros *entornos*.
-so don’t hesitate to test other environments.
+**** Y luego mirar atrás y ver si se hicieron realidad.
+and then later looking back and seeing if they came true
 
-**** +cualquier tipo de dato o producto que no queramos alterar
-any kind of data or product that we don't want tempered with
+**** +Así que *esta* *va* a ser una conversación *muy* informal.
+so this is going to be a really casual conversation
 
-**** +Puede examinar y editar este archivo a su gusto una vez completada la instalación.
-You can examine and edit this file to your liking after the installation is complete.
+**** También publicaré una entrada de blog que entra un poco más detalles.
+I'll also release a blog post that goes kind of into more detail
 
-**** +GNU/Linux también tiene menos probabilidades de fallar
-GNU/Linux is also less likely to crash,
+**** y eso lo dejaré en la descripción de este vídeo también
+and I'll leave that in the description of this video as well
 
-**** , es posible que pueda arreglárselas con *algo menos* del hardware recomendado que se enumera en la siguiente tabla.
-, you might manage with less than some of the recommended hardware listed in the table below.
+**** Hablemos de lo que creo que va a pasar dentro del
+let's talk about what I think it's going to happen inside the
 
-**** realizar cambios en/a la partición de un disco es una acción intrínsecamente peligrosa y sólo debería realizarse/ser hecha después de haber realizado una copia de seguridad completa de todos los datos.
-making changes to the partitioning of a disk is an inherently dangerous action and should only be done after having made a full backup of all data.
+**** Realmente solo sé de Debian que tiene como oficial
+I really only know of Debian that has like an official
 
-**** Está escrito por el mismo autor que el gestor de arranque syslinux y, por lo tanto, es menos probable que cause problemas.
-It's written by the same author as the syslinux bootloader and is therefore least likely to cause issues.
+**** Pero creo que durante el próximo año eso probablemente comenzará a cambiar.
+but I think over the next year that's probably going to start to change
 
-**** Tenga en cuenta que el uso del disco varía ampliamente según/en función/dado la configuración del sistema.
-Note that disk usage varies widely given system configuration
+**** +Creo que más gente va a estar compilando paquetes.
+I think that more people are going to be compiling packages
 
-**** Los datos temporales creados por los programas probablemente *irán* a este directorio.
-temporary data created by programs will most likely go in this directory.
+**** +Así que mi predicción es que al menos tres distribuciones principales de Linux *van* agregar versiones oficiales para
+so my prediction is that at least three major Linux distributions are going to add official releases for
 
-**** +La misión de este manual no es ser exhaustiva
-The mission of this manual is not to be comprehensive –
+**** +Es posible/ *puede que hayas* visto en videos anteriores que he jugado con
+you might have seen in past videos that I've played around with
 
-**** +para lidiar no solo con espacio de memoria insuficiente, sino también con la funcionalidad de suspensión o hibernación.
-, to deal not only with insufficient memory space, but also with the suspend or hibernation functionality.
+**** +Y con suerte la gente agrega más soporte y compilación real.
+and hopefully people add more support and actual compiled compilation
 
-**** +Debian está desarrollado muy minuciosamente.
-Debian is developed very thoroughly.
+**** Creo que debido a todas estas limitaciones, probablemente haya menos de un 20% de posibilidades de que...
+I think because of all of these limitations there's probably less than a 20% chance that the
 
-**** +Pero entonces... ¿cómo vamos a hacerlo/lograrlo/conseguirlo?
-But then … how are we going to make it?
+**** Por lo que esto podría potencialmente hacer que se preocupen por las dificultades de la cadena de suministro.
+so this might potentially make them be concerned about supply chain difficulties
 
-**** +La distribución Experimental no es una distribución Debian per se, sino más bien un repositorio donde se prueban las versiones alfa o beta del software.
-The Experimental distribution is not a Debian distribution per se, but rather a repository where alpha or beta software versions are tested.
+**** No sólo eso, sino que también podrían estar preocupados desde una perspectiva de software.
+not only that but they might also be concerned from a software perspective
 
-**** +La “nube” está de moda estos días.
-The “cloud” is fashionable these days.
+**** Básicamente, están tan establecidos que quieren tener tanta compatibilidad con versiones anteriores como sea posible.
+basically they're so established they want to have as much backwards compatibility as possible
 
-**** Uno de los principales intereses del software libre es que permite a personas cualificadas auditar el código del programa,
-One of the major interests of the free software is that it allows skilled people to audit the program code,
+**** Es posible/pueden que no estén seguros/positivos de realmente ser capaces mantener este soporte en/a traves de todos sus dispositivos.
+they might not be positive that they're actually going to be able to maintain this support across of all their devices
 
-**** La mayoría de los usuarios nunca han tenido que instalar un sistema previamente, y eso podría ser un poco aterrador
-Most of the users never had to install a system previously, and that could be a little freaking
+**** CREO que hay una posibilidad *muy* pequeña de que salgan con la secundaria.
+I do think there is a very small chance that they come out with the secondary
 
-**** si hubiera optado por un conjunto de CD de Debian
-Had you opted for a Debian CD set - If you had opted for a set of Debian CD's
+**** Por lo tanto, son fácilmente detectables siempre que el código sea analizado/parsiado por el entorno de ejecución.
+so they are easily discoverable as long as the code gets parsed by the runtime.
 
-**** La wiki oficial de la comunidad está muy bien hecha y te brindará/provee una ayuda eficiente y completa (no es necesario reinventar la rueda).
-The official wiki of the community is very well done and will provide you with an efficient and complete help (no need to reinvent the wheel
+**** Órdenes desde arriba (referencia al jefe mayor). Así que deja de quejarte.
+Orders from the top. So quit your complaining.
 
-**** La ventana principal aparece y revela... muchas herramientas con las que divertirse...
-The main window pops up and unveils … lots of tools to have fun with …
+**** Siéntate aquí. Pórtate bien.
+sit here. behave yourself
 
-**** En primer lugar, hay que saber/uno debe saber que existen(verb) varias ramas de la distribución Debian en paralelo.
-First of all, one must know that several Debian distribution branches exist in parallel.
+**** Aún no te has dado cuenta de que algo valioso para ti ha sido reemplazado.
+You still haven't noticed that something precious to you has been replaced.
 
-**** cuando se incluyen todas las funciones buscadas/objetivas/apuntadas por los equipos de Debian
-when all the features targeted by the Debian teams are included,
+**** no te pongas duro/insolente/fresco conmigo, jovencito
+don't get fresh with me, young man
 
-**** y después de un período de congelación del software y búsqueda/caza de errores(bug),
-and after a period of software freeze and bug hunting,
+**** tarifas arancelarias .... y va a salir de tu bolsillo
+tariffs ... and it's going to come out of your pocket
 
-**** Quizás pienses *que* estas informaciones son aparentemente inofensivas,
-You may think that these information are seemingly harmless,
+**** Trump sigue diciendo que los aranceles los pagan otros países, pero no es así como funcionan
+Trump keeps saying that other countries pay for tariffs. But that's not how they work
 
-**** o simplemente compartir tus recursos, le sugerimos encarecidamente que cree otra cuenta de usuario
-or simply share your resources, we strongly suggest you create another user account
+**** que es donde lo hicieron. ¿quien paga el arancel?
+which is where they made. who pays the Tariff?
 
-**** +Cuanto más segura/fuerte sea mi contraseña, más difícil es memorizarla. ¿No es así?
- The stronger my password is, the more difficult it is to memorize it. Isn’t it ?
+**** lo que eleva su coste total a
+bringing their total cost to
 
-**** los datos de los demás usuarios son legibles por usted, y los suyos también,
-the data of the other users are readable by you, and yours too
+**** Por supuesto que no, te lo transmitirán.
+of course not, they'll pass it on to you
 
-**** *¡Y esto no es en vano! ... y adquiera el hábito de guardar sus datos en un medio externo y de forma regular.
- and this is not for nothing! ... and get into the habit of saving your data on an external medium and on a regular basis.
+**** después de realizar inversiones masivas en estas tecnologías a nivel nacional
+after making massive investments in these technologies domestically
 
-**** *Seguramente te topaste con estos mensajes de advertencia que hablaban de hacer una copia de seguridad de tus datos...
-You certainly ran into these warning messages talking about backing up your data …
+**** particularmente de nuestros socios comerciales más importantes
+particularly from our biggest trading partners
 
-**** , siempre *dejarás* un rastro detrás de ti.
-you will always leave a trail behind you.
+**** por los productos que fabrican, por lo que sus precios subirían a
+for products they make, so their prices would go up to
 
-**** No puede garantizar su anonimato cuando se enfrenta a alguna tecnología de seguimiento avanzada como las huellas dactilares
- It cannot guarantee your anonymity when facing some advanced tracking technology like the fingerprinting
+**** Y este costo se llevó una porción mayor de los ingresos de las familias más pobres que de las más ricas.
+and this cost took a larger chunk out of the income of poorer family than richer ones
 
-**** Deja de hacer como todos los demás, aunque/incluso supuestamente “no tengas nada que ocultar”.
-Stop doing like everyone else, even if supposedly “you have nothing to hide”.
+**** menos ingresos (familia pobre)
+less income (poor family)
 
-**** Esta funcionalidad no debe impedirle mantener algo de sentido común..
-This functionality must not prevent you to keep some common sense
+**** , ...quien puede afrontar mejor el aumento de precios
+, ...who can better afford the prices increase
 
-**** Corresponde a cada uno definir su “vida privada” y no difundirla/esparcirla en la red…
-It is up to everyone to define his “private life” and not spread it on the web
+**** Las familias estadounidenses pueden esperar gastar hasta 4.000 dólares más
+American families can expect to spend as much as 4,000 dollars more
 
-**** La Fundación Linux se asocia con los principales desarrolladores del mundo
-The Linux Foundation partners with the world’s leading developers
+**** Pero, por supuesto, como dije, cualquier ingreso recaudado por aranceles saldría de su bolsillo.
+but of course, as I said, any revenue raised from tariffs would be coming out of your pocket
 
-**** Imagínese un mundo en el que cada ser humano pueda compartir libremente la suma de todo el conocimiento. Ese es nuestro compromiso
-Imagine a world in which every single human being can freely share in the sum of all knowledge. That’s our commitment.
+**** Así que cuando pagues más por alimentos, gasolina y vivienda, sabrás a dónde va realmente tu dinero y a quién culpar.
+So when you're paying more for groceries, gas, and housing, know where your money is really going and know whom to blame
 
-**** , Wikimedia se esfuerza por
-, Wikimedia strives to
+**** Sé lo difícil que ha sido para ti. Estamos viendo lo que nunca soñamos posible
+I know how hard it’s been for you. We are watching what we never dreamed possible
 
-**** con un conjunto completo de herramientas para desarrolladores y creadores de todo tipo.
-with a complete set of tools for developers and makers of all kinds.
+**** Se trata de una compra por parte de inversores de divisas más riesgosas con la esperanza de embolsarse suficientes intereses como para cubrir con creces las pérdidas por el tipo de cambio.
+It involves investor buying riskier currencies in the hope of pocketing enough interest to more than cover exchange rate losses.
 
-**** Tenía mucho tiempo que no entraba a Facebook. En estos días entre en facebook y me aparecieron un montón de vídeos tuyos. Tenían un montón de vistas, cientos de miles, pero lo que me molestó mucho fue, que ellos cortan la pantalla inferior y desaparecen tu logotipo. No me gustan las marcas de agua, pero usted debería ponerla un poco más alto.
-I haven't been on Facebook for a long time. I went on Facebook few days ago and a bunch of your videos appeared. They had a lot of views, hundreds of thousands, but what really bothered was that they cut off the bottom screen and disappear your logo. I don't like watermarks, but you should put it a little higher.
+**** Otro milagro que surge de la crisis macroeconómica argentina
+another miracle to emerge from the Argentina macroeconomic meltdown
+
+**** por qué 'who' en preguntas no lleva el auxiliar 'do'
+Why 'who' in questions does not have the auxiliary 'do'
 
 *** Chunk
 **** Pero la mayoría de ellos son
@@ -10303,8 +10324,80 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 **** Se le pedirá
 You will be prompted / You will be asked
 
+**** pero mientras sea *un recuerdo del tiempo* en que una vez fuimos hermanos, sentiría un gran alivio.
+it could be anything, it could be the most meaningless moment of your life, but so long as *it is a memory of the time* we were once brothers I would feel a great relief
+
+**** Esta basura ocurre cada 4 años. Todo es teatro. *Esto es para que pienses* que las partes difieren entre sí
+ This crap happens every 4 years. It's ALL theater. *This is to make you think* the parties differ from each other
+
+**** Si *no hubiera* ningún error, entonces sería 10, no 20.
+if *there wasn't* an error, then would be 10, not 20
+
+**** Sus vecinos *le hicieron saber* que su día había terminado.
+his neighbors *let him know* his day was done
+
+**** Esta basura ocurre cada 4 años. Todo es teatro. *Esto es para que piense* que las partes difieren entre sí. Los chumps crédulos compran esto.
+ This crap happens every 4 years. It's ALL theater. *This is to make you think* the parties differ from each other. Gullible chumps buy into this.
+
+**** Fue considerado *con diferencia* el más sabio de los animales.
+was regarded *by far* the wisest of the animals
+
+**** *¿Y si* aceptamos nuestra propia debilidad como humanos para tomar una decisión y anclamos la resolución a algún objeto inanimado?
+*what if* we accept our own weakness as humans to make a choice, and we anchored the resolution to some inanimate object?
+
+**** Sentirse aliviado *de la carga* de cuidar nuestro propio destino.
+to feel relieved *of the burden* of taking care of our own destiny
+
+**** Ese ajedrez se siente/parece casi *sin cambios respecto* a la vida real.
+That chess one feels almost *unchanged from* real life.
+
+**** Cuando *abogan* por mayores exenciones fiscales, afirman que cada "dólar que el gobierno les quita es un dólar menos" por su *papel* "crucial" en la expansión de la prosperidad.
+when *arguing* for even more tax breaks, they claim each "dollar the government takes from them is a dollar less" for their "critical" *role* in expanding prosperity
+
+**** "lo hicieron *por su cuenta*".
+(they) did it *on their own*"
+
+**** Ahora bien, *todo esto no quiere decir* que no tenga sentido discutir/ no hay punto en argumentar
+now, *all this isn't to say* that there's not point in argument
+
+**** *Lo único(todo lo) que se sabe* es que el robot estudiante se convierte en el algoritmo.
+*All that's knowable* is the student bot gets to be the algorithm,
+
+**** No hay una gran respuesta *más que* señalar al bot.
+there isn't a great answer *other than* pointing to the bot
+
+**** Deja que te alcancen para que *te hagan retroceder* si te das la vuelta.
+let them reach you *to pull you back* if you turn away
+
+**** dedica el mayor tiempo posible a reflexionar sobre el pasado
+*Spend* as much time as possible reflecting on the past
+
+**** *Haga que* la función ejecute la operación de una manera que no bloquee el hilo principal, por ejemplo iniciando un nuevo hilo.
+*Have* the function execute the operation in a way that does not block the main thread, for example by starting a new thread.
+
+**** *Tiene que haber* una mejor manera. Aquí hay un primer intento:
+*There has to be* a better way. Here’s a first attempt:
+
+**** *Preferirías no hacer eso*, ya que tener más código significa más espacio para ocultar errores.
+*You’d prefer not to do that*, as having more code means more space for mistakes to hide
+
+**** Tenga en cuenta que este programa *no necesariamente* encuentra la secuencia de operaciones más corta. Se siente/es satisfecho cuando encuentra alguna secuencia.
+Note that this program *doesn’t necessarily* find the shortest sequence of operations. It is satisfied when it finds any sequence at all.
+
+**** Cuando el código en el bloque ~try~ *provoca* que se genere una excepción
+When the code in the ~try~ block *causes* an exception to be raised
+
+**** Pero *en lo que respecta/en cuanto* al exterior, si crees que podemos votar para salir de esto,
+but *as far as* on the outside goes if you believe that we can vote our way out of this
+
 **** Puede examinar y editar este archivo *a su gusto* una vez completada la instalación.
 You can examine and edit this file *to your liking* after the installation is complete.
+
+****  para que te resulte/sea/puedas tenerlo más fácil configurarlo
+so that you can have an easier time setting it up
+
+**** Creo que la razón *por la que se hace así* es porque el editor insignia de Microsoft *se centra en gran medida* en LSP, y como LSP es su propio hijo, siento que simplemente quieren usarlo, en lugar de otras soluciones, a menudo más apropiadas.
+The reason *it’s done like that*, I think, is because Microsoft’s flagship editor *focuses on LSP heavily*, and because LSP is their own child, I feel that they simply want to use it, instead of other, often more appropriate solutions.
 
 **** +¿Puedo buscar buffers por modo principal, proyecto en ivy-switch-buffer? - No, *hasta donde yo sé*, no puedes ahora.
 Can I search buffers by major-mode, project in ivy-switch-buffer? - No, *as far as I know*, you can not right now.
@@ -10934,6 +11027,7 @@ She’s not feeling very well.
 
 **** Me gustaría *conocer* Roma.
 I'd like to *go* to Rome.  or  I'd like to *visit* Rome.
+
 **** ¿Alguna vez has notado que siempre tiene que haber una persona que quiera *tener una discusión*, incluso si le hablas con calma y respeto?
 ever notice there always has to be one person who wants *to have an argument* even if you are speaking calm and respectfully to them
 
@@ -11204,6 +11298,9 @@ But it bears repeating:
 
 **** No es asunto tuyo
 It is none of your business
+
+**** Mi auto-complete-at-point es un testimonio de la naturaleza empoderadora de Emacs: si falta una característica o se puede mejorar, las herramientas están ahí para crearla yo mismo.
+My auto-complete-at-point stands as a testament to the empowering nature of Emacs - if a feature is lacking or could be improved, the tools are there to craft it myself.
 
 **** Eso es todo lo que se necesita.
 that’s all it takes
@@ -14233,6 +14330,68 @@ CLOCK: [2023-04-17 Mon 08:07]--[2023-04-17 Mon 08:16] =>  0:09
 :END:
 ** Sentences
 :LOGBOOK:
+CLOCK: [2025-02-26 Wed 09:51]--[2025-02-26 Wed 11:30] =>  1:39
+CLOCK: [2025-02-24 Mon 08:41]--[2025-02-24 Mon 09:49] =>  1:08
+CLOCK: [2025-02-22 Sat 09:47]--[2025-02-22 Sat 10:47] =>  1:00
+CLOCK: [2025-02-20 Thu 09:49]--[2025-02-20 Thu 11:20] =>  1:31
+CLOCK: [2025-02-19 Wed 09:36]--[2025-02-19 Wed 10:26] =>  0:50
+CLOCK: [2025-02-16 Sun 11:48]--[2025-02-16 Sun 11:58] =>  0:10
+CLOCK: [2025-02-15 Sat 10:48]--[2025-02-15 Sat 11:21] =>  0:33
+CLOCK: [2025-02-14 Fri 13:25]--[2025-02-14 Fri 13:43] =>  0:18
+CLOCK: [2025-02-14 Fri 12:42]--[2025-02-14 Fri 13:05] =>  0:23
+CLOCK: [2025-02-13 Thu 11:14]--[2025-02-13 Thu 12:24] =>  1:10
+CLOCK: [2025-02-12 Wed 10:04]--[2025-02-12 Wed 11:34] =>  1:30
+CLOCK: [2025-02-11 Tue 09:40]--[2025-02-11 Tue 11:00] =>  1:20
+CLOCK: [2025-02-10 Mon 09:27]--[2025-02-10 Mon 09:47] =>  0:20
+CLOCK: [2025-02-09 Sun 09:54]--[2025-02-09 Sun 10:13] =>  0:19
+CLOCK: [2025-02-08 Sat 08:51]--[2025-02-08 Sat 09:19] =>  0:28
+CLOCK: [2025-02-07 Fri 08:34]--[2025-02-07 Fri 08:59] =>  0:25
+CLOCK: [2025-02-06 Thu 12:47]--[2025-02-06 Thu 13:17] =>  0:30
+CLOCK: [2025-02-05 Wed 10:00]--[2025-02-05 Wed 10:30] =>  0:30
+CLOCK: [2025-02-04 Tue 12:01]--[2025-02-04 Tue 12:31] =>  0:30
+CLOCK: [2025-02-03 Mon 11:25]--[2025-02-03 Mon 12:05] =>  0:40
+CLOCK: [2025-02-01 Sat 09:32]--[2025-02-01 Sat 10:19] =>  0:47
+CLOCK: [2025-01-31 Fri 09:39]--[2025-01-31 Fri 10:18] =>  0:39
+CLOCK: [2025-01-31 Fri 09:05]--[2025-01-31 Fri 09:16] =>  0:11
+CLOCK: [2025-01-30 Thu 09:07]--[2025-01-30 Thu 10:13] =>  1:06
+CLOCK: [2025-01-29 Wed 09:04]--[2025-01-29 Wed 10:06] =>  1:02
+CLOCK: [2025-01-28 Tue 08:55]--[2025-01-28 Tue 10:07] =>  1:12
+CLOCK: [2025-01-27 Mon 08:26]--[2025-01-27 Mon 09:30] =>  1:04
+CLOCK: [2025-01-25 Sat 09:44]--[2025-01-25 Sat 10:49] =>  1:05
+CLOCK: [2025-01-24 Fri 09:17]--[2025-01-24 Fri 10:12] =>  0:55
+CLOCK: [2025-01-23 Thu 08:54]--[2025-01-23 Thu 09:50] =>  0:56
+CLOCK: [2025-01-22 Wed 10:20]--[2025-01-22 Wed 11:00] =>  0:40
+CLOCK: [2025-01-21 Tue 11:06]--[2025-01-21 Tue 11:39] =>  0:33
+CLOCK: [2025-01-19 Sun 09:35]--[2025-01-19 Sun 10:29] =>  0:54
+CLOCK: [2025-01-16 Thu 08:49]--[2025-01-16 Thu 09:29] =>  0:40
+CLOCK: [2025-01-14 Tue 11:13]--[2025-01-14 Tue 12:02] =>  0:49
+CLOCK: [2025-01-13 Mon 18:01]--[2025-01-13 Mon 18:53] =>  0:52
+CLOCK: [2025-01-12 Sun 10:43]--[2025-01-12 Sun 12:01] =>  1:18
+CLOCK: [2025-01-11 Sat 10:48]--[2025-01-11 Sat 12:20] =>  1:32
+CLOCK: [2024-12-21 Sat 11:05]--[2024-12-21 Sat 11:30] =>  0:25
+CLOCK: [2024-12-20 Fri 12:32]--[2024-12-20 Fri 13:14] =>  0:42
+CLOCK: [2024-12-16 Mon 14:21]--[2024-12-16 Mon 14:34] =>  0:13
+CLOCK: [2024-12-08 Sun 09:24]--[2024-12-08 Sun 09:59] =>  0:35
+CLOCK: [2024-12-08 Sun 08:48]--[2024-12-08 Sun 09:13] =>  0:25
+CLOCK: [2024-12-04 Wed 10:00]--[2024-12-04 Wed 11:15] =>  1:15
+CLOCK: [2024-12-03 Tue 09:19]--[2024-12-03 Tue 10:20] =>  1:01
+CLOCK: [2024-12-02 Mon 11:22]--[2024-12-02 Mon 12:21] =>  0:59
+CLOCK: [2024-12-01 Sun 10:09]--[2024-12-01 Sun 11:29] =>  1:20
+CLOCK: [2024-11-30 Sat 09:52]--[2024-11-30 Sat 11:50] =>  1:58
+CLOCK: [2024-11-29 Fri 10:01]--[2024-11-29 Fri 10:45] =>  0:44
+CLOCK: [2024-11-28 Thu 10:24]--[2024-11-28 Thu 11:35] =>  1:11
+CLOCK: [2024-11-27 Wed 09:47]--[2024-11-27 Wed 10:47] =>  1:00
+CLOCK: [2024-11-21 Thu 11:31]--[2024-11-21 Thu 11:51] =>  0:20
+CLOCK: [2024-11-20 Wed 12:00]--[2024-11-20 Wed 12:32] =>  0:32
+CLOCK: [2024-11-11 Mon 17:02]--[2024-11-11 Mon 18:18] =>  1:16
+CLOCK: [2024-11-08 Fri 11:39]--[2024-11-08 Fri 12:29] =>  0:50
+CLOCK: [2024-11-07 Thu 11:13]--[2024-11-07 Thu 12:06] =>  0:53
+CLOCK: [2024-11-06 Wed 12:09]--[2024-11-06 Wed 13:06] =>  0:57
+CLOCK: [2024-11-05 Tue 12:40]--[2024-11-05 Tue 13:24] =>  0:44
+CLOCK: [2024-11-02 Sat 09:29]--[2024-11-02 Sat 10:02] =>  0:33
+CLOCK: [2024-10-29 Tue 09:47]--[2024-10-29 Tue 11:10] =>  1:23
+CLOCK: [2024-10-28 Mon 09:37]--[2024-10-28 Mon 10:52] =>  1:15
+CLOCK: [2024-09-18 Wed 09:40]--[2024-09-18 Wed 10:50] =>  1:10
 CLOCK: [2024-07-27 Sat 10:34]--[2024-07-27 Sat 12:21] =>  1:47
 CLOCK: [2024-07-07 Sun 11:56]--[2024-07-07 Sun 12:26] =>  0:30
 CLOCK: [2024-02-21 Wed 13:37]--[2024-02-21 Wed 13:51] =>  0:14
@@ -14551,6 +14710,133 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Speaking
 :LOGBOOK:
+CLOCK: [2025-02-26 Wed 09:17]--[2025-02-26 Wed 09:36] =>  0:19
+CLOCK: [2025-02-24 Mon 08:14]--[2025-02-24 Mon 08:41] =>  0:27
+CLOCK: [2025-02-23 Sun 08:59]--[2025-02-23 Sun 09:18] =>  0:19
+CLOCK: [2025-02-22 Sat 08:55]--[2025-02-22 Sat 09:32] =>  0:37
+CLOCK: [2025-02-21 Fri 09:20]--[2025-02-21 Fri 10:37] =>  1:17
+CLOCK: [2025-02-20 Thu 09:22]--[2025-02-20 Thu 09:49] =>  0:27
+CLOCK: [2025-02-19 Wed 09:34]--[2025-02-19 Wed 09:46] =>  0:12
+CLOCK: [2025-02-19 Wed 09:01]--[2025-02-19 Wed 09:12] =>  0:11
+CLOCK: [2025-02-18 Tue 08:39]--[2025-02-18 Tue 09:26] =>  0:47
+CLOCK: [2025-02-17 Mon 08:47]--[2025-02-17 Mon 09:37] =>  0:50
+CLOCK: [2025-02-16 Sun 08:49]--[2025-02-16 Sun 09:39] =>  0:50
+CLOCK: [2025-02-15 Sat 10:18]--[2025-02-15 Sat 10:48] =>  0:30
+CLOCK: [2025-02-14 Fri 12:27]--[2025-02-14 Fri 12:42] =>  0:15
+CLOCK: [2025-02-13 Thu 09:41]--[2025-02-13 Thu 11:13] =>  1:32
+CLOCK: [2025-02-12 Wed 09:51]--[2025-02-12 Wed 10:04] =>  0:13
+CLOCK: [2025-02-11 Tue 09:22]--[2025-02-11 Tue 09:40] =>  0:18
+CLOCK: [2025-02-10 Mon 09:10]--[2025-02-10 Mon 09:27] =>  0:17
+CLOCK: [2025-02-09 Sun 09:23]--[2025-02-09 Sun 09:48] =>  0:25
+CLOCK: [2025-02-08 Sat 08:36]--[2025-02-08 Sat 08:51] =>  0:15
+CLOCK: [2025-02-07 Fri 08:22]--[2025-02-07 Fri 08:34] =>  0:12
+CLOCK: [2025-02-06 Thu 12:36]--[2025-02-06 Thu 12:47] =>  0:11
+CLOCK: [2025-02-05 Wed 09:46]--[2025-02-05 Wed 10:00] =>  0:14
+CLOCK: [2025-02-04 Tue 11:30]--[2025-02-04 Tue 11:43] =>  0:13
+CLOCK: [2025-02-03 Mon 10:53]--[2025-02-03 Mon 11:10] =>  0:17
+CLOCK: [2025-02-02 Sun 08:29]--[2025-02-02 Sun 08:58] =>  0:29
+CLOCK: [2025-02-01 Sat 08:20]--[2025-02-01 Sat 08:54] =>  0:34
+CLOCK: [2025-01-31 Fri 08:42]--[2025-01-31 Fri 09:05] =>  0:23
+CLOCK: [2025-01-30 Thu 08:38]--[2025-01-30 Thu 09:07] =>  0:29
+CLOCK: [2025-01-29 Wed 08:43]--[2025-01-29 Wed 09:04] =>  0:21
+CLOCK: [2025-01-28 Tue 08:26]--[2025-01-28 Tue 08:55] =>  0:29
+CLOCK: [2025-01-27 Mon 07:57]--[2025-01-27 Mon 08:20] =>  0:23
+CLOCK: [2025-01-25 Sat 09:32]--[2025-01-25 Sat 09:44] =>  0:12
+CLOCK: [2025-01-24 Fri 08:57]--[2025-01-24 Fri 09:17] =>  0:20
+CLOCK: [2025-01-23 Thu 08:38]--[2025-01-23 Thu 08:54] =>  0:16
+CLOCK: [2025-01-22 Wed 09:42]--[2025-01-22 Wed 10:05] =>  0:23
+CLOCK: [2025-01-21 Tue 10:30]--[2025-01-21 Tue 11:06] =>  0:36
+CLOCK: [2025-01-19 Sun 09:06]--[2025-01-19 Sun 09:35] =>  0:29
+CLOCK: [2025-01-18 Sat 08:30]--[2025-01-18 Sat 09:45] =>  1:15
+CLOCK: [2025-01-17 Fri 10:40]--[2025-01-17 Fri 12:11] =>  1:31
+CLOCK: [2025-01-16 Thu 08:22]--[2025-01-16 Thu 08:49] =>  0:27
+CLOCK: [2025-01-15 Wed 09:06]--[2025-01-15 Wed 10:18] =>  1:12
+CLOCK: [2025-01-14 Tue 10:53]--[2025-01-14 Tue 11:13] =>  0:20
+CLOCK: [2025-01-13 Mon 16:35]--[2025-01-13 Mon 16:44] =>  0:09
+CLOCK: [2025-01-12 Sun 10:29]--[2025-01-12 Sun 10:43] =>  0:14
+CLOCK: [2025-01-10 Fri 09:55]--[2025-01-10 Fri 10:58] =>  1:03
+CLOCK: [2025-01-09 Thu 12:08]--[2025-01-09 Thu 12:42] =>  0:34
+CLOCK: [2025-01-08 Wed 12:23]--[2025-01-08 Wed 12:43] =>  0:20
+CLOCK: [2025-01-07 Tue 09:36]--[2025-01-07 Tue 09:46] =>  0:10
+CLOCK: [2025-01-06 Mon 13:04]--[2025-01-06 Mon 14:01] =>  0:57
+CLOCK: [2025-01-05 Sun 09:40]--[2025-01-05 Sun 10:28] =>  0:48
+CLOCK: [2025-01-04 Sat 14:49]--[2025-01-04 Sat 15:18] =>  0:29
+CLOCK: [2025-01-03 Fri 11:18]--[2025-01-03 Fri 12:14] =>  0:56
+CLOCK: [2025-01-02 Thu 17:39]--[2025-01-02 Thu 18:36] =>  0:57
+CLOCK: [2025-01-01 Wed 18:07]--[2025-01-01 Wed 19:28] =>  1:21
+CLOCK: [2024-12-31 Tue 10:03]--[2024-12-31 Tue 11:33] =>  1:30
+CLOCK: [2024-12-30 Mon 12:18]--[2024-12-30 Mon 13:38] =>  1:20
+CLOCK: [2024-12-25 Wed 10:17]--[2024-12-25 Wed 11:17] =>  1:00
+CLOCK: [2024-12-24 Tue 09:36]--[2024-12-24 Tue 10:25] =>  0:49
+CLOCK: [2024-12-23 Mon 10:40]--[2024-12-23 Mon 11:22] =>  0:42
+CLOCK: [2024-12-22 Sun 10:30]--[2024-12-22 Sun 10:47] =>  0:17
+CLOCK: [2024-12-21 Sat 10:49]--[2024-12-21 Sat 11:05] =>  0:16
+CLOCK: [2024-12-20 Fri 11:26]--[2024-12-20 Fri 11:40] =>  0:14
+CLOCK: [2024-12-19 Thu 08:48]--[2024-12-19 Thu 10:18] =>  1:30
+CLOCK: [2024-12-18 Wed 10:05]--[2024-12-18 Wed 10:24] =>  0:19
+CLOCK: [2024-12-17 Tue 09:45]--[2024-12-17 Tue 10:25] =>  0:40
+CLOCK: [2024-12-16 Mon 14:06]--[2024-12-16 Mon 14:21] =>  0:15
+CLOCK: [2024-12-10 Tue 08:32]--[2024-12-10 Tue 09:02] =>  0:30
+CLOCK: [2024-12-07 Sat 11:33]--[2024-12-07 Sat 12:25] =>  0:52
+CLOCK: [2024-12-06 Fri 09:30]--[2024-12-06 Fri 10:48] =>  1:18
+CLOCK: [2024-12-05 Thu 09:42]--[2024-12-05 Thu 11:05] =>  1:23
+CLOCK: [2024-12-04 Wed 09:26]--[2024-12-04 Wed 09:51] =>  0:25
+CLOCK: [2024-12-02 Mon 10:58]--[2024-12-02 Mon 11:18] =>  0:20
+CLOCK: [2024-12-01 Sun 09:48]--[2024-12-01 Sun 10:09] =>  0:21
+CLOCK: [2024-11-30 Sat 09:33]--[2024-11-30 Sat 09:50] =>  0:17
+CLOCK: [2024-11-29 Fri 09:42]--[2024-11-29 Fri 09:57] =>  0:15
+CLOCK: [2024-11-28 Thu 09:34]--[2024-11-28 Thu 09:56] =>  0:22
+CLOCK: [2024-11-27 Wed 09:27]--[2024-11-27 Wed 09:42] =>  0:15
+CLOCK: [2024-11-26 Tue 11:56]--[2024-11-26 Tue 13:16] =>  1:20
+CLOCK: [2024-11-24 Sun 10:01]--[2024-11-24 Sun 10:26] =>  0:25
+CLOCK: [2024-11-23 Sat 09:51]--[2024-11-23 Sat 10:30] =>  0:39
+CLOCK: [2024-11-22 Fri 09:46]--[2024-11-22 Fri 10:34] =>  0:48
+CLOCK: [2024-11-21 Thu 09:54]--[2024-11-21 Thu 10:25] =>  0:31
+CLOCK: [2024-11-20 Wed 10:44]--[2024-11-20 Wed 11:29] =>  0:45
+CLOCK: [2024-11-19 Tue 15:04]--[2024-11-19 Tue 16:23] =>  1:19
+CLOCK: [2024-11-15 Fri 15:53]--[2024-11-15 Fri 17:16] =>  1:23
+CLOCK: [2024-11-11 Mon 16:26]--[2024-11-11 Mon 16:46] =>  0:20
+CLOCK: [2024-11-08 Fri 11:14]--[2024-11-08 Fri 11:27] =>  0:13
+CLOCK: [2024-11-07 Thu 10:08]--[2024-11-07 Thu 10:35] =>  0:27
+CLOCK: [2024-11-06 Wed 10:56]--[2024-11-06 Wed 11:24] =>  0:28
+CLOCK: [2024-11-05 Tue 12:08]--[2024-11-05 Tue 12:38] =>  0:30
+CLOCK: [2024-11-02 Sat 08:24]--[2024-11-02 Sat 08:59] =>  0:35
+CLOCK: [2024-10-31 Thu 08:46]--[2024-10-31 Thu 10:26] =>  1:40
+CLOCK: [2024-10-30 Wed 09:16]--[2024-10-30 Wed 10:00] =>  0:44
+CLOCK: [2024-10-29 Tue 08:42]--[2024-10-29 Tue 09:26] =>  0:44
+CLOCK: [2024-10-28 Mon 08:42]--[2024-10-28 Mon 09:26] =>  0:44
+CLOCK: [2024-10-26 Sat 08:44]--[2024-10-26 Sat 10:44] =>  2:00
+CLOCK: [2024-10-25 Fri 09:28]--[2024-10-25 Fri 09:50] =>  0:22
+CLOCK: [2024-10-24 Thu 09:26]--[2024-10-24 Thu 11:30] =>  2:04
+CLOCK: [2024-10-23 Wed 09:25]--[2024-10-23 Wed 11:05] =>  1:40
+CLOCK: [2024-10-22 Tue 09:19]--[2024-10-22 Tue 11:20] =>  2:01
+CLOCK: [2024-10-21 Mon 10:06]--[2024-10-21 Mon 11:03] =>  0:57
+CLOCK: [2024-10-19 Sat 10:20]--[2024-10-19 Sat 12:30] =>  2:10
+CLOCK: [2024-10-15 Tue 11:08]--[2024-10-15 Tue 12:40] =>  1:32
+CLOCK: [2024-10-14 Mon 13:38]--[2024-10-14 Mon 14:46] =>  1:08
+CLOCK: [2024-10-12 Sat 08:52]--[2024-10-12 Sat 09:53] =>  1:01
+CLOCK: [2024-10-11 Fri 09:20]--[2024-10-11 Fri 10:24] =>  1:04
+CLOCK: [2024-10-09 Wed 09:17]--[2024-10-09 Wed 10:10] =>  0:53
+CLOCK: [2024-10-08 Tue 11:16]--[2024-10-08 Tue 12:00] =>  0:44
+CLOCK: [2024-10-07 Mon 09:12]--[2024-10-07 Mon 09:49] =>  0:37
+CLOCK: [2024-10-05 Sat 12:58]--[2024-10-05 Sat 13:34] =>  0:36
+CLOCK: [2024-10-04 Fri 12:04]--[2024-10-04 Fri 12:40] =>  0:36
+CLOCK: [2024-10-03 Thu 13:34]--[2024-10-03 Thu 14:05] =>  0:31
+CLOCK: [2024-10-02 Wed 10:34]--[2024-10-02 Wed 10:47] =>  0:13
+CLOCK: [2024-10-01 Tue 12:37]--[2024-10-01 Tue 13:12] =>  0:35
+CLOCK: [2024-09-30 Mon 09:43]--[2024-09-30 Mon 10:20] =>  0:37
+CLOCK: [2024-09-28 Sat 08:57]--[2024-09-28 Sat 09:39] =>  0:42
+CLOCK: [2024-09-27 Fri 09:39]--[2024-09-27 Fri 10:32] =>  0:53
+CLOCK: [2024-09-26 Thu 08:41]--[2024-09-26 Thu 09:23] =>  0:42
+CLOCK: [2024-09-25 Wed 08:57]--[2024-09-25 Wed 09:39] =>  0:42
+CLOCK: [2024-09-24 Tue 08:38]--[2024-09-24 Tue 09:24] =>  0:46
+CLOCK: [2024-09-23 Mon 09:36]--[2024-09-23 Mon 10:42] =>  1:06
+CLOCK: [2024-09-21 Sat 09:12]--[2024-09-21 Sat 10:32] =>  1:20
+CLOCK: [2024-09-20 Fri 10:32]--[2024-09-20 Fri 11:18] =>  0:46
+CLOCK: [2024-09-20 Fri 09:13]--[2024-09-20 Fri 09:36] =>  0:23
+CLOCK: [2024-09-19 Thu 09:51]--[2024-09-19 Thu 10:51] =>  1:00
+CLOCK: [2024-08-26 Mon 12:42]--[2024-08-26 Mon 13:07] =>  0:25
+CLOCK: [2024-08-26 Mon 08:54]--[2024-08-26 Mon 10:24] =>  1:30
 CLOCK: [2024-08-24 Sat 09:09]--[2024-08-24 Sat 11:59] =>  2:50
 CLOCK: [2024-08-23 Fri 08:52]--[2024-08-23 Fri 10:37] =>  1:45
 CLOCK: [2024-08-22 Thu 08:51]--[2024-08-22 Thu 10:40] =>  1:49

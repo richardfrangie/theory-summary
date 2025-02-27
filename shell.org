@@ -21,6 +21,7 @@ Shows the last 10 lines of the /file/.
 ( ~head file~ shows the first 10 lines )
 ( ~tail +15 file~ print lines starting at line 15 )
 ( ~tail -15 file~ output the last 15 lines )
+( ~ls | tail -n +2~ print skipping the 1st line )
 ( ~tail -f file~ dynamicaly displays last line of file )
 ( ~tail -f /var/log/messages~ watch what the system is doing in near real-time )
 
@@ -80,9 +81,8 @@ Removes /file/.
 Move /file/ to Trash folder.
 
 ** Utilities
-*** ln -s source link
-Create a symbolic link from source to link.
-The new /link/ is the name of the symbolic link, the /source/ is the path of the file or directory that the link points to (absolute paths must be placed).
+*** ln -s target_file new_link_name
+Create a symbolic link to target file from link name. (new_link_name -> target_file)
 [ /-s/ make symbolic link instead of hard links ]
 ( ~ln source link~ create a hard link from source to link )
 
@@ -169,6 +169,7 @@ Prints the lines from a /file/ or input stream that match an /pattern/.
 When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on the command line, it's vital that they be enclosed in quotes to prevent the shell from attempting to expand them.
 [ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-G/ basic-regexp (BREs) /-E/ extended-regexp (EREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search /-F/ fixed strings, not regular expressions ]
 ( ~grep root /etc/*~ check every file in /etc that contains root )
+( ~grep -r root /etc/*~ check files in /etc and folder recursively that contains root )
 ( ~grep -h '.zip' files*.txt~ match to thing like bunzip2, gunzip, gzip,... )
 ( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
 ( ~cp `ls dir |grep -Ev 'exclude1|exclude2' newDir`~ copy all files in dir except some files to newDir )
@@ -209,6 +210,8 @@ Extract a section of text *from a line* and output the extracted section to stan
 ( ~cut -c 7-10 file~ extract character positions 7 through 10 )
 ( ~cut -f 3 file~ extract third field *separate by tab* )
 ( ~cut -d ':' -f 1 /etc/passwd~ first field separate by colon : )
+( ~ls -l |cut -d' ' -f1 --complement~ print the entire line removing the first field (permissions) separated by space )
+( ~ls -l | cut -c 11-~ print the entire line removing the first 11 characters (permissions) (equivalent to the one above) )
 
 *** fold -w 20 file
 Break lines of text at a specified width.
@@ -218,6 +221,8 @@ Break lines of text at a specified width.
 *** pr -l 50 -w 80 file
 Paginate text, define a page of 80 colum wide and 50 lines long.
 ( ~ls /usr/bin | pr -3 -t~ print bin programs in 3 column omited headears and footers )
+( ~pdflatex file.tex~ PDF output from TeX )
+( ~evince file.pdf~ see the PDF converted file from TeX )
 
 *** tr
 Is used to *transliterate* characters. Transliteration is the process of changing characters from one alphabet to another.
@@ -278,6 +283,7 @@ Compress and create tar using gzip.
 [ /c/ create a new archive /v/ verbose /f/ name of the archive file for tar to create /f -/ use standard input or output specifying the name /t/ list the contents /z/ automatically invoke gzip (extracting with *x*,  creating with *c*) /j/ automatically invoke bzip2 /x/ extract an archive /r/ append specified pathnames to the end of an archive ]
 ( ~tar czvf archive.tgz file~ equivalent to command below (different ext) )
 ( ~tar cjvf archive.tbz file~ compress and create tar using bzip2 )
+( ~nice -n 19 tar cvzf name.tgz name~ compress a large file without slowing down other processes )
 
 *** tar xzvf archive.tar.gz
 Unpack and decompress using gzip.
@@ -373,6 +379,8 @@ Change directory.
 ( ~cd~ change to home directory )
 ( ~cd -~ returns to the previous directory )
 ( ~cd -2~ returns to the 2 last directory )
+( ~cd =~ list previous directories )
+( ~cd ..~ goes to the precedent folder )
 
 *** ls -lh dir
 Lists the contents of a directory /dir/.
@@ -393,11 +401,16 @@ Search all files with relative path in current directory and its subdirectories.
 ( ~find . -maxdepth 1 -type d -name 'emacs*'~ search only directories starting with emacs word in the current directory )
 ( ~find . -maxdepth 1 -type d -name 'emacs*' -printf '%f\n'~ equivalent to above, but listing without ./ at the beginning )
 
-*** du -h dir
-Display the estimate file space usage in the /dir/ directory.
-~du~ output in most Linux distributions is in 1,024-byte blocks.
-[ /-s/ summarize /-m/ block-size 1M /-h/ human readable /-c/ produce a grand total /-d/ --max-depth /-a/ write counts for all files, not just directories ]
+*** du dir
+Summarize *device usage* of the set of /dir/ s, recursively for directories.
+Block-oriented devices can only store in terms of *blocks*, not bytes. A "block" in this case may not equate to a physical block on the storage device, either, depending on how the file system allocates space.
+The *apparent sizes* option is the *actual amount of data* that can be read from the file, which is the number of bytes your applications think are in the file. This is also the amount of data that would be transferred over the network if you decided to send the file over FTP or HTTP.
+/du/ *default output* in most Linux distributions is in *1,024-byte* (1KiB = 1K) blocks (--block-size=1024).
+[ /--apparent-size/ print *apparent sizes* rather than device usage; although the apparent size is usually smaller, it may be larger /-h/ human readable in powers of 1024 /--si/ human readable in powers of 1000 /-d/ --max-depth /-a/ all files, not just directories /-s/ summarize /--block-size=SIZE/ scale sizes by SIZE before printing /-BM/ "BlockMega" prints sizes in units of 1,048,576 bytes /-BK/ "BlockKikibyte" ]
 ( ~ncdu~ equivalent command )
+( =du --apparent-size --si= prints apparent sizes rather than device usage, and in powers of 1000. This is the *same* as what some *gnome apps* use to display the size )
+( ~du --apparent-size --block-size=1~ print apparent sizes in bytes )
+( ~du -b~ equivalent to the one above )
 ( ~du -d 1 |sort -nr~ sorting folders according to size )
 ( ~du -bs * |sort -nr~ list all files in the current dir sorted by decreasing size )
 ( ~du --max-depth=1 $(echo /home/*) 2> /dev/null |sort -nr~ sorting home folders ignoring errors )
@@ -478,7 +491,7 @@ Detach a process /command/ from the shell and put it in the "background".
 *** renice 20 pid
 Change the nice value to 20.
 Niceness  values range  from  -20 (most favorable to the process) to 19 (least favorable to the process).
-( ~nice -n 19 tar cvzf name.tgz name~ run a program with modified scheduling priority )
+( ~nice -n 19 tar cvzf name.tgz name~ compress a large file without slowing down other processes )
 
 *** lsof -p 123
 List the open files for a particular /123/ process ID.
@@ -535,9 +548,10 @@ Show only the most recent journal entries, starting with the oldest, and *contin
 ( ~journalctl -S 2020-01-14~ from that day)
 ( ~journalctl -S 2020-01-13 -U 2020-01-14~ specific day)
 ( ~journalctl -S '2020-01-14 14:30:00'~ specific hour and day )
-( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
 ( ~journalctl -F _SYSTEMD_UNIT~ list all units in the journal )
+( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
 ( ~journalctl -u cron.service~ filter by systemd unit )
+( ~journalctl -f -u name.service~ watch the name service in near real-time )
 ( ~journalctl _PID=123~ search for messages from process ID 123 )
 ( ~journalctl -g 'kernel.*memory'~ contain kernel followed somewhere by memory )
 ( ~journalctl -r -b -1~ check whether the machine shut down cleanly on the last cycle )
@@ -670,7 +684,11 @@ Switch to administrator mode, superuser
 ( ~su user~ allows commands to be run with a substitute user )
 
 *** chsh
-Change login shell.
+Change login shell interactively.
+The default shell assigned to new user accounts can be changed at any time by editing the file ~/etc/adduser.conf~.
+( ~cat /etc/shells~ check which shells are currently installed )
+( ~cat /etc/passwd~ check which shells each user currently has )
+( ~chsh carlos -s /bin/zsh~ change login shell )
 ( ~chfn~ change real user name and information )
 ( ~tty~ print the current terminal's name )
 
@@ -693,6 +711,12 @@ This command is used to run a job once in the future without using cron.
 ( ~at 22:30 30.09.15~ schedule jobs days into the future )
 ( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
 
+*** anacron -T
+Anacrontab  testing.  The  configuration file will be tested for validity.
+[ /-f/ force execution of the jobs]
+( ~anacron -fd~ force execution of the jobs, ignoring the timestamps and print output info to stderr and syslog )
+( ~anacron -fd job-identifier~ force only the execution of the identified job )
+
 ** Info
 *** man command
 See the manual page for the /command/ and configurations files.
@@ -701,6 +725,7 @@ See the manual page for the /command/ and configurations files.
 ( ~man 5 passwd~ read the /etc/passwd file description )
 ( ~info command~ access an info manual )
 ( ~apropos command~ searches the descriptions for instances of keyword )
+( ~manpath~ determine search path for manual pages )
 
 *** whereis command
 Locate the binary, source, and manual page files for a command.
@@ -708,6 +733,7 @@ Locate the binary, source, and manual page files for a command.
 ( ~type command~ indicate how a command name is interpreted )
 ( ~whatis~ display one-line manual page descriptions )
 ( ~help command~ get help for shell builtins )
+
 *** date
 Print or set the system date and time.
 ( ~date +%s~ current time as the number of seconds since 12:00 midnight on January 1, 1970, UTC )
@@ -926,11 +952,18 @@ Host: example.org
 
 #+end_src
 
-*** mail -s "Subject" mail@host.dom < file
-Process mail messages.
-[ /-s/ subject /-A/ attach file ]
-( ~echo | mail -s "Subject" -A file mail@host.dom~ equivalent command )
-( ~sendmail mail@host.dom~ reads a message from standard input until EOF or until it reads a line with only a . character, and arranges for delivery )
+*** mail
+Checks your mail out of the post office, then prints out a one line header of each message found.
+( ~mutt~ equivalent command but in the interactive mode )
+
+*** echo "email body" | mail -s "subject" recipient
+Send an email without entering the interactive mode of the mail command.
+[ /-s/ specify subject on command line ]
+( ~mail -s "subject" recipient~ send mail in the interactive mode (C-d to send email))
+( ~mutt -s "subject" recipient~ send mail in a better interactive mode )
+( ~mail -s "subject" recipient < file-body~ send mail with the body from a file )
+( ~mail -s "subject" recipient1 recipient2~ send mail to multiple receivers )
+( ~echo "email body" |mutt -s "subject" -a file -- recipient~ send mail with attachments. Note that need the echo part otherwise it will go into interactive mode )
 
 ** Transport layer
 *** netstat
@@ -1232,6 +1265,7 @@ Can be used to search for the given regex term(s) in the list of available packa
 ( ~dpkg-query -l '*<name>*'~ search packages only by name (note the * in the command show all possible name packages) )
 ( ~dpkg -S /path/to/file~ find out what debian package a particular file belongs to )
 ( ~apt-cache rdepends name~ determine which packages depend on a specific package )
+( ~apt-file search --regexp '/name-package$'~ help to find the package that contains a name-package program. Before update the package/file mapping database with the command apt-file update )
 
 *** apt show name
 Show information about the given package(s) including its dependencies, installation and download size, sources the package is available from, the description of the packages content and much more.
@@ -1305,7 +1339,9 @@ List locally installed packages present in the node_modules folder of a project.
 ( ~npm ls -g~ list globally installed packages )
 ( ~npm list --depth 0~ list installed packages and dependencies no dependencies of dependency )
 ( ~npm config get prefix~ show the folder where the global packages are installed )
-( ~npm list name~ search dependencies of this package )
+
+*** npm list name
+Search dependencies of this package.
 ( ~npm root -g~ check where the package are installed )
 ( ~npm ls --all -g~ show all global dependencies )
 ( ~npm ls --package-lock-only~ show the dependency tree of a project that doesn't contain a node_modules folder based on its package-lock.json file )
@@ -1314,28 +1350,34 @@ List locally installed packages present in the node_modules folder of a project.
 Search the /name/ package.
 ( ~npm s name~ equivalent command )
 ( ~npm show name~ show info about package )
-( ~npm show @vue/cli versions~ shows the available versions of the @vue/cli package )
+( ~npm show name versions~ shows the available versions of the package )
+
+*** npm init -y
+Initialize a project in npm non-iteratively.
+[ /-y/ non-iteratively ]
 
 *** npm install name
-Add the /name/ dependency to your project.
+Add the /name/ dependency to your *project* (inside node_module).
 Install the package (will use ^ . . . only allow minor version upgrades and patches) and all its dependencies in the node_modules/ folder, while updating the package.json file by adding the package and its version as a dependency of the project.
-[ /-g/ global, without associating it with the project /-D/ or /--save-dev/ as a development dependency /-P/ or /--save-prod/ as a production dependecy (default) /install/ or /i/ or /add/ install ]
+[ /-g/ global, without associating it with the project /-D/ or /--save-dev/ as a development dependency (devDependences) /-P/ or /--save-prod/ as a production dependecy (default) (dependences) /install/ or /i/ or /add/ install ]
 ( ~npm i name~ equivalent command )
 ( ~npm install~ install all the dependencies in your project )
 ( ~npm install lit-element@2.3.1~ install lit-element version 2.3.1 (won't allow upgrades to other versions) )
+( ~npm install -D @vue/cli@4.4.6~ install @vue/cli version 4.4.6 )
 ( ~npm install --save-prod name~ switch installed package from development to production )
-( ~npm outdated~ integrated unit update system )
+
+*** npm outdated
+Integrated unit update system.
 ( ~npm dedupe~ check packages and unify dependencies )
+( ~npm-check~ display a report of outdated, incorrect, and unused dependencies )
+( ~npm list name~ list package dependecies )
 
 *** npm uninstall name
 Uninstall package.
 [ /uninstall/ or /r/ or /remove/ or /unlink/ or /rm/ uninstall ]
 ( ~npm r name~ equivalent command )
 ( ~npm uninstall -g name~ uninstall packages globally )
-
-*** npm init -y
-Initialize a project in npm non-iteratively.
-[ /-y/ non-iteratively ]
+( ~npm prune~ remove packages that are no longer used )
 
 *** npm test
 Run this project's tests.
@@ -1350,15 +1392,26 @@ Run the script named /name/.
 ( ~npm run build~ builds the final files to upload to the production web )
 ( ~npm run test~ usually starts a battery of tests )
 ( ~npm run deploy~ usually deploys the webapp built with build to the production web )
+( ~npx ntl~ interactive cli tool that lists and run package.json scripts )
+( ~npm-run-all~ a CLI tool to run multiple npm-scripts in parallel or sequential )
+
+*** npm doctor
+checks the status of the npm installation.
+( ~npm config set prefix '~/.npm-global'~ changes the default path where packages are installed from usr to .npm-global , then set export PATH=~/.npm-global/bin:$PATH )
+( ~npm audit~ shows info about the security problem )
+( ~npm audit fix~ attempts to resolve vulnerabilities in packages )
 
 *** npm command -h
 Quick help on /command/.
 ( ~npm -l~ display usage info for all commands )
 ( ~npm help term~ search for help on term )
 
-*** npm doctor
-checks the status of the npm installation.
-( ~npm config set prefix '~/.npm-global'~ changes the default path where packages are installed from usr to .npm-global , then set export PATH=~/.npm-global/bin:$PATH )
+*** npm docs name
+Access the documentation homepage of the /name/ package.
+( ~npm home name~ equivalent command )
+( ~npm repo name~ access the repository of the name package )
+( ~npm issues name~ access the name package issues page)
+( ~npm bugs name~ equivalent to the above command )
 
 *** npx
 Run CLI packages installed at project level (or uninstalled).
@@ -1367,13 +1420,11 @@ npx check if the package is installed in node_modules/.bin. If it is, run it. If
 ( ~cat package.json | jq .devDependencies,.dependencies~ show dependencies development and dependencies production )
 ( ~cat package.json | jq .dependencies | jq -r 'keys[]' | xargs npx npm-size~ size of packages )
 
-*** npm docs name
-Access the documentation homepage of the /name/ package.
-( ~npm home name~ equivalent command )
-( ~npm repo name~ access the repository of the name package )
-( ~npm issues name~ access the name package issues page)
-( ~npm bugs name~ equivalent to the above command )
-( ~npm audit~ shows info about the security problem )
+*** nvm ls
+List of currently installed Node versions.
+( ~nvm install 20~ download and install Node.js 20 )
+( ~nvm use 18~ temporarily use Node version 18 )
+( ~nvm alias default 18~ use version 18 by default )
 
 ** rsync
 *** rsync -b file dir/
@@ -1388,29 +1439,32 @@ Copy a group of files /file1/, /fil2/ to the home directory, where /user/ is the
 ( ~rsync file1 file2 host:~ if the username is the same on the two hosts )
 ( ~rsync -t *.c host:dir_dest/~ transfer all files matching the pattern from the current directory to the directory dir_dest )
 
-*** rsync -a  dir/  dest_dir
+*** rsync -avP  dir/  dest_dir
 Transfer everything inside /dir/ to /dest_dir/. This is *not* an exact replica (destination may keep some files).
+*Note*: if the folder /dest_dir/ doesn't exist, create it and copy the /dir/ folder into it ( /dest_dir/dir/ ).
 A trailing slash on the source changes this behavior to avoid creating an additional directory level at the destination. Use relative or absolute path, don't use dot notation.
-[ /-a/ archive mode (causes hierarchy recursion and preservation of file attributes) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-c/ computes checksums of the files to see if they’re the same /--stats/ summary after the transfer /-v/ increase verbosity ]
+[ /-a/ archive mode (causes hierarchy recursion and preservation of file attributes) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-c/ computes checksums of the files to see if they’re the same /--stats/ summary after the transfer /-v/ increase verbosity /--partial/ keep partially transferred files /--progress/ show progress during transfer /-P/ same as --partial --progress /-z/ compress file data during the transfer (useful for remote) ]
+( =rsync -avP --delete dir/ dest_dir= make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
 ( ~rsync -nva dir/ dest_dir~ run a trial without actually copying any files )
 ( ~rsync -a dir dest_dir~ transfer everything (dir folder will be inside dest_dir) )
 ( ~rsync -a dir1 dir2 dest_dir~ transfer dir1 and dir2  to dest_dir )
 ( ~rsync -a --delete dir/ dest_dir~ make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with trailing-slash because can easily remove unrelated files this way) )
 
-*** rsync -az dir/ host:dest_dir
-Copies everything *inside* /dir/ to /dest_dir/ on /host/ without actually creating /dir/ on the destination host (*trailing-slash version*). This is *not* an exact replica, destination may keep some files.
-[ /-a/ archive mode (causes hierarchy recursion and preservation of file attributes) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-z/ compress file data during the transfer /-c/ computes checksums of the files to see if they’re the same /--bwlimit/ limit the bandwidth /--stats/ summary after the transfer ]
+*** rsync -avzP dir/ host:dest_dir
+Copies everything *inside* /dir/ to inside /dest_dir/ on /host/ without actually creating /dir/ on the destination host (*trailing-slash version*). This is *not* an exact replica, destination may keep some files.
+*Note*: if the folder /dest_dir/ doesn't exist, create it and copy the /dir/ folder into it ( /dest_dir/dir/ ).
+[ /-a/ archive mode (causes hierarchy recursion and preservation of file attributes) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-z/ compress file data during the transfer (useful for remote) /-c/ computes checksums of the files to see if they’re the same /--bwlimit/ limit the bandwidth /--stats/ summary after the transfer /--partial/ keep partially transferred files /--progress/ show progress during transfer /-P/ same as --partial --progress ]
 ( ~rsync -nva dir/ host:dest_dir~ run a trial without actually copying any files )
+( =rsync -avzP --delete dir/ host:dest_dir= make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
 ( ~rsync -az dir host:dest_dir~ transfer everything without *trailing-slash* (dir folder will be inside dest_dir) )
-( ~rsync -az --delete dir/ host:dest_dir~ make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
 ( ~rsync -az --exclude=.git src host:~ exclude anything named .git )
 ( ~rsync -az --exclude=/src/.git src host:~ exclude one specific item, specify an absolute path that starts with forward-slash this is not the root directory of the system but rather the base directory of the transfer )
 ( ~rsync --bwlimit=100 -a dir host:dest_dir~ limit the bandwidth to 100Kbps )
 ( ~rsync -az --delete --rsh=ssh dir host:dest_dir~  copy using ssh as its remote shell (ssh-encrypted tunnel to securely transfer the data from the local system to the remote host) )
 
-*** rsync -az host:src_dir dest_dir
+*** rsync -avzP host:src_dir dest_dir
 Transfer /src_dir/ on the remote system to /dest_dir/ on the local host.
-[ /--exclude/ exclude files matching PATTERN /-c/ computes checksums of the files to see if they’re the same /--ignore-existing/ doesn’t clobber files already on the target side /--backup/ doesn’t clobber files already on the target but rather renames these existing files by adding a ~ suffix to their names before transferring the new files /--suffix=s/ changes the suffix used with --backup from ~ to s /--update/ doesn’t clobber any file on the target that has a later date than the corresponding file on the source ]
+[ /--exclude/ exclude files matching PATTERN /-c/ computes checksums of the files to see if they’re the same /--ignore-existing/ doesn’t clobber files already on the target side /--backup/ doesn’t clobber files already on the target but rather renames these existing files by adding a ~ suffix to their names before transferring the new files /--suffix=s/ changes the suffix used with --backup from ~ to s /--update/ doesn’t clobber any file on the target that has a later date than the corresponding file on the source /--partial/ keep partially transferred files /--progress/ show progress during transfer /-P/ same as --partial --progress /-z/ compress file data during the transfer ]
 
 *** rsync  somehost.mydomain.com::
 List all the (listable) modules available from a  particular rsync daemon by leaving off the module name.
@@ -1430,6 +1484,7 @@ List all *directories objects*,containers,buckets in the path.
 ( ~rclone lsf remote:~ list all file and dir in easy to parsr format )
 ( ~rclone lsjson remote:~ list objects and directories in JSON format )
 ( =rclone lsd remotedrive:= list all directories objects )
+( ~rclone listremotes~ lists all the available remotes from the config file )
 
 *** rclone tree
 List the contents of the remote in a tree like fashion.
@@ -1466,7 +1521,7 @@ The destination path is used without the initial forward slash. It is always the
 ( ~rclone sync --dry-run / local/dir  remote:path/dir~ test first )
 ( ~rclone sync -i --bwlimit 75k:125k / local/dir  remote:path/dir~ sync local dir to remote dir with limit the upload bandwidth to 75 KiB/s and the download bandwidth to 125 KiB/s )
 ( ~rclone sync -i --bwlimit 10M:off  / local/dir  remote:path/dir~ sync with the limit the upload bandwidth to /10/ MiB/s but the download bandwidth would be unlimited )
-( =rclone sync -P ~/Frangie remotedrive:Frangie= sync my Frangie folder with my google drive )
+( =rclone sync -P ~/Frangie rf-mega:Frangie= sync my Frangie folder with my google drive )
 
 *** rclone command --help
 For more information about a command.
@@ -1529,7 +1584,7 @@ Reduce the PNG image to what thinks it's probably the most effective and rename 
 ( ~pngquant -f --ext .png image.png; opting image.png~ a little more compression )
 
 ** yt-dlp
-*** sudo yt-dlp -U
+*** # yt-dlp -U
 Update yt-dlp program to the latest stable version.
 Useful when you get errors.
 
@@ -1558,8 +1613,11 @@ Video info.
 Cut the video.
 [ /-ss/ specifies the start time, e.g. 00:01:23.000 or 83 (in seconds) /-t/ specifies the duration of the clip (same format) /-to/ supply the end /-c copy/ copies the first video, audio, and subtitle bitstream from the input to the output file without re-encoding them. This won't harm the quality and make the command run within seconds ]
 
-*** ffmpeg -i input.mp4 -vn output.mp3
-Convert video files to audio files.
+*** ffmpeg -i input.mp4 -vn -acodec copy output
+Extract only the audio stream without re-encoding.
+Read the output to see what codec it is, to set the right filename extension.
+[ /-vn/ no video /-acodec/ use the same audio stream ]
+( ~ffmpeg -i input.mp4 -vn output.mp3~ convert video files to audio files )
 ( ~ffmpeg -i input.mp4 -an output.mp4~ removing audio stream from a video file )
 
 *** ffmpeg -i input -b:v 2500k -b:a 192k output
@@ -1606,31 +1664,12 @@ Remove a terminated container.
 Create a new subdirectory named ~.git~ that contains all  necessary repository files — a Git repository skeleton.
 [ /--bare/ initializes the repository without a working directory ]
 
-*** git clone <url>
-Get a copy of an existing Git repository.
-It creates a new directory, goes into it and runs ~git init~ to make it an empty Git repository, adds a remote (~git remote add~) to the URL that you pass it (by default named ~origin~), runs a ~git fetch~ from that remote repository and then checks out the latest commit into your working directory with ~git checkout~.
-[ /-o <name>/ rename default remote branch ]
-( ~git clone <url> <dir>~ clone the repository into another directory name )
-
 *** git status
 Determine which files are in which state.
 ( *A* added | *M* modified | *?* not tracked ) ( *left-hand* column indicates the status of the *staging area* and the *right-hand* column indicates the status of the *working tree*) .
 [ /-s/ more simplified output ]
 ( ~git ls-files~ to take a more raw look at what your staging area looks like )
 ( ~git status -s~ more simplied output )
-
-*** git add <file>
-Specify the file /file/ to be tracked or staged or merge-conflicted.
-( ~git add -A~ stage *all* (new, modified, deleted) files )
-( ~git add .~ stage all (new, modified, deleted) files in current folder (not higher directories) )
-( ~git add --ignore-removal .~ stage new and modified files only (*not delete files*) )
-( ~git add -u~ stage modified and deleted files only (*not new files*) )
-
-*** git commit -m "message"
-Commit the changes. Just changes to anything that was staged. Records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
-[ /-v/ puts the diff of the changes /-m/ type commit message inline /-a/ automatically stage every file that is already tracked before doing the commit (includes all changed files. Skip the *git add*) ]
-( ~git commit -a -m 'whatever'~ commit, automatically stage and message inline )
-( ~git commit -a -S -m 'Signed commit'~ signing commits directly with GPG key )
 
 *** git show
 Show various types of objects in a simple and human readable way. Normally you would use this to show the information about a tag or a commit.
@@ -1640,21 +1679,45 @@ Lists the commits made in that repository in reverse chronological order.
 ( ~git log --oneline --decorate --graph --all~ better view )
 ( ~git shortlog~ Is used to summarize the output of git log )
 
+*** git clone <url>
+Get a copy of an existing Git repository.
+It creates a new directory, goes into it and runs ~git init~ to make it an empty Git repository, adds a remote (~git remote add~) to the URL that you pass it (by default named ~origin~), runs a ~git fetch~ from that remote repository and then checks out the latest commit into your working directory with ~git checkout~.
+[ /-o <name>/ rename default remote branch ]
+( ~git clone <url> <dir>~ clone the repository into another directory name )
+
+*** git add <file>
+Specify the file /file/ to be tracked or staged or merge-conflicted.
+( ~git add .~ stage all (new, modified, deleted) files in current folder (not higher directories) )
+( ~git add -u~ stage modified and deleted files only (*not new files*) )
+( ~git add -A~ stage *all* (new, modified, deleted) files )
+( ~git add --ignore-removal .~ stage new and modified files only (*not delete files*) )
+
+*** git commit -m "message"
+Commit the changes. Just changes to anything that was staged. Records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
+[ /-v/ puts the diff of the changes /-m/ type commit message inline /-a/ automatically stage every file that is already tracked before doing the commit (includes all changed files. Skip the *git add*) ]
+( ~git commit -a -m 'whatever'~ commit, automatically stage and message inline )
+( ~git commit -a -S -m 'Signed commit'~ signing commits directly with GPG key )
+
+*** git remote add origin git@github.com:carlos/name.git
+Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
+
+*** git branch -M main
+Create a new branch called /main/.
+[ /-M/ shortcut for -m -f allow renaming the branch even if the new branch name already exists ]
+
+*** git push -u origin main
+Push /main/ to origin server /origin/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+[ /-u/ configures the branches for easier pushing and pulling later ]
+
 *** git pull
 Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
 [ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
 ( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
 
-*** git push <remote> <branch>
-Push /branch/ to origin server /remote/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
-[ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
-( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
-( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
-
 ** Remotes
 *** git remote -v
-Lists the shortnames of each remote specified.
-[ /-v/ show URLs that Git has stored for the shortname ]
+Shows a list of existing remotes.
+[ /-v/ verbose, show URLs that Git has stored for the shortname ]
 
 *** git ls-remote
 Get a list of all the branches and tags and other references in the repository.
@@ -1665,18 +1728,11 @@ Show more information about particular remote.
 
 *** git remote add <shortname> <url>
 Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
-
-*** git remote rename <name1> <name2>
-Change a remote’s shortname, renaming /name1/ to /name2/ .
-(that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
-( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL (when you rename a it repository (first rename the host repository in the github setting e.g.)) )
-
-*** git remote rm name
-Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
-( ~git remote remove name~ equivalent command )
+[[git fetch <remote>]]  can then be used to create and update remote-tracking branches <remote>/<branch>.
 
 *** git fetch <remote>
- Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on)
+ Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on).
+ After [[git remote add][git remote add <shortname> <url>]], /git fetch <remote>/ can then be used to create and update remote-tracking branches <remote>/<branch>.
 [ /--all/ totally up to date ahead and behind numbers ]
 ( ~git fetch origin refs/pull/958/head~ fetching the reference directly (connect to the /origin/ remote, and download the ref named /refs/pull/958/head/) )
 
@@ -1690,6 +1746,15 @@ Push /branch/ to origin server /remote/ . Push any commits you’ve done back up
 [ /-u/ configures the branches for easier pushing and pulling later /-f/ when rebased the branch to your push command in order to be able to replace the branch on the server with a commit that isn’t a descendant of it ]
 ( ~git push origin name:othername~ this format push a local branch into a remote branch that is named differently (rename) )
 ( ~git push origin --delete serverfix~ delete /serverfix/ branch from the server )
+
+*** git remote rename <name1> <name2>
+Change a remote’s shortname, renaming /name1/ to /name2/ .
+(that this changes all remote-tracking branch names. *referenced* at /name1/master/ to /name2/master/ )
+( ~git remote set-url origin NEW_URL~ updating any existing local clones to point to the new repository URL (when you rename a it repository (first rename the host repository in the github setting e.g.)) )
+
+*** git remote rm name
+Remove a remote /name/ . All remote-tracking branches and configuration settings associated with that remote are also deleted.
+( ~git remote remove name~ equivalent command )
 
 *** git request-pull origin/master myfork
 Take the base branch into which you want your topic branch pulled and the Git repository URL you want them to pull from, and produces a summary of all the changes you’re asking to be pulled.
@@ -1773,6 +1838,7 @@ A graphical tool to resolve merge conflicts.
 *** git restore --staged <file>
 To unstage the file /file/.
 ( ~git reset HEAD <file>~ to unstage the file /file/. It moves around the HEAD pointer and optionally changes the index or staging area )
+( ~git restore --staged .~ revert the git add . command )
 
 *** git restore <file>
 Discard changes in working directory of the file /file/. *Careful* any local changes made to that file are gone. Git just replaced that file with the last staged or committed version. (modify -> unmodify)
@@ -1916,7 +1982,7 @@ Is simply used to generate an example message body to email to someone. If you h
 ** Config & Help
 *** git config
 Get and set configuration variables.
-[ /--system/ reads and writes from the file ~/etc/gitconfig~ /--global/ reads and writes from the file ~~/.config/git/config~ and affects all of the repositories you work with on your system /--local/ reads and writes from the file ~.git/config~ this is the default option (each level overrides values in the previous level) ]
+[ /--system/ reads and writes from the file ~/etc/gitconfig~ /--global/ reads and writes from the file ~~/.config/git/config~ and affects all of the repositories you work with on your system /--local/ reads and writes from the file ~.git/config~ this is the default option (each level overrides values in the previous level) /--unset/ remove the line matching the key from config file ]
 
 *** git config --list --show-origin
 Show all settings and where they are coming from.
@@ -1981,6 +2047,10 @@ Command annotates the lines of any file with which commit was the last one to in
 Find any string or regular expression in any of the files in your source code, even older versions of your project. (this command is really fast and you can search through any tree in Git, not just the working directory)
 [ /-n/ print out the line numbers where Git has found matches /-c/ summarize the output by showing you only which files contained the search string and how many matches there were in each file /-p/ display the enclosing method or function for each matching string /--and/ ensures that multiple matches must occur in the same line of text /--break/ split up the output into a more readable format /--heading/ split up the output into a more readable format ]
 ( ~git grep -p gmtime_r *.c~ )
+
+** Github CLI
+*** gh repo create --public <name-project>
+Create a new public repository on github.
 
 * Shell
 ** Assignment
@@ -3049,7 +3119,7 @@ grep r.input r.output /etc/passwd
 #+end_src
 
 *Notes*:
-- The shebang doesn’t have to be ~#!/bin/sh~; it can be built to run anything on your system that accepts scripting input, such as ~#!/usr/bin/python~ to run Python programs. In addition, you might come across scripts with a different pattern that includes ~/usr/bin/env~. For example, you might see something like ~#!/usr/bin/env python~ as the first line. This instructs the ~env~ utility to run ~python~. The reason for this is fairly simple; ~env~ looks for the command to run in the current command path, so you don’t need a standardized location for the executable. The disadvantage is that the first matching executable in the command path might not be what you want.
+- The shebang doesn’t have to be ~#!/bin/sh~; it can be built to run anything on your system that accepts scripting input, such as ~#!/usr/bin/python~ to run Python programs. In addition, you might come across scripts with a different pattern that includes ~/usr/bin/env~. For example, you might see something like ~#!/usr/bin/env python~ as the first line. This instructs the ~env~ utility to run ~python~. The reason for this is fairly simple; ~env~ looks for the command to run in the current command path (~$PATH~), so you don’t need a standardized location for the executable. The disadvantage is that the first matching executable in the command path might not be what you want.
 
 - Be aware of your shell script sizes. Keep your shell scripts short. Bourne shell scripts aren’t meant to be big.
 
