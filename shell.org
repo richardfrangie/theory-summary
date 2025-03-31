@@ -29,6 +29,7 @@ Shows the last 10 lines of the /file/.
 *** touch file
 Set or update the access, change, and modify times of /file/. If a filename argument is that of a nonexistent file, an empty /file/ is created.
 ( ~touch dir/dir-{01..10}/file-{A..Z}~ create a file from A to Z inside each dir from 01 to 10 )
+
 *** echo 'content here' > name
 Writes content to a file. If the file does not already exist, it creates it.
 ( ~echo 'content here' >> name~ append the output to the file instead of overwriting it )
@@ -55,9 +56,10 @@ Create temporary filenames. Converts the ~XXXXXX~ to a unique set of characters 
 ** Copy
 *** rsync -b file dir/
 Transfer/copy /file/ from the current directory to the directory /dir/.
-[ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) ]
+[ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) /--exclude='file'/ exclude files ]
 ( ~rsync -t *.c dir/~ transfer all files matching the pattern to the directory )
 ( ~rsync -t *.c foo:dir/~ transfer all files matching the to the directory on the machine foo )
+( ~rsync -t *.c --exclude='file1' --exclude='file2' dir/~ transfer all files matching the pattern, but excluding some files )
 
 *** cp -i file1 file2
 Copy /file1/ to /file2/.
@@ -148,6 +150,7 @@ Reads items from the standard input, delimited by blanks (which can be protected
 *** du -h file
 Display size of the file /file/.
 [ /-h/ human readable ]
+( ~du -bs * |sort -nr~ list all files in the current dir sorted by decreasing size )
 
 *** file file
 Determine /file/ type.
@@ -422,7 +425,7 @@ View the size and utilization of your currently mounted filesystems.
 ( ~df dir~ view the info in the specific directory )
 
 *** stat dir
- Display /dir/ status (birth, inode, block, device, type, group, permissions, size,...)
+Display /dir/ status (birth, inode, block, device, type, group, permissions, size,...)
 ( ~pwd~ print working directory )
 
 *** tree -d
@@ -456,6 +459,7 @@ List processes running on the system in a semi-graphical table.
 Report a snapshot of the current processes belonging to every user.
 [ /ax/ all processes /a/ all processes with a terminal (tty) /x/ all processes owned by you /u/ more detailed user-oriented format information on processes /c/ simple name of executable /-H/ show process hierarchy (forest) ]
 ( *PID* process ID | *VSZ* virtual memory size | *RSS* resident set size. This is the amount of physical memory (RAM) the process is using in kilobytes | *TTY* terminal device where the process is running | *STAT* process status (S sleeping, R running D uninterruptible sleep T stooped Z zombie < high-priority N low-priority ) | *START* time when the process started | *TIME* amount of CPU time that the process has used so far | *COMMAND* be careful a process can change this field from its original value and the shell can perform glob expansion, and this field will reflect the expanded command instead of what you enter at the prompt )
+( ~ps -ef~ full see every process on the system using standard syntax )
 ( ~ps u 123~ inspect the 123 process )
 ( ~ps m~ display the thread information )
 ( ~ps m -o pid,tid,command~ shows only the PIDs, TIDs, and command )
@@ -468,7 +472,7 @@ Print all process in a tree.
 ( ~pstree -s 123~ display a tree of parent processes of 123 process )
 
 *** pidof name
-Find the process ID of a running program.
+Find the process ID of a running program /name/.
 ( ~pgrep name~ equivalent tool )
 
 *** kill signal pid
@@ -804,110 +808,6 @@ After we define our alias, we can use it anywhere the shell would expect a comma
 *** python3 -m http.server 8000
 This starts a basic web server on port /8000/ that makes the current directory available to any browser on the network. If the machine you run this on is at address 10.1.2.4, point the browser on the destination system to http://10.1.2.4:8000.
 
-* Miscellaneous
-** Encryption
-*** gpg --list-key
-Show all public keys currently stored in your local GPG keyring.
-( ~gpg --list-key keyID~ show the public key currently stored )
-
-*** gpg --keyserver keyring.debian.org --recv-keys E145360
-Fetch a key from the server /keyring.debian.org/ and put into local GPG keyring.
-[ /--keyserver/ specifies the keyserver to use for operations like fetching keys /--recv-keys/ imports public keys from a keyserver into your local GPG keyring ]
-
-*** gpg --verify SHA512SUMS.sign SHA512SUMS
-Verify the authenticity and integrity of a file using a digital signature.
-
-*** sha512sum file
-Compute SHA512 message digest.
-
-*** sha512sum -c --ignore-missing file
-Vverify file integrity against a checksum /file/. It compares the calculated SHA-512 hash of each file with the values listed in the checksum /file/.
-[ /-c/ read SHA512 sums from the files and check them /--ignore-missing/ skip any files listed in the checksum file that are not found on your system ]
-( ~echo "sha512sum-of-the-file  file" |sha256sum -c~ check the sha256sum with sha256sum string and file )
-( ~md5sum file~ compute and check MD5 message digest )
-( ~md5sum file1 file2~ compute message digest of the files )
-
-** Compiling
-*** cc -o file file.c
-Compile the /file.c/ and give the name /file/.
-[ /-o/ place the output into <file> /-c/ compile and assemble, but do not link /-n/ prints the commands necessary for a build but prevents make from actually running any commands /-f file/ tells make to read from file instead of Makefile or makefile ]
-( ~cc file.c~ compile the file.c )
-
-*** cc -c file.c
-Create the object files.
-
-*** cc -o myprog main.o aux.o
-Compile and create an executable called /myprog/ from these two /main.o/, /aux.o/ object files.
-
-*** cc -o myprog object.o -lcurses
-Compile and create the executable /myprog/ with /object.o/ object file and link against /curses/ library.
-( ~cc -o myprog object.o -lcurses -L/usr/junk/lib -lcrud~ create myprog with libcrud.a library in /usr/lib )
-
-*** cc -c -I/usr/junk/include badinclude.c
-If the notfound.h header is found in /usr/junk/include, tell the compiler to add this directory to its search path.
-
-*** ldd prog
-Show what shared libraries a executable /prog/ uses.
-( ~ldd /bin/bash~ show shared libraries )
-
-#+begin_src sh
-
-ldd /bin/bash
-# linux-vdso.so.1 (0x00007ffe9c9ec000)
-# libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007f5d79c66000)
-# libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f5d79c60000)
-# libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5d79a8c000)
-# /lib64/ld-linux-x86-64.so.2 (0x00007f5d79dec000)
-
-## what the executable knows => where ld.so finds the library
-
-#+end_src
-
-** Install package
-*** ./configure --prefix=new_prefix
-Configure the package changing the prefix to /new_prefix/. By default, the install target from an autoconf-generated Makefile uses a prefix of /usr/local.
-[ /--bindir=dir/ installs executables in dir /--sbindir=dir/ installs system executables in dir /--libdir=dir/ installs libraries in dir /--disable-shared/ prevents the package from building shared libraries /--with-package=dir/ tells configure that package is in dir (this is handy when a necessary library is in a nonstandard location) ]
-
-*** make
-GNU make utility to maintain groups of programs.
-[ /-n/ dry-run print the commands that would be executed, but do not execute them ]
-
-*** # checkinstall make install
-Shows the settings pertaining to the package that you’re about to build, and gives you the opportunity to change them. When you proceed with the installation, checkinstall keeps track of all of the files to be installed on the system and puts them into a .deb file. You can then use dpkg to install (and remove) the new package.
-
-*** pkg-config --list-all
-Show all libraries that pkg-config knows about, including a brief description of each.
-( ~pkg-config --libs zlib~ find the libraries required for a popular compression library )
-
-*** patch -p0 < patch_file
-Apply the patch (becareful with current directory).
-
-** Debug
-*** dmesg
-View the messages in the kernel ring buffer.
-( ~who -r~ print current runlevel )
-
-*** # dbus-monitor --system
-Debug probe to print message bus messages. Is used to monitor messages going through a D-Bus message bus.
-( ~dbus-monitor --session~ )
-
-*** xwininfo
-Window information utility for X. Is a utility for displaying information about windows.
-( ~xlsclients -l~ list of all window IDs and clients )
-
-*** xev
-Creates a window and then asks the X server to send it events whenever anything happens to the window (such as it being moved, resized, typed in, clicked in, etc.).
-One common use is to extract keycodes and key symbols for different keyboards when remapping the keyboard.
-
-*** xinput --list
-Show input device configuration on the machine.
-( ~xinput --list-props 8~ view properties of the device number 8 )
-( ~xinput --set-button-map device 3 2 1~ reverse the order of mouse buttons (three-button mouse at device) )
-
-*** xlogo
-Program displays the X Window System logo. Useful for testing windows.
-( ~xeyes~ a follow the mouse X demo )
-
 * Network
 ** App layer
 *** wget URL file
@@ -927,9 +827,10 @@ Does not allow recursive downloading unlike ~wget~.
 *** netcat
 netcat (or nc) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
 End the connection at any time by pressing CTRL-C.
-[ /-u/ specifies UDP /-4/ for IPv4 /-6/ for IPv6 ]
+[ /-u/ specifies UDP /-4/ for IPv4 /-6/ for IPv6 /-v/ verbose /-z/ zero-I/O mode [used for scanning] ]
 ( ~netcat host port~ open a TCP connection to a port )
 ( ~netcat -l port_number~ listen on a particular port )
+( ~netcat -z -v <your-phones-ip> 1714-1764~ are the ports open/blocked? )
 
 *** telnet example.org 80
 User interface to the TELNET protocol to conect /example.org/ on port /80/.
@@ -938,17 +839,17 @@ To get back to the shell, press ~CTRL-]~ on a line by itself and then press ~CTR
 
 #+begin_src sh
 
-# Connect to the IANA documentation example web server.
-telnet example.org 80
-# Enter these two lines.
-GET / HTTP/1.1
-Host: example.org
-# Press ENTER twice.
-# To terminate the connection, press CTRL-D.
+  # Connect to the IANA documentation example web server.
+  telnet example.org 80
+  # Enter these two lines.
+  GET / HTTP/1.1
+  Host: example.org
+  # Press ENTER twice.
+  # To terminate the connection, press CTRL-D.
 
-# This exercise demonstrates that:
-# The remote host has a web server process listening on TCP port 80.
-# telnet was the client that initiated the connection.
+  # This exercise demonstrates that:
+  # The remote host has a web server process listening on TCP port 80.
+  # telnet was the client that initiated the connection.
 
 #+end_src
 
@@ -975,28 +876,28 @@ Displays the use of the network by the processes.
 
 #+begin_src sh
 
-netstat   -r
-Kernel IP routing table
+  netstat   -r
+  Kernel IP routing table
 
-Destination  Gateway      Genmask       Flags MSS Window irtt Iface
-192.168.1.0  *            255.255.255.0     U   0      0    0  eth0
-default      192.168.1.1  0.0.0.0          UG   0      0    0  eth0
+  Destination  Gateway      Genmask       Flags MSS Window irtt Iface
+  192.168.1.0  *            255.255.255.0     U   0      0    0  eth0
+  default      192.168.1.1  0.0.0.0          UG   0      0    0  eth0
 
-# Gateway, is the name or IP address of the gateway (router) used to go
-# from the current host to the destination network. An asterisk in this
-# field indicates that no gateway is needed.
+  # Gateway, is the name or IP address of the gateway (router) used to go
+  # from the current host to the destination network. An asterisk in this
+  # field indicates that no gateway is needed.
 
 #+end_src
 
-*** # lsof
+*** lsof
 Detailed list of file and network usage.
 [ /-i/  list all Internet network files /-n/ inhibits the conversion of network numbers to host  names /-W/ don't truncate IP addressses /-p/ PID and name program /-U/ listing of UNIX domain socket files /-P/ disable /etc/services port name lookups ]
 ( ~# lsof -n -P -i~ shows users and process IDs for server and client programs currently using or listening to ports )
 ( ~# lsof -i~ show with host names and port names (slows down the output) )
-( ~# lsof -iTCP -sTCP:LISTEN~ show only the processes listening on TCP ports )
+( ~# lsof -i TCP -sTCP:LISTEN~ show only the processes listening on TCP ports )
 ( ~# lsof -iprotocol@host:port~ looking for a particular port (full syntax) )
-( ~# lsof -iTCP:ssh~ connections only on TCP with ssh service )
-( ~# lsof -iTCP:443~ connections only on TCP port 443 )
+( ~# lsof -i TCP:ssh~ connections only on TCP with ssh service )
+( ~# lsof -i TCP:443~ connections only on TCP port 443 )
 ( ~# lsof -i6TCP:443~ IPv6 connections only on TCP port 443 )
 ( ~# lsof -U~ list of Unix domain sockets currently in use )
 
@@ -1018,6 +919,8 @@ Puts the network interface card into promiscuous mode and reports on every packe
 
 *** ss
 Utility to investigate sockets, is used to dump socket statistics. It allows showing information similar to netstat. It can display more TCP and state information than other tools.
+[ /-t/ display TCP sockets /-u/ display UDP sockets /-r/ resolve numeric address/ports /-l/ display only listening sockets /-p/ show process using socket ]
+( ~sudo ss -turelp~ )
 
 *** # iptables -L
 Show the current configuration of iptables.
@@ -1040,24 +943,6 @@ Show the addresses that are active on the machine.
 ( ~# ip address add 192.168.1.2/24 dev eth0~ add an IP address and subnet for a kernel network interface )
 ( ~ip address show enp0s3 | grep "inet " | tr -s " " ":" | cut -d: -f3~ displays its locap IP on enp0s3 )
 
-#+begin_src sh
-
-# The flag UP tells you that the interface is working.
-2: enp0s31f6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc
-fq_codel state UP group default qlen 1000
-# link/ether means MAC address on the physical layer.
-    link/ether 40:8d:5c:fc:24:1f brd ff:ff:ff:ff:ff:ff
-    inet 10.23.2.4/24 brd 10.23.2.255 scope global noprefixroute
-enp0s31f6
-       valid_lft forever preferred_lft forever
-    inet6 2001:db8:8500:e:52b6:59cc:74e9:8b6e/64 scope global
-dynamic noprefixroute
-       valid_lft 86054sec preferred_lft 86054sec
-    inet6 fe80::d05c:97f9:7be8:bca/64 scope link
-       valid_lft forever preferred_lft forever
-
-#+end_src
-
 *** ip route
 Show routing table.
 [ /-4/ restrict the output ro IPv4 /-6/ show ipv6 configuration ]
@@ -1069,34 +954,34 @@ Show routing table.
 
 #+begin_src sh
 
-ip route show
-# Each line is a routing rule.
-default via 10.3.2.1 dev enp37s0 proto static metric 100
-# default (0.0.0.0/0) matches any address on the internet.
-# This is the default route, and the address configured as the
-# intermediary in the default route is the default gateway.
-# The mechanism is via 10.3.2.1, indicating that traffic using the
-# default route is to be sent to 10.3.2.1 (this is a router).
-# dev enp37s0 indicates that the physical transmission will happen on
-# that network interface.
+  ip route show
+  # Each line is a routing rule.
+  default via 10.3.2.1 dev enp37s0 proto static metric 100
+  # default (0.0.0.0/0) matches any address on the internet.
+  # This is the default route, and the address configured as the
+  # intermediary in the default route is the default gateway.
+  # The mechanism is via 10.3.2.1, indicating that traffic using the
+  # default route is to be sent to 10.3.2.1 (this is a router).
+  # dev enp37s0 indicates that the physical transmission will happen on
+  # that network interface.
 
-10.3.2.0/24 dev enp37s0 proto kernel scope link src 10.3.2.4 metric 100
-# 10.3.2.0/24 is a destination network, this is the host’s local subnet.
-# This rule says that the host can reach the local subnet directly
-# through its network interface, indicated by the dev enp37s0
-# mechanism label after the destination.
+  10.3.2.0/24 dev enp37s0 proto kernel scope link src 10.3.2.4 metric 100
+  # 10.3.2.0/24 is a destination network, this is the host’s local subnet.
+  # This rule says that the host can reach the local subnet directly
+  # through its network interface, indicated by the dev enp37s0
+  # mechanism label after the destination.
 
 #+end_src
 
 #+begin_src sh
 
-netstat -rn   # same command to route -n.
-Destination  Gateway      Genmask       Flags MSS Window irtt Iface
-192.168.1.0  *            255.255.255.0     U   0      0    0  eth0
-default      192.168.1.1  0.0.0.0          UG   0      0    0  eth0
-# Gateway, is the name or IP address of the gateway (router) used to go
-# from the current host to the destination network. An asterisk in this
-# field indicates that no gateway is needed.
+  netstat -rn   # same command to route -n.
+  Destination  Gateway      Genmask       Flags MSS Window irtt Iface
+  192.168.1.0  *            255.255.255.0     U   0      0    0  eth0
+  default      192.168.1.1  0.0.0.0          UG   0      0    0  eth0
+  # Gateway, is the name or IP address of the gateway (router) used to go
+  # from the current host to the destination network. An asterisk in this
+  # field indicates that no gateway is needed.
 
 #+end_src
 
@@ -1220,7 +1105,7 @@ Unmount a filesystem.
 
 *** # fsck -n  /dev/sdb1
 Check and repair a Linux filesystem.
-Never use ~fsck~ on a mounted filesystem.
+*WARNING*: never use ~fsck~ on a mounted filesystem.
 [ /-n/ check the filesystem without modifying anything ]
 ( ~e2fsck~ check a Linux ext2/ext3/ext4 file system )
 ( ~debugfs~ interactive file system debugger )
@@ -1475,25 +1360,26 @@ Enter an interactive configuration session.
 (https://rclone.org/docs/)
 ( ~rclone config show~ print (decrypted) config file, or the config for a single remote )
 ( ~rclone config file~ show path of configuration file in use )
+( ~rclone listremotes~ lists all the available remotes from the config file )
+
+*** rclone size remote:path/dir
+Return the total size and number of objects in remote:path.
+( ~rclone about remote:~ return free and used size )
 
 *** rclone lsd remote:path/to/dir
 List all *directories objects*,containers,buckets in the path.
 [ /-R/ to make them recurse ]
-( ~rclone ls remote~ list size and path of every objects only )
-( ~rclone lsl remote:~ list all the *file objects* in the path with size, *modification* time and path )
+( =rclone lsd remotedrive:= list all directories objects )
+( ~rclone lsl remote:~ list all the *file objects* in the path with *size*, *modification* time and *path* )
+( ~rclone ls remote:~ unlike 'lsl' list only size and path of every objects )
 ( ~rclone lsf remote:~ list all file and dir in easy to parsr format )
 ( ~rclone lsjson remote:~ list objects and directories in JSON format )
-( =rclone lsd remotedrive:= list all directories objects )
 ( ~rclone listremotes~ lists all the available remotes from the config file )
 
 *** rclone tree
 List the contents of the remote in a tree like fashion.
 [ /-d/ list directories only /--level int/ descend only level directories deep /-s/ size /-r/ reverse ]
 ( ~rclone tree remotemega: --level 2~ descend 2 levels (folder and subfolders) )
-
-*** rclone size remote:path/dir
-Return the total size and number of objects in remote:path.
-( ~rclone about remote:~ return free and used size )
 
 *** rclone check /local/path remote:path --size-only
 Check if the files in the source and destination match.
@@ -1607,7 +1493,7 @@ Download only the portion from /12/ seconds to /123/ seconds.
 Video info.
 
 *** ffmpeg -i input.avi output.mp4
- Convert an input media file to a different format, by re-encoding media streams.
+Convert an input media file to a different format, by re-encoding media streams.
 
 *** ffmpeg -i input.mp4 -ss 00:00 -to 00:10 -c copy output.mp4
 Cut the video.
@@ -1634,7 +1520,7 @@ Compress a video or image with quality /2/. Normal range for JPEG is 2-31 with 3
 Change volume 150%.
 
 *** ffmpeg -i input.flv -vcodec libx264 output.mp4
- Convert an input media file to a different video encoder /libx264/, which is a H.264 encoder.
+Convert an input media file to a different video encoder /libx264/, which is a H.264 encoder.
 ( ~ffmpeg -i input.flv -vcodec libx264 -acodec aac output.mp4~ convert an input media file to a different video codec libx264 and audio encoder aac, which is the built-in FFmpeg AAC encoder )
 
 *** ffmpeg -txt_format text -i input.mp4 out.srt
@@ -1706,8 +1592,9 @@ Create a new branch called /main/.
 [ /-M/ shortcut for -m -f allow renaming the branch even if the new branch name already exists ]
 
 *** git push -u origin main
-Push /main/ to origin server /origin/ . Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+Push /main/ to origin server /origin/. Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
 [ /-u/ configures the branches for easier pushing and pulling later ]
+( ~git push --force~ force push the amended commit to overwrite the previous one (if you've already pushed a commit to the remote repository and then realized it was a mistake, you can amend the commit and push the changes) )
 
 *** git pull
 Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
@@ -1731,8 +1618,8 @@ Add a new remote Git repository as a shortname (link to a repository). Is a mana
 [[git fetch <remote>]]  can then be used to create and update remote-tracking branches <remote>/<branch>.
 
 *** git fetch <remote>
- Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on).
- After [[git remote add][git remote add <shortname> <url>]], /git fetch <remote>/ can then be used to create and update remote-tracking branches <remote>/<branch>.
+Fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. (only downloads the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on).
+After [[git remote add][git remote add <shortname> <url>]], /git fetch <remote>/ can then be used to create and update remote-tracking branches <remote>/<branch>.
 [ /--all/ totally up to date ahead and behind numbers ]
 ( ~git fetch origin refs/pull/958/head~ fetching the reference directly (connect to the /origin/ remote, and download the ref named /refs/pull/958/head/) )
 
@@ -1820,7 +1707,7 @@ Merge the /namebranch/ with the current branch.
 ( ~git merge --verify-signatures -S signed-branch~ verifies that every commit in the branch to be merged is signed and furthermore signs the resulting merge commit )
 
 *** git cherry-pick e43a6
- It takes the change (patch) that was introduced in a commit and tries to reapply (re-introduce) it on the branch you’re currently on. This is useful to only take one or two commits from a branch individually rather than merging in the branch which takes all the changes or if you only have one commit on a topic branch and you’d prefer to cherry-pick it rather than run rebase.
+It takes the change (patch) that was introduced in a commit and tries to reapply (re-introduce) it on the branch you’re currently on. This is useful to only take one or two commits from a branch individually rather than merging in the branch which takes all the changes or if you only have one commit on a topic branch and you’d prefer to cherry-pick it rather than run rebase.
 
 *** git rebase main
 Take all the changes that were committed on one branch and replay them on a different branch.
@@ -1844,9 +1731,10 @@ To unstage the file /file/.
 Discard changes in working directory of the file /file/. *Careful* any local changes made to that file are gone. Git just replaced that file with the last staged or committed version. (modify -> unmodify)
 
 *** git commit --amend
- Redo last commit (if commit and then realize forgot to stage the changes in a file wanted to add to this commit). This command takes staging area and uses it for the commit. (Is used to modify the most recent commit. It combines changes in the staging environment with the latest commit, and creates a new commit. This new commit replaces the latest commit entirely)
+Redo last commit (if commit and then realize forgot to stage the changes in a file wanted to add to this commit). This command takes staging area and uses it for the commit. (*Is used to modify the most recent commit. It combines changes in the staging environment with the latest commit, and creates a new commit. This new commit replaces the latest commit entirely*)
 [ /--no-edit/ will allow you to make the amendment to your commit without changing its commit message ]
 ( ~git commit --amend -m "an updated commit message"~ adding the /-m/ option allows you to pass in a new message from the command line without being prompted to open an editor )
+( ~git push --force~ force push the amended commit to overwrite the previous one (if you've already pushed a commit to the remote repository and then realized it was a mistake, you can amend the commit and push the changes) )
 
 *** git reset
 We use when we want to move the repository back to a previous commit, discarding any changes made after that commit.
@@ -2052,6 +1940,110 @@ Find any string or regular expression in any of the files in your source code, e
 *** gh repo create --public <name-project>
 Create a new public repository on github.
 
+* Miscellaneous
+** Encryption
+*** gpg --list-key
+Show all public keys currently stored in your local GPG keyring.
+( ~gpg --list-key keyID~ show the public key currently stored )
+
+*** gpg --keyserver keyring.debian.org --recv-keys E145360
+Fetch a key from the server /keyring.debian.org/ and put into local GPG keyring.
+[ /--keyserver/ specifies the keyserver to use for operations like fetching keys /--recv-keys/ imports public keys from a keyserver into your local GPG keyring ]
+
+*** gpg --verify SHA512SUMS.sign SHA512SUMS
+Verify the authenticity and integrity of a file using a digital signature.
+
+*** sha512sum file
+Compute SHA512 message digest.
+
+*** sha512sum -c --ignore-missing file
+Vverify file integrity against a checksum /file/. It compares the calculated SHA-512 hash of each file with the values listed in the checksum /file/.
+[ /-c/ read SHA512 sums from the files and check them /--ignore-missing/ skip any files listed in the checksum file that are not found on your system ]
+( ~echo "sha512sum-of-the-file  file" |sha256sum -c~ check the sha256sum with sha256sum string and file )
+( ~md5sum file~ compute and check MD5 message digest )
+( ~md5sum file1 file2~ compute message digest of the files )
+
+** Compiling
+*** cc -o file file.c
+Compile the /file.c/ and give the name /file/.
+[ /-o/ place the output into <file> /-c/ compile and assemble, but do not link /-n/ prints the commands necessary for a build but prevents make from actually running any commands /-f file/ tells make to read from file instead of Makefile or makefile ]
+( ~cc file.c~ compile the file.c )
+
+*** cc -c file.c
+Create the object files.
+
+*** cc -o myprog main.o aux.o
+Compile and create an executable called /myprog/ from these two /main.o/, /aux.o/ object files.
+
+*** cc -o myprog object.o -lcurses
+Compile and create the executable /myprog/ with /object.o/ object file and link against /curses/ library.
+( ~cc -o myprog object.o -lcurses -L/usr/junk/lib -lcrud~ create myprog with libcrud.a library in /usr/lib )
+
+*** cc -c -I/usr/junk/include badinclude.c
+If the notfound.h header is found in /usr/junk/include, tell the compiler to add this directory to its search path.
+
+*** ldd prog
+Show what shared libraries a executable /prog/ uses.
+( ~ldd /bin/bash~ show shared libraries )
+
+#+begin_src sh
+
+  ldd /bin/bash
+  # linux-vdso.so.1 (0x00007ffe9c9ec000)
+  # libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007f5d79c66000)
+  # libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f5d79c60000)
+  # libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5d79a8c000)
+  # /lib64/ld-linux-x86-64.so.2 (0x00007f5d79dec000)
+
+  ## what the executable knows => where ld.so finds the library
+
+#+end_src
+
+** Install package
+*** ./configure --prefix=new_prefix
+Configure the package changing the prefix to /new_prefix/. By default, the install target from an autoconf-generated Makefile uses a prefix of /usr/local.
+[ /--bindir=dir/ installs executables in dir /--sbindir=dir/ installs system executables in dir /--libdir=dir/ installs libraries in dir /--disable-shared/ prevents the package from building shared libraries /--with-package=dir/ tells configure that package is in dir (this is handy when a necessary library is in a nonstandard location) ]
+
+*** make
+GNU make utility to maintain groups of programs.
+[ /-n/ dry-run print the commands that would be executed, but do not execute them ]
+
+*** # checkinstall make install
+Shows the settings pertaining to the package that you’re about to build, and gives you the opportunity to change them. When you proceed with the installation, checkinstall keeps track of all of the files to be installed on the system and puts them into a .deb file. You can then use dpkg to install (and remove) the new package.
+
+*** pkg-config --list-all
+Show all libraries that pkg-config knows about, including a brief description of each.
+( ~pkg-config --libs zlib~ find the libraries required for a popular compression library )
+
+*** patch -p0 < patch_file
+Apply the patch (becareful with current directory).
+
+** Debug
+*** dmesg
+View the messages in the kernel ring buffer.
+( ~who -r~ print current runlevel )
+
+*** # dbus-monitor --system
+Debug probe to print message bus messages. Is used to monitor messages going through a D-Bus message bus.
+( ~dbus-monitor --session~ )
+
+*** xwininfo
+Window information utility for X. Is a utility for displaying information about windows.
+( ~xlsclients -l~ list of all window IDs and clients )
+
+*** xev
+Creates a window and then asks the X server to send it events whenever anything happens to the window (such as it being moved, resized, typed in, clicked in, etc.).
+One common use is to extract keycodes and key symbols for different keyboards when remapping the keyboard.
+
+*** xinput --list
+Show input device configuration on the machine.
+( ~xinput --list-props 8~ view properties of the device number 8 )
+( ~xinput --set-button-map device 3 2 1~ reverse the order of mouse buttons (three-button mouse at device) )
+
+*** xlogo
+Program displays the X Window System logo. Useful for testing windows.
+( ~xeyes~ a follow the mouse X demo )
+
 * Shell
 ** Assignment
 A single ~=~ performs assignment, but be careful it is differente from ~==~.
@@ -2067,20 +2059,20 @@ The syntax ~export VARIABLE~ means, make the /VARIABLE/ shell variable into an e
 
 #+begin_src sh
 
-foo="This is some "
-echo $foo
-# This is some
+  foo="This is some "
+  echo $foo
+  # This is some
 
-foo=$foo"text."
-echo $foo
-# This is some text.
+  foo=$foo"text."
+  echo $foo
+  # This is some text.
 
 
-# Append a directory name dir to the end of the PATH variable.
-PATH=$PATH:dir
+  # Append a directory name dir to the end of the PATH variable.
+  PATH=$PATH:dir
 
-# Append to the beginning of the path.
-PATH=dir:$PATH
+  # Append to the beginning of the path.
+  PATH=dir:$PATH
 
 #+end_src
 
@@ -2095,17 +2087,17 @@ When expanded ~$a~, this becomes whatever the variable a contains. Simple parame
 
 #+begin_src sh
 
-a="foo"
-echo "$a"
-# foo
+  a="foo"
+  echo "$a"
+  # foo
 
-a="foo"
-echo "$a_file"
-#
+  a="foo"
+  echo "$a_file"
+  #
 
-a="foo"
-echo "${a}_file"
-# foo_file
+  a="foo"
+  echo "${a}_file"
+  # foo_file
 
 #+end_src
 
@@ -2115,19 +2107,19 @@ If ~parameter~ is unset (i.e., does not exist) or is empty, this expansion resul
 
 #+begin_src sh
 
-foo=
-echo ${foo:-"substitute value if unset"}
-# substitute value if unset
+  foo=
+  echo ${foo:-"substitute value if unset"}
+  # substitute value if unset
 
-echo $foo
-#
+  echo $foo
+  #
 
-foo=bar
-echo ${foo:-"substitute value if unset"}
-# bar
+  foo=bar
+  echo ${foo:-"substitute value if unset"}
+  # bar
 
-echo $foo
-# bar
+  echo $foo
+  # bar
 
 #+end_src
 
@@ -2138,19 +2130,19 @@ If ~parameter~ is unset or empty, this expansion results in the value of ~word~.
 
 #+begin_src sh
 
-foo=
-echo ${foo:="default value if unset"}
-# default value if unset
+  foo=
+  echo ${foo:="default value if unset"}
+  # default value if unset
 
-echo $foo
-# default value if unset
+  echo $foo
+  # default value if unset
 
-foo=bar
-echo ${foo:="default value if unset"}
-# bar
+  foo=bar
+  echo ${foo:="default value if unset"}
+  # bar
 
-echo $foo
-# bar
+  echo $foo
+  # bar
 
 #+end_src
 
@@ -2159,19 +2151,19 @@ If ~parameter~ is unset or empty, this expansion causes *the script to exit with
 
 #+begin_src sh
 
-foo=
-echo ${foo:?"parameter is empty"}
-# bash: foo: parameter is empty
+  foo=
+  echo ${foo:?"parameter is empty"}
+  # bash: foo: parameter is empty
 
-echo $?
-# 1
+  echo $?
+  # 1
 
-foo=bar
-echo ${foo:?"parameter is empty"}
-# bar
+  foo=bar
+  echo ${foo:?"parameter is empty"}
+  # bar
 
-echo $?
-# 0
+  echo $?
+  # 0
 
 #+end_src
 
@@ -2180,12 +2172,12 @@ If ~parameter~ is unset or empty, the expansion results in nothing. If ~paramete
 
 #+begin_src sh
 
-foo=
-echo ${foo:+"substitute value if set"}
+  foo=
+  echo ${foo:+"substitute value if set"}
 
-foo=bar
-echo ${foo:+"substitute value if set"}
-# substitute value if set
+  foo=bar
+  echo ${foo:+"substitute value if set"}
+  # substitute value if set
 
 #+end_src
 
@@ -2199,11 +2191,11 @@ This expansion returns the names of existing variables with names beginning with
 
 #+begin_src sh
 
-# List all the variables in the environment with names that begin BASH:
-echo ${!BASH*}
-# BASH BASH_ARGC BASH_ARGV BASH_COMMAND BASH_COMPLETION
-# BASH_COMPLETION_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL
-# BASH_VERSINFO BASH_VERSION
+  # List all the variables in the environment with names that begin BASH:
+  echo ${!BASH*}
+  # BASH BASH_ARGC BASH_ARGV BASH_COMMAND BASH_COMPLETION
+  # BASH_COMPLETION_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL
+  # BASH_VERSINFO BASH_VERSION
 
 #+end_src
 
@@ -2213,9 +2205,9 @@ Expands into the *length of the string* contained by ~parameter~. Normally, ~par
 
 #+begin_src sh
 
-foo="This string is long."
-echo "'$foo' is ${#foo} characters long."
-# 'This string is long.' is 20 characters long.
+  foo="This string is long."
+  echo "'$foo' is ${#foo} characters long."
+  # 'This string is long.' is 20 characters long.
 
 #+end_src
 
@@ -2226,12 +2218,12 @@ If parameter is ~@~, the result of the expansion is ~length~ positional paramete
 
 #+begin_src sh
 
-foo="This string is long."
-echo ${foo:5}
-# string is long.
+  foo="This string is long."
+  echo ${foo:5}
+  # string is long.
 
-echo ${foo:5:6}
-# string
+  echo ${foo:5:6}
+  # string
 
 #+end_src
 
@@ -2239,12 +2231,12 @@ If the value of ~offset~ is negative, it is taken to mean it starts from the end
 
 #+begin_src sh
 
-foo="This string is long."
-echo ${foo: -5}
-# long.
+  foo="This string is long."
+  echo ${foo: -5}
+  # long.
 
-echo ${foo: -5:2}
-# lo
+  echo ${foo: -5:2}
+  # lo
 
 #+end_src
 
@@ -2253,12 +2245,12 @@ These expansions *remove a leading portion of the string* contained in ~paramete
 
 #+begin_src sh
 
-foo=file.txt.zip
-echo ${foo#*.}
-# txt.zip
+  foo=file.txt.zip
+  echo ${foo#*.}
+  # txt.zip
 
-echo ${foo##*.}
-# zip
+  echo ${foo##*.}
+  # zip
 
 #+end_src
 
@@ -2267,12 +2259,12 @@ These expansions are the same as [[${parameter#pattern}]] expansion, except they
 
 #+begin_src sh
 
-foo=file.txt.zip
-echo ${foo%.*}
-# file.txt
+  foo=file.txt.zip
+  echo ${foo%.*}
+  # file.txt
 
-echo ${foo%%.*}
-# file
+  echo ${foo%%.*}
+  # file
 
 #+end_src
 
@@ -2286,18 +2278,18 @@ This expansion performs a *search-and-replace* operation upon the contents of ~p
 
 #+begin_src sh
 
-foo=JPG.JPG
-echo ${foo/JPG/jpg}
-# jpg.JPG
+  foo=JPG.JPG
+  echo ${foo/JPG/jpg}
+  # jpg.JPG
 
-echo ${foo//JPG/jpg}
-# jpg.jpg
+  echo ${foo//JPG/jpg}
+  # jpg.jpg
 
-echo ${foo/#JPG/jpg}
-# jpg.JPG
+  echo ${foo/#JPG/jpg}
+  # jpg.JPG
 
-echo ${foo/%JPG/jpg}
-# JPG.jpg
+  echo ${foo/%JPG/jpg}
+  # JPG.jpg
 
 #+end_src
 
@@ -2310,22 +2302,22 @@ Using ~declare~, we can force a variable to always contain the desired format no
 
 #+begin_src sh
 
-#!/bin/bash
-# ul-declare: demonstrate case conversion via declare
+  #!/bin/bash
+  # ul-declare: demonstrate case conversion via declare
 
-declare -u upper
-declare -l lower
+  declare -u upper
+  declare -l lower
 
-if [[ $1 ]]; then
-    upper="$1"
-    lower="$1"
-    echo "$upper"
-    echo "$lower"
-fi
+  if [[ $1 ]]; then
+      upper="$1"
+      lower="$1"
+      echo "$upper"
+      echo "$lower"
+  fi
 
-ul-declare aBc
-# ABC
-# abc
+  ul-declare aBc
+  # ABC
+  # abc
 
 #+end_src
 
@@ -2340,21 +2332,21 @@ Here is a script that demonstrates these expansions. While this script uses the 
 
 #+begin_src sh
 
-#!/bin/bash
-# ul-param: demonstrate case conversion via parameter expansion
+  #!/bin/bash
+  # ul-param: demonstrate case conversion via parameter expansion
 
-if [[ "$1" ]]; then
-    echo "${1,,}"
-    echo "${1,}"
-    echo "${1^^}"
-    echo "${1^}"
-fi
+  if [[ "$1" ]]; then
+      echo "${1,,}"
+      echo "${1,}"
+      echo "${1^^}"
+      echo "${1^}"
+  fi
 
-ul-param aBc
-# abc
-# aBc
-# ABC
-# ABc
+  ul-param aBc
+  # abc
+  # aBc
+  # ABC
+  # ABc
 
 #+end_src
 
@@ -2367,64 +2359,64 @@ We'll use the parameter expansion ~${#j}~ in place of the command substitution ~
 
 #+begin_src sh
 
-# Brief:
-foo=hello
-echo $(echo -n $foo  | wc -c)
-# 5
-echo ${#foo}
-# 5
+  # Brief:
+  foo=hello
+  echo $(echo -n $foo  | wc -c)
+  # 5
+  echo ${#foo}
+  # 5
 
-# Script:
-#!/bin/bash
-# longest-word3: find longest string in a file
-for i; do
-    if [[ -r "$i" ]]; then
-        max_word=
-        max_len=0
-        for j in $(strings $i); do
-            # parameter expansion
-            len="${#j}"
-            if (( len > max_len )); then
-                max_len="$len"
-                max_word="$j"
-            fi
-        done
-        echo "$i: '$max_word' ($max_len characters)"
-    fi
-done
+  # Script:
+  #!/bin/bash
+  # longest-word3: find longest string in a file
+  for i; do
+      if [[ -r "$i" ]]; then
+          max_word=
+          max_len=0
+          for j in $(strings $i); do
+              # parameter expansion
+              len="${#j}"
+              if (( len > max_len )); then
+                  max_len="$len"
+                  max_word="$j"
+              fi
+          done
+          echo "$i: '$max_word' ($max_len characters)"
+      fi
+  done
 
-#!/bin/bash
-# longest-word2: find longest string in a file
-for i; do
-    if [[ -r "$i" ]]; then
-        max_word=
-        max_len=0
-        for j in $(strings "$i"); do
-            # command subtitution
-            len="$(echo -n "$j" | wc -c)"
-            if (( len > max_len )); then
-                max_len="$len"
-                max_word="$j"
-            fi
-        done
-        echo "$i: '$max_word' ($max_len characters)"
-    fi
-done
+  #!/bin/bash
+  # longest-word2: find longest string in a file
+  for i; do
+      if [[ -r "$i" ]]; then
+          max_word=
+          max_len=0
+          for j in $(strings "$i"); do
+              # command subtitution
+              len="$(echo -n "$j" | wc -c)"
+              if (( len > max_len )); then
+                  max_len="$len"
+                  max_word="$j"
+              fi
+          done
+          echo "$i: '$max_word' ($max_len characters)"
+      fi
+  done
 
-# Comparison of the efficiency of the two versions of the script.
-time longest-word2 file.txt
-# file.txt: 'scrollkeeper-get-extended' (25 characters)
-#
-# real 0m3.618s
-# user 0m1.544s
-# sys  0m1.768s
+  # Comparison of the efficiency of the two versions of the script.
+  time longest-word2 file.txt
+  # file.txt: 'scrollkeeper-get-extended' (25 characters)
+  #
+  # real 0m3.618s
+  # user 0m1.544s
+  # sys  0m1.768s
 
-time longest-word3 file.txt
-# file.txt: 'scrollkeeper-get-extended' (25 characters)
-#
-# real 0m0.060s
-# user 0m0.056s
-# sys  0m0.008s
+  time longest-word3 file.txt
+  # file.txt: 'scrollkeeper-get-extended' (25 characters)
+  #
+  # real 0m0.060s
+  # user 0m0.056s
+  # sys  0m0.008s
 
 #+end_src
 
@@ -2434,11 +2426,11 @@ The arithmetic expansion is used to perform various arithmetic operations on int
 
 #+begin_src sh
 
-echo $((2 + 2))
-# 4
+  echo $((2 + 2))
+  # 4
 
-echo $(((5**2) * 3))
-# 75
+  echo $(((5**2) * 3))
+  # 75
 
 #+end_src
 
@@ -2453,13 +2445,13 @@ echo $(((5**2) * 3))
 
 #+begin_src sh
 
-# print the value of the hexadecimal ff (the largest two-digit number)
-echo $((0xff))
-# 255
+  # print the value of the hexadecimal ff (the largest two-digit number)
+  echo $((0xff))
+  # 255
 
-# print the value of the binary (base 2) number (the largest eight-digit)
-echo $((2#11111111))
-# 255
+  # print the value of the binary (base 2) number (the largest eight-digit)
+  echo $((2#11111111))
+  # 255
 
 #+end_src
 
@@ -2470,29 +2462,29 @@ Since the shell’s arithmetic operates only on integers, the results of divisio
 
 #+begin_src sh
 
-echo $(( 5 / 2 ))
-# 2
+  echo $(( 5 / 2 ))
+  # 2
 
-echo $(( 5 % 2 ))
-# 1
+  echo $(( 5 % 2 ))
+  # 1
 
 
-#Display a line of numbers, highlighting each multiple of 5:
-#!/bin/bash
-# modulo: demonstrate the modulo operator
-for ((i = 0; i <= 20; i = i + 1)); do
-    remainder=$((i % 5))
-    if (( remainder == 0 )); then
-        printf "<%d> " "$i"
-    else
-        printf "%d " "$i"
-    fi
-done
-printf "\n"
+  #Display a line of numbers, highlighting each multiple of 5:
+  #!/bin/bash
+  # modulo: demonstrate the modulo operator
+  for ((i = 0; i <= 20; i = i + 1)); do
+      remainder=$((i % 5))
+      if (( remainder == 0 )); then
+          printf "<%d> " "$i"
+      else
+          printf "%d " "$i"
+      fi
+  done
+  printf "\n"
 
-# Evaluate script.
-modulo
-# <0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
+  # Evaluate script.
+  modulo
+  # <0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
 
 #+end_src
 
@@ -2516,51 +2508,51 @@ In the post-increment/decrement, the parameter is incremented/decre-mented befor
 
 #+begin_src sh
 
-foo=
-echo $foo
-#
+  foo=
+  echo $foo
+  #
 
-# The next process will assign the value of 5 to the variable foo, and
-# it evaluates to true because foo was assigned a non-zero value.
-if (( foo = 5 )); then echo "It is true."; fi
-# It is true.
+  # The next process will assign the value of 5 to the variable foo, and
+  # it evaluates to true because foo was assigned a non-zero value.
+  if (( foo = 5 )); then echo "It is true."; fi
+  # It is true.
 
-echo $foo
-# 5
-
-
-# This is the more expected behavior
-# Pre-increment.
-foo=1
-echo $((++foo))
-# 2
-echo $foo
-# 2
+  echo $foo
+  # 5
 
 
-# This behavior is not used very often.
-# Post-increment.
-foo=1
-echo $((foo++))
-# 1
-echo $foo
-# 2
+  # This is the more expected behavior
+  # Pre-increment.
+  foo=1
+  echo $((++foo))
+  # 2
+  echo $foo
+  # 2
 
 
-#!/bin/bash
-# modulo2: demonstrate the modulo operator
-for ((i = 0; i <= 20; ++i )); do
-    if (((i % 5) == 0 )); then
-        printf "<%d> " "$i"
-    else
-        printf "%d " "$i"
-    fi
-done
-printf "\n"
+  # This behavior is not used very often.
+  # Post-increment.
+  foo=1
+  echo $((foo++))
+  # 1
+  echo $foo
+  # 2
 
-# Evaluate script.
-modulo
-# <0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
+
+  #!/bin/bash
+  # modulo2: demonstrate the modulo operator
+  for ((i = 0; i <= 20; ++i )); do
+      if (((i % 5) == 0 )); then
+          printf "<%d> " "$i"
+      else
+          printf "%d " "$i"
+      fi
+  done
+  printf "\n"
+
+  # Evaluate script.
+  modulo
+  # <0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
 
 #+end_src
 
@@ -2578,40 +2570,40 @@ modulo
 
 #+begin_src sh
 
-Data???
-# Any file beginning with “Data” followed by exactly three characters.
+  Data???
+  # Any file beginning with “Data” followed by exactly three characters.
 
-[abc]*
-# Any file beginning with either an “a”, a “b”, or a “c”.
+  [abc]*
+  # Any file beginning with either an “a”, a “b”, or a “c”.
 
-BACKUP.[0-9][0-9][0-9]
-# Any file beginning with “BACKUP.” followed by exactly three numerals.
+  BACKUP.[0-9][0-9][0-9]
+  # Any file beginning with “BACKUP.” followed by exactly three numerals.
 
-[[:upper:]]*
-# Any file beginning with an uppercase letter.
+  [[:upper:]]*
+  # Any file beginning with an uppercase letter.
 
-[![:digit:]]*
-# Any file not beginning with a numeral.
+  [![:digit:]]*
+  # Any file not beginning with a numeral.
 
-*[[:lower:]123]
-# Any file ending with a lowercase letter or the numerals “1”, “2”, or “3”
+  *[[:lower:]123]
+  # Any file ending with a lowercase letter or the numerals “1”, “2”, or “3”
 
-echo .[!.]*
-# Expands into every filename that begins with only one period fol-
-# lowed by any other characters. This will work correctly with most
-# hidden files (though it still won't include filenames with multiple
-# leading periods).
+  echo .[!.]*
+  # Expands into every filename that begins with only one period fol-
+  # lowed by any other characters. This will work correctly with most
+  # hidden files (though it still won't include filenames with multiple
+  # leading periods).
 
 
-# Depending on the Linux distribution, we will get a different list of
-# files with [] notation. *
-ls /usr/sbin/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*
-# /usr/sbin/MAKEFLOPPIES
-# /usr/sbin/NetworkManagerDispatchre
+  # Depending on the Linux distribution, we will get a different list of
+  # files with [] notation. *
+  ls /usr/sbin/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*
+  # /usr/sbin/MAKEFLOPPIES
+  # /usr/sbin/NetworkManagerDispatchre
 
-ls /usr/sbin/[A-Z]*
-# /usr/sbin/biosdecode
-# /usr/sbin/chat
+  ls /usr/sbin/[A-Z]*
+  # /usr/sbin/biosdecode
+  # /usr/sbin/chat
 
 #+end_src
 
@@ -2619,31 +2611,31 @@ ls /usr/sbin/[A-Z]*
 
 #+begin_src sh
 
-echo Front-{A,B,C}-Back
-# Front-A-Back Front-B-Back Front-C-Back
+  echo Front-{A,B,C}-Back
+  # Front-A-Back Front-B-Back Front-C-Back
 
-echo Number_{1..5}
-# Number_1 Number_2 Number_3 Number_4 Number_5
+  echo Number_{1..5}
+  # Number_1 Number_2 Number_3 Number_4 Number_5
 
-echo {01..15}
-# 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+  echo {01..15}
+  # 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
 
-echo {001..15}
-# 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015
+  echo {001..15}
+  # 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015
 
-echo {Z..A}
-# Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
+  echo {Z..A}
+  # Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
 
-echo a{A{1,2},B{3,4}}b
-#aA1b aA2b aB3b aB4b
+  echo a{A{1,2},B{3,4}}b
+  #aA1b aA2b aB3b aB4b
 
-mkdir {2007..2009}-{01..12}
-# 2007-01 2007-07 2008-01 2008-07 2009-01 2009-07
-# 2007-02 2007-08 2008-02 2008-08 2009-02 2009-08
-# 2007-03 2007-09 2008-03 2008-09 2009-03 2009-09
-# 2007-04 2007-10 2008-04 2008-10 2009-04 2009-10
-# 2007-05 2007-11 2008-05 2008-11 2009-05 2009-11
-# 2007-06 2007-12 2008-06 2008-12 2009-06 2009-12
+  mkdir {2007..2009}-{01..12}
+  # 2007-01 2007-07 2008-01 2008-07 2009-01 2009-07
+  # 2007-02 2007-08 2008-02 2008-08 2009-02 2009-08
+  # 2007-03 2007-09 2008-03 2008-09 2009-03 2009-09
+  # 2007-04 2007-10 2008-04 2008-10 2009-04 2009-10
+  # 2007-05 2007-11 2008-05 2008-11 2009-05 2009-11
+  # 2007-06 2007-12 2008-06 2008-12 2009-06 2009-12
 
 #+end_src
 
@@ -2651,8 +2643,8 @@ mkdir {2007..2009}-{01..12}
 
 #+begin_src sh
 
-echo ~
-# /home/carlos
+  echo ~
+  # /home/carlos
 
 #+end_src
 
@@ -2660,17 +2652,17 @@ echo ~
 
 #+begin_src sh
 
-!!
-#Repeat the last command
+  !!
+  #Repeat the last command
 
-!number
-# Repeat history list item number.
+  !number
+  # Repeat history list item number.
 
-!string
-# Repeat last history list item starting with string.
+  !string
+  # Repeat last history list item starting with string.
 
-!?string
-# Repeat last history list item containing string.
+  !?string
+  # Repeat last history list item containing string.
 
 #+end_src
 
@@ -2736,12 +2728,12 @@ It will match *any* character in that character position.
 
 #+begin_src sh
 
-grep '.zip' dirlist*.txt
-# bunzip2
-# bzip2
-# bzip2recover
-# Not match to zip beacuse the inclusion of the dot metacharacter
-# increased the length of the required match to four characters.
+  grep '.zip' dirlist*.txt
+  # bunzip2
+  # bzip2
+  # bzip2recover
+  # Not match to zip beacuse the inclusion of the dot metacharacter
+  # increased the length of the required match to four characters.
 
 #+end_src
 
@@ -2752,16 +2744,16 @@ Note that the regular expression ~^$~ (a beginning and an end with nothing in be
 
 #+begin_src sh
 
-grep '^zip' dirlist*.txt
-# zip
-# zipcloak
+  grep '^zip' dirlist*.txt
+  # zip
+  # zipcloak
 
-grep 'zip$' dirlist*.txt
-# gunzip
-# zip
+  grep 'zip$' dirlist*.txt
+  # gunzip
+  # zip
 
-grep '^zip$' dirlist*.txt
-# zip
+  grep '^zip$' dirlist*.txt
+  # zip
 
 #+end_src
 
@@ -2776,31 +2768,31 @@ A set may contain any number of characters, and metacharacters lose their specia
 
 #+begin_src sh
 
-grep '[bg]zip' dirlist*.txt
-# bzip2
-# gzip
+  grep '[bg]zip' dirlist*.txt
+  # bzip2
+  # gzip
 
 
-grep '[^bg]zip' dirlist*.txt
-# bunzip2
-# gpg-zip
-# Notice that the file zip was not found. A negated character set still
-# requires a character at the given position, but the character must not
-# be a member of the negated set.
+  grep '[^bg]zip' dirlist*.txt
+  # bunzip2
+  # gpg-zip
+  # Notice that the file zip was not found. A negated character set still
+  # requires a character at the given position, but the character must not
+  # be a member of the negated set.
 
-grep '[^]zip' dirlist*.txt
-# grep: Unmatched [, [^, [:, [., or [=
-grep '[\^]zip' dirlist*.txt
-# ^zip
+  grep '[^]zip' dirlist*.txt
+  # grep: Unmatched [, [^, [:, [., or [=
+  grep '[\^]zip' dirlist*.txt
+  # ^zip
 
 
-grep '^[A-Z]' dirlist*.txt
-# MAKEDEV
-# ControlPanel
-# GET
+  grep '^[A-Z]' dirlist*.txt
+  # MAKEDEV
+  # ControlPanel
+  # GET
 
-# Matches all filenames starting with letters and numbers.
-grep '^[A-Za-z0-9]' dirlist*.txt
+  # Matches all filenames starting with letters and numbers.
+  grep '^[A-Za-z0-9]' dirlist*.txt
 
 #+end_src
 
@@ -2811,19 +2803,19 @@ Notice that since this is an [[POSIX BRE vs ERE][extended feature]], we added th
 
 #+begin_src sh
 
-echo "AAA" | grep -E 'AAA|BBB'
-# AAA
-echo "BBB" | grep -E 'AAA|BBB'
-# BBB
-echo "CCC" | grep -E 'AAA|BBB'
-#
+  echo "AAA" | grep -E 'AAA|BBB'
+  # AAA
+  echo "BBB" | grep -E 'AAA|BBB'
+  # BBB
+  echo "CCC" | grep -E 'AAA|BBB'
+  #
 
-echo "AAA" | grep -E 'AAA|BBB|CCC'
-# AAA
+  echo "AAA" | grep -E 'AAA|BBB|CCC'
+  # AAA
 
-# To combine alternation with other regexp elements, use ().
-grep -E '^(bz|gz|zip)' dirlist*.txt
-# Match the file in lists that start with either bz,gz, or zip.
+  # To combine alternation with other regexp elements, use ().
+  grep -E '^(bz|gz|zip)' dirlist*.txt
+  # Match the file in lists that start with either bz,gz, or zip.
 
 #+end_src
 
@@ -2833,13 +2825,13 @@ Match an element *zero or one time*. This means, in effect, “Make the precedin
 
 #+begin_src sh
 
-# To check valid number of two form: (nn) nn-n or nn nn-n.
-echo "(55) 12-4" |grep -E '^\(?[0-9][0-9]\)? [0-9][0-9]-[0-9]$'
-# (55) 12-4
-echo "55 12-4" |grep -E '^\(?[0-9][0-9]\)? [0-9][0-9]-[0-9]$'
-# 55 12-4
-echo "AA 12-4" |grep -E '^\(?[0-9][0-9]\)? [0-9][0-9]-[0-9]$'
-#
+  # To check valid number of two form: (nn) nn-n or nn nn-n.
+  echo "(55) 12-4" |grep -E '^\(?[0-9][0-9]\)? [0-9][0-9]-[0-9]$'
+  # (55) 12-4
+  echo "55 12-4" |grep -E '^\(?[0-9][0-9]\)? [0-9][0-9]-[0-9]$'
+  # 55 12-4
+  echo "AA 12-4" |grep -E '^\(?[0-9][0-9]\)? [0-9][0-9]-[0-9]$'
+  #
 
 #+end_src
 
@@ -2848,15 +2840,15 @@ Match an element *zero or more times*. Like the [[?]] metacharacter, the ~*~ is 
 
 #+begin_src sh
 
-# To check a string was a sentence; that is, it starts with an
-# uppercase letter, then contains any number of uppercase and
-# lowercase letters and spaces, and ends with a period.
-echo "This works." | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
-# This works.
-echo "This Works." | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
-# This Works.
-echo "this doesnt" | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
-#
+  # To check a string was a sentence; that is, it starts with an
+  # uppercase letter, then contains any number of uppercase and
+  # lowercase letters and spaces, and ends with a period.
+  echo "This works." | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
+  # This works.
+  echo "This Works." | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
+  # This Works.
+  echo "this doesnt" | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
+  #
 
 
 #+end_src
@@ -2866,16 +2858,16 @@ Match an element *one or more times*. The ~+~ metacharacter works much like the 
 
 #+begin_src sh
 
-# Lines consisting of groups of one or more alphabetic characters
-# separated by single spaces.
-echo "This that" | grep -E '^([[:alpha:]]+ ?)+$'
-# This that
-echo "a b c" | grep -E '^([[:alpha:]]+ ?)+$'
-# a b c
-echo "a b 9" | grep -E '^([[:alpha:]]+ ?)+$'
-#
-echo "abc d" | grep -E '^([[:alpha:]]+ ?)+$'
-#
+  # Lines consisting of groups of one or more alphabetic characters
+  # separated by single spaces.
+  echo "This that" | grep -E '^([[:alpha:]]+ ?)+$'
+  # This that
+  echo "a b c" | grep -E '^([[:alpha:]]+ ?)+$'
+  # a b c
+  echo "a b 9" | grep -E '^([[:alpha:]]+ ?)+$'
+  #
+  echo "abc d" | grep -E '^([[:alpha:]]+ ?)+$'
+  #
 
 #+end_src
 
@@ -2891,13 +2883,13 @@ Match an element a *specific number of times*. The ~{~ and ~}~ metacharacters ar
 
 #+begin_src sh
 
-# To check valid number of two form: (nnnn) nnn-nnnn or nnn nnn-nnnn.
-echo "(555) 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
-# (555) 123-4567
-echo "555 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
-# 555 123-4567
-echo "5555 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
-#
+  # To check valid number of two form: (nnnn) nnn-nnnn or nnn nnn-nnnn.
+  echo "(555) 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
+  # (555) 123-4567
+  echo "555 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
+  # 555 123-4567
+  echo "5555 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
+  #
 
 #+end_src
 
@@ -3090,11 +3082,11 @@ Bourne shell scripts generally start with the line ~#!/bin/sh~, which indicates 
 
 #+begin_src sh
 
-#!/bin/sh
-#grep r.*t /etc/passwd
-# Print something, then run ls
-echo About to run the ls command.
-ls
+  #!/bin/sh
+  #grep r.*t /etc/passwd
+  # Print something, then run ls
+  echo About to run the ls command.
+  ls
 
 #+end_src
 
@@ -3106,15 +3098,15 @@ When writing scripts and working on the command line, remember what happens when
 
 #+begin_src sh
 
-# Let’s say you’re looking for all entries in /etc/passwd that match the
-# regular expression r.*t. You can run this command:
-grep r.*t /etc/passwd
+  # Let’s say you’re looking for all entries in /etc/passwd that match the
+  # regular expression r.*t. You can run this command:
+  grep r.*t /etc/passwd
 
-# It works most of the time, but sometimes it mysteriously fails. Why?
-# The answer is probably in your current directory. If that directory
-# contains files with names such as r.input and r.output, then the shell
-# expands r.*t to r.input r.output and creates this command:
-grep r.input r.output /etc/passwd
+  # It works most of the time, but sometimes it mysteriously fails. Why?
+  # The answer is probably in your current directory. If that directory
+  # contains files with names such as r.input and r.output, then the shell
+  # expands r.*t to r.input r.output and creates this command:
+  grep r.input r.output /etc/passwd
 
 #+end_src
 
@@ -3129,9 +3121,9 @@ grep r.input r.output /etc/passwd
 
 #+begin_src sh
 
-#!/bin/sh
-gs -q -dBATCH -dNOPAUSE -dSAFER \
--sOutputFile=- -sDEVICE=pnmraw $@
+  #!/bin/sh
+  gs -q -dBATCH -dNOPAUSE -dSAFER \
+     -sOutputFile=- -sDEVICE=pnmraw $@
 
 #+end_src
 
@@ -3161,38 +3153,38 @@ If we place text inside double quotes, all the special characters used by the sh
 
 #+begin_src sh
 
-echo "There is no * in my path: $PATH"   # double quotes
-# There is no * in my path: /sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+  echo "There is no * in my path: $PATH"   # double quotes
+  # There is no * in my path: /sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 
-echo 'There is no * in my path: $PATH'   # single quotes
-# There is no * in my path: $PATH
-
-
-echo 'The first argument was "'$?'"'     # quotes inside quotes
-# The first argument was "0"
+  echo 'There is no * in my path: $PATH'   # single quotes
+  # There is no * in my path: $PATH
 
 
-echo "$(lsblk | grep sda)"   # exact output keeping the format
-# sda      8:0    0 119.2G  0 disk
-# |-sda1   8:1    0   128M  0 part /boot/efi
-# |-sda2   8:2    0     8G  0 part [SWAP]
-# |-sda3   8:3    0 111.1G  0 part /
+  echo 'The first argument was "'$?'"'     # quotes inside quotes
+  # The first argument was "0"
 
-echo '$(lsblk | grep sda)'   # single quotes
-# $(lsblk | grep sda)
 
-echo $(lsblk | grep sda)     # string on a line separated by whitespace
-# sda 8:0 0 119.2G 0 disk |-sda1 8:1 0 128M 0 part /boot/efi |-sda2 8:2
-# 0 8G 0 part [SWAP] |-sda3 8:3 0 111.1G 0 part /
+  echo "$(lsblk | grep sda)"   # exact output keeping the format
+  # sda      8:0    0 119.2G  0 disk
+  # |-sda1   8:1    0   128M  0 part /boot/efi
+  # |-sda2   8:2    0     8G  0 part [SWAP]
+  # |-sda3   8:3    0 111.1G  0 part /
 
-echo here are 4    spaces
-# here are 4 spaces
-echo "here are 4    spaces"
-# here are 4    spaces
-# Word-splitting is suppressed and the embedded spaces are not treated
-# as delimiters; rather they become part of the argument.
-# Once the double quotes are added, our command line
-# contains a command followed by a single argument.
+  echo '$(lsblk | grep sda)'   # single quotes
+  # $(lsblk | grep sda)
+
+  echo $(lsblk | grep sda)     # string on a line separated by whitespace
+  # sda 8:0 0 119.2G 0 disk |-sda1 8:1 0 128M 0 part /boot/efi |-sda2 8:2
+  # 0 8G 0 part [SWAP] |-sda3 8:3 0 111.1G 0 part /
+
+  echo here are 4    spaces
+  # here are 4 spaces
+  echo "here are 4    spaces"
+  # here are 4    spaces
+  # Word-splitting is suppressed and the embedded spaces are not treated
+  # as delimiters; rather they become part of the argument.
+  # Once the double quotes are added, our command line
+  # contains a command followed by a single argument.
 
 #+end_src
 
@@ -3201,8 +3193,8 @@ One way to pass a literal single quote to a command is to *place a backslash* be
 
 #+begin_src sh
 
-echo I don\'t like contractions inside shell scripts.
-# I don't like contractions inside shell scripts.
+  echo I don\'t like contractions inside shell scripts.
+  # I don't like contractions inside shell scripts.
 
 #+end_src
 
@@ -3212,8 +3204,8 @@ General rule to quote an entire string with no substitutions, follow this proced
 
 #+begin_src sh
 
-echo 'this isn'\''t a forward slash: \'
-# this isn't a forward slash: \
+  echo 'this isn'\''t a forward slash: \'
+  # this isn't a forward slash: \
 
 #+end_src
 
@@ -3224,8 +3216,8 @@ To allow a backslash character to appear, escape it by typing ~\\~. Note that wi
 
 #+begin_src sh
 
-echo "The balance for user $USER is: \$5.00"
-# The balance for user me is: $5.00
+  echo "The balance for user $USER is: \$5.00"
+  # The balance for user me is: $5.00
 
 #+end_src
 
@@ -3234,14 +3226,14 @@ As we will see, with each succeeding level of quoting, more and more of the expa
 
 #+begin_src sh
 
-echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
-# text /home/me/ls-output.txt a b foo 4 me
+  echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+  # text /home/me/ls-output.txt a b foo 4 me
 
-echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
-# text ~/*.txt {a,b} foo 4 me
+  echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+  # text ~/*.txt {a,b} foo 4 me
 
-echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
-# text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+  echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+  # text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
 
 #+end_src
 
@@ -3250,9 +3242,9 @@ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
 How do we create a variable? Simple, we just use it. When the shell encounters a variable, it automatically creates it. This differs from many programming languages in which variables must be explicitly declared or defined before use.
 
 There are some rules about variable names:
-  1. Variable names may consist of alphanumeric characters and underscore characters.
-  2. The first character of a variable name must be either a letter or an underscore.
-  3. Spaces and punctuation symbols are not allowed.
+1. Variable names may consist of alphanumeric characters and underscore characters.
+2. The first character of a variable name must be either a letter or an underscore.
+3. Spaces and punctuation symbols are not allowed.
 
 Note that in an assignment, there must be no spaces between the variable name, the equal sign, and the value.
 
@@ -3260,20 +3252,20 @@ A common convention is to use uppercase letters to designate constants and lower
 
 #+begin_src sh
 
-# Assign the string "z" to variable a.
-a=z
-# Embedded spaces must be within quotes.
-b="a string"
-# Expansions variables can be expanded into the assignment.
-c="a string and $b"
-# Results of a command.
-d="$(ls -l foo.txt)"
-# Arithmetic expansion.
-e=$((5 * 7))
-# Escape sequences such as tabs and newlines.
-f="\t\ta string\n"
-# Multiple variable assignments may be done on a single line.
-a=5 b="a string"
+  # Assign the string "z" to variable a.
+  a=z
+  # Embedded spaces must be within quotes.
+  b="a string"
+  # Expansions variables can be expanded into the assignment.
+  c="a string and $b"
+  # Results of a command.
+  d="$(ls -l foo.txt)"
+  # Arithmetic expansion.
+  e=$((5 * 7))
+  # Escape sequences such as tabs and newlines.
+  f="\t\ta string\n"
+  # Multiple variable assignments may be done on a single line.
+  a=5 b="a string"
 
 #+end_src
 
@@ -3281,27 +3273,27 @@ Quotation marks in variables are optional, but might sometimes cause problems su
 
 #+begin_src sh
 
-#!/bin/bash
-# trouble: script to demonstrate common errors
-number=
-if [ $number = 1 ]; then
-    echo "Number is equal to 1."
-else
-    echo "Number is not equal to 1."
-fi
+  #!/bin/bash
+  # trouble: script to demonstrate common errors
+  number=
+  if [ $number = 1 ]; then
+      echo "Number is equal to 1."
+  else
+      echo "Number is not equal to 1."
+  fi
 
-trouble
-# The command [ $number = 1 ] yields [   = 1 ]
-# The = operator is a binary operator (it requires a value on each
-# side), but the first value is missing, so the test command expects a
-# unary operator (such as -z) instead.
-/home/me/bin/trouble: line 7: [: =: unary operator expected
-# since the test failed (because of the error), the if command receives
-# a non-zero exit code and acts accordingly, and the second echo command
-# is executed.
-Number is not equal to 1.
-# If we quote [ "$number" = 1 ] yields [ "" = 1 ]
-# therefore the program works perfectly.
+  trouble
+  # The command [ $number = 1 ] yields [   = 1 ]
+  # The = operator is a binary operator (it requires a value on each
+  # side), but the first value is missing, so the test command expects a
+  # unary operator (such as -z) instead.
+  /home/me/bin/trouble: line 7: [: =: unary operator expected
+  # since the test failed (because of the error), the if command receives
+  # a non-zero exit code and acts accordingly, and the second echo command
+  # is executed.
+  Number is not equal to 1.
+  # If we quote [ "$number" = 1 ] yields [ "" = 1 ]
+  # therefore the program works perfectly.
 
 #+end_src
 
@@ -3309,17 +3301,17 @@ Commun mistake:
 
 #+begin_src sh
 
-foo="yes"
-echo $foo
-# yes
-echo $fool
-#
+  foo="yes"
+  echo $foo
+  # yes
+  echo $fool
+  #
 
-# This error is because the shell happily created the variable fool when
-# it encountered it and gave it the default value of nothing, or
-# empty, so if there's a command expecting for a variable, it will
-# receive nothing and may fail. From this, we learn that we must pay
-# close attention to our spelling!
+  # This error is because the shell happily created the variable fool when
+  # it encountered it and gave it the default value of nothing, or
+  # empty, so if there's a command expecting for a variable, it will
+  # receive nothing and may fail. From this, we learn that we must pay
+  # close attention to our spelling!
 
 #+end_src
 
@@ -3327,16 +3319,16 @@ During expansion, variable names may be surrounded by optional curly braces, ~{}
 
 #+begin_src sh
 
-# We try to change the name of a file from myfile to myfile1,
-# using a variable
-filename="myfile"
-touch "$filename"
-mv "$filename" "$filename1"
-# mv: missing destination file operand after `myfile'
+  # We try to change the name of a file from myfile to myfile1,
+  # using a variable
+  filename="myfile"
+  touch "$filename"
+  mv "$filename" "$filename1"
+  # mv: missing destination file operand after `myfile'
 
-mv "$filename" "${filename}1"
-# By adding the surrounding braces, the shell no longer interprets the
-# trailing 1 as part of the variable name.
+  mv "$filename" "${filename}1"
+  # By adding the surrounding braces, the shell no longer interprets the
+  # trailing 1 as part of the variable name.
 
 #+end_src
 
@@ -3344,11 +3336,11 @@ mv "$filename" "${filename}1"
 
 #+begin_src sh
 
-declare -r TITLE="Page Title"
+  declare -r TITLE="Page Title"
 
-# You can orce the shell to restrict the assignment to integers by
-# using the declare command with the -i option, but, like setting
-# variables as read-only, this is rarely done.
+  # You can orce the shell to restrict the assignment to integers by
+  # using the declare command with the -i option, but, like setting
+  # variables as read-only, this is rarely done.
 
 #+end_src
 
@@ -3359,34 +3351,34 @@ They are defined by preceding the variable name with the word ~local~. This crea
 
 #+begin_src sh
 
-#!/bin/bash
-# local-vars: script to demonstrate local variables
-foo=0  # global variable foo
+  #!/bin/bash
+  # local-vars: script to demonstrate local variables
+  foo=0  # global variable foo
 
-funct_1 () {
-    local foo # variable foo local to funct_1
-    foo=1
-    echo "funct_1: foo = $foo"
-}
+  funct_1 () {
+      local foo # variable foo local to funct_1
+      foo=1
+      echo "funct_1: foo = $foo"
+  }
 
-funct_2 () {
-    local foo # variable foo local to funct_2
-    foo=2
-    echo "funct_2: foo = $foo"
-}
+  funct_2 () {
+      local foo # variable foo local to funct_2
+      foo=2
+      echo "funct_2: foo = $foo"
+  }
 
-echo "global:  foo = $foo"
-funct_1
-echo "global:  foo = $foo"
-funct_2
-echo "global:  foo = $foo"
+  echo "global:  foo = $foo"
+  funct_1
+  echo "global:  foo = $foo"
+  funct_2
+  echo "global:  foo = $foo"
 
-local-vars
-# global:  foo = 0
-# funct_1: foo = 1
-# global:  foo = 0
-# funct_2: foo = 2
-# global:  foo = 0
+  local-vars
+  # global:  foo = 0
+  # funct_1: foo = 1
+  # global:  foo = 0
+  # funct_2: foo = 2
+  # global:  foo = 0
 
 #+end_src
 
@@ -3398,14 +3390,14 @@ local-vars
 
 #+begin_src sh
 
-#!/bin/sh
-echo First argument: $1
-echo Third argument: $3
+  #!/bin/sh
+  echo First argument: $1
+  echo Third argument: $3
 
-# Running the script.
-$ ./name_file one two three
-# First argument: one
-# Third argument: three
+  # Running the script.
+  $ ./name_file one two three
+  # First argument: one
+  # Third argument: three
 
 #+end_src
 
@@ -3416,12 +3408,12 @@ It's especially important when you’re running [[shift]] in a loop to pick thro
 
 #+begin_src sh
 
-#!/bin/sh
-echo How many argument are there? $#
+  #!/bin/sh
+  echo How many argument are there? $#
 
-# Running the script.
-$ ./name_file one two three
-# How many argument are there? 3
+  # Running the script.
+  $ ./name_file one two three
+  # How many argument are there? 3
 
 #+end_src
 
@@ -3434,54 +3426,54 @@ $ ./name_file one two three
 
 #+begin_src sh
 
-#!/bin/sh
-echo What are the arguments? "$@"
+  #!/bin/sh
+  echo What are the arguments? "$@"
 
-# Running the script.
-$ ./name_file one two three
-# What are the arguments? one two three
+  # Running the script.
+  $ ./name_file one two three
+  # What are the arguments? one two three
 
 
-#!/bin/bash
-# posit-params3: script to demonstrate $* and $@
-print_params () {
-    echo "\$1 = $1"
-    echo "\$2 = $2"
-    echo "\$3 = $3"
-    echo "\$4 = $4"
-}
-pass_params () {
-    echo -e "\n" '$* :'; print_params $*
-    echo -e "\n" '"$*" :'; print_params "$*"
-    echo -e "\n" '$@ :'; print_params $@
-    echo -e "\n" '"$@" :'; print_params "$@"
-}
-pass_params "word" "words with spaces"
+  #!/bin/bash
+  # posit-params3: script to demonstrate $* and $@
+  print_params () {
+      echo "\$1 = $1"
+      echo "\$2 = $2"
+      echo "\$3 = $3"
+      echo "\$4 = $4"
+  }
+  pass_params () {
+      echo -e "\n" '$* :'; print_params $*
+      echo -e "\n" '"$*" :'; print_params "$*"
+      echo -e "\n" '$@ :'; print_params $@
+      echo -e "\n" '"$@" :'; print_params "$@"
+  }
+  pass_params "word" "words with spaces"
 
-posit-param3
-#   $* :
-# $1 = word
-# $2 = words
-# $3 = with
-# $4 = spaces
+  posit-param3
+  #   $* :
+  # $1 = word
+  # $2 = words
+  # $3 = with
+  # $4 = spaces
 
-#   "$*" :
-# $1 = word words with spaces
-# $2 =
-# $3 =
-# $4 =
+  #   "$*" :
+  # $1 = word words with spaces
+  # $2 =
+  # $3 =
+  # $4 =
 
-#   $@ :
-# $1 = word
-# $2 = words
-# $3 = with
-# $4 = spaces
+  #   $@ :
+  # $1 = word
+  # $2 = words
+  # $3 = with
+  # $4 = spaces
 
-#   "$@" :
-# $1 = word
-# $2 = words with spaces
-# $3 =
-# $4 =
+  #   "$@" :
+  # $1 = word
+  # $2 = words with spaces
+  # $3 =
+  # $4 =
 
 #+end_src
 
@@ -3490,12 +3482,12 @@ This variable holds the [[Exit codes][exit code]] of the last command that the s
 
 #+begin_src sh
 
-#!/bin/sh
-echo What\'s the last exit code? $?
+  #!/bin/sh
+  echo What\'s the last exit code? $?
 
-# Running the script.
-./name_file
-What's the last exit code? 0
+  # Running the script.
+  ./name_file
+  What's the last exit code? 0
 
 #+end_src
 
@@ -3506,12 +3498,12 @@ The ~$!~ shell parameter, will always contain the process ID of the last job put
 
 #+begin_src sh
 
-#!/bin/sh
-echo What\'s the process ID of the shell? $$
+  #!/bin/sh
+  echo What\'s the process ID of the shell? $$
 
-# Running the script.
-./name_file
-# What's the process ID of the shell? 167893
+  # Running the script.
+  ./name_file
+  # What's the process ID of the shell? 167893
 
 #+end_src
 
@@ -3522,28 +3514,28 @@ For example, say your script needs to report an invalid argument that is stored 
 
 #+begin_src sh
 
-#!/bin/sh
-BADPARM="Some bad parameter."
-echo $0: bad option $BADPARM
-echo $0 bad argument $1
-echo $0: error to output $BADPARM 2>&1
-echo $0: output to error $BADPARM 1>&2
+  #!/bin/sh
+  BADPARM="Some bad parameter."
+  echo $0: bad option $BADPARM
+  echo $0 bad argument $1
+  echo $0: error to output $BADPARM 2>&1
+  echo $0: output to error $BADPARM 1>&2
 
-# Running the script.
-./name_file one two three
-# ./name_file: bad option Some bad parameter.
-# ./name_file bad argument one
-# ./name_file: error to output Some bad parameter.
-# ./name_file: output to error Some bad parameter.
+  # Running the script.
+  ./name_file one two three
+  # ./name_file: bad option Some bad parameter.
+  # ./name_file bad argument one
+  # ./name_file: error to output Some bad parameter.
+  # ./name_file: output to error Some bad parameter.
 
-# Running the script in this other way.
-./name_file one two three > out_file 2> error_file
-cat out_file
-# ./name_file: bad option Some bad parameter.
-# ./name_file bad argument one
-# ./name_file: error to output Some bad parameter.
-cat error_file
-# ./name_file: output to error Some bad parameter.
+  # Running the script in this other way.
+  ./name_file one two three > out_file 2> error_file
+  cat out_file
+  # ./name_file: bad option Some bad parameter.
+  # ./name_file bad argument one
+  # ./name_file: error to output Some bad parameter.
+  cat error_file
+  # ./name_file: output to error Some bad parameter.
 
 #+end_src
 
@@ -3552,34 +3544,34 @@ This built-in shell command can be used with argument variables to *remove the f
 
 #+begin_src sh
 
-#!/bin/sh
-echo Argument: $1
-shift
-echo Argument: $1
-shift
-echo Argument: $1
+  #!/bin/sh
+  echo Argument: $1
+  shift
+  echo Argument: $1
+  shift
+  echo Argument: $1
 
-# Running the script.
-./name_file one two three
-# Argument: one
-# Argument: two
-# Argument: three
+  # Running the script.
+  ./name_file one two three
+  # Argument: one
+  # Argument: two
+  # Argument: three
 
 
-#!/bin/bash
-# posit-param2: script to display all arguments
-count=1
-while [[ $# -gt 0 ]]; do
-    echo "Argument $count = $1"
-    count=$((count + 1))
-    shift
-done
+  #!/bin/bash
+  # posit-param2: script to display all arguments
+  count=1
+  while [[ $# -gt 0 ]]; do
+      echo "Argument $count = $1"
+      count=$((count + 1))
+      shift
+  done
 
-posit-param2 a b c d
-# Argument 1 = a
-# Argument 2 = b
-# Argument 3 = c
-# Argument 4 = d
+  posit-param2 a b c d
+  # Argument 1 = a
+  # Argument 2 = b
+  # Argument 3 = c
+  # Argument 4 = d
 
 #+end_src
 
@@ -3594,63 +3586,63 @@ posit-param2 a b c d
 
 #+begin_src sh
 
-# Display a message when the help option is invoked
-# or an unknown option is attempted.
-usage () {
-    echo "$PROGNAME: usage: $PROGNAME [-f file | -i]"
-    return
-}
+  # Display a message when the help option is invoked
+  # or an unknown option is attempted.
+  usage () {
+      echo "$PROGNAME: usage: $PROGNAME [-f file | -i]"
+      return
+  }
 
-# process command line options
-interactive=
-filename=
+  # process command line options
+  interactive=
+  filename=
 
-while [[ -n "$1" ]]; do
-    case "$1" in
-        -f | --file)
-            shift
-            filename="$1"
-            ;;
-        -i | --interactive) interactive=1
-                            ;;
-        -h | --help)
-            usage
-            exit
-            ;;
-        *)
-            usage >&2
-            exit 1
-            ;;
-    esac
-    shif
-done
-# Notice how the case statement detects only whether the user chooses to
-# overwrite or quit. Any other choice causes the loop to continue and
-# prompts the user again.
+  while [[ -n "$1" ]]; do
+      case "$1" in
+          -f | --file)
+              shift
+              filename="$1"
+              ;;
+          -i | --interactive) interactive=1
+                              ;;
+          -h | --help)
+              usage
+              exit
+              ;;
+          *)
+              usage >&2
+              exit 1
+              ;;
+      esac
+      shif
+  done
+  # Notice how the case statement detects only whether the user chooses to
+  # overwrite or quit. Any other choice causes the loop to continue and
+  # prompts the user again.
 
-# interactive mode
-if [[ -n "$interactive" ]]; then
-    while true; do
-        read -p "Enter name of output file: " filename
-        if [[ -e "$filename" ]]; then
-            read -p "'$filename' exists. Overwrite? [y/n/q] > "
-            case "$REPLY" in
-                Y|y) break
-                     ;;
-                Q|q) echo "Program terminated."
-                     exit
-                     ;;
-                *)
-                    continue
-                    ;;
-            esac
-        elif [[ -z "$filename" ]]; then
-            continue
-        else
-            break
-        fi
-    done
-fi
+  # interactive mode
+  if [[ -n "$interactive" ]]; then
+      while true; do
+          read -p "Enter name of output file: " filename
+          if [[ -e "$filename" ]]; then
+              read -p "'$filename' exists. Overwrite? [y/n/q] > "
+              case "$REPLY" in
+                  Y|y) break
+                       ;;
+                  Q|q) echo "Program terminated."
+                       exit
+                       ;;
+                  ,*)
+                      continue
+                      ;;
+              esac
+          elif [[ -z "$filename" ]]; then
+              continue
+          else
+              break
+          fi
+      done
+  fi
 
 #+end_src
 
@@ -3668,37 +3660,37 @@ In the shell, a single ~=~ performs [[Assignments][assignment]] while ~==~ evalu
 
 #+begin_src sh
 
-[ hello = hello ]; echo $?
-# 0
+  [ hello = hello ]; echo $?
+  # 0
 
-test hello = hello; echo $?
-# 0
+  test hello = hello; echo $?
+  # 0
 
-[ hello = bye ]
-# returns 1
+  [ hello = bye ]
+  # returns 1
 
 
-#!/bin/bash
-# test-integer: evaluate the value of an integer.
-INT=-5
-if [ -z "$INT" ]; then
-    echo "INT is empty." >&2
-    exit 1
-fi
-if [ "$INT" -eq 0 ]; then
-    echo "INT is zero."
-else
-    if [ "$INT" -lt 0 ]; then
-        echo "INT is negative."
-    else
-        echo "INT is positive."
-    fi
-    if [ $((INT % 2)) -eq 0 ]; then
-        echo "INT is even."
-    else
-        echo "INT is odd."
-    fi
-fi
+  #!/bin/bash
+  # test-integer: evaluate the value of an integer.
+  INT=-5
+  if [ -z "$INT" ]; then
+      echo "INT is empty." >&2
+      exit 1
+  fi
+  if [ "$INT" -eq 0 ]; then
+      echo "INT is zero."
+  else
+      if [ "$INT" -lt 0 ]; then
+          echo "INT is negative."
+      else
+          echo "INT is positive."
+      fi
+      if [ $((INT % 2)) -eq 0 ]; then
+          echo "INT is even."
+      else
+          echo "INT is odd."
+      fi
+  fi
 
 #+end_src
 
@@ -3707,12 +3699,12 @@ example that uses ~grep~:
 
 #+begin_src sh
 
-#!/bin/sh
-if grep -q daemon /etc/passwd; then
-    echo The daemon user is in the passwd file.
-else
-    echo There is a problem. daemon is not in the passwd file.
-fi
+  #!/bin/sh
+  if grep -q daemon /etc/passwd; then
+      echo The daemon user is in the passwd file.
+  else
+      echo There is a problem. daemon is not in the passwd file.
+  fi
 
 #+end_src
 
@@ -3731,39 +3723,39 @@ This makes ~[[]]~ useful for evaluating file and pathnames.
 
 #+begin_src sh
 
-#!/bin/bash
-# test-integer2: evaluate the value of an integer.
-INT=-5
-if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
-    if [ "$INT" -eq 0 ]; then
-        echo "INT is zero."
-    else
-        if [ "$INT" -lt 0 ]; then
-            echo "INT is negative."
-        else
-            echo "INT is positive."
-        fi
-        if [ $((INT % 2)) -eq 0 ]; then
-            echo "INT is even."
-        else
-            echo "INT is odd."
-        fi
-    fi
-else
-    echo "INT is not an integer." >&2
-    exit 1
-fi
-# By applying the regular expression, we are able to limit the value of
-# INT to only strings that begin with an optional minus sign, followed
-# by one or more numerals. This expression also eliminates the
-# possibility of empty values.
+  #!/bin/bash
+  # test-integer2: evaluate the value of an integer.
+  INT=-5
+  if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
+      if [ "$INT" -eq 0 ]; then
+          echo "INT is zero."
+      else
+          if [ "$INT" -lt 0 ]; then
+              echo "INT is negative."
+          else
+              echo "INT is positive."
+          fi
+          if [ $((INT % 2)) -eq 0 ]; then
+              echo "INT is even."
+          else
+              echo "INT is odd."
+          fi
+      fi
+  else
+      echo "INT is not an integer." >&2
+      exit 1
+  fi
+  # By applying the regular expression, we are able to limit the value of
+  # INT to only strings that begin with an optional minus sign, followed
+  # by one or more numerals. This expression also eliminates the
+  # possibility of empty values.
 
 
-FILE=foo.bar
-if [[ $FILE == foo.* ]]; then
-> echo "$FILE matches pattern 'foo.*'"
-> fi
-# foo.bar matches pattern 'foo.*'
+  FILE=foo.bar
+  if [[ $FILE == foo.* ]]; then
+      > echo "$FILE matches pattern 'foo.*'"
+      > fi
+      # foo.bar matches pattern 'foo.*'
 
 #+end_src
 
@@ -3792,84 +3784,84 @@ The ternary operator performs a stand-alone logical test. It can be used as a ki
 
 #+begin_src sh
 
-if ((1)); then echo "true"; else echo "false"; fi
-# true
-if ((0)); then echo "true"; else echo "false"; fi
-# false
+  if ((1)); then echo "true"; else echo "false"; fi
+  # true
+  if ((0)); then echo "true"; else echo "false"; fi
+  # false
 
 
-# This example implements a toggle. Each time the operator is performed,
-# the value of the variable a switches from zero to one or vice versa.
-a=0
-((a<1?++a:--a))
-echo $a
-# 1
-((a<1?++a:--a))
-echo $a
-# 0
+  # This example implements a toggle. Each time the operator is performed,
+  # the value of the variable a switches from zero to one or vice versa.
+  a=0
+  ((a<1?++a:--a))
+  echo $a
+  # 1
+  ((a<1?++a:--a))
+  echo $a
+  # 0
 
-# Performing assignment within the expressions is not straightforward.
-a=0
-# This throws an error.
-((a<1?a+=1:a-=1))
-# error token is "-=1"
-# Avoid it by surrounding the assignment expression with parentheses.
-((a<1?(a+=1):(a-=1)))
-# 1
-
-
-#!/bin/bash
-# test-integer2a: evaluate the value of an integer.
-INT=-5
-if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
-    if ((INT == 0)); then
-        echo "INT is zero."
-    else
-        if ((INT < 0)); then
-            echo "INT is negative."
-        else
-            echo "INT is positive."
-        fi
-        if (( ((INT % 2)) == 0)); then
-            echo "INT is even."
-        else
-            echo "INT is odd."
-        fi
-    fi
-else
-    echo "INT is not an integer." >&2
-    exit 1
-fi
+  # Performing assignment within the expressions is not straightforward.
+  a=0
+  # This throws an error.
+  ((a<1?a+=1:a-=1))
+  # error token is "-=1"
+  # Avoid it by surrounding the assignment expression with parentheses.
+  ((a<1?(a+=1):(a-=1)))
+  # 1
 
 
-#!/bin/bash
-# arith-loop: script to demonstrate arithmetic operators
-finished=0
-a=0
-printf "a\ta**2\ta**3\n"
-printf "=\t====\t====\n"
+  #!/bin/bash
+  # test-integer2a: evaluate the value of an integer.
+  INT=-5
+  if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
+      if ((INT == 0)); then
+          echo "INT is zero."
+      else
+          if ((INT < 0)); then
+              echo "INT is negative."
+          else
+              echo "INT is positive."
+          fi
+          if (( ((INT % 2)) == 0)); then
+              echo "INT is even."
+          else
+              echo "INT is odd."
+          fi
+      fi
+  else
+      echo "INT is not an integer." >&2
+      exit 1
+  fi
 
-until ((finished)); do
-    b=$((a**2))
-    c=$((a**3))
-    printf "%d\t%d\t%d\n" "$a" "$b" "$c"
-    ((a<10?++a:(finished=1)))
-done
 
-arith-loop
-# a a**2 a**3
-# = ==== ====
-# 0    0    0
-# 1    1    1
-# 2    4    8
-# 3    9   27
-# 4   16   64
-# 5   25  125
-# 6   36  216
-# 7   49  343
-# 8   64  512
-# 9   81  729
-# 10 100 1000
+  #!/bin/bash
+  # arith-loop: script to demonstrate arithmetic operators
+  finished=0
+  a=0
+  printf "a\ta**2\ta**3\n"
+  printf "=\t====\t====\n"
+
+  until ((finished)); do
+      b=$((a**2))
+      c=$((a**3))
+      printf "%d\t%d\t%d\n" "$a" "$b" "$c"
+      ((a<10?++a:(finished=1)))
+  done
+
+  arith-loop
+  # a a**2 a**3
+  # = ==== ====
+  # 0    0    0
+  # 1    1    1
+  # 2    4    8
+  # 3    9   27
+  # 4   16   64
+  # 5   25  125
+  # 6   36  216
+  # 7   49  343
+  # 8   64  512
+  # 9   81  729
+  # 10 100 1000
 
 #+end_src
 
@@ -3896,14 +3888,14 @@ Three *binary* operators (tests that need two files as arguments) are used in fi
 
 #+begin_src sh
 
-[ -f file ]
-# returns true if file is a regular file.
+  [ -f file ]
+  # returns true if file is a regular file.
 
-[ file1 -nt file2 ]; echo $?
-# returns true if file1 has a newer modification date than file2.
+  [ file1 -nt file2 ]; echo $?
+  # returns true if file1 has a newer modification date than file2.
 
-[ file1 -ef file2 ]; echo $?
-# returns true if they share inode numbers and devices.
+  [ file1 -ef file2 ]; echo $?
+  # returns true if they share inode numbers and devices.
 
 #+end_src
 
@@ -3918,20 +3910,20 @@ Three *binary* operators (tests that need two files as arguments) are used in fi
 
 #+begin_src sh
 
-[ hello = hello ];echo $?
-# 0
+  [ hello = hello ];echo $?
+  # 0
 
-[ hello == hello ];echo $?
-# 0
+  [ hello == hello ];echo $?
+  # 0
 
-[ hello != bye ]
-# returns 0
+  [ hello != bye ]
+  # returns 0
 
-[ -z "" ]
-# returns 0
+  [ -z "" ]
+  # returns 0
 
-[ -n "something" ]
-# returns 0
+  [ -n "something" ]
+  # returns 0
 
 #+end_src
 
@@ -3949,34 +3941,34 @@ When working with numbers, use ~-eq~ instead of the equal sign.
 
 #+begin_src sh
 
-[ 1 -eq 1 ]
-# returns true.
+  [ 1 -eq 1 ]
+  # returns true.
 
-[ 01 -eq 1 ]
-# returns true.
+  [ 01 -eq 1 ]
+  # returns true.
 
 
-#!/bin/bash
-# test-integer: evaluate the value of an integer.
-INT=-5
-if [ -z "$INT" ]; then
-    echo "INT is empty." >&2
-    exit 1
-fi
-if [ "$INT" -eq 0 ]; then
-    echo "INT is zero."
-else
-    if [ "$INT" -lt 0 ]; then
-        echo "INT is negative."
-    else
-        echo "INT is positive."
-    fi
-    if [ $((INT % 2)) -eq 0 ]; then
-        echo "INT is even."
-    else
-        echo "INT is odd."
-    fi
-fi
+  #!/bin/bash
+  # test-integer: evaluate the value of an integer.
+  INT=-5
+  if [ -z "$INT" ]; then
+      echo "INT is empty." >&2
+      exit 1
+  fi
+  if [ "$INT" -eq 0 ]; then
+      echo "INT is zero."
+  else
+      if [ "$INT" -lt 0 ]; then
+          echo "INT is negative."
+      else
+          echo "INT is positive."
+      fi
+      if [ $((INT % 2)) -eq 0 ]; then
+          echo "INT is even."
+      else
+          echo "INT is odd."
+      fi
+  fi
 
 #+end_src
 
@@ -3991,52 +3983,52 @@ The words ~if~, ~then~, ~else~ and ~fi~ in the shell script are shell keywords. 
 
 #+begin_src sh
 
-# Syntax:
-if commands; then
-    commands
-else
-    commands
-fi
+  # Syntax:
+  if commands; then
+      commands
+  else
+      commands
+  fi
 
-# if in the command line.
-if commands; then commands; fi
-
-
-# Check that argument is a directory.
-if [[ ! -d "$1" ]]; then
-    usage
-    exit 1
-fi
+  # if in the command line.
+  if commands; then commands; fi
 
 
-# Note: If a list of commands follows if, the last command in
-# the list is evaluated:
-if false; true; then echo "It's true."; fi
-# It's true.
-if true; false; then echo "It's true."; fi
-#
+  # Check that argument is a directory.
+  if [[ ! -d "$1" ]]; then
+      usage
+      exit 1
+  fi
 
 
-#!/bin/sh
-if [ "$1" = "hi" ]; then
-    echo 'The first argument was "hi"'
-else
-    echo -n 'The first argument was not "hi" -- '
-    echo It was '"'$1'"'
-fi
-
-# Running the script.
-./name_file bye
-# The first argument was not "hi" -- It was "bye"
+  # Note: If a list of commands follows if, the last command in
+  # the list is evaluated:
+  if false; true; then echo "It's true."; fi
+  # It's true.
+  if true; false; then echo "It's true."; fi
+  #
 
 
-# Other way for using commands other than [ for tests.
-#!/bin/sh
-if grep -q daemon /etc/passwd; then
-    echo The daemon user is in the passwd file.
-else
-    echo There is a problem. daemon is not in the passwd file.
-fi
+  #!/bin/sh
+  if [ "$1" = "hi" ]; then
+      echo 'The first argument was "hi"'
+  else
+      echo -n 'The first argument was not "hi" -- '
+      echo It was '"'$1'"'
+  fi
+
+  # Running the script.
+  ./name_file bye
+  # The first argument was not "hi" -- It was "bye"
+
+
+  # Other way for using commands other than [ for tests.
+  #!/bin/sh
+  if grep -q daemon /etc/passwd; then
+      echo The daemon user is in the passwd file.
+  else
+      echo There is a problem. daemon is not in the passwd file.
+  fi
 
 #+end_src
 
@@ -4045,30 +4037,30 @@ Without quotes ~"~ in ~if [ "$1" = hi ]; then~ in the previous example, that is 
 
 #+begin_src sh
 
-#!/bin/bash
-# test-file: Evaluate the status of a file
-FILE=~/.bashrc
-if [ -e "$FILE" ]; then
-    if [ -f "$FILE" ]; then
-        echo "$FILE is a regular file."
-    fi
-    if [ -d "$FILE" ]; then
-        echo "$FILE is a directory."
-    fi
-    if [ -r "$FILE" ]; then
-        echo "$FILE is readable."
-    fi
-    if [ -w "$FILE" ]; then
-        echo "$FILE is writable."
-    fi
-    if [ -x "$FILE" ]; then
-        echo "$FILE is executable/searchable."
-    fi
-else
-    echo "$FILE does not exist"
-    exit 1
-fi
-exit
+  #!/bin/bash
+  # test-file: Evaluate the status of a file
+  FILE=~/.bashrc
+  if [ -e "$FILE" ]; then
+      if [ -f "$FILE" ]; then
+          echo "$FILE is a regular file."
+      fi
+      if [ -d "$FILE" ]; then
+          echo "$FILE is a directory."
+      fi
+      if [ -r "$FILE" ]; then
+          echo "$FILE is readable."
+      fi
+      if [ -w "$FILE" ]; then
+          echo "$FILE is writable."
+      fi
+      if [ -x "$FILE" ]; then
+          echo "$FILE is executable/searchable."
+      fi
+  else
+      echo "$FILE does not exist"
+      exit 1
+  fi
+  exit
 
 #+end_src
 
@@ -4077,34 +4069,34 @@ The ~elif~ keyword lets you string ~if~ conditionals together.
 
 #+begin_src sh
 
-# Syntax:
-if commands; then
-    commands
-elif commands; then
-    commands
-else
-    commands
-fi
+  # Syntax:
+  if commands; then
+      commands
+  elif commands; then
+      commands
+  else
+      commands
+  fi
 
 
-#!/bin/sh
-if [ "$1" = "hi" ]; then
-    echo 'The first argument was "hi"'
-elif [ "$2" = "bye" ]; then
-    echo 'The second argument was "bye"'
-else
-    echo 'The first argument was not "hi" and the second was not "bye"'
-fi
+  #!/bin/sh
+  if [ "$1" = "hi" ]; then
+      echo 'The first argument was "hi"'
+  elif [ "$2" = "bye" ]; then
+      echo 'The second argument was "bye"'
+  else
+      echo 'The first argument was not "hi" and the second was not "bye"'
+  fi
 
-# Running the script.
-./name_file hi hello
-# The first argument was "hi"
-./name_file hello bye
-# The second argument was "bye"
-./name_file hello seeya
-# The first argument was not "hi" and the second was not "bye"
-./name_file hi bye
-# The first argument was "hi"
+  # Running the script.
+  ./name_file hi hello
+  # The first argument was "hi"
+  ./name_file hello bye
+  # The second argument was "bye"
+  ./name_file hello seeya
+  # The first argument was not "hi" and the second was not "bye"
+  ./name_file hi bye
+  # The first argument was "hi"
 
 #+end_src
 
@@ -4131,54 +4123,54 @@ It is good practice to include ~*~ as the last pattern in a case command, to cat
 
 #+begin_src sh
 
-# Syntax:
-# case word in
-#    [pattern [| pattern]...) commands ;;]...
-# esac
+  # Syntax:
+  # case word in
+  #    [pattern [| pattern]...) commands ;;]...
+  # esac
 
-#!/bin/sh
-case $1 in
-    Bye)
-        echo Fine, Bye.
-        ;;
-    Hi|Hello)
-        echo Nice to see you.
-        ;;
-    What*)
-        echo Whatever.
-        ;;
-    *)
-        echo 'Huh?'
-        ;;
-esac
-
-
-#!/bin/bash
-read -p "enter word > "
-case "$REPLY" in
-    [[:alpha:]]) echo "is a single alphabetic character." ;;
-    [ABC][0-9])  echo "is A, B, or C followed by a digit." ;;
-    ???)         echo "is three characters long." ;;
-    *.txt)       echo "is a word ending in '.txt'" ;;
-    *)           echo "is something else." ;;
-esac
+  #!/bin/sh
+  case $1 in
+      Bye)
+          echo Fine, Bye.
+          ;;
+      Hi|Hello)
+          echo Nice to see you.
+          ;;
+      What*)
+          echo Whatever.
+          ;;
+      *)
+          echo 'Huh?'
+          ;;
+  esac
 
 
-#!/bin/bash
-# case4-2: test a character
-read -n 1 -p "Type a character > "
-echo
+  #!/bin/bash
+  read -p "enter word > "
+  case "$REPLY" in
+      [[:alpha:]]) echo "is a single alphabetic character." ;;
+      [ABC][0-9])  echo "is A, B, or C followed by a digit." ;;
+      ???)         echo "is three characters long." ;;
+      *.txt)       echo "is a word ending in '.txt'" ;;
+      *)           echo "is something else." ;;
+  esac
 
-case "$REPLY" in
-    [[:upper:]])  echo "'$REPLY' is upper case." ;;&
-    [[:lower:]])  echo "'$REPLY' is lower case." ;;&
-    [[:alpha:]])  echo "'$REPLY' is alphabetic." ;;&
-    [[:digit:]])  echo "'$REPLY' is a digit." ;;&
-    [[:graph:]])  echo "'$REPLY' is a visible character." ;;&
-    [[:punct:]])  echo "'$REPLY' is a punctuation symbol." ;;&
-    [[:space:]])  echo "'$REPLY' is a whitespace character." ;;&
-    [[:xdigit:]]) echo "'$REPLY' is a hexadecimal digit." ;;&
-esac
+
+  #!/bin/bash
+  # case4-2: test a character
+  read -n 1 -p "Type a character > "
+  echo
+
+  case "$REPLY" in
+      [[:upper:]])  echo "'$REPLY' is upper case." ;;&
+      [[:lower:]])  echo "'$REPLY' is lower case." ;;&
+      [[:alpha:]])  echo "'$REPLY' is alphabetic." ;;&
+      [[:digit:]])  echo "'$REPLY' is a digit." ;;&
+      [[:graph:]])  echo "'$REPLY' is a visible character." ;;&
+      [[:punct:]])  echo "'$REPLY' is a punctuation symbol." ;;&
+      [[:space:]])  echo "'$REPLY' is a whitespace character." ;;&
+      [[:xdigit:]]) echo "'$REPLY' is a hexadecimal digit." ;;&
+  esac
 
 #+end_src
 
@@ -4186,41 +4178,41 @@ It is also possible to combine multiple patterns using the vertical bar characte
 
 #+begin_src sh
 
-#!/bin/bash
-# case-menu: a menu driven system information program
-clear
-echo "
-Please Select:
+  #!/bin/bash
+  # case-menu: a menu driven system information program
+  clear
+  echo "
+  Please Select:
 
-A. Display System Information
-B. Display Disk Space
-C. Display Home Space Utilization
-Q. Quit
-"
-read -p "Enter selection [A, B, C or Q] > "
+  A. Display System Information
+  B. Display Disk Space
+  C. Display Home Space Utilization
+  Q. Quit
+  "
+  read -p "Enter selection [A, B, C or Q] > "
 
-case "$REPLY" in
-    q|Q) echo "Program terminated."
-         exit
-         ;;
-    a|A) echo "Hostname: $HOSTNAME"
-         uptime
-         ;;
-    b|B) df -h
-         ;;
-    c|C) if [[ "$(id -u)" -eq 0 ]]; then
-             echo "Home Space Utilization (All Users)"
-             du -sh /home/*
-         else
-             echo "Home Space Utilization ($USER)"
-             du -sh "$HOME"
-         fi
-         ;;
-    *)
-        echo "Invalid entry" >&2
-        exit 1
-        ;;
-esac
+  case "$REPLY" in
+      q|Q) echo "Program terminated."
+           exit
+           ;;
+      a|A) echo "Hostname: $HOSTNAME"
+           uptime
+           ;;
+      b|B) df -h
+           ;;
+      c|C) if [[ "$(id -u)" -eq 0 ]]; then
+               echo "Home Space Utilization (All Users)"
+               du -sh /home/*
+           else
+               echo "Home Space Utilization ($USER)"
+               du -sh "$HOME"
+           fi
+           ;;
+      *)
+          echo "Invalid entry" >&2
+          exit 1
+          ;;
+  esac
 
 #+end_src
 
@@ -4231,15 +4223,15 @@ Usually appears before ~then~  keyword because we want to put the ~then~ keyword
 
 #+begin_src sh
 
-if [ "$1" = "hi" ]
-then
-    echo 'The first argument was "hi"'
-fi
+  if [ "$1" = "hi" ]
+  then
+      echo 'The first argument was "hi"'
+  fi
 
-# It's the same as:
-if [ "$1" = "hi" ]; then
-    echo 'The first argument was "hi"'
-fi
+  # It's the same as:
+  if [ "$1" = "hi" ]; then
+      echo 'The first argument was "hi"'
+  fi
 
 #+end_src
 
@@ -4248,40 +4240,40 @@ You can invert a test (that is, a logical not) by placing this operator before a
 
 #+begin_src sh
 
-#!/bin/sh
-if [ ! "$1" = hi ]; then
-    echo 'The first argument was not hi'
-fi
-# In this specific case of comparisons, you might see != used as an
-# alternative, but ! can be used with any of the condition tests.
+  #!/bin/sh
+  if [ ! "$1" = hi ]; then
+      echo 'The first argument was not hi'
+  fi
+  # In this specific case of comparisons, you might see != used as an
+  # alternative, but ! can be used with any of the condition tests.
 
 
-#!/bin/bash
-# test-integer4: determine if an integer is outside a
-# specified range of values.
-MIN_VAL=1
-MAX_VAL=100
-INT=50
-if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
-    if [[ ! ("$INT" -ge "$MIN_VAL" && "$INT" -le "$MAX_VAL") ]]; then
-        echo "$INT is outside $MIN_VAL to $MAX_VAL."
-    else
-        echo "$INT is in range."
-    fi
-else
-    echo "INT is not an integer." >&2
-    exit 1
-fi
+  #!/bin/bash
+  # test-integer4: determine if an integer is outside a
+  # specified range of values.
+  MIN_VAL=1
+  MAX_VAL=100
+  INT=50
+  if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
+      if [[ ! ("$INT" -ge "$MIN_VAL" && "$INT" -le "$MAX_VAL") ]]; then
+          echo "$INT is outside $MIN_VAL to $MAX_VAL."
+      else
+          echo "$INT is in range."
+      fi
+  else
+      echo "INT is not an integer." >&2
+      exit 1
+  fi
 
-# We also include parentheses around the expression, for grouping. If
-# these were not included, the negation would only apply to the first
-# expression and not the combination of the two. Coding with test:
-if [ ! \( "$INT" -ge "$MIN_VAL" -a "$INT" -le "$MAX_VAL" \) ];
-then
-    echo "$INT is outside $MIN_VAL to $MAX_VAL."
-else
-    echo "$INT is in range."
-fi
+  # We also include parentheses around the expression, for grouping. If
+  # these were not included, the negation would only apply to the first
+  # expression and not the combination of the two. Coding with test:
+  if [ ! \( "$INT" -ge "$MIN_VAL" -a "$INT" -le "$MAX_VAL" \) ];
+  then
+      echo "$INT is outside $MIN_VAL to $MAX_VAL."
+  else
+      echo "$INT is in range."
+  fi
 
 #+end_src
 
@@ -4300,34 +4292,34 @@ If the conditionals include the test command ~[~, can use ~-a~ and ~-o~ instead 
 
 #+begin_src sh
 
-#!/bin/sh
-if [ "$1" = hi ] || [ "$1" = bye ]; then
-    echo 'The first argument was "'$1'"'
-fi
+  #!/bin/sh
+  if [ "$1" = hi ] || [ "$1" = bye ]; then
+      echo 'The first argument was "'$1'"'
+  fi
 
-# The same that above but using -o instead of ||.
-#!/bin/sh
-if [ "$1" = hi -o "$1" = bye ]; then
-    echo 'The first argument was "'$1'"'
-fi
+  # The same that above but using -o instead of ||.
+  #!/bin/sh
+  if [ "$1" = hi -o "$1" = bye ]; then
+      echo 'The first argument was "'$1'"'
+  fi
 
 
-#!/bin/bash
-# test-integer3: determine if an integer is within a
-# specified range of values.
-MIN_VAL=1
-MAX_VAL=100
-INT=50
-if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
-    if [[ "$INT" -ge "$MIN_VAL" && "$INT" -le "$MAX_VAL" ]]; then
-        echo "$INT is within $MIN_VAL to $MAX_VAL."
-    else
-        echo "$INT is out of range."
-    fi
-else
-    echo "INT is not an integer." >&2
-    exit 1
-fi
+  #!/bin/bash
+  # test-integer3: determine if an integer is within a
+  # specified range of values.
+  MIN_VAL=1
+  MAX_VAL=100
+  INT=50
+  if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
+      if [[ "$INT" -ge "$MIN_VAL" && "$INT" -le "$MAX_VAL" ]]; then
+          echo "$INT is within $MIN_VAL to $MAX_VAL."
+      else
+          echo "$INT is out of range."
+      fi
+  else
+      echo "INT is not an integer." >&2
+      exit 1
+  fi
 
 #+end_src
 
@@ -4342,81 +4334,81 @@ The really powerful feature of for is the number of interesting ways we can crea
 
 #+begin_src sh
 
-# Syntax:
-for variable [in words]; do
-    commands
-done
+  # Syntax:
+  for variable [in words]; do
+      commands
+  done
 
 
-for i in A B C; do echo $i; done
-# A
-# B
-# C
+  for i in A B C; do echo $i; done
+  # A
+  # B
+  # C
 
 
-for i in {A..C}; do
-    echo $i
-done
-# A
-# B
-# C
+  for i in {A..C}; do
+      echo $i
+  done
+  # A
+  # B
+  # C
 
 
-for i in distros*.txt; do echo "$i"; done
-# distros-by-date.txt
-# distros-dates.txt
-# distros-key-names.txt
+  for i in distros*.txt; do echo "$i"; done
+  # distros-by-date.txt
+  # distros-dates.txt
+  # distros-key-names.txt
 
-# The one precaution needed is to check that the expansion actually
-# matched something. To guard against this, we would code as follows
+  # The one precaution needed is to check that the expansion actually
+  # matched something. To guard against this, we would code as follows
 
-for i in distros*.txt; do
-    if [[ -e "$i" ]]; then
-        echo "$i"
-    fi
-done
+  for i in distros*.txt; do
+      if [[ -e "$i" ]]; then
+          echo "$i"
+      fi
+  done
 
 
-# longest-word: find longest string in a file
-while [[ -n "$1" ]]; do
-    if [[ -r "$1" ]]; then
-        max_word=
-        max_len=0
-        for i in $(strings "$1"); do
-            len="$(echo -n "$i" | wc -c)"
-            if (( len > max_len )); then
-                max_len="$len"
-                max_word="$i"
-            fi
-        done
-        echo "$1: '$max_word' ($max_len characters)"
-    fi
-    shift
-done
-# Note that, we do not surround the command substitution $(strings "$1")
-# with double quotes. This is because we actually want word splitting to
-# occur to give us our list. If we had surrounded the command
-# substitution with quotes, it would produce only a single word
-# containing every string in the file.
+  # longest-word: find longest string in a file
+  while [[ -n "$1" ]]; do
+      if [[ -r "$1" ]]; then
+          max_word=
+          max_len=0
+          for i in $(strings "$1"); do
+              len="$(echo -n "$i" | wc -c)"
+              if (( len > max_len )); then
+                  max_len="$len"
+                  max_word="$i"
+              fi
+          done
+          echo "$1: '$max_word' ($max_len characters)"
+      fi
+      shift
+  done
+  # Note that, we do not surround the command substitution $(strings "$1")
+  # with double quotes. This is because we actually want word splitting to
+  # occur to give us our list. If we had surrounded the command
+  # substitution with quotes, it would produce only a single word
+  # containing every string in the file.
 
-# By omitting the list of words in the for command, the positional
-# parameters are used instead.
-#!/bin/bash
-# longest-word2: find longest string in a file
-for i; do
-    if [[ -r "$i" ]]; then
-        max_word=
-        max_len=0
-        for j in $(strings "$i"); do
-            len="$(echo -n "$j" | wc -c)"
-            if (( len > max_len )); then
-                max_len="$len"
-                max_word="$j"
-            fi
-        done
-        echo "$i: '$max_word' ($max_len characters)"
-    fi
-done
+  # By omitting the list of words in the for command, the positional
+  # parameters are used instead.
+  #!/bin/bash
+  # longest-word2: find longest string in a file
+  for i; do
+      if [[ -r "$i" ]]; then
+          max_word=
+          max_len=0
+          for j in $(strings "$i"); do
+              len="$(echo -n "$j" | wc -c)"
+              if (( len > max_len )); then
+                  max_len="$len"
+                  max_word="$j"
+              fi
+          done
+          echo "$i: '$max_word' ($max_len characters)"
+      fi
+  done
 
 #+end_src
 
@@ -4430,38 +4422,38 @@ and ~commands~ are the commands to be performed during each iteration of the loo
 
 #+begin_src sh
 
-for (( expression1; expression2; expression3 )); do
-    commands
-done
+  for (( expression1; expression2; expression3 )); do
+      commands
+  done
 
 
-for (( i=0; i<4; i=i+1 )); do echo $i; done
-# 0
-# 1
-# 2
-# 3
+  for (( i=0; i<4; i=i+1 )); do echo $i; done
+  # 0
+  # 1
+  # 2
+  # 3
 
-# In terms of behavior, this form is equivalent to the
-# following construct:
-(( expression1 ))
-while (( expression2 )); do
-    commands
-    (( expression3 ))
-done
+  # In terms of behavior, this form is equivalent to the
+  # following construct:
+  (( expression1 ))
+  while (( expression2 )); do
+      commands
+      (( expression3 ))
+  done
 
 
-#!/bin/bash
-# simple_counter: demo of C style for command
-for (( i=0; i<5; i=i+1 )); do
-    echo $i
-done
+  #!/bin/bash
+  # simple_counter: demo of C style for command
+  for (( i=0; i<5; i=i+1 )); do
+      echo $i
+  done
 
-simple_counter
-# 0
-# 1
-# 2
-# 3
-# 4
+  simple_counter
+  # 0
+  # 1
+  # 2
+  # 3
+  # 4
 
 #+end_src
 
@@ -4473,89 +4465,89 @@ loops. The ~break~ command immediately terminates a loop, and program control re
 
 #+begin_src sh
 
-while commands; do commands; done
+  while commands; do commands; done
 
-#!/bin/bash
-# while-count: display a series of numbers
-count=1
-while [[ "$count" -le 5 ]]; do
-    echo "$count"
-    count=$((count + 1))
-done
-echo "Finished."
+  #!/bin/bash
+  # while-count: display a series of numbers
+  count=1
+  while [[ "$count" -le 5 ]]; do
+      echo "$count"
+      count=$((count + 1))
+  done
+  echo "Finished."
 
-while-count
-# 1
-# 2
-# 3
-# 4
-# 5
-# Finished.
-
-
-#!/bin/sh
-FILE=/tmp/whiletest.$$;
-echo firstline > $FILE
-
-while tail -10 $FILE | grep -q firstline; do
-# add lines to $FILE until tail -10 $FILE no longer prints "firstline"
-    echo -n Number of lines in $FILE:' '
-    wc -l $FILE | awk '{print $1}'
-    echo newline >> $FILE
-done
-
-rm -f $FILE
+  while-count
+  # 1
+  # 2
+  # 3
+  # 4
+  # 5
+  # Finished.
 
 
-#!/bin/bash
-# while-menu2: a menu driven system information program
-DELAY=3 # Number of seconds to display results
+  #!/bin/sh
+  FILE=/tmp/whiletest.$$;
+  echo firstline > $FILE
 
-while true; do
-    clear
-    cat <<- _EOF_
-Please Select:
+  while tail -10 $FILE | grep -q firstline; do
+      # add lines to $FILE until tail -10 $FILE no longer prints "firstline"
+      echo -n Number of lines in $FILE:' '
+      wc -l $FILE | awk '{print $1}'
+      echo newline >> $FILE
+  done
 
-1. Display System Information
-2. Display Disk Space
-3. Display Home Space Utilization
-4. Quit
+  rm -f $FILE
 
-_EOF_
-    read -p "Enter selection [0-3] > "
 
-    if [[ "$REPLY" =~ ^[0-3]$ ]]; then
-        if [[ "$REPLY" == 1 ]]; then
-            echo "Hostname: $HOSTNAME"
-            uptime
-            sleep "$DELAY"
-            continue
-        fi
-        if [[ "$REPLY" == 2 ]]; then
-            df -h
-            sleep "$DELAY"
-            continue
-        fi
-        if [[ "$REPLY" == 3 ]]; then
-            if [[ "$(id -u)" -eq 0 ]]; then
-                echo "Home Space Utilization (All Users)"
-                du -sh /home/*
-            else
-                echo "Home Space Utilization ($USER)"
-                du -sh "$HOME"
-            fi
-            sleep "$DELAY"
-            continue
-        fi
-        if [[ "$REPLY" == 0 ]]; then
-            break
-        fi
-    else
-        echo "Invalid entry."
-        sleep "$DELAY"
-    fi
-done
-echo "Program terminated."
+  #!/bin/bash
+  # while-menu2: a menu driven system information program
+  DELAY=3 # Number of seconds to display results
+
+  while true; do
+      clear
+      cat <<- _EOF_
+  Please Select:
+
+  1. Display System Information
+  2. Display Disk Space
+  3. Display Home Space Utilization
+  4. Quit
+
+  _EOF_
+      read -p "Enter selection [0-3] > "
+
+      if [[ "$REPLY" =~ ^[0-3]$ ]]; then
+          if [[ "$REPLY" == 1 ]]; then
+              echo "Hostname: $HOSTNAME"
+              uptime
+              sleep "$DELAY"
+              continue
+          fi
+          if [[ "$REPLY" == 2 ]]; then
+              df -h
+              sleep "$DELAY"
+              continue
+          fi
+          if [[ "$REPLY" == 3 ]]; then
+              if [[ "$(id -u)" -eq 0 ]]; then
+                  echo "Home Space Utilization (All Users)"
+                  du -sh /home/*
+              else
+                  echo "Home Space Utilization ($USER)"
+                  du -sh "$HOME"
+              fi
+              sleep "$DELAY"
+              continue
+          fi
+          if [[ "$REPLY" == 0 ]]; then
+              break
+          fi
+      else
+          echo "Invalid entry."
+          sleep "$DELAY"
+      fi
+  done
+  echo "Program terminated."
 
 #+end_src
 
@@ -4564,14 +4556,14 @@ The Bourne shell also has an ~until~ loop that works just like ~while~, except t
 
 #+begin_src sh
 
-#!/bin/bash
-# until-count: display a series of numbers
-count=1
-until [[ "$count" -gt 5 ]]; do
-    echo "$count"
-    count=$((count + 1))
-done
-echo "Finished."
+  #!/bin/bash
+  # until-count: display a series of numbers
+  count=1
+  until [[ "$count" -gt 5 ]]; do
+      echo "$count"
+      count=$((count + 1))
+  done
+  echo "Finished."
 
 #+end_src
 
@@ -4582,24 +4574,24 @@ To redirect a file to the loop, we place the redirection operator after the ~don
 
 #+begin_src sh
 
-# Display the contents of the distros.txt file.
-#!/bin/bash
-# while-read: read lines from a file
-while read distro version release; do
-    printf "Distro: %s\tVersion: %s\tReleased: %s\n" \
-           "$distro" \
-           "$version" \
-           "$release"
-done < distros.txt
+  # Display the contents of the distros.txt file.
+  #!/bin/bash
+  # while-read: read lines from a file
+  while read distro version release; do
+      printf "Distro: %s\tVersion: %s\tReleased: %s\n" \
+             "$distro" \
+             "$version" \
+             "$release"
+  done < distros.txt
 
-#!/bin/bash
-# while-read2: read lines from a file
-sort -k 1,1 -k 2n distros.txt | while read distro version release; do
-    printf "Distro: %s\tVersion: %s\tReleased: %s\n" \
-           "$distro" \
-           "$version" \
-           "$release"
-done
+  #!/bin/bash
+  # while-read2: read lines from a file
+  sort -k 1,1 -k 2n distros.txt | while read distro version release; do
+      printf "Distro: %s\tVersion: %s\tReleased: %s\n" \
+             "$distro" \
+             "$version" \
+             "$release"
+  done
 
 #+end_src
 
@@ -4612,62 +4604,62 @@ Shells typically implement command substitution by creating a child process to r
 
 #+begin_src sh
 
-#!/bin/sh
-FLAGS=$(grep ^flags /proc/cpuinfo | sed 's/.*://' | head -1)
-echo Your processor supports:
-for f in $FLAGS; do
-    case $f in
-        fpu) MSG="floating point unit"
-             ;;
-        3dnow) MSG="3DNOW graphics extensions"
+  #!/bin/sh
+  FLAGS=$(grep ^flags /proc/cpuinfo | sed 's/.*://' | head -1)
+  echo Your processor supports:
+  for f in $FLAGS; do
+      case $f in
+          fpu) MSG="floating point unit"
                ;;
-        mtrr) MSG="memory type range register"
-              ;;
-        *) MSG="unknown"
-           ;;
-    esac
-    echo $f: $MSG
-done
-# This example is somewhat complicated because it demonstrates that you
-# can use both single quotes and pipelines inside the command
-# substitution.
+          3dnow) MSG="3DNOW graphics extensions"
+                 ;;
+          mtrr) MSG="memory type range register"
+                ;;
+          *) MSG="unknown"
+             ;;
+      esac
+      echo $f: $MSG
+  done
+  # This example is somewhat complicated because it demonstrates that you
+  # can use both single quotes and pipelines inside the command
+  # substitution.
 
 
-echo "$(lsblk | grep sda)"   # exact output keeping the format
-# sda      8:0    0 119.2G  0 disk
-# |-sda1   8:1    0   128M  0 part /boot/efi
-# |-sda2   8:2    0     8G  0 part [SWAP]
-# |-sda3   8:3    0 111.1G  0 part /
+  echo "$(lsblk | grep sda)"   # exact output keeping the format
+  # sda      8:0    0 119.2G  0 disk
+  # |-sda1   8:1    0   128M  0 part /boot/efi
+  # |-sda2   8:2    0     8G  0 part [SWAP]
+  # |-sda3   8:3    0 111.1G  0 part /
 
-echo '$(lsblk | grep sda)'   # single quotes
-# $(lsblk | grep sda)
+  echo '$(lsblk | grep sda)'   # single quotes
+  # $(lsblk | grep sda)
 
-echo $(lsblk | grep sda)     # string on a line separated by whitespace
-# sda 8:0 0 119.2G 0 disk |-sda1 8:1 0 128M 0 part /boot/efi |-sda2 8:2
-# 0 8G 0 part [SWAP] |-sda3 8:3 0 111.1G 0 part /
+  echo $(lsblk | grep sda)     # string on a line separated by whitespace
+  # sda 8:0 0 119.2G 0 disk |-sda1 8:1 0 128M 0 part /boot/efi |-sda2 8:2
+  # 0 8G 0 part [SWAP] |-sda3 8:3 0 111.1G 0 part /
 
 
-# longest-word: find longest string in a file
-while [[ -n "$1" ]]; do
-    if [[ -r "$1" ]]; then
-        max_word=
-        max_len=0
-        for i in $(strings "$1"); do
-            len="$(echo -n "$i" | wc -c)"
-            if (( len > max_len )); then
-                max_len="$len"
-                max_word="$i"
-            fi
-        done
-        echo "$1: '$max_word' ($max_len characters)"
-    fi
-    shift
-done
-# Note that, we do not surround the command substitution $(strings "$1")
-# with double quotes. This is because we actually want word splitting to
-# occur to give us our list. If we had surrounded the command
-# substitution with quotes, it would produce only a single word
-# containing every string in the file.
+  # longest-word: find longest string in a file
+  while [[ -n "$1" ]]; do
+      if [[ -r "$1" ]]; then
+          max_word=
+          max_len=0
+          for i in $(strings "$1"); do
+              len="$(echo -n "$i" | wc -c)"
+              if (( len > max_len )); then
+                  max_len="$len"
+                  max_word="$i"
+              fi
+          done
+          echo "$1: '$max_word' ($max_len characters)"
+      fi
+      shift
+  done
+  # Note that, we do not surround the command substitution $(strings "$1")
+  # with double quotes. This is because we actually want word splitting to
+  # occur to give us our list. If we had surrounded the command
+  # substitution with quotes, it would produce only a single word
+  # containing every string in the file.
 
 #+end_src
 
@@ -4678,59 +4670,59 @@ Shell functions can return an ~exit~ status by including an integer argument to 
 
 #+begin_src sh
 
-# Simpler (and generally preferred) form:
-name () {
-     commands
-     return
-}
+  # Simpler (and generally preferred) form:
+  name () {
+      commands
+      return
+  }
 
-# Formal form:
-function name {
-     commands
-     return
-}
-# The return command (which is optional) satisfies the requirement.
+  # Formal form:
+  function name {
+      commands
+      return
+  }
+  # The return command (which is optional) satisfies the requirement.
 
-# The following is a script that demonstrates the use of a shell
-# function.
-#!/bin/bash
-# Shell function demo
-function step2 {
-     echo "Step 2"
-     return
-}
-# Main program starts here
-echo "Step 1"
-step2
-echo "Step 3"
-# Note that for function calls to be recognized as shell functions and
-# not interpreted as the names of external programs, shell function
-# definitions must appear in the script before they are called.
-
-
-# Shell functions with exit status including in return command.
-function step2 {
-     echo "Step 2"
-     return 1
-}
+  # The following is a script that demonstrates the use of a shell
+  # function.
+  #!/bin/bash
+  # Shell function demo
+  function step2 {
+      echo "Step 2"
+      return
+  }
+  # Main program starts here
+  echo "Step 1"
+  step2
+  echo "Step 3"
+  # Note that for function calls to be recognized as shell functions and
+  # not interpreted as the names of external programs, shell function
+  # definitions must appear in the script before they are called.
 
 
-# Function that detect whether the user had permission to read
-# all home directories.
-report_home_space () {
-    if [[ "$(id -u)" -eq 0 ]]; then
-        cat <<- _EOF_
-             <h2>Home Space Utilization (All Users)</h2>
-             <pre>$(du -sh /home/*)</pre>
-             _EOF_
-    else
-        cat <<- _EOF_
-             <h2>Home Space Utilization ($USER)</h2>
-             <pre>$(du -sh $HOME)</pre>
-             _EOF_
-    fi
-    return
-}
+  # Shell functions with exit status including in return command.
+  function step2 {
+      echo "Step 2"
+      return 1
+  }
+
+
+  # Function that detect whether the user had permission to read
+  # all home directories.
+  report_home_space () {
+      if [[ "$(id -u)" -eq 0 ]]; then
+          cat <<- _EOF_
+               <h2>Home Space Utilization (All Users)</h2>
+               <pre>$(du -sh /home/*)</pre>
+               _EOF_
+      else
+          cat <<- _EOF_
+               <h2>Home Space Utilization ($USER)</h2>
+               <pre>$(du -sh $HOME)</pre>
+               _EOF_
+      fi
+      return
+  }
 
 #+end_src
 
@@ -4738,11 +4730,11 @@ report_home_space () {
 
 #+begin_src sh
 
-# Function named ds for our .bashrc file:
-ds () {
-    echo “Disk Space Utilization”
-    df -h
-}
+  # Function named ds for our .bashrc file:
+  ds () {
+      echo “Disk Space Utilization”
+      df -h
+  }
 
 #+end_src
 
@@ -4750,18 +4742,18 @@ Positional parameters ( ~$0~ , ~$1~, ~$2~,...) can be used to pass arguments to 
 
 #+begin_src sh
 
-file_info () {
-    # file_info: function to display file information
-    if [[ -e "$1" ]]; then
-        echo -e "\nFile Type:"
-        file "$1"
-        echo -e "\nFile Status:"
-        stat "$1"
-    else
-        echo "$FUNCNAME: usage: $FUNCNAME file" >&2
-        return 1
-    fi
-}
+  file_info () {
+      # file_info: function to display file information
+      if [[ -e "$1" ]]; then
+          echo -e "\nFile Type:"
+          file "$1"
+          echo -e "\nFile Status:"
+          stat "$1"
+      else
+          echo "$FUNCNAME: usage: $FUNCNAME file" >&2
+          return 1
+      fi
+  }
 
 #+end_src
 
@@ -4774,21 +4766,21 @@ With tracing enabled, we see the commands performed with expansions applied. The
 
 #+begin_src sh
 
-#!/bin/bash -x
-# trouble: script to demonstrate common errors
-number=1
-echo "number=$number" # DEBUG
-if [ $number = 1 ]; then
-    echo "Number is equal to 1."
-else
-    echo "Number is not equal to 1."
-fi
+  #!/bin/bash -x
+  # trouble: script to demonstrate common errors
+  number=1
+  echo "number=$number" # DEBUG
+  if [ $number = 1 ]; then
+      echo "Number is equal to 1."
+  else
+      echo "Number is not equal to 1."
+  fi
 
-trouble
-# + number=1
-# + '[' 1 = 1 ']'
-# + echo 'Number is equal to 1.'
-# Number is equal to 1.
+  trouble
+  # + number=1
+  # + '[' 1 = 1 ']'
+  # + echo 'Number is equal to 1.'
+  # Number is equal to 1.
 
 #+end_src
 
@@ -4799,17 +4791,17 @@ We use the ~set~ command with the ~-x~ option to activate tracing and the ~+x~ o
 
 #+begin_src sh
 
-#!/bin/bash
-# trouble: script to demonstrate common errors
-number=1
-echo "number=$number" # DEBUG
-set -x # Turn on tracing
-if [ $number = 1 ]; then
-    echo "Number is equal to 1."
-else
-    echo "Number is not equal to 1."
-fi
-set +x # Turn off tracing
+  #!/bin/bash
+  # trouble: script to demonstrate common errors
+  number=1
+  echo "number=$number" # DEBUG
+  set -x # Turn on tracing
+  if [ $number = 1 ]; then
+      echo "Number is equal to 1."
+  else
+      echo "Number is not equal to 1."
+  fi
+  set +x # Turn off tracing
 
 #+end_src
 
@@ -4818,36 +4810,36 @@ Be careful with some commands like ~rm~. This command may produce errors.
 
 #+begin_src sh
 
-cd $dir_name
-rm *
-# If the dir_name doesn't exist, the cd command fails, and the script
-# continues to the next line and deletes the files in the current
-# working directory.
+  cd $dir_name
+  rm *
+  # If the dir_name doesn't exist, the cd command fails, and the script
+  # continues to the next line and deletes the files in the current
+  # working directory.
 
-cd "$dir_name" && rm *
-# This way, if the cd command fails, the rm command is not carried
-# out. This is better but still leaves open the possibility that the
-# variable, dir_name, is unset or empty, which would result in the files
-# in the user’s home directory being deleted.
+  cd "$dir_name" && rm *
+  # This way, if the cd command fails, the rm command is not carried
+  # out. This is better but still leaves open the possibility that the
+  # variable, dir_name, is unset or empty, which would result in the files
+  # in the user’s home directory being deleted.
 
-[[ -d "$dir_name" ]] && cd "$dir_name" && rm *
-# It works perfectly.
+  [[ -d "$dir_name" ]] && cd "$dir_name" && rm *
+  # It works perfectly.
 
-# Delete files in directory $dir_name
-if [[ ! -d "$dir_name" ]]; then
-    echo "No such directory: '$dir_name'" >&2
-    exit 1
-fi
-if ! cd "$dir_name"; then
-    echo "Cannot cd to '$dir_name'" >&2
-    exit 1
-fi
-if ! rm *; then
-    echo "File deletion failed. Check results" >&2
-    exit 1
-fi
-# Often, it is best to include logic to terminate the script and report
-# an error when an situation such as the one shown previously occurs.
+  # Delete files in directory $dir_name
+  if [[ ! -d "$dir_name" ]]; then
+      echo "No such directory: '$dir_name'" >&2
+      exit 1
+  fi
+  if ! cd "$dir_name"; then
+      echo "Cannot cd to '$dir_name'" >&2
+      exit 1
+  fi
+  if ! rm *; then
+      echo "File deletion failed. Check results" >&2
+      exit 1
+  fi
+  # Often, it is best to include logic to terminate the script and report
+  # an error when an situation such as the one shown previously occurs.
 
 #+end_src
 
@@ -4862,11 +4854,11 @@ As a general rule, always precede wildcards (such as ~*~ and ~?~) with ~./~ to p
 
 #+begin_src sh
 
-rm *
-# to the following:
-rm ./*
-# This will prevent a filename starting with a hyphen from being
-# interpreted as a command option.
+  rm *
+  # to the following:
+  rm ./*
+  # This will prevent a filename starting with a hyphen from being
+  # interpreted as a command option.
 
 #+end_src
 
@@ -4886,48 +4878,48 @@ Subshell really shines is with pipelines. When constructing a pipeline of comman
 
 #+begin_src sh
 
-# The following line executes the command uglyprogram while in uglydir
-# and leaves the original shell intact:
-(cd uglydir; uglyprogram)
+  # The following line executes the command uglyprogram while in uglydir
+  # and leaves the original shell intact:
+  (cd uglydir; uglyprogram)
 
-# The following line shows how to add a component to the path that might
-# cause problems as a permanent change:
-(PATH=/usr/confusing:$PATH; uglyprogram)
-# Same command but in built-in syntax that avoids the subshell.
-PATH=/usr/confusing:$PATH uglyprogram
-
-
-# This segment performs redirections on multiple commands.
-ls -l > output.txt
-echo "Listing of foo.txt" >> output.txt
-cat foo.txt >> output.txt
-
-# Using a subshell.
-(ls -l; echo "Listing of foo.txt"; cat foo.txt) > output.txt
-
-# Using group command.
-{ ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
+  # The following line shows how to add a component to the path that might
+  # cause problems as a permanent change:
+  (PATH=/usr/confusing:$PATH; uglyprogram)
+  # Same command but in built-in syntax that avoids the subshell.
+  PATH=/usr/confusing:$PATH uglyprogram
 
 
-# Archive the entire directory tree within orig and then unpacks the
-# archive into the new directory target, which effectively duplicates
-# the files and folders in orig
-tar cf - orig | (cd target; tar xvf -)
-# Double-check this sort of command before you run it to make sure that
-# the target directory exists and is completely separate from the orig directory
-# You can check using this:
-[ -d orig -a ! orig -ef target ]
+  # This segment performs redirections on multiple commands.
+  ls -l > output.txt
+  echo "Listing of foo.txt" >> output.txt
+  cat foo.txt >> output.txt
+
+  # Using a subshell.
+  (ls -l; echo "Listing of foo.txt"; cat foo.txt) > output.txt
+
+  # Using group command.
+  { ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
 
 
-echo "foo" | read
-echo $REPLY
-#
-# The content of the REPLY variable is always empty because the read
-# command is executed in a subshell, and its copy of REPLY is destroyed
-# when the subshell terminates.
+  # Archive the entire directory tree within orig and then unpacks the
+  # archive into the new directory target, which effectively duplicates
+  # the files and folders in orig
+  tar cf - orig | (cd target; tar xvf -)
+  # Double-check this sort of command before you run it to make sure that
+  # the target directory exists and is completely separate from the orig directory
+  # You can check using this:
+  [ -d orig -a ! orig -ef target ]
 
-echo "foo" |(read; echo $REPLY)
-# foo
+
+  echo "foo" | read
+  echo $REPLY
+  #
+  # The content of the REPLY variable is always empty because the read
+  # command is executed in a subshell, and its copy of REPLY is destroyed
+  # when the subshell terminates.
+
+  echo "foo" |(read; echo $REPLY)
+  # foo
 
 #+end_src
 
@@ -4942,49 +4934,49 @@ Here documents can be used with any command that accepts standard input.
 
 #+begin_src sh
 
-#!/bin/sh
-DATE=$(date)
-cat <<EOF
-Date: $DATE
+  #!/bin/sh
+  DATE=$(date)
+  cat <<EOF
+  Date: $DATE
 
-The output above is from the Unix date command.
-It's not a very interesting command.
-EOF
-
-
-# Here is a way to transfer a file using anonymous ftp.
-#!/bin/bash
-# Script to retrieve a file via FTP
-FTP_SERVER=ftp.nl.debian.org
-FTP_PATH=/debian/dists/stretch/main/installer-amd64/current/images/cdrom REMOTE_FILE=debian-cd_info.tar.gz
-ftp -n << _EOF_
-open $FTP_SERVER
-user anonymous me@linuxbox
-cd $FTP_PATH
-hash
-get $REMOTE_FILE
-bye
-_EOF_
-ls -l "$REMOTE_FILE"
-
-# If we change the redirection operator from << to <<-, the shell will
-# ignore leading tab characters (but not spaces) in the here document.
+  The output above is from the Unix date command.
+  It's not a very interesting command.
+  EOF
 
 
-# Here is a way to transfer a file using anonymous ftp.
-#!/bin/sh
-# Usage:
-#     ftpfile machine file
-# set -x
-SOURCE=$1
-FILE=$2
-GETHOST="uname -n"
-BFILE=`basename $FILE`
-ftp -n $SOURCE <<EndFTP
-ascii
-user anonymous $USER@`$GETHOST`
-get $FILE /tmp/$BFILE
-EndFTP
+  # Here is a way to transfer a file using anonymous ftp.
+  #!/bin/bash
+  # Script to retrieve a file via FTP
+  FTP_SERVER=ftp.nl.debian.org
+  FTP_PATH=/debian/dists/stretch/main/installer-amd64/current/images/cdrom REMOTE_FILE=debian-cd_info.tar.gz
+  ftp -n << _EOF_
+  open $FTP_SERVER
+  user anonymous me@linuxbox
+  cd $FTP_PATH
+  hash
+  get $REMOTE_FILE
+  bye
+  _EOF_
+  ls -l "$REMOTE_FILE"
+
+  # If we change the redirection operator from << to <<-, the shell will
+  # ignore leading tab characters (but not spaces) in the here document.
+
+
+  # Here is a way to transfer a file using anonymous ftp.
+  #!/bin/sh
+  # Usage:
+  #     ftpfile machine file
+  # set -x
+  SOURCE=$1
+  FILE=$2
+  GETHOST="uname -n"
+  BFILE=`basename $FILE`
+  ftp -n $SOURCE <<EndFTP
+  ascii
+  user anonymous $USER@`$GETHOST`
+  get $FILE /tmp/$BFILE
+  EndFTP
 
 #+end_src
 
@@ -5014,117 +5006,117 @@ The command has the syntax ~read [-options] [variable...]~ where ~options~ is on
 
 #+begin_src sh
 
-#!/bin/bash
-# read-integer: evaluate the value of an integer.
-# This line is the usual method.
-# read -p "Please enter an integer > " int
-# This line is another method.
-echo -n "Please enter an integer -> "
-read int
-if [[ "$int" =~ ^-?[0-9]+$ ]]; then
-    if [ "$int" -eq 0 ]; then
-        echo "$int is zero."
-    else
-        if [ "$int" -lt 0 ]; then
-            echo "$int is negative."
-        else
-            echo "$int is positive."
-        fi
-        if [ $((int % 2)) -eq 0 ]; then
-            echo "$int is even."
-        else
-            echo "$int is odd."
-        fi
-    fi
-else
-    echo "Input value is not an integer." >&2
-    exit 1
-fi
+  #!/bin/bash
+  # read-integer: evaluate the value of an integer.
+  # This line is the usual method.
+  # read -p "Please enter an integer > " int
+  # This line is another method.
+  echo -n "Please enter an integer -> "
+  read int
+  if [[ "$int" =~ ^-?[0-9]+$ ]]; then
+      if [ "$int" -eq 0 ]; then
+          echo "$int is zero."
+      else
+          if [ "$int" -lt 0 ]; then
+              echo "$int is negative."
+          else
+              echo "$int is positive."
+          fi
+          if [ $((int % 2)) -eq 0 ]; then
+              echo "$int is even."
+          else
+              echo "$int is odd."
+          fi
+      fi
+  else
+      echo "Input value is not an integer." >&2
+      exit 1
+  fi
 
-read-integer
-# Please enter an integer ->
-5
-# 5 is positive.
-# 5 is odd.
-
-
-# read can assign input to multiple variables.
-#!/bin/bash
-# read-multiple: read multiple values from keyboard
-echo -n "Enter one or more values > "
-read var1 var2 var3
-
-echo "var1 = '$var1'"
-echo "var2 = '$var2'"
-echo "var3 = '$var3'"
-
-read-multiple
-# Enter one or more values >
-a b c
-# var1 = 'a'
-# var2 = 'b'
-# var3 = 'c'
-
-read-multiple
-# Enter one or more values >
-a
-# var1 = 'a'
-# var2 = ''
-# var3 = ''
-# When  read receives fewer than the expected number, the extra
-# variables are empty.
-
-read-multiple
-# Enter one or more values >
-a b c d e
-# var1 = 'a'
-# var2 = 'b'
-# var3 = 'c d e'
-# When receives an excessive amount of input results in the final
-# variable containing all of the extra input.
+  read-integer
+  # Please enter an integer ->
+  5
+  # 5 is positive.
+  # 5 is odd.
 
 
-#!/bin/bash
-# read-single: read multiple values into default variable
-echo -n "Enter one or more values > "
-read
-echo "REPLY = '$REPLY'"
+  # read can assign input to multiple variables.
+  #!/bin/bash
+  # read-multiple: read multiple values from keyboard
+  echo -n "Enter one or more values > "
+  read var1 var2 var3
 
-read-single
-# Enter one or more values >
-a b c d
-# REPLY = 'a b c d'
-# If no variables are listed after the read command, a shell variable,
-# REPLY, will be assigned all the input.
+  echo "var1 = '$var1'"
+  echo "var2 = '$var2'"
+  echo "var3 = '$var3'"
 
+  read-multiple
+  # Enter one or more values >
+  a b c
+  # var1 = 'a'
+  # var2 = 'b'
+  # var3 = 'c'
 
-#!/bin/bash
-# read-secret: input a secret passphrase
-if read -t 10 -sp "Enter secret passphrase > " secret_pass; then
-    echo -e "\nSecret passphrase = '$secret_pass'"
-else
-    echo -e "\nInput timed out" >&2
-    exit 1
-fi
-# The script prompts the user for a secret passphrase and waits ten
-# seconds for input. If the entry is not completed within the specified
-# time, the script exits with an error. Since the -s option is included,
-# the characters of the passphrase are not echoed to the display as they
-# are typed.
+  read-multiple
+  # Enter one or more values >
+  a
+  # var1 = 'a'
+  # var2 = ''
+  # var3 = ''
+  # When  read receives fewer than the expected number, the extra
+  # variables are empty.
 
-# To supply the user with a default response use -e and -i.
-#!/bin/bash
-# read-default: supply a default value if user presses Enter key.
-read -e -p "What is your user name? " -i $USER
-echo "You answered: '$REPLY'"
-
-read-default
-# What is your user name? Carlos
-# You answered: 'Carlos'
+  read-multiple
+  # Enter one or more values >
+  a b c d e
+  # var1 = 'a'
+  # var2 = 'b'
+  # var3 = 'c d e'
+  # When receives an excessive amount of input results in the final
+  # variable containing all of the extra input.
 
 
-echo "foo" |(read; echo $REPLY)
-# foo
+  #!/bin/bash
+  # read-single: read multiple values into default variable
+  echo -n "Enter one or more values > "
+  read
+  echo "REPLY = '$REPLY'"
+
+  read-single
+  # Enter one or more values >
+  a b c d
+  # REPLY = 'a b c d'
+  # If no variables are listed after the read command, a shell variable,
+  # REPLY, will be assigned all the input.
+
+
+  #!/bin/bash
+  # read-secret: input a secret passphrase
+  if read -t 10 -sp "Enter secret passphrase > " secret_pass; then
+      echo -e "\nSecret passphrase = '$secret_pass'"
+  else
+      echo -e "\nInput timed out" >&2
+      exit 1
+  fi
+  # The script prompts the user for a secret passphrase and waits ten
+  # seconds for input. If the entry is not completed within the specified
+  # time, the script exits with an error. Since the -s option is included,
+  # the characters of the passphrase are not echoed to the display as they
+  # are typed.
+
+  # To supply the user with a default response use -e and -i.
+  #!/bin/bash
+  # read-default: supply a default value if user presses Enter key.
+  read -e -p "What is your user name? " -i $USER
+  echo "You answered: '$REPLY'"
+
+  read-default
+  # What is your user name? Carlos
+  # You answered: 'Carlos'
+
+
+  echo "foo" |(read; echo $REPLY)
+  # foo
 
 #+end_src
 
@@ -5135,30 +5127,30 @@ We can adjust the value of ~IFS~ to control the separation of fields input to ~r
 
 #+begin_src sh
 
-#!/bin/bash
-# read-ifs: read fields from a file
-FILE=/etc/passwd
-read -p "Enter a username > " user_name
-# regular expression used by grep assures that the username will match
-# only a single line in the /etc/passwd file.
-file_info="$(grep "^$user_name:" $FILE)"
-if [ -n "$file_info" ]; then
-# The effect of the assignment is temporary changing only the
-# environment for the duration of the command. In our case, the value of
-# IFS is changed to a colon character.
-    IFS=":" read user pw uid gid name home shell <<< "$file_info"
-# The <<< operator indicates a here string. A here string is like a here
-# document, only shorter, consisting of a single string.
-    echo "User =      '$user'"
-    echo "UID =       '$uid'"
-    echo "GID =       '$gid'"
-    echo "Full Name = '$name'"
-    echo "Home Dir. = '$home'"
-    echo "Shell =     '$shell'"
-else
-    echo "No such user '$user_name'" >&2
-    exit 1
-fi
+  #!/bin/bash
+  # read-ifs: read fields from a file
+  FILE=/etc/passwd
+  read -p "Enter a username > " user_name
+  # regular expression used by grep assures that the username will match
+  # only a single line in the /etc/passwd file.
+  file_info="$(grep "^$user_name:" $FILE)"
+  if [ -n "$file_info" ]; then
+      # The effect of the assignment is temporary changing only the
+      # environment for the duration of the command. In our case, the value of
+      # IFS is changed to a colon character.
+      IFS=":" read user pw uid gid name home shell <<< "$file_info"
+      # The <<< operator indicates a here string. A here string is like a here
+      # document, only shorter, consisting of a single string.
+      echo "User =      '$user'"
+      echo "UID =       '$uid'"
+      echo "GID =       '$gid'"
+      echo "Full Name = '$name'"
+      echo "Home Dir. = '$home'"
+      echo "Shell =     '$shell'"
+  else
+      echo "No such user '$user_name'" >&2
+      exit 1
+  fi
 
 #+end_src
 
@@ -5178,44 +5170,44 @@ Often the difference between a well-written program and a poorly written one lie
 
 #+begin_src sh
 
-#!/bin/bash
-# read-validate: validate input
-invalid_input () {
-    echo "Invalid input '$REPLY'" >&2
-    exit 1
-}
+  #!/bin/bash
+  # read-validate: validate input
+  invalid_input () {
+      echo "Invalid input '$REPLY'" >&2
+      exit 1
+  }
 
-read -p "Enter a single item > "
+  read -p "Enter a single item > "
 
-# input is empty (invalid)
-[[ -z "$REPLY" ]] && invalid_input
+  # input is empty (invalid)
+  [[ -z "$REPLY" ]] && invalid_input
 
-# input is multiple items (invalid)
-(( "$(echo "$REPLY" | wc -w)" > 1 )) && invalid_input
+  # input is multiple items (invalid)
+  (( "$(echo "$REPLY" | wc -w)" > 1 )) && invalid_input
 
-# is input a valid filename?
-if [[ "$REPLY" =~ ^[-[:alnum:]\._]+$ ]]; then
-    echo "'$REPLY' is a valid filename."
-    if [[ -e "$REPLY" ]]; then
-        echo "And file '$REPLY' exists."
-    else
-        echo "However, file '$REPLY' does not exist."
-    fi
-    # is input a floating point number?
-    if [[ "$REPLY" =~ ^-?[[:digit:]]*\.[[:digit:]]+$ ]]; then
-        echo "'$REPLY' is a floating point number."
-    else
-        echo "'$REPLY' is not a floating point number."
-    fi
-    # is input an integer?
-    if [[ "$REPLY" =~ ^-?[[:digit:]]+$ ]]; then
-        echo "'$REPLY' is an integer."
-    else
-        echo "'$REPLY' is not an integer."
-    fi
-else
-    echo "The string '$REPLY' is not a valid filename."
-fi
+  # is input a valid filename?
+  if [[ "$REPLY" =~ ^[-[:alnum:]\._]+$ ]]; then
+      echo "'$REPLY' is a valid filename."
+      if [[ -e "$REPLY" ]]; then
+          echo "And file '$REPLY' exists."
+      else
+          echo "However, file '$REPLY' does not exist."
+      fi
+      # is input a floating point number?
+      if [[ "$REPLY" =~ ^-?[[:digit:]]*\.[[:digit:]]+$ ]]; then
+          echo "'$REPLY' is a floating point number."
+      else
+          echo "'$REPLY' is not a floating point number."
+      fi
+      # is input an integer?
+      if [[ "$REPLY" =~ ^-?[[:digit:]]+$ ]]; then
+          echo "'$REPLY' is an integer."
+      else
+          echo "'$REPLY' is not an integer."
+      fi
+  else
+      echo "The string '$REPLY' is not a valid filename."
+  fi
 
 #+end_src
 
@@ -5224,68 +5216,68 @@ A common type of interactivity is called *menu-driven*. In menu-driven programs,
 
 #+begin_src sh
 
-Please Select:
+  Please Select:
 
-1. Display System Information
-2. Display Disk Space
-3. Display Home Space Utilization
-4. Quit
+  1. Display System Information
+  2. Display Disk Space
+  3. Display Home Space Utilization
+  4. Quit
 
-Enter selection [0-3] >
+  Enter selection [0-3] >
 
 #+end_src
 
 #+begin_src sh
 
-#!/bin/bash
-# read-menu: a menu driven system information program
-clear
+  #!/bin/bash
+  # read-menu: a menu driven system information program
+  clear
 
-echo "
-Please Select:
+  echo "
+  Please Select:
 
-1. Display System Information
-2. Display Disk Space
-3. Display Home Space Utilization
-0. Quit
-"
-read -p "Enter selection [0-3] > "
+  1. Display System Information
+  2. Display Disk Space
+  3. Display Home Space Utilization
+  0. Quit
+  "
+  read -p "Enter selection [0-3] > "
 
-if [[ "$REPLY" =~ ^[0-3]$ ]]; then
-    if [[ "$REPLY" == 0 ]]; then
-        echo "Program terminated."
-        exit
-    fi
-    if [[ "$REPLY" == 1 ]]; then
-        echo "Hostname: $HOSTNAME"
-        uptime
-        exit
-    fi
-    if [[ "$REPLY" == 2 ]]; then
-        df -h
-        exit
-    fi
-    if [[ "$REPLY" == 3 ]]; then
-        # Detect whether the user had permission to
-        # read all home directories.
-        if [[ "$(id -u)" -eq 0 ]]; then
-            echo "Home Space Utilization (All Users)"
-            du -sh /home/*
-        else
-            echo "Home Space Utilization ($USER)"
-            du -sh "$HOME"
-        fi
-        exit
-    fi
-else
-    echo "Invalid entry." >&2
-    exit 1
-fi
+  if [[ "$REPLY" =~ ^[0-3]$ ]]; then
+      if [[ "$REPLY" == 0 ]]; then
+          echo "Program terminated."
+          exit
+      fi
+      if [[ "$REPLY" == 1 ]]; then
+          echo "Hostname: $HOSTNAME"
+          uptime
+          exit
+      fi
+      if [[ "$REPLY" == 2 ]]; then
+          df -h
+          exit
+      fi
+      if [[ "$REPLY" == 3 ]]; then
+          # Detect whether the user had permission to
+          # read all home directories.
+          if [[ "$(id -u)" -eq 0 ]]; then
+              echo "Home Space Utilization (All Users)"
+              du -sh /home/*
+          else
+              echo "Home Space Utilization ($USER)"
+              du -sh "$HOME"
+          fi
+          exit
+      fi
+  else
+      echo "Invalid entry." >&2
+      exit 1
+  fi
 
 #+end_src
 
 *** exit
- The ~exit~ command accepts a single, optional argument, which becomes the script’s exit status. When no argument is passed, the exit status defaults to the exit status of the last command executed. Usually when the ~exit~ command appearing on the last line of the script is there as a formality. When a script “runs off the end” (reaches end of file), it terminates with an exit status of the last command executed.
+The ~exit~ command accepts a single, optional argument, which becomes the script’s exit status. When no argument is passed, the exit status defaults to the exit status of the last command executed. Usually when the ~exit~ command appearing on the last line of the script is there as a formality. When a script “runs off the end” (reaches end of file), it terminates with an exit status of the last command executed.
 
 *** Name Pipes
 Named pipes are used to create a connection between two processes and can be used just like other types of files.
@@ -5297,22 +5289,22 @@ and this: ~process2 < named_pipe~ and it will behave like this: ~process1 | proc
 
 #+begin_src sh
 
-# Create a named pipe.
-mkfifo pipe1
+  # Create a named pipe.
+  mkfifo pipe1
 
-# To see how the named pipe works, we'll need two terminal windows. In
-# the first terminal, we enter a simple command and redirect its output
-# to the named pipe.
-ls -l > pipe1
-# After we press the Enter key, the command will appear to hang. This is
-# because there is nothing receiving data from the other end of the pipe
-# yet. When this occurs, it is said that the pipe is blocked. This
-# condition will clear once we attach a process to the other end and it
-# begins to read input from the pipe. Using the second terminal window,
-# we enter this command:
-cat < pipe1
-# -rw-r--r--  1 richard richard      106K Oct  4 13:34 bootup.svg
-# drwxr-xr-x  3 richard richard      4.0K Oct  6 00:35 compiling
+  # To see how the named pipe works, we'll need two terminal windows. In
+  # the first terminal, we enter a simple command and redirect its output
+  # to the named pipe.
+  ls -l > pipe1
+  # After we press the Enter key, the command will appear to hang. This is
+  # because there is nothing receiving data from the other end of the pipe
+  # yet. When this occurs, it is said that the pipe is blocked. This
+  # condition will clear once we attach a process to the other end and it
+  # begins to read input from the pipe. Using the second terminal window,
+  # we enter this command:
+  cat < pipe1
+  # -rw-r--r--  1 richard richard      106K Oct  4 13:34 bootup.svg
+  # drwxr-xr-x  3 richard richard      4.0K Oct  6 00:35 compiling
 
 #+end_src
 
@@ -5326,65 +5318,65 @@ Process substitution is expressed in two ways. For processes that produce standa
 
 #+begin_src sh
 
-# Process substitution allows us to treat the output of a subshell as an
-# ordinary file for purposes of redirection. In fact, since it is a form
-# of expansion, we can examine its real value.
-echo <(echo "foo")
-# /dev/fd/63
-# Le pasa el archivo, i.e. el nombre del descriptor que tiene el archivo.
-# By using echo to view the result of the expansion, we see that the
-# output of the subshell is being provided by a file named /dev/fd/63.
+  # Process substitution allows us to treat the output of a subshell as an
+  # ordinary file for purposes of redirection. In fact, since it is a form
+  # of expansion, we can examine its real value.
+  echo <(echo "foo")
+  # /dev/fd/63
+  # Le pasa el archivo, i.e. el nombre del descriptor que tiene el archivo.
+  # By using echo to view the result of the expansion, we see that the
+  # output of the subshell is being provided by a file named /dev/fd/63.
 
 
-echo "foo" | read
-echo $REPLY
-#
-# The content of the REPLY variable is always empty because the read
-# command is executed in a subshell, and its copy of REPLY is destroyed
-# when the subshell terminates. To solve our problem with read, we can
-# employ process substitution like this:
-read < <(echo "foo")
-echo $REPLY
-# foo
+  echo "foo" | read
+  echo $REPLY
+  #
+  # The content of the REPLY variable is always empty because the read
+  # command is executed in a subshell, and its copy of REPLY is destroyed
+  # when the subshell terminates. To solve our problem with read, we can
+  # employ process substitution like this:
+  read < <(echo "foo")
+  echo $REPLY
+  # foo
 
 
-# read loop that processes the contents of a directory listing created
-# by a subshell:
-#!/bin/bash
-# pro-sub: demo of process substitution
-while read attr links owner group size date time filename; do
-    cat <<- EOF
-         Filename:   $filename
-         Size:       $size
-         Owner:      $owner
-         Group:      $group
-         Modified:   $date $time
-         Links:      $links
-         Attributes: $attr
-    EOF
-done < <(ls -l | tail -n +2)
+  # read loop that processes the contents of a directory listing created
+  # by a subshell:
+  #!/bin/bash
+  # pro-sub: demo of process substitution
+  while read attr links owner group size date time filename; do
+      cat <<- EOF
+           Filename:   $filename
+           Size:       $size
+           Owner:      $owner
+           Group:      $group
+           Modified:   $date $time
+           Links:      $links
+           Attributes: $attr
+      EOF
+  done < <(ls -l | tail -n +2)
 
-pro-sub | head -n 20
-# Filename:   addresses.ldif
-# Size:       14540
-# Owner:      me
-# Group:      me
-# Modified:   2009-04-02 11:12
-# Links:      1
-# Attributes: -rw-r--r--
-#
-# Filename:   bin
-# Size:       4096
-# Owner:      me
-# Group:      me
-# Modified:   2009-07-10 07:31
-# Links:      2
-# Attributes: drwxr-xr-x
-#
-# Filename:   bookmarks.html
-# Size:       394213
-# Owner:      me
-# Group:      me
+  pro-sub | head -n 20
+  # Filename:   addresses.ldif
+  # Size:       14540
+  # Owner:      me
+  # Group:      me
+  # Modified:   2009-04-02 11:12
+  # Links:      1
+  # Attributes: -rw-r--r--
+  #
+  # Filename:   bin
+  # Size:       4096
+  # Owner:      me
+  # Group:      me
+  # Modified:   2009-07-10 07:31
+  # Links:      2
+  # Attributes: drwxr-xr-x
+  #
+  # Filename:   bookmarks.html
+  # Size:       394213
+  # Owner:      me
+  # Group:      me
 
 #+end_src
 
@@ -5395,8 +5387,8 @@ This method of inclusion is also called *sourcing* a file and is useful for read
 
 #+begin_src sh
 
-# For example, This runs the commands in the file config.sh:
-. config.sh
+  # For example, This runs the commands in the file config.sh:
+  . config.sh
 
 #+end_src
 
@@ -5405,22 +5397,22 @@ If you need to strip the extension from a filename or get rid of the directories
 
 #+begin_src sh
 
-basename example.html .html
-# example
-basename /usr/local/bin/example
-# example
+  basename example.html .html
+  # example
+  basename /usr/local/bin/example
+  # example
 
-# This script convert GIF image files to the PNG format.
-#!/bin/sh
-for file in *.gif; do
-    # exit if there are no files
-    if [ ! -f $file ]; then
-        exit
-    fi
-    b=$(basename $file .gif)
-    echo Converting $b.gif to $b.png...
-    giftopnm $b.gif | pnmtopng > $b.png
-done
+  # This script convert GIF image files to the PNG format.
+  #!/bin/sh
+  for file in *.gif; do
+      # exit if there are no files
+      if [ ! -f $file ]; then
+          exit
+      fi
+      b=$(basename $file .gif)
+      echo Converting $b.gif to $b.png...
+      giftopnm $b.gif | pnmtopng > $b.png
+  done
 
 #+end_src
 
@@ -5431,66 +5423,66 @@ A common problem with scripts that employ temporary files is that if the script 
 
 #+begin_src sh
 
-#!/bin/bash
-# trap-demo: simple signal handling demo
-trap "echo 'I am ignoring you.'" SIGINT SIGTERM
+  #!/bin/bash
+  # trap-demo: simple signal handling demo
+  trap "echo 'I am ignoring you.'" SIGINT SIGTERM
 
-for i in {1..5}; do
-    echo "Iteration $i of 5"
-    sleep 5
-done
-#This script defines a trap that will execute an echo command each time
-#either the SIGINT or SIGTERM signal is received while the script is
-#running. Execution of the program looks like this when the user
-#attempts to stop the script by pressing Ctrl-c:
-trap-demo
-#Iteration 1 of 5
-#Iteration 2 of 5
-#^CI am ignoring you.
-#Iteration 3 of 5
-#^CI am ignoring you.
-#Iteration 4 of 5
-#Iteration 5 of 5
-
-
-# This script shows the device interrupts that have occurred in the
-# last two seconds:
-#!/bin/sh
-TMPFILE1=$(mktemp /tmp/im1.XXXXXX)
-TMPFILE2=$(mktemp /tmp/im2.XXXXXX)
-trap "rm -f $TMPFILE1 $TMPFILE2; exit 1" INT
-# The trap command to create a signal handler to catch the signal that
-# CTRL-C generates and remove the temporary files.
-# You must use exit in the handler to explicitly end script execution.
-
-cat /proc/interrupts > $TMPFILE1
-sleep 2
-cat /proc/interrupts > $TMPFILE2
-diff $TMPFILE1 $TMPFILE2
-rm -f $TMPFILE1 $TMPFILE2
+  for i in {1..5}; do
+      echo "Iteration $i of 5"
+      sleep 5
+  done
+  #This script defines a trap that will execute an echo command each time
+  #either the SIGINT or SIGTERM signal is received while the script is
+  #running. Execution of the program looks like this when the user
+  #attempts to stop the script by pressing Ctrl-c:
+  trap-demo
+  #Iteration 1 of 5
+  #Iteration 2 of 5
+  #^CI am ignoring you.
+  #Iteration 3 of 5
+  #^CI am ignoring you.
+  #Iteration 4 of 5
+  #Iteration 5 of 5
 
 
-# A separate shell function is specified for each signal to be handled:
-#!/bin/bash
-# trap-demo2: simple signal handling demo
-exit_on_signal_SIGINT () {
-    echo "Script interrupted." 2>&1
-    exit 0
-}
-exit_on_signal_SIGTERM () {
-    echo "Script terminated." 2>&1
-    exit 0
-}
-trap exit_on_signal_SIGINT SIGINT
-trap exit_on_signal_SIGTERM SIGTERM
+  # This script shows the device interrupts that have occurred in the
+  # last two seconds:
+  #!/bin/sh
+  TMPFILE1=$(mktemp /tmp/im1.XXXXXX)
+  TMPFILE2=$(mktemp /tmp/im2.XXXXXX)
+  trap "rm -f $TMPFILE1 $TMPFILE2; exit 1" INT
+  # The trap command to create a signal handler to catch the signal that
+  # CTRL-C generates and remove the temporary files.
+  # You must use exit in the handler to explicitly end script execution.
 
-for i in {1..5}; do
-    echo "Iteration $i of 5"
-    sleep 5
-done
-# Note the inclusion of an exit command in each of the signal-handling
-# functions. Without an exit, the script would continue after completing
-# the function.
+  cat /proc/interrupts > $TMPFILE1
+  sleep 2
+  cat /proc/interrupts > $TMPFILE2
+  diff $TMPFILE1 $TMPFILE2
+  rm -f $TMPFILE1 $TMPFILE2
+
+
+  # A separate shell function is specified for each signal to be handled:
+  #!/bin/bash
+  # trap-demo2: simple signal handling demo
+  exit_on_signal_SIGINT () {
+      echo "Script interrupted." 2>&1
+      exit 0
+  }
+  exit_on_signal_SIGTERM () {
+      echo "Script terminated." 2>&1
+      exit 0
+  }
+  trap exit_on_signal_SIGINT SIGINT
+  trap exit_on_signal_SIGTERM SIGTERM
+
+  for i in {1..5}; do
+      echo "Iteration $i of 5"
+      sleep 5
+  done
+  # Note the inclusion of an exit command in each of the signal-handling
+  # functions. Without an exit, the script would continue after completing
+  # the function.
 
 #+end_src
 
@@ -5499,42 +5491,42 @@ done
 
 #+begin_src sh
 
-#!/bin/bash
-# async-parent: Asynchronous execution demo (parent)
-echo "Parent: starting..."
+  #!/bin/bash
+  # async-parent: Asynchronous execution demo (parent)
+  echo "Parent: starting..."
 
-echo "Parent: launching child script..."
-async-child &
-# $! shell parameter, will always contain the process ID of
-# the last job put into the background
-pid=$!
-echo "Parent: child (PID= $pid) launched."
+  echo "Parent: launching child script..."
+  async-child &
+  # $! shell parameter, will always contain the process ID of
+  # the last job put into the background
+  pid=$!
+  echo "Parent: child (PID= $pid) launched."
 
-echo "Parent: continuing..."
-sleep 2
+  echo "Parent: continuing..."
+  sleep 2
 
-echo "Parent: pausing to wait for child to finish..."
-wait "$pid"
+  echo "Parent: pausing to wait for child to finish..."
+  wait "$pid"
 
-echo "Parent: child is finished. Continuing..."
-echo "Parent: parent is done. Exiting."
+  echo "Parent: child is finished. Continuing..."
+  echo "Parent: parent is done. Exiting."
 
-#!/bin/bash
-# async-child: Asynchronous execution demo (child)
-echo "Child: child is running..."
-sleep 5
-echo "Child: child is done. Exiting."
+  #!/bin/bash
+  # async-child: Asynchronous execution demo (child)
+  echo "Child: child is running..."
+  sleep 5
+  echo "Child: child is done. Exiting."
 
-async-parent
-# Parent: starting...
-# Parent: launching child script...
-# Parent: child (PID= 6741) launched.
-# Parent: continuing...
-# Child: child is running...
-# Parent: pausing to wait for child to finish...
-# Child: child is done. Exiting.
-# Parent: child is finished. Continuing...
-# Parent: parent is done. Exiting.
+  async-parent
+  # Parent: starting...
+  # Parent: launching child script...
+  # Parent: child (PID= 6741) launched.
+  # Parent: continuing...
+  # Child: child is running...
+  # Parent: pausing to wait for child to finish...
+  # Child: child is done. Exiting.
+  # Parent: child is finished. Continuing...
+  # Parent: parent is done. Exiting.
 
 #+end_src
 
@@ -5548,8 +5540,8 @@ The ~expr~ command is a clumsy, slow way of doing math. If you find yourself usi
 
 #+begin_src sh
 
-expr 1 + 2
-# 3
+  expr 1 + 2
+  # 3
 
 #+end_src
 
@@ -5563,20 +5555,20 @@ Array variables are named just like other ~bash~ variables, and are created auto
 
 #+begin_src sh
 
-# Creating an array.
-a[1]=foo
-# Element 1 of array a is assigned the value “foo”.
+  # Creating an array.
+  a[1]=foo
+  # Element 1 of array a is assigned the value “foo”.
 
-# Displays the stored value of element 1.
-echo ${a[1]}
-# foo
-# The use of braces is required to prevent the shell from attempting
-# pathname expansion on the name of the array element.
+  # Displays the stored value of element 1.
+  echo ${a[1]}
+  # foo
+  # The use of braces is required to prevent the shell from attempting
+  # pathname expansion on the name of the array element.
 
 
-# An array can also be created with the declare command.
-declare -a a
-# Using the -a option, this example of declare creates the array a.
+  # An array can also be created with the declare command.
+  declare -a a
+  # Using the -a option, this example of declare creates the array a.
 
 #+end_src
 
@@ -5587,12 +5579,12 @@ Multiple values may be assigned using the syntax ~name=(value1 value2 ...)~ wher
 
 #+begin_src sh
 
-# Assign abbreviated days of the week to the array days.
-days=(Sun Mon Tue Wed Thu Fri Sat)
+  # Assign abbreviated days of the week to the array days.
+  days=(Sun Mon Tue Wed Thu Fri Sat)
 
-# It's also possible to assign values to a specific element.
-# Doesn't work in zsh.
-days=([0]=Sun [1]=Mon [2]=Tue [3]=Wed [4]=Thu [5]=Fri [6]=Sat)
+  # It's also possible to assign values to a specific element.
+  # Doesn't work in zsh.
+  days=([0]=Sun [1]=Mon [2]=Tue [3]=Wed [4]=Thu [5]=Fri [6]=Sat)
 
 #+end_src
 
@@ -5601,35 +5593,36 @@ The subscripts ~*~ and ~@~ can be used to access every element in an array. As w
 
 #+begin_src sh
 
-animals=("a dog" "a cat" "a fish")
-for i in ${animals[*]}; do echo $i; done
-# a
-# dog
-# a
-# cat
-# a
-# fish
+  animals=("a dog" "a cat" "a fish")
+  for i in ${animals[*]}; do echo $i; done
+  # a
+  # dog
+  # a
+  # cat
+  # a
+  # fish
 
-for i in ${animals[@]}; do echo $i; done
-# a
-# dog
-# a
-# cat
-# a
-# fish
+  for i in ${animals[@]}; do echo $i; done
+  # a
+  # dog
+  # a
+  # cat
+  # a
+  # fish
 
-for i in "${animals[*]}"; do echo $i; done
-# a dog a cat a fish
+  for i in "${animals[*]}"; do echo $i; done
+  # a dog a cat a fish
 
-for i in "${animals[@]}"; do echo $i; done
-# a dog
-# a cat
-# a fish
+  for i in "${animals[@]}"; do echo $i; done
+  # a dog
+  # a cat
+  # a fish
 
 #+end_src
 
 * References
-- Manual pages (man pages).
-- How Linux Works by Brian Ward.
-- The Linux Command Line by William Shotts.
-- [[https://www.debian.org/doc/manuals/debian-reference/][Debian Reference]].
+- [[https://linuxcommand.org/tlcl.php][The Linux Command Line by William Shotts]]
+- [[https://www.gnu.org/software/coreutils/manual/html_node/index.html][GNU Coreutils]]
+- [[https://www.man7.org/linux/man-pages/index.html][Linux man pages]]
+- [[https://archive.org/details/howlinuxworkswha0000ward][How Linux Works by Brian Ward]]
+- [[https://www.debian.org/doc/manuals/debian-reference/][Debian Reference]]

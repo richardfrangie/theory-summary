@@ -10,16 +10,16 @@ Git has three main states that your files can reside in: modified, staged, and c
 
 This leads us to the three main sections of a Git project: the working tree, the staging area, and the Git directory.
 
-#+begin_src artist
+#+begin_src
 
- Working                       Staging                 .git directory
-Directory                       Area                   (Repository)
+   Working                       Staging                 .git directory
+  Directory                       Area                   (Repository)
 
-<----------------- checkout the project-----------------------
+  <----------------- checkout the project-----------------------
 
-Stage Fixes --------------------->
+  Stage Fixes --------------------->
 
-                              Commit ------------------------>
+                                Commit ------------------------>
 
 #+end_src
 
@@ -34,20 +34,20 @@ Stage Fixes --------------------->
 
 The lifecycle of the status of your files:
 
-#+begin_src artist
+#+begin_src
 
-Untracked        ¦-------------------- Tracked ----------------------¦
-                  Unmodified           Modified                Staged
+  Untracked        ¦-------------------- Tracked ----------------------¦
+                    Unmodified           Modified                Staged
 
-Add the file ---------------------------------------------------->
+  Add the file ---------------------------------------------------->
 
-                    Edit the file -------->
+                      Edit the file -------->
 
-                                            Stage the file ------>
+                                              Stage the file ------>
 
-<---------- Remove the file
+  <---------- Remove the file
 
-                   <------------------------------------------Commit
+                     <------------------------------------------Commit
 
 #+end_src
 
@@ -64,52 +64,52 @@ When you create the commit by running ~git commit~, Git checksums each subdirect
 
 Git repository now contains five objects: three blobs (each representing the contents of one of the three files), one tree that lists the contents of the directory and specifies which file names are stored as which blobs, and one commit with the pointer to that root tree and all the commit metadata.
 
-#+begin_src artist
+#+begin_src
 
-                                                        5b1d3
-                                                    +-----------+
-                                                    | blob size |
-                                                    |           |
-                                                    | License   |
-                                                    +-----------+
-                                                   /
-                                                  /
-       98ca9                       92ec2         /        911e7
-+--------------------+     +--------------------+     +-----------+
-| commit    size     |     | tree size          |     | blob size |
-| tree      92ec2    |     | blob 5b1d3 README  |     |           |
-| author    Scott    | --> | blob 911e7 LICENSE | --> |           |
-| commiter  Scott    |     | blob cba0a test.rb |     |           |
-| The initial commit |     |                    |     | Library   |
-+--------------------+     +--------------------+     +-----------+
-                                                 \
-                                                  \
-                                                   \    cba0a
-                                                    +-----------+
-                                                    | blob size |
-                                                    |           |
-                                                    | test      |
-                                                    +-----------+
+                                                          5b1d3
+                                                      +-----------+
+                                                      | blob size |
+                                                      |           |
+                                                      | License   |
+                                                      +-----------+
+                                                     /
+                                                    /
+         98ca9                       92ec2         /        911e7
+  +--------------------+     +--------------------+     +-----------+
+  | commit    size     |     | tree size          |     | blob size |
+  | tree      92ec2    |     | blob 5b1d3 README  |     |           |
+  | author    Scott    | --> | blob 911e7 LICENSE | --> |           |
+  | commiter  Scott    |     | blob cba0a test.rb |     |           |
+  | The initial commit |     |                    |     | Library   |
+  +--------------------+     +--------------------+     +-----------+
+                                                   \
+                                                    \
+                                                     \    cba0a
+                                                      +-----------+
+                                                      | blob size |
+                                                      |           |
+                                                      | test      |
+                                                      +-----------+
 
 #+end_src
 
 If you make some changes and commit again, the next commit stores a pointer to the commit that came immediately before it.
 
-#+begin_src artist
+#+begin_src
 
-         98ca9                    34ac2                   f30ab
-+--------------------+     +-----------------+     +-----------------+
-| commit    size     |     | commit    size  |     | commit    size  |
-| tree      92ec2    |     | tree      184ca |     | tree      0de24 |
-| parent             |     | parent    98ca9 |     | parent    34ac2 |
-| author    Scott    | <-- | author    Scott | <-- | author    Scott |
-| commiter  Scott    |     | commiter  Scott |     | commiter  Scott |
-| The initial commit |     | Fixed bug #32   |     | ass feature #4  |
-+--------------------+     +-----------------+     +-----------------+
-           ¦                        ¦                       ¦
-    +------------+           +------------+           +------------+
-    | Snapshot A |           | Snapshot B |           | Snapshot C |
-    +------------+           +------------+           +------------+
+           98ca9                    34ac2                   f30ab
+  +--------------------+     +-----------------+     +-----------------+
+  | commit    size     |     | commit    size  |     | commit    size  |
+  | tree      92ec2    |     | tree      184ca |     | tree      0de24 |
+  | parent             |     | parent    98ca9 |     | parent    34ac2 |
+  | author    Scott    | <-- | author    Scott | <-- | author    Scott |
+  | commiter  Scott    |     | commiter  Scott |     | commiter  Scott |
+  | The initial commit |     | Fixed bug #32   |     | ass feature #4  |
+  +--------------------+     +-----------------+     +-----------------+
+             ¦                        ¦                       ¦
+      +------------+           +------------+           +------------+
+      | Snapshot A |           | Snapshot B |           | Snapshot C |
+      +------------+           +------------+           +------------+
 
 #+end_src
 
@@ -133,13 +133,13 @@ Anything that has merge conflicts and hasn’t been resolved is listed as unmerg
 
 #+begin_src shell
 
-<<<<<<< HEAD:index.html
-<div id="footer">contact : email.support@github.com</div>
-=======
-<div id="footer">
- please contact us at support@github.com
-</div>
->>>>>>> iss53:index.html
+  <<<<<<< HEAD:index.html
+  <div id="footer">contact : email.support@github.com</div>
+  =======
+  <div id="footer">
+  please contact us at support@github.com
+  </div>
+  >>>>>>> iss53:index.html
 
 #+end_src
 
@@ -155,36 +155,36 @@ When you clone a repository, it generally automatically creates a ~master~ branc
 ** Rebasing
 *** Rebasing different branches
 
-#+begin_src artist
+#+begin_src
 
-                             experiment
-                              +----+
-                              | C4 |
-                              +----+
-                            /
-                          L
-+----+    +----+    +----+    +----+
-| C0 |<-- | C1 |<-- | C2 |<-- | C3 |
-+----+    +----+    +----+    +----+
-                              master
+                               experiment
+                                +----+
+                                | C4 |
+                                +----+
+                              /
+                            L
+  +----+    +----+    +----+    +----+
+  | C0 |<-- | C1 |<-- | C2 |<-- | C3 |
+  +----+    +----+    +----+    +----+
+                                master
 
 #+end_src
 
 The easiest way to integrate the branches, is the ~merge~ command. It performs a three-way merge between the two latest branch snapshots (~C3~ and ~C4~) and the most recent common ancestor of the two (~C2~), creating a new snapshot (and commit).
 
-#+begin_src artist
+#+begin_src
 
- MERGE
-                            experiment
-                              +----+
-                              |*C4*|
-                              +----+
-                             /      ^
-                           L          \
-+----+    +----+    +----+    +----+   +----+
-| C0 |<-- | C1 |<-- |*C2*|<-- |*C3*|<--| C5 |
-+----+    +----+    +----+    +----+   +----+
-                                       master
+   MERGE
+                              experiment
+                                +----+
+                                |*C4*|
+                                +----+
+                               /      ^
+                             L          \
+  +----+    +----+    +----+    +----+   +----+
+  | C0 |<-- | C1 |<-- |*C2*|<-- |*C3*|<--| C5 |
+  +----+    +----+    +----+    +----+   +----+
+                                         master
 
 #+end_src
 
@@ -196,31 +196,29 @@ This operation works by going to the common ancestor of the two branches (the on
 
 Rebasing the change introduced in ~C4~ onto ~C3~ .
 
-#+begin_src artist
+#+begin_src
 
-                               + - -+
-                               |+C4+|
-                               +- - +
+                                 + - -+
+                                 |+C4+|
+                                 +- - +
 
-                                       experiment
-+----+    +----+    +----+    +----+    +-----+
-| C0 |<-- | C1 |<-- | C2 |<-- | C3 |<-- | C4' |
-+----+    +----+    +----+    +----+    +-----+
-                              master
-
+                                         experiment
+  +----+    +----+    +----+    +----+    +-----+
+  | C0 |<-- | C1 |<-- | C2 |<-- | C3 |<-- | C4' |
+  +----+    +----+    +----+    +----+    +-----+
+                                master
 
 #+end_src
 
 Fast-forwarding the *master* branch applying  ~git checkout master ; git merge experiment~ command:
 
-#+begin_src artist
+#+begin_src
 
-                                       experiment
-+----+    +----+    +----+    +----+    +-----+
-| C0 |<-- | C1 |<-- | C2 |<-- | C3 |<-- | C4' |
-+----+    +----+    +----+    +----+    +-----+
-                              master
-
+                                         experiment
+  +----+    +----+    +----+    +----+    +-----+
+  | C0 |<-- | C1 |<-- | C2 |<-- | C3 |<-- | C4' |
+  +----+    +----+    +----+    +----+    +-----+
+                                master
 
 #+end_src
 
@@ -228,23 +226,23 @@ Now, the snapshot pointed to by ~C4'~ is exactly the same as the one that was po
 
 *** More Interesting Rebases
 
-#+begin_src artist
+#+begin_src
 
-                              master
-+----+    +----+    +----+    +----+
-| C1 |<-- | C2 |<-- | C5 |<-- | C6 |
-+----+    +----+    +----+    +----+
-                ^
-                 \
-                    +----+    +----+    +-----+
-                    | C3 |<-- | C4 |<-- | C10 |
-                    +----+    +----+    +-----+
-                          ^              server
-                           \
-                              +----+    +-----+
-                              | C8 |<-- | C9  |
-                              +----+    +-----+
-                                         client
+                                master
+  +----+    +----+    +----+    +----+
+  | C1 |<-- | C2 |<-- | C5 |<-- | C6 |
+  +----+    +----+    +----+    +----+
+                  ^
+                   \
+                      +----+    +----+    +-----+
+                      | C3 |<-- | C4 |<-- | C10 |
+                      +----+    +----+    +-----+
+                            ^              server
+                             \
+                                +----+    +-----+
+                                | C8 |<-- | C9  |
+                                +----+    +-----+
+                                           client
 
 #+end_src
 
@@ -252,22 +250,22 @@ You want to merge your client-side changes into your mainline for a release, but
 
 ~git rebase --onto master server client~
 
-#+begin_src artist
+#+begin_src
 
-                              master                client
-+----+    +----+    +----+    +----+    +-----+    +-----+
-| C1 |<-- | C2 |<-- | C5 |<-- | C6 |<-- | C8' |<-- | C9' |
-+----+    +----+    +----+    +----+    +-----+    +-----+
-                ^
-                 \
-                    +----+    +----+    +-----+
-                    | C3 |<-- | C4 |<-- | C10 |
-                    +----+    +----+    +-----+
-                                        server
+                                master                client
+  +----+    +----+    +----+    +----+    +-----+    +-----+
+  | C1 |<-- | C2 |<-- | C5 |<-- | C6 |<-- | C8' |<-- | C9' |
+  +----+    +----+    +----+    +----+    +-----+    +-----+
+                  ^
+                   \
+                      +----+    +----+    +-----+
+                      | C3 |<-- | C4 |<-- | C10 |
+                      +----+    +----+    +-----+
+                                          server
 
-                              + - -+    +- - +
-                              |+C8+|<-- |+C9+|
-                              +- - +    + - -+
+                                + - -+    +- - +
+                                |+C8+|<-- |+C9+|
+                                +- - +    + - -+
 
 #+end_src
 
@@ -281,8 +279,8 @@ A remote URL is Git's fancy way of saying "*the place where your code is stored.
 
 You can only push to two types of URL addresses:
 
-  - An HTTPS URL like ~https://github.com/user/repo.git~
-  - An SSH URL, like ~git@github.com:user/repo.git~
+- An HTTPS URL like ~https://github.com/user/repo.git~
+- An SSH URL, like ~git@github.com:user/repo.git~
 
 Git associates a remote URL with a name, and your default remote is usually called ~origin~.
 
@@ -298,8 +296,8 @@ You can use the command ~git remote set-url~ to change a remote's URL.
 ** About git push
 The ~git push~ command takes two arguments:
 
-    A remote name, for example, ~origin~
-    A branch name, for example, ~main~
+A remote name, for example, ~origin~
+A branch name, for example, ~main~
 
 For example:
 
@@ -324,13 +322,13 @@ You’ll probably want to clone the main repository, create a topic branch for t
 
 #+begin_src shell
 
-git clone <url>
-cd project
-git checkout -b featureA
-#... work ...
-git commit
-#... work ...
-git commit
+  git clone <url>
+  cd project
+  git checkout -b featureA
+  #... work ...
+  git commit
+  #... work ...
+  git commit
 
 #+end_src
 
@@ -357,11 +355,11 @@ You create topic branches for each patch series you work on. You generate email 
 
 #+begin_src shell
 
-git checkout -b topicA
-#... work ...
-git commit
-#... work ...
-git commit
+  git checkout -b topicA
+  #... work ...
+  git commit
+  #... work ...
+  git commit
 
 #+end_src
 
@@ -374,13 +372,13 @@ You can either paste the file into your email program or send it via a command-l
 
 #+begin_src shell
 
-[imap]
-  folder = "[Gmail]/Drafts"
-  host = imaps://imap.gmail.com #if IMAP server doesn’t use SSL use imap://
-  user = user@gmail.com
-  pass = YX8g76G_2^sFbd
-  port = 993 #if IMAP server doesn’t use SSL, probably aren’t necessary
-  sslverify = false #if IMAP server doesn’t use SSL, probably aren’t necessary
+  [imap]
+    folder = "[Gmail]/Drafts"
+    host = imaps://imap.gmail.com #if IMAP server doesn’t use SSL use imap://
+    user = user@gmail.com
+    pass = YX8g76G_2^sFbd
+    port = 993 #if IMAP server doesn’t use SSL, probably aren’t necessary
+    sslverify = false #if IMAP server doesn’t use SSL, probably aren’t necessary
 
 #+end_src
 
@@ -393,11 +391,11 @@ As before, you can set each value separately with a series of ~git config~ comma
 
 #+begin_src shell
 
-[sendemail]
-  smtpencryption = tls
-  smtpserver = smtp.gmail.com
-  smtpuser = user@gmail.com
-  smtpserverport = 587
+  [sendemail]
+    smtpencryption = tls
+    smtpserver = smtp.gmail.com
+    smtpuser = user@gmail.com
+    smtpserverport = 587
 
 #+end_src
 
@@ -414,27 +412,27 @@ As a general rule, your messages should start with a single line that’s no mor
 
 #+begin_src text
 
-Capitalized, short (50 chars or less) summary
+  Capitalized, short (50 chars or less) summary
 
-More detailed explanatory text, if necessary.  Wrap it to about 72
-characters or so.  In some contexts, the first line is treated as the
-subject of an email and the rest of the text as the body.  The blank
-line separating the summary from the body is critical (unless you omit
-the body entirely); tools like rebase will confuse you if you run the
-two together.
+  More detailed explanatory text, if necessary.  Wrap it to about 72
+  characters or so.  In some contexts, the first line is treated as the
+  subject of an email and the rest of the text as the body.  The blank
+  line separating the summary from the body is critical (unless you omit
+  the body entirely); tools like rebase will confuse you if you run the
+  two together.
 
-Write your commit message in the imperative: "Fix bug" and not "Fixed bug"
-or "Fixes bug."  This convention matches up with commit messages generated
-by commands like git merge and git revert.
+  Write your commit message in the imperative: "Fix bug" and not "Fixed bug"
+  or "Fixes bug."  This convention matches up with commit messages generated
+  by commands like git merge and git revert.
 
-Further paragraphs come after blank lines.
+  Further paragraphs come after blank lines.
 
-- Bullet points are okay, too
+  - Bullet points are okay, too
 
-- Typically a hyphen or asterisk is used for the bullet, followed by a
+  - Typically a hyphen or asterisk is used for the bullet, followed by a
   single space, with blank lines in between, but conventions vary here
 
-- Use a hanging indent
+  - Use a hanging indent
 
 #+end_src
 
@@ -443,7 +441,7 @@ The Git project has well-formatted commit messages — try running ~git log 
 *Note*:
 Regarding the “summary” line (the 50 in your formula), the Linux kernel documentation has this to say:
 
-#+begin_src  
+#+begin_src
 
 For these reasons, the "summary" must be no more than 70-75
 characters, and it must describe both what the patch changes, as well
@@ -469,7 +467,7 @@ Because Git allows you to have multiple remote repositories, it’s possible to 
 5. The maintainer adds the contributor’s repository as a remote and merges locally.
 6. The maintainer pushes merged changes to the main repository.
 
- One of the main advantages of this approach is that you can continue to work, and the maintainer of the main repository can pull in your changes at any time.
+   One of the main advantages of this approach is that you can continue to work, and the maintainer of the main repository can pull in your changes at any time.
 
 *** Dictator and Lieutenants Workflow
 It’s generally used by huge projects with hundreds of collaborators; one famous example is the Linux kernel.
@@ -501,43 +499,43 @@ It’s generally used by huge projects with hundreds of collaborators; one famou
 
 #+begin_src shell
 
-$ git clone https://github.com/tonychacon/blink # (1)
-# Cloning into 'blink'...
+  $ git clone https://github.com/tonychacon/blink # (1)
+  # Cloning into 'blink'...
 
-$ cd blink
-$ git checkout -b slow-blink # (2)
-#Switched to a new branch 'slow-blink'
+  $ cd blink
+  $ git checkout -b slow-blink # (2)
+  #Switched to a new branch 'slow-blink'
 
-$ sed -i 's/1000/3000/' blink.ino # (3)
+  $ sed -i 's/1000/3000/' blink.ino # (3)
 
-$ git diff --word-diff # (4)
-# diff --git a/blink.ino b/blink.ino
-# index 15b9911..a6cc5a5 100644
-# --- a/blink.ino
-# +++ b/blink.ino
-# @@ -18,7 +18,7 @@ void setup() {
-# // the loop routine runs over and over again forever:
-# void loop() {
-#   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-#   [-delay(1000);-]{+delay(3000);+}               // wait for a second
-#   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-#   [-delay(1000);-]{+delay(3000);+}               // wait for a second
-# }
+  $ git diff --word-diff # (4)
+  # diff --git a/blink.ino b/blink.ino
+  # index 15b9911..a6cc5a5 100644
+  # --- a/blink.ino
+  # +++ b/blink.ino
+  # @@ -18,7 +18,7 @@ void setup() {
+  # // the loop routine runs over and over again forever:
+  # void loop() {
+  #   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
+  #   [-delay(1000);-]{+delay(3000);+}               // wait for a second
+  #   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
+  #   [-delay(1000);-]{+delay(3000);+}               // wait for a second
+  # }
 
-$ git commit -a -m 'Change delay to 3 seconds' # (5)
-# [slow-blink 5ca509d] Change delay to 3 seconds
-#  1 file changed, 2 insertions(+), 2 deletions(-)
+  $ git commit -a -m 'Change delay to 3 seconds' # (5)
+  # [slow-blink 5ca509d] Change delay to 3 seconds
+  #  1 file changed, 2 insertions(+), 2 deletions(-)
 
-$ git push origin slow-blink # (6)
-# Username for 'https://github.com': tonychacon
-# Password for 'https://tonychacon@github.com':
-# Counting objects: 5, done.
-# Delta compression using up to 8 threads.
-# Compressing objects: 100% (3/3), done.
-# Writing objects: 100% (3/3), 340 bytes | 0 bytes/s, done.
-# Total 3 (delta 1), reused 0 (delta 0)
-# To https://github.com/tonychacon/blink
-#  * [new branch]      slow-blink -> slow-blink
+  $ git push origin slow-blink # (6)
+  # Username for 'https://github.com': tonychacon
+  # Password for 'https://tonychacon@github.com':
+  # Counting objects: 5, done.
+  # Delta compression using up to 8 threads.
+  # Compressing objects: 100% (3/3), done.
+  # Writing objects: 100% (3/3), 340 bytes | 0 bytes/s, done.
+  # Total 3 (delta 1), reused 0 (delta 0)
+  # To https://github.com/tonychacon/blink
+  #  * [new branch]      slow-blink -> slow-blink
 
 #+end_src
 
@@ -546,9 +544,9 @@ If you forked from https://github.com/progit/progit2.git, you can keep your mast
 
 #+begin_src shell
 
-git checkout master # (1)
-git pull https://github.com/progit/progit2.git # (2)
-git push origin master # (3)
+  git checkout master # (1)
+  git pull https://github.com/progit/progit2.git # (2)
+  git push origin master # (3)
 
 #+end_src
 
@@ -560,10 +558,10 @@ This works, but it is a little tedious having to spell out the fetch URL every t
 
 #+begin_src shell
 
-git remote add progit https://github.com/progit/progit2.git # (1)
-git fetch progit # (2)
-git branch --set-upstream-to=progit/master master # (3)
-git config --local remote.pushDefault origin # (4)
+  git remote add progit https://github.com/progit/progit2.git # (1)
+  git fetch progit # (2)
+  git branch --set-upstream-to=progit/master master # (3)
+  git config --local remote.pushDefault origin # (4)
 
 #+end_src
 
@@ -576,9 +574,9 @@ Once this is done, the workflow becomes much simpler:
 
 #+begin_src shell
 
-git checkout master # (1)
-git pull # (2)
-git push # (3)
+  git checkout master # (1)
+  git pull # (2)
+  git push # (3)
 
 #+end_src
 
@@ -631,23 +629,23 @@ In the simple case, a repository might have a single ~.gitignore~ file in its ro
 
 #+begin_src shell
 
-# ignore any files ending in “.o” or “.a”
-*.[oa]
+  # ignore any files ending in “.o” or “.a”
+  *.[oa]
 
-# but do track lib.a, even though you're ignoring .a files above
-!lib.a
+  # but do track lib.a, even though you're ignoring .a files above
+  !lib.a
 
-# only ignore the TODO file in the current directory, not subdir/TODO
-/TODO
+  # only ignore the TODO file in the current directory, not subdir/TODO
+  /TODO
 
-# ignore all files in any directory named build
-build/
+  # ignore all files in any directory named build
+  build/
 
-# ignore doc/notes.txt, but not doc/server/arch.txt
-doc/*.txt
+  # ignore doc/notes.txt, but not doc/server/arch.txt
+  doc/*.txt
 
-# ignore all .pdf files in the doc/ directory and any of its subdirectories
-doc/**/*.pdf
+  # ignore all .pdf files in the doc/ directory and any of its subdirectories
+  doc/**/*.pdf
 
 #+end_src
 
@@ -695,15 +693,15 @@ The Dumb protocol expects the bare Git repository to be served like normal files
 
 #+begin_src shell
 
-cd /var/www/htdocs/
-git clone --bare /path/to/git_project gitproject.git
-cd gitproject.git
-mv hooks/post-update.sample hooks/post-update
-chmod a+x hooks/post-update
+  cd /var/www/htdocs/
+  git clone --bare /path/to/git_project gitproject.git
+  cd gitproject.git
+  mv hooks/post-update.sample hooks/post-update
+  chmod a+x hooks/post-update
 
-# In this particular case, we’re using the /var/www/htdocs path that is
-# common for Apache setups, but you can use any static web server — just
-# put the bare repository in its path.
+  # In this particular case, we’re using the /var/www/htdocs path that is
+  # common for Apache setups, but you can use any static web server — just
+  # put the bare repository in its path.
 
 #+end_src
 
@@ -735,9 +733,9 @@ Will automatically add group write permissions to a repository. (this command, y
 
 #+begin_src shell
 
-ssh user@git.example.com
-cd /srv/git/my_project.git
-git init --bare --shared
+  ssh user@git.example.com
+  cd /srv/git/my_project.git
+  git init --bare --shared
 
 #+end_src
 
@@ -748,44 +746,44 @@ Set up Git daemon serving repositories using the "Git" protocol. (If you’re ru
 
 #+begin_src shell
 
-# Place a file in /etc/systemd/system/git-daemon.service
+  # Place a file in /etc/systemd/system/git-daemon.service
 
-[Unit]
-Description=Start Git Daemon
+  [Unit]
+  Description=Start Git Daemon
 
-[Service]
-ExecStart=/usr/bin/git daemon --reuseaddr --base-path=/srv/git/ /srv/git/
+  [Service]
+  ExecStart=/usr/bin/git daemon --reuseaddr --base-path=/srv/git/ /srv/git/
 
-Restart=always
-RestartSec=500ms
+  Restart=always
+  RestartSec=500ms
 
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=git-daemon
+  StandardOutput=syslog
+  StandardError=syslog
+  SyslogIdentifier=git-daemon
 
-User=git
-Group=git
+  User=git
+  Group=git
 
-[Install]
-WantedBy=multi-user.target
+  [Install]
+  WantedBy=multi-user.target
 
-# run systemctl enable git-daemon to automatically start the service on
-# boot, and can start and stop the service with, respectively, systemctl
-# start git-daemon and systemctl stop git-daemon.
+  # run systemctl enable git-daemon to automatically start the service on
+  # boot, and can start and stop the service with, respectively, systemctl
+  # start git-daemon and systemctl stop git-daemon.
 
 #+end_src
 
 #+begin_src shell
 
-# You to have to tell Git which repositories to allow unauthenticated
-# Git server-based access to. You can do this in each repository by
-# creating a file named git-daemon-export-ok.
+  # You to have to tell Git which repositories to allow unauthenticated
+  # Git server-based access to. You can do this in each repository by
+  # creating a file named git-daemon-export-ok.
 
-cd /path/to/project.git
-touch git-daemon-export-ok
+  cd /path/to/project.git
+  touch git-daemon-export-ok
 
-# The presence of that file tells Git that it’s OK to serve this project
-# without authentication.
+  # The presence of that file tells Git that it’s OK to serve this project
+  # without authentication.
 
 #+end_src
 ** Git log

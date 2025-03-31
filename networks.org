@@ -32,32 +32,33 @@ A Local Area Network is a computer network that interconnects computers within a
 
 Simple LANs generally consist of cabling and one or more switches. A switch can be connected to a router, cable modem, or ADSL modem for Internet access. A LAN can include a wide variety of other network devices such as firewalls, load balancers, and network intrusion detection.
 
- Las LAN domésticas suelen utilizar un único enrutador, mientras que las LAN en espacios más grandes pueden utilizar además conmutadores de red para una entrega de paquetes más eficiente. Las redes LAN casi siempre utilizan Ethernet, WiFi o ambas para conectar los dispositivos de la red.
+Las LAN domésticas suelen utilizar un único enrutador, mientras que las LAN en espacios más grandes pueden utilizar además conmutadores de red para una entrega de paquetes más eficiente. Las redes LAN casi siempre utilizan Ethernet, WiFi o ambas para conectar los dispositivos de la red.
 
- #+begin_src artist
-                                                        ---------
-                                                      -/         \-
-                                                     /             \
-                                                    (   Internet    )
-                                                     \             /
-                                                      -\         /-
-                                                        ---------
-                  Subnet 10.23.2.0/24 (LAN)                  |
-                              |                              |
-                              v                              |
-        ┌-------------------------------------------------┐  |
-        |              |               |                  |  |
-        |              |               |                  |  |
- +-----------+  +------------+  +-------------+    +-----------------+
- | 10.23.2.4 |  | 10.23.2.37 |  | 10.23.2.132 |    |10.23.2.1|Uplink |
- |           |  |            |  |             |    |         |Address|
- |-----------|  |------------|  |-------------|    |-----------------|
- |           |  |            |  |             |    |                 |
- |  Host A   |  |   Host B   |  |    Host C   |    |      Router     |
- |           |  |            |  |             |    |                 |
- +-----------+  +------------+  +-------------+    +-----------------+
+#+begin_src
 
- #+end_src
+                                                          ---------
+                                                        -/         \-
+                                                       /             \
+                                                      (   Internet    )
+                                                       \             /
+                                                        -\         /-
+                                                          ---------
+                    Subnet 10.23.2.0/24 (LAN)                  |
+                                |                              |
+                                v                              |
+          ┌-------------------------------------------------┐  |
+          |              |               |                  |  |
+          |              |               |                  |  |
+   +-----------+  +------------+  +-------------+    +-----------------+
+   | 10.23.2.4 |  | 10.23.2.37 |  | 10.23.2.132 |    |10.23.2.1|Uplink |
+   |           |  |            |  |             |    |         |Address|
+   |-----------|  |------------|  |-------------|    |-----------------|
+   |           |  |            |  |             |    |                 |
+   |  Host A   |  |   Host B   |  |    Host C   |    |      Router     |
+   |           |  |            |  |             |    |                 |
+   +-----------+  +------------+  +-------------+    +-----------------+
+
+#+end_src
 
 *** WAN
 A Wide Area Network is a telecommunications network that extends over a large geographic area. The Internet may be considered a WAN. Many WANs are, however, built for one particular organization and are private. WANs can be separated from local area networks (LANs) in that the latter refers to physically proximal networks.
@@ -100,10 +101,10 @@ La World Wide Web es un sistema que funciona a través de [[Internet]], contiene
 Documents and downloadable media are made available to the network through web servers and can be accessed by programs such as web browsers. Servers and resources on the World Wide Web are identified and located through character strings called uniform resource locators (URLs). The original and still very common document type is a web page formatted in Hypertext Markup Language (HTML). The information in the Web is transferred across the Internet using the Hypertext Transfer Protocol (HTTP).
 
 *Estándares web*:
-  - el Identificador de Recurso Uniforme (URI) :: que es un sistema universal para referenciar recursos en la Web, como páginas web
-  - el Protocolo de Transferencia de Hipertexto (HTTP) :: que especifica cómo se comunican el navegador y el servidor entre ellos
-  - el Lenguaje de Marcado de Hipertexto (HTML) :: usado para definir la estructura y contenido de documentos de hipertexto
-  - el Lenguaje de Marcado Extensible (XML) :: usado para describir la estructura de los documentos de texto.
+- el Identificador de Recurso Uniforme (URI) :: que es un sistema universal para referenciar recursos en la Web, como páginas web
+- el Protocolo de Transferencia de Hipertexto (HTTP) :: que especifica cómo se comunican el navegador y el servidor entre ellos
+- el Lenguaje de Marcado de Hipertexto (HTML) :: usado para definir la estructura y contenido de documentos de hipertexto
+- el Lenguaje de Marcado Extensible (XML) :: usado para describir la estructura de los documentos de texto.
 
 ** URI
 *** Definition
@@ -136,18 +137,18 @@ The authority component consists of subcomponents:
 ~mysql://localhost~
 *URL*: Shows you where you can find the database on the internet and which protocol you should use.
 
-#+begin_src artist
+#+begin_src
 
-        userinfo     host    port
-        ┌──┴───┐ ┌────┴────┐ ┌┴┐
-https://john.doe@www.exa.com:123/forum/questi/?tag=net&order=new#top
-└─┬─┘   └───────────┬──────────┘└─────┬──────┘ └────────┬──────┘ └┬┘
-scheme          authority           path               query  fragment
+          userinfo     host    port
+          ┌──┴───┐ ┌────┴────┐ ┌┴┐
+  https://john.doe@www.exa.com:123/forum/questi/?tag=net&order=new#top
+  └─┬─┘   └───────────┬──────────┘└─────┬──────┘ └────────┬──────┘ └┬┘
+  scheme          authority           path               query  fragment
 
 
-mailto:John.Doe@example.com
-└─┬─┘  └────────┬─────────┘
-scheme        path
+  mailto:John.Doe@example.com
+  └─┬─┘  └────────┬─────────┘
+  scheme        path
 
 #+end_src
 
@@ -209,7 +210,7 @@ One method for accepting and processing incoming connections
 
 Notice that this type of server involves two kinds of sockets: one for listening and one for reading and writing. The master process uses the listening socket to look for connections from the network. When a new connection comes in, the master process uses the ~accept()~ system call to accept the connection, which creates the read/write socket dedicated to that connection. Next, the master process uses ~fork()~ to create a new child process to deal with the connection. Finally, the original socket remains the listener and continues to look for more connections on behalf of the master process.
 
-#+begin_src artist
+#+begin_src
 
                                              Original process
           ┌----------------------------------------------------┐
@@ -248,9 +249,9 @@ Internet socket APIs are usually based on the Berkeley sockets standard. In the 
 In the standard Internet protocols TCP and UDP, a socket address is the combination of an IP address and a port number, much like one end of a telephone connection is the combination of a phone number and a particular extension. Sockets need not have a source address, for example, for only sending data, but if a program binds a socket to a source address, the socket can be used to receive data sent to that address. Based on this address, Internet sockets deliver incoming data packets to the appropriate application process.
 
 Socket often refers specifically to an internet socket or TCP socket. An internet socket is minimally characterized by the following:
-  - local socket address, consisting of the local IP address and (for TCP and UDP, but not IP) a port number
-  - protocol: A transport protocol, e.g., TCP, UDP, raw IP. This means that (local or remote) endpoints with TCP port 53 and UDP port 53 are distinct sockets, while IP does not have ports.
-  - A socket that has been connected to another socket, e.g., during the establishment of a TCP connection, also has a remote socket address.
+- local socket address, consisting of the local IP address and (for TCP and UDP, but not IP) a port number
+- protocol: A transport protocol, e.g., TCP, UDP, raw IP. This means that (local or remote) endpoints with TCP port 53 and UDP port 53 are distinct sockets, while IP does not have ports.
+- A socket that has been connected to another socket, e.g., during the establishment of a TCP connection, also has a remote socket address.
 
 Within the operating system and the application that created a socket, a socket is referred to by a unique integer value called a socket descriptor.
 
@@ -480,7 +481,7 @@ Subnets are still denoted in CIDR notation. For the end user, they often cover h
 
 Next figure shows the breakdown of an example address with a 64-bit subnet.
 
-#+begin_src artist
+#+begin_src
 
          Subnet                  Interface ID
   +---------------------+   +---------------------+
@@ -535,9 +536,9 @@ Computer 1 receives and caches the response information in its ARP table and can
 Network Address Translation is a method of mapping an IP address space into another by modifying network address information in the IP header of packets while they are in transit across a traffic routing device. It has become a popular and essential tool in conserving global address space in the face of IPv4 address exhaustion.
 
 The majority of network address translators map multiple private hosts to one publicly exposed IP address. Here is a typical configuration:
-  1. A local network uses one of the designated private IP address subnets.
-  2. The network has a router having both a private and a public address. The private address is used by the router for communicating with other devices in the private local network. The public address (typically assigned by an Internet service provider) is used by the router for communicating with the rest of the Internet.
-  3. As traffic passes from the network to the Internet, the router translates the source address in each packet from a private address to the router's own public address. The router tracks basic data about each active connection (particularly the destination address and port). When the router receives inbound traffic from the Internet, it uses the connection tracking data it stored during the outbound phase to determine to which private address (if any) it should forward the reply.
+1. A local network uses one of the designated private IP address subnets.
+2. The network has a router having both a private and a public address. The private address is used by the router for communicating with other devices in the private local network. The public address (typically assigned by an Internet service provider) is used by the router for communicating with the rest of the Internet.
+3. As traffic passes from the network to the Internet, the router translates the source address in each packet from a private address to the router's own public address. The router tracks basic data about each active connection (particularly the destination address and port). When the router receives inbound traffic from the Internet, it uses the connection tracking data it stored during the outbound phase to determine to which private address (if any) it should forward the reply.
 
 This method allows communication through the router only when the conversation originates in the private network, since the initial originating transmission is what establishes the required information in the translation tables. Thus a web browser within the private network would be able to browse websites that are outside the network, whereas web browsers outside the network would be unable to browse a website hosted within. Protocols not based on TCP and UDP require other translation techniques.
 
@@ -632,7 +633,7 @@ For example, say your machine has an ~SSH~ server on ~TCP~ port ~22~. There’s 
 
 #+begin_src sh
 
-iptables -P INPUT DROP
+  iptables -P INPUT DROP
 
 #+end_src
 
@@ -640,7 +641,7 @@ To enable ~ICMP~ traffic (for ping and other utilities), use this line:
 
 #+begin_src sh
 
-iptables -A INPUT -p icmp -j ACCEPT
+  iptables -A INPUT -p icmp -j ACCEPT
 
 #+end_src
 
@@ -648,8 +649,8 @@ Make sure that you can receive packets you send to both your own network IP addr
 
 #+begin_src sh
 
-iptables -A INPUT -s 127.0.0.1 -j ACCEPT
-iptables -A INPUT -s my_addr -j ACCEPT
+  iptables -A INPUT -s 127.0.0.1 -j ACCEPT
+  iptables -A INPUT -s my_addr -j ACCEPT
 
 #+end_src
 
@@ -661,7 +662,7 @@ Now, although you still want to deny incoming ~TCP~ connections, you still need 
 
 #+begin_src sh
 
-iptables -A INPUT -p tcp '!' --syn -j ACCEPT
+  iptables -A INPUT -p tcp '!' --syn -j ACCEPT
 
 #+end_src
 
@@ -671,7 +672,7 @@ Next, if you’re using remote UDP-based DNS, you must accept traffic from your 
 
 #+begin_src sh
 
-iptables -A INPUT -p udp --source-port 53 -s ns_addr -j ACCEPT
+  iptables -A INPUT -p udp --source-port 53 -s ns_addr -j ACCEPT
 
 #+end_src
 
@@ -679,7 +680,7 @@ And finally, allow SSH connections from anywhere:
 
 #+begin_src sh
 
-iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
+  iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
 
 #+end_src
 
@@ -714,9 +715,9 @@ TCP protocol operations may be divided into three phases. Connection establishme
 **** Connection establishment
 Before a client attempts to connect with a server, the server must first bind to and listen at a port to open it up for connections: this is called a passive open. Once the passive open is established, a client may establish a connection by initiating an active open using the three-way (or 3-step) handshake:
 
-  1. SYN: The active open is performed by the client sending a SYN to the server. The client sets the segment's sequence number to a random value A.
-  2. SYN-ACK: In response, the server replies with a SYN-ACK. The acknowledgment number is set to one more than the received sequence number i.e. A+1, and the sequence number that the server chooses for the packet is another random number, B.
-  3. ACK: Finally, the client sends an ACK back to the server. The sequence number is set to the received acknowledgment value i.e. A+1, and the acknowledgment number is set to one more than the received sequence number i.e. B+1.
+1. SYN: The active open is performed by the client sending a SYN to the server. The client sets the segment's sequence number to a random value A.
+2. SYN-ACK: In response, the server replies with a SYN-ACK. The acknowledgment number is set to one more than the received sequence number i.e. A+1, and the sequence number that the server chooses for the packet is another random number, B.
+3. ACK: Finally, the client sends an ACK back to the server. The sequence number is set to the received acknowledgment value i.e. A+1, and the acknowledgment number is set to one more than the received sequence number i.e. B+1.
 
 Steps 1 and 2 establish and acknowledge the sequence number for one direction. Steps 2 and 3 establish and acknowledge the sequence number for the other direction. Following the completion of these steps, both the client and server have received acknowledgments and a full-duplex communication is established.
 
@@ -737,15 +738,15 @@ The number of sessions in the server side is limited only by memory and can grow
 Both endpoints must also allocate space for unacknowledged packets and received (but unread) data.
 
 **** Data transfer
-  - Ordered data transfer: the destination host rearranges segments according to a sequence number.
-  - Retransmission of lost packets: any cumulative stream not acknowledged is retransmitted.
-  - Error-free data transfer: corrupted packets are treated as lost and are retransmitted.
-  - Flow control: limits the rate a sender transfers data to guarantee reliable delivery. The receiver continually hints the sender on how much data can be received. When the receiving host's buffer fills, the next acknowledgment suspends the transfer and allows the data in the buffer to be processed.
-  - Congestion control: lost packets (presumed due to congestion) trigger a reduction in data delivery rate.
+- Ordered data transfer: the destination host rearranges segments according to a sequence number.
+- Retransmission of lost packets: any cumulative stream not acknowledged is retransmitted.
+- Error-free data transfer: corrupted packets are treated as lost and are retransmitted.
+- Flow control: limits the rate a sender transfers data to guarantee reliable delivery. The receiver continually hints the sender on how much data can be received. When the receiving host's buffer fills, the next acknowledgment suspends the transfer and allows the data in the buffer to be processed.
+- Congestion control: lost packets (presumed due to congestion) trigger a reduction in data delivery rate.
 
 *** Structure TCP format
 
-#+begin_src artist
+#+begin_src
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -771,7 +772,7 @@ Both endpoints must also allocate space for unacknowledged packets and received 
 
 *** TCP Connection State Diagram
 
-#+begin_src artist
+#+begin_src
 
                               +---------+ ---------\      active OPEN
                               |  CLOSED |            \    -----------
@@ -837,29 +838,29 @@ The Hypertext Transfer Protocol is an application layer protocol in the Internet
 *** Request syntax
 A client sends request messages to the server, which consist of:
 
-  - a *request line*, consisting of the case-sensitive request method, a space, the requested URL, another space, the protocol version, a carriage return, and a line feed, e.g.:
+- a *request line*, consisting of the case-sensitive request method, a space, the requested URL, another space, the protocol version, a carriage return, and a line feed, e.g.:
 
-#+begin_src
+#+begin_src sh
 
-GET /images/logo.png HTTP/1.1
-
-#+end_src
-
-  - zero or more request header fields (at least 1 or more headers in case of HTTP/1.1), each consisting of the case-insensitive field name, a colon, optional leading whitespace, the field value, an optional trailing whitespace and ending with a carriage return and a line feed, e.g.:
-
-#+begin_src
-
-Host: www.example.com
-Accept-Language: en
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0)
-            Gecko/20100101 Firefox/115.0
+  GET /images/logo.png HTTP/1.1
 
 #+end_src
 
-  - an empty line, consisting of a carriage return and a line feed;
-  - an optional message body.
-  - the Host header, should be included in a request because a server might be serving multiple hostnames on a single IP address, and without that header, the server won’t know which hostname the client is trying to talk to.
-  - after the headers, the requests may include a blank line followed by a body, which contains the data being sent.
+- zero or more request header fields (at least 1 or more headers in case of HTTP/1.1), each consisting of the case-insensitive field name, a colon, optional leading whitespace, the field value, an optional trailing whitespace and ending with a carriage return and a line feed, e.g.:
+
+#+begin_src sh
+
+  Host: www.example.com
+  Accept-Language: en
+  User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0)
+              Gecko/20100101 Firefox/115.0
+
+#+end_src
+
+- an empty line, consisting of a carriage return and a line feed;
+- an optional message body.
+- the Host header, should be included in a request because a server might be serving multiple hostnames on a single IP address, and without that header, the server won’t know which hostname the client is trying to talk to.
+- after the headers, the requests may include a blank line followed by a body, which contains the data being sent.
 
 In the HTTP/1.1 protocol, all header fields except ~Host: hostname~ are optional.
 
@@ -886,13 +887,13 @@ GET requests should be used for requests that do not have side effects but simpl
 
 #+begin_src html
 
-<form method="GET" action="example/message.html">
-  <p>Name: <input type="text" name="name"></p>
-  <p>Message:<br><textarea name="message"></textarea></p>
-  <p><button type="submit">Send</button></p>
-</form>
+  <form method="GET" action="example/message.html">
+    <p>Name: <input type="text" name="name"></p>
+    <p>Message:<br><textarea name="message"></textarea></p>
+    <p><button type="submit">Send</button></p>
+  </form>
 
-GET /example/message.html?name=Jean&message=Yes%3F HTTP/1.1
+  GET /example/message.html?name=Jean&message=Yes%3F HTTP/1.1
 
 #+end_src
 
@@ -939,24 +940,24 @@ Su función es la misma que PUT, el cual sobrescribe completamente un recurso.
 *** Response syntax
 A server sends response messages to the client, which consist of:
 
-  - a status line, consisting of the protocol version, a space, the response status code, another space, a possibly empty reason phrase, a carriage return and a line feed, e.g.:
+- a status line, consisting of the protocol version, a space, the response status code, another space, a possibly empty reason phrase, a carriage return and a line feed, e.g.:
 
-#+begin_src
+#+begin_src sh
 
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 
 #+end_src
 
-  - zero or more response header fields, each consisting of the case-insensitive field name, a colon, optional leading whitespace, the field value, an optional trailing whitespace and ending with a carriage return and a line feed, e.g.:
+- zero or more response header fields, each consisting of the case-insensitive field name, a colon, optional leading whitespace, the field value, an optional trailing whitespace and ending with a carriage return and a line feed, e.g.:
 
-#+begin_src
+#+begin_src sh
 
-Content-Length: 65585
-Content-Type: text/html
-Last-Modified: Mon, 08 Jan 2018 10:29:45 GMT
+  Content-Length: 65585
+  Content-Type: text/html
+  Last-Modified: Mon, 08 Jan 2018 10:29:45 GMT
 
-<!doctype html>
-... the rest of the document
+  <!doctype html>
+  ... the rest of the document
 
 #+end_src
 
@@ -966,35 +967,35 @@ Last-Modified: Mon, 08 Jan 2018 10:29:45 GMT
 
 *** Response status codes
 - ~1XX~ (informational)
-    The request was received, continuing process.
+  The request was received, continuing process.
 
 - ~2XX~ (successful)
-    The request was successfully received, understood, and accepted.
-    ~200~ - *OK*, ~201~ - OK *created*
+  The request was successfully received, understood, and accepted.
+  ~200~ - *OK*, ~201~ - OK *created*
 
 - ~3XX~ (redirection)
-    Further action needs to be taken in order to complete the request / redirect.
-    ~301~ - *Moved to new URL*, ~304~ - *Not modified (cached version)*
+  Further action needs to be taken in order to complete the request / redirect.
+  ~301~ - *Moved to new URL*, ~304~ - *Not modified (cached version)*
 
 - ~4XX~ (client error)
-    The request contains bad syntax or cannot be fulfilled.
-    ~400~ - *Bad request*, ~401~ - *Unauthorized*, ~404~ - *Not found*
-    ~405~ - *Method not allowed*
+  The request contains bad syntax or cannot be fulfilled.
+  ~400~ - *Bad request*, ~401~ - *Unauthorized*, ~404~ - *Not found*
+  ~405~ - *Method not allowed*
 
 - ~5XX~ (server error)
-    The server failed to fulfill an apparently valid request (the request isn't to blame).
-    ~500~ - *Internal server error*
+  The server failed to fulfill an apparently valid request (the request isn't to blame).
+  ~500~ - *Internal server error*
 
 *** Browsers and HTTP
 The example code describes a form with two fields: a small one asking for a name and a larger one to write a message in. When you click the Send button, the form is *submitted*, meaning that the content of its field is packed into an HTTP request and the browser navigates to the result of that request.
 
 #+begin_src html
 
-<form method="GET" action="example/message.html">
-  <p>Name: <input type="text" name="name"></p>
-  <p>Message:<br><textarea name="message"></textarea></p>
-  <p><button type="submit">Send</button></p>
-</form>
+  <form method="GET" action="example/message.html">
+    <p>Name: <input type="text" name="name"></p>
+    <p>Message:<br><textarea name="message"></textarea></p>
+    <p><button type="submit">Send</button></p>
+  </form>
 
 #+end_src
 
@@ -1014,11 +1015,11 @@ If we change the ~method~ attribute of the HTML form in the example we saw earli
 
 #+begin_src javascript
 
-POST /example/message.html HTTP/1.1
-Content-length: 24
-Content-type: application/x-www-form-urlencoded
+  POST /example/message.html HTTP/1.1
+  Content-length: 24
+  Content-type: application/x-www-form-urlencoded
 
-name=Jean&message=Yes%3F
+  name=Jean&message=Yes%3F
 
 #+end_src
 
@@ -1088,16 +1089,16 @@ The Internet protocol suite is a model of networking developed contemporarily to
 
 The Internet protocol suite provides end-to-end data communication specifying how data should be packetized, addressed, transmitted, routed, and received. This functionality is organized into four abstraction layers, which classify all related protocols according to each protocol's scope of networking. An implementation of the layers for a particular application forms a protocol stack.
 
-  - the application layer :: providing process-to-process data exchange for applications.
-  - the transport layer :: handling host-to-host communication
-  - the internet layer :: providing internetworking between independent networks
-  - the link layer :: containing communication methods for data that remains within a single network segment (link)
+- the application layer :: providing process-to-process data exchange for applications.
+- the transport layer :: handling host-to-host communication
+- the internet layer :: providing internetworking between independent networks
+- the link layer :: containing communication methods for data that remains within a single network segment (link)
 
 Despite using a different concept for layering than the OSI model, these layers are often compared with the OSI layering scheme in the following manner:
-  -  The Internet application layer maps to the OSI application layer, presentation layer, and most of the session layer.
-  -  The TCP/IP transport layer maps to the graceful close function of the OSI session layer as well as the OSI transport layer.
-  -  The internet layer performs functions as those in a subset of the OSI network layer.
-  -  The link layer corresponds to the OSI data link layer and may include similar functions as the physical layer, as well as some protocols of the OSI's network layer.
+-  The Internet application layer maps to the OSI application layer, presentation layer, and most of the session layer.
+-  The TCP/IP transport layer maps to the graceful close function of the OSI session layer as well as the OSI transport layer.
+-  The internet layer performs functions as those in a subset of the OSI network layer.
+-  The link layer corresponds to the OSI data link layer and may include similar functions as the physical layer, as well as some protocols of the OSI's network layer.
 
 *** Protocol Relationships
 
@@ -1108,7 +1109,7 @@ Despite using a different concept for layering than the OSI model, these layers 
 | /2/ | Internet layer    | ICMP - ARP | Packet           |
 | /1/ | Link layer        | PPP - MAC  | Frame            |
 
-  #+begin_src artist
+#+begin_src
 
        +------+ +-----+ +-----+       +-----+
        |Telnet| | FTP | |Voice|  ...  |     |  Application Level
@@ -1126,7 +1127,7 @@ Despite using a different concept for layering than the OSI model, these layers 
               |   Local Network Protocol  |    Network Level
               +---------------------------+
 
-  #+end_src
+#+end_src
 
 *** Application layer
 Is the scope within which applications, or processes, create user data and communicate this data to other applications on another or the same host.
@@ -1152,17 +1153,17 @@ In the OSI model the transport layer is often referred to as Layer 4, or L4, whi
 **** Services
 Transport layer services are conveyed to an application via a programming interface to the transport layer protocols. The services may include the following features:
 
-  - Connection-oriented communication :: It is normally easier for an application to interpret a connection as a data stream rather than having to deal with the underlying connection-less models, such as the datagram model of the User Datagram Protocol (UDP) and of the Internet Protocol (IP).
+- Connection-oriented communication :: It is normally easier for an application to interpret a connection as a data stream rather than having to deal with the underlying connection-less models, such as the datagram model of the User Datagram Protocol (UDP) and of the Internet Protocol (IP).
 
-  - Same order delivery :: The network layer doesn't generally guarantee that packets of data will arrive in the same order that they were sent, but often this is a desirable feature. This is usually done through the use of segment numbering, with the receiver passing them to the application in order. This can cause head-of-line blocking.
+- Same order delivery :: The network layer doesn't generally guarantee that packets of data will arrive in the same order that they were sent, but often this is a desirable feature. This is usually done through the use of segment numbering, with the receiver passing them to the application in order. This can cause head-of-line blocking.
 
-  - Reliability :: Packets may be lost during transport due to network congestion and errors. By means of an error detection code, such as a checksum, the transport protocol may check that the data is not corrupted, and verify correct receipt by sending an ACK or NACK message to the sender. Automatic repeat request schemes may be used to retransmit lost or corrupted data.
+- Reliability :: Packets may be lost during transport due to network congestion and errors. By means of an error detection code, such as a checksum, the transport protocol may check that the data is not corrupted, and verify correct receipt by sending an ACK or NACK message to the sender. Automatic repeat request schemes may be used to retransmit lost or corrupted data.
 
-  - Flow control :: The rate of data transmission between two nodes must sometimes be managed to prevent a fast sender from transmitting more data than can be supported by the receiving data buffer, causing a buffer overrun. This can also be used to improve efficiency by reducing buffer underrun.
+- Flow control :: The rate of data transmission between two nodes must sometimes be managed to prevent a fast sender from transmitting more data than can be supported by the receiving data buffer, causing a buffer overrun. This can also be used to improve efficiency by reducing buffer underrun.
 
-  - Congestion avoidance :: Congestion control can control traffic entry into a telecommunications network, so as to avoid congestive collapse by attempting to avoid oversubscription of any of the processing or link capabilities of the intermediate nodes and networks and taking resource reducing steps, such as reducing the rate of sending packets. For example, automatic repeat requests may keep the network in a congested state; this situation can be avoided by adding congestion avoidance to the flow control, including slow start. This keeps the bandwidth consumption at a low level in the beginning of the transmission, or after packet retransmission.
+- Congestion avoidance :: Congestion control can control traffic entry into a telecommunications network, so as to avoid congestive collapse by attempting to avoid oversubscription of any of the processing or link capabilities of the intermediate nodes and networks and taking resource reducing steps, such as reducing the rate of sending packets. For example, automatic repeat requests may keep the network in a congested state; this situation can be avoided by adding congestion avoidance to the flow control, including slow start. This keeps the bandwidth consumption at a low level in the beginning of the transmission, or after packet retransmission.
 
-  - Multiplexing :: Ports can provide multiple endpoints on a single node. For example, the name on a postal address is a kind of multiplexing and distinguishes between different recipients of the same location. Computer applications will each listen for information on their own ports, which enables the use of more than one network service at the same time. It is part of the transport layer in the TCP/IP model, but of the session layer in the OSI model.
+- Multiplexing :: Ports can provide multiple endpoints on a single node. For example, the name on a postal address is a kind of multiplexing and distinguishes between different recipients of the same location. Computer applications will each listen for information on their own ports, which enables the use of more than one network service at the same time. It is part of the transport layer in the TCP/IP model, but of the session layer in the OSI model.
 
 *** Internet layer
 Is a group of internetworking methods, protocols, and specifications that are used to transport network packets from the originating host across network boundaries; if necessary, to the destination host specified by an IP address.
@@ -1196,11 +1197,11 @@ At each level N, two entities at the communicating devices (layer N peers) excha
 
 Data processing by two communicating OSI-compatible devices proceeds as follows:
 
-  1. The data to be transmitted is composed at the topmost layer of the transmitting device (layer N) into a protocol data unit (PDU).
-  2. The PDU is passed to layer N−1, where it is known as the service data unit (SDU).
-  3. At layer N−1 the SDU is concatenated with a header, a footer, or both, producing a layer N−1 PDU. It is then passed to layer N−2.
-  4. The process continues until reaching the lowermost level, from which the data is transmitted to the receiving device.
-  5. At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's header or footer until reaching the topmost layer, where the last of the data is consumed.
+1. The data to be transmitted is composed at the topmost layer of the transmitting device (layer N) into a protocol data unit (PDU).
+2. The PDU is passed to layer N−1, where it is known as the service data unit (SDU).
+3. At layer N−1 the SDU is concatenated with a header, a footer, or both, producing a layer N−1 PDU. It is then passed to layer N−2.
+4. The process continues until reaching the lowermost level, from which the data is transmitted to the receiving device.
+5. At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's header or footer until reaching the topmost layer, where the last of the data is consumed.
 
 |       |   | /Layer/              | /Protocol/        | /PDU/              |
 |-------+---+--------------------+-----------------+------------------|
@@ -1264,8 +1265,8 @@ Es responsable de la transferencia fiable de información a través de un circui
 
 IEEE 802 divides the data link layer into two sublayers:
 
-  - Medium access control (MAC) layer – is the layer that controls the hardware responsible for interaction with the wired, optical or wireless transmission medium. It's responsible for controlling how devices in a network gain access to a medium and permission to transmit data.
-  - Logical link control (LLC) layer – acts as an interface between the MAC sublayer and the network layer, it's provides flow control and multiplexing for the logical link. It's responsible for identifying and encapsulating network layer protocols, and controls error checking and frame synchronization.
+- Medium access control (MAC) layer – is the layer that controls the hardware responsible for interaction with the wired, optical or wireless transmission medium. It's responsible for controlling how devices in a network gain access to a medium and permission to transmit data.
+- Logical link control (LLC) layer – acts as an interface between the MAC sublayer and the network layer, it's provides flow control and multiplexing for the logical link. It's responsible for identifying and encapsulating network layer protocols, and controls error checking and frame synchronization.
 
 When sending data to another device on the network, the MAC sublayer encapsulates higher-level frames into frames appropriate for the transmission medium (i.e. the MAC adds a syncword preamble and also padding if necessary), adds a frame check sequence to identify transmission errors, and then forwards the data to the physical layer as soon as the appropriate channel access method permits it.
 
@@ -1323,19 +1324,19 @@ The key is what is used to encrypt data from plaintext to ciphertext. There are 
 
 ** Basic TLS handshake
 1. Negotiation phase:
-    - A client sends a *ClientHello* message specifying the highest TLS protocol version it supports, a random number, a list of suggested cipher suites and suggested compression methods. If the client is attempting to perform a resumed handshake, it may send a session ID. If the client can use Application-Layer Protocol Negotiation, it may include a list of supported application protocols, such as HTTP/2.
-    - The server responds with a *ServerHello* message, containing the chosen protocol version, a random number, cipher suite and compression method from the choices offered by the client. To confirm or allow resumed handshakes the server may send a session ID. The chosen protocol version should be the highest that both the client and server support. For example, if the client supports TLS version 1.1 and the server supports version 1.2, version 1.1 should be selected; version 1.2 should not be selected.
-    - The server sends its *Certificate* message (depending on the selected cipher suite, this may be omitted by the server).
-    - The server sends its *ServerKeyExchange* message (depending on the selected cipher suite, this may be omitted by the server). This message is sent for all DHE, ECDHE and DH_anon cipher suites.
-    - The server sends a *ServerHelloDone* message, indicating it is done with handshake negotiation.
-    - The client responds with a *ClientKeyExchange* message, which may contain a PreMasterSecret, public key, or nothing. (Again, this depends on the selected cipher.) This PreMasterSecret is encrypted using the public key of the server certificate.
-    - The client and server then use the random numbers and PreMasterSecret to compute a common secret, called the "master secret". All other key data (session keys such as IV, symmetric encryption key, MAC key) for this connection is derived from this master secret (and the client- and server-generated random values), which is passed through a carefully designed pseudorandom function.
+   - A client sends a *ClientHello* message specifying the highest TLS protocol version it supports, a random number, a list of suggested cipher suites and suggested compression methods. If the client is attempting to perform a resumed handshake, it may send a session ID. If the client can use Application-Layer Protocol Negotiation, it may include a list of supported application protocols, such as HTTP/2.
+   - The server responds with a *ServerHello* message, containing the chosen protocol version, a random number, cipher suite and compression method from the choices offered by the client. To confirm or allow resumed handshakes the server may send a session ID. The chosen protocol version should be the highest that both the client and server support. For example, if the client supports TLS version 1.1 and the server supports version 1.2, version 1.1 should be selected; version 1.2 should not be selected.
+   - The server sends its *Certificate* message (depending on the selected cipher suite, this may be omitted by the server).
+   - The server sends its *ServerKeyExchange* message (depending on the selected cipher suite, this may be omitted by the server). This message is sent for all DHE, ECDHE and DH_anon cipher suites.
+   - The server sends a *ServerHelloDone* message, indicating it is done with handshake negotiation.
+   - The client responds with a *ClientKeyExchange* message, which may contain a PreMasterSecret, public key, or nothing. (Again, this depends on the selected cipher.) This PreMasterSecret is encrypted using the public key of the server certificate.
+   - The client and server then use the random numbers and PreMasterSecret to compute a common secret, called the "master secret". All other key data (session keys such as IV, symmetric encryption key, MAC key) for this connection is derived from this master secret (and the client- and server-generated random values), which is passed through a carefully designed pseudorandom function.
 2.The client now sends a *ChangeCipherSpec* record, essentially telling the server, "Everything I tell you from now on will be authenticated (and encrypted if encryption parameters were present in the server certificate)." The ChangeCipherSpec is itself a record-level protocol with content type of 20.
-    - The client sends an authenticated and encrypted *Finished* message, containing a hash and MAC over the previous handshake messages.
-    - The server will attempt to decrypt the client's Finished message and verify the hash and MAC. If the decryption or verification fails, the handshake is considered to have failed and the connection should be torn down.
+- The client sends an authenticated and encrypted *Finished* message, containing a hash and MAC over the previous handshake messages.
+- The server will attempt to decrypt the client's Finished message and verify the hash and MAC. If the decryption or verification fails, the handshake is considered to have failed and the connection should be torn down.
 3.Finally, the server sends a *ChangeCipherSpec*, telling the client, "Everything I tell you from now on will be authenticated (and encrypted, if encryption was negotiated)."
-    - The server sends its authenticated and encrypted *Finished* message.
-    - The client performs the same decryption and verification procedure as the server did in the previous step.
+- The server sends its authenticated and encrypted *Finished* message.
+- The client performs the same decryption and verification procedure as the server did in the previous step.
 4.Application phase: at this point, the "handshake" is complete and the application protocol is enabled, with content type of 23. Application messages exchanged between client and server will also be authenticated and optionally encrypted exactly like in their Finished message. Otherwise, the content type will return 25 and the client will not authenticate.
 
 *Session IDs*
@@ -1344,7 +1345,7 @@ In an ordinary full handshake, the server sends a session id as part of the Serv
 ** Symmetric-key algorithms
 Are algorithms for cryptography that use the same cryptographic keys for both the encryption of plaintext and the decryption of ciphertext. The keys may be identical, or there may be a simple transformation to go between the two keys. The keys, in practice, represent a shared secret between two or more parties that can be used to maintain a private information link. The requirement that both parties have access to the secret key is one of the main drawbacks of symmetric-key encryption, in comparison to public-key encryption (also known as asymmetric-key encryption). However, symmetric-key encryption algorithms are usually better for bulk encryption. With exception of the one-time pad they have a smaller key size, which means less storage space and faster transmission. Due to this, asymmetric-key encryption is often used to exchange the secret key for symmetric-key encryption.
 
-#+begin_src artist
+#+begin_src
 
                     Secret key
                       +----+
@@ -1399,21 +1400,21 @@ The method was followed shortly afterwards by RSA, an implementation of public-k
 *** Cryptographic explanation
 The simplest and the original implementation, later formalized as Finite Field Diffie-Hellman in RFC 7919, of the protocol uses the multiplicative group of integers modulo $p$, where $p$ is prime, and $g$ is a primitive root modulo $p$. These two values are chosen in this way to ensure that the resulting shared secret can take on any value from $1$ to $p-1$.
 
-  1. Alice and Bob publicly agree to use a modulus $p = 23$ and base $g = 5$ (which is a primitive root modulo $23$).
+1. Alice and Bob publicly agree to use a modulus $p = 23$ and base $g = 5$ (which is a primitive root modulo $23$).
 
-  2. Alice chooses a secret integer $a = 4$, then sends Bob $A =g^a \, mod \, p$
-       $A =  5^4 \, mod \, 23 = 4$  (in this example both $A$ and a have the same value $4$, but this is usually not the case)
+2. Alice chooses a secret integer $a = 4$, then sends Bob $A =g^a \, mod \, p$
+   $A =  5^4 \, mod \, 23 = 4$  (in this example both $A$ and a have the same value $4$, but this is usually not the case)
 
-  3. Bob chooses a secret integer $b = 3$, then sends Alice $B = g^b  \, mod \, p$
-       $B =  5^3 \, mod \, 23 = 10$
+3. Bob chooses a secret integer $b = 3$, then sends Alice $B = g^b  \, mod \, p$
+   $B =  5^3 \, mod \, 23 = 10$
 
-  4. Alice computes $s = B^a \, mod \, p$
-        $s =  10^4 \, mod \, 23 = 18$
+4. Alice computes $s = B^a \, mod \, p$
+   $s =  10^4 \, mod \, 23 = 18$
 
-  5. Bob computes $s = A^b \, mod \, p$
-        $s =  4^3 \, mod \, 23 = 18$
+5. Bob computes $s = A^b \, mod \, p$
+   $s =  4^3 \, mod \, 23 = 18$
 
-  6. Alice and Bob now share a secret (the number $18$).
+6. Alice and Bob now share a secret (the number $18$).
 
 Both Alice and Bob have arrived at the same values because under mod $p$,
 
@@ -1430,11 +1431,11 @@ Of course, much larger values of $a$, $b$, and $p$ would be needed to make this 
 *** Generalization to finite cyclic groups
 Here is a more general description of the protocol:
 
-  1. Alice and Bob agree on a natural number $n$ and a generating element $g$ in the finite cyclic group $G$ of order $n$. (This is usually done long before the rest of the protocol; $g$ is assumed to be known by all attackers.) The group $G$ is written multiplicatively.
-  2. Alice picks a random natural number $a$ with $1 < a < n$, and sends the element $g^a$ of $G$ to Bob.
-  3. Bob picks a random natural number $b$ with $1 < b < n$, and sends the element $g^b$ of $G$ to Alice.
-  4. Alice computes the element $(gb)^a = g^{ba}$ of $G$.
-  5. Bob computes the element $(ga)^b = g^{ab}$ of $G$.
+1. Alice and Bob agree on a natural number $n$ and a generating element $g$ in the finite cyclic group $G$ of order $n$. (This is usually done long before the rest of the protocol; $g$ is assumed to be known by all attackers.) The group $G$ is written multiplicatively.
+2. Alice picks a random natural number $a$ with $1 < a < n$, and sends the element $g^a$ of $G$ to Bob.
+3. Bob picks a random natural number $b$ with $1 < b < n$, and sends the element $g^b$ of $G$ to Alice.
+4. Alice computes the element $(gb)^a = g^{ba}$ of $G$.
+5. Bob computes the element $(ga)^b = g^{ab}$ of $G$.
 
 Both Alice and Bob are now in possession of the group element $g^{ab} = g^{ba}$, which can serve as the shared secret key. The group $G$ satisfies the requisite condition for secure communication as long as there is no efficient algorithm for determining $g^{ab}$ given $g$, $g^a$, and $g^b$.
 
@@ -1472,5 +1473,5 @@ obtener las claves de sesión. Ambos deben obtener el mismo resultado y todas la
 
 En el protocolo RSA no hay confidencialidad directa; si la clave privada se pone en riesgo, un atacante en ruta podría desencriptar las claves de sesión de conversaciones anteriores, porque puede desencriptar el secreto premaster, y los valores aleatorios de cliente y del servidor están en texto no cifrado. Combinando los tres, el atacante en ruta puede derivar cualquier clave de sesión.
 * References
-- [[https://es.wikipedia.org/wiki/Wikipedia:Portada][Wikipedia]]
-- How Linux Works by Brian Ward.
+- [[https://www.wikipedia.org/][Wikipedia]]
+- [[https://archive.org/details/howlinuxworkswha0000ward][How Linux Works by Brian Ward]]

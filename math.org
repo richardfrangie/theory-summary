@@ -121,7 +121,7 @@ Un ejemplo sencillo sería encontrar los números enteros que satisfacen la sigu
 
 Más en general, la resolución de una ecuación algebraica es un problema matemático planteado sobre un conjunto $\mathbb {K}$ que tiene estructura de cuerpo o anillo algebraico consistente en buscar elementos $r\in \mathbb {K}$ que cumplan la siguiente igualdad:
 
- $$C(x) = a_{n} \cdot x^{n} + a_{n-1} \cdot x^{n-1} + ... + a_{1} \cdot x + a_{0} = 0$$
+$$C(x) = a_{n} \cdot x^{n} + a_{n-1} \cdot x^{n-1} + ... + a_{1} \cdot x + a_{0} = 0$$
 
 
 Si sólo existe un elemento que cumpla la anterior igualdad, esto se puede reformular como un problema del tipo $(\mathbb {K} ,C(r)=0,r)$, aunque normalmente el problema anterior admite más de una solución por lo que el problema matemático propiamente dicho es encontrar un conjunto de soluciones $S$, y por tanto cuando la solución no es única debemos resolver un problema de tipo $({\mathcal {P}}(\mathbb {K} ),\left[\forall x\in S:C(x)=0\right],S)$, donde $\mathcal {P}$ es el conjunto de las partes de  $\mathbb {K}$.
@@ -175,11 +175,11 @@ Los cuerpos son estructuras algebraicas importantes puesto que proporcionan gene
 Un cuerpo es un conjunto $K$ no vacío junto con dos operaciones $+,\cdot$ de forma que se satisface:
 a. $(K,+)$ es un grupo abeliano. Denotando en ocaciones $0$ al elemento neutro de $K$ y si $a \in K$ se denota $-a$ al elemento simétrico de $a$.
 b. Para producto se satisfacen las propiedades:
-  - $\cdot$ es asociativa.
-  - $\cdot$ es conmutativa.
-  - Existe $1 \in K$ tal que $1 \cdot a = a$ si $a \in K-\{0\}$.
-  - Todo elemento distinto de cero tiene simétrico, su inverso.
-  - Si $a,b,c \in k$ se tiene $a \cdot (b+c)=(a \cdot b)+(a \cdot c)$ (propiedad que relaciona las dos operaciones).
+- $\cdot$ es asociativa.
+- $\cdot$ es conmutativa.
+- Existe $1 \in K$ tal que $1 \cdot a = a$ si $a \in K-\{0\}$.
+- Todo elemento distinto de cero tiene simétrico, su inverso.
+- Si $a,b,c \in k$ se tiene $a \cdot (b+c)=(a \cdot b)+(a \cdot c)$ (propiedad que relaciona las dos operaciones).
 
 Ejemplo:
 - Los anillos conmutativos  $Q, R, C$  son cuerpos.
@@ -303,7 +303,7 @@ Una función es una *relación* que relaciona un elemento del conjunto de salida
 
 *** Clasificación de las funciones
 
-#+begin_src artist
+#+begin_src
 
   +-----------------------------------------------------------------------+
   |            |            |            |            |Función polinómica |
@@ -336,7 +336,7 @@ Sea $( A ,  * )$ y $( B , \cdot )$ dos grupos. La función $f : A \rightarrow B$
 **** Isomorfismo
 Igual Forma. Homomorfismo que admite un inverso. El concepto de isomorfismo pretende captar la idea de tener la misma estructura. El estudio de cada estructura puede reducirse al de la otra. El isomorfismo no está asociado con todas las propiedades y relaciones de los objetos confrontables, sino tan sólo con algunas de ellas, fijadas en el acto cognoscitivo. También significa una analogía como una forma de inferencia lógica basada en la asunción de que dos cosas son la misma en algunos aspectos, aquellos sobre los que está hecha la comparación.
 
-Se puede definir concisamente como un homomorfismo biyectivo tal que su inversa es también homomorfismo. *Puede darse el isomorfismo completo entre dos objetos abstractos, por ejemplo, entre una figura geométrica y su expresión analítica bajo el aspecto de fórmula matemática*.
+Se puede definir concisamente como un homomorfismo biyectivo tal que su inversa es también homomorfismo. Puede darse el isomorfismo completo entre dos objetos abstractos, por ejemplo, entre una figura geométrica y su expresión analítica bajo el aspecto de fórmula matemática.
 
 Una aplicación $f:X \rightarrow Y$ entre dos conjuntos dotados del mismo tipo de estructura es un isomorfismo cuando cada elemento de $Y$ proviene de un único elemento de $X$ y $f$ transforma las operaciones, relaciones, etc., que hay en $X$ en las que hay en $Y$. Cuando entre dos estructuras hay un isomorfismo, ambas son indistinguibles, tienen las mismas propiedades, y cualquier enunciado es simultáneamente cierto o falso. Por eso en matemáticas las estructuras deben clasificarse salvo isomorfismos.
 
@@ -425,9 +425,9 @@ Dadas dos aplicaciones y las propiedades:
 
 entonces:
 
-  -  Si se cumple 1) entonces $f$ es inyectiva y $g$ sobreyectiva, y diremos que $g$ es inversa por la izquierda de $f$.
-  -  Si se cumple 2) entonces $g$ es inyectiva y $f$ sobreyectiva, y diremos que $g$ es inversa por la derecha de $f$.
-  -  Si se cumplen simultáneamente 1) y 2) entonces $f$ y $g$ son biyectivas y $g$ es la inversa de $f$.
+-  Si se cumple 1) entonces $f$ es inyectiva y $g$ sobreyectiva, y diremos que $g$ es inversa por la izquierda de $f$.
+-  Si se cumple 2) entonces $g$ es inyectiva y $f$ sobreyectiva, y diremos que $g$ es inversa por la derecha de $f$.
+-  Si se cumplen simultáneamente 1) y 2) entonces $f$ y $g$ son biyectivas y $g$ es la inversa de $f$.
 
 Este último punto se usa como definición de función inversa.
 
@@ -556,7 +556,7 @@ Estudia las propiedades de los números, en particular los enteros, pero más en
 
 ** Clasificación de los números
 
-#+begin_src artist
+#+begin_src
 
   +-------------------------------------------------------------------+
   |         |       |            |             |          |Uno        |
@@ -734,9 +734,9 @@ Cada fila representa un coeficiente binomial. Esta fórmula o regla explica que 
 
 *Aplicaciones*:
 - Procedimiento para obtener el valor de la primera posición (cuspide) del triángulo de Pascal, dado los datos en una fila $n$:
-    Dada la fila $n$ se multiplica cada valor que este en cada posición por el coeficiente del triángulo de pascal en esa posición (este representa número de caminos diferentes para llegar desde cada posición hasta la cuspide), luego se suman y se obtiene el resultado.
+  Dada la fila $n$ se multiplica cada valor que este en cada posición por el coeficiente del triángulo de pascal en esa posición (este representa número de caminos diferentes para llegar desde cada posición hasta la cuspide), luego se suman y se obtiene el resultado.
 
-#+begin_src artist
+#+begin_src
 
        1
       1 1
@@ -749,7 +749,7 @@ Cada fila representa un coeficiente binomial. Esta fórmula o regla explica que 
 - En el siguiente ejemplo, para cálcular el valor de la cuspide, el resultado se dividirá entre 9 porqué se esta tomando de un juego de cartas que solo posee cartas del 1 al 9. Para construir la piramide del ejemplo, se da la base y de ahí sumando los números adjuntos se va construyendo las demás fila, como se esta haciendo con un juego de cartas del 1 al 9, cada vez que se pase de 9 se vuelve a contar, así en la primera fila se tiene, 8+5=13, que sería 12-9=4.
 
 
-#+begin_src artist
+#+begin_src
 
        8
       6 2
@@ -776,7 +776,7 @@ Let $\alpha \in \mathbb {R}$ be a real number.
 Let $x \in \mathbb {R}$ be a real number such that $| x | < 1$.
 
 Then:
-          $$(1+x)^{\alpha} = \sum_{n=0}^{\infty} \frac{\alpha^{\underline {n}}}{n!} x^{n}$$
+$$(1+x)^{\alpha} = \sum_{n=0}^{\infty} \frac{\alpha^{\underline {n}}}{n!} x^{n}$$
 
 $\alpha^{\underline {n}}$ denotes the falling factorial.
 
@@ -820,7 +820,7 @@ El mínimo común múltiplo de dos o más números naturales es el menor múltip
 
 *Generalización*:
 
- $$ mcm \left({\frac {a}{b}} , {\frac {c}{d}}\right) = \frac{mcm (a,c)}{MCD (b,d)}$$
+$$ mcm \left({\frac {a}{b}} , {\frac {c}{d}}\right) = \frac{mcm (a,c)}{MCD (b,d)}$$
 
 *** M.C.D.
 El máximo común divisor de dos o más números enteros es el mayor número entero que los divide sin dejar residuo alguno (sin que sobre algún número).
@@ -1080,7 +1080,7 @@ Es un algoritmo que, dado un número de entrada $n$, no consigue verificar la hi
 El postulado de Bertrand dice que si $n > 1$ es un entero, entonces existirá al menos un número primo $p$ con $n < p < 2n$.
 
 *** Teorema de Dirichlet sobre progresiones aritméticas
-Sea $a , d \in N$ tal que el máximo común divisor $MCD \, ⁡ ( a , d ) = 1$, entonces la progresión aritmética $a_n = a + n \cdot d$ contiene infinitos números primos, es decir, hay infinitos números primos [[Congruencia][congruentes]] con $a$ módulo $d$.
+Sea $a , d \in N$ tal que el máximo común divisor $MCD \, ( a , d ) = 1$, entonces la progresión aritmética $a_n = a + n \cdot d$ contiene infinitos números primos, es decir, hay infinitos números primos [[Congruencia][congruentes]] con $a$ módulo $d$.
 
 Por ejemplo, el teorema asegura que hay una cantidad infinita de números primos que terminen en $7$, ya que los números que terminan en $7$ forman una progresión aritmética $(7, 17, 27, 37, \cdot \cdot \cdot )$ es decir, es una sucesión de números de la forma $7+n10$ ,  siendo estos primos entre sí, luego su máximo común divisor es $1$.
 
@@ -1162,7 +1162,7 @@ Otra manera es conseguir el modulo realizando la división sin el signo, es de l
 1
 lo que es equivalente a 9 = 4 x 2 +1, luego multiplicando por menos -9 = -4 x 2 -1, se obtiene el resto es -1 y finalemente se le suma el modulo que es 4 dando el resultado de *3*.
 
- $9  \, mod  \,  -4$
+$9  \, mod  \,  -4$
 El valor del resto debe ser del mismo sigo que el dividendo.
 1. Se busca el número *más cercano* a 9 por encima (ya que el resto al ser negativo va a restar) que sea *múltiplo* de -4:  en este caso 12 ( -4 x -3 ).
 2. Se busca lo que le falta a 12 para llegar a 9: en este caso -3.
@@ -1205,6 +1205,81 @@ Conviene distinguir entre:
 
 - Álgebra elemental es la parte del álgebra que se enseña generalmente en los cursos de matemáticas.
 - Álgebra abstracta es el nombre dado al estudio de las «estructuras algebraicas» propiamente.
+
+Algebra is the branch of mathematics concerned with equation solving: the problem of finding values of some variable, called /unknown/, for which the specified equality is true. Each value of the unknown for which the equation holds is called a /solution/ of the given equation; also stated as /satisfying/ the equation. For example, the equation $x^{2}-6x+5=0$ has the values $x = 1$ and $x=5$ as its only solutions. The terminology is used similarly for equations with several unknowns. The set of solutions to an equation or system of equations is called its solution set. For example, the set of all solution pairs $(x,y)$ of the equation $x^{2}+y^{2}=1$ forms the unit circle in analytic geometry; therefore, this equation is called /the equation of the unit circle/.
+
+** Mathematical object
+Is an abstract concept arising in mathematics. Typically, a mathematical object can be a value that can be assigned to a symbol, and therefore can be involved in formulas. Commonly encountered mathematical objects include numbers, [[Expression][expressions]], shapes, functions, and sets. Mathematical objects can be very complex; for example, theorems, proofs, and even formal theories are considered as mathematical objects in proof theory.
+
+In Philosophy of mathematics, the concept of "mathematical objects" touches on topics of existence, [[Identity][identity]], and the nature of reality. In metaphysics, objects are often considered entities that possess properties and can stand in various relations to one another.
+
+** Expression
+Is a written arrangement of symbols following the context-dependent, syntactic conventions of mathematical notation. Symbols can denote numbers, variables, operations, and functions. Other symbols include punctuation marks and brackets, used for grouping where there is not a well-defined order of operations.
+
+Expressions are commonly distinguished from [[Formula][formulas]]: expressions are a kind of [[Mathematical object][mathematical object]], whereas formulas are statements about mathematical objects. This is analogous to natural language, where a noun phrase refers to an object, and a whole sentence refers to a fact. For example, $8 x - 5$ is an expression, while the inequality $8 x - 5 \le 3$ is a formula.
+
+To /evaluate/ an expression means to find a numerical value equivalent to the expression. Expressions can be /evaluated/ or /simplified/ by replacing operations that appear in them with their result. For example, the expression $8\times 2-5$ simplifies to $16-5$, and evaluates to $11$.
+
+An expression is often used to define a function, by taking the variables to be arguments, or inputs, of the function, and assigning the output to be the evaluation of the resulting expression. For example, $x\mapsto x^{2}+1$ and $f(x)=x^{2}+1$ define the function that associates to each number its square plus one. An expression with no variables would define a constant function. Usually, two expressions are considered equal or /equivalent/ if they define the same function. Such an equality is called a "semantic equality", that is, both expressions "mean the same thing."
+
+** Relation
+Denotes some kind of relationship between two [[Mathematical object][objects]] in a set, which may or may not hold. As an example, "is less than" is a relation on the set of natural numbers; it holds, for instance, between the values $1$ and $3$ (denoted as $1 < 3$). As another example, "is sister of" is a relation on the set of all people, it holds e.g. between Marie Curie and Bronisława Dłuska, and likewise vice versa. Set members may not be in relation "to a certain degree" – either they are in relation or they are not.
+
+Formally, a relation $R$ over a set $X$ can be seen as a set of ordered pairs $(x,y)$ of members of $X$. The relation $R$ holds between $x$ and $y$ if $(x,y)$ is a member of $R$. For example, the relation "is less than" on the natural numbers is an infinite set $R_{less}$ of pairs of natural numbers that contains both $(1,3)$ and $(3,4)$, but neither $(3,1)$ nor $(4,4)$.
+
+** Equality
+Is a relationship between two quantities or [[Expression][expressions]], stating that they have the same value, or represent the same [[Mathematical object][mathematical object]].
+
+After the foundational crisis in mathematics at the turn of the 20th century, set theory (specifically Zermelo–Fraenkel set theory) became the most common foundation of mathematics in order to resolve the crisis. In set theory, any two sets are defined to be equal if they have all the same members. This is called the Axiom of extensionality. Usually set theory is defined within logic, and therefore uses the equality, however, if a logic system does not have equality, it is possible to define equality within set theory.
+
+** Identity
+Is an [[Equality][equality]] relating one mathematical expression $A$ to another mathematical expression $B$, such that $A$ and $B$ (which might contain some variables) produce the *same value for all values of the variables* within a certain domain of discourse. In other words, $A = B$ is an identity if $A$ and $B$ define the same functions, and an identity is an equality between functions that are differently defined. For example, $(a+b)^{2}=a^{2}+2ab+b^{2}$ and $\cos ^{2}\theta +\sin ^{2}\theta =1$ are identities. Identities are sometimes indicated by the triple bar symbol $\equiv$ instead of $=$, the equals sign. Formally, an identity is a universally quantified equality.
+
+Is an equality that is true for all values of its variables in a given domain.
+
+Identidad es una igualdad que es verdadera para todos los valores de las variables $a+b=b+a$.
+
+An "[[Equation][equation]]" may sometimes mean an identity, but more often than not, it specifies a *subset* of the variable space to be the subset where the equation is true. An example is $\left(x+1\right)\left(x+1\right)=x^{2}+2x+1$, which is true for each real number $x$. There is no standard notation that distinguishes an equation from an identity, or other use of the equality relation: one has to guess an appropriate interpretation from the semantics of expressions and the context.
+
+In the process of solving an equation, an identity is often used to simplify an equation, making it more easily solvable.
+
+In algebra, an example of an identity is the difference of two squares:
+
+$$x^{2}-y^{2}=(x+y)(x-y)$$
+
+which is true for all $x$ and $y$.
+
+Trigonometry is an area where many identities exist; these are useful in manipulating or solving trigonometric equations. Two of many that involve the sine and cosine functions are:
+
+$$\sin ^{2}(\theta )+\cos ^{2}(\theta )=1$$
+
+and
+
+$$\sin(2\theta )=2\sin(\theta )\cos(\theta )$$
+
+which are both true for all values of $\theta$.
+
+** Equation
+Is a mathematical [[Formula][formula]] that expresses the equality of two expressions, by connecting them with the equals sign $=$. The word equation and its cognates in other languages may have subtly different meanings; for example, in French an équation is defined as containing one or more variables, while in English, any well-formed formula consisting of two expressions related with an equals sign is an equation.
+
+The most common type of equation is a /polynomial equation/ (commonly called also an /algebraic equation/) in which the two sides are polynomials. The sides of a polynomial equation contain one or more terms.
+
+$$Ax^{2}+Bx+C-y=0$$
+
+An "[[Equation][equation]]" may sometimes mean an identity, but more often than not, it specifies a *subset* of the variable space to be the subset where the equation is true. An example is $\left(x+1\right)\left(x+1\right)=x^{2}+2x+1$, which is true for each real number $x$. There is no standard notation that distinguishes an equation from an identity, or other use of the equality relation: one has to guess an appropriate interpretation from the semantics of expressions and the context.
+
+Una ecuación es una igualdad que es verdadera solo para ciertos valores de las variables $2x+3=7$.
+
+** Formula
+A formula generally refers to an [[Equation][equation]] or inequality relating one mathematical expression to another, with the most important ones being mathematical theorems.
+
+For example, determining the volume of a sphere requires a significant amount of integral calculus or its geometrical analogue, the method of exhaustion. However, having done this once in terms of some parameter (the radius for example), mathematicians have produced a formula to describe the volume of a sphere in terms of its radius:
+
+$$V={\frac {4}{3}}\pi r^{3}$$
+
+Una fórmula es una expresión matemática que describe una relación entre diferentes variables y constantes. A menudo se utiliza para calcular un valor específico, sin necesariamente establecer una igualdad en el sentido de una ecuación.
+
+[[Expression][Expressions]] are distinct from formulas in the sense that they don't usually contain [[Relation][relations]] like [[Equality][equality]] $=$ or inequality $<$. Expressions denote a [[Mathematical object][mathematical object]], where as formulas denote a statement about mathematical objects. This is analogous to natural language, where a noun phrase refers to an object, and a whole sentence refers to a fact. For example, $8x-5$ is an expression, while $8x-5\geq 3$ is a formula.
 
 ** Tipos de álgebra
 - Álgebra elemental :: es la parte del álgebra que se suele enseñar en los cursos elementales de matemáticas.
@@ -1311,9 +1386,9 @@ Es una línea que se extiende en una misma dirección; por lo tanto, tiene una s
 Es uno de los entes geométricos fundamentales, junto al punto y el plano. Son considerados conceptos apriorísticos, ya que su definición solo es posible a partir de la descripción de las características de otros elementos similares. Un ejemplo de las dificultades de la definición de la recta a partir de puntos es la llamada paradoja de Zenón de la dicotomía, que ilustraba la desaparición de la recta al dividirla en puntos porque luego no había un concepto para ensamblar dicha recta a partir de puntos, ya que la unión de dos puntos es un punto.
 
 *Características de la recta*:
-  - La recta se prolonga indefinidamente en ambos sentidos.
-  - En geometría euclidiana, la distancia más corta entre dos puntos es la línea recta.
-  - La recta puede definirse como el conjunto de puntos situados a lo largo de la intersección de dos planos.
+- La recta se prolonga indefinidamente en ambos sentidos.
+- En geometría euclidiana, la distancia más corta entre dos puntos es la línea recta.
+- La recta puede definirse como el conjunto de puntos situados a lo largo de la intersección de dos planos.
 
 **** Plano
 Es un objeto ideal que solo posee dos dimensiones, y contiene infinitos puntos y rectas.
@@ -1322,9 +1397,9 @@ Cuando se habla de un plano de polina, se está hablando del objeto geométrico 
 
 Un plano queda definido por los siguientes elementos geométricos:
 
-  - Tres puntos no alineados.
-  - Una recta y un punto exterior a ella.
-  - Dos rectas paralelas o dos rectas que se cortan.
+- Tres puntos no alineados.
+- Una recta y un punto exterior a ella.
+- Dos rectas paralelas o dos rectas que se cortan.
 
 El sistema cartesiano establece una correspondencia biunívoca entre un concepto geométrico como es el de los puntos del plano y un concepto algebraico como son los pares ordenados de números. En coordenadas polares, por un ángulo y una distancia. Esta correspondencia constituye el fundamento de la geometría analítica.
 
@@ -1371,7 +1446,7 @@ El área del rectángulo es la longitud multiplicada por la anchura.
 
 La fórmula del área de un rectángulo se deduce directamente de las propiedades básicas del área y a veces se toma como definición o axioma. Por otra parte, si la geometría se desarrolla antes que la aritmética, esta fórmula puede utilizarse para definir la multiplicación de los números reales.
 
-#+begin_src artist
+#+begin_src
 
       +-----+
       | | | |1
@@ -1439,19 +1514,19 @@ Es un conjunto $M$ (a cuyos elementos se les denomina puntos) con una función d
 
   - La distancia de un punto a sí mismo es cero (axioma de coincidencia). Intuitivamente, nunca cuesta nada viajar de un punto a sí mismo.
 
-  $$d(x,y)=0\Leftrightarrow x=y$$
+    $$d(x,y)=0\Leftrightarrow x=y$$
 
-  - (Positividad) La distancia entre dos puntos distintos es siempre positiva (axioma de separación).
+    - (Positividad) La distancia entre dos puntos distintos es siempre positiva (axioma de separación).
 
-  $${\text{If }}x\neq y{\text{, then }}d(x,y)>0$$
+    $${\text{If }}x\neq y{\text{, then }}d(x,y)>0$$
 
-  - (Simetría) La distancia de $x$ a $y$ es siempre la misma que la distancia de $y$ a $x$. Esto excluye las nociones asimétricas de "coste" que surgen naturalmente de la observación de que es más difícil caminar cuesta arriba que cuesta abajo.
+    - (Simetría) La distancia de $x$ a $y$ es siempre la misma que la distancia de $y$ a $x$. Esto excluye las nociones asimétricas de "coste" que surgen naturalmente de la observación de que es más difícil caminar cuesta arriba que cuesta abajo.
 
-  $$d(x,y)=d(y,x)$$
+    $$d(x,y)=d(y,x)$$
 
-  - Se cumple la desigualdad triangular. Esta es una propiedad natural de las nociones de distancia tanto físicas como metafóricas: se puede llegar a $z$ desde $x$ dando un rodeo a través de $y$, pero esto no hará que el viaje sea más rápido que el camino más corto.
+    - Se cumple la desigualdad triangular. Esta es una propiedad natural de las nociones de distancia tanto físicas como metafóricas: se puede llegar a $z$ desde $x$ dando un rodeo a través de $y$, pero esto no hará que el viaje sea más rápido que el camino más corto.
 
-  $$d(x,z)\leq d(x,y)+d(y,z)$$
+    $$d(x,z)\leq d(x,y)+d(y,z)$$
 
 **** Espacio Métrico
 Es un conjunto en el que se define una noción de distancia (llamada métrica) entre los elementos del conjunto. Gran parte del análisis se realiza en algún espacio métrico; los más utilizados son la recta real, el plano complejo, el espacio euclidiano, otros espacios vectoriales y los enteros.
@@ -1473,16 +1548,16 @@ Es el lugar geométrico de los puntos del plano cuya distancia a otro punto fijo
 A veces se utiliza indistintamente círculo por circunferencia siendo esta última su borde, es decir, la curva perimetral que lo determina y que solo posee longitud.
 
 Propiedades
-  - Toda recta tangente a un círculo es perpendicular al radio que contiene el punto de tangencia.
-  - Los centros de los círculos tangentes están alineados con el punto de tangencia.
+- Toda recta tangente a un círculo es perpendicular al radio que contiene el punto de tangencia.
+- Los centros de los círculos tangentes están alineados con el punto de tangencia.
 
 *** Ángulo
 **** Definición
 La palabra ángulo proviene del latín angŭlus, que significa 'esquina'. Está conectada con la raíz protoindoeuropea *ank-, que significa 'doblarse' o 'inclinarse'. Euclides define un ángulo como la inclinación entre dos líneas que se encuentran una a otra en un plano y no están en línea recta.
 
 Existen básicamente dos formas de definir un ángulo en el plano:
-  - forma geométrica :: Se le llama «ángulo» a la amplitud entre dos líneas de cualquier tipo que concurren en un punto común llamado vértice. Coloquialmente, ángulo es la figura formada por dos líneas con origen común. El ángulo entre dos curvas es el ángulo que forman sus rectas tangentes en el punto de intersección.
-  - forma trigonométrica :: Es la amplitud de rotación o giro que describe un segmento rectilíneo entorno de uno de sus extremos tomado como vértice desde una posición inicial hasta una posición final.
+- forma geométrica :: Se le llama «ángulo» a la amplitud entre dos líneas de cualquier tipo que concurren en un punto común llamado vértice. Coloquialmente, ángulo es la figura formada por dos líneas con origen común. El ángulo entre dos curvas es el ángulo que forman sus rectas tangentes en el punto de intersección.
+- forma trigonométrica :: Es la amplitud de rotación o giro que describe un segmento rectilíneo entorno de uno de sus extremos tomado como vértice desde una posición inicial hasta una posición final.
 
 El ángulo formado por dos radios de una circunferencia, medido en radianes, es igual a la longitud del arco que delimitan los radios dividida entre el radio; es decir, $\thetaθ = s/r$ , donde $\theta$ es el ángulo, $s$ es la longitud de arco, y $r$ es el radio. Por tanto, el ángulo completo, $\scriptstyle {\theta}_{\text{circunferencia}}$ , que subtiende una circunferencia de radio $r$, medido en radianes, es:
 
@@ -1492,15 +1567,15 @@ $$\theta _{\text{circunferencia}}={\frac {L_{\text{circunferencia}}}{r}}={\frac 
 La medida de un ángulo es un múltiplo de la razón entre la longitud del arco y el radio. Su unidad natural es el radián, pero también se puede utilizar el grado sexagesimal o el grado centesimal:
   - radián :: (usado oficialmente en el Sistema Internacional de Unidades)
 
-  $1{\text{ vuelta}}=2\pi \;\mathrm {rad}$
+    $1{\text{ vuelta}}=2\pi \;\mathrm {rad}$
 
   - grado sexagesimal ::
 
-  $1{\text{ vuelta}} = 360^{\circ}$
+    $1{\text{ vuelta}} = 360^{\circ}$
 
   - grado centesimal ::
 
-  $1{\text{ vuelta}}=400^{\rm {g}}$
+    $1{\text{ vuelta}}=400^{\rm {g}}$
 
 **** Medición de ángulos
 Para medir un ángulo $\theta$, se traza un arco de circunferencia centrado en el vértice del ángulo, por ejemplo, con un compás. El cociente de la longitud $s$ del arco por el radio $r$ del círculo es el número de radianes del ángulo. Convencionalmente, en matemáticas y en el SI, el radián se trata como si fuera igual al valor adimensional $1$.
@@ -1520,7 +1595,7 @@ Es la inclinación de un elemento lineal, natural o constructivo respecto de la 
 *Gráficamente*:
 Para calcular la pendiente gráficamente, se puede medir una unidad horizontalmente y el valor de la altura es exáctamente la pendiente.
 
-#+begin_src artist
+#+begin_src
 
            /
           /
@@ -1574,9 +1649,9 @@ Estos postulados se pueden generalizar para espacios de $n$ dimensiones.
 *** Definiciones y postulados de Euclides relacionados con la recta
 Euclides, en su tratado denominado Los Elementos, establece varias definiciones relacionadas con la línea y la línea recta:
 
-  - Una línea es una longitud sin anchura (Libro I, definición 2).
-  - Los extremos de una línea son puntos (Libro I, definición 3).
-  - Una línea recta es aquella que yace por igual respecto de los puntos que están en ella (Libro I, definición 4).
+- Una línea es una longitud sin anchura (Libro I, definición 2).
+- Los extremos de una línea son puntos (Libro I, definición 3).
+- Una línea recta es aquella que yace por igual respecto de los puntos que están en ella (Libro I, definición 4).
 
 *** Teoremas en geometría euclidiana
 Tres puntos no alineados determinan un plano y solo uno.
@@ -1904,11 +1979,11 @@ Si para $x_0$ se tiene que  $\lim_{x \rightarrow x_0} f(x)=f(x_0)$ entonces $f(x
 
 - Sea la función $f:[0, +\infty) \cup \{-3\} \rightarrow \mathbb R$ dada por:
 
-   $f(x) =
-   \begin{cases}
-      1              & \mbox{si } x= -3   \\
-      \sqrt{x} & \mbox{si } x \ge 0
-   \end{cases}$
+  $f(x) =
+  \begin{cases}
+  1              & \mbox{si } x= -3   \\
+  \sqrt{x} & \mbox{si } x \ge 0
+  \end{cases}$
 
 El punto $x=-3$ es un punto del dominio, en el cual no se le puede calcular el límite ya que no se puede acercar a él con puntos en el dominio distintos de él, es decir, no es un punto de acumulación del dominio, es un punto aislado, en este punto se dice directamente por definción que la función es continua. Sin embargo, esta funcion $f(x)$ es continua en todo su dominio.
 
@@ -1942,7 +2017,7 @@ No obstante, esta definición sólo es válida cuando el límite es un número r
 *Nota*:
 - La *primera derivada* da información sobre el crecimiento o decrecimiento de la función. Si $f'(x)>0$ la función crece, y si $f'(x)<0$ la función decrece.
 - La *segunda derivada* da información sobre si la función es convexa, es decir, si $f''(x)>0$ la función es convexa, y si $f''(x)<0$ la función es cóncava.
-- Si al calcular la derivada de una función cualquiera $f(x)$ el resultado es cero $f'(x)=0$, esto indica que la función es constante $f(x)=c$, además si se quiere hallar su valor, basta con sustituir cualquier valor en la función y el resultado será el valor de esa constante. De esta forma se puede encontrar la formula de Euler $e^{ix} = \cos ⁡ x + i \, \sin ⁡ x$ , tomando $f(x)=e^{-ix}( \cos ⁡ x + i \, \sin ⁡ x)$ . En otro caso puede que la función en el punto sea igual a cero porqué el punto es un extremo relativo que puede ser un máximo relativo o absoluto o un mínimo relativo o absoluto, para saberlo se cálcula la segunda derivada tantas veces como sea necesario hasta que de diferente de cero y según ciertas condiciones se puede encontrar que tipo de punto es.
+- Si al calcular la derivada de una función cualquiera $f(x)$ el resultado es cero $f'(x)=0$, esto indica que la función es constante $f(x)=c$, además si se quiere hallar su valor, basta con sustituir cualquier valor en la función y el resultado será el valor de esa constante. De esta forma se puede encontrar la formula de Euler $e^{ix} = \cos x + i \, \sin x$ , tomando $f(x)=e^{-ix}( \cos x + i \, \sin x)$ . En otro caso puede que la función en el punto sea igual a cero porqué el punto es un extremo relativo que puede ser un máximo relativo o absoluto o un mínimo relativo o absoluto, para saberlo se cálcula la segunda derivada tantas veces como sea necesario hasta que de diferente de cero y según ciertas condiciones se puede encontrar que tipo de punto es.
 
 *Nota*:
 La derivada del área bajo la curva de una función, da exáctamente la función que la está originando. $A'(x)=f(x)$ .
@@ -1952,9 +2027,9 @@ Es un objeto matemático que representa la parte intermediaria del cambio en la 
 
 Informalmente, el diferencial ${\text{d}}y$  se define en cursos introductorios mediante la expresión:
 
- $${\text{d}}y=f'(x)\,{\text{d}}x$$
+$${\text{d}}y=f'(x)\,{\text{d}}x$$
 
- donde $f'(x)$ es la derivada de $f$ con respecto a $x$, y donde ${\text{d}}x$ es una variable real adicional a la ecuación (de manera que ${\text{d}y}$ es una función de dos variables $x$ y ${\text{d}}x$). La notación es tal que la expresión:
+donde $f'(x)$ es la derivada de $f$ con respecto a $x$, y donde ${\text{d}}x$ es una variable real adicional a la ecuación (de manera que ${\text{d}y}$ es una función de dos variables $x$ y ${\text{d}}x$). La notación es tal que la expresión:
 
 $${\text{d}}y={\frac {{\text{d}}y}{{\text{d}}x}}\,{\text{d}}x$$
 
@@ -2084,7 +2159,7 @@ $$P_{k}(x)=f(a)+f'(a)(x-a)+{\frac {f''(a)}{2!}}(x-a)^{2}+\cdots + {\frac {f^{(k)
 se denomina polinomio de Taylor de orden $k$ de la función $f$ en el punto $a$.
 
 *** Teorema Fundamental del Cálculo
-Consiste en la afirmación de que la *derivación e integración de una función son operaciones inversas*.​ Esto significa que toda función acotada e integrable (siendo continua o discontinua en un número finito de puntos) verifica que la derivada de su integral es igual a ella misma.
+Consiste en la afirmación de que la *derivación e integración de una función son operaciones inversas*. Esto significa que toda función acotada e integrable (siendo continua o discontinua en un número finito de puntos) verifica que la derivada de su integral es igual a ella misma.
 
 Fue importante ya que las integrales eran investigadas como formas de estudiar áreas y volúmenes, hasta que en ese punto de la historia ambas ramas convergieron, al demostrarse que el estudio del «área bajo una función» estaba íntimamente vinculado al cálculo diferencial, resultando la integración la operación inversa a la derivación.
 
@@ -2137,7 +2212,7 @@ En los colegios por lo general se define el logaritmo así $\log_a x = y \iff a^
 Es el logaritmo que tiene como base el número $e$ es decir $\log_{e}$.
 Tomando la función $f(x)=e^x$ al derivarla (lo que indica cual es la tasa de crecimiento de la función en cada punto), al ser exponencial da como resultado ella misma, es decir, que en cada punto la tasa de crecimiento coincide con el valor de la función.
 
-El logaritmo natural $ln ⁡ ( x )$  para valores $x > 0$  puede ser definido como el área bajo la gráfica $1/t$ entre las rectas $t=1$ y $t=x$. Si $x<1$ entonces esta área es negativa:
+El logaritmo natural $ln ( x )$  para valores $x > 0$  puede ser definido como el área bajo la gráfica $1/t$ entre las rectas $t=1$ y $t=x$. Si $x<1$ entonces esta área es negativa:
 
 $$ln(x):=\int_{1}^{x} \frac{dt}{t}$$
 
@@ -2218,7 +2293,7 @@ Functions of the form $c\exp x$  for constant $c$ are the only functions that ar
 
 - The slope of the graph at any point is the height of the function at that point.
 - The rate of increase of the function at $x$ is equal to the value of the function at $x$.
-- The function solves the differential equation $y′ = y$.
+- The function solves the differential equation $y' = y$.
 - $\exp$ is a fixed point of derivative as a functional. A *fixed point* is a value that does not change under a given transformation. Specifically, a fixed point of a function is an element that is mapped to itself by the function.
 
 **** Relation to more general exponential functions
@@ -2253,7 +2328,7 @@ This is as the inverse of the natural logarithm function, which is defined by th
 
 $y'=y,\quad y(0)=1$
 
-(Here, $y′$ denotes the derivative of $y$.)
+(Here, $y'$ denotes the derivative of $y$.)
 
 **** Lic. María Inés Baragatti
 Explicación en orden de la profesora de conceptos como $\ln x$ función exponencial $\exp x$ entre otros.
@@ -2275,14 +2350,14 @@ Explicación en orden de la profesora de conceptos como $\ln x$ función exponen
 
 5. Demuestra $e ^{\ln x} = x$ usando  $\ln x^p = p \ln x$ y $\ln e = 1$ .
 
-    \begin{array}{rcl}
-                e^{\ln x} & = & u \\
-        \ln (e^{\ln x}) & = & \ln u \\
-                 \ln x \ln e & = & \ln u \\
-                        \ln x & = & \ln u \\
-                             x &= & u \\
-                            e^{\ln x} & = & x
-    \end{array}
+   \begin{array}{rcl}
+               e^{\ln x} & = & u \\
+       \ln (e^{\ln x}) & = & \ln u \\
+                \ln x \ln e & = & \ln u \\
+                       \ln x & = & \ln u \\
+                            x &= & u \\
+                           e^{\ln x} & = & x
+   \end{array}
 
 6. Aclara que la gráfica de $\ln x$ admite inversa ya que es estrictamente creciente.
 
@@ -2297,14 +2372,14 @@ Explicación en orden de la profesora de conceptos como $\ln x$ función exponen
 *** Fórmula de Euler
 La fórmula proporciona una potente conexión entre el análisis matemático y la trigonometría. Se utiliza para representar los números complejos en coordenadas polares y permite definir el logaritmo para números negativos y números complejos.
 
-    $e^{ix} = \cos ⁡ x + i \, \sin ⁡ x$
+$e^{ix} = \cos x + i \, \sin x$
 
 Se puede llegar a esta fórmula aplicando serie de Taylor a $e^{ix}$.
 
 *Logaritmo negativo*:
 Para obtener el valor de un logaritmo negativo o la identidad de Euler, se toma $x=\pi$ :
 
-$e^{i\pi} = \cos ⁡ \pi - i \, \sin ⁡ \pi=-1$ luego $i \pi = ln(-1)$ se puede generalizar para cualquier número negativo.
+$e^{i\pi} = \cos \pi - i \, \sin \pi=-1$ luego $i \pi = ln(-1)$ se puede generalizar para cualquier número negativo.
 
 Despejando se puede obtener la *identidad de Euler*
 
@@ -2333,7 +2408,7 @@ $$(\cos(x)+i\operatorname {sen}(x))^{n}=\cos(nx)+i\operatorname {sen}(nx)$$
 
 ** Números trascendentes
 *** Número e
-Es aproximadamente $2,71828 2​$ y aparece en diversas ramas de las matemáticas, al ser la base de los logaritmos naturales y formar parte de las ecuaciones del interés compuesto, de donde Euler obtuvo su valor. El rasgo más relevante de la función exponencial es que su función derivada (que existe en todo punto) coincide con la propia función, es decir, $\frac {d}{dx}}e^{x}=e^{x}$. Además, es la única función no idénticamente nula (a menos de multiplicación por constantes) con esta propiedad. Esto hace de la exponencial la función más importante del análisis matemático, y en particular para las ecuaciones diferenciales.
+Es aproximadamente $2,71828$ y aparece en diversas ramas de las matemáticas, al ser la base de los logaritmos naturales y formar parte de las ecuaciones del interés compuesto, de donde Euler obtuvo su valor. El rasgo más relevante de la función exponencial es que su función derivada (que existe en todo punto) coincide con la propia función, es decir, $\frac {d}{dx}}e^{x}=e^{x}$. Además, es la única función no idénticamente nula (a menos de multiplicación por constantes) con esta propiedad. Esto hace de la exponencial la función más importante del análisis matemático, y en particular para las ecuaciones diferenciales.
 
 *Nota*: $\exp$ is sometimes called the *natural exponential function* to distinguish it from these other exponential functions, which are the functions of the form $\displaystyle f(x)=ab^{x}$ where the base $b$ is a positive real number.
 
@@ -2477,7 +2552,7 @@ $$a_{1}+a_{n}=a_{1+k}+a_{n-k}=2a_{1}+(n-1)d=\mathrm {cte}$$
 Representado de esta manera, es muy sencillo deducir la fórmula de la suma de los $n$ términos de la progresión.
 
 **** Suma n primeros terminos
- La n-ésima suma parcial de la serie $1+2+3+ 4+ \cdots$ es el número triangular siguiente: (se llaman números triangulares porque pueden ser acomodados para formar un triángulo equilátero)
+La n-ésima suma parcial de la serie $1+2+3+ 4+ \cdots$ es el número triangular siguiente: (se llaman números triangulares porque pueden ser acomodados para formar un triángulo equilátero)
 
 $$\sum _{k=1}^{n}k={\frac {n(n+1)}{2}}$$
 
@@ -2604,7 +2679,7 @@ converge para toda $x$.
 ** Números complejos
 Se define cada número complejo $z$ como un par ordenado de números reales: $z = (a, b)$. A su vez el primer elemento $a$ se define como parte real de $z$, se denota $a={\text{Re}}(z)$ ; el segundo elemento $b$ se define como parte imaginaria de $z$, se denota $b={\text{Im}}(z)$. Luego en el conjunto $\mathbb C$ de los números complejos, se definen tres operaciones y la relación de igualdad:
 
-    Igualdad
+Igualdad
 
 $$(a,b)=(c,d)\iff a=c\land b=d$$
 
@@ -2619,7 +2694,7 @@ Para saber qué caso de combinatoria estamos tratando hay que determinar tres ca
 - Si se producen o no *repeticiones* en el suceso.
 - Si el número de *elementos disponibles* en el conjunto $n$ es igual o mayor de los presentes en cada suceso $r$.
 
-#+begin_src artist
+#+begin_src
 
            repetición
             si     no
@@ -2647,7 +2722,7 @@ Dada una colección de $n$ objetos, cualquier disposición de ellos se denomina 
 
 *Ejemplo*: Teniendo $3$ elementos, hay $3$ formas de poner un elemento en la primera caja, ya puesto un elemento en la primera caja, solo hay $2$ formas de poner uno de los dos elemento restantes en la segunda caja y finalmente al solo quedar un elemento, solo hay una forma de poner un elemento en la última caja, por lo tanto utilizando la regla del producto, ya que tenemos $3$ resultados para la primera $2$ para la  segunda y $1$ para la tercera, multiplicando esto obtenemos que hay $6$ posibles formas de ordenar un conjunto de $3$ elementos.
 
-#+begin_src artist
+#+begin_src
 
      +----+----+----+
      |  3 |  2 |  1 |
@@ -2669,7 +2744,7 @@ esto es $n$ posibilidades de tomar el primer elemento, multiplicado por $n-1$ po
 
 *Ejemplo*: para combinar $5$ elementos de $3$ en $3$, es decir, de $5$ elementos escoger $3$ y ordenarlos en cajas no numeradas (no importa el orden): en la primera caja hay $5$ posibilidades, si ya se ha escogido uno, entonces en la segunda hay $4$ posibilidades, y en la última $3$ posibilidades, por lo tanto, hay $5 \times 4 \times 3 = 60$ posibilidades pero como no importa el orden, hay que dividirle la cantidad de ordenes posibles de los $3$ elementos en las cajas, lo que sería la permutación de $3$ elementos $3 \times 2 \times 1$, por lo tanto $60/6 = 10$.
 
-#+begin_src artist
+#+begin_src
 
   +----+----+----+
   |  5 |  4 |  3 |
@@ -2695,7 +2770,7 @@ $$V_m^n = \frac{m!}{(m-n)!}$$
 
 *Ejemplo*: Para variar $5$ elementos de $3$ en $3$, es decir, de $5$ elementos escoger $3$ y ordenarlos en cajas numeradas: en la primera caja hay $5$ posibilidades, si ya se ha escogido uno, entonces en la segunda hay $4$ posibilidades, y en la última $3$ posibilidades, por lo tanto, hay $5 \times 4 \times 3 = 60$
 
-#+begin_src artist
+#+begin_src
 
    +----+----+----+
    |  5 |  4 |  3 |
@@ -2711,7 +2786,7 @@ $$VR_{m}^{n}=m^{n}}$$
 
 *Ejemplo*: en numeración decimal las variaciones con repetición del conjunto de símbolos decimales (dígitos del 0 al 9), tomando 3 nos da 1,000 variaciones:
 
-#+begin_src artist
+#+begin_src
 
   +----+----+----+
   | 10 | 10 | 10 |
@@ -2747,7 +2822,7 @@ $$VR_{4}^{3}=4^{3}=64$$
 
 *Ejemplo*: en numeración decimal las variaciones con repetición del conjunto de símbolos decimales (dígitos del 0 al 9), tomando 3 nos da 1,000 variaciones:
 
-#+begin_src artist
+#+begin_src
 
   +----+----+----+
   | 10 | 10 | 10 |
@@ -2826,7 +2901,7 @@ Compone dos experimentos aleatorios donde los resultados son equiprobables (todo
 La palabra aleatorio se usa para expresar una aparente carencia de propósito, causa, u orden. En cambio, el término aleatoriedad se usa a menudo como sinónimo con un número de propiedades estadísticas medibles, tales como la carencia de tendencias o correlación, es decir, que no haya patrones que se puedan identificar. El resultado de todo suceso aleatorio no puede determinarse en ningún caso antes de que este se produzca.
 
 **** Estocásticos
-Del griego στοχαστικός stochastikós "hábil en conjeturar", es el sistema cuyo comportamiento intrínseco es no determinista, en la medida en que el subsiguiente estado del sistema se determina tanto por las acciones predecibles del proceso como por elementos aleatorios. No obstante, de acuerdo con Mark Kac y E. Nelson,​ cualquier desarrollo temporal (sea determinista o esencialmente probabilístico) que se pueda analizar en términos de probabilidad merece el calificativo de proceso estocástico. En concreto: el término estocástico se aplica a procesos, algoritmos y modelos en los que existe una secuencia cambiante de eventos analizables probabilísticamente a medida que pasa el tiempo. Por ejemplo, el método de Monte Carlos.
+Del griego στοχαστικός stochastikós "hábil en conjeturar", es el sistema cuyo comportamiento intrínseco es no determinista, en la medida en que el subsiguiente estado del sistema se determina tanto por las acciones predecibles del proceso como por elementos aleatorios. No obstante, de acuerdo con Mark Kac y E. Nelson, cualquier desarrollo temporal (sea determinista o esencialmente probabilístico) que se pueda analizar en términos de probabilidad merece el calificativo de proceso estocástico. En concreto: el término estocástico se aplica a procesos, algoritmos y modelos en los que existe una secuencia cambiante de eventos analizables probabilísticamente a medida que pasa el tiempo. Por ejemplo, el método de Monte Carlos.
 
 *** Teoría de la Probabilidad
 Estudia los fenómenos aleatorios y estocásticos (sistema cuyo comportamiento intrínseco es no determinista). Los fenómenos aleatorios se contraponen a los fenómenos deterministas, los cuales son resultados únicos y/o previsibles de experimentos realizados bajo las mismas condiciones determinadas. La teoría de probabilidades se ocupa de asignar un cierto número a cada posible resultado que pueda ocurrir en un experimento aleatorio, con el fin de cuantificar dichos resultados y saber si un suceso es más probable que otro.
@@ -2835,12 +2910,12 @@ Estudia los fenómenos aleatorios y estocásticos (sistema cuyo comportamiento i
 
 Las definiciones iniciales de probabilidad se basaron en la idea intuitiva de un cociente de ocurrencias:
 
-    $$\displaystyle \mathrm {Prob} (A)=\lim _{N\to \infty }{\frac {n_{A}}{N}}$$
+$$\displaystyle \mathrm {Prob} (A)=\lim _{N\to \infty }{\frac {n_{A}}{N}}$$
 
 donde $A$ es un suceso cualquiera y:
 
-    $N$ es el número de veces que se ha repetido una acción u observación cuyo resultado puede dar el suceso $A$ o no-$A$.
-    $n_A$ es el número de veces que observa $A$ en todas las observaciones.
+$N$ es el número de veces que se ha repetido una acción u observación cuyo resultado puede dar el suceso $A$ o no-$A$.
+$n_A$ es el número de veces que observa $A$ en todas las observaciones.
 
 La interpretación de esta probabilidad es la frecuencia promedio con la que aparece dicho suceso si se considera una elección de muestras aleatorias sobre $\Omega$.
 
@@ -2848,7 +2923,7 @@ La interpretación de esta probabilidad es la frecuencia promedio con la que apa
 La probabilidad es una medida de la certidumbre de que ocurra un evento. Se puede definir como una aplicación que a cada suceso le hace corresponder un número entre $0$ y $1$ que emite lo probable que es dicho suceso. Esto tiene que cumplir que la probabilidad del suceso seguro es $1$ y la del suceso imposible es $0$. Una forma empírica de estimar la probabilidad consiste en obtener la *frecuencia con la que sucede un determinado acontecimiento mediante la repetición de experimentos aleatorios*, bajo condiciones suficientemente estables.
 
 $p : \mathbb{P}(\Omega) \rightarrow [0,1]$
-           $A \rightarrow P(A)$
+        $A \rightarrow P(A)$
 
 Esto cumple que:(Axiomas o propiedades que definen a la probabilidad)
 
@@ -2879,7 +2954,7 @@ Este suceso se compone de dos sucesos, el primer suceso es el primer lanzamiento
 
 $\Omega=\{(c,c),(c,s),(s,c),(s,s)\}$
 
-#+begin_src artist
+#+begin_src
 
     /  c   (c,c)  ---  1/2 . 1/2 = 1/4
 c -
@@ -2910,7 +2985,7 @@ $\Omega=\{(c,c,c),(c,c,s),(c,s,c),...\}$
 **** Extraer dos bolas sin devolución
 Extraer dos bolas sin devolución de una caja que contiene: 2 rojas, 5 verdes y 3 negras. ¿Cuál es la probabilidad de obtener la primera roja y la segunga verde?
 
-#+begin_src artist
+#+begin_src
 
    /  r   (r,r)
 r -   v   (r,v)  ---  2/10 . 5/9 = 1/9
@@ -2933,7 +3008,7 @@ $P(r_1 \cap v_2)=P(v_2|r_1)P(r_1)=5/9 \cdot 2/10=1/9$
 **** Extraer tres bolas sin devolución
 Extraer tres bolas sin devolución de una caja que contiene: 5 rojas y 2 negras. ¿Calcular la probabilidad de obtener dos rojas?
 
-#+begin_src artist
+#+begin_src
 
         /  r   (r,r,r)
      r -
@@ -2975,11 +3050,11 @@ $$P(A)=\frac{Numero \,de\, casos\, favorables}{Numero\, de\, casos\, posibles}=\
 *** Regla de adicción
 Establece que la probabilidad de *ocurrencia de cualquier evento* en particular es igual a la *suma de las probabilidades individuales*, en general:
 
- $P(A \cup B) = P(A) + P(B)-P(A \cap B)$
+$P(A \cup B) = P(A) + P(B)-P(A \cap B)$
 
 - eventos mutuamente excluyentes :: Si los eventos son mutuamente excluyentes, dos no pueden *ocurrir al mismo tiempo* $A \cap B = \varnothing$ entonces
 
- $P(A \cup B) = P(A) + P(B)$.
+  $P(A \cup B) = P(A) + P(B)$.
 
 *Ejemplo*: se lanza un dado, ¿cuál es la probabilidad de que el número sea par?
 Sea $A$ el conjunto de "cae el dado en el número $2$", es decir, $A=\{2\}$
@@ -2990,23 +3065,23 @@ El espacio muestral sería $\Omega = \{1,2,3,4,5,6\}$
 
 Tenemos que $A$, $B$ y $C$ son mutuamente excluyentes ($A \cap B = \varnothing$ , $B \cap C = \varnothing$ y $A \cap C = \varnothing$) por lo tanto la probabilidad de que el número sea par será
 
- $P(A \cup B \cup C) = P(A) + P(B) + P(C) = 1/6 + 1/6 + 1/6 = 1/2 = 3/6 = P(E)$
+$P(A \cup B \cup C) = P(A) + P(B) + P(C) = 1/6 + 1/6 + 1/6 = 1/2 = 3/6 = P(E)$
 
 
 - eventos no mutuamente excluyentes :: Si no son mutuamente excluyentes  $A \cap B \ne \varnothing$ entonces
 
- $P(A \cup B) = P(A) + P(B)-P(A \cap B)$
+  $P(A \cup B) = P(A) + P(B)-P(A \cap B)$
 
 *** Regla multiplicación
 Establece que la probabilidad de ocurrencia de *dos o más eventos estadísticamente independientes* es igual al producto de sus probabilidades individuales.
 
 Si dos sucesos $A$ y $B$ son independientes, es decir, el hecho de que ocurra $A$ no *influye* en $B$ y recírpocramente, se tiene
 
- $P(A \cap B) = P(A) P(B)$
+$P(A \cap B) = P(A) P(B)$
 
 Si dos sucesos $A$ y $B$ son dependientes, se tiene
 
- $P(A \cap B) = P(A) P(B|A)$
+$P(A \cap B) = P(A) P(B|A)$
 
 siendo $P(B|A)$ la probabilidad de que ocurra $B$ habiéndose dado o verificado el evento $A$.
 
@@ -3038,7 +3113,7 @@ A este espacio muestral se le asigna una variable aleatoria $X=numero\,de\,exito
 La imagen de $X$ estará definida por $I_mX=\{0,1,2,...,n\}$, donde la función de probabilidad estaría definida por:
 
 $f: I_mX \rightarrow \mathbb R$
-          $m \rightarrow f(m)=P(X=m)=\binom{n}{m}p^m(1-p)^{n-m}$
+$m \rightarrow f(m)=P(X=m)=\binom{n}{m}p^m(1-p)^{n-m}$
 
 La esperanza se puede calcular mediante la fórmula $\mu=E(X)=\sum x_i p_i$ o equivalentemente $E(X)=np$ que es el número esperado de éxitos por la probabilidad.
 La varianza $Var(x)=np(1-p)$.
@@ -3046,14 +3121,14 @@ La varianza $Var(x)=np(1-p)$.
 **** Distribución Binomial Negativa
 Si se quiere saber la probabilidad de necesitar exactamente $n$ ensayos para obtener $r$ éxitos, se debe usar la distribución binomial negativa o la distribución de Pascal:
 
-    ${\frac {(n-1)!}{(r-1)!(n-r)!}}p^{r}(1-p)^{n-r}$
+${\frac {(n-1)!}{(r-1)!(n-r)!}}p^{r}(1-p)^{n-r}$
 
 La distribución de Pascal es un caso particular de la distribución binomial negativa que requiere que los valores de $n$ y $r$ sean enteros, mientras que en la distribución binomial negativa $r$ puede ser real mayor que cero y $n-r$ entero no negativo.
 
 Cuando $r=1$ se obtiene la distribución geométrica. la distribución geométrica es cualquiera de las dos distribuciones de probabilidad discretas siguientes:
 
-    Si $X=\{1,2,\dots \}$ es el número necesario para obtener un éxito.
-    Si $\displaystyle X=\{0,1,2,\dots \}$ es el número de fracasos antes del primer éxito.
+Si $X=\{1,2,\dots \}$ es el número necesario para obtener un éxito.
+Si $\displaystyle X=\{0,1,2,\dots \}$ es el número de fracasos antes del primer éxito.
 
 **** Ejemplo
 - Se lanza $51$ veces un dado de $6$ caras. Calcular la probabilidad de que el número $3$ salga $20$ veces.
@@ -3062,7 +3137,7 @@ En este problema un ensayo consiste en lanzar el dado una vez. Consideramos un �
 
 En este caso tenemos $X\sim \operatorname {B} (51,1/6)$ por lo que la probabilidad buscada es $\operatorname {P} [X=20]$
 
-    $\operatorname {P} [X=20]={51 \choose 20}(1/6)^{20}(1-1/6)^{51-20}=0.0000744$
+$\operatorname {P} [X=20]={51 \choose 20}(1/6)^{20}(1-1/6)^{51-20}=0.0000744$
 
 ** Probabilidad Condicionada
 *** Definición
@@ -3092,7 +3167,7 @@ $P(A_{1}\cap A_{2})=P(A_{1})P(A_{2}|A_{1})={\frac {20}{100}}\cdot {\frac {19}{99
 *** Falacia de la probabilidad condicional
 La falacia de la probabilidad condicional se basa en asumir que $P(A|B)$ es casi igual a $P(B|A)$. La verdadera relación entre $P(A|B)$ y $P(B|A)$ es la siguiente (teorema de Bayes):
 
- $P(B \mid A)= P(A \mid B) \cdot \frac{P(B)}{P(A)$
+$P(B \mid A)= P(A \mid B) \cdot \frac{P(B)}{P(A)$
 
 *** Teorema de la Probabilidad Total
 Permite obtener la probabilidad de un suceso, cuando conocemos la probabilidad de ese suceso, en cada uno de  los conjuntos de la *partición del espacio muestral*.
@@ -3105,7 +3180,7 @@ $P(B)=\sum _{i=1}^{n}P(B|A_{i})P(A_{i})}$
 
 $$\Omega=E=A1 \cup A2 \cup A3$$
 
-#+begin_src artist
+#+begin_src
 
    +----------------------------+ E
    | A1               /      A2 |
@@ -3157,7 +3232,7 @@ donde:
 
 Con base en la definición de probabilidad condicionada se obtiene la *Fórmula de Bayes*, también conocida como Regla de Bayes:
 
-   $P(A_{i}|B)={\frac {P(B|A_{i})P(A_{i})}{\sum _{k=1}^{n}P(B|A_{k})P(A_{k})}}$
+$P(A_{i}|B)={\frac {P(B|A_{i})P(A_{i})}{\sum _{k=1}^{n}P(B|A_{k})P(A_{k})}}$
 
 Esta fórmula nos permite calcular la probabilidad condicional $P(A_{i}|B)$ de cualquiera de los eventos $A_{i}$ dado $B$.
 
@@ -3250,7 +3325,7 @@ Aplicando el método de Martingala, en el caso donde se apuesta a dos colores, r
 
 El caso de dos intentos se puede representar con el siguiente diagrama:
 
-#+begin_src artist
+#+begin_src
 
                     2
   (apuesto 1)    /
@@ -3358,7 +3433,7 @@ Como se está hablando de funciones continuas, para el cálculo de probabilidade
 Para calular la tabla $Z$ dada una distribución binomial $X \in N(\mu,\sigma)$ se debe tipificar considerando $Z=\frac{x-\mu}{\sigma}\, \in N(0,1)$.
 Luego para calcular una probabilidad para la $X$ se hace calculandola para la $Z$ de la siguiente manera, por ejemplo:
 
- $P(X \le a)=P(\frac{x-\mu}{\sigma} \le \frac{a-\mu}{\sigma})=P(Z \le \frac{a-\mu}{\sigma})$.
+$P(X \le a)=P(\frac{x-\mu}{\sigma} \le \frac{a-\mu}{\sigma})=P(Z \le \frac{a-\mu}{\sigma})$.
 
 *Ejemplo*:
 Sea $X \in N(3,2)$ para calcular $P(X \le 3,5)$ se hace lo siguiente $P(X \le 3,5)=P(\frac{x-3}{2} \le \frac{3.5-3}{2})=P(Z \le 0.25)$ que pertenece a $Z \in N(0,1)$.
@@ -3403,7 +3478,7 @@ Formalmente, se llama espacio topológico al par ordenado $(X,T)$ formado por un
 
 Puede parecer extraño que de una definición tan altamente formal y conjuntista se obtenga una formulación precisa del concepto de proximidad. Lo primero que se observa es que sobre un mismo espacio $X$ se pueden definir distintas topologías, generando entonces distintos espacios topológicos. Por otra parte, precisamente la manera en que quede determinada una topología sobre un conjunto (es decir, la elección del criterio que nos permita decidir si un conjunto dado es o no abierto) es lo que va a dar carácter "visualizable" o no a ese espacio topológico.
 
-A los conjuntos pertenecientes a la topología $T$ se les llama conjuntos abiertos o simplemente abiertos de $(X,T)$;​ y a sus complementos en $X$, conjuntos cerrados.
+A los conjuntos pertenecientes a la topología $T$ se les llama conjuntos abiertos o simplemente abiertos de $(X,T)$; y a sus complementos en $X$, conjuntos cerrados.
 
 *Ejemplo*:
 El conjunto de los reales, y $T$ el conjunto de los intervalos abiertos en el sentido usual, y de las reuniones (cualesquiera) de intervalos abiertos. En este caso un conjunto es abierto si para todo punto de él existe un intervalo abierto que contiene al punto y dicho intervalo abierto está totalmente contenido en el mencionado conjunto.
@@ -3411,14 +3486,14 @@ El conjunto de los reales, y $T$ el conjunto de los intervalos abiertos en el se
 *** Definición mediante conjuntos abiertos
 Una topología sobre un conjunto $X$ puede definirse como una colección $\tau$  de subconjuntos de $X$, llamados *conjuntos abiertos* y que satisfacen los siguientes axiomas:
 
-  1. El conjunto vacío y  $X$ mismo pertenecen a $\tau$.
-  2. La intersección de cualquier número finito de miembros de $\tau$ pertenece a $\tau$.
-  3. Cualquier unión arbitraria (finita o infinita) de miembros de $\tau$  pertenece a $\tau$.
+1. El conjunto vacío y  $X$ mismo pertenecen a $\tau$.
+2. La intersección de cualquier número finito de miembros de $\tau$ pertenece a $\tau$.
+3. Cualquier unión arbitraria (finita o infinita) de miembros de $\tau$  pertenece a $\tau$.
 
 Como esta definición de una topología es la más utilizada, el conjunto $\tau$ de los conjuntos abiertos se llama comúnmente una topología sobre $X$.
 
 *** Definition by Morphocular
-Definition by [[][Morphocular]
+Definition by [[https://www.youtube.com/@morphocular][Morphocular]]
 In Topology all shapes, curves, etc. are thought of as a collection or "set" of points. And any set of points, $S$, divides the space it lives in into three other sets:
 - the interior of S, consisting of all points that can be enclosed in a ball that's also contained in S
 - the exterior of S, consisting of all points that can be enclosed in balls that are completely disjoint from S
@@ -3448,7 +3523,7 @@ A subset $K$ of a topological (or metric) space is called compact if every open 
 ** Conjunto conexo
 Es un subconjunto $C \subseteq X$ de un espacio topológico $( X , T )$ que no puede ser expresado como unión disjunta de dos conjuntos abiertos no vacíos de la topología. Intuitivamente, es el que aparece como una sola pieza, que no se puede 'dividir' o 'partir'. En el caso de que un conjunto no sea conexo, se dice que es disconexo.
 
-  $C \subseteq X$ es un conjunto conexo si y sólo si $\forall A,B \in T \, , \, A \cap B = \varnothing \, , \, C \subseteq A \cup B$ implica $C \subseteq A \lor C \subseteq B$
+$C \subseteq X$ es un conjunto conexo si y sólo si $\forall A,B \in T \, , \, A \cap B = \varnothing \, , \, C \subseteq A \cup B$ implica $C \subseteq A \lor C \subseteq B$
 
 Nótese que si $C = X$ y cumple lo anterior, entonces se dice que $( X , T )$ es un espacio topológico conexo.
 
@@ -3547,7 +3622,7 @@ Un camino euleriano es un camino que pasa por cada arista una y solo una vez.
 - Si un grafo tiene solo 2 vértices con grado impar, entonces existe un camino euleriano. Además por uno de estos vértices impares se empieza y por el otro se finaliza.
 - Si un grado tiene un solo vértice impar ya no hay camino que empiece o acabe en el mismo sitio.
 
-#+begin_src artist
+#+begin_src
 
   Dibujar la casa sin levantar el lápiz, es decir, encontrar
   un camino que pase por todos las aristas sin repetir ninguna.
@@ -3659,7 +3734,7 @@ La integración de Riemann no funciona bien al tomar límites de sucesiones de f
 La definición de Lebesgue también hace posible calcular integrales para una clase más amplia de funciones. Por ejemplo, la función de Dirichlet, que es $0$ cuando su argumento es irracional y $1$ en otro caso (racional), tiene integral de Lebesgue, pero no de Riemann.
 
 **** Interpretación intuitiva
-Folland​ resumió los dos distintos modos de aproximarse al concepto de integral de la siguiente forma: «para calcular la integral de Riemann se particiona (divide) el dominio $[a, b]$ en subintervalos», mientras que en la integral de Lebesgue «se particiona el rango de $f$ ».
+Folland resumió los dos distintos modos de aproximarse al concepto de integral de la siguiente forma: «para calcular la integral de Riemann se particiona (divide) el dominio $[a, b]$ en subintervalos», mientras que en la integral de Lebesgue «se particiona el rango de $f$ ».
 
 Imaginemos que queremos calcular el área de una curva. Tenemos dos métodos distintos para encontrar una aproximación a esta área:
 
@@ -3693,198 +3768,9 @@ Las ecuaciones diferenciales lineales, las cuales tienen soluciones que pueden s
 *** Ecuaciones en derivadas parciales EDP
 Es una ecuación diferencial que contiene una función multivariable y sus derivadas parciales. Estas ecuaciones se utilizan para formular problemas que involucran funciones de varias variables, y pueden resolverse manualmente, para crear una simulación por computadora.
 
-* Lógica
-** Teoría
-*** Lógica
-La lógica es una rama de la filosofía de carácter interdisciplinario, entendida como la ciencia formal que estudia los principios de la demostración y la inferencia válida, las falacias, las paradojas y la noción de verdad.
-
-Es el estudio del *razonamiento correcto*. Incluye tanto la lógica formal como la informal. La lógica formal es la ciencia de las inferencias deductivamente válidas o de las verdades lógicas. Es una ciencia formal que investiga cómo las conclusiones se derivan de las premisas de una manera neutral al tema.
-
-/Documento: Lógica y lenguajes por Daniel Clemente/
-En mi opinión, los sistemas que nos inventamos para hacer lógica han de permitir dos operaciones:
-*Formalización*: traducción de las ideas que tenemos en la cabeza al lenguaje escogido.
-*Razonamiento*: manipulación de los conceptos mediante las operaciones permitidas por el lenguaje.
-Habría una tercera fase, *desformalización* (entender la nueva información generada por el razonamiento), pero no la pongo porque considero que la formalización es un proceso bidireccional, y el razonamiento cerrado (es lo habitual en los mecanismos usados por los humanos).
-
-*** Conocimiento
-Es la familiaridad, la conciencia o la comprensión de alguien o de algo, como pueden ser los hechos (conocimiento descriptivo), las habilidades (conocimiento procedimental) o los objetos (conocimiento por familiaridad). En la mayoría de los casos, el conocimiento puede adquirirse de muchas maneras y a partir de muchas fuentes, como la percepción, la razón, la memoria, el testimonio, la investigación científica, la educación y la práctica. El estudio filosófico del conocimiento se denomina epistemología.
-
-El término "conocimiento" puede referirse a la comprensión teórica o práctica de un tema. Puede ser implícito (como la habilidad práctica o la pericia) o explícito (como la comprensión teórica de un tema); formal o informal; sistemático o particular. El filósofo Platón argumentó que había una distinción entre conocimiento y creencia verdadera en el Teeteto, lo que llevó a muchos a atribuirle una definición de conocimiento como "creencia verdadera justificada"
-
-/Documento: Lógica y lenguajes por Daniel Clemente/
-*Conocimientos* (ideas, conceptos) en un libro de Inteligencia Artificial vi una frase parecida a "Estamos sedientos de conocimiento, pero nos ahogamos en la información". Parece que el conocimiento son las cosas útiles que extraemos de la información que llega de nuestro entorno. Y a la vez la información también es el resultado de haber procesado datos y más datos.
-
-No conocemos una definición aceptada por todos. Platón, en el diálogo Theaetetus (369 aC), dice que Sócrates considera el conocimiento como una creencia cierta justificada. O sea, que ha de cumplir tres condiciones:
-
-- Ha de ser *justificable*. Muchas cosas se pueden justificar (creencias, acciones, emociones, proposiciones, leyes, teorías, ...). Hay muchos métodos para justificar una creencia: se puede usar un sistema lógico, demostrar por inducción, comprobar de forma empírica, etc.
-- Ha de ser *cierto*. Esto es muy complicado de decidir, ya que hay muchas teorías sobre la verdad. Filósofos y lógicos se han pasado siglos discutiendo sobre esto: unos creen que ser cierto es una propiedad de las frases (teorías robustas); otros, que no hace falta hablar del predicado ``ser verdad'', sino que todo lo que decimos ya se considera un juicio sobre la certeza (teorías deflacionarias); otros dicen que ``nada es verdad o es mentira, todo depende del color del cristal con que se mira'', etc.
-- Tiene que ser *creído* por alguna persona (si no, sería desconocimiento, no conocimiento).
-
-Pero cumplir todo esto puede ser difícil o imposible. Además, el conocimiento ha de ser útil; normalmente nosotros pensamos y razonamos sólo cuando hace falta, por tanto queremos conocimiento reutilizable.
-
-Pero dejaré este tema para la epistemología, y hablaré de cómo representamos nosotros el conocimiento. Todo esto (almacenamiento y razonamiento) son cosas que los humanos hacemos muy bien en la práctica, pero que cuando se intentan imitar en la teoría no se consiguen.
-
-Según Wikipedia, Platón clasifica el conocimiento, creencias, verdades y proposiciones así:
-
-#+begin_src artist
-
-    +------------------------------------------------------------ +
-    |  Proposiciones                                              |
-    |           -------------            -------------            |
-    |       ---/             \---   ----/             \----       |
-    |    --/                     \-/                       \-     |
-    |   /                       -/  \                        \-   |
-    |  /                       /-----\                         \  |
-    | /                       //     \\                         \ |
-    |/                       //       \\                         \|
-    ||        Verdades       ||Conoci-||      Creencias          ||
-    |\                       \\ miento//                         /|
-    | \                       \\     //                         / |
-    |  \                       \-----/                         /  |
-    |   \                       -\  /                        /-   |
-    |    --\                     /-\                       /-     |
-    |       ---\             /---   ----\             /----       |
-    |           -------------            -------------            |
-    |                                                             |
-    +-------------------------------------------------------------+
-
-#+end_src
-
-O sea, no todas las creencias son ciertas, y sólo una parte de las que lo son se pueden considerar conocimiento. El resto de creencias ciertas son aún no demostradas.
-
-/Del resumen del libro Tejiendo la Red por Daniel Clemente/:
-Cada vez hay más información pero la cantidad de conocimiento sigue igual. Ahora está de moda trabajar con información (por ejemplo, Wikipedia es una gran base de datos de información), pero cada vez la información tiene menos valor, sobre todo porque las grandes empresas ya la manipulan como quieren. Probablemente en el futuro preferiremos el conocimiento (información con justificaciones), pero todavía no tenemos la tecnología para que los ordenadores nos ayuden en ello.
-
-*** Esquema del conocimiento
-Esquema sobre el conocimiento desde el punto de vista de las ciencias de la información, como se genera y como se aplica.
-
-#+begin_src artist
-
-   +----------------------------------------------------------------+
-   |                                                                |
-   |                       +-----------------+                      |
-   |                       |  Conocimiento   |<--------------|      |
-   |                       +-----------------+               |      |
-   |                          /            \          +-----------+ |
-   |                        /               \         |Aprendizaje| |
-   |                       v                 v        +-----------+ |
-   |          +---------------+            +----------+      |      |
-   |          | Procesamiento |            | Decisión |      |      |
-   |          +---------------+            +----------+      |      |
-   |              ^    |                      ^   |          |      |
-   |              |    |                      |   |          |      |
-   | +-------+    |    |    +-------------+   |   |    +----------+ |
-   | | Datos |----|    |--->| Información |---|   |--->|Resultados| |
-   | +-------+              +-------------+            +----------+ |
-   +----------------------------------------------------------------+
-
-#+end_src
-
-*** Razonamiento
-Es la facultad que permite resolver problemas, extraer conclusiones y aprender de manera consciente de los hechos, estableciendo conexiones causales y lógicas necesarias entre ellos.
-
-El razonamiento lógico o causal es un proceso de lógica mediante el cual, partiendo de uno o más juicios, se deriva la validez, la posibilidad o la falsedad de otro juicio distinto. El estudio de los argumentos corresponde a la lógica, de modo que a ella también le corresponde indirectamente el estudio del razonamiento. Por lo general, los juicios en que se basa un razonamiento expresan conocimientos ya adquiridos o, por lo menos, postulados como hipótesis. Es posible distinguir entre varios tipos de razonamiento lógico. Por ejemplo el razonamiento deductivo (estrictamente lógico), el razonamiento inductivo (donde interviene la probabilidad y la formulación de conjeturas) y razonamiento abductivo, otros.
-
-En un sentido restringido, se llama razonamiento lógico al proceso mental de realizar una inferencia de una conclusión a partir de un conjunto de premisas. La conclusión puede no ser una consecuencia lógica de las premisas y aun así dar lugar a un razonamiento, ya que un mal razonamiento aún es un razonamiento en sentido amplio, no en el sentido de la lógica.
-
-Los razonamientos pueden ser válidos (correctos) o no válidos (incorrectos) dando por todo.
-En general, se considera válido un razonamiento cuando sus premisas ofrecen soporte suficiente a su conclusión. Puede discutirse el significado de "soporte suficiente", aunque cuando se trata de un razonamiento no deductivo no podemos hablar de validez sino de "fortaleza" o "debilidad" del razonamiento dependiendo de la solidez de las premisas, la conclusión podrá ser más o menos probable pero jamás necesaria, solo es aplicable el término "válido" a razonamientos del tipo deductivo. En el caso del razonamiento deductivo, el razonamiento es válido cuando la verdad de las premisas implica necesariamente la verdad de la conclusión.
-
-Los razonamientos no válidos que, sin embargo, parecen serlo, se denominan falacias.
-
-El razonamiento nos permite ampliar nuestros conocimientos sin tener que apelar a la experiencia. También sirve para justificar o aportar razones en favor de lo que conocemos o creemos conocer. En algunos casos, como en las matemáticas, el razonamiento nos permite demostrar lo que sabemos.
-
-El término razonamiento es el punto de separación entre el instinto y el pensamiento, el instinto es la reacción de cualquier ser vivo. Por otro lado el razonar nos hace analizar, y desarrollar un criterio propio, el razonar es a su vez la separación entre un ser vivo y el humano.
-
-*** Sistemas lógicos
-**** Premisa
-Es cada una de las proposiciones anteriores a la conclusión del argumento.
-
-**** Predicado
-Un predicado es una expresión lingüística que se puede conectar con una o varias otras expresiones para formar una oración. Por ejemplo, en la oración «Marte es un planeta», la expresión «es un planeta» es un predicado que se conecta con la expresión «Marte» para formar una oración. Y en la oración «Júpiter es más grande que Marte», la expresión «es más grande que» es un predicado que se conecta con dos expresiones, «Júpiter» y «Marte», para formar una oración.
-
-En lógica matemática, cuando un predicado se conecta con una expresión, se dice que expresa una propiedad (como la propiedad de ser un planeta), y cuando se conecta con dos o más expresiones, se dice que expresa una relación (como la relación de ser más grande que). Sin embargo, la lógica de primer orden no hace ningún supuesto sobre si existen o no las propiedades o las relaciones. Solo se ocupa de estudiar el modo en que hablamos y razonamos con expresiones lingüísticas.
-
-En la lógica de primer orden, los predicados son tratados como funciones. Una función es, metafóricamente hablando, una máquina que recibe un conjunto de cosas, las procesa, y devuelve como resultado una única cosa. A las cosas que entran a las funciones se las llama argumentos,​ y a las cosas que salen, valores o imágenes.
-
-**** Tautlogía
-En lógica proposicional, una tautología es una fórmula bien formada que resulta verdadera para cualquier interpretación; es decir, para cualquier asignación de valores de verdad que se haga a sus fórmulas atómicas.​ La construcción de una tabla de verdad es un método efectivo para determinar si una fórmula cualquiera es una tautología o no.
-
-*Tautología en retórica*:
-En retórica, una tautología (del griego ταυτολογία, decir lo mismo) es una afirmación *obvia, vacía o redundante* . Es repetición de un pensamiento expresado de distintas maneras, por ejemplo: "Como dijo el Guerra, lo que no puede ser, no puede ser, y además es imposible". Algunas veces se la puede considerar repetición inútil y viciosa. Otro ejemplo de dicho popular tautológico es "todo lo que está de más, sobra".
-
-**** Formalización
-Quiere decir escribir una expresión de una manera estándar que todos entiendan.
-
-**** Fórmula bien formada
-Es una cadena de caracteres o palabra generada según una gramática formal a partir de un alfabeto dado. Un lenguaje formal se define como el conjunto de todas sus fórmulas bien formadas.
-
-Por ejemplo, un alfabeto podría ser el conjunto $\{a,b\}$, y una gramática podría definir a las fórmulas bien formadas como aquellas cadenas que tienen el mismo número de caracteres $a$ que $b$. Entonces, algunas fórmulas bien formadas del lenguaje serían: $ab$, $ba$, $abab$, $ababba$, etc. El lenguaje formal sería el conjunto de todas esas fórmulas bien formadas $L=\{\,\,ab, \,\,ba, \,\,abab, \,\,ababba,\, ...\}$.
-
-**** Fórmula atómica
-Es una fórmula bien formada que no tiene una estructura formal más profunda. Esto es, una fórmula que no contiene conectivas lógicas, o equivalentemente, una fórmula que no tiene subfórmulas estrictas. De esta manera, las fórmulas atómicas son las fórmulas bien formadas más simples del lenguaje de la lógica. Las fórmulas compuestas (o moleculares) son formadas combinando las fórmulas atómicas usando las constantes lógicas.
-
-La forma de las fórmulas atómicas depende del sistema lógico con el cual se esté trabajando. En la lógica proposicional, por ejemplo, las fórmulas atómicas son las variables proposicionales. En lógica de predicados, son los predicados junto con sus argumentos.
-
-*En lógica de primer orden*:
-Dada la definición de fórmula bien formada, una fórmula atómica, o átomo, es simplemente una fórmula bien formada sin constantes lógicas, o equivalentemente, una fórmula bien formada generada solamente mediante la primera cláusula de la definición recursiva.
-
-Por ejemplo, considérese la fórmula compleja:
-
-$$\forall x [R(a,x) \lor \neg P (f(a))] \land \exists y \, P(y)$$
-
-Esta fórmula contiene las siguientes fórmulas atómicas:
-
-$R(a,x)$ , $P(f(a))$ , $P(y)$.
-
-** Definiciones
-*** Falacia
-Es un argumento que parece válido, pero no lo es. Algunas falacias se cometen intencionadamente para persuadir o manipular a los demás, mientras que otras se cometen sin intención debido a descuidos o ignorancia. En ocasiones las falacias pueden ser muy sutiles y persuasivas, por lo que se debe poner mucha atención para detectarlas.
-
-Que un argumento sea falaz no implica que sus premisas o su conclusión sean falsas ni que sean verdaderas. Un argumento puede tener premisas y conclusión verdaderas y aun así ser falaz. Lo que hace falaz a un argumento es la invalidez del argumento en sí. De hecho, inferir que una proposición es falsa porque el argumento que la contiene por conclusión es falaz es en sí una falacia conocida como argumento ad logicam.
-
-Las falacias, a pesar de ser incorrectas, generalmente parecen ser correctas y, por lo tanto, pueden seducir las personas para que las acepten y las utilicen. Estas apariencias engañosas a menudo están conectadas con varios aspectos del lenguaje natural, como *expresiones ambiguas* o *vagas*, o con la *presunción de premisas implícitas en lugar de hacerlas explícitas*.
-
-*Falacia Formal*:
-Son aquellas cuyo error reside en la *forma o estructura de los argumentos*.
-
-*Falacia Informal*:
-La fuente del error no se debe solo a la forma del argumento, como es el caso de las falacias formales, sino que también puede deberse a su *contenido y contexto*.
-
-*** Sofisma
-Es un razonamiento o argumento falso con apariencia de verdad. El término falacia y sofisma no son sinónimos, existe una gran diferencia entre estos. Una falacia es un razonamiento incorrecto pero con apariencia de razonamiento correcto. Es un argumento engañoso o erróneo (falaz), pero que pretende ser convincente. Mientras, el sofisma es un razonamiento aparentemente verdadero con el propósito de engañar. La diferencia es netamente de orden psicológico, mas no de carácter lógico, porque ambas son un argumento falso.
-
-*** Dicotomía
-Del griego dichótomos, «dividido en partes» o «cortado en dos partes», designa psicológicamente:
-- Un par de conceptos complementarios.
-- Una subdivisión, que desmiembra o disecta el área de un objeto en exactamente dos áreas (o en su defecto, conceptos) complementarias.
-
-*Ejemplo*:
-- La subdivisión de los números reales en racionales e irracionales, donde hay que notar aquí que los números racionales se componen a su vez de la dicotomía de números enteros y no enteros
-
-Una *falsa dicotomía* es una conclusión falsa a la que se llega intencionalmente o sin intención y que presenta una decisión entre dos únicas posibilidades como una necesidad, a pesar de que existen otras posibles alternativas de decisión.
-
-*Ejemplo*:
-- «¿Reelegirá usted al partido en el gobierno o le dará alas al terrorismo?».
-
-*** Dialéctica
-Es un discurso entre dos o más personas que tienen diferentes puntos de vista sobre un tema pero que desean establecer la verdad a través de una argumentación razonada.
-
-*** Retórica
-Es el *arte de la persuasión*, que junto con la gramática y la lógica, es una de las tres artes antiguas del discurso. La retórica tiene como objetivo estudiar las técnicas que utilizan los escritores u oradores para informar, persuadir o motivar a audiencias particulares en situaciones específicas.
-
-*** Silogismo
-Es un tipo de razonamiento deductivo que hace parte de la lógica de origen griego. Consta de dos proposiciones como premisas y otra como conclusión, siendo la última una inferencia necesariamente deductiva de las otras dos.
-
-*** Sistemático
-Se califica como sistemático a aquello que respeta o se adapta a un sistema: un conjunto ordenado o estructurado de principios o elementos que se relacionan entre sí. El término proviene del latín tardío systematĭcus , a su vez derivado del griego systēmatikós .
-
 * Computer Science
-** Ad hoc
-Se utiliza para referirse a la manera de trabajo en donde se busca únicamente lograr un desarrollo que dé respuesta al problema en el que se está trabajando, sin dotar al desarrollo de la necesaria modularidad que permita reutilizar sus componentes en el futuro.
-
 ** Criptografía RSA
-*** Definición
+*** Introducción
 Sistema criptográfico de clave pública, que utiliza factorización de números enteros. Es válido tanto para cifrar como para firmar digitalmente. La seguridad de este algoritmo radica en el problema de la factorización de números enteros. Los mensajes enviados se representan mediante números, y el funcionamiento se basa en el producto, conocido, de dos números primos grandes elegidos al azar y mantenidos en secreto.
 
 Como en todo sistema de clave pública, cada usuario posee dos claves de cifrado: una pública y otra privada. Cuando se quiere enviar un mensaje confidencial, el emisor busca la clave pública del receptor, cifra su mensaje con esa clave, y una vez que el mensaje cifrado llega al receptor, este se ocupa de descifrarlo usando su clave privada. En el caso de querer firmar, el emisor obtiene un hash del mensaje a firmar y lo procesa con su clave privada obteniendo así la firma; se envía el mensaje y la firma; el receptor recalcula el hash y descifra el hash original con la clave pública del emisor, validando así (o no) la firma del mensaje.
@@ -3919,23 +3805,23 @@ Resumen de envío de mensaje de $A$ a $B$ usando GnuPG con clave simétrica para
 - $B$ recibe el paquete, y con su clave privada $(d_B,n_B)$ decifra la clave simétrica  $dencrypt(c_s)=c_s^{d_B}{\pmod {n_B}}=clave\,simetrica$.
 - Y ahora con esta clave simetrica, desencripta el mensaje $Mensaje$.
 
-** Miscellaneous
-*** Algoritmo para obtener un número primo aleatorio
+** Algoritmo para obtener un número primo aleatorio
 Basado en el postulado de *Bertrand*
 
 *Entrada*: Un número natural n.
 *Salida*: P (el número primo aleatorio buscado).
 
- 1. $P \leftarrow$ *Función* Genera_numero_aleatorio_en_intervalo $[n,2n]$
- 2. *Mientras* $P$ no sea un número primo *haz esto*:
-    1. $P \leftarrow P+1$
-    2. si $(P=2n)$ entonces:
-       1. $P \leftarrow n$
-3. *Devuelve* $P$
+   1. $P \leftarrow$ *Función* Genera_numero_aleatorio_en_intervalo $[n,2n]$
+   2. *Mientras* $P$ no sea un número primo *haz esto*:
+      1. $P \leftarrow P+1$
+      2. si $(P=2n)$ entonces:
+         1. $P \leftarrow n$
+   3. *Devuelve* $P$
 
 El tiempo de finalización de este algoritmo no es determinado, pero existe una alta probabilidad de que finalice en tiempo polinomial siempre y cuando haya suficientes números primos y estos estén distribuidos de forma más o menos uniforme.
 
 * References
-- [[https://es.wikipedia.org/wiki/Wikipedia:Portada][Wikipedia]]
+- [[https://es.wikipedia.org/wiki/Wikipedia:Portada][Wikipedia.es]]
+- [[https://www.wikipedia.org/][Wikipedia]]
 - [[https://www.youtube.com/c/archimedestube][Archimedes Tube]]
 - [[https://www.youtube.com/watch?v=TLh_6G7i4_w&pp=ygUPcHJvZmUgdmFyYWdhdHRp][Lic. María Inés Baragatti]]

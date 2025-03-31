@@ -7491,7 +7491,7 @@ Whent "n" and "t" are next to each other and between vowels, and the second vowe
 ** IPA
 *** IPA Chart
 
-#+begin_src artist
+#+begin_src
 
 i:    ɪ    ʊ    u:        ɪə    eɪ
 e    ə    ɜ:    ɔ:       ʊə    ɔɪ    əʊ
@@ -8883,176 +8883,101 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** +Esto se hace/esto es hecho independientemente de si una propiedad es un dato o un accesorio.
-This is made regardless whether a property is data or an accessor.
+**** +Sin embargo, tiene la fuerza para describir de forma única una estructura con un dominio infinito,
+however, has the strength to uniquely describe a structure with an infinite domain,
 
-**** +Imagínate cómo contratarías a la gente; tendrías que hacer un test.
-Imagine how you would hire people; you would have to do a test.
+**** +La cuarta edición propuesta de ECMA-262 habría sido la primera actualización importante de ECMAScript desde que la tercera edición en 1999 fue publicada
+The proposed fourth edition of ECMA-262 would have been the first major update to ECMAScript since the third edition was published in 1999.
 
-**** +Simplemente empieza a probar. Puedes empezar a hacer entrevistas pero rechazando todas las ofertas. Para ganar experiencia en la búsqueda de empleo.
-Just start trying. You can start interviewing but rejecting all offers. To get experience in looking for jobs.
+**** +El propósito de las pruebas unitarias no es verificar si funciona, es asegurarse de que siga funcionando cuando tú cambia algo.
+The purpose of of unit tests isn't to check whether it works, it is to make sure it keeps working when you change something.
 
-**** +Si gastas tiempo y dinero en encontrar un buen empleado, querrás conservarlo.
-If you spend time and money to find a good employee, you want to keep him.
+**** +Se intenta buscarlo en el entorno padre, en el padre del padre, y así sucesivamente, hasta que se considera toda la cadena de entornos.
+there is an attempt to lookup it in the parent environment, in the parent of the parent, and so on — until the whole environment chain is considered.
 
-**** +, y que puede ser cierto que la AI se roba la info de todos y después te la vende.
-, and that it may be true that AI steals everyone's work, and then resells it to you.
+**** +Durante los dos últimos años, el lenguaje principal promocionado ha sido rust, como todas las veces.
+for the last couple years the main hyped language has been rust like every single time
 
-**** +He notado que las capacidades del software son increíblemente limitadas.
-I've noticed that the software capabilities are just incredibly limited
+**** +Así que voy a utilizar las dos métricas diferentes para intentar definir el lenguaje actual tan publicitado.
+so I'm going to use the two different metrics to try to Define hyped up current language
 
-**** +y básicamente esto es todo lo que puedes hacer en el tablero.
-and basically this is all you can do on the board
+**** +La primera métrica va a ser la cantidad de nuevas preguntas de Stack Overflow que son etiquetadas con un lenguaje de programación en particular.
+the first metric is going to be the number of new stack Overflow questions that are tagged with a particular programming language
 
-**** +o los bootcamp estan quebrando, yo no hice ninguno, siempre me parecieron extraños, pero parece ser cierto que es más complejo conseguir trabajo ahora.
-Or the bootcamp are going out of business, I didn't do any, they always seemed strange to me, but it seems to be true that it's more difficult to get a job now.
+**** +Y la segunda métrica que voy a utilizar es la cantidad de nuevos miembros que se unen al subreddit de un idioma en particular.
+and the second metric that I'm going to use is the number of new members joining a particular language's subreddit
 
-**** +Es como decir, ¿quieres esta versión específica de Python?
-it's like oh do you want this one specific version of python
+**** +Y voy a hacer esto en base a porcentajes.
+and I'm going to do this based of percentages
 
-**** +Sí, ¡sigue buscando! Un trabajo es la forma más fácil de tener un ingreso estable de dinero durante algún tiempo. Puedes dejarlo cuando quieras y probar otras cosas.
-Yes, keep searching! A job is the easiest way to have stable money income for some time. You can leave it when you want and try other things.
+**** +En realidad, va a tener menor porcentaje de crecimiento que Zig, que es otro
+it's actually going to have less percentage of growth than Zig which is another
 
-**** +Gracias por los consejos, estoy cerca de ponerme en eso, aunque me da un poco de miedo.
-Thanks for the, I'm close to getting on that, although I'm a little afraid of it.
+**** +Creo que para finales de 2025, al menos dos importantes plataformas de streaming van a utilizar...
+I think that by the end of 2025 at least two major streaming platforms are going to use
 
-**** *Quería tener una conversación sobre lo que iba a pasar en el
-I wanted to have a conversation about for what was going to happen in the
+**** +La razón por la que es tan atractivo para las plataformas de streaming es porque ahorra una cantidad significativa de ancho de banda para aproximadamente el mismo nivel de calidad.
+the reason it's so appealing to a streaming platforms is because it saves a significant amount of bandwidth for about the same level of quality
 
-**** *Pero antes de que entremos en eso es importante hablar sobre por qué deberías intentar hacer predicciones.
-but before we get into that it's important to talk about why you should try making prediction
+**** +Creo que hay una posibilidad muy pequeña, tal vez un 30% de que un importante proveedor de streaming se asocie con un proveedor de televisión.
+I think there is a real small chance maybe like 30% chance that a major streaming vendor pairs up with a TV vendor
 
-**** Ellas caen presa del sesgo retrospectivo donde
-they fall prey to the hindsight bias where
+**** +Ahora quiero hablar un poco sobre la compresión.
+now I want to talk a little bit about compression
 
-**** Habría predicho *totalmente* ese resultado/salida exacto.
-I totally would have predicted that exact outcome
+**** +De hecho, Twitch ya ha estado experimentando con esto durante el último año y los resultados están siendo muy buenos.
+actually Twitch has already been experimenting with this for the last year and the results are doing really well
 
-**** +Pero lo estan viendo desde el futuro.
-but they're seeing it from the future
+**** +Y un área donde funciona realmente bien es al escalar animes más antiguos que podrían no haber sido lanzados en HD, por ejemplo.
+and one area where it works really well is upscaling older animes that might not have been released in HD for example
 
-**** Y predicciones realmente malas que ellos hicieron que absolutamente no se hicieron realidad.
-and really bad predictions that they made that absolutely didn't come true
+**** +Así que, básicamente, si la calidad es realmente mala, puedes mejorarla.
+so basically if the quality is really bad you can upscale it
 
-**** Y luego mirar atrás y ver si se hicieron realidad.
-and then later looking back and seeing if they came true
+**** +Así que tienes que ir y habilitarlo si quieres probarlo.
+so you have to go through and enable it if you want to try out
 
-**** +Así que *esta* *va* a ser una conversación *muy* informal.
-so this is going to be a really casual conversation
+**** +Y realmente funciona sorprendentemente bien
+and it actually works surprisingly well
 
-**** También publicaré una entrada de blog que entra un poco más detalles.
-I'll also release a blog post that goes kind of into more detail
+**** parte de mi proceso de pensamiento detrás de esto es que la mayoría de los lenguajes de programación exagerados tienen alrededor de 3 a 5 años de tiempo de crecimiento
+part of my thought process behind this is that most hyped up programming languages have about a 3 to 5 year time of growth
 
-**** y eso lo dejaré en la descripción de este vídeo también
-and I'll leave that in the description of this video as well
+**** En realidad está alcanzando el final de su máximo tiempo publicitado.
+is actually reaching the kind of end of its maximum hyped time
 
-**** Hablemos de lo que creo que va a pasar dentro del
-let's talk about what I think it's going to happen inside the
+**** Por ejemplo, Ruby definitivamente tuvo un período de auge y alcanzó su máximo potencial.
+for example Ruby definitely had a period of boom time and reached their maximum
 
-**** Realmente solo sé de Debian que tiene como oficial
-I really only know of Debian that has like an official
+**** Yo diría que la capacidad de auge después de esa cantidad de tiempo haya pasado
+I would say boom capacity after that amount of time has passed
 
-**** Pero creo que durante el próximo año eso probablemente comenzará a cambiar.
-but I think over the next year that's probably going to start to change
+**** Puede que no lo sepas, pero la mejora/ampliacion/escalada de la IA existe desde hace bastante tiempo
+so you might not be aware but AI upscaling has been around for a pretty decent amount of time
 
-**** +Creo que más gente va a estar compilando paquetes.
-I think that more people are going to be compiling packages
+**** Y lo hace parecer casi como si fuera lanzado en HD, lo cual es bastante bueno
+and it makes it look almost like it was released in HD which is pretty nice
 
-**** +Así que mi predicción es que al menos tres distribuciones principales de Linux *van* agregar versiones oficiales para
-so my prediction is that at least three major Linux distributions are going to add official releases for
+**** También hay otra característica que probablemente no conozcas y que es parte de Mi y es
+there is also another feature that you are probably not aware of that's part of Mi and there is
 
-**** +Es posible/ *puede que hayas* visto en videos anteriores que he jugado con
-you might have seen in past videos that I've played around with
+**** pero está integrado y establecida de forma predeterminada
+but it's built into it and set off by default
 
-**** +Y con suerte la gente agrega más soporte y compilación real.
-and hopefully people add more support and actual compiled compilation
+**** pero funcionará en tus videos y se aplicará quizás a un video de YouTube que estés viendo si
+but it's it'll work on your videos and apply to maybe a YouTube video you're watching if
 
-**** Creo que debido a todas estas limitaciones, probablemente haya menos de un 20% de posibilidades de que...
-I think because of all of these limitations there's probably less than a 20% chance that the
+**** Si tiene la calidad configurada muy mal o es un video de muy baja calidad, aumente la escala del video automáticamente.
+if you have the quality set really bad or it's a super low quality video to automatically upscale the video
 
-**** Por lo que esto podría potencialmente hacer que se preocupen por las dificultades de la cadena de suministro.
-so this might potentially make them be concerned about supply chain difficulties
+**** así que creo que va ser una característica realmente interesante en el futuro.
+so I think this is going to be a really interesting feature going forward
 
-**** No sólo eso, sino que también podrían estar preocupados desde una perspectiva de software.
-not only that but they might also be concerned from a software perspective
+**** Esta asociación se mantiene sin cambios.
+This association further stays unchanged.
 
-**** Básicamente, están tan establecidos que quieren tener tanta compatibilidad con versiones anteriores como sea posible.
-basically they're so established they want to have as much backwards compatibility as possible
-
-**** Es posible/pueden que no estén seguros/positivos de realmente ser capaces mantener este soporte en/a traves de todos sus dispositivos.
-they might not be positive that they're actually going to be able to maintain this support across of all their devices
-
-**** CREO que hay una posibilidad *muy* pequeña de que salgan con la secundaria.
-I do think there is a very small chance that they come out with the secondary
-
-**** Por lo tanto, son fácilmente detectables siempre que el código sea analizado/parsiado por el entorno de ejecución.
-so they are easily discoverable as long as the code gets parsed by the runtime.
-
-**** Órdenes desde arriba (referencia al jefe mayor). Así que deja de quejarte.
-Orders from the top. So quit your complaining.
-
-**** Siéntate aquí. Pórtate bien.
-sit here. behave yourself
-
-**** Aún no te has dado cuenta de que algo valioso para ti ha sido reemplazado.
-You still haven't noticed that something precious to you has been replaced.
-
-**** no te pongas duro/insolente/fresco conmigo, jovencito
-don't get fresh with me, young man
-
-**** tarifas arancelarias .... y va a salir de tu bolsillo
-tariffs ... and it's going to come out of your pocket
-
-**** Trump sigue diciendo que los aranceles los pagan otros países, pero no es así como funcionan
-Trump keeps saying that other countries pay for tariffs. But that's not how they work
-
-**** que es donde lo hicieron. ¿quien paga el arancel?
-which is where they made. who pays the Tariff?
-
-**** lo que eleva su coste total a
-bringing their total cost to
-
-**** Por supuesto que no, te lo transmitirán.
-of course not, they'll pass it on to you
-
-**** después de realizar inversiones masivas en estas tecnologías a nivel nacional
-after making massive investments in these technologies domestically
-
-**** particularmente de nuestros socios comerciales más importantes
-particularly from our biggest trading partners
-
-**** por los productos que fabrican, por lo que sus precios subirían a
-for products they make, so their prices would go up to
-
-**** Y este costo se llevó una porción mayor de los ingresos de las familias más pobres que de las más ricas.
-and this cost took a larger chunk out of the income of poorer family than richer ones
-
-**** menos ingresos (familia pobre)
-less income (poor family)
-
-**** , ...quien puede afrontar mejor el aumento de precios
-, ...who can better afford the prices increase
-
-**** Las familias estadounidenses pueden esperar gastar hasta 4.000 dólares más
-American families can expect to spend as much as 4,000 dollars more
-
-**** Pero, por supuesto, como dije, cualquier ingreso recaudado por aranceles saldría de su bolsillo.
-but of course, as I said, any revenue raised from tariffs would be coming out of your pocket
-
-**** Así que cuando pagues más por alimentos, gasolina y vivienda, sabrás a dónde va realmente tu dinero y a quién culpar.
-So when you're paying more for groceries, gas, and housing, know where your money is really going and know whom to blame
-
-**** Sé lo difícil que ha sido para ti. Estamos viendo lo que nunca soñamos posible
-I know how hard it’s been for you. We are watching what we never dreamed possible
-
-**** Se trata de una compra por parte de inversores de divisas más riesgosas con la esperanza de embolsarse suficientes intereses como para cubrir con creces las pérdidas por el tipo de cambio.
-It involves investor buying riskier currencies in the hope of pocketing enough interest to more than cover exchange rate losses.
-
-**** Otro milagro que surge de la crisis macroeconómica argentina
-another miracle to emerge from the Argentina macroeconomic meltdown
-
-**** por qué 'who' en preguntas no lleva el auxiliar 'do'
-Why 'who' in questions does not have the auxiliary 'do'
+**** Este es un buen lugar para hacerse una idea de lo que Babel puede hacer y ver cómo podría encajar en su vida.
+this is a good place to get an idea of what Babel can do and see how it might fit into your life.
 
 *** Chunk
 **** Pero la mayoría de ellos son
@@ -9176,7 +9101,7 @@ The only step remaining is to find a correlation for every type of event that wa
 and though the language doesn’t complain if you try to set new properties on them,
 
 **** Por ejemplo, no es improbable querer nombrar algo max en uno de tus programas.
- For example, it’s not unlikely to want to name something max in one of your programs.
+For example, it’s not unlikely to want to name something max in one of your programs.
 
 **** Volvamos brevemente a los dos últimos programas de ejemplo de la introducción
 Let’s briefly go back to the final two example programs in the introduction.
@@ -9342,7 +9267,7 @@ This can get you quite far, as the game in the previous chapter showed
 But we’d be using the DOM for something that it wasn’t originally designed for.
 
 **** Desafortunadamente, estos son un poco más enredadas/complicados de dibujar.
- These are unfortunately a bit more involved to draw.
+These are unfortunately a bit more involved to draw.
 
 **** sólo tendrás que encontrar un valor adecuado mediante ensayo/prueba y error.
 you’ll just have to find a suitable value by trial and error.
@@ -9370,7 +9295,7 @@ The throne looks omnipotent from afar, but it is not as it seems.
 The loyal and dim may stay by your side no matter what
 
 **** el nuevo gobernante suele ser el mismo que el anterior, si no peor.
- the new ruler is often the same as the old, if not worse.
+the new ruler is often the same as the old, if not worse.
 
 **** Sólo puedes hacer la vista gorda para comprenderlos,
 You can only turn a blind eye to understanding them,
@@ -9494,7 +9419,7 @@ I don't understand why he does that.
 all right you just made my job easy by the way I'm attorney
 
 **** , me rasco aquí mismo en el cuello.
- scratch me right here on my neck
+scratch me right here on my neck
 
 **** Nosotros no queremos entrar
 we don't want to come in
@@ -9563,7 +9488,7 @@ that are just a little bit off the beaten path
 that's what I asked for
 
 **** Deberías haber sido de frente con ella desde el principio. ¿Por qué estabas jugando ese juego? ¿No son estos videos para la educación?
- You should have been up front with her from the start. Why were you playing that game? Aren't these videos for education.
+You should have been up front with her from the start. Why were you playing that game? Aren't these videos for education.
 
 **** Descubrió que esa pared era más dura en su cabeza.
 he found out that wall was harder in his head
@@ -9986,7 +9911,7 @@ you see how time passes slowly
 You still haven't told us what you did yesterday.
 
 **** ayer empece con mi clase de ingles de dos o 3 horas,
- yesterday I started with my two or three hour English class,
+yesterday I started with my two or three hour English class,
 
 **** son un monton
 they are a lot
@@ -10191,7 +10116,7 @@ on any road there has to be a public right way for pedestrian traffic to travel 
 I pull up here with my son and all I'm trying to do is going inside
 
 **** Son personas llenas de inseguridades, por eso se molestan no por la privacidad.
- They are people full of insecurities, that's why they get upset not because of privacy.
+They are people full of insecurities, that's why they get upset not because of privacy.
 
 *** Chunk
 **** y todo lo que intento hacer es
@@ -10324,11 +10249,53 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 **** Se le pedirá
 You will be prompted / You will be asked
 
+**** De hecho, Twitch ya ha estado experimentando con esto durante el último año y los resultados *están siendo* muy buenos.
+actually Twitch has already been experimenting with this for the last year and the results *are doing* really well
+
+**** Sin embargo, parece que muchas de las creencias que *mantenemos* se han *adquirido* a través de la aceptación de testimonios.
+However, it seems that many of the beliefs that *we hold* have been *gained* through accepting testimony.
+
+**** Los distintos tipos de razonamiento lógico difieren entre sí *en cuanto a* las normas que emplean y la certeza de la conclusión a la que llegan.
+Distinct types of logical reasoning differ from each other *concerning* the norms they employ and the certainty of the conclusion they arrive at.
+
+**** por qué 'who' en preguntas *no lleva* el auxiliar 'do'
+Why 'who' in questions *does not have* the auxiliary 'do'
+
+**** *Eso no significa* que en 10 años no será capaz de tener el tipo de capacidades para aplicar la fuerza bruta
+*that doesn't mean* that in 10 years you won't be able to have the kind of capabilities to brute force that in the future
+
+**** Pero creo que se volverá *cada vez menos* popular para desarrollar nuevas aplicaciones.
+but I think that it's going to become *less and less* popular for developing new applications
+
+**** A menudo, en términos generales/sentido amplio), el proceso de extraer/sacar) conclusiones para informar cómo las personas resuelven problemas y *toman decisiones*.
+often broadly defined as the process of drawing conclusions to inform how people solve problems and *make decisions*.
+
+**** *Creo/pienso en ello/* que has tenido años y años de aplicaciones escritas en todo tipo de lenguajes antiguos en los que *ya* nadie piensa.
+*I think of* it you've had years and years of applications written in all these kinds of older languages that nobody really thinks about *anymore*
+
+**** *Es por eso también* que va a seguir siendo una habilidad demandada tener conocimientos en estos lenguajes de programación de memoria insegura heredados.
+*that's also why* I think that it's still going to be a demanded skill having knowledge in these legacy memory unsafe programming languages
+
+**** De hecho, *ha habido bastantes* contratos gubernamentales.
+in fact *there's actually been quite a few* government contract
+
+**** , de modo que cada clave posible aparece *como máximo* una vez en la colección.
+, such that each possible key appears *at most* once in the collection.
+
+**** El concepto *procede/está tomado/prestado)* de un principio de la biología.
+The concept is *borrowed* from a principle in biology
+
+**** entonces *no está necesariamente garantizado* que la identidad de los objetos detrás de esas referencias sea diferente.
+, then *it's not necessarily guaranteed* that the identity of the objects behind those references is different.
+
+**** Un literal es una representación textual (notación) de un valor *tal como está* escrito en el código fuente
+a literal is a textual representation (notation) of a value *as it is* written in source code
+
 **** pero mientras sea *un recuerdo del tiempo* en que una vez fuimos hermanos, sentiría un gran alivio.
 it could be anything, it could be the most meaningless moment of your life, but so long as *it is a memory of the time* we were once brothers I would feel a great relief
 
 **** Esta basura ocurre cada 4 años. Todo es teatro. *Esto es para que pienses* que las partes difieren entre sí
- This crap happens every 4 years. It's ALL theater. *This is to make you think* the parties differ from each other
+This crap happens every 4 years. It's ALL theater. *This is to make you think* the parties differ from each other
 
 **** Si *no hubiera* ningún error, entonces sería 10, no 20.
 if *there wasn't* an error, then would be 10, not 20
@@ -10337,7 +10304,7 @@ if *there wasn't* an error, then would be 10, not 20
 his neighbors *let him know* his day was done
 
 **** Esta basura ocurre cada 4 años. Todo es teatro. *Esto es para que piense* que las partes difieren entre sí. Los chumps crédulos compran esto.
- This crap happens every 4 years. It's ALL theater. *This is to make you think* the parties differ from each other. Gullible chumps buy into this.
+This crap happens every 4 years. It's ALL theater. *This is to make you think* the parties differ from each other. Gullible chumps buy into this.
 
 **** Fue considerado *con diferencia* el más sabio de los animales.
 was regarded *by far* the wisest of the animals
@@ -10436,7 +10403,7 @@ The detective starts asking Michael about the events that *took* place before he
 not long after detective Armstrong starts by *questioning* Michael
 
 **** Creo que fue un desafío personal, pero sé que no debo *participar en él*.
- I think it was a personal challenge but i know not to *play into it*.
+I think it was a personal challenge but i know not to *play into it*.
 
 **** Si se hace mal/hazlo mal y las consecuencias pueden ser catastróficas.
 Get it wrong, and the consequences can be catastrophic
@@ -10546,7 +10513,7 @@ Web developers were left *with not one* unified Web but two or three incompatibl
 as far as the DOM *is concerned*
 
 **** haciendo la mayor cantidad de trabajo posible *por adelantado*.
- doing as much work as possible in *advance*.
+doing as much work as possible in *advance*.
 
 **** *lo que significa* que se miran todos los caminos que van desde ese lugar.
 *which means* all roads going from that place are looked at.
@@ -11436,13 +11403,13 @@ Put that away.
 I did *nothing*. (stronger than) I didn’t do anything.
 
 ****  de esos dispositivos pretendían, hasta cierto punto,
- for those devices pretended, to a certain extent,
+for those devices pretended, to a certain extent,
 
 **** por fin (ya llego el paquete que tanto espere)
 at last
 
 **** ... ¿alguna vez lo hago?
- do i ever do it
+do i ever do it
 
 **** mi mayor logro cuando se trata de autoestudio
 my greatest accomplishment when it comes to self-study
@@ -12052,7 +12019,7 @@ find out what it is you want to do
 ...getting in shape getting a better job
 
 **** ...o darte una reacción violenta por hablar/discutir de tus sueños
- or give you backlash for discussing your dreams
+or give you backlash for discussing your dreams
 
 **** Sea lo que sea, tales objetivos tan elevados
 whatever it is such a lofty goals
@@ -12396,7 +12363,7 @@ the trick is to get yourself to do it
 the trick is to have that willpower to build that discipline
 
 **** es tratar de hacer tu mismo al menos un problema al día
- is try to get yourself to do at least one problem a day
+is try to get yourself to do at least one problem a day
 
 **** porque sólo porque te guste algo no significa que lo vayas a hacer
 because just because you like something doesn't mean you're going to do it
@@ -12517,7 +12484,7 @@ don't let it make you feel stupid
 i have written down like a game plan
 
 **** ... ¿alguna vez lo hago?
- do i ever do it
+do i ever do it
 
 **** pero es así es como es
 but that's just how it is
@@ -13320,7 +13287,7 @@ What fonts and colors do I want? ("to quiero" is the subject, that's why we use 
 What does my site do? ("my site web" is the subject, that's why we use the auxiliar "does")
 
 *** Programming in Emacs Lisp
- [[https://www.gnu.org/software/emacs/manual/html_mono/eintr.html][Programming in Emacs Lisp]]
+[[https://www.gnu.org/software/emacs/manual/html_mono/eintr.html][Programming in Emacs Lisp]]
 **** Nuestra tarea podría *complicarse*.
 Our task could *become complicated*.
 
@@ -13696,7 +13663,7 @@ As it turns out, their pitfalls are significantly outweighed by the power they p
 , make sure that you’re waiting until the command terminates and you get the shell prompt back.
 
 **** Ha habido muchos cambios en como el kernel presenta los dispositivos al usuario.
- there have been many changes to how the kernel presents devices to the user.
+there have been many changes to how the kernel presents devices to the user.
 
 **** Por ejemplo, crear /dev/sda1 es cuestión de utilizar el siguiente comando:
 For example, creating /dev/sda1 is a matter of using the following command:
@@ -13762,7 +13729,7 @@ This is also why removing a file is sometimes called unlinking.
 We’ll still have a service unit and an auxiliary unit representing the service unit’s offered resource,
 
 **** Los Servicios A, B y C dependen de este recurso (pero no entre sí) y deben esperar hasta que se haya iniciado el Servicio E.
- Services A, B, and C depend on this resource (but not on each other) and must wait until Service E has started.
+Services A, B, and C depend on this resource (but not on each other) and must wait until Service E has started.
 
 **** A medida que systemd ha crecido en popularidad, ha crecido hasta incluir soporte para algunas tareas no relacionadas con el inicio y la gestión de servicios,
 As systemd has grown in popularity, it has grown to include support for a few tasks not related to startup and service management,
@@ -13780,7 +13747,7 @@ is among the most useful in narrowing in on a specific time
 Often, important information might be nearby in terms of time.
 
 **** El servicio cron ha sido durante mucho tiempo el estándar de facto para hacer esto,
- The cron service has long been the de facto standard for doing this,
+The cron service has long been the de facto standard for doing this,
 
 **** ... incluso si no son todas ejecutadas por el mismo usuario
 ... even if they aren’t all run by the same user.
@@ -13810,7 +13777,7 @@ it will run any lines left on its stack
 and you can spend days trying to tune your machine’s performance without meaningful results, especially if you don’t know what to look for.
 
 **** Cuanto mayor sea el número, menos probable es que el núcleo programe el proceso si otros necesitan tiempo de CPU.
- The higher the number, the less likely the kernel is to schedule the process if others need CPU time.
+The higher the number, the less likely the kernel is to schedule the process if others need CPU time.
 
 **** El comando uptime le indica tres promedios de carga además de cuánto tiempo ha estado ejecutándose el kernel:
 The uptime command tells you three load averages in addition to how long the kernel has been running:
@@ -13843,7 +13810,7 @@ One reason there are so many tools to measure and manage resource utilization is
 As you may have guessed by now,
 
 **** Envía paquetes de solicitud de eco ICMP a un host que solicita al host destinatario que devuelva el paquete al remitente.
- It sends ICMP echo request packets to a host that asks a recipient host to return the packet to the sender.
+It sends ICMP echo request packets to a host that asks a recipient host to return the packet to the sender.
 
 **** es el tiempo total transcurrido entre el momento en que sale el paquete de solicitud y el momento en que llega el paquete de respuesta.
 is the total elapsed time between the moment that the request packet leaves and the moment that the response packet arrives.
@@ -13852,7 +13819,7 @@ is the total elapsed time between the moment that the request packet leaves and 
 There have been many attempts in Linux to standardize configuration files for boot-time networking.
 
 **** Cuando las cosas eran más simples,
- When things were simpler,
+When things were simpler,
 
 **** Antes de dejar el tema de las búsquedas de nombres, hay una última configuración que deberías tener en cuenta.
 Before we leave the topic of name lookups, there’s one last setting you should be aware of.
@@ -13900,7 +13867,7 @@ The following sections outline the main tests.
 Use xargs to get around this problem by running a command on each filename in its standard input stream.
 
 **** De hecho, las secciones en las que podrías(posibilidad) obtener más valor son las más "teoricas".
- In fact, the sections that you might get the most value from are the most “theoretical” ones.
+In fact, the sections that you might get the most value from are the most “theoretical” ones.
 
 **** Incluso aunque no estará usando su capacidad de enlace descendiente durante dicha/tal transferencia
 Even though you won’t be using your downlink capacity during such a transfer
@@ -13931,7 +13898,7 @@ Odd as it might sound,
 , you can inspect clients as they run.
 
 **** para que tengas un lugar para empezar.
- so that you have somewhere to start.
+so that you have somewhere to start.
 
 **** Como mínimo,
 At the very least,
@@ -14142,7 +14109,7 @@ it would be wise to include data validation, just in case.
 If you were given five minutes to design a device “that kills flies,” you designed a flyswatter. If you were given five months, you might come up with a laser-guided “anti-fly system” instead.
 
 **** Hay un dicho en el mundo del código abierto,
- There is a saying in the open-source world,
+There is a saying in the open-source world,
 
 **** .Una característica que faltaba hasta ahora en nuestros programas
 ***** Una característica que ha estado faltando hasta ahora en nuestros programas
@@ -14330,6 +14297,30 @@ CLOCK: [2023-04-17 Mon 08:07]--[2023-04-17 Mon 08:16] =>  0:09
 :END:
 ** Sentences
 :LOGBOOK:
+CLOCK: [2025-03-28 Fri 09:56]--[2025-03-28 Fri 10:36] =>  0:40
+CLOCK: [2025-03-27 Thu 10:33]--[2025-03-27 Thu 11:18] =>  0:45
+CLOCK: [2025-03-26 Wed 10:20]--[2025-03-26 Wed 11:23] =>  1:03
+CLOCK: [2025-03-25 Tue 09:41]--[2025-03-25 Tue 11:33] =>  1:52
+CLOCK: [2025-03-24 Mon 09:39]--[2025-03-24 Mon 10:02] =>  0:23
+CLOCK: [2025-03-23 Sun 09:41]--[2025-03-23 Sun 10:20] =>  0:39
+CLOCK: [2025-03-22 Sat 09:18]--[2025-03-22 Sat 09:55] =>  0:37
+CLOCK: [2025-03-21 Fri 09:35]--[2025-03-21 Fri 10:12] =>  0:37
+CLOCK: [2025-03-20 Thu 10:11]--[2025-03-20 Thu 10:51] =>  0:40
+CLOCK: [2025-03-19 Wed 11:20]--[2025-03-19 Wed 12:11] =>  0:51
+CLOCK: [2025-03-18 Tue 09:30]--[2025-03-18 Tue 10:45] =>  1:15
+CLOCK: [2025-03-17 Mon 08:59]--[2025-03-17 Mon 11:00] =>  2:01
+CLOCK: [2025-03-15 Sat 10:20]--[2025-03-15 Sat 11:30] =>  1:10
+CLOCK: [2025-03-13 Thu 09:05]--[2025-03-13 Thu 09:42] =>  0:37
+CLOCK: [2025-03-12 Wed 08:14]--[2025-03-12 Wed 09:53] =>  1:39
+CLOCK: [2025-03-11 Tue 09:37]--[2025-03-11 Tue 11:27] =>  1:50
+CLOCK: [2025-03-08 Sat 09:06]--[2025-03-08 Sat 10:56] =>  1:50
+CLOCK: [2025-03-07 Fri 08:35]--[2025-03-07 Fri 09:10] =>  0:35
+CLOCK: [2025-03-06 Thu 09:03]--[2025-03-06 Thu 09:48] =>  0:45
+CLOCK: [2025-03-05 Wed 12:52]--[2025-03-05 Wed 13:05] =>  0:13
+CLOCK: [2025-03-04 Tue 08:47]--[2025-03-04 Tue 09:50] =>  1:03
+CLOCK: [2025-03-01 Sat 13:16]--[2025-03-01 Sat 13:57] =>  0:41
+CLOCK: [2025-02-28 Fri 09:30]--[2025-02-28 Fri 10:30] =>  1:00
+CLOCK: [2025-02-27 Thu 11:42]--[2025-02-27 Thu 12:36] =>  0:54
 CLOCK: [2025-02-26 Wed 09:51]--[2025-02-26 Wed 11:30] =>  1:39
 CLOCK: [2025-02-24 Mon 08:41]--[2025-02-24 Mon 09:49] =>  1:08
 CLOCK: [2025-02-22 Sat 09:47]--[2025-02-22 Sat 10:47] =>  1:00
@@ -14710,6 +14701,35 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Speaking
 :LOGBOOK:
+CLOCK: [2025-03-28 Fri 09:31]--[2025-03-28 Fri 09:56] =>  0:25
+CLOCK: [2025-03-28 Fri 08:57]--[2025-03-28 Fri 09:06] =>  0:09
+CLOCK: [2025-03-27 Thu 10:20]--[2025-03-27 Thu 10:33] =>  0:13
+CLOCK: [2025-03-26 Wed 09:32]--[2025-03-26 Wed 09:53] =>  0:21
+CLOCK: [2025-03-25 Tue 09:27]--[2025-03-25 Tue 09:41] =>  0:14
+CLOCK: [2025-03-24 Mon 09:17]--[2025-03-24 Mon 09:39] =>  0:22
+CLOCK: [2025-03-23 Sun 09:17]--[2025-03-23 Sun 09:41] =>  0:24
+CLOCK: [2025-03-22 Sat 08:29]--[2025-03-22 Sat 09:18] =>  0:49
+CLOCK: [2025-03-21 Fri 08:22]--[2025-03-21 Fri 09:15] =>  0:53
+CLOCK: [2025-03-20 Thu 09:05]--[2025-03-20 Thu 09:50] =>  0:45
+CLOCK: [2025-03-19 Wed 10:54]--[2025-03-19 Wed 11:18] =>  0:24
+CLOCK: [2025-03-18 Tue 09:04]--[2025-03-18 Tue 09:30] =>  0:26
+CLOCK: [2025-03-17 Mon 08:45]--[2025-03-17 Mon 08:59] =>  0:14
+CLOCK: [2025-03-16 Sun 09:18]--[2025-03-16 Sun 09:35] =>  0:17
+CLOCK: [2025-03-15 Sat 10:05]--[2025-03-15 Sat 10:20] =>  0:15
+CLOCK: [2025-03-13 Thu 08:45]--[2025-03-13 Thu 09:05] =>  0:20
+CLOCK: [2025-03-11 Tue 08:33]--[2025-03-11 Tue 08:45] =>  0:12
+CLOCK: [2025-03-10 Mon 08:48]--[2025-03-10 Mon 09:02] =>  0:14
+CLOCK: [2025-03-09 Sun 08:16]--[2025-03-09 Sun 08:40] =>  0:24
+CLOCK: [2025-03-08 Sat 08:49]--[2025-03-08 Sat 09:06] =>  0:17
+CLOCK: [2025-03-07 Fri 08:10]--[2025-03-07 Fri 08:35] =>  0:25
+CLOCK: [2025-03-06 Thu 08:49]--[2025-03-06 Thu 09:03] =>  0:14
+CLOCK: [2025-03-05 Wed 12:36]--[2025-03-05 Wed 12:52] =>  0:16
+CLOCK: [2025-03-04 Tue 08:22]--[2025-03-04 Tue 08:46] =>  0:24
+CLOCK: [2025-03-03 Mon 08:41]--[2025-03-03 Mon 09:01] =>  0:20
+CLOCK: [2025-03-02 Sun 09:09]--[2025-03-02 Sun 09:27] =>  0:18
+CLOCK: [2025-03-01 Sat 12:50]--[2025-03-01 Sat 13:16] =>  0:26
+CLOCK: [2025-02-28 Fri 09:07]--[2025-02-28 Fri 09:30] =>  0:23
+CLOCK: [2025-02-27 Thu 11:18]--[2025-02-27 Thu 11:42] =>  0:24
 CLOCK: [2025-02-26 Wed 09:17]--[2025-02-26 Wed 09:36] =>  0:19
 CLOCK: [2025-02-24 Mon 08:14]--[2025-02-24 Mon 08:41] =>  0:27
 CLOCK: [2025-02-23 Sun 08:59]--[2025-02-23 Sun 09:18] =>  0:19
@@ -15139,4 +15159,4 @@ CLOCK: [2023-04-28 Fri 11:25]--[2023-04-28 Fri 12:10] =>  0:45
 - [[https://www.youtube.com/@rachelsenglish][Rachel's English]]
 - [[https://www.youtube.com/@ArnelsEverydayEnglish][Arnel's Everyday English]]
 - [[https://madridingles.net/][Daniel Welsch]]
-- [[https://es.wikipedia.org/wiki/Wikipedia:Portada][Wikipedia]]
+- [[https://www.wikipedia.org/][Wikipedia]]

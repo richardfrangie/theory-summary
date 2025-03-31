@@ -376,6 +376,13 @@
 | /C-h B/   | embark-bindings             |
 | /g/       | restart completion session  |
 | /C-. C-h/ | embark buffer to minibuffer |
+| /C-. C/   | +embark-consult-search-map  |
+|         |                             |
+|         | /minibuffer-local-map/        |
+| /C-x SPC/ | embark-select               |
+| /C-x E/   | embark-export               |
+| /C-x S/   | embark-collect              |
+| /C-x A/   | embark-act-all              |
 
 | To deselect embark selections                  |
 |------------------------------------------------|
@@ -390,22 +397,23 @@
 
 **** embark-general
 
-| /C-SPC/ | mark                  |
-| /SPC/   | embark-select         |
-| /A/     | embark-act-all        |
-| /E/     | embark-export         |
-| /S/     | embark-collect        |
-| /L/     | embark-live           |
-| /B/     | embark-become         |
-| /q/     | embark-toggle-quit    |
-| /w/     | embark-copy-as-kill   |
-| /1/     | digit-argument        |
-|       |                       |
-|       | /EMBARK COLLECT BUFFER/ |
-| /a SPC/ | select candidate      |
-| /a/     | embark-act            |
-| /A/     | embark-act-all        |
-| /g/     | revert-buffer         |
+| /C-SPC/ | mark                        |
+| /SPC/   | embark-select               |
+| /A/     | embark-act-all              |
+| /E/     | embark-export               |
+| /S/     | embark-collect              |
+| /L/     | embark-live                 |
+| /B/     | embark-become               |
+| /q/     | embark-toggle-quit          |
+| /w/     | embark-copy-as-kill         |
+| /1/     | digit-argument              |
+| /C/     | +embark-consult-search-map  |
+|       |                             |
+|       | /EMBARK COLLECT BUFFER/       |
+| /a SPC/ | select candidate            |
+| /a/     | embark-act                  |
+| /A/     | embark-act-all              |
+| /g/     | revert-buffer               |
 
 **** embark-buffer
 
@@ -551,19 +559,20 @@
 
 **** Grep and find
 
-| /C-u M-x/ | consult- (specifies initial dir) |
-|         |                                  |
-| /M-s d/   | consult-find                     |
-| /M-s d/   | add /-- -type d/ to find only dir  |
-|         | consult-fd                       |
-|         | consult-locate                   |
-|         |                                  |
-| /M-s g/   | consult-grep                     |
-| /M-s G/   | consult-git-grep                 |
-|         | consult-ripgrep                  |
-|         |                                  |
-|         | #regexps#filter-string           |
-| /\SPC/    | match space literally            |
+| /C-u M-x/  | consult- (specifies initial dir)       |
+|          |                                        |
+| /M-s d/    | consult-find                           |
+| /M-s d/    | add /-- -type d/ to find only dir        |
+| /variable/ | consult-find-args (arguments for find) |
+|          | consult-fd                             |
+|          | consult-locate                         |
+|          |                                        |
+| /M-s g/    | consult-grep                           |
+| /M-s G/    | consult-git-grep                       |
+|          | consult-ripgrep                        |
+|          |                                        |
+|          | #regexps#filter-string                 |
+| /\SPC/     | match space literally                  |
 
 **** Compilation
 
@@ -595,6 +604,20 @@
 
 |   | consult-man   |
 |   | consult-theme |
+
+*** Orderless
+
+| /!/ | orderless-not            |
+| /,/ | orderless-initialism     |
+| /=/ | orderless-literal        |
+| /^/ | orderless-literal-prefix |
+| /~/ | orderless-flex           |
+| /&/ | orderless-annotation     |
+| /%/ | ignoring diacritics      |
+
+| /\/  | whitespace |
+| /\b/ | boundary   |
+| /\</ |            |
 
 ** Cursor - Scroll - Mark
 *** Cursor
@@ -1208,27 +1231,27 @@
 
 *** Kmacro
 
-| /F3/C-x (/    | kmacro-start-macro(sequence) |
-| /F4/C-x )/    | kmacro-end-or-call-macro     |
-|             |                              |
-| /C-x e/       | kmacro-end-and-call-macro    |
-| /C-u 5 C-x e/ | repeat 5 times kmacro        |
-|             |                              |
-| /C-x C-k n/   | kmacro-name-last-macro       |
-| /C-x C-k C-n/ | kmacro-cycle-ring-next       |
-|             |                              |
-|             | call-last-kbd-macro          |
-|             | name-last-kbd-macro(save)    |
-|             | insert-kbd-macro(call saved) |
-|             |                              |
-| /C-x C-k C-e/ | kmacro-edit-macro            |
-| /C-x C-k l/   | kmacro-edit-lossage          |
-| /C-x C-k SPC/ | kmacro-step-edit-macro       |
-|             |                              |
-|             | /STEPS KMACRO FUNCTION CMMD/   |
-| /F3/          | start kmacro                 |
-| /C-4 M-x/     | call eval-expresion          |
-| /F4/          | end kmacro                   |
+| /F3/C-x (/    | kmacro-start-macro(sequence)  |
+| /F4/C-x )/    | kmacro-end-or-call-macro      |
+|             |                               |
+| /C-x e/       | kmacro-end-and-call-macro     |
+| /C-u 5 C-x e/ | repeat 5 times kmacro         |
+|             |                               |
+| /C-x C-k n/   | kmacro-name-last-macro        |
+| /C-x C-k C-n/ | kmacro-cycle-ring-next        |
+|             |                               |
+|             | call-last-kbd-macro (call)    |
+|             | name-last-kbd-macro (save)    |
+| /M-x name/    | call the macro /name/           |
+|             |                               |
+| /C-x C-k C-e/ | kmacro-edit-macro             |
+| /C-x C-k l/   | kmacro-edit-lossage           |
+| /C-x C-k SPC/ | kmacro-step-edit-macro        |
+|             |                               |
+|             | /STEPS KMACRO FUNCTION CMMD/    |
+| /F3/          | start kmacro                  |
+| /C-4 M-x/     | call eval-expresion           |
+| /F4/          | end kmacro                    |
 
 *** Calc
 
@@ -5120,9 +5143,11 @@ Else, if the beginning of the list (the ~car~ of the list) passes a test
 #+end_src
 
 **** No deferment solution
-The solution to the problem of deferred operations is to write in a manner that does not defer operations. This requires writing to a different pattern, often one that involves writing two function definitions, an initialization function and a helper function.
+The solution to the problem of deferred operations is to write in a manner that does not defer operations (the phrase /tail recursive/ is used to describe such a process, one that uses constant space). This requires writing to a different pattern, often one that involves writing two function definitions, an initialization function and a helper function.
 
 The initialization function sets up the job; the helper function does the work.
+
+*Note*: this is also called [[~/Documents/todo.org::Tail call][tail recursive]].
 
 Here are the two function definitions for adding up numbers. They are so simple, I find them hard to understand.
 
@@ -5145,18 +5170,22 @@ Here are the two function definitions for adding up numbers. They are so simple,
                                  (1+ counter)     ; counter
                                  number)))        ; number
   (triangle-initialization 7)
-  ;; (triangle-recursive-helper  0    0       7) ;; Immediately call
-  ;; (triangle-recursive-helper  1    1       7) ;; Immediately call
-  ;; (triangle-recursive-helper  3    2       7)
-  ;; (triangle-recursive-helper  6    3       7)
-  ;; (triangle-recursive-helper 10    4       7)
-  ;; (triangle-recursive-helper 15    5       7)
-  ;; (triangle-recursive-helper 21    6       7)
-  ;; (triangle-recursive-helper 28    7       7)
+  ;; (triangle-recursive-helper  0   0   7)  ;; Immediately call
+  ;;   (triangle-recursive-helper  1   1   7)
+  ;;     (triangle-recursive-helper  3   2   7)
+  ;;       (triangle-recursive-helper  6   3   7)
+  ;;         (triangle-recursive-helper 10   4   7)
+  ;;           (triangle-recursive-helper 15   5   7)
+  ;;             (triangle-recursive-helper 21   6   7)
+  ;;               (triangle-recursive-helper 28   7   7)
+  ;;               => 28
+  ;;             => 28
+  ;;           => 28
+  ;;         ...
   ;; => 28
+  ;; This is optimized by the compiler.
 
-
-  ;; The same recursion function without Deferments
+  ;; The same recursion function without deferments
   (defun triangle-recursively (number)
     "Return the sum of the numbers 1 through NUMBER inclusive.
   Uses recursion."
@@ -5167,8 +5196,8 @@ Here are the two function definitions for adding up numbers. They are so simple,
           (1- number)))))               ; next-step-expression
 
   (triangle-recursively 7)
-  ;; (+ 7 (triangle-recursively 6)) ;; Wait for a new value.
-  ;; (+ 7 6 (triangle-recursively 5)) ;; Wait of wait for a new value.
+  ;; (+ 7 (triangle-recursively 6)) ;; Wait for a new value
+  ;; (+ 7 6 (triangle-recursively 5))
   ;; (+ 7 6 5 (triangle-recursively 4))
   ;; (+ 7 6 5 4 (triangle-recursively 4))
   ;; (+ 7 6 5 4 3 (triangle-recursively 4))
@@ -5177,6 +5206,49 @@ Here are the two function definitions for adding up numbers. They are so simple,
   ;; => 28
 
 #+end_src
+
+Deferments solution allows an interpreter or compiler to reorganize the execution which would ordinarily look like this:
+
+#+begin_src
+
+  call triangle-initialization (7)
+    call triangle-recursive-helper  (0   0   7)
+      call triangle-recursive-helper  (1   1   7)
+        call triangle-recursive-helper  (3   2   7)
+          call triangle-recursive-helper  (6   3   7)
+            call triangle-recursive-helper (10   4   7)
+              call triangle-recursive-helper (15   5   7)
+                call triangle-recursive-helper (21   6   7)
+                  call triangle-recursive-helper (28   7   7)
+                  return 28
+                return 28
+              return 28
+            ...
+    return 28
+
+#+end_src
+
+into the more efficient variant, in terms of both space and time:
+
+#+begin_src
+
+  call triangle-initialization (7)
+    call triangle-recursive-helper  (0   0   7)
+    replace arguments with  (1   1   7)
+    replace arguments with  (3   2   7)
+    replace arguments with  (6   3   7)
+    replace arguments with (10   4   7)
+    replace arguments with (15   5   7)
+    replace arguments with (21   6   7)
+    replace arguments with (28   7   7)
+    return 28
+  return 28
+
+#+end_src
+
+This reorganization saves space because no state except for the calling function's address needs to be saved, either on the stack or on the heap, and the call stack frame for ~triangle-recursive-helper~ is reused for the intermediate results storage. This also means that the programmer need not worry about running out of stack or heap space for extremely deep recursions. In typical implementations, the tail-recursive variant will be substantially faster than the other variant, but only by a constant factor.
+
+Some programmers working in functional languages will rewrite recursive code to be tail recursive so they can take advantage of this feature. This often requires addition of an "accumulator" argument (~sum~ in the example) to the function.
 
 ** Functions
 *** defun
@@ -6452,28 +6524,6 @@ Matches any character whose syntax is ~c~. Here ~c~ is a character which represe
 **** \Sc
 Matches any character whose syntax is not ~c~.
 
-** Commands descriptions
-
-| /Command/              | /Description/                             |
-|------------------------+-------------------------------------------|
-| /C-M-s/                | incremental forward search regexp         |
-| /C-M-r/                | incremental backward search regexp        |
-| /query-replace-regexp/ | same, but query before each replacement   |
-| /replace-regexp/       | replace string matching regexp            |
-| /dired-do-query-re/    | replace maked files in dired              |
-| /replace-string/       | find & replace in 1 shot without asking   |
-| /replace-regexp/       | same replace-string but with regexp       |
-| /highlight-regexp/     | highlight strings matching regexp         |
-| /unhighlight-regexp/   | remove highlighting                       |
-| /occur/list-match lin/ | show lines containing a match             |
-| /multi-occur/          | show lines in all buffers contain a match |
-| /how-many/             | count the number of strings match regexp  |
-| /keep-lines/           | delete all lines except contain match     |
-| /flush-lines/          | delete lines containing matches           |
-| /align-regexp/         | alig using strings match regex delimiters |
-
-Note that ~list-matching-lines~ is an alias for ~occur~ and ~delete-matching-lines~ is an alias for ~flush-lines~.
-
 ** Examples
 *** End of sentence
 End of a sentence together with any whitespace that follows. It is the value of the variable ~sentence-end~.
@@ -6702,6 +6752,28 @@ will succeed in finding zero-or-more single whitespace characters, etc.
 
 /*/  faulty rendering: backslash + less-than and backslash + greater-than
 
+** Commands descriptions
+
+| /Command/              | /Description/                             |
+|------------------------+-------------------------------------------|
+| /C-M-s/                | incremental forward search regexp         |
+| /C-M-r/                | incremental backward search regexp        |
+| /query-replace-regexp/ | same, but query before each replacement   |
+| /replace-regexp/       | replace string matching regexp            |
+| /dired-do-query-re/    | replace maked files in dired              |
+| /replace-string/       | find & replace in 1 shot without asking   |
+| /replace-regexp/       | same replace-string but with regexp       |
+| /highlight-regexp/     | highlight strings matching regexp         |
+| /unhighlight-regexp/   | remove highlighting                       |
+| /occur/list-match lin/ | show lines containing a match             |
+| /multi-occur/          | show lines in all buffers contain a match |
+| /how-many/             | count the number of strings match regexp  |
+| /keep-lines/           | delete all lines except contain match     |
+| /flush-lines/          | delete lines containing matches           |
+| /align-regexp/         | alig using strings match regex delimiters |
+
+Note that ~list-matching-lines~ is an alias for ~occur~ and ~delete-matching-lines~ is an alias for ~flush-lines~.
+
 ** Rx
 A nifty macro that generates regular expressions for you, from reasonably-comprehensible s-expressions. This notation is usually easier to read, write and maintain than regexp strings, and can be indented and commented freely. It requires a conversion into string form since that is what regexp functions expect, but that conversion typically takes place during byte-compilation rather than when the Lisp code using the regexp is run.
 
@@ -6784,39 +6856,34 @@ Examples:
 
 #+end_src
 
-*** Orderless
-**** Table
-| /!/ | orderless-not            |
-| /,/ | orderless-initialism     |
-| /=/ | orderless-literal        |
-| /^/ | orderless-literal-prefix |
-| /~/ | orderless-flex           |
-| /&/ | orderless-annotation     |
-| /%/ | ignoring diacritics      |
-
+*** Orderless package
 **** Consecutive and not consecutive words
 
 1. there are
 2. there         are
 3. are there
 4. there some words here are
+5. thereare
+6. thereZare
+7. there}are
 
 #+begin_src emacs-lisp
 
-  M-x consult-line: there are
-  ;; 1. there are
-  ;; 2. there         are
-  ;; 3. are there
-  ;; 4. there some words here are
+  M-x consult-line: there\ are
+  ;;1. there are
 
   M-x consult-line: there.are
-  ;; 1. there are
+  ;;1. there are
+  ;;6. thereZare
+  ;;7. there}are
 
   M-x consult-line: there.*are
-  ;; 1. there are
-  ;; 2. there         are
-
-  ;; 4. there some words here are
+  ;;1. there are
+  ;;2. there         are
+  ;;4. there some words here are
+  ;;5. thereare
+  ;;6. thereZare
+  ;;7. there}are
 
 #+end_src
 
@@ -6847,15 +6914,23 @@ Examples:
 
 #+end_src
 
-**** Word at end of the line
+**** Whitespace
+Backward slash ( ~\~ ) + whitespace (    )
 
-1. first second third
-2. first third second
+1. lacasablanca
+2. la casa blanca
+3. lacasa blanca
+4. la casablanca
 
 #+begin_src emacs-lisp
 
-  M-x third.$
-  ;; 1. first second third
+
+  M-x consult-line: \ casa
+  ;; 2. la casa blanca
+  ;; 4. la casablanca
+
+  M-x consult-line: \ casa\
+  ;; 2. la casa blanca
 
 #+end_src
 
@@ -11206,10 +11281,23 @@ Provides search and navigation commands based on the Emacs completion function c
                           )))
     (insert color))
 
+  ;; A toggle for the `consult-find' command.
+  (defun rf/consult-find-toggle ()
+    "Toggle to find for any file or all files except hidden ones."
+    (interactive)
+    (if (string= "find . -not ( -path */.[A-Za-z]* -prune )"
+                 consult-find-args)
+        (setq consult-find-args "find . ")
+      (setq consult-find-args
+            "find . -not ( -path */.[A-Za-z]* -prune )")))
+
 #+end_src
 
 **** Bind key
 A simple way to manage personal keybindings.
+
+**** Kmacro
+Simplified keyboard macro user interface.
 
 **** Hydra
 How to use defhydra
@@ -11305,31 +11393,6 @@ Dynamic word-completion code.
 
 **** Abbreviations
 Abbreviation handling, typing shortcuts, macros.
-
-**** Kmacro
-Simplified keyboard macro user interface.
-
-*Define a macro*: (Xah)
-1. ~M-x name-last-kbd-macro~ and give it a name.
-2. ~M-x insert-kbd-macro~ this will insert the lisp code for a named kmacro at the cursor position.
-3. Copy & Paste the code into your emacs init file.
-4. In any future emacs session, you can call your kmacro by name just like any emacs command.
-
-Once you've saved your macro with a name, you can also give it a keyboard shortcut, such as ~F8~.
-
-#+begin_src emacs-lisp
-
-  ;; macro for bold region, add two *
-  (fset 'bold
-        (kmacro-lambda-form [?\C-c ?\C-x ?\C-f kp-multiply] 0 "%d"))
-  (global-set-key (kbd "<f7>") 'bold)
-
-  ;; macro for code region, add tow =
-  (fset 'code
-        (kmacro-lambda-form [?\C-c ?\C-x ?\C-f ?=] 0 "%d"))
-  (global-set-key (kbd "<f8>") 'code)
-
-#+end_src
 
 **** Ivy
 Incremental vertical completion/selection.
@@ -12891,6 +12954,32 @@ First, need to turn on the  LaTeX letters in Org in the Emacs init file.
 
 #+end_src
 
+** Estructure of Org code blocks
+Org offers two ways to structure source code in Org documents: in a 'src' code block, and directly inline. Both specifications are shown below.
+
+A source code block conforms to this structure:
+
+#+NAME: <name>
+#+BEGIN_SRC <language> <switches> <header arguments>
+  <body>
+#+END_SRC
+
+Org also works with other completion systems in Emacs, some of which predate Org and have custom domain-specific languages for defining templates.
+
+An inline code block conforms to this structure:
+
+src_<language>{<body>}
+
+or
+
+src_<language>[<header arguments>]{<body>}
+
+Examples:
+
+src_sh{ echo "hola" }
+
+src_js{ function foo () { return 'exit';} }
+
 ** Basic emacs installation
 *** Building Emacs from Source with pgtk
 https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/
@@ -13027,21 +13116,60 @@ Define an alias to be use with the ~query-replace-regexp~ function by typing ~li
 
 #+end_src
 
-** Keyboard macro basics
-You can optionally give a prefix argument to ~C-x e~ or ~F4~ to make it repeat the macro that many times. Use ~0~ to tell Emacs to *run the macro until it gets an error signal*. A macro plays back until it encounters an error (end of buffer, end of matches in ~*Grep*~ if you advance with ~M-g M-n~, and so on.) Watch out if you’re waving ~C-g~ around in a macro — it terminates the recording!
+** Keyboard macro
+*** Define keyboard macros
+*To save a macro (Xah)*
+1. ~M-x name-last-kbd-macro~ and give it a name.
+2. ~M-x insert-kbd-macro~ this will insert the lisp code for a named kmacro at the cursor position.
+3. Copy & Paste the code into your emacs init file.
+4. In any future emacs session, you can call your kmacro by name just like any emacs command.
 
-To save a macro see [[Kmacro]].
+Once you've saved your macro with a name, you can also give it a keyboard shortcut, such as ~F8~.
 
-If you call ~F3~ when you’re recording, it’ll insert a number from a counter and increment it. Use a universal arg ~C-u~ and it’ll repeat the last number without incrementing it. You can pass a numeric arg to ~F3~ to start the recording with a different number. This feature’s obviously great for numerating lists.
+#+begin_src emacs-lisp
 
-*Interactive Keyboard Macros*
+  ;; macro for bold region, add two *
+  (fset 'bold
+        (kmacro-lambda-form [?\C-c ?\C-x ?\C-f kp-multiply] 0 "%d"))
+  (global-set-key (kbd "<f7>") 'bold)
+
+  ;; macro for code region, add tow =
+  (fset 'code
+        (kmacro-lambda-form [?\C-c ?\C-x ?\C-f ?=] 0 "%d"))
+  (global-set-key (kbd "<f8>") 'code)
+
+#+end_src
+
+*** Interactive keyboard macros
 One neat, little feature is the ability to insert a /macro query/ flag when you are recording a macro. A macro query is only triggered when you play it back. Emacs detects the query and pauses execution and cedes control back to you. To use it, type ~C-x q~ when you’re recording. There is no visual indicator when you type it, though.
+
+| /Opts/ | /Specify how to proceed with keyboardmacro execution/ |
+|------+-----------------------------------------------------|
+| /Y/    | Finish this iteration and continue with the next    |
+| /N/    | Skip the rest of this iteration, and start the next |
+| /RET/  | Stop the macro entirely right now                   |
+| /C-l/  | Redisplay the screen, then ask again                |
+| /C-r/  | Enter recursive edit; (press /SCP/) to ask again      |
+|      | when you exit from that                             |
 
 That makes it excellent for what I call *interactive* macros that require user input. You can place the /macro query/ anywhere you like — even in a prompt, like query replace regexp with ~C-M-%~. You can even prefill the prompt; Emacs will remember that also.
 
-*Note*: (Mickey Petersen)
+*** Repeat keyboard macros
+You can optionally give a prefix argument to ~C-x e~ or ~F4~ to make it repeat the macro that many times. Use ~0~ to tell Emacs to *run the macro until it gets an error signal*. A macro plays back until it encounters an error (end of buffer, end of matches in ~*Grep*~ if you advance with ~M-g M-n~, and so on.) Watch out if you’re waving ~C-g~ around in a macro — it terminates the recording!
+
+*** Insert counter in keyboard macros
+If you call ~F3~ when you’re recording, it’ll insert a number from a counter and increment it. Use a universal arg ~C-u~ and it’ll repeat the last number without incrementing it. You can pass a numeric arg to ~F3~ to start the recording with a different number. This feature’s obviously great for numerating lists.
+
+*** Notes
+*Mickey Petersen*
 - To modifying window layout, just make sure you start with a call to ~C-x 1~ to reset the windows back to one when you start the recording.
-- To call up a Shell, make it run C-u M-x shell (or Eshell, or Vterm, or…) and run some commands that you frequently need to do.
+- To call up a Shell, make it run ~C-u M-x shell~ (or Eshell, or Vterm, or…) and run some commands that you frequently need to do.
+
+*Xah*
+- To move to the next logical line (line with a line return at the end), move to end of line first, then right cursor moves it to beginning of next line. Because if you have Emacs: Visual Line Mode on, down arrow may move to the next visual line.
+
+*Emacswiki*
+- You want to add the text “– foobar was here” at the end of each of the lines in a file. What’s important here is to stop defining the macro at a *similar position to where you started it* – so that you are in a position to execute it again, after it executes. This is a general rule that you will often follow when defining keyboard macros: try to make them executable N times in a row.
 
 ** Writing scripts
 1. Create ~some.el~ file
@@ -13063,10 +13191,36 @@ That makes it excellent for what I call *interactive* macros that require user i
 4. Run with or without arguments (~./some.el arg1 arg2~)
 5. Or run with ~-Q~ to disabled initial messages (~./some.el -Q arg1 arg2~)
 
+** Markup for Rich Contents
+Org is primarily about organizing and searching through your plain-text notes. However, it also provides a lightweight yet robust markup language for rich text formatting and more. For instance, you may want to center or emphasize text. Or you may need to insert a formula or image in your writing. Org offers syntax for all of this and more. Used in conjunction with the export framework, you can author beautiful documents in Org—like the fine manual you are currently reading.
+
+*Paragraphs*
+Paragraphs are separated by at least one empty line. If you need to enforce a line break within a paragraph, use ‘\\’ at the end of a line.
+
+#+BEGIN_VERSE
+ Great clouds overhead
+ Tiny black birds rise and fall
+ Snow covers Emacs
+
+    ---AlexSchroeder
+#+END_VERSE
+
+#+BEGIN_QUOTE
+Everything should be made as simple as possible,
+but not any simpler ---Albert Einstein
+#+END_QUOTE
+
+*Literal Examples*
+You can include literal examples that should not be subjected to markup. Such examples are typeset in monospace, so this is well suited for source code and similar examples.
+
+#+BEGIN_EXAMPLE
+  Some example from a text file.
+#+END_EXAMPLE
+
 * References
 - [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
-- [[https://www.gnu.org/software/emacs/manual/html_mono/emacs.html][The GNU Emacs Manual]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][GNU Emacs Manual]]
 - [[https://www.gnu.org/software/emacs/manual/html_node/elisp/][The GNU Emacs Lisp Reference Manual]]
 - [[https://orgmode.org/orgguide.html][Org Mode Compact Guide]]
-- [[https://www.youtube.com/watch?v=48JlgiBpw_I][System Crafters Youtube]]
 - [[https://wilkesley.org/~ian/xah/][∑XAH]]
+- [[https://www.youtube.com/watch?v=48JlgiBpw_I][System Crafters Youtube]]
