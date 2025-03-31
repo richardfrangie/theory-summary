@@ -457,7 +457,7 @@ Convenience features for faster editing.
   (use-package duplicate-thing
     :bind (("S-M-<down>" . rf/wrapper-duplicate-thing)
            ("M-J" . rf/wrapper-duplicate-thing))
-    :config ;;;; Testing
+    :config
     (defun rf/wrapper-duplicate-thing (n)
       "Duplicate line or region N times.
     Wrapper around `duplicate-thing' to place the pointer right at the
@@ -641,21 +641,10 @@ Provides a completion style that divides the pattern into space-separated compon
       (orderless-matching-styles '(orderless-initialism
                                    orderless-literal orderless-regexp)))
 
-    ;; Certain dynamic completion tables (completion-table-dynamic) don't work
-    ;; properly with orderless. One can add basic as a fallback. Basic will
-    ;; only be used when orderless fails, which happens only for these special
-    ;; tables. Also note that you may want to configure special styles for
-    ;; special completion categories, e.g., partial-completion for files.
     (setq completion-styles '(orderless basic)
           completion-category-defaults nil
           ;;; Enable partial-completion for files.
           ;;; Either give orderless precedence or partial-completion.
-          ;;; Note that completion-category-overrides is not really an
-          ;;; override, but rather prepended to the default completion-styles.
-          ;; orderless is tried first
-          ;; completion-category-overrides
-          ;; '((file (styles orderless partial-completion)))
-          ;; partial-completion is tried first
           completion-category-overrides
           '((file (styles partial-completion))
             ;; enable initialism by default for symbols
@@ -687,10 +676,10 @@ Marginalia are helpful colorful annotations placed at the margin of the minibuff
 
   ;; Add icons to completion candidates
   (use-package nerd-icons-completion
-  :after marginalia
-  :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+    :after marginalia
+    :config
+    (nerd-icons-completion-mode)
+    (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 #+end_src
 
@@ -827,6 +816,22 @@ A simple way to manage personal keybindings.
 
 #+end_src
 
+** Kmacro
+Simplified keyboard macro user interface.
+
+#+begin_src emacs-lisp
+
+  ;; When practicing writing English sentences.
+  (defalias 'english-toggle-headers
+     (kmacro "<tab> C-c C-n <tab> C-<right> C-<left>"))
+
+  ;; Turn a single word into link ( word -> [[Word][word]] )
+  (defalias 'turn-org-word-into-link
+    (kmacro "C-<right> C-<backspace> C-y ] [ C-y ] ] C-<left> C-<left>
+  M-x u p c a s e - c h a r <return> [ ["))
+
+#+end_src
+
 * Text
 ** Org
 *** Org general
@@ -877,9 +882,9 @@ Options concerning the org faces.
                     (org-level-3   1.10   "#e8b963")
                     (org-level-4   1.05   "#adc1ff")
                     (org-level-5   1.05   "#ff8a8a")
-                    (org-level-6   1.05   "#cd9784")
-                    (org-level-7   1.05   "#98be65")
-                    (org-level-8   1.05   "#d996e8")))
+                    (org-level-6   1.05   "#d996e8")
+                    (org-level-7   1.05   "#cd9784")
+                    (org-level-8   1.05   "#98be65")))
       (set-face-attribute (car face) nil :font "Cantarell"
                           :height (nth 1 face)
                           :foreground (nth 2 face)))
@@ -1945,7 +1950,7 @@ Code local to your site.
 #+end_src
 
 * References
-- [[https://www.gnu.org/software/emacs/manual/html_mono/emacs.htm][The GNU Emacs Editor Manual]]
-- [[https://github.com/daviwil/emacs-from-scratch/blob/a57d99ba80276926a2b68521f9a9d23dc173a628/Emacs.org][System Crafters Github]]
+- [[https://www.gnu.org/software/emacs/manual/emacs.html][GNU Emacs Manual]]
 - [[https://www.emacswiki.org/][EmacsWiki]]
 - [[https://wilkesley.org/~ian/xah/][∑XAH]]
+- [[https://github.com/daviwil/emacs-from-scratch/blob/a57d99ba80276926a2b68521f9a9d23dc173a628/Emacs.org][System Crafters Github]]
