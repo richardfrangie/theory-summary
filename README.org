@@ -1,4 +1,3 @@
-#+title: theory-summary
 #+date: 2025-03-28
 #+author: Richard Frangie
 #+language: en
@@ -15,29 +14,29 @@ Although the files can be viewed in plain text or with preview on GitHub, it's r
 ** [[file:javascript.org][javascript.org]]
 Broad overview and summary of the JS language, covering generic aspects, logical structure, and some core components. The content is mainly based on the [[https://eloquentjavascript.net/][Eloquent JavaScript]] book, and the great series of articles by [[http://dmitrysoshnikov.com/][Dmitry Sóshnikov]]. One interesting feature of [[https://orgmode.org/][Org]] is that, in addition to plain text, it allows for the inclusion of source code examples using code blocks that format the syntax according to the programming language being used.
 
-[[./screenshots/javascript-file.png][javascript-file.png]]
+[[file:screenshots/javascript-file.png][javascript-file.png]]
 
 ** [[file:shell.org][shell.org]]
 An extensive list of the most popular and useful commands in GNU/Linux, along with an introduction to the basics of command line use, and shell scripting. The content is primarily based on the book [[https://linuxcommand.org/tlcl.php][The Linux Command Line]], and the [[https://www.gnu.org/software/coreutils/manual/html_node/index.html][GNU Coreutils]] documentation. The commands are structured into sections with their abbreviated description, the most useful options, and related commands, which is very useful for quickly looking up commands using the [[https://orgmode.org/][Org]] header structure.
 
-[[./screenshots/shell-file.png][shell-file.png]]
+[[file:screenshots/shell-file.png][shell-file.png]]
 
 ** [[file:init.org][init.org]]
 Emacs initialization file that containing personal EmacsLisp code for customizing [[https://www.gnu.org/software/emacs/][Emacs]]. It's created using literate programming, and is organized into sections similar to those found in the builtin [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html][Customize interface]]. It also includes many of the most useful packages, as well as some additional functions.
 
-[[./screenshots/init-file.png][init-file.png]]
+[[file:screenshots/init-file.png][init-file.png]]
 
 ** [[file:gnu-linux.org][gnu-linux.org]]
 A broad overview of the GNU/Linux system, with a focus on the Debian distribution. The content is primarily based on the [[https://archive.org/details/howlinuxworkswha0000ward][How Linux Works]] book, and supplemented by the [[https://www.debian.org/doc/manuals/debian-reference/][Debian user's guide]].
 
-[[./screenshots/gnu-linux-file.png][gnu-linux-file.png]]
+[[file:screenshots/gnu-linux-file.png][gnu-linux-file.png]]
 
 ** [[file:emacs-elisp.org][emacs-elisp.org]]
 A great summary of the Elisp programming language, along with an overview of the main features and builtin modes of the [[https://www.gnu.org/software/emacs/][Emacs]] editor. Elisp is primarily used to customize and extend the functionality of Emacs. Additionaly, it includes a list of the most useful commands, functions, and packages, each accompained by a brief explanation. This content is based on primarily on the  [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]] book, and [[https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][GNU Emacs Manual]].
 
-[[./screenshots/emacs-elisp-file.png][emacs-elisp-file.png]]
+[[file:screenshots/emacs-elisp-file.png][emacs-elisp-file.png]]
 
 ** [[file:math.org][math.org]]
 A simple and basic summary of elementary mathematical concepts. One of the advantages of [[https://orgmode.org/][Org]] mode is its support for embedding LaTeX code into its files. This feature allows you to easily process text to produce pretty output for mathematical symbols.
 
-[[./screenshots/math-file.png][math-file.png]]
+[[file:screenshots/math-file.png][math-file.png]]
