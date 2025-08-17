@@ -3,7 +3,7 @@
 #+language: en
 
 * Overview
-This summary highlights what I consider the most important topics for the study of the fundamentals of information technology and web development.
+This summary highlights what I consider the most important topics for the study of the fundamentals of computing and web development.
 
 All the information collected and compressed here is completely free and accessible. It has been gathered from the internet through various means, such as documentation, books, articles, websites, etc., with appropriate references provided at the end of each file.
 
@@ -42,3 +42,8 @@ A great summary of the Elisp programming language, along with an overview of the
 A simple and basic summary of elementary mathematical concepts. One of the advantages of [[https://orgmode.org/][Org]] mode is its support for embedding LaTeX code into its files. This feature allows you to easily process text to produce pretty output for mathematical symbols.
 
 [[file:screenshots/math-file.png]]
+
+*** [[file:keyboard-layout-commands.svg][Keyboard layouts]]
+SVG file created in Inkscape showing all the shortcuts. You can play around with the layers to enable or disable command sets (e.g. standard, emacs, system, ...) or keyboard layouts (e.g qwerty, dvorak, ...).
+
+[[file:screenshots/keyboard-layout-cmds.png]]
