@@ -100,6 +100,16 @@ The standard faces of Emacs.
   ;; Set the fixed pitch face:
   (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono" :height 102)
 
+
+  (defun rf/toggle-font-lock-comment-face ()
+    "Toggle the comment font between light and dark."
+    (interactive)
+    (if (string= (face-attribute 'font-lock-comment-face :foreground) "#5B6268")
+        (custom-set-faces '(font-lock-comment-face
+                            ((t (:foreground "#657076")))))
+      (custom-set-faces '(font-lock-comment-face
+                          ((t (:foreground "#5B6268")))))))
+
 #+end_src
 
 ** All the icons faces
@@ -148,7 +158,8 @@ Contents of the mode line.
     (defun rf/doom-modeline-toggle-the-path ()
       "Toggle modeline name between truncate-except-project and truncate-all."
       (interactive)
-      (if (string= doom-modeline-buffer-file-name-style "truncate-except-project")
+      (if (string= doom-modeline-buffer-file-name-style
+                   "truncate-except-project")
           (setq doom-modeline-buffer-file-name-style 'truncate-all)
         (setq doom-modeline-buffer-file-name-style 'truncate-except-project))))
   ;; This need a Nerd Font installed on your system.
@@ -181,7 +192,7 @@ Support for Emacs frames and window systems.
 
   ;; Set specify frame size by default (since my screen is damaged):
   (add-to-list 'default-frame-alist '(width . 168))
-  (add-to-list 'default-frame-alist '(height . 43))
+  (add-to-list 'default-frame-alist '(height . 40))
 
   ;; Set position of the frame:
   ;; Fits on the monitor screen.
@@ -191,13 +202,14 @@ Support for Emacs frames and window systems.
   (defun rf/resize-frame-to-laptop ()
     "Resize the frame to the size of the laptop."
     (interactive)
-    (set-frame-size (selected-frame) 168 43)
+    (set-frame-size (selected-frame) 168 40)
     (set-frame-position (selected-frame) 1356 30))
 
 #+end_src
 
 ** Windows
-Directional selection of windows in a frame, and quickly switch current window.
+*** Basic windows
+Window configuration.
 
 #+begin_src emacs-lisp
 
@@ -208,23 +220,20 @@ Directional selection of windows in a frame, and quickly switch current window.
   ;; Global minor mode that records the changes in the window configuration:
   (winner-mode 1)
 
+#+end_src
+
+*** Ace window
+Quickly switch windows
+
+#+begin_src emacs-lisp
 
   ;; GNU Emacs package for selecting a window to switch to.
   (use-package ace-window
     :bind ("C-x o" . ace-window)
     :config
-    (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
-
-
-  ;; Window selection:
-  (keymap-global-set "C-c p" 'windmove-up)
-  (keymap-global-set "C-c n" 'windmove-down)
-  (keymap-global-set "C-c b" 'windmove-left)
-  (keymap-global-set "C-c f" 'windmove-right)
-
-
-  ;; Change the other-window key.
-  (keymap-global-set "M-o" 'other-window)
+    ;; Call to action midway with fewer than three windows.
+    (setq aw-dispatch-always t)
+    (setq aw-keys '(?h ?t ?n ?s ?a ?o ?e ?u ?d ?i)))
 
 #+end_src
 
@@ -247,6 +256,10 @@ How things are displayed in buffers.
   ;; See a highlighted line of the “error” you just jumped to:
   (setq next-error-message-highlight t)
 
+
+  ;; Not show the equivalent keybinding when M-x has one
+  (setq suggest-key-bindings nil)
+
 #+end_src
 
 ** Desktop
@@ -265,10 +278,10 @@ Input from the mouse.
 #+begin_src emacs-lisp
 
   ;; Mouse scroll one line at a time:
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+  (setq mouse-wheel-scroll-amount '(1))
 
-  ;; Give the <mouse-9> key a global binding  as TAB command.
-  (keymap-global-set "<mouse-9>" "TAB")
+  ;; Make paste at point (not cursor position) when middle-clicking:
+  (setq mouse-yank-at-point t)
 
 #+end_src
 
@@ -287,8 +300,8 @@ Displaying text cursors.
   ;; Multiple cursors for Emacs:
   (use-package multiple-cursors
     ;; Add a cursor based on continuous lines:
-    :bind (("C->" . mc/mark-next-like-this)
-           ("C-<" . mc/mark-previous-like-this)
+    :bind (("<kp-7>" . mc/mark-next-like-this)
+           ("S-<kp-7>" . mc/mark-previous-like-this)
            ;; Add or remove a cursor where you click:
            ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
@@ -300,13 +313,11 @@ Displaying text cursors.
 
   ;; Identical to C-x C-x but won't activate the region (Mickey Petersen).
   (defun mp/exchange-point-and-mark-no-activate ()
-    "Identical to \\[exchange-point-and-mark] but will not activate the region."
+    "Identical to \\[exchange-point-and-mark] but will not activate the region.
+  Remapped to `exchange-point-and-mark'."
     (interactive)
     (exchange-point-and-mark)
     (deactivate-mark nil))
-
-  (keymap-global-set "<remap> <exchange-point-and-mark>"
-                     'mp/exchange-point-and-mark-no-activate)
 
 #+end_src
 
@@ -331,6 +342,45 @@ Controlling the behavior of the minibuffer.
   ;; Save what you enter into minibuffer prompts.
   (savehist-mode 1)
 
+
+  ;; Minibuffer, stop cursor going into prompt (Xah)
+  (customize-set-variable
+   'minibuffer-prompt-properties
+   (quote (read-only t cursor-intangible t face minibuffer-prompt)))
+
+
+  ;; Disable Abbrev mode while in the minibuffer
+  (add-hook 'minibuffer-setup-hook
+            (lambda () (abbrev-mode -1)))
+
+
+  (defun se/take-the-word-at-point ()
+    "Yank word at point in the buffer when entering text into minibuffer.
+
+  https://emacs.stackexchange.com/questions/30490/key-binding-to-yank
+  -word-char-under-cursor-into-minibuffer"
+    (interactive)
+    (with-selected-window (minibuffer-selected-window)
+      (when-let ((word (current-word)))
+        (with-selected-window (active-minibuffer-window)
+          (insert word)))))
+
+#+end_src
+
+** Kmacro
+Simplified keyboard macro user interface.
+
+#+begin_src emacs-lisp
+
+  ;; When practicing writing English sentences.
+  (defalias 'english-toggle-headers
+     (kmacro "<tab> C-c C-n <tab> C-<right> C-<left>"))
+
+  ;; Turn a single word into link ( word -> [[Word][word]] )
+  (defalias 'turn-org-word-into-link
+    (kmacro "C-<right> C-<backspace> C-y ] [ C-y ] ] C-<left> C-<left>
+  M-x u p c a s e - c h a r <return> [ ["))
+
 #+end_src
 
 * Editing
@@ -345,8 +395,23 @@ Most basic editing facilities.
 
   ;; Increase selected region by semantic units.
   (use-package expand-region
-    :bind (:map prog-mode-map
-                ("C-=" . er/expand-region)))
+    :config
+    (setq expand-region-contract-fast-key "8")
+    (setq expand-region-reset-fast-key "9"))
+
+  (defun rf/expand-region (argument)
+    "Wrapper that calls expand region according to the current mode.
+
+  If the major-mode is `org-mode', call the `xah-extend-selection'
+  command, otherwise, call `er/expand-region'."
+    (interactive "P")
+    (if (eq major-mode 'org-mode)
+        (xah-extend-selection)
+      (call-interactively 'er/expand-region)))
+
+
+  ;; Enable `downcase-region' command for future editing sessions
+  (put 'downcase-region 'disabled nil)
 
 #+end_src
 
@@ -385,14 +450,6 @@ Killing and yanking commands.
         (delete-region beg end))
       (yank)))
 
-  (keymap-global-set "C-c y" 'rf/yank-recently-window)
-
-
-  ;; delete-forward-char deletes by grapheme clusters. Useful since
-  ;; e.g. if point is before an Emoji sequence, pressing '<Delete>'
-  ;; will delete the entire sequence, not just a single character.
-  (keymap-global-set "<remap> <delete-char>" 'delete-forward-char)
-
 #+end_src
 
 ** Indent
@@ -426,7 +483,7 @@ Yet Another Snippet extension.
     :bind (:map yas-minor-mode-map
                 ("TAB" . nil)
                 ("<tab>" . nil)
-                ("C-<tab>" . yas-expand))
+                ("M-<tab>" . yas-expand))
     :config
     (yas-reload-all))
 
@@ -436,9 +493,56 @@ Yet Another Snippet extension.
     :after yasnippet)
 
 
-  ;; A consulting-read interface for yasnippet.
+  ;;; A consulting-read interface for yasnippet.
   (use-package consult-yasnippet
-    :bind ("M-s y" . consult-yasnippet))
+    :after (yasnippet consult))
+    ;;; :bind ("M-s y" . consult-yasnippet))
+
+#+end_src
+
+** Isearch
+Incremental search minor mode.
+
+#+begin_src emacs-lisp
+
+  ;; Show match numbers in the search prompt.
+  (setq isearch-lazy-count t)
+
+
+  ;; Set arrow keys in isearch. (Xah)
+  (keymap-set isearch-mode-map "<left>" 'isearch-ring-retreat)
+  (keymap-set isearch-mode-map "<right>" 'isearch-ring-advance)
+  (keymap-set isearch-mode-map "<up>" 'isearch-repeat-backward)
+  (keymap-set isearch-mode-map "<down>" 'isearch-repeat-forward)
+  ;; Set a yank binding in isearch mode
+  (keymap-set isearch-mode-map "S-<insert>" 'isearch-yank-kill)
+  (keymap-set isearch-mode-map "C-v" 'isearch-yank-kill)
+
+  (keymap-set minibuffer-local-isearch-map "<up>"
+              'isearch-reverse-exit-minibuffer)
+  (keymap-set minibuffer-local-isearch-map "<down>"
+              'isearch-forward-exit-minibuffer)
+
+
+  ;; for isearch-forward, make these equivalent:
+  ;; space newline tab hyphen underscore
+  (setq search-whitespace-regexp "[-_ \t\n]+")
+  ;; But sometimes you want literal. This command makes it easy to toggle.
+  (defun xah-toggle-search-whitespace ()
+    "Set `search-whitespace-regexp' to nil or includes hyphen lowline tab newline.
+
+    URL `http://xahlee.info/emacs/emacs/emacs_isearch_space.html'
+
+    Created: 2019-02-22
+    Version 2024-06-16"
+    (interactive)
+    (if search-whitespace-regexp
+        (progn
+          (setq search-whitespace-regexp nil)
+          (message "search-whitespace-regexp set to nil."))
+      (progn
+        (setq search-whitespace-regexp "[-_ \t\n]+")
+        (message "search-whitespace-regexp set to hyphen lowline whitespace"))))
 
 #+end_src
 
@@ -448,17 +552,12 @@ Convenience features for faster editing.
 
 #+begin_src emacs-lisp
 
-  ;; Enable 'repeat-mode' to allow shorter key sequences.
-  ;; Type 'C-x u u' instead of 'C-x u C-x u' to undo many changes.
-  (repeat-mode)
-
-
-  ;; Easy duplicate line or region, with comment out:
+  ;;; Easy duplicate line or region, with comment out:
   (use-package duplicate-thing
-    :bind (("S-M-<down>" . rf/wrapper-duplicate-thing)
-           ("M-J" . rf/wrapper-duplicate-thing))
+    :bind (("M-\"" . rf/duplicate-thing-wrapper)
+           ("M-J" . rf/duplicate-thing-wrapper))
     :config
-    (defun rf/wrapper-duplicate-thing (n)
+    (defun rf/duplicate-thing-wrapper (n)
       "Duplicate line or region N times.
     Wrapper around `duplicate-thing' to place the pointer right at the
     end of the region, rather than after the region."
@@ -467,58 +566,14 @@ Convenience features for faster editing.
       (goto-char (1- (point)))))
 
 
-  ;; Minor mode that makes it possible to drag stuff (words, region, lines,...):
+  ;;; Minor mode that makes it possible to drag stuff (words, region, lines,...):
   (use-package drag-stuff
-    :bind (("M-<down>" . drag-stuff-down)
-           ("M-n" . drag-stuff-down)
-           ("M-<up>" . drag-stuff-up)
-           ("M-p" . drag-stuff-up))
+    :bind (("M-S-<up>" . drag-stuff-up)
+           ("M-S-<down>" . drag-stuff-down)
+           ("M-p" . drag-stuff-up)
+           ("M-n" . drag-stuff-down))
     :config
     (drag-stuff-global-mode 1))
-
-
-  ;; Automatically toggle “fill” or “unfill” on the current paragraph (Xah).
-  ;; Emacs has its built-in variants but this one works better in org segments.
-  (defun xah-fill-or-unfill ()
-    "Reformat current paragraph or region to `fill-column'.
-  When there is a text selection, act on the selection, else, act on a
-  text block separated by blank lines. URL
-  `http://xahlee.info/emacs/emacs/modernization_fill-paragraph.html'
-  Version 2017-01-08
-  It works perfectly on uncommented lines, for commented lines it is
-  better to use the fill or unfill variants."
-    (interactive)
-    ;; This command symbol has a property “'compact-p”, the possible values
-    ;; are t and nil. This property is used to easily determine whether to
-    ;; compact or uncompact, when this command is called again
-    (let ( ($compact-p
-            (if (eq last-command this-command)
-                (get this-command 'compact-p)
-              (> (- (line-end-position) (line-beginning-position)) fill-column)))
-           (deactivate-mark nil)
-           ($blanks-regex "\n[ \t]*\n")
-           $p1 $p2
-           )
-      (if (use-region-p)
-          (progn (setq $p1 (region-beginning))
-                 (setq $p2 (region-end)))
-        (save-excursion
-          (if (re-search-backward $blanks-regex nil "NOERROR")
-              (progn (re-search-forward $blanks-regex)
-                     (setq $p1 (point)))
-            (setq $p1 (point)))
-          (if (re-search-forward $blanks-regex nil "NOERROR")
-              (progn (re-search-backward $blanks-regex)
-                     (setq $p2 (point)))
-            (setq $p2 (point)))))
-      (if $compact-p
-          (fill-region $p1 $p2)
-        (let ((fill-column most-positive-fixnum ))
-          (fill-region $p1 $p2)))
-      (put this-command 'compact-p (not $compact-p)))
-    (deactivate-mark))
-
-  (keymap-global-set "M-q" 'xah-fill-or-unfill)
 
 #+end_src
 
@@ -531,6 +586,71 @@ Dynamic word-completion code.
   (setq read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
         completion-ignore-case t)
+
+#+end_src
+
+** Compare
+Compare, view/edit files and tools such as diff and ediff (comprehensive visual interface to ‘diff’ and ‘patch’).
+
+#+begin_src emacs-lisp
+
+  ;;To make ediff to be horizontally split:
+  (setq ediff-split-window-function 'split-window-horizontally)
+  ;; To make ediff operate on selected-frame:
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+
+  ;; Show difference between current file buffer and auto-save file (EmacsWiki):
+  (defun ew/diff-auto-save-file ()
+    "Get auto-save #file# difference with current buffer."
+    (interactive)
+    (diff (make-auto-save-file-name) (current-buffer) nil 'noasync))
+
+#+end_src
+
+** Buffer
+Functions for buffer manipulation
+
+#+begin_src emacs-lisp
+
+  ;; Switch to the most recently selected buffer.
+  ;; https://www.emacswiki.org/emacs/SwitchingBuffers
+  (defun switch-to-previous-buffer ()
+    (interactive)
+    (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+#+end_src
+
+** Ibuffer
+Advanced replacement for ‘buffer-menu’.
+
+#+begin_src emacs-lisp
+
+  ;; List existing buffers with ibuffer instead of list-buffers:
+  (defalias 'list-buffers 'ibuffer)
+  ;;;
+  (use-package ibuffer
+    :bind (:map ibuffer-mode-map
+                ("M-o" . nil)
+                ("C-M-o" . ibuffer-visit-buffer-1-window)))
+
+#+end_src
+
+** Abbrev mode
+Word abbreviations mode.
+
+#+begin_src emacs-lisp
+
+  ;; Make abbrev not add space
+  (defun xah-abbrev-ahf ()
+    "Abbrev hook function, used for `define-abbrev'.
+  Our use is to prevent inserting the char that triggered expansion.
+  Experimental.
+  The “ahf” stand for abbrev hook function.
+  Version 2016-10-24"
+    t)
+
+  (put 'xah-abbrev-ahf 'no-self-insert t)
 
 #+end_src
 
@@ -552,21 +672,28 @@ Extensible inline text completion mechanism.
 
 #+end_src
 
-** Vertico
+** Minad stack
+*** Vertico
 VERTical Interactive COmpletion.
 
 #+begin_src emacs-lisp
 
-  ;; Vertico provides a performant and minimalistic vertical completion UI
+  ;;; Vertico provides a performant and minimalistic vertical completion UI
   ;; based on the default completion system.
   (use-package vertico
     :custom
     (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
     :bind (:map minibuffer-local-map
     ;; Overwrites the `file-cache-minibuffer-complete' which I don't use.
-                ("C-<tab>" . vertico-insert))
+                ("M-<tab>" . vertico-insert)
+                :map vertico-map
+                ("M-P" . previous-history-element)
+                ("M-N" . next-history-element)
+                ("S-<prior>" . previous-history-element)
+                ("S-<next>" . next-history-element))
     :init
-    (vertico-mode))
+    (vertico-mode)
+    (setq completion-in-region-function #'consult-completion-in-region))
 
 
   ;; A few more useful configurations...
@@ -577,6 +704,7 @@ VERTical Interactive COmpletion.
     (read-extended-command-predicate #'command-completion-default-include-p))
 
 
+  ;; Vertico extensions
   ;; Configure directory extension (`/' will be bound to `my/vertico-insert').
   (use-package vertico-directory
     :after vertico
@@ -590,9 +718,28 @@ VERTical Interactive COmpletion.
     ;; Tidy shadowed file names
     :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
+  ;;; The command vertico-repeat repeats the last completion session.
+  (use-package vertico-repeat
+    :after vertico
+    :ensure nil
+    :demand t
+    :bind (("M-R" . vertico-repeat)
+           :map vertico-map
+           ("M-p" . vertico-repeat-previous)
+           ("M-n" . vertico-repeat-next)
+           ("<prior>" . vertico-repeat-previous)
+           ("<next>" . vertico-repeat-next))
+    :hook (minibuffer-setup . vertico-repeat-save)
+    :config
+    ;; Enable recursive minibuffers globally are genuinely useful. But
+    ;; vertico-repeat will also work with recursive minibuffers disabled
+    ;; (setq enable-recursive-minibuffers t)
+    (setq vertico-repeat-filter '(vertico-repeat vertico-repeat-select))
+    (add-to-list 'savehist-additional-variables 'vertico-repeat-history))
+
 #+end_src
 
-** Orderless
+*** Orderless
 Provides a completion style that divides the pattern into space-separated components, and matches candidates that match all of the components in any order.
 
 #+begin_src emacs-lisp
@@ -658,7 +805,7 @@ Provides a completion style that divides the pattern into space-separated compon
 
 #+end_src
 
-** Marginalia
+*** Marginalia
 Marginalia are helpful colorful annotations placed at the margin of the minibuffer for completion candidates.
 
 #+begin_src emacs-lisp
@@ -683,68 +830,40 @@ Marginalia are helpful colorful annotations placed at the margin of the minibuff
 
 #+end_src
 
-** Embark
-“Emacs Mini-Buffer Actions Rooted in Keymaps” makes it easy to choose a command to run based on what is near point, both during a minibuffer completion session and in normal buffers. You can think of ~embark-act~ as a keyboard-based version of a right-click contextual menu.
-
-#+begin_src emacs-lisp
-
-  ;; Conveniently act on minibuffer completions.
-  (use-package embark
-    :bind
-    (("C-." . embark-act)
-     ("C-;" . embark-dwim)        ;; good alternative: M-.
-     ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
-     :map minibuffer-local-map
-     ("C-x SPC" . embark-select)
-     ("C-x E" . embark-export)
-     ("C-x S" . embark-collect)
-     ("C-x A" . embark-act-all)))
-
-  ;; Provides exporters for several Consult commands and also tweaks the
-  ;; behavior of many Consult commands when used as actions with embark-act
-  ;; in subtle ways that you may not notice, but make for a smoother experience.
-  (use-package embark-consult
-    ;; only need to install it, embark loads it after consult if found
-    :hook
-    (embark-collect-mode . consult-preview-at-point-mode))
-
-#+end_src
-
-** Consult
+*** Consult
 Provides search and navigation commands based on the Emacs completion function completing-read.
 
 #+begin_src emacs-lisp
-
+  ;;;
   (use-package consult
     :bind
-    (("C-x b" . consult-buffer)
+    (("C-x b" . consult-buffer) ;
+     ("S-<kp-add>" . consult-buffer)
      ("C-x 4 b" . consult-buffer-other-window)
-     ("C-x 5 b" . consult-buffer-other-frame)
-     ("C-x r b" . consult-bookmark)
-     ("C-x p b" . consult-project-buffer)
-     ;; ("C-x j" . consult-recent-file)
      ;; Custom M-# bindings for fast register access
-     ("M-#" . consult-register-load)
      ("M-'" . consult-register-store)
-     ("C-M-#" . consult-register)
+     ("M-#" . consult-register-load)
      ;; Other custom bindings
-     ("M-y" . consult-yank-pop)
+     ("M-y" . consult-yank-pop) ;
+     ("M-S-<insert>" . consult-yank-pop)
+     ("C-S-v" . consult-yank-pop)
      ;; M-g bindings in `goto-map'
      ("M-g f" . consult-flymake)
      ("M-g g" . consult-goto-line)
-     ("M-g o" . consult-outline)
+     ("M-g o" . consult-outline) ;
      ("M-g h" . consult-org-heading)
      ("M-g m" . consult-mark)
      ("M-g k" . consult-global-mark)
      ("M-g i" . consult-imenu)
      ("M-g I" . consult-imenu-multi)
+     ("C-M-#" . consult-register)
      ;; M-s bindings in `search-map'
      ("M-s d" . consult-find)
-     ;; ("M-s c" . consult-locate) ;; doesn't work (IDKW)
+     ("M-s c" . consult-locate)
      ("M-s g" . consult-grep)
      ("M-s G" . consult-git-grep)
-     ;; ("M-s r" . consult-ripgrep) ;; doesn't work (IDKW)
-     ("M-s l" . consult-line)
+     ("M-s r" . consult-ripgrep)
+     ("M-s l" . consult-line) ;
      ("M-s L" . consult-line-multi)
      ("M-s k" . consult-keep-lines)
      ("M-s f" . consult-focus-lines)
@@ -752,89 +871,351 @@ Provides search and navigation commands based on the Emacs completion function c
      ;; Isearch integration
      :map isearch-mode-map
      ("M-e" . consult-isearch-history)
-     ("M-s e" . consult-isearch-history)
-     ("M-s l" . consult-line)       ;; needed by consult-line to detect isearch
-     ("M-s L" . consult-line-multi) ;; needed by consult-line to detect isearch
+     ("M-s l" . consult-line)   ;; needed by consult-line to detect isearch
      ;; Minibuffer history
      :map minibuffer-local-map
-     ("M-s" . consult-history)
-     ("M-r" . consult-history))
-    :init
-    ;; Use Consult to select xref locations with preview
-    (setq xref-show-xrefs-function #'consult-xref
-          xref-show-definitions-function #'consult-xref)
+     ("M-s" . consult-history))
+     :init
+     ;; Use Consult to select xref locations with preview
+     (setq xref-show-xrefs-function #'consult-xref
+           xref-show-definitions-function #'consult-xref)
+     :config
+     ;; Configure the narrowing key.
+     (setq consult-narrow-key "<"))
+
+#+end_src
+
+*** Corfu
+
+*** Cape
+
+*** Embark
+“Emacs Mini-Buffer Actions Rooted in Keymaps” makes it easy to choose a command to run based on what is near point, both during a minibuffer completion session and in normal buffers. You can think of ~embark-act~ as a keyboard-based version of a right-click contextual menu.
+
+#+begin_src emacs-lisp
+
+  ;;; Conveniently act on minibuffer completions.
+  (use-package embark
+    :bind
+    (("C-." . embark-act)
+     ("C-;" . embark-dwim)        ;; good alternative: M-.
+     ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
+
+     :map minibuffer-local-map
+     ("C-l" . embark-select)
+     ("C-x a" . embark-act-all)
+     ("C-x e" . embark-export)
+     ("C-x s" . embark-collect)
+     ("C-w" . re/embark-kill-buffer)
+
+     ;; Keymaps for Embark variable actions.
+     :map embark-expression-map
+     ("p" . nil) ("n" . nil)
+     ("i" . backward-list)
+     ("k" . forward-list)
+     ("K" . kill-region)
+
+     :map embark-identifier-map
+     ("p" . nil) ("n" . nil)
+     ("i" . embark-previous-symbol)
+     ("k" . embark-next-symbol)
+     :map embark-symbol-map
+     ("RET" . helpful-callable)
+     :map embark-variable-map
+     ("RET" . helpful-variable)
+
+     :map embark-heading-map
+     ("i" . outline-previous-visible-heading)
+     ("k" . outline-next-visible-heading)
+     ("j" . outline-backward-same-level)
+     ("l" . outline-forward-same-level)
+     ("u" . outline-up-heading)
+     ("o" . rf/outline-down-heading))
     :config
-    ;; Configure the narrowing key.
-    (setq consult-narrow-key "<"))
+    ;; Key used for embark-cycle
+    (setq embark-cycle-key ".")
+    ;; Make the command a repeatable action inside the map
+    (add-to-list 'embark-repeat-actions 'rf/outline-down-heading)
+    ;; Kill-buffer from the minibuffer after M-x switch-to-buffer.
+    ;; https://old.reddit.com/r/emacs/comments/11lqkbo/
+    ;; weekly_tips_tricks_c_thread/jbe06qv/
+    (defun re/embark-kill-buffer (&optional arg)
+      (interactive "P")
+      (if-let ((targets (embark--targets)))
+          (let* ((target
+                  (or (nth
+                       (if (or (null arg) (minibufferp))
+                           0
+                         (mod (prefix-numeric-value arg) (length targets)))
+                       targets)))
+                 (type (plist-get target :type)))
+            (cond
+             ((eq type 'buffer)
+              (let ((embark-pre-action-hooks))
+                (embark--act 'kill-buffer target))))))))
 
-#+end_src
+  (use-package embark
+    :after (org embark)
+    :bind(:map embark-org-src-block-map
+          ("p" . nil) ("n" . nil)
+          ("RET" . org-indent-block)
+          ("i" . org-babel-previous-src-block)
+          ("k" . org-babel-next-src-block)
 
-** Ibuffer
-Advanced replacement for ‘buffer-menu’.
+          :map embark-org-item-map
+          ("p" . nil) ("n" . nil)
+          ("i" . org-previous-item)
+          ("k" . org-next-item)
 
-#+begin_src emacs-lisp
+          :map embark-org-link-map
+          ("p" . nil) ("n" . nil)
+          ("RET" . org-insert-link)
+          ("i" . org-previous-link)
+          ("k" . org-next-link)
 
-  ;; List existing buffers with ibuffer instead of list-buffers:
-  (defalias 'list-buffers 'ibuffer)
+          :map embark-org-heading-map
+          ("k" . nil) ("j" . nil) ("l" . nil) ("o" . nil)
+          ("k" . outline-next-visible-heading)
+          ("j" . outline-backward-same-level)
+          ("l" . outline-forward-same-level)
+          ("o" . rf/outline-down-heading)
+          ("n" . embark-org-insert-link-to)
+          ("b" . org-cut-subtree)
+          ("f" . org-store-link)
+          ("p" . org-sort)
 
-  (use-package ibuffer
-    :bind (:map ibuffer-mode-map
-                ("M-o" . nil)
-                ("C-M-o" . ibuffer-visit-buffer-1-window)))
+          :map embark-org-table-cell-map
+          ("^" . nil) ("v" . nil) ("<" . nil) (">" . nil)
+          ("RET" . org-table-blank-field)
+          ("i" . org-table-move-row-up)
+          ("k" . org-table-move-row-down)
+          ("j" . org-table-move-column-left)
+          ("l" . org-table-move-column-right)))
 
-#+end_src
-
-** Compare
-Compare, view/edit files and tools such as diff and ediff (comprehensive visual interface to ‘diff’ and ‘patch’).
-
-#+begin_src emacs-lisp
-
-                                          ; ;To make ediff to be horizontally split:
-  (setq ediff-split-window-function 'split-window-horizontally)
-  ;; To make ediff operate on selected-frame:
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
-
-  ;; Show difference between current file buffer and auto-save file (EmacsWiki):
-  (defun ew/diff-auto-save-file ()
-    "Get auto-save #file# difference with current buffer."
-    (interactive)
-    (diff (make-auto-save-file-name) (current-buffer) nil 'noasync))
+    ;; Provides exporters for several Consult commands and also tweaks the
+    ;; behavior of many Consult commands when used as actions with embark-act
+    ;; in subtle ways that you may not notice, but make for a smoother experience.
+    (use-package embark-consult
+      ;; only need to install it, embark loads it after consult if found
+      :hook
+      (embark-collect-mode . consult-preview-at-point-mode))
 
 #+end_src
 
 ** Bind key
-A simple way to manage personal keybindings.
+*** Meta
+Manage global =Meta= key combinations.
 
 #+begin_src emacs-lisp
 
-  ;; Make ESC quit prompts:
-  (keymap-global-set "<escape>" 'keyboard-escape-quit)
+  ;; M-
+  (dolist (binds
+           '(
+             ("M-7" . rf/expand-region)
 
-  ;; Unbind set-fill-column (so as not to press it unintentionally):
-  (keymap-global-unset "C-x f")
+             ("M-q" . xah-fill-or-unfill)
+             ("M-o" . other-window)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
 
 #+end_src
 
-** Kmacro
-Simplified keyboard macro user interface.
+*** Control
+Manage global =Control= key combinations.
 
 #+begin_src emacs-lisp
 
-  ;; When practicing writing English sentences.
-  (defalias 'english-toggle-headers
-     (kmacro "<tab> C-c C-n <tab> C-<right> C-<left>"))
+  ;; C-
+  (dolist (binds
+           '(
+             ("C-<tab>" . xah-next-user-buffer)
+             ("C-w" . xah-close-current-buffer)
+             ("C-z" . undo)
+             ("C-c y" . rf/yank-recently-window)
 
-  ;; Turn a single word into link ( word -> [[Word][word]] )
-  (defalias 'turn-org-word-into-link
-    (kmacro "C-<right> C-<backspace> C-y ] [ C-y ] ] C-<left> C-<left>
-  M-x u p c a s e - c h a r <return> [ ["))
+             ("C-<prior>" . xah-previous-user-buffer)
+             ("C-<next>" . xah-next-user-buffer)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+  ;; C-S-
+  (dolist (binds
+           '(
+             ("C-S-t" . xah-open-last-closed)
+             ;; This should be C-S-<tab> but it only works with C-<iso-lefttab>
+             ("C-<iso-lefttab>" . xah-previous-user-buffer)
+
+             ("C-S-<insert>" . rf/yank-recently-window)
+             ("C-S-<prior>" . xah-previous-emacs-buffer)
+             ("C-S-<next>" . xah-next-emacs-buffer)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+#+end_src
+
+*** Cluster
+Manage global cluster key combinations.
+
+#+begin_src emacs-lisp
+
+  (dolist (binds
+           '(
+             ("<escape>" . keyboard-escape-quit)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+#+end_src
+
+*** Keypad
+Manage global keypad key combinations.
+
+#+begin_src emacs-lisp
+
+  ;; kp-
+  (dolist (binds
+           '(
+             ("<kp-9>" . kmacro-end-or-call-macro)
+             ("<kp-add>" . switch-to-previous-buffer)
+
+             ("<kp-4>" . rf/find-or-switch-to-emacs-elisp)
+             ("<kp-5>" . rf/find-or-switch-to-english)
+             ("<kp-6>" . rf/find-or-switch-to-init)
+
+             ("<kp-1>" . rf/find-or-switch-to-main-file)
+             ("<kp-2>" . eshell)
+             ("<kp-3>" . scratch-buffer)
+
+             ("<kp-0>" . other-window)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+  ;; kp-S-
+  (dolist (binds
+           '(
+             ("S-<kp-9>" . kmacro-start-macro)
+
+             ("S-<kp-3>" . view-echo-area-messages)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+#+end_src
+
+*** Mouse
+Manage global mouse key combinations.
+
+#+begin_src emacs-lisp
+
+  ;; mouse-
+  (dolist (binds
+           '(
+             ("<mouse-8>" . xah-previous-user-buffer)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+
+  ;; shift + click select region
+  ;; turn off font dialog
+  (keymap-global-set "S-<down-mouse-1>" 'ignore)
+  (keymap-global-set "S-<mouse-1>" 'mouse-set-point)
+
+  ;; This is a trick. When you're in Emacs and switch apps using the Gnome
+  ;; command bound to s-<tab>, the superkey gets stuck in Emacs, so this
+  ;; trick allows you to navigate in Emacs while in the other app.
+  (keymap-global-set "s-<wheel-up>" 'mwheel-scroll)
+  (keymap-global-set "s-<wheel-down>" 'mwheel-scroll)
+
+#+end_src
+
+*** Maps
+Manage local mode key combinations.
+
+#+begin_src emacs-lisp
+
+  ;; minibuffer-local-map bindings:
+  (keymap-set minibuffer-local-map "C-r" 'se/take-the-word-at-point)
+
+#+end_src
+
+** Remap
+Manage remap key keybindings.
+
+#+begin_src emacs-lisp
+
+  ;; Remap movements
+  (keymap-global-set "<remap> <beginning-of-buffer>"
+                     'ergoemacs-beginning-or-end-of-buffer)
+  (keymap-global-set "<remap> <end-of-buffer>"
+                     'ergoemacs-end-or-beginning-of-buffer)
+  ;; (keymap-global-set "<remap> <move-beginning-of-line>"
+  ;;                    'xah-beginning-of-line-or-block)
+  ;; (keymap-global-set "<remap> <move-end-of-line>"
+  ;;                    'xah-end-of-line-or-block)
+
+  ;; delete-forward-char deletes by grapheme clusters. Useful since
+  ;; e.g. if point is before an Emoji sequence, pressing '<Delete>'
+  ;; will delete the entire sequence, not just a single character.
+  (keymap-global-set "<remap> <delete-char>" 'delete-forward-char)
+
+  ;; Remap cut, copy, paste
+  (keymap-global-set "<remap> <kill-region>" 'xah-cut-line-or-region)
+  (keymap-global-set "<remap> <kill-ring-save>" 'xah-copy-line-or-region)
+  (keymap-global-set "<remap> <yank>" 'xah-paste-or-paste-previous)
+  (keymap-global-set "<remap> <yank-pop>" 'consult-yank-pop)
+  ;; Trick to be able to use `kill-ring-save' as a copy in CUA rec mode
+  (with-eval-after-load 'cua-rect
+    (keymap-set cua--rectangle-keymap "<remap> <kill-ring-save>"
+                'kill-ring-save))
+
+  (keymap-global-set "<remap> <exchange-point-and-mark>"
+                     'mp/exchange-point-and-mark-no-activate)
+
+#+end_src
+
+** Repeat
+*** Repeat basics
+Convenient way to repeat previous commands.
+
+#+begin_src emacs-lisp
+
+  ;; Enable 'repeat-mode' to allow shorter key sequences.
+  ;; Type 'C-x u u' instead of 'C-x u C-x u' to undo many changes.
+  (repeat-mode)
+
+  ;; Disable the "repeat suggest" message when repeat-mode is active
+  ;;; (custom-set-variables '(repeat-echo-function 'ignore))
+
+#+end_src
+
+*** Repeat window
+
+#+begin_src emacs-lisp
+
+  (defvar-keymap recenter-repeat-map
+    :doc "Keymap to repeat `recenter' command."
+    :repeat t
+    "l" #'recenter-top-bottom)
+
+
+  (defvar-keymap switch-resize-repeat-map
+    :repeat t
+    ;; Switch windows.
+    "c" #'windmove-up
+    "t" #'windmove-down
+    "h" #'windmove-left
+    "n" #'windmove-right
+    ;;  Resize windows.
+    "C" #'enlarge-window
+    "T" #'shrink-window
+    "H" #'shrink-window-horizontally
+    "N" #'enlarge-window-horizontally
+    "x" #'balance-windows)
+  ;; (keymap-global-set "M-X" switch-resize-repeat-map)
 
 #+end_src
 
 * Text
 ** Org
-*** Org general
+*** Org package
 Outline-based notes management and organizer.
 
 #+begin_src emacs-lisp
@@ -842,16 +1223,28 @@ Outline-based notes management and organizer.
   (use-package org
     :pin gnu
     :hook (org-mode . rf/org-mode-setup)
-    :config
-    ;; Wrapping functions of properties and functions org.
-    (rf/org-face-setup)
-    (rf/org-appearance-setup)
-    (rf/org-todo-setup)
-    (rf/org-properties-setup)
-    (rf/org-editing-setup)
-    (rf/org-babel-setup)
-    (rf/org-latex-setup)
-    (rf/org-agenda-setup))
+    :bind (:map org-mode-map
+                ;; Make shift selection works as usual.
+                ("C-S-<up>" . nil) ("C-S-<down>" . nil)
+                ("M-<tab>" . org-cycle)
+                ("C-c C-d" . rf/outline-down-heading)
+                ;; ("C-," . embark-act) ;;; dvorak
+                ("<kp-multiply>" . rf/org-emphasize-bold)
+                ("<kp-divide>" . rf/org-emphasize-code)
+                ("S-<kp-divide>" . rf/org-emphasize-italic)
+                ("S-<kp-multiply>" . rf/org-emphasize-verbatim))
+  :config
+  ;; Wrapping functions of properties and functions org.
+  (rf/org-general-setup)
+  (rf/org-bindings-setup)
+  (rf/org-face-setup)
+  (rf/org-appearance-setup)
+  (rf/org-todo-setup)
+  (rf/org-properties-setup)
+  (rf/org-editing-setup)
+  (rf/org-babel-setup)
+  (rf/org-latex-setup)
+  (rf/org-agenda-setup))
 
 #+end_src
 
@@ -865,6 +1258,99 @@ Options concerning the minor modes active in org.
     (org-indent-mode)
     (visual-line-mode 1)
     (variable-pitch-mode 1))
+
+#+end_src
+
+*** Org general
+General settings of the org mode.
+
+#+begin_src emacs-lisp
+
+  (defun rf/org-general-setup ()
+    "Wrapper of general settings to activate within use-package org."
+
+    ;; Contrary function of `outline-up-heading'.
+    (defun rf/outline-down-heading ()
+      "Move to the header line of the next visible tree."
+      (interactive)
+      (let (up-point forward-point)
+        (while (eq up-point forward-point)
+          (outline-up-heading 1)
+          (setq up-point (point))
+          (org-forward-heading-same-level 1 t)
+          (setq forward-point (point)))))
+
+     )
+
+#+end_src
+
+*** Org bindings
+Setting up org mode bindings.
+
+#+begin_src emacs-lisp
+
+  (defun rf/org-bindings-setup ()
+    "Wrapper to set org mode bindings."
+
+    ;; Setting the leader map:
+    (defvar-keymap rf/org-leader-map
+      :doc "Keymap for Org mode using a new leader key."
+      "6" #'rf/org-emphasize-italic
+      "7" #'rf/org-emphasize-bold
+      "8" #'rf/org-emphasize-code
+      "9" #'rf/org-emphasize-verbatim
+
+      "i" #'org-previous-visible-heading
+      "k" #'org-next-visible-heading
+      "j" #'org-backward-heading-same-level
+      "l" #'org-forward-heading-same-level
+      "u" #'org-up-element
+      "o" #'rf/outline-down-heading
+
+      "b" #'org-cut-subtree
+
+      "h" #'org-previous-link
+      "n" #'org-next-link
+
+      "w" #'org-insert-link
+      "q" #'org-store-link
+
+      "d" #'org-table-create-or-convert-from-region
+      "s" #'org-insert-structure-template
+
+      "e" #'org-narrow-to-subtree
+      "m" #'org-return-and-maybe-indent
+      "x" #'org-open-line)
+
+    ;; Settings the repeat maps:
+    (defvar-keymap org-move-headers-repeat-map
+      :doc "Keymap for repeating commands to jump between headings."
+      :repeat t
+      "i" #'org-previous-visible-heading
+      "k" #'org-next-visible-heading
+      "j" #'org-backward-heading-same-level
+      "l" #'org-forward-heading-same-level
+      "u" #'org-up-element
+      "o" #'rf/outline-down-heading)
+
+    (defvar-keymap org-next-link-repeat-map
+      :doc "Keymap for repeating commands to jump between links."
+      :repeat t
+      "h" #'org-previous-link
+      "n" #'org-next-link)
+
+    (defvar-keymap org-open-line-repeat-map
+      :doc "Keymap to repeat `org-open-line'.  Used in `repeat-mode'."
+      :repeat t
+      "x" #'org-open-line)
+
+    ;; Setting the leader key
+    (keymap-set org-mode-map "<kp-8>" rf/org-leader-map)
+
+    ;; Setting the remap bindings:
+    (keymap-set org-mode-map "<remap> <yank>" 'xah-paste-or-paste-previous)
+
+    )
 
 #+end_src
 
@@ -982,13 +1468,23 @@ Options concerning properties in Org mode.
     (add-to-list 'org-structure-template-alist '("cs" . "src css"))
     (add-to-list 'org-structure-template-alist '("htm" . "src html"))
     (add-to-list 'org-structure-template-alist '("ar" . "src artist"))
-
+    (add-to-list 'org-structure-template-alist '("con" . "src conf"))
 
     ;; Follow the links with RET
     (setq org-return-follows-link  t)
 
     ;; Start an org file with all headers collapsed.
     (setq org-startup-folded 't)
+
+    ;; Make shift selection works as usual.
+    (setq org-support-shift-select 'always)
+    (defun rf/org-toggle-shift-select ()
+      "Toggle `org-support-shift-select' variable.
+    Useful when you want to use Shift comands briefly."
+      (interactive)
+      (if org-support-shift-select
+          (setq org-support-shift-select nil)
+        (setq org-support-shift-select 'always)))
 
     )
 
@@ -1007,7 +1503,7 @@ Options concerning the editing in org.
 
     This function is created temporarily, because there's an issue
     with `org-mode' and `consult' commands that sometimes block
-    `org' headers from being opened."
+    `org' headers from being unfolded."
       (interactive)
       (let ((buffer-name (buffer-file-name)))
         (basic-save-buffer)
@@ -1057,14 +1553,10 @@ Options concerning the editing in org.
       (interactive)
       (rf/org-emphasize-marker ?\$))
 
-    ;; org-emphasize (*) bold with F5, (~) code with F6 and others.
-    (keymap-set org-mode-map "<f5>" 'rf/org-emphasize-bold)
-    (keymap-set org-mode-map "<f6>" 'rf/org-emphasize-code)
-    (keymap-set org-mode-map "<f7>" 'rf/org-emphasize-italic)
-    (keymap-set org-mode-map "<f8>" 'rf/org-emphasize-math)
-
-    ;; Allow org-cycle in headings while pressing the ctrl key.
-    (keymap-set org-mode-map "C-<tab>" 'org-cycle)
+    (defun rf/org-emphasize-verbatim ()
+      "Insert or change a word emphasis or region to verbatim."
+      (interactive)
+      (rf/org-emphasize-marker ?\=))
 
     )
 
@@ -1175,15 +1667,34 @@ Directory editing.
     :bind (("C-x C-j" . dired-jump)
            :map dired-mode-map
            ("DEL" . dired-up-directory)
-           ("z" . ew/dired-dotfiles-toggle))
+           ("z" . ew/dired-dotfiles-toggle)
+           ;; To use function keys for undo (f1 -> C-z)
+           ("C-z" . dired-undo)
+           ("_" . xah-dired-rename-space-to-underscore)
+           ("-" . xah-dired-rename-space-to-hyphen))
     :custom
     ;; Changes the order in which the directories are displayed.
     (dired-listing-switches "-aoht --group-directories-first")
     :config
     ;; When visiting a new sub-directory the old buffer will be killed:
     (setq dired-kill-when-opening-new-dired-buffer t)
-    ;; Reverts the destination Dired buffer after performing some dired-operations:
-    (setq dired-do-revert-buffer t))
+    ;; Reverts the destination Dired buffer after
+    ;; performing some dired-operations:
+    (setq dired-do-revert-buffer t)
+    ;; Toggle showing dot files in Dired mode (EmacsWiki):
+    (defun ew/dired-dotfiles-toggle ()
+      "Show/hide dot-files"
+      (interactive)
+      (when (equal major-mode 'dired-mode)
+        ;; if currently showing
+        (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
+            (progn
+              (set (make-local-variable 'dired-dotfiles-show-p) nil)
+              (message "h")
+              (dired-mark-files-regexp "^\\\.")
+              (dired-do-kill-lines))
+          (progn (revert-buffer) ; otherwise just revert to re-show
+                 (set (make-local-variable 'dired-dotfiles-show-p) t))))))
 
   ;; Shows icons for each file in dired mode:
   (use-package all-the-icons-dired
@@ -1191,21 +1702,6 @@ Directory editing.
     :config
     ;; Display Dired icons in color:
     (setq all-the-icons-dired-monochrome nil))
-
-  ;; Toggle showing dot files in Dired mode (EmacsWiki):
-  (defun ew/dired-dotfiles-toggle ()
-    "Show/hide dot-files"
-    (interactive)
-    (when (equal major-mode 'dired-mode)
-      ;; if currently showing
-      (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
-          (progn
-            (set (make-local-variable 'dired-dotfiles-show-p) nil)
-            (message "h")
-            (dired-mark-files-regexp "^\\\.")
-            (dired-do-kill-lines))
-        (progn (revert-buffer) ; otherwise just revert to re-show
-               (set (make-local-variable 'dired-dotfiles-show-p) t)))))
 
 #+end_src
 
@@ -1218,6 +1714,7 @@ Maintain a menu of recently opened files.
   (use-package recentf
     :config
     (setq recentf-max-saved-items 50)
+    (setq desktop-auto-save-timeout 300)
     (recentf-mode 1))
 
 #+end_src
@@ -1231,7 +1728,8 @@ Preserve the state of scratch buffers across Emacs sessions
   (use-package persistent-scratch
     :config
     ;; Enable autosave and restore the last saved state:
-    (persistent-scratch-setup-default))
+    (persistent-scratch-setup-default)
+    (setq persistent-scratch-autosave-interval 60))
 
 #+end_src
 
@@ -1243,9 +1741,84 @@ Shows the file system outlines of your projects in a simple tree layout allowing
   ;; A tree layout file explorer for Emacs.
   (use-package treemacs
     :bind (:map treemacs-mode-map
-                ("C-<tab>" . treemacs-TAB-action))
+                ("M-<tab>" . treemacs-TAB-action))
     :config
     (treemacs-resize-icons 15))
+
+#+end_src
+
+** Find file
+Finding files.
+
+#+begin_src emacs-lisp
+
+  (defvar rf/main-file "/home/rich/Documents/todo.org"
+    "The main file to switch to.
+  This is one of the most common files, depending on what
+  you'reworking on at the time. Its purpose is to add a
+  shortcut to quickly switch to it.")
+
+  (defvar rf/list-of-main-files
+    '(("todo.org" . "/home/rich/Documents/todo.org")
+      ("emacs-elisp.org" . "/home/rich/Documents/emacs-elisp.org")
+      ("shell.org" . "/home/rich/Documents/shell.org")
+      ("init.org" . "/home/rich/.emacs.d/init.org")
+      ("english.org" . "/home/rich/Documents/english.org"))
+    "List of main files.
+  This is a list of the most frequently used files. It's used to
+  configure an easy-to-use shortcut to quickly switch to this file.
+  Each element is (file-name . file-path).")
+
+  (defun rf/set-the-main-file ()
+    "Choose a file to set in variable `rf/main-file'."
+    (interactive)
+    (let ((file-name (completing-read
+                      "Choose the main document: "
+                      (mapcar (lambda (f) (car f)) rf/list-of-main-files)
+                      nil t)))
+      (dolist (cell rf/list-of-main-files)
+        (when (string= (car cell) file-name)
+          (setq rf/main-file (cdr cell))))))
+
+  (defun rf/find-or-switch-to-file (file-path)
+    "Find or switch to the FILE-PATH file."
+    (let ((buffer (find-buffer-visiting file-path)))
+      (if (file-exists-p file-path)
+          (if buffer
+              (switch-to-buffer buffer)
+            (find-file file-path))
+        (message "The file does not exist: %s" file-path))))
+
+  (defun rf/find-or-switch-to-main-file ()
+    "Find or switch to the main file.
+  The main file is the one stored in the `rf/main-document' varible."
+    (interactive)
+    (rf/find-or-switch-to-file rf/main-file))
+
+  (defun rf/find-or-switch-to-todo ()
+    "Find or switch to the `todo.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/todo.org"))
+
+  (defun rf/find-or-switch-to-emacs-elisp ()
+    "Find or switch to the `emacs-elisp.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/emacs-elisp.org"))
+
+  (defun rf/find-or-switch-to-english ()
+    "Find or switch to the `english.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/english.org"))
+
+  (defun rf/find-or-switch-to-shell ()
+    "Find or switch to the `shell.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/shell.org"))
+
+  (defun rf/find-or-switch-to-init ()
+    "Find or switch to the `init.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/.emacs.d/init.org"))
 
 #+end_src
 
@@ -1277,9 +1850,9 @@ A rich help system with contextual information.
      ;; and macros. `helpful-function' is functions only, so we provide
      ;; `helpful-callable' as a drop-in replacement.
      ([remap describe-function] . helpful-callable))
-     ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
-     ;; already links to the manual, if a function is referenced there.
-     ([remap Info-goto-emacs-command-node] . helpful-function))
+    ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+    ;; already links to the manual, if a function is referenced there.
+    ([remap Info-goto-emacs-command-node] . helpful-function))
 
 #+end_src
 
@@ -1350,7 +1923,7 @@ Generic programming mode, from which others derive.
   (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 
-  ;; Helps comment/uncomment multiple lines with/without selecting them.
+  ;;; Helps comment/uncomment multiple lines with/without selecting them.
   (use-package evil-nerd-commenter
     :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
@@ -1563,7 +2136,7 @@ Combobulate group: Structured Editing and Movement with Combobulate.
 
     :config
     (mp-setup-install-grammars)
-    ;; Combobulate adds structured editing and movement to a
+    ;;; Combobulate adds structured editing and movement to a
     ;; wide range of programming languages.
     (use-package combobulate
       :vc
@@ -1593,7 +2166,7 @@ Bringing rich debugging capabilities to Emacs via the Debug Adapter Protocol.
 
 #+begin_src emacs-lisp
 
-  ;; Debug adapter client for Emacs that has no dependencies outside Emacs.
+  ;;; Debug adapter client for Emacs that has no dependencies outside Emacs.
   (use-package dape
     :preface
     (setq dape-key-prefix "\C-cd")
@@ -1706,10 +2279,10 @@ Customization variables for JavaScript mode.
               ((looking-at "[ \t]*console.log(.*" t)
                ;; (blanks)console.log(target string)(semicolon comment)
                (if (re-search-forward
-               "\\([ \t]*\\)console.log(\\(.*\\))\\(;\\)?\\([ \t;]*//.*$\\)"
+                    "\\([ \t]*\\)console.log(\\(.*\\))\\(;\\)?\\([ \t;]*//.*$\\)"
                     end t)
                    (replace-match "\\1\\2\\3\\4" t nil)
-               ;; (blanks)console.log(target string)(semicolon)
+                 ;; (blanks)console.log(target string)(semicolon)
                  (if (re-search-forward
                       "\\([ \t]*\\)console.log(\\(.*\\))\\(;\\)?\\(.*$\\)"
                       end t)
@@ -1767,8 +2340,21 @@ Command shell implemented entirely in Emacs Lisp.
     :commands eshell
     :config
     ;; Don't add input matching the last on the input ring.
-    (setq eshell-hist-ignoredups t))
+    (setq eshell-hist-ignoredups t)
+    (add-to-list 'eshell-modules-list 'eshell-tramp)
+    ;; Subcommands that present their output in a visual fashion
+    (setq eshell-visual-subcommands '(("git" "log" "diff" "show"))))
 
+  ;; Set here because eshell-mode-map is loaded after esh-mode feature.
+  (with-eval-after-load 'esh-mode
+    (keymap-set eshell-mode-map "C-r" 'consult-history))
+
+  (with-eval-after-load 'em-hist
+    (keymap-set eshell-hist-mode-map "C-h"
+                'eshell-previous-matching-input-from-input)
+    (keymap-set eshell-hist-mode-map "C-n"
+                'eshell-next-matching-input-from-input)
+    (keymap-set eshell-hist-mode-map "C-I" 'eshell-list-history))
 
   ;; Provides some themes of Emacs Shell (Eshell) prompt.
   (use-package eshell-git-prompt
@@ -1791,11 +2377,6 @@ Command shell implemented entirely in Emacs Lisp.
     :config
     (set-face-foreground 'company-preview-common "#697b96")
     (set-face-background 'company-preview nil))
-
-
-  ;; Set here because eshell-mode-map is loaded after esh-mode feature.
-  (with-eval-after-load 'esh-mode
-    (keymap-set eshell-mode-map "C-r" 'consult-history))
 
 #+end_src
 
@@ -1833,7 +2414,7 @@ Emacs core UI script for the Google Translate package.
 
 #+begin_src emacs-lisp
 
-  ;; Emacs interface to Google Translate.
+  ;;; Emacs interface to Google Translate.
   (use-package google-translate
     :bind (("C-c t" . google-translate-at-point)
            ("C-c T" . google-translate-query-translate)
@@ -1904,6 +2485,23 @@ Code local to your site.
 
 #+begin_src emacs-lisp
 
+  ;; Track command frequencies
+  (use-package keyfreq
+    :config
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1))
+
+
+  ;; External libraries/packages edited
+  (add-to-list 'load-path "~/.emacs.d/lisp/")
+  (require 'xah-fly-keys)
+  (require 'wakib-keys)
+  (require 'ergoemacs-functions)
+  (require 'xah-function-mix)
+  (require 'my-abbrev)
+
+
+  ;; My local code:
   (defun rf/convert-srt-to-html (filePath)
     "Format and convert srt subtitle file to html.
 
@@ -1952,5 +2550,5 @@ Code local to your site.
 * References
 - [[https://www.gnu.org/software/emacs/manual/emacs.html][GNU Emacs Manual]]
 - [[https://www.emacswiki.org/][EmacsWiki]]
-- [[https://wilkesley.org/~ian/xah/][∑XAH]]
+- [[http://xahlee.info/emacs/index.html][∑XAH]]
 - [[https://github.com/daviwil/emacs-from-scratch/blob/a57d99ba80276926a2b68521f9a9d23dc173a628/Emacs.org][System Crafters Github]]

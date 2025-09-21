@@ -110,43 +110,71 @@ Open files and the processes using them, it can list network resources, dynamic 
 ( *COMMAND* the command name for the process that holds the file descriptor *FD* shows the purpose of the file, it can also list the file descriptor of the open file *DEVICE* the major and minor number of the device that holds the file *NAME* the filename )
 ( ~lsof +D /usr~ displays entries for open files in /usr and all of its subdirectories )
 
+*** xdg-open file
+Open to file.
+
 ** Search
 *** find path options
 Search for file corresponding to options in path.
-[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-prune/ if the file is a dir, don't descend into it /-xdev/ don't descend dir on other filesystems /-perm 644/ search by permission /-exec/ search by executable /-type d/ search by dir /-type f/ search by file /-inum 123/ search by inode /-regex pattern/ matches regular expression pattern ]
-( ~find -name pattern~ search for file with a pattern )
-( ~find -type f/d/l~ search by filetype: f=file, d=directory, l=link )
-( ~find -exec cmd~ execute cmd on the found files )
+[ /-name/ base of file name,the path with the leading directories removed /-iname/ like -name, but the match is case insensitive /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-exec/ search by executable /-type d/ search by dir /-type f/ search by file /-size n/ file uses less than, more than or  exactly  n  units  of  space, rounding up /-prune/ if the file is a dir, don't descend into it ]
+
+*** find . -name pattern
+Search for file with a pattern.
+ When you use -exec, it actually spawn process to run the shell command for each file.
+[ /-name/ base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-exec/ search by executable /-type f/ search by file /-type d/ search by dir ]
+( ~find . -name "*.html"~ list files ending in .html )
+( ~find . -type f~ search by filetype: f=file )
+( ~find . -size +9M~ list files larger than 9 mibi bytes )
+( ~find . -name "*!" -exec rm {} \;~ delete all files whose name ends with ! )
+( ~find . -exec cmd~ execute cmd on the found files )
 ( ~find . -name "*.png" -exec cp {} $HOME/tmp/ \;~ search for all png files, then copy all files to tmp directory (‘{}’ stands for found files) )
-
-*** find dir -name file -print
-Search /file/ in /dir/. Be carefull of shell expansion, try to use quotes in the files names.
-[ /-name/ base of file name,the path with the leading directories removed /-iname/ like -name, but the match is case insensitive /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater /-size n/ file uses less than, more than or  exactly  n  units  of  space, rounding up ]
-( ~find . -size -9k~ search files larger than 9 mibi bytes )
-
-*** find . -name '*.gif' -print0 | xargs -0 file
-Verify that every file in the current directory ( /./ ) tree that ends with /.gif/ is actually a GIF image. This form changes the find output separator and the xargs argument delimiter from a newline to a NULL character, it's usefull to avoid errors arising from filenames that can include spaces and newlines.
-xargs reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the command one or more times with any initial- arguments followed by items read from standard input.
-You may need to add two dashes (--) to the end of your xargs command if there’s a chance that any of the target files start with a single dash (-). The double dash (--) tells a program that any arguments that follow are filenames, not options (not all programs support the use of a double dash).
-[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater ]
-( ~find . -name '*.gif' -exec file {} \;~ equivalent command but the syntax is somewhat tricky because need to supply braces )
-
-*** find dir
-Search all files with relative path in current directory and its subdirectories.
-( ~find $PWD~ search all files with absolute path in the current dir and its subdirs )
-( ~find $PWD -type f~ search only files with absolute path in current dir and its subdirs )
-( ~find $PWD -type d~ search only dirs with absolute path in current dir and its subdirs )
-( ~find $PWD -maxdepth 2~ search all files with absolute path with 2 depth )
 ( ~find . -maxdepth 1 -type d~ search only directories in the current path )
 ( ~find . -maxdepth 1 -type d -name 'emacs*'~ search only directories starting with emacs word in the current directory )
-( ~find . -maxdepth 1 -type d -name 'emacs*' -printf '%f\n'~ equivalent to above, but listing without ./ at the beginning )
 
 *** xargs cmd arg
 Reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the /cmd/ command (default is echo) one or more times with any /arg/ initial-arguments followed by items read from standard input. Blank lines on the standard input are ignored.
 ( ~| xargs~ joins all the lines from a pipe )
 ( ~| xargs -n 1~ splits pipe elements separated by whitespace into lines )
 
+*** find . -print0 | xargs -0 -l -i echo "{}";
+Print file names that may contain spaces.
+xargs is a command that is used together with 'find' to allow you to call arbitrary unix commands on list of files.
+[ /-0/ parse input using null char as seperators and take any special char in file name as literal /-l/ pass just one file name at a time /-i/ use {} as placeholder for file name /"{}"/ quote around the entire file name, so that echo (or another program) will see it as one argument instead of several. (Note: the -i must come after -l) ]
+( ~find . -name "*png" -print0 | xargs -0 -L1 -I ttt magick ttt ttt.jpg~ convert all png in a dir to jpg )
+
+*** find . -name '*.gif' -print0 | xargs -0 file
+Verify that every file in the current directory ( /./ ) tree that ends with /.gif/ is actually a GIF image.
+This form changes the find output separator and the xargs argument delimiter from a newline to a NULL character, it's usefull to avoid errors arising from filenames that can *include spaces and newlines*.
+xargs reads items from the standard input, delimited by blanks (which can be protected with double or single quotes or a backslash) or newlines, and executes the command one or more times with any initial- arguments followed by items read from standard input.
+You may need to add two dashes (--) to the end of your xargs command if there’s a chance that any of the target files start with a single dash (-). The double dash (--) tells a program that any arguments that follow are filenames, not options (not all programs support the use of a double dash).
+[ /-name/  base of file name,the path with the leading directories removed /-print/ print the full name, followed by a newline /-print0/ print the full name, folowed by a null charater ]
+( ~find . -name '*.gif' -exec file {} \;~ equivalent command but the syntax is somewhat tricky because need to supply braces )
+
+*** find $PWD
+Search all files with *absolute* path in the current dir and its subdirs.
+( ~find .~ search all files with *relative* path in current directory and its subdirs )
+( ~find $PWD -type d~ search only dirs with absolute path in current dir and its subdirs )
+( ~find $PWD -maxdepth 2~ search all files with absolute path with 2 depth )
+
 ** Analisys
+*** grep pattern file
+Prints the lines from a /file/ or input stream that match an /pattern/.
+When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on the command line, it's vital that they be enclosed in quotes to prevent the shell from attempting to expand them.
+[ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-r/ all subdirectories /-G/ basic-regexp (BREs) /-E/ extended-regexp (EREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search /-F/ fixed strings, not regular expressions (F means Fixed String) ]
+[ Output Options: /-H/ include file name in the result /-h/ do NOT print file name /-l/ print just file name; do NOT print the matched lines /-L/ print just file name that does NOT match ]
+( ~grep 'xyz' file~ show lines containing xyz in file )
+( ~grep 'xyz' *html~ show lines containing xyz in all files ending in html in current dir top level files )
+( ~grep -r 'xyz' --include='*html' /web~ show matching lines in dir and subdir, file name ending in html )
+( ~grep -F '.*' *html~ search html files that contains .*literally )
+( ~grep -v 'html HTTP' *log~ print lines not matching a string, for all files ending in log )
+( ~grep -P 'png HTTP|jpg HTTP' *log~ print lines containing png HTTP or jpg HTTP )
+( ~grep root /etc/*~ check every file in /etc that contains root )
+( ~grep -r root /etc/*~ check files in /etc and folder recursively that contains root )
+( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
+( ~cp `ls dir |grep -Ev 'exclude1|exclude2' newDir`~ copy all files in dir except some files to newDir )
+( ~grep 'html HTTP' apache.log | awk '{print $12 , $7}' | grep -i -P "livejournal|blogspot"~ print lines containing “html HTTP” in a log file, show only the 12th and 7th columns, show only certain lines )
+( ~grep -r --include='*html' -F 'http://' ~/web | grep -v -P 'google.com|twitter.com|reddit.com|wikipedia.org'~ print all links in all html files of a dir, except certain links )
+
 *** du -h file
 Display size of the file /file/.
 [ /-h/ human readable ]
@@ -166,16 +194,6 @@ Prints its arguments to the standard output.
 ( ~echo Hola.\\nCómo estás~ print using newline )
 ( ~echo Front-{A,B,C}-Back~ brace expansion )
 ( ~echo Number_{1..5}~ brace expanded with a leading portion (preamble) and a trailing portion (postscript) )
-
-*** grep pattern file
-Prints the lines from a /file/ or input stream that match an /pattern/.
-When pass regexp containing metacharacters (^ $ . [ ] { } - ? * + ( ) | \) on the command line, it's vital that they be enclosed in quotes to prevent the shell from attempting to expand them.
-[ /-i/ ignore-case /-v/ invert, print only those lines that don't match /-G/ basic-regexp (BREs) /-E/ extended-regexp (EREs) /-q/ quiet /-c/ count matching lines /-l/ name of each file /-L/ name file that don't match /-n/ number line /-h/ suppress the output of filenames for multi-file search /-F/ fixed strings, not regular expressions ]
-( ~grep root /etc/*~ check every file in /etc that contains root )
-( ~grep -r root /etc/*~ check files in /etc and folder recursively that contains root )
-( ~grep -h '.zip' files*.txt~ match to thing like bunzip2, gunzip, gzip,... )
-( ~zgrep -El 'regex|regular expression' *.gz~ zgrep provides a front end for grep, allowing it to read compressed files. This command list files containing either the string regex or the string regular expression )
-( ~cp `ls dir |grep -Ev 'exclude1|exclude2' newDir`~ copy all files in dir except some files to newDir )
 
 *** diff file1 file2
 See the differences between /file1/ and /file2/.
@@ -424,6 +442,19 @@ View the size and utilization of your currently mounted filesystems.
 [ /-m/ block-size 1M /-h/ human readable /--total/ produce a gran total /-T/ print file system type ]
 ( ~df dir~ view the info in the specific directory )
 
+*** dirs
+List the stack of directory paths.
+[ /-v/ displays the stack with index numbers /-l/ displays the stack with full paths /+N/ rotates the stack, moving the directory at position N to the top /-N/ rotates the stack to the right /-c/ clear the directory stack /-p/ display the directory stack with one entry per line ]
+( ~pushd path~ save the path )
+( ~popd~ return to the save path )
+
+*** diff -r --brief dirpath1 dirpath2
+Compare 2 directories, show only missing files/dir.
+[ /-r/ recurvise (all subdirs) /--brief/ only output if files differ (as opposed to how they differ) or non-existant ]
+
+*** xdg-open .
+Open current dir.
+
 *** stat dir
 Display /dir/ status (birth, inode, block, device, type, group, permissions, size,...)
 ( ~pwd~ print working directory )
@@ -436,7 +467,91 @@ List contents of directories in a tree-like format. Show only directories and su
 *** gio list trash://
 List the Trash folder.
 
+*** backfold dir email
+Creates a file that packages and compresses all the files in the directory and sends it by mail.
+( ~backfold . email~ backup the current directory and send it by email )
+
 * System
+** Utilities
+*** adduser
+Add a user or group to the system.
+[ /--ingroup/ set the group /--group/ add a user group /--uid/ choose UID /--home/ override the home directory  /--shell/ override the shell /--system/ add the system user ]
+( ~adduser name~  add a normal user )
+( ~adduser --group name~ add a user group (addgroup) )
+( ~addgroup --system name~ add a system group )
+
+*** deluser
+Remove a user or group from the system.
+[ /--force name/ remove the root acoount /--remove-home name/ delete the user and his home directory /--remove-all-files name/ delete the user and all his files /--backup name/ backup all files before deleting ]
+( ~deluser name~ remove a user from the system )
+( ~deluser --group name~ remove group from the system )
+( ~deluser group name~ remove a user from specific group )
+
+*** passwd
+Change the password of the current user.
+( ~passwd user~ change password of the user )
+
+*** sudo
+Switch to administrator mode, superuser
+( ~su~ start a shell for the superuser )
+( ~su -~ start a shell for the superuser and his environment is loaded )
+( ~su user~ allows commands to be run with a substitute user )
+
+*** chsh
+Change login shell interactively.
+The default shell assigned to new user accounts can be changed at any time by editing the file ~/etc/adduser.conf~.
+( ~cat /etc/shells~ check which shells are currently installed )
+( ~cat /etc/passwd~ check which shells each user currently has )
+( ~chsh carlos -s /bin/zsh~ change login shell )
+( ~chfn~ change real user name and information )
+( ~tty~ print the current terminal's name )
+
+*** shutdown -P 0
+Power off the machine immediately.
+"+0" for triggering an immediate shurdown. If no time argument is specified, "+1" is implied.
+[ /-P/ power the machine off /-r/ reboot ]
+( ~shutdown +5~ shut down in 5 min )
+( ~shutdown 22:30~ shut down at 10:30 PM )
+( ~pm-suspend~ suspend system, aka sleep. Fast wake )
+( ~systemctl suspend~ equivalent command to above )
+( ~shutdown -r now~ reboot the machine now )
+( ~pm-hibernate~ save most power. Slow wake )
+( ~pm-suspend-hybrid~ a combination of sleep and hibernate )
+
+*** at
+Queue, examine, or delete jobs for later execution.
+Reads the commands from the standard input at a specified time. End the input with CTRL-D.
+This command is used to run a job once in the future without using cron.
+( ~atq~ check that the job has been scheduled )
+( ~atrm~ remove job )
+( ~at 22:30 30.09.15~ schedule jobs days into the future )
+( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
+
+*** anacron -T
+Anacrontab  testing.  The  configuration file will be tested for validity.
+[ /-f/ force execution of the jobs]
+( ~anacron -fd~ force execution of the jobs, ignoring the timestamps and print output info to stderr and syslog )
+( ~anacron -fd job-identifier~ force only the execution of the identified job )
+
+*** ldd prog
+Show what shared libraries a executable /prog/ uses.
+( ~ldd /bin/bash~ show shared libraries )
+( ~ldd $(which nautilus) | grep gtk~ show which gtk libraries nautilus uses)
+
+*** xev
+Print contents of X events.
+Creates a window and then asks the X server to send it events whenever anything happens to the window (such as it being moved, resized, typed in, clicked in, etc.).
+It is useful for seeing what causes events  to  occur  and  to display  the  information that they contain such as *extract keycodes and key symbols* for different keyboards when remapping the keyboard.
+( ~xev | grep button~ get the mouse button codes )
+( ~xev | sed -ne '/^KeyPress/,/^$/p'~ grab the keystrokes )
+
+*** evtest
+Input device event monitor and query tool.
+Useful for finding out a particular input device (/dev/input/eventX) or list all input devices.
+( ~libinput list-devices~ list all devices recognized by libinput (needs libinput-tools installed) )
+( ~libinput debug-events~ show a GUI to visualize libinput's events )
+( ~lsinput~ list all input devices (needs input-utils installed) )
+
 ** Processes
 *** top
 List processes running on the system in a semi-graphical table.
@@ -474,23 +589,31 @@ Print all process in a tree.
 *** pidof name
 Find the process ID of a running program /name/.
 ( ~pgrep name~ equivalent tool )
+( ~pgrep name~ look up for processes based on name and other attributes )
+( ~pgrep -u root sshd~ list the processes called sshd AND owned  by  root )
+( ~pgrep -u root,daemon~ will list the processes owned by root OR daemon )
+( ~pidwait name~ wait for each process instead of listing them on stdout )
 
 *** kill signal pid
 Kill a process using its pid.
 [ /-STOP/ freeze a process /-CONT/ continue running the process again /-KILL/ brutal way to terminate process /-9/ another notation for -KILL /-15/ another notation for -SIGTERM /-TSTP/ terminal stop /-INT/ interrupt /-HUP/ hangup ]
 ( ~kill 123~ send the default signal, SIGTERM or TERM (terminate the process) )
+( ~kill -9 123~ brutal way to terminate process )
 ( ~kill 123 3453~ send the default signal, SIGTERM, to all those processes )
 ( ~kill -STOP 123~ freeze the 123 process )
 ( ~killall xlogo~ send signals to multiple processes matching a specified program or username )
-( ~pkill signal name~ kill a process using its name )
+( ~pkill signal name~ kill a process using its name ( send  the  specified  signal  (by default SIGTERM) to each process instead of listing them on stdout) )
 
 *** command &
 Detach a process /command/ from the shell and put it in the "background".
+=Ctrl+c= stop the current program tied to the terminal. (sending SIGINT to it)
+=Ctrl+z= suspend the current program tied to the terminal. (sending SIGTSTP to it)
 ( ~gunzip file.gz &~ decompress file in the background )
 ( ~bg %123~ move to background )
 ( ~fg %123~ bring to foreground )
-( ~jobs~ show suspended processes on current terminal )
+( ~jobs~ list background processes  )
 ( ~disow %2~  remove jobs from the job table, or to mark jobs so that a SIGHUP signal is not sent to them if the parent shell receives it (useful for close the shell while keeping background jobs running) )
+( ~nohup name &~ run a command immune to hangups (closing the terminal won't kill it), with output to a non-tty )
 
 *** renice 20 pid
 Change the nice value to 20.
@@ -571,6 +694,7 @@ List of active units.
 ( ~systemctl --type=service~ show all service units )
 ( ~journalctl --unit=sshd.service~ view all of a unit’s messages )
 ( ~service --status-all~ list of all running and not running services using System V )
+( ~systemctl list-unit-files --type=service --state=enabled --all~ list all enable )
 
 *** systemctl status sshd.service
 Getting the status of a /sshd.service/ unit.
@@ -652,7 +776,7 @@ Read from standard input and write to standard output and files.
 *** grep  pattern  file_match  file_doesnt_exist
 Command to test rederictions. The first line sends the match to standard output (terminal screen) and the second line sends the error to the standar error (terminal screen).
 
-** Utilities
+** Info
 *** whoami
 Print the current user id and name.
 ( ~who~ print all usernames currently logged in )
@@ -663,65 +787,6 @@ Print user and group id's (uid & gid).
 ( ~id user~ print user and group id's (root only) )
 ( ~groups~ see what group you’re in )
 
-*** adduser
-Add a user or group to the system.
-[ /--ingroup/ set the group /--group/ add a user group /--uid/ choose UID /--home/ override the home directory  /--shell/ override the shell /--system/ add the system user ]
-( ~adduser name~  add a normal user )
-( ~adduser --group name~ add a user group (addgroup) )
-( ~addgroup --system name~ add a system group )
-
-*** deluser
-Remove a user or group from the system.
-[ /--force name/ remove the root acoount /--remove-home name/ delete the user and his home directory /--remove-all-files name/ delete the user and all his files /--backup name/ backup all files before deleting ]
-( ~deluser name~ remove a user from the system )
-( ~deluser --group name~ remove group from the system )
-( ~deluser group name~ remove a user from specific group )
-
-*** passwd
-Change the password of the current user.
-( ~passwd user~ change password of the user )
-
-*** sudo
-Switch to administrator mode, superuser
-( ~su~ start a shell for the superuser )
-( ~su -~ start a shell for the superuser and his environment is loaded )
-( ~su user~ allows commands to be run with a substitute user )
-
-*** chsh
-Change login shell interactively.
-The default shell assigned to new user accounts can be changed at any time by editing the file ~/etc/adduser.conf~.
-( ~cat /etc/shells~ check which shells are currently installed )
-( ~cat /etc/passwd~ check which shells each user currently has )
-( ~chsh carlos -s /bin/zsh~ change login shell )
-( ~chfn~ change real user name and information )
-( ~tty~ print the current terminal's name )
-
-*** shutdown -h now
-Power off the machine immediately. /now/ is an alias for "+0", i.e. for triggering an immediate shurdown. If no time argument is specified, "+1" is implied.
-[ /-h/ equivalent to --poweroff /-r/ reboot /-f/ force ]
-( ~poweoff~ equivalent to above command )
-( ~systemctl poweroff~ equivalent to above command )
-( ~shutdown -h +5~ halt in 5 minutes )
-( ~shutdown -r~ reboot the machine )
-( ~reboot~ equivalent to above command )
-( ~shutdown -r now~ reboot the machine now )
-
-*** at
-Queue, examine, or delete jobs for later execution.
-Reads the commands from the standard input at a specified time. End the input with CTRL-D.
-This command is used to run a job once in the future without using cron.
-( ~atq~ check that the job has been scheduled )
-( ~atrm~ remove job )
-( ~at 22:30 30.09.15~ schedule jobs days into the future )
-( ~# systemd-run --on-calendar='2022-08-14 18:00' /bin/echo this is a test~ creates a transient timer unit, this systemd timer units is a substitute for at command that can view tieh systemctl list-timers )
-
-*** anacron -T
-Anacrontab  testing.  The  configuration file will be tested for validity.
-[ /-f/ force execution of the jobs]
-( ~anacron -fd~ force execution of the jobs, ignoring the timestamps and print output info to stderr and syslog )
-( ~anacron -fd job-identifier~ force only the execution of the identified job )
-
-** Info
 *** man command
 See the manual page for the /command/ and configurations files.
 [ /-k/ search by keyword (same as apropos command) ]
@@ -772,15 +837,72 @@ Show list of enviroment, shell variables and shell functions.
 ( ~set -x~ print all command (useful to debug) )
 ( ~set -C~ avoid clobbering in bash. In some commands like (command > file) if file exists, the shell erases (clobbers) the original file first. Some shells have parameters that prevent clobbering )
 
+*** xmodmap -pke
+Show current keycode / keysym mapping.
+[ /-e/ read in expression ]
+( ~xmodmap -e~ keycode  67 = F2 to make F1 key send F2 )
+( ~xmodmap ~/.Xmodmap~ load my xmodmap key init )
+( ~xmodmap -pke > ~/xmodmap_original~  save current mapping to file )
+( ~xmodmap ~/xmodmap_original~ revert to default keymap )
+
+*** showkey --scancodes
+Getting scancode (number the keyboard send to computer) of a key press.
+It works only when in virtual terminal.
+
+** Gnome
+*** gsettings list-recursively
+List all the keys and their values in a specified schema (structure that defines a group of keys and their associated values), including all subkeys. *If no scheme is specified, lists all values*.
+
+*** gsettings list-recursively org.gnome.desktop.peripherals
+Lists keys and values of all input devices, recursively.
+If no SCHEMA is given, list keys in all schemas.
+
+*** gsettings set org.gnome.desktop.peripherals.mouse left-handed true
+Swap mouse buttons.
+
+*** gsettings list-keys org.gnome.desktop.a11y.mouse
+List the options of Dwell, Hover Auto-Click.
+( ~gsettings get org.gnome.desktop.a11y.mouse click-type-window-visible~ get the click-type-window-visible value )
+
+*** gsettings set org.gnome.desktop.a11y.mouse dwell-click-enabled true
+Turn on Dwell, Hover Auto-Click.
+( ~gsettings set org.gnome.desktop.a11y.mouse dwell-click-enabled false~ stop dwell hover click )
+
+*** gsettings set org.gnome.desktop.a11y.mouse dwell-time 1.0
+Set the /dwell-time/ (delay) to /1.0/.
+( ~gsettings set org.gnome.desktop.a11y.mouse dwell-threshold 1~ set the dwell-threshold (pixels movement allowed) to 1 )
+
+*** gsettings get org.gnome.desktop.input-sources xkb-options
+Input sources related various options for the X Keyboard Extension (XKB). Useful to Swap Control Alt Keys.
+
+*** gsettings list-keys org.gnome.desktop.wm.keybindings
+Get the list keys for wm keybindings.
+( ~gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Super>Tab']"~ set the shortcut to switch window )
+
+*** gsettings list-recursively org.gnome.shell.keybindings
+Get the list and shorcut keys for shell keybindings.
+( ~gsettings list-keys org.gnome.shell.keybindings~ get the list keys for shell keybindings )
+( ~gsettings set org.gnome.shell.keybindings switch-to-application-1 "['F4']"~ set the shortcut to "Activate favorite application 1" (default: "['<Super>1]") that controls the first pinned app in the dock to 'F4' key )
+
+*** gsettings get org.gnome.desktop.peripherals.keyboard delay
+Get a key repeat rate.
+( ~gsettings set org.gnome.desktop.peripherals.keyboard delay 350~ set the delay )
+( ~gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 40~ set the speed )
+
+*** gsettings get org.gnome.desktop.peripherals.mouse speed
+Get the moue speed. -1 (slow) and 1 (fast).
+( ~gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true~ set natural scrolling )
+
+*** gnome-extensions list --user
+Show user-installed extensions.
+( ~gnome-extensions list --system~ show system-installed extensions )
+( ~gnome-extensions show keyboard_modifiers_status@sneetsher~ show gnome extension info of Keyboard Modifiers Status )
+
 ** Miscellaneous
 *** (cd dir; ls)
 Executes the command /ls/ while in /dir/ and leaves the original shell intact.
 ( ~(PATH=/usr/confusing:$PATH; uglyprogram)~ add a component to the path that might cause problems as a permanent change )
 ( ~PATH=/usr/confusing:$PATH uglyprogram~ equivalent command that avoids the subshell )
-
-*** pushd path
-Save the /path/.
-( ~popd~ return to the save path )
 
 *** exit
 Cause normal process termination.
@@ -807,6 +929,11 @@ After we define our alias, we can use it anywhere the shell would expect a comma
 
 *** python3 -m http.server 8000
 This starts a basic web server on port /8000/ that makes the current directory available to any browser on the network. If the machine you run this on is at address 10.1.2.4, point the browser on the destination system to http://10.1.2.4:8000.
+
+*** amixer set Master 8%+
+Increase sound level.
+( ~amixer set Master 8%-~ decrease sound level )
+( ~alsamixer~ show a text gui mixer control panel )
 
 * Network
 ** App layer
@@ -1017,7 +1144,7 @@ Show  and change kernel space device and network configuration.
 *** curl ifconfig.me
 Displays public IP.
 
-* Device
+* Devices
 ** Hardware
 *** lsscsi
 List the SCSI devices on the system.
@@ -1118,6 +1245,19 @@ Show system’s partition table.
 
 *** # fdisk /dev/sdd
 Creating a partition of the device.
+
+** Bluetooth
+*** bluetoothctl
+Interactive bluetooth control tool.
+
+*** bluetoothctl list
+List available controllers (e.g. Controller 74:DE:2B:4C:C7:1D debi [default]).
+
+*** bluetoothctl devices
+List available devices, with an optional property as the filter.
+
+*** bluetoothctl scan on
+Scan for devices.
 
 * Tools
 ** apt
@@ -1330,8 +1470,9 @@ Transfer everything inside /dir/ to /dest_dir/. This is *not* an exact replica (
 A trailing slash on the source changes this behavior to avoid creating an additional directory level at the destination. Use relative or absolute path, don't use dot notation.
 [ /-a/ archive mode (causes hierarchy recursion and preservation of file attributes) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-c/ computes checksums of the files to see if they’re the same /--stats/ summary after the transfer /-v/ increase verbosity /--partial/ keep partially transferred files /--progress/ show progress during transfer /-P/ same as --partial --progress /-z/ compress file data during the transfer (useful for remote) ]
 ( =rsync -avP --delete dir/ dest_dir= make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
-( ~rsync -nva dir/ dest_dir~ run a trial without actually copying any files )
+( =rsync -aP --delete /home/rich/Frangie/ /media/rich/KINGSTON/Frangie= make an exact replica in the KINGSTON usb )
 ( ~rsync -a dir dest_dir~ transfer everything (dir folder will be inside dest_dir) )
+( ~rsync -nva dir/ dest_dir~ run a trial without actually copying any files )
 ( ~rsync -a dir1 dir2 dest_dir~ transfer dir1 and dir2  to dest_dir )
 ( ~rsync -a --delete dir/ dest_dir~ make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with trailing-slash because can easily remove unrelated files this way) )
 
@@ -1340,15 +1481,15 @@ Copies everything *inside* /dir/ to inside /dest_dir/ on /host/ without actually
 *Note*: if the folder /dest_dir/ doesn't exist, create it and copy the /dir/ folder into it ( /dest_dir/dir/ ).
 [ /-a/ archive mode (causes hierarchy recursion and preservation of file attributes) /-n/ dry run mode, perform a trial run with no changes made /-v/ increase verbosity /-vv/ more details /--delete/ delete files in the destination directory that do not exist in the source directory /-z/ compress file data during the transfer (useful for remote) /-c/ computes checksums of the files to see if they’re the same /--bwlimit/ limit the bandwidth /--stats/ summary after the transfer /--partial/ keep partially transferred files /--progress/ show progress during transfer /-P/ same as --partial --progress ]
 ( ~rsync -nva dir/ host:dest_dir~ run a trial without actually copying any files )
-( =rsync -avzP --delete dir/ host:dest_dir= make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
+( =rsync -avP --delete dir/ host:dest_dir= make an *exact replica* of the source directory, deleting files in the destination directory that do not exist in the source directory (careful with *trailing-slash* because can easily remove unrelated files this way) )
 ( ~rsync -az dir host:dest_dir~ transfer everything without *trailing-slash* (dir folder will be inside dest_dir) )
 ( ~rsync -az --exclude=.git src host:~ exclude anything named .git )
 ( ~rsync -az --exclude=/src/.git src host:~ exclude one specific item, specify an absolute path that starts with forward-slash this is not the root directory of the system but rather the base directory of the transfer )
 ( ~rsync --bwlimit=100 -a dir host:dest_dir~ limit the bandwidth to 100Kbps )
 ( ~rsync -az --delete --rsh=ssh dir host:dest_dir~  copy using ssh as its remote shell (ssh-encrypted tunnel to securely transfer the data from the local system to the remote host) )
 
-*** rsync -avzP host:src_dir dest_dir
-Transfer /src_dir/ on the remote system to /dest_dir/ on the local host.
+*** rsync -avzP host:source_dir dest_dir
+Transfer /source_dir/ on the remote system to /dest_dir/ on the local host.
 [ /--exclude/ exclude files matching PATTERN /-c/ computes checksums of the files to see if they’re the same /--ignore-existing/ doesn’t clobber files already on the target side /--backup/ doesn’t clobber files already on the target but rather renames these existing files by adding a ~ suffix to their names before transferring the new files /--suffix=s/ changes the suffix used with --backup from ~ to s /--update/ doesn’t clobber any file on the target that has a later date than the corresponding file on the source /--partial/ keep partially transferred files /--progress/ show progress during transfer /-P/ same as --partial --progress /-z/ compress file data during the transfer ]
 
 *** rsync  somehost.mydomain.com::
@@ -1412,6 +1553,63 @@ The destination path is used without the initial forward slash. It is always the
 *** rclone command --help
 For more information about a command.
 
+** Image
+*** mogrify -format png * .jpg
+Convert and compress all /jpg/ images in the current directory to /png/.
+( ~convert input.png output.jpg~ convert the image format [ /-resize 30%/ resize /-quality 20%/ quality ] )
+
+*** jpegoptim -d dir -m 75 image.jpg
+Reduce JPG image to a quality of /75/ (suggested scale 60-80) and send to other directory /dir/.
+*Overwrites the original image* if the /-d dir/ option is not set. Interesting feature is that it accepts the exact size of the target file.
+[ /-n/ simulate compression and see what will be the size /-d/ save in other directory  /-S 100k/ try to optimize file to given size (percentage can also be used *-S 30%*) /-m 60/ sets  the  maximum  image quality factor (60 high quality-low size 10 low quality-high size) (disables lossless optimization mode, which is by default enabled) ]
+( ~jpegoptim -S 20k -d dir image.jpg~ reduce to specif size )
+( ~jpegoptim -n image.jpg~ only shows possible results )
+( ~convert input.jpeg -quality 80 output.jpeg~ compress JPEG images )
+
+*** pngquant -Q 70-95 image.png
+Converter and lossy PNG image.
+*Overwrites the original image* if these /-f --ext .png/ options are set.
+[ /-f/ overwrite existing output files /--ext .png/ file extension to use for output files instead of the default 'fs8.png' /-o file/ output to *file* name /-Q min-man/ will use the least amount of colors required to meet or exceed the max quality 0 worst to 100 perfect ]
+( ~pngquant -f --ext .png -Q 70-95 image.png~ overwrites the original images )
+( ~pngquant 64 image.png~ resulting image will have /64/ colors )
+
+*** gifsicle -b --colors 256 file.gif
+To optimize (compress) /file.gif/. Reduce  the number of distinct colors in each output GIF to /256/.
+( ~gifsicle -e file.gif~ to explode /file.gif/ into its component frames )
+( ~gifsicle -I file.gif~  to print information )
+( ~ffmpeg -i input.gif -vf "scale=iw/2:ih/2" -loop 0 output.gif~ compress a GIF file )
+
+*** optipng -out output.png   input.png
+Reduce the PNG image to what thinks it's probably the most effective and rename it in a new /output/ file. *Overwrites the original image* if the /-out/ option is not set.
+[ /-out/  write  output  file to file /-dir/  write the output files to directory /-o/ select the optimization level (0 minimal effort 1 probably the most effective 2 higher enable) ]
+( ~optipng -out output -o1 input~ equivalent command )
+( ~pngquant -f --ext .png image.png; opting image.png~ a little more compression )
+
+*** magick xx.png -quality 90% xx.jpg
+Convert png to jpg.
+When /quality/ is omitted, default is 92.
+( ~magick xx.png -flatten yy.png~ remove transparency with white )
+( ~for ff in *.png; do magick $ff $ff.jpg; done~ convert all png in a dir to jpg )
+
+** yt-dlp
+*** # yt-dlp -U
+Update yt-dlp program to the latest stable version.
+Useful when you get errors.
+
+*** yt-dlp -F URL
+List available formats of each video.
+[ /-x/ extract-audio /-f 00/ download format 00 from the list -/f mp4/ download format mp4 /- r 4M/ limit-rate RATE, maximum download rate in bytes per second /-c/ continue, resume partially downloaded files/fragments ]
+( ~yt-dlp -f 'bv*+ba' URL~ the best available audio and the best available video )
+( ~yt-dlp -f best URL~ the best quality of video )
+
+*** yt-dlp --write-auto-subs --sub-lang en-orig --skip-download URL
+Download only the write *automatically* generate subtitle file in english original.
+[ /--convert-subs=srt/ convert file to srt /-k/ keep original file ]
+( ~yt-dlp --write-subs --sub-lang en-orig --skip-download URL~ only the write subtitle )
+
+*** yt-dlp URL --downloader ffmpeg --downloader-args "ffmpeg_i:-ss 12 -to 123"
+Download only the portion from /12/ seconds to /123/ seconds.
+
 ** OpenSSH
 *** ssh remote_username@remote_host
 Log in to a remote host.
@@ -1439,55 +1637,6 @@ Copy a /file/ from a remote host to the current directory.
 Create SSH protocol version 2 key.
 ( ~# ssh-keygen -t dsa -N '' -f /etc/ssh/ssh_host_dsa_key~ )
 
-** Image
-*** mogrify -format png * .jpg
-Convert and compress all /jpg/ images in the current directory to /png/.
-( ~convert input.png   output.jpg~ convert the image format [ /-resize 30%/ resize /-quality 20%/ quality ] )
-
-*** jpegoptim -d dir -m 75 image.jpg
-Reduce JPG image to a quality of /75/ (suggested scale 60-80) and send to other directory /dir/.
-*Overwrites the original image* if the /-d dir/ option is not set. Interesting feature is that it accepts the exact size of the target file.
-[ /-n/ simulate compression and see what will be the size /-d/ save in other directory  /-S 100k/ try to optimize file to given size (percentage can also be used *-S 30%*) /-m 60/ sets  the  maximum  image quality factor (60 high quality-low size 10 low quality-high size) (disables lossless optimization mode, which is by default enabled) ]
-( ~jpegoptim -S 20k -d dir image.jpg~ reduce to specif size )
-( ~jpegoptim -n image.jpg~ only shows possible results )
-
-*** pngquant -Q 70-95 image.png
-Converter and lossy PNG image.
-*Overwrites the original image* if these /-f --ext.png/ options are not set.
-[ /-f/ overwrite existing output files /--ext .png/ file extension to use for output files instead of the default 'fs8.png' /-o file/ output to *file* name /-Q min-man/ will use the least amount of colors required to meet or exceed the max quality 0 worst to 100 perfect ]
-( ~pngquant -f --ext .png -Q 70-95 image.png~ overwrites the original images )
-( ~pngquant 64 image.png~ resulting image will have /64/ colors )
-
-*** gifsicle -b --colors 256 file.gif
-To optimize (compress) /file.gif/. Reduce  the number of distinct colors in each output GIF to /256/.
-( ~gifsicle -e file.gif~ to explode /file.gif/ into its component frames )
-( ~gifsicle -I file.gif~  to print information )
-
-*** optipng -out output.png   input.png
-Reduce the PNG image to what thinks it's probably the most effective and rename it in a new /output/ file. *Overwrites the original image* if the /-out/ option is not set.
-[ /-out/  write  output  file to file /-dir/  write the output files to directory /-o/ select the optimization level (0 minimal effort 1 probably the most effective 2 higher enable) ]
-( ~optipng -out output -o1 input~ equivalent command )
-( ~pngquant -f --ext .png image.png; opting image.png~ a little more compression )
-
-** yt-dlp
-*** # yt-dlp -U
-Update yt-dlp program to the latest stable version.
-Useful when you get errors.
-
-*** yt-dlp -F URL
-List available formats of each video.
-[ /-x/ extract-audio /-f 00/ download format 00 from the list -/f mp4/ download format mp4 /- r 4M/ limit-rate RATE, maximum download rate in bytes per second /-c/ continue, resume partially downloaded files/fragments ]
-( ~yt-dlp -f 'bv*+ba' URL~ the best available audio and the best available video )
-( ~yt-dlp -f best URL~ the best quality of video )
-
-*** yt-dlp --write-auto-subs --sub-lang en-orig --skip-download URL
-Download only the write *automatically* generate subtitle file in english original.
-[ /--convert-subs=srt/ convert file to srt /-k/ keep original file ]
-( ~yt-dlp --write-subs --sub-lang en-orig --skip-download URL~ only the write subtitle )
-
-*** yt-dlp URL --downloader ffmpeg --downloader-args "ffmpeg_i:-ss 12 -to 123"
-Download only the portion from /12/ seconds to /123/ seconds.
-
 ** ffmpeg
 *** ffmpeg -i name
 Video info.
@@ -1499,12 +1648,19 @@ Convert an input media file to a different format, by re-encoding media streams.
 Cut the video.
 [ /-ss/ specifies the start time, e.g. 00:01:23.000 or 83 (in seconds) /-t/ specifies the duration of the clip (same format) /-to/ supply the end /-c copy/ copies the first video, audio, and subtitle bitstream from the input to the output file without re-encoding them. This won't harm the quality and make the command run within seconds ]
 
-*** ffmpeg -i input.mp4 -vn -acodec copy output
+*** ffmpeg -i input.mp4 -vn -acodec copy output.aac
 Extract only the audio stream without re-encoding.
 Read the output to see what codec it is, to set the right filename extension.
 [ /-vn/ no video /-acodec/ use the same audio stream ]
 ( ~ffmpeg -i input.mp4 -vn output.mp3~ convert video files to audio files )
 ( ~ffmpeg -i input.mp4 -an output.mp4~ removing audio stream from a video file )
+
+*** ffmpeg -i video.mkv -i audio.mp3 -map 0 -map 1:a -c:v copy -shortest output.mkv
+Add a new audio track (not mixing) into a video.
+This example uses -c:v copy to stream copy (mux) the video. No re-encoding of the video occurs. Quality is preserved and the process is fast. If your input audio format is compatible with the output format then change -c:v copy to -c copy to stream copy both the video and audio. If you want to re-encode video and audio then remove -c:v copy / -c copy.
+[ /-map/ allows to manually select streams / tracks. See FFmpeg Wiki: Map for more info /-shortest/ make the output the same duration as the shortest input ]
+( ~ffmpeg -i video.mp4 -i audio.wav -map 0:v -map 1:a -c:v copy -shortest output.mp4~ replace audio )
+( ~ffmpeg -i video.mkv -i audio.m4a -filter_complex "[0:a][1:a]amerge=inputs=2[a]" -map 0:v -map "[a]" -c:v copy -ac 2 -shortest output.mkv~ mixing / combining two audio inputs into one )
 
 *** ffmpeg -i input -b:v 2500k -b:a 192k output
 Change the *bitrate* of the video file /inpuy/ to /2500k/ and audio to /192k/ .
@@ -1543,6 +1699,42 @@ Show the currently running containers.
 *** rm
 Remove a terminated container.
 ( ~rmi~ remove an image )
+
+** Misc
+*** sudo systemctl status keyd
+Show keyd status.
+( ~sudo keyd.rvaiya reload~ reload config files )
+( ~keyd.rvaiya monitor~ get key names/device ids )
+( ~sudo systemctl enable keyd --now~ start keyd )
+( ~keyd.rvaiya list-keys~ list valid key names )
+( ~keyd bind '- = C=c'~ apply the supplied binding )
+( ~man keyd~ man page )
+
+*** logkeys --start --output file
+Start logging to a custom log file.
+( ~logkeys --start~ start logging to default log file )
+( ~logkeys --start --device event11~ use a custom event device, e. g. wireless keyboard )
+( ~logkeys --start --keymap=file.map --device event11~ use file.map as input keymap for processing pressed keys )
+( ~logkeys --kill~ end running logkeys process )
+( ~logkeys --no-timestamps~ doesn't prepend timestamp to each line of log file )
+
+*** input-remapper-gtk
+Start input-remapper.
+( ~input-remapper-control --symbol-names~ list of possibilities key values )
+( ~input-remapper-control --list-devices~ list available device names )
+( ~systemctl status input-remapper~ status of service )
+( ~systemctl stop input-remapper~ stop the service will stop all ongoing injections )
+( ~input-remapper-control --command stop --device "Razer Razer Naga Trinity"~ stop injecting )
+( ~input-remapper-gtk -d~ check the output of if stuff doesn't work )
+( ~sudo input-remapper-service & input-remapper-control --command hello~ make sure it works )
+
+*** torbrowser-launcher
+Launch the browser.
+( ~torbrowser-launcher --settings~ settings browser )
+
+*** notify-send "Dwell Click on"
+A program to send desktop notifications.
+libnotify-bin must be installed.
 
 * Git
 ** Basics
@@ -1600,6 +1792,10 @@ Push /main/ to origin server /origin/. Push any commits you’ve done back up to
 Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
 [ /--verify-signatures/  inspect and reject when merging a commit that does not carry a trusted GPG signature ]
 ( ~git fetch ; git merge FETCH_HEAD~ equivalent command )
+
+*** git checkout
+Switch branches and check content out into your working directory.
+When run it without any additional arguments, it typically checks out the current branch, updating your working directory to match that branch's latest commit.
 
 ** Remotes
 *** git remote -v
@@ -1691,6 +1887,7 @@ Create a new branch and switch to it.
 
 *** git checkout
 Switch branches and check content out into your working directory.
+When run it without any additional arguments, it typically checks out the current branch, updating your working directory to match that branch's latest commit.
 
 *** git checkout --track origin/serverfix
 To start tracking branches .
@@ -1985,6 +2182,7 @@ If the notfound.h header is found in /usr/junk/include, tell the compiler to add
 *** ldd prog
 Show what shared libraries a executable /prog/ uses.
 ( ~ldd /bin/bash~ show shared libraries )
+( ~ldd $(which nautilus) | grep gtk~ show which gtk libraries nautilus uses)
 
 #+begin_src sh
 
@@ -2036,7 +2234,7 @@ Creates a window and then asks the X server to send it events whenever anything 
 One common use is to extract keycodes and key symbols for different keyboards when remapping the keyboard.
 
 *** xinput --list
-Show input device configuration on the machine.
+Show input device configuration on the machine (work on X11).
 ( ~xinput --list-props 8~ view properties of the device number 8 )
 ( ~xinput --set-button-map device 3 2 1~ reverse the order of mouse buttons (three-button mouse at device) )
 
@@ -2944,60 +3142,6 @@ Es una combinación de teclas "mágicas" que se puede presionar y el kernel resp
 - Algunos teclados pueden no tener una tecla etiquetada como 'SysRq'. La tecla 'SysRq' también se conoce como la tecla 'Imprimir pantalla' o 'Print screen'. Además, algunos teclados no pueden manejar tantas teclas presionadas al mismo tiempo, por lo que es posible que tenga mejor suerte presionando Alt, presione SysRq, suelte SysRq, presione <tecla de comando>, suelte todo.
 
 - Desde el terminal SSH, etc., puede usar la función Alt-SysRq escribiendo en "/proc/sysrq-trigger". Por ejemplo, "echo s > /proc/sysrq-trigger; echo u > /proc/sysrq-trigger" desde el indicador de shell raíz sincroniza y desmonta todos los sistemas de archivos montados.
-
-*** CTRL-SHIFT-x-*
-Paste all files in a directory.
-
-*Note*: first type ~*~ in the terminal and then press =CTRL-SHIFT-x-*=.
-
-** Keystrokes
-*** History commands
-
-| /Key/ | /Action/                                             |
-|-----+----------------------------------------------------|
-| /C-p/ | Move to the previous history entry (or up arrow)   |
-| /C-n/ | Move to the next history entry (or down arrow)     |
-| /M-</ | Move to the beginning (top) of the history list    |
-| /M->/ | Move to the end (bottom) of the history list       |
-|     |                                                    |
-| /M-p/ | Reverse search, nonincremental                     |
-| /M-n/ | Forward search, nonincremental                     |
-| /C-o/ | Execute the current and advance to next (sequence) |
-|     |                                                    |
-| /C-r/ | Reverse incremental search                         |
-| /C-r/ | Again. Find the next occurrence (moving “up”)      |
-| /C-g/ | Quit searching                                     |
-
-*** Move cursor
-
-| /Key/ | /Action/                                       |
-|-----+----------------------------------------------|
-| /C-b/ | Move the cursor left                         |
-| /C-f/ | Move the cursor right                        |
-| /C-a/ | Move the cursor to the beginning of the line |
-| /C-e/ | Move the cursor to the end of the line       |
-
-*** Kill text
-
-| /Key/ | /Action/                                           |
-|-----+--------------------------------------------------|
-| /C-h/ | Kill the preceding character                     |
-| /C-d/ | Kill the next character                          |
-| /C-w/ | Kill the preceding word                          |
-| /M-d/ | Kill the next word                               |
-|     |                                                  |
-| /C-u/ | Kill text from cursor to the beginning of line   |
-| /C-k/ | Kill text from cursor to the end of line         |
-| /C-y/ | Yank text from the kill-ring (i.e., from CTRL-U) |
-
-*** Transpose, convert text
-
-| /Key/ | /Action/                                             |
-|-----+----------------------------------------------------|
-| /C-t/ | Transpose the char at the cursor with preceding    |
-| /M-t/ | Transpose the word at the cursor with preceding    |
-| /M-l/ | Convert chars from cursor to end of word lowercase |
-| /M-u/ | Convert chars from cursor to end of word uppercase |
 
 ** Special Characters
 

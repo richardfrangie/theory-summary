@@ -2473,6 +2473,15 @@ Un golpe corto, es corto y no toma tiempo.
 Golpear una puerta o golpear derribando algo.
 ~She *knocked* on the door.~
 
+*** beat - defeat
+**** beat
+Both 'defeat' and 'beat' mean to win against somebody in a competition. However, while 'beat' is mostly used in the context of games or sports, 'defeat' can be used in the context of wars or conflicts as well as games and competitions.
+
+**** defeat
+Beat and defeat are exactly the same. "Defeat" sounds a little more formal.
+
+For that reason, if you're talking about war or battle, it's better to use "defeat."
+
 *** because - because of
 **** because
 because + subject + verb = porque.
@@ -3086,6 +3095,31 @@ Is a verb used to describe the act of failing to keep or retain something, such 
 
 **** loose
 Primarily functions as an adjective, meaning something that is not tightly fixed or is free, such as “a loose screw” or “loose clothing.” It can also be a verb, meaning to release or set something free, though this usage is less common.
+
+*** most - most of - many - many of - some -some of
+Some quantifiers are especially tricky because are followed by the preposition /of/ in some contexts but not others. This can give rise to errors such as:
++Most of people prefer warm weather.+
+
+- Most / many / some :: general meaning
+We use most, many, some with plural nouns when we do not have a particular group in mind.
+
+~Most people prefer warm weather.~
+~I have many friends.~
+~Some animals make good pets.~
+
+- Most of / many of / some of :: specific group
+We use most of, many of, some of with plural nouns when we are describing part of a particular group. *The clue is the definite article*, /the/, which makes the noun specific rather than general.
+
+~Most of the respondents (in our survey) prefer warm weather.~
+~Many of my friends play tennis.~
+~When I went to the zoo, some of the animals (there) were sleeping.~
+
+For the same reason, if most/many/some are used with a pronoun, we always add of: for example ~many of them~, ~most of us~, ~some of you~.
+
+*There are a few exceptions to this pattern*
+– /a lot of/ always uses the preposition /of/: ~a lot of the students in the class~ / ~a lot of rain~ / ~a lot of us~
+– /both of/ and /both/ have the same meaning: ~both brothers~ / ~both of the brothers~ / ~both of them~
+– /all/ and /all of/ have the same meaning and are both usually followed by /the/: ~all the time~ / ~all of the time~ / ~all of them~
 
 *** mr - mrs
 **** woman
@@ -8883,101 +8917,43 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** +Sin embargo, tiene la fuerza para describir de forma única una estructura con un dominio infinito,
-however, has the strength to uniquely describe a structure with an infinite domain,
+**** -Estaba, sobre todo, resentido.
+he was above all,  resentful
 
-**** +La cuarta edición propuesta de ECMA-262 habría sido la primera actualización importante de ECMAScript desde que la tercera edición en 1999 fue publicada
-The proposed fourth edition of ECMA-262 would have been the first major update to ECMAScript since the third edition was published in 1999.
+**** -A quién suelo prestarle mi dinero?
+who do I usually lend my money to?
 
-**** +El propósito de las pruebas unitarias no es verificar si funciona, es asegurarse de que siga funcionando cuando tú cambia algo.
-The purpose of of unit tests isn't to check whether it works, it is to make sure it keeps working when you change something.
+**** Sin jugadores de baloncesto no habría jugadores de fútbol.
+Without basketball players there would be no soccer players.
 
-**** +Se intenta buscarlo en el entorno padre, en el padre del padre, y así sucesivamente, hasta que se considera toda la cadena de entornos.
-there is an attempt to lookup it in the parent environment, in the parent of the parent, and so on — until the whole environment chain is considered.
+**** ¿Cuánto tiempo más tendremos que esperar para que la policía cumpla con sus responsabilidades?
+how much longer do we have to wait before the police fulfills its responsibilities?
 
-**** +Durante los dos últimos años, el lenguaje principal promocionado ha sido rust, como todas las veces.
-for the last couple years the main hyped language has been rust like every single time
+**** Durante mucho tiempo no lo creí.
+for the longest time, I wouldn't believe it
 
-**** +Así que voy a utilizar las dos métricas diferentes para intentar definir el lenguaje actual tan publicitado.
-so I'm going to use the two different metrics to try to Define hyped up current language
+*** Real speak
+**** +Me estan doliendo las manos, y estoy asustado, no sé hasta cuando esto se mantega, y necesito trabajar y terminar de hacer lo que tengo que hacer.
+My hands are hurting, and I'm scared. I don't know how long this will last, and I need to work and finish what I have to do.
 
-**** +La primera métrica va a ser la cantidad de nuevas preguntas de Stack Overflow que son etiquetadas con un lenguaje de programación en particular.
-the first metric is going to be the number of new stack Overflow questions that are tagged with a particular programming language
+**** Me *esta costando* mucho esta primera parte,
+I'm having a hard time with this first part,
+"I'm finding this first part very difficult."
 
-**** +Y la segunda métrica que voy a utilizar es la cantidad de nuevos miembros que se unen al subreddit de un idioma en particular.
-and the second metric that I'm going to use is the number of new members joining a particular language's subreddit
+**** Quiero comprar la masilla terapéutica.
+I want to buy the therapeutic putty.
 
-**** +Y voy a hacer esto en base a porcentajes.
-and I'm going to do this based of percentages
+**** Eso es todo/Listo por hoy, sigamos/vamos empecemos con las canciones.
+That's it/done for today, let's go/get on with the songs.
 
-**** +En realidad, va a tener menor porcentaje de crecimiento que Zig, que es otro
-it's actually going to have less percentage of growth than Zig which is another
+**** Cuando dijo que su abogado estaba en camino, le podrías haber dicho, si?
+When he said his lawyer was on the way, you could have told him, right?
 
-**** +Creo que para finales de 2025, al menos dos importantes plataformas de streaming van a utilizar...
-I think that by the end of 2025 at least two major streaming platforms are going to use
+**** me perdi, no se donde estoy
+I got lost, I don't know where I am
 
-**** +La razón por la que es tan atractivo para las plataformas de streaming es porque ahorra una cantidad significativa de ancho de banda para aproximadamente el mismo nivel de calidad.
-the reason it's so appealing to a streaming platforms is because it saves a significant amount of bandwidth for about the same level of quality
-
-**** +Creo que hay una posibilidad muy pequeña, tal vez un 30% de que un importante proveedor de streaming se asocie con un proveedor de televisión.
-I think there is a real small chance maybe like 30% chance that a major streaming vendor pairs up with a TV vendor
-
-**** +Ahora quiero hablar un poco sobre la compresión.
-now I want to talk a little bit about compression
-
-**** +De hecho, Twitch ya ha estado experimentando con esto durante el último año y los resultados están siendo muy buenos.
-actually Twitch has already been experimenting with this for the last year and the results are doing really well
-
-**** +Y un área donde funciona realmente bien es al escalar animes más antiguos que podrían no haber sido lanzados en HD, por ejemplo.
-and one area where it works really well is upscaling older animes that might not have been released in HD for example
-
-**** +Así que, básicamente, si la calidad es realmente mala, puedes mejorarla.
-so basically if the quality is really bad you can upscale it
-
-**** +Así que tienes que ir y habilitarlo si quieres probarlo.
-so you have to go through and enable it if you want to try out
-
-**** +Y realmente funciona sorprendentemente bien
-and it actually works surprisingly well
-
-**** parte de mi proceso de pensamiento detrás de esto es que la mayoría de los lenguajes de programación exagerados tienen alrededor de 3 a 5 años de tiempo de crecimiento
-part of my thought process behind this is that most hyped up programming languages have about a 3 to 5 year time of growth
-
-**** En realidad está alcanzando el final de su máximo tiempo publicitado.
-is actually reaching the kind of end of its maximum hyped time
-
-**** Por ejemplo, Ruby definitivamente tuvo un período de auge y alcanzó su máximo potencial.
-for example Ruby definitely had a period of boom time and reached their maximum
-
-**** Yo diría que la capacidad de auge después de esa cantidad de tiempo haya pasado
-I would say boom capacity after that amount of time has passed
-
-**** Puede que no lo sepas, pero la mejora/ampliacion/escalada de la IA existe desde hace bastante tiempo
-so you might not be aware but AI upscaling has been around for a pretty decent amount of time
-
-**** Y lo hace parecer casi como si fuera lanzado en HD, lo cual es bastante bueno
-and it makes it look almost like it was released in HD which is pretty nice
-
-**** También hay otra característica que probablemente no conozcas y que es parte de Mi y es
-there is also another feature that you are probably not aware of that's part of Mi and there is
-
-**** pero está integrado y establecida de forma predeterminada
-but it's built into it and set off by default
-
-**** pero funcionará en tus videos y se aplicará quizás a un video de YouTube que estés viendo si
-but it's it'll work on your videos and apply to maybe a YouTube video you're watching if
-
-**** Si tiene la calidad configurada muy mal o es un video de muy baja calidad, aumente la escala del video automáticamente.
-if you have the quality set really bad or it's a super low quality video to automatically upscale the video
-
-**** así que creo que va ser una característica realmente interesante en el futuro.
-so I think this is going to be a really interesting feature going forward
-
-**** Esta asociación se mantiene sin cambios.
-This association further stays unchanged.
-
-**** Este es un buen lugar para hacerse una idea de lo que Babel puede hacer y ver cómo podría encajar en su vida.
-this is a good place to get an idea of what Babel can do and see how it might fit into your life.
+**** estoy perdido
+I'm lost,
 
 *** Chunk
 **** Pero la mayoría de ellos son
@@ -9044,7 +9020,6 @@ why it's important
 **** ¿Cómo generan ganancias las empresas?
 how do business generate profit?
 
-*** My talks
 *** Eloquent JavaScript
 **** Puede abrir la aplicación adecuada y ponerse a trabajar.
 you can open the appropriate application and get to work
@@ -9133,7 +9108,7 @@ Let’s start up a virtual world.
 **** No podemos explorar inmediatamente un lugar tan pronto como lo alcanzamos porque eso significaría que los lugares a los que se llega/alcanzan desde allí también serían explorados inmediatamente,
 We can’t immediately explore a place as soon as we reach it because that would mean places reached from there would also be explored immediately,
 
-**** lo que significa que todos los caminos que van desde ese lugar son revisados.
+**** lo que significa que todos los caminos que van desde ese lugar son revisados
 which means all roads going from that place are looked at.
 
 **** Muchos errores vienen de estar confundido acerca del tipo de valor que entra o sale de una función.
@@ -9271,8 +9246,6 @@ These are unfortunately a bit more involved to draw.
 
 **** sólo tendrás que encontrar un valor adecuado mediante ensayo/prueba y error.
 you’ll just have to find a suitable value by trial and error.
-
-****
 
 ** My speech
 *** New
@@ -10249,8 +10222,59 @@ we can focus on certain elements over others, *especially* if we *arrange* them 
 **** Se le pedirá
 You will be prompted / You will be asked
 
+**** Y *qué hace* que la historia de Carlos sea aún más increíble?
+and *what makes* the Carlos story even more incredulous
+
+**** Esta base de apoyo sentó las bases *para lo que* pronto se convertiría en el
+This foundation of support laid the groundwork *for what* would soon become the
+
+**** *Pero sobre todo* /(principalmente), simplemente aprecien que los cuerpos están hechos/(construidos) para el movimiento, no para la quietud.
+*but mostly*, just appreciate that bodies are built for motion, not for stillness
+
+**** No estás quemando grasa *tan bien como* cuando te mueves.
+you're not burning fat nearly *as well as* when you move around
+
+**** *Pero sobre todo*, simplemente aprecien que los cuerpos están hechos/(construidos) para el movimiento, no para la quietud.
+*but mostly*, just appreciate that bodies are built for motion, not for stillness
+
+**** Pero a veces, básicamente solo quieres obtener una aproximación rápida *de lo que* realmente hace un método.
+but sometimes you basically just want to get a quick approximation *of what* a method actually does
+
+**** Básicamente *se reducen a* matemáticas.
+They basically *come down to* math.
+
+**** Así que prácticamente tienes que hacer esta rápida comprobación de inventario para ver si estás afectado por un ataque que está ocurriendo actualmente y que preocupa a la gente.
+so you pretty much have to do this extra quick inventory check to see if you're affected by an attack that's currently happening that people are worrying about
+
+**** Los ELM son realmente buenos para identificar lo que esta haciendo este método *sin demasiado contexto*.
+llm are really good at identifying what this method is doing *without too much context*
+
+**** Así que ustedes tenían este plan *desde el principio* /(todo el tiempo): cambiar a Luka por Cooper.
+So you guys had this plan *all along* to trade Luka for Cooper.
+
+**** Y *lo más probable* es que incluso si lo tienen, no lo usen.
+and *chances are* that even if they have they won't use it
+
+**** No estaba destruyendo la voluntad de luchar del enemigo, de hecho, *lo estaba enfureciendo* aún más.
+it was not destroying the enemy's will to fight, in fact, *it was making* angrier
+
+**** Los fabricantes de teclados *se han asegurado* de que varias teclas con estos no tengan ningún problema.
+keyboard makers *have made sure* that multiple keys with these have no problem.
+
 **** De hecho, Twitch ya ha estado experimentando con esto durante el último año y los resultados *están siendo* muy buenos.
 actually Twitch has already been experimenting with this for the last year and the results *are doing* really well
+
+**** Puede que no lo sepas, pero la mejora/ampliacion/escalada de la IA *existe desde hace bastante tiempo*
+you might not be aware but AI upscaling *has been around for a pretty decent amount of time*
+
+**** Si no tienen sentido intuitivo para usted, le sugiero que haga algo más que programación. Es posible que pueda hacer programación *hasta cierto punto* con una lucha, pero *si le resulta* una lucha, no será muy bueno en eso y no lo disfrutará.
+If they don't make intuitive sense to you, I suggest you do something other than programming. You might be able to do programming *to some degree* with a struggle, but *if you find it* a struggle you won't be very good at it and you won't enjoy it.
+
+**** Esa es mi política sobre el uso de una máquina *de vez en cuando*. Si tuviera que usarlo durante una hora todos los días, eso ya no sería "de vez en cuando", sería de uso regular.
+That's my policy about using a machine *once in a while*. If I were to use it for an hour every day, that would no longer be "once in a while" — it would be regular use.
+
+**** Debería haber ido a cualquier auto, actuar como si estuvieras entrando. Luego mira a su alrededor como si se diera cuenta de que lo están viendo, luego se aleja con miedo de que te hayan atrapado.
+Should have went to any car,  act like you're gonna get in. Then look around like you realize you're being watched, then scurry away looking afraid you've been caught.
 
 **** Sin embargo, parece que muchas de las creencias que *mantenemos* se han *adquirido* a través de la aceptación de testimonios.
 However, it seems that many of the beliefs that *we hold* have been *gained* through accepting testimony.
@@ -11265,6 +11289,9 @@ But it bears repeating:
 
 **** No es asunto tuyo
 It is none of your business
+
+**** todavía no lo he comprado
+I have not bought it yet
 
 **** Mi auto-complete-at-point es un testimonio de la naturaleza empoderadora de Emacs: si falta una característica o se puede mejorar, las herramientas están ahí para crearla yo mismo.
 My auto-complete-at-point stands as a testament to the empowering nature of Emacs - if a feature is lacking or could be improved, the tools are there to craft it myself.
@@ -14297,6 +14324,9 @@ CLOCK: [2023-04-17 Mon 08:07]--[2023-04-17 Mon 08:16] =>  0:09
 :END:
 ** Sentences
 :LOGBOOK:
+CLOCK: [2025-04-02 Wed 09:11]--[2025-04-02 Wed 09:29] =>  0:18
+CLOCK: [2025-04-01 Tue 09:17]--[2025-04-01 Tue 09:36] =>  0:19
+CLOCK: [2025-03-31 Mon 08:59]--[2025-03-31 Mon 09:24] =>  0:25
 CLOCK: [2025-03-28 Fri 09:56]--[2025-03-28 Fri 10:36] =>  0:40
 CLOCK: [2025-03-27 Thu 10:33]--[2025-03-27 Thu 11:18] =>  0:45
 CLOCK: [2025-03-26 Wed 10:20]--[2025-03-26 Wed 11:23] =>  1:03
@@ -14701,6 +14731,12 @@ CLOCK: [2023-04-17 Mon 10:31]--[2023-04-17 Mon 11:03] =>  0:32
 :END:
 ** Speaking
 :LOGBOOK:
+CLOCK: [2025-04-06 Sun 08:51]--[2025-04-06 Sun 09:22] =>  0:31
+CLOCK: [2025-04-04 Fri 09:31]--[2025-04-04 Fri 10:10] =>  0:39
+CLOCK: [2025-04-02 Wed 08:40]--[2025-04-02 Wed 09:00] =>  0:32
+CLOCK: [2025-04-01 Tue 09:38]--[2025-04-01 Tue 10:38] =>  1:00
+CLOCK: [2025-04-01 Tue 08:43]--[2025-04-01 Tue 09:17] =>  0:34
+CLOCK: [2025-03-31 Mon 08:35]--[2025-03-31 Mon 08:58] =>  0:23
 CLOCK: [2025-03-28 Fri 09:31]--[2025-03-28 Fri 09:56] =>  0:25
 CLOCK: [2025-03-28 Fri 08:57]--[2025-03-28 Fri 09:06] =>  0:09
 CLOCK: [2025-03-27 Thu 10:20]--[2025-03-27 Thu 10:33] =>  0:13
