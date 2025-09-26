@@ -138,6 +138,24 @@ Manage how Nerd Font icons are coloured and themed.
   ;; You can use M-x nerd-icons-install-fonts or install it manually
   ;; to get Symbols Nerd Fonts Mono or another variant of your choice.
 
+
+  ;; Icons for Corfu via nerd-icons
+  (use-package nerd-icons-corfu
+    :after corfu
+    :config
+    (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+#+end_src
+
+** Svg Lib
+SVG tags, bars & icons.
+
+#+begin_src emacs-lisp
+
+  ;; svg-lib is an Emacs library that allows to create and display various SVG
+  ;; objects, tags, icons, buttons, progress bars, progress pies and dates.
+  (use-package svg-lib)
+
 #+end_src
 
 * Environment
@@ -483,7 +501,7 @@ Yet Another Snippet extension.
     :bind (:map yas-minor-mode-map
                 ("TAB" . nil)
                 ("<tab>" . nil)
-                ("M-<tab>" . yas-expand))
+                ("C-<tab>" . yas-expand))
     :config
     (yas-reload-all))
 
@@ -497,6 +515,42 @@ Yet Another Snippet extension.
   (use-package consult-yasnippet
     :after (yasnippet consult))
     ;;; :bind ("M-s y" . consult-yasnippet))
+
+#+end_src
+
+** Tempo
+Flexible template insertion.
+
+#+begin_src emacs-lisp
+
+  ;; Tiny template package, which uses the syntax of the Emacs Tempo library.
+  (use-package tempel
+    ;; Require trigger prefix before template name when completing.
+    :custom
+    (tempel-trigger-prefix "<")
+    :bind (("C-<iso-lefttab>" . tempel-complete) ;; Alternative tempel-expand
+           :map tempel-map
+           ("TAB" . tempel-next)
+           ("<backtab>" . tempel-previous))
+    :init
+    ;; Setup completion at point
+    (defun tempel-setup-capf ()
+      ;; Add the Tempel Capf to `completion-at-point-functions'.
+      ;; `tempel-expand' only triggers on exact matches. Alternatively use
+      ;; `tempel-complete' if you want to see all matches, but then you
+      ;; should also configure `tempel-trigger-prefix', such that Tempel
+      ;; does not trigger too often when you don't expect it. NOTE: We add
+      ;; `tempel-expand' *before* the main programming mode Capf, such
+      ;; that it will be tried first.
+      (setq-local completion-at-point-functions
+                  (cons #'tempel-expand
+                        completion-at-point-functions)))
+    (add-hook 'conf-mode-hook 'tempel-setup-capf)
+    (add-hook 'prog-mode-hook 'tempel-setup-capf)
+    (add-hook 'text-mode-hook 'tempel-setup-capf))
+
+  ;; Add tempel-collection (package young doesn't have comprehensive coverage)
+  (use-package tempel-collection)
 
 #+end_src
 
@@ -543,6 +597,32 @@ Incremental search minor mode.
       (progn
         (setq search-whitespace-regexp "[-_ \t\n]+")
         (message "search-whitespace-regexp set to hyphen lowline whitespace"))))
+
+#+end_src
+
+** Completion Preview
+In-buffer completion preview.
+
+#+begin_src emacs-lisp
+
+  ;; Enable Completion Preview mode in code buffers
+  (add-hook 'prog-mode-hook #'completion-preview-mode)
+  ;; also in text buffers
+  (add-hook 'text-mode-hook #'completion-preview-mode)
+
+  ;; Complete up to the longest common prefix of all completion candidates.
+  (with-eval-after-load 'completion-preview
+    ;; Org mode has a custom `self-insert-command'
+    (push 'org-self-insert-command completion-preview-commands)
+    ;; Paredit has a custom `delete-backward-char' command
+    (push 'paredit-backward-delete completion-preview-commands)
+    ;; Show the preview already after two symbol characters
+    ;; (setq completion-preview-minimum-symbol-length 2)
+    ;; Don't provide help for invalid completion input
+    (setq completion-auto-help nil)
+    ;; Convenient alternative
+    (keymap-set completion-preview-active-mode-map "M-f"
+                'completion-preview-complete))
 
 #+end_src
 
@@ -663,7 +743,7 @@ Extensible inline text completion mechanism.
   (use-package company
     :defer t
     ;; Enable `company-mode' after Eglot starts/stops managing a buffer.
-    :hook (eglot-managed-mode . company-mode)
+    ;; :hook (eglot-managed-mode . company-mode)
     :bind (:map company-active-map
                 ("<tab>" . company-complete-selection))
     :custom
@@ -685,7 +765,7 @@ VERTical Interactive COmpletion.
     (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
     :bind (:map minibuffer-local-map
     ;; Overwrites the `file-cache-minibuffer-complete' which I don't use.
-                ("M-<tab>" . vertico-insert)
+                ;; ("M-<tab>" . vertico-insert)
                 :map vertico-map
                 ("M-P" . previous-history-element)
                 ("M-N" . next-history-element)
@@ -886,8 +966,122 @@ Provides search and navigation commands based on the Emacs completion function c
 #+end_src
 
 *** Corfu
+Corfu enhances in-buffer completion with a small completion popup.
+
+#+begin_src emacs-lisp
+
+  ;; Corfu is flexibly customizable via corfu-* customization variables
+  (use-package corfu
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+    ;; Treat the entire input as Orderless input
+    (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+    ;; Remove the 'No match' phrase when there's no match
+    (corfu-quit-no-match t)
+    ;; Insert preview while move up/down in corfu-map
+    ;; (corfu-preview-current 'insert) ; default value
+    ;; Preselect candidate
+    (corfu-preselect 'first)
+    ;; Enable auto completion
+    ;; (corfu-auto t)
+    ;; (corfu-auto-prefix 2)
+    ;; (corfu-auto-delay 0.0)
+    ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+    :hook ((prog-mode . corfu-mode)
+           ;; (eshell-mode . corfu-mode)
+           (text-mode .corfu-mode))
+    :bind (:map corfu-map
+                ("RET" . nil))
+    :init
+    ;; Enable optional extension modes:
+    (corfu-history-mode) ; or (corfu-prescient-mode 1) ; After installing
+    ;; (global-corfu-mode)
+    :config
+    (add-hook 'eshell-mode-hook
+              (lambda () (setq-local corfu-quit-at-boundary nil
+                                     corfu-preselect 'first
+                                     corfu-quit-no-match t
+                                     corfu-auto nil)
+                (corfu-mode)))
+    (keymap-set corfu-map "RET" `( menu-item "" nil :filter
+                                   ,(lambda (&optional _)
+                                      (and (derived-mode-p
+                                            'eshell-mode 'comint-mode)
+                                           #'corfu-send))))
+    ;; Transfer completion to the minibuffer
+    (defun corfu-move-to-minibuffer ()
+      (interactive)
+      (pcase completion-in-region--data
+        (`(,beg ,end ,table ,pred ,extras)
+         (let ((completion-extra-properties extras)
+               completion-cycle-threshold completion-cycling)
+           (consult-completion-in-region beg end table pred)))))
+    (keymap-set corfu-map "C-." #'corfu-move-to-minibuffer) ; "M-m" (default)
+    (add-to-list 'corfu-continue-commands #'corfu-move-to-minibuffer))
+
+  ;; A few more useful configurations...
+  (use-package emacs
+    :custom
+    ;; Disable Ispell completion function. Try `cape-dict' as an alternative.
+    (text-mode-ispell-word-completion nil)
+    ;; Hide commands in M-x which do not apply to the current mode.  Corfu
+    ;; commands are hidden, since they are not used via M-x. This setting is
+    ;; useful beyond Corfu.
+    (read-extended-command-predicate #'command-completion-default-include-p))
+
+  ;; Use Dabbrev with Corfu!
+  (use-package dabbrev
+    ;; :bind (("C-M-<tab>" . dabbrev-completion)
+    ;;        ("C-M-<iso-lefttab>" . dabbrev-expand))
+    :config
+    (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+    ;; Available since Emacs 29 (Use `dabbrev-ignored-buffer-regexps'
+    ;; on older Emacs)
+    (add-to-list 'dabbrev-ignored-buffer-modes 'authinfo-mode)
+    (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+    (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+    (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
+
+#+end_src
 
 *** Cape
+Cape provides Completion At Point Extensions which can be used in combination with Corfu, Company or the default completion UI.
+
+#+begin_src emacs-lisp
+
+  ;; Completion At Point Extensions
+  (use-package cape
+    ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
+    ;; Press 'C-c p ?' (default) to for help.
+    :bind ("M-k" . cape-prefix-map)
+    :init
+    ;; Add to the global default value of `completion-at-point-functions'
+    ;; which is used by `completion-at-point'. The order of the
+    ;; functions matters, the first function returning a result wins.
+    ;; Note that the list of buffer-local completion functions takes
+    ;; precedence over the global list.
+    (add-hook 'completion-at-point-functions #'cape-dabbrev)
+    (add-hook 'completion-at-point-functions #'cape-history)
+    (add-hook 'completion-at-point-functions #'cape-elisp-block)
+    (add-hook 'completion-at-point-functions #'cape-file))
+
+  ;; Using Cape to tweak and combine Capfs
+  ;; (defun my/ignore-elisp-keywords (cand)
+  ;;   (or (not (keywordp cand))
+  ;;       (eq (char-after (car completion-in-region--data)) ?:)))
+
+  ;; (defun my/setup-elisp ()
+  ;;   (setq-local completion-at-point-functions
+  ;;               `(,(cape-capf-super
+  ;;                   (cape-capf-predicate
+  ;;                    #'elisp-completion-at-point
+  ;;                    #'my/ignore-elisp-keywords)
+  ;;                   #'cape-dabbrev)
+  ;;                 cape-file)
+  ;;               cape-dabbrev-min-length 5))
+  ;; (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+
+#+end_src
 
 *** Embark
 “Emacs Mini-Buffer Actions Rooted in Keymaps” makes it easy to choose a command to run based on what is near point, both during a minibuffer completion session and in normal buffers. You can think of ~embark-act~ as a keyboard-based version of a right-click contextual menu.
@@ -1002,6 +1196,42 @@ Provides search and navigation commands based on the Emacs completion function c
 
 #+end_src
 
+** Prescient
+Simple but effective candidate sorting by usage.
+
+#+begin_src emacs-lisp
+
+  ;; General-purpose library for sorting and filtering candidates.
+  (use-package prescient
+    :config
+    ;; Save recency and frequency rankings to disk, which let
+    ;; them become better over time.
+    (prescient-persist-mode 1))
+
+  ;; For use with completion-preview-mode in Emacs 30:
+  (with-eval-after-load 'completion-preview
+    (setq completion-preview-sort-function #'prescient-completion-sort))
+
+  ;; Configures filtering locally in the Vertico buffer.
+  (use-package vertico-prescient
+    :after vertico
+    :config
+    (vertico-prescient-mode 1))
+
+  ;; Configures filtering locally in buffers in which corfu-mode is active.
+  (use-package corfu-prescient
+    :after corfu
+    :config
+    (corfu-prescient-mode 1))
+
+  ;; Configures filtering locally in buffers in which company-mode is active.
+  (use-package company-prescient
+    :after company
+    :config
+    (company-prescient-mode 1))
+
+#+end_src
+
 ** Bind key
 *** Meta
 Manage global =Meta= key combinations.
@@ -1074,27 +1304,54 @@ Manage global keypad key combinations.
   ;; kp-
   (dolist (binds
            '(
+             ;; ("<kp-Bloq>"     . #leader keyd)
+             ;; ("<kp-divide>"   . )
+             ;; ("<kp-multiply>" . )
+             ;; ("<kp-subtract>" . #Hide all normal windows)
+
+             ;; ("<kp-7>" . ~mc/mark-next-like-this)
+             ;; ("<kp-8>" . )
              ("<kp-9>" . kmacro-end-or-call-macro)
              ("<kp-add>" . switch-to-previous-buffer)
 
-             ("<kp-4>" . rf/find-or-switch-to-emacs-elisp)
-             ("<kp-5>" . rf/find-or-switch-to-english)
-             ("<kp-6>" . rf/find-or-switch-to-init)
+             ("<kp-4>" . rf/find-or-switch-to-javascript)
+             ("<kp-5>" . rf/find-or-switch-to-shell)
+             ("<kp-6>" . rf/find-or-switch-to-emacs-elisp)
 
-             ("<kp-1>" . rf/find-or-switch-to-main-file)
+             ("<kp-1>" . rf/find-or-switch-to-todo)
              ("<kp-2>" . eshell)
              ("<kp-3>" . scratch-buffer)
 
              ("<kp-0>" . other-window)
+             ;; ("<kp-decimal>" . #Click)
+             ;; ("<kp-enter>" . #temporarily most used command)
              ))
     (keymap-global-set (car binds) (cdr binds)))
 
   ;; kp-S-
   (dolist (binds
            '(
-             ("S-<kp-9>" . kmacro-start-macro)
+             ;; ("S-<kp-Bloq>" . )
+             ;; ("S-<kp-divide>" . )
+             ;; ("S-<kp-multiply>" . )
+             ;; ("S-<kp-subtract>" . )
 
-             ("S-<kp-3>" . view-echo-area-messages)
+             ;; ("S-<kp-7>" . ~mc/mark-previous-like-this)
+             ;; ("S-<kp-8>" . )
+             ("S-<kp-9>" . kmacro-start-macro)
+             ;; ("S-<kp-add>" . ~consult-buffer)
+
+             ("S-<kp-4>" . rf/find-or-switch-to-html-css-seo)
+             ("S-<kp-5>" . rf/find-or-switch-to-gnu-linux)
+             ("S-<kp-6>" . rf/find-or-switch-to-init)
+
+             ("S-<kp-1>" . rf/find-or-switch-to-archive)
+             ;; ("S-<kp-2>" . #Switch to application 4 (terminal))
+             ("S-<kp-3>" . rf/find-or-switch-to-layout-maps)
+
+             ;; ("S-<kp-0>" . )
+             ;; ("S-<kp-decimal>" . )
+             ;; ("S-<kp-enter>" . )
              ))
     (keymap-global-set (car binds) (cdr binds)))
 
@@ -1108,7 +1365,7 @@ Manage global mouse key combinations.
   ;; mouse-
   (dolist (binds
            '(
-             ("<mouse-8>" . xah-previous-user-buffer)
+             ("<mouse-8>" . "TAB")
              ))
     (keymap-global-set (car binds) (cdr binds)))
 
@@ -1213,6 +1470,227 @@ Convenient way to repeat previous commands.
 
 #+end_src
 
+* Files
+** Save place
+Automatically save place in files.
+
+#+begin_src emacs-lisp
+
+  ;; Automatically save place in each file:
+  (save-place-mode 1)
+
+#+end_src
+
+** Auto revert
+Revert individual buffers when files on disk change.
+
+#+begin_src emacs-lisp
+
+  ;; Reverts any buffer associated with a file when it changes on disk:
+  (global-auto-revert-mode 1)
+
+#+end_src
+
+** Dired
+Directory editing.
+
+#+begin_src emacs-lisp
+
+  (use-package dired
+    :ensure nil ;; otherwise package.el will fetch it (INS)
+    :bind (("C-x C-j" . dired-jump)
+           :map dired-mode-map
+           ("DEL" . dired-up-directory)
+           ("z" . ew/dired-dotfiles-toggle)
+           ;; To use function keys for undo (f1 -> C-z)
+           ("C-z" . dired-undo)
+           ("_" . xah-dired-rename-space-to-underscore)
+           ("-" . xah-dired-rename-space-to-hyphen))
+    :custom
+    ;; Changes the order in which the directories are displayed.
+    (dired-listing-switches "-aoht --group-directories-first")
+    :config
+    ;; When visiting a new sub-directory the old buffer will be killed:
+    (setq dired-kill-when-opening-new-dired-buffer t)
+    ;; Reverts the destination Dired buffer after
+    ;; performing some dired-operations:
+    (setq dired-do-revert-buffer t)
+    ;; Toggle showing dot files in Dired mode (EmacsWiki):
+    (defun ew/dired-dotfiles-toggle ()
+      "Show/hide dot-files"
+      (interactive)
+      (when (equal major-mode 'dired-mode)
+        ;; if currently showing
+        (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
+            (progn
+              (set (make-local-variable 'dired-dotfiles-show-p) nil)
+              (message "h")
+              (dired-mark-files-regexp "^\\\.")
+              (dired-do-kill-lines))
+          (progn (revert-buffer) ; otherwise just revert to re-show
+                 (set (make-local-variable 'dired-dotfiles-show-p) t))))))
+
+  ;; Shows icons for each file in dired mode:
+  (use-package all-the-icons-dired
+    :hook (dired-mode . all-the-icons-dired-mode)
+    :config
+    ;; Display Dired icons in color:
+    (setq all-the-icons-dired-monochrome nil))
+
+#+end_src
+
+** Recentf
+Maintain a menu of recently opened files.
+
+#+begin_src emacs-lisp
+
+  ;; Remembering recently edited files:
+  (use-package recentf
+    :config
+    (setq recentf-max-saved-items 50)
+    (setq desktop-auto-save-timeout 300)
+    (recentf-mode 1))
+
+#+end_src
+
+** Persistent scratch
+Preserve the state of scratch buffers across Emacs sessions
+
+#+begin_src emacs-lisp
+
+  ;; Preserves the state of scratch buffers accross Emacs sessions:
+  (use-package persistent-scratch
+    :config
+    ;; Enable autosave and restore the last saved state:
+    (persistent-scratch-setup-default)
+    (setq persistent-scratch-autosave-interval 60))
+
+#+end_src
+
+** Treemacs
+Shows the file system outlines of your projects in a simple tree layout allowing quick navigation and exploration.
+
+#+begin_src emacs-lisp
+
+  ;; A tree layout file explorer for Emacs.
+  (use-package treemacs
+    :bind (:map treemacs-mode-map
+                ("M-<tab>" . treemacs-TAB-action))
+    :config
+    (treemacs-resize-icons 15))
+
+#+end_src
+
+** Find file
+Finding files.
+
+#+begin_src emacs-lisp
+
+  (defvar rf/main-file "/home/rich/Documents/todo.org"
+    "The main file to switch to.
+  This is one of the most common files, depending on what
+  you'reworking on at the time. Its purpose is to add a
+  shortcut to quickly switch to it.")
+
+  (defvar rf/list-of-main-files
+    '(("todo.org" . "/home/rich/Documents/todo.org")
+      ("emacs-elisp.org" . "/home/rich/Documents/emacs-elisp.org")
+      ("shell.org" . "/home/rich/Documents/shell.org")
+      ("javascript.org" . "/home/rich/.emacs.d/javascript.org")
+      ("html-css-seo.org" . "/home/rich/Documents/html-css-seo.org")
+      ("init.org" . "/home/rich/.emacs.d/init.org")
+      ("archive.org" . "/home/rich/Documents/archive.org")
+      ("gnu-linux.org" . "/home/rich/Documents/gnu-linux.org")
+      ("math.org" . "/home/rich/.emacs.d/math.org")
+      ("english.org" . "/home/rich/Documents/english.org"))
+    "List of main files.
+  This is a list of the most frequently used files. It's used to
+  configure an easy-to-use shortcut to quickly switch to this file.
+  Each element is (file-name . file-path).")
+
+  (defun rf/set-the-main-file ()
+    "Choose a file to set in variable `rf/main-file'."
+    (interactive)
+    (let ((file-name (completing-read
+                      "Choose the main document: "
+                      (mapcar (lambda (f) (car f)) rf/list-of-main-files)
+                      nil t)))
+      (dolist (cell rf/list-of-main-files)
+        (when (string= (car cell) file-name)
+          (setq rf/main-file (cdr cell))))))
+
+  (defun rf/find-or-switch-to-file (file-path)
+    "Find or switch to the FILE-PATH file."
+    (let ((buffer (find-buffer-visiting file-path)))
+      (if (file-exists-p file-path)
+          (if buffer
+              (switch-to-buffer buffer)
+            (find-file file-path))
+        (message "The file does not exist: %s" file-path))))
+
+  (defun rf/find-or-switch-to-main-file ()
+    "Find or switch to the main file.
+  The main file is the one stored in the `rf/main-document' varible."
+    (interactive)
+    (rf/find-or-switch-to-file rf/main-file))
+
+  (defun rf/find-or-switch-to-todo ()
+    "Find or switch to the `todo.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/todo.org"))
+
+  (defun rf/find-or-switch-to-emacs-elisp ()
+    "Find or switch to the `emacs-elisp.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/emacs-elisp.org"))
+
+  (defun rf/find-or-switch-to-shell ()
+    "Find or switch to the `shell.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/shell.org"))
+
+  (defun rf/find-or-switch-to-javascript ()
+    "Find or switch to the `javascript.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/javascript.org"))
+
+  (defun rf/find-or-switch-to-html-css-seo ()
+    "Find or switch to the `html-css-seo.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/html-css-seo.org"))
+
+  (defun rf/find-or-switch-to-init ()
+    "Find or switch to the `init.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/.emacs.d/init.org"))
+
+  (defun rf/find-or-switch-to-archive ()
+    "Find or switch to the `archive.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/archive.org"))
+
+  (defun rf/find-or-switch-to-gnu-linux ()
+    "Find or switch to the `gnu-linux.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/gnu-linux.org"))
+
+  (defun rf/find-or-switch-to-math ()
+    "Find or switch to the `math.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/math.org"))
+
+  (defun rf/find-or-switch-to-english ()
+    "Find or switch to the `english.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/english.org"))
+
+  (defun rf/find-or-switch-to-layout-maps ()
+    "Find or switch to the `emacs-maps' folder."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Pictures/emacs-maps/"))
+
+#+end_src
+
 * Text
 ** Org
 *** Org package
@@ -1226,9 +1704,8 @@ Outline-based notes management and organizer.
     :bind (:map org-mode-map
                 ;; Make shift selection works as usual.
                 ("C-S-<up>" . nil) ("C-S-<down>" . nil)
-                ("M-<tab>" . org-cycle)
+                ;; ("M-<tab>" . org-cycle)
                 ("C-c C-d" . rf/outline-down-heading)
-                ;; ("C-," . embark-act) ;;; dvorak
                 ("<kp-multiply>" . rf/org-emphasize-bold)
                 ("<kp-divide>" . rf/org-emphasize-code)
                 ("S-<kp-divide>" . rf/org-emphasize-italic)
@@ -1636,246 +2113,6 @@ Convert buffer text and associated decorations (colors, fonts, underlining,...) 
 
 #+end_src
 
-* Files
-** Save place
-Automatically save place in files.
-
-#+begin_src emacs-lisp
-
-  ;; Automatically save place in each file:
-  (save-place-mode 1)
-
-#+end_src
-
-** Auto revert
-Revert individual buffers when files on disk change.
-
-#+begin_src emacs-lisp
-
-  ;; Reverts any buffer associated with a file when it changes on disk:
-  (global-auto-revert-mode 1)
-
-#+end_src
-
-** Dired
-Directory editing.
-
-#+begin_src emacs-lisp
-
-  (use-package dired
-    :ensure nil ;; otherwise package.el will fetch it (INS)
-    :bind (("C-x C-j" . dired-jump)
-           :map dired-mode-map
-           ("DEL" . dired-up-directory)
-           ("z" . ew/dired-dotfiles-toggle)
-           ;; To use function keys for undo (f1 -> C-z)
-           ("C-z" . dired-undo)
-           ("_" . xah-dired-rename-space-to-underscore)
-           ("-" . xah-dired-rename-space-to-hyphen))
-    :custom
-    ;; Changes the order in which the directories are displayed.
-    (dired-listing-switches "-aoht --group-directories-first")
-    :config
-    ;; When visiting a new sub-directory the old buffer will be killed:
-    (setq dired-kill-when-opening-new-dired-buffer t)
-    ;; Reverts the destination Dired buffer after
-    ;; performing some dired-operations:
-    (setq dired-do-revert-buffer t)
-    ;; Toggle showing dot files in Dired mode (EmacsWiki):
-    (defun ew/dired-dotfiles-toggle ()
-      "Show/hide dot-files"
-      (interactive)
-      (when (equal major-mode 'dired-mode)
-        ;; if currently showing
-        (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
-            (progn
-              (set (make-local-variable 'dired-dotfiles-show-p) nil)
-              (message "h")
-              (dired-mark-files-regexp "^\\\.")
-              (dired-do-kill-lines))
-          (progn (revert-buffer) ; otherwise just revert to re-show
-                 (set (make-local-variable 'dired-dotfiles-show-p) t))))))
-
-  ;; Shows icons for each file in dired mode:
-  (use-package all-the-icons-dired
-    :hook (dired-mode . all-the-icons-dired-mode)
-    :config
-    ;; Display Dired icons in color:
-    (setq all-the-icons-dired-monochrome nil))
-
-#+end_src
-
-** Recentf
-Maintain a menu of recently opened files.
-
-#+begin_src emacs-lisp
-
-  ;; Remembering recently edited files:
-  (use-package recentf
-    :config
-    (setq recentf-max-saved-items 50)
-    (setq desktop-auto-save-timeout 300)
-    (recentf-mode 1))
-
-#+end_src
-
-** Persistent scratch
-Preserve the state of scratch buffers across Emacs sessions
-
-#+begin_src emacs-lisp
-
-  ;; Preserves the state of scratch buffers accross Emacs sessions:
-  (use-package persistent-scratch
-    :config
-    ;; Enable autosave and restore the last saved state:
-    (persistent-scratch-setup-default)
-    (setq persistent-scratch-autosave-interval 60))
-
-#+end_src
-
-** Treemacs
-Shows the file system outlines of your projects in a simple tree layout allowing quick navigation and exploration.
-
-#+begin_src emacs-lisp
-
-  ;; A tree layout file explorer for Emacs.
-  (use-package treemacs
-    :bind (:map treemacs-mode-map
-                ("M-<tab>" . treemacs-TAB-action))
-    :config
-    (treemacs-resize-icons 15))
-
-#+end_src
-
-** Find file
-Finding files.
-
-#+begin_src emacs-lisp
-
-  (defvar rf/main-file "/home/rich/Documents/todo.org"
-    "The main file to switch to.
-  This is one of the most common files, depending on what
-  you'reworking on at the time. Its purpose is to add a
-  shortcut to quickly switch to it.")
-
-  (defvar rf/list-of-main-files
-    '(("todo.org" . "/home/rich/Documents/todo.org")
-      ("emacs-elisp.org" . "/home/rich/Documents/emacs-elisp.org")
-      ("shell.org" . "/home/rich/Documents/shell.org")
-      ("init.org" . "/home/rich/.emacs.d/init.org")
-      ("english.org" . "/home/rich/Documents/english.org"))
-    "List of main files.
-  This is a list of the most frequently used files. It's used to
-  configure an easy-to-use shortcut to quickly switch to this file.
-  Each element is (file-name . file-path).")
-
-  (defun rf/set-the-main-file ()
-    "Choose a file to set in variable `rf/main-file'."
-    (interactive)
-    (let ((file-name (completing-read
-                      "Choose the main document: "
-                      (mapcar (lambda (f) (car f)) rf/list-of-main-files)
-                      nil t)))
-      (dolist (cell rf/list-of-main-files)
-        (when (string= (car cell) file-name)
-          (setq rf/main-file (cdr cell))))))
-
-  (defun rf/find-or-switch-to-file (file-path)
-    "Find or switch to the FILE-PATH file."
-    (let ((buffer (find-buffer-visiting file-path)))
-      (if (file-exists-p file-path)
-          (if buffer
-              (switch-to-buffer buffer)
-            (find-file file-path))
-        (message "The file does not exist: %s" file-path))))
-
-  (defun rf/find-or-switch-to-main-file ()
-    "Find or switch to the main file.
-  The main file is the one stored in the `rf/main-document' varible."
-    (interactive)
-    (rf/find-or-switch-to-file rf/main-file))
-
-  (defun rf/find-or-switch-to-todo ()
-    "Find or switch to the `todo.org' file."
-    (interactive)
-    (rf/find-or-switch-to-file "/home/rich/Documents/todo.org"))
-
-  (defun rf/find-or-switch-to-emacs-elisp ()
-    "Find or switch to the `emacs-elisp.org' file."
-    (interactive)
-    (rf/find-or-switch-to-file "/home/rich/Documents/emacs-elisp.org"))
-
-  (defun rf/find-or-switch-to-english ()
-    "Find or switch to the `english.org' file."
-    (interactive)
-    (rf/find-or-switch-to-file "/home/rich/Documents/english.org"))
-
-  (defun rf/find-or-switch-to-shell ()
-    "Find or switch to the `shell.org' file."
-    (interactive)
-    (rf/find-or-switch-to-file "/home/rich/Documents/shell.org"))
-
-  (defun rf/find-or-switch-to-init ()
-    "Find or switch to the `init.org' file."
-    (interactive)
-    (rf/find-or-switch-to-file "/home/rich/.emacs.d/init.org"))
-
-#+end_src
-
-* Help
-** Basic help
-Support for Emacs help systems.
-
-#+begin_src emacs-lisp
-
-  ;; Output keymap descriptions (prefix) on help commands and "??"
-  ;; for closures/functions, instead of "[closure]"/"[lambda]".
-  (setq describe-bindings-show-prefix-commands t)
-
-#+end_src
-
-** Helpful
-A rich help system with contextual information.
-
-#+begin_src emacs-lisp
-
-  ;; Replacement for *help* buffers that provides more contextual info and code.
-  (use-package helpful
-    :hook (helpful-mode . show-paren-local-mode)
-    :bind
-    (([remap describe-key] . helpful-key)
-     ([remap describe-command] . helpful-command)
-     ([remap describe-variable] . helpful-variable)
-     ;; Note that the built-in `describe-function' includes both functions
-     ;; and macros. `helpful-function' is functions only, so we provide
-     ;; `helpful-callable' as a drop-in replacement.
-     ([remap describe-function] . helpful-callable))
-    ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
-    ;; already links to the manual, if a function is referenced there.
-    ([remap Info-goto-emacs-command-node] . helpful-function))
-
-#+end_src
-
-** Which key
-Customization options for which-key-mode.
-
-#+begin_src emacs-lisp
-
-  ;; Displays the key bindings following your prefix in a popup:
-  (use-package which-key
-    :config
-    ;; Allow C-h to trigger which-key before it is done automatically:
-    (setq which-key-show-early-on-C-h t
-          ;; make sure which-key doesn't show normally but refreshes
-          ;; quickly after it is triggered:
-          which-key-idle-delay 10000
-          which-key-idle-secondary-delay 0.05
-          ;; Show the count of keys shown vs. total keys in the mode line:
-          which-key-show-remaining-keys t)
-    (which-key-mode))
-
-#+end_src
-
 * Communication
 ** Simple httpd
 A simple web server.
@@ -1941,15 +2178,32 @@ Provides infrastructure and a set of commands for enriching the source code edit
 #+begin_src emacs-lisp
 
   ;; Emacs client for the Language Server Protocol (LSP).
+  ;; To use Eglot,each server must be installed, for example for JS or CSS:
+  ;; js   -> npm i -g typescript-language-server typescript
+  ;; css  -> npm i -g vscode-langservers-extracted
   (use-package eglot
     :defer t
     ;; :hook (js-mode . eglot-ensure)
     :custom
     ;; Disable any debug logging (buffer), and may speed things up.
-    (eglot-events-buffer-size 0))
-  ;; To use Eglot,each server must be installed, for example for JS or CSS:
-  ;; js   -> npm i -g typescript-language-server typescript
-  ;; css  -> npm i -g vscode-langservers-extracted
+    (eglot-events-buffer-size 0)
+    :config
+    ;; Specify explicitly to use Orderless for Eglot
+    (setq completion-category-overrides '((eglot (styles orderless))
+                                          (eglot-capf (styles orderless)))))
+
+  ;; Enable cache busting, depending on if your server returns
+  ;; sufficiently many candidates in the first place you may or
+  ;; may not need the cape-wrap-buster
+  ;; (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+
+  ;; Making a Cape Super Capf for Eglot
+  ;; (defun my/eglot-capf ()
+  ;;   (setq-local completion-at-point-functions
+  ;;               (list (cape-capf-super
+  ;;                      #'eglot-completion-at-point
+  ;;                      #'tempel-expand))))
+  ;; (add-hook 'eglot-managed-mode-hook #'my/eglot-capf)
 
 #+end_src
 
@@ -2161,6 +2415,28 @@ Combobulate group: Structured Editing and Movement with Combobulate.
 *** Magit
 Controlling Git from Emacs.
 
+#+begin_src emacs-lisp
+
+  ;; A Git porcelain inside Emacs
+  (use-package magit
+    :bind(("C-5" . magit-status)
+          ("C-c g" . magit-dispatch)
+          ("C-c f" . magit-file-dispatch)
+          :map magit-mode-map
+          ;; ("C-w" . nil)
+          ("C-<insert>" . magit-copy-section-value)))
+
+  ;; Access Git forges from Magit
+  (use-package forge
+    :after magit
+    :config
+    (setq auth-sources '("~/.authinfo")))
+  ;; NOTE: Make sure to configure a GitHub token before using this package!
+  ;; - https://magit.vc/manual/forge/Token-Creation.html#Token-Creation
+  ;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
+
+#+end_src
+
 *** Debug
 Bringing rich debugging capabilities to Emacs via the Debug Adapter Protocol.
 
@@ -2347,14 +2623,22 @@ Command shell implemented entirely in Emacs Lisp.
 
   ;; Set here because eshell-mode-map is loaded after esh-mode feature.
   (with-eval-after-load 'esh-mode
-    (keymap-set eshell-mode-map "C-r" 'consult-history))
+    (keymap-set eshell-mode-map "C-r" 'consult-history)
+    (keymap-set eshell-mode-map "C-t" 'pcomplete-list))
 
   (with-eval-after-load 'em-hist
-    (keymap-set eshell-hist-mode-map "C-h"
+    (keymap-unset eshell-hist-mode-map "TAB")
+    (keymap-set eshell-hist-mode-map "C-S-h"
                 'eshell-previous-matching-input-from-input)
-    (keymap-set eshell-hist-mode-map "C-n"
+    (keymap-set eshell-hist-mode-map "C-S-n"
                 'eshell-next-matching-input-from-input)
-    (keymap-set eshell-hist-mode-map "C-I" 'eshell-list-history))
+    (keymap-set eshell-hist-mode-map "C-S-i" 'eshell-list-history))
+
+  ;; Unset the bindind to be able to use another interface
+  (with-eval-after-load 'em-hist
+    (keymap-unset eshell-cmpl-mode-map "C-M-i")
+    (keymap-unset eshell-cmpl-mode-map "TAB"))
+
 
   ;; Provides some themes of Emacs Shell (Eshell) prompt.
   (use-package eshell-git-prompt
@@ -2374,6 +2658,8 @@ Command shell implemented entirely in Emacs Lisp.
   ;; Fish-like history autosuggestions in eshell.
   (use-package esh-autosuggest
     :hook (eshell-mode . esh-autosuggest-mode)
+    :bind (:map esh-autosuggest-active-map
+                ("TAB" . esh-autosuggest-complete-word))
     :config
     (set-face-foreground 'company-preview-common "#697b96")
     (set-face-background 'company-preview nil))
@@ -2477,6 +2763,73 @@ Automate jobs inside and outside the inner software development loop (edit, comp
                         ))) (gethash "scripts" pkg))
         (prodigy)
         (prodigy-refresh))))
+
+#+end_src
+
+* Help
+** Basic help
+Support for Emacs help systems.
+
+#+begin_src emacs-lisp
+
+  ;; Output keymap descriptions (prefix) on help commands and "??"
+  ;; for closures/functions, instead of "[closure]"/"[lambda]".
+  (setq describe-bindings-show-prefix-commands t)
+
+#+end_src
+
+** Helpful
+A rich help system with contextual information.
+
+#+begin_src emacs-lisp
+
+  ;; Replacement for *help* buffers that provides more contextual info and code.
+  (use-package helpful
+    :hook (helpful-mode . show-paren-local-mode)
+    :bind
+    (([remap describe-key] . helpful-key)
+     ([remap describe-command] . helpful-command)
+     ([remap describe-variable] . helpful-variable)
+     ;; Note that the built-in `describe-function' includes both functions
+     ;; and macros. `helpful-function' is functions only, so we provide
+     ;; `helpful-callable' as a drop-in replacement.
+     ([remap describe-function] . helpful-callable))
+    ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+    ;; already links to the manual, if a function is referenced there.
+    ([remap Info-goto-emacs-command-node] . helpful-function))
+
+#+end_src
+
+** Which key
+Customization options for which-key-mode.
+
+#+begin_src emacs-lisp
+
+  ;; Displays the key bindings following your prefix in a popup:
+  (use-package which-key
+    :config
+    ;; Allow C-h to trigger which-key before it is done automatically:
+    (setq which-key-show-early-on-C-h t
+          ;; make sure which-key doesn't show normally but refreshes
+          ;; quickly after it is triggered:
+          which-key-idle-delay 10000
+          which-key-idle-secondary-delay 0.05
+          ;; Show the count of keys shown vs. total keys in the mode line:
+          which-key-show-remaining-keys t)
+    (which-key-mode))
+
+#+end_src
+
+* Multimedia
+** Image
+Image support.
+
+#+begin_src emacs-lisp
+
+  ;; Map in `image-mode', a major mode for visiting image files
+  (with-eval-after-load 'image-mode
+    (keymap-set image-mode-map "i" 'image-previous-file)
+    (keymap-set image-mode-map "k" 'image-next-file))
 
 #+end_src
 
