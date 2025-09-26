@@ -8917,20 +8917,114 @@ X8
 * Daily sentences
 ** Practice
 *** New
-**** -Estaba, sobre todo, resentido.
-he was above all,  resentful
-
-**** -A quién suelo prestarle mi dinero?
-who do I usually lend my money to?
-
-**** Sin jugadores de baloncesto no habría jugadores de fútbol.
-Without basketball players there would be no soccer players.
-
-**** ¿Cuánto tiempo más tendremos que esperar para que la policía cumpla con sus responsabilidades?
+**** -Cuánto tiempo más tendremos que esperar para que la policía cumpla con sus responsabilidades?
 how much longer do we have to wait before the police fulfills its responsibilities?
 
-**** Durante mucho tiempo no lo creí.
+**** -Durante mucho tiempo no lo creí.
 for the longest time, I wouldn't believe it
+
+**** -Estoy atascada no se que hablar
+I'm stuck, I don't know what to say.
+
+**** Como me cuesta hacer esto
+How hard it is for me to do this
+
+**** El envío ha llegado
+The shipment has arrived
+
+**** Las frases que aciertas a la primera, no necesitas copiarlas
+The phrases you get right the first time, you don't need to copy them.
+You don't need to copy phrases that come out right the first time.
+
+**** -Esa no necesitas copiarla
+You don't need to copy that one.
+
+**** El envío ha llegado casi un mes más tarde del día en que debería haber llegado.
+The shipment arrived almost a month later than it should have arrived.
+
+**** lastima que no tuve tiempo de terminar la configuración del programa
+I didn't have time to finish setting up the program.
+
+**** eso es culpa de la vejez
+That's the fault of old age
+
+**** Hasta que hora vas a practicar?
+How late are you going to practice?
+
+**** Dile a él que quiero un trato justo
+Tell him I want a fair deal.
+
+**** Dile a él que lo que yo quería era un trato justo
+Tell him that what I wanted was a fair deal.
+
+**** me cuesta mucho imaginarme las cosas
+I find it very difficult to imagine things.
+
+**** coño se puso fastidioso el internet
+Damn, the internet got really annoying.
+
+**** ahí puse una canción de salsa y me recordó a ese lugar
+I put on a salsa song and it reminded me of that place.
+
+**** Al menos el 90% de las oraciones deben ser creadas por mí mismo, no copiadas de internet.
+At least 90% of the sentences must be created by myself, not copied from the internet.
+
+**** Eso es todo por hoy, que Emacs Forge te acompañe.
+that's all for today, may the Emacs Forge be with you
+
+**** soy tu infierno
+i'm your hell
+
+**** Algunos de ellos se pueden doblar
+some of them can be bent
+
+**** pero hasta que lo hagamos
+but until we do
+
+**** Si no tuvieran una cámara, el esposo habría pensado que su esposa estaba perdiendo la cabeza😂😂😂
+If they didn't have a camera the husband would have thought his wife was losing her mind😂😂😂
+
+**** ¿Qué está pasando? ¿Por qué eso hace eso?
+What's going on? Why is it doing that?
+
+**** mi mamá no se ha levantado todavía
+My mom hasn't gotten up yet.
+
+**** ¿Cómo olvidar que todavía te amo?
+How can I forget that I still love you?
+
+**** me cuesta mucho hacer eso
+It's very hard for me to do that
+
+**** Déjame ver qué publicó esta persona.
+Let me see what this person posted.
+
+**** Ves, cómo las palabras se te estan quedando grabadas.
+You see how the words are sticking with you.
+
+**** ¿Sabes a qué me recuerda?
+you know what it reminds me of?
+
+**** Tal vez se equivocaron
+maybe they got it wrong
+
+**** Voy a llevar a Neo a verla.
+I'm taking Neo to see her
+
+**** Haré que uno de mis hijos
+I'll get one of my kids to
+
+**** Lo que realmente te va a molestar más adelante es: ¿lo habrías roto si no hubiera dicho nada?
+what's really going to bake your noodle later on is would you still have broken it if I hadn't said anything?
+
+**** ¿Sabes por qué Marcos te trajo a verme?
+you know why Marcos brought you to see me
+
+**** Te contaré un pequeño secreto.
+I'll let you in on a little secret
+
+**** Hey estaba pensando al ver tu programa que si tú cobrarás un dólar por cada descarga, tú tendrías 5 millones de dólares. Imagínate cuánto dinero hacen esas grandes compañías
+Hey, I was thinking while watching your show that if you charged a dollar for each download, you'd have $5 million. Imagine how much money those big companies make.
 
 *** Real speak
 **** +Me estan doliendo las manos, y estoy asustado, no sé hasta cuando esto se mantega, y necesito trabajar y terminar de hacer lo que tengo que hacer.
