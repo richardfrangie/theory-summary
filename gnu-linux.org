@@ -2498,6 +2498,8 @@ A storage area for smaller, temporary files created by various programs. Some co
 
 Any user may read to and write from ~/tmp~, but the user may not have permission to access another user’s files there.
 
+As of debian Trixie the new default behavior is to automatically deleted files from this directorory after 10 days from the time they were last used (as well as after a reboot). Files in [[ /var/tmp]] are deleted after 30 days (but not deleted after a reboot).
+
 ** /usr
 Unix System Resorces contains a large directory hierarchy, including the bulk of the Linux system. ~/usr~ is where most of the user-space programs and data reside.
 
@@ -2565,6 +2567,9 @@ Contains a dictionaries.
 ** /var
 The variable subdirectory date, where programs record information that can change over the course of time. System logging, user tracking, caches, and other files that system programs create and manage are here.
 
+*** /var/tmp
+Temporary files that are deleted after 30 days (but not deleted after a reboot).
+
 *** /var/log
 Contains log files, records of various system activity.
 
@@ -2589,6 +2594,11 @@ In Debian 12, the traditional syslog system has been replaced with systemd-journ
 
 *DuckAssist*:
 If you prefer syslog files, you can install the ~rsyslog~ package to restore them.
+
+*** /var/log/apt/history.log
+Log file used on Debian-based systems to track actions performed by the APT (Advanced Package Tool) package management system. This file contains information about package installations, updates, and removals performed on the system.
+
+Other similar usuful files are ~/var/log/apt/term.log~ and ~/var/log/dpkg.log~.
 
 *** /var/log/journal
 Is where *journald* stores its (binary) logfiles.
@@ -3849,9 +3859,32 @@ Sticky keys are known as 'one shot mods'.
 
 *** VIA
 **** Brief
-VIA is essential for custom keyboard enthusiasts, offering unparalleled customization and ease of use. Its intuitive interface allows for effortless remapping of keys, creation of complex macros, and management of multiple layers, empowering users to tailor their keyboard experience to perfection.
+VIA offers extensive customization capabilities, these functions enable efficient and flexible keyboard layouts by facilitating temporary and permanent layer changes, single-action switching, toggling between layers, and sustained layer alterations.
 
-VIA offers extensive customization capabilities, these functions enable efficient and flexible keyboard layouts by facilitating temporary and permanent layer changes, single-action switching, toggling between layers, and sustained layer alterations. Discovering and experimenting with these features in VIA can lead to exciting possibilities for personalizing your keyboard experience.
+Layers allow the ability to change the functionality of the entire keyboard based on what “layer” it’s currently on. It’s best to visualize layers stacked on top of each other.
+
+*Example of layer behavior*: if you press ~TG(1)~ to go to layer ~1~ from layer ~0~, then to return to layer ~0~ you will need to press ~TG(1)~ again to turn off layer ~1~ and go to the previous activated layer ~0~. You can also press ~TG(3)~ to go to layer ~3~ from layer ~1~, then if you press ~TG(3)~ again you'd go to layer ~1~ not layer ~2~ or ~0~, since layer ~2~ is turned off and layer ~0~ would be overshadowed by layer ~1~.
+
+*Note*: this behavior occurs using these layer keys [[MO(n)]], [[TG(n)]], [[OSL(n)]], [[TT(n)]] and [[DF(n)]] except [[TO(n)]].
+
+#+begin_src text
+
+               _______                                   _______
+              /      /                                  /      /
+             /______/ TG(3)                            /______/ TG(3)
+            _______
+           /      /
+          /______/ TG(2)
+        _______                                  _______
+       /      /                                 /      /
+      /______/ TG(1)                           /______/ TG(1)
+    _______                                  _______
+   /      /                                 /      /
+  /______/  TG(0)                          /______/  TG(0)
+
+  TG(0),TG(1),TG(2),TG(3) on               TG(0),TG(1),TG(3) on
+
+#+end_src
 
 [[https://epomaker.com/blogs/guides/how-to-use-via-for-beginners][Epomaker beginner's guide]]
 
@@ -3859,17 +3892,12 @@ VIA offers extensive customization capabilities, these functions enable efficien
 
 **** Layers
 ***** MO(n)
-When the MO key is *held down*, it temporarily activates the designated layer specified by the number n in parentheses.
+When the MO key is *held down*, it *temporarily* activates the designated layer specified by the number n in parentheses.
 
 For example, if I set the Fn key on Layer 0 to MO(1) and assign the Z key on Layer 1 to the number 1, pressing and holding the Fn (MO1) key while pressing the Z (1) key will result in the input of the number 1, reverting to the base layer once the key is released.
 
-***** OSL(n)
-The OSL(n) function, which stands for *One Shot Layer*, provides a temporary switch to a specified layer (Layer n). When OSL(n) is activated, the keyboard momentarily transitions to the indicated layer, allowing for a single key action. After pressing any key on this layer, the keyboard automatically reverts to the default layer (Layer 0). This feature is particularly useful for executing a single action on a different layer without permanently changing layers.
-
-For instance, if you configure the Fn key on Layer 0 to OSL(2) and assign the Z key on Layer 2 to input the number 3, pressing the Fn (OSL(2)) key briefly, followed by the Z (3) key, will result in the input of the number 3. Thus, the OSL function enables a temporary switch to Layer n with a brief key press, and after a key on Layer n is triggered, it seamlessly returns to Layer 0.
-
 ***** TG(n)
-The TG(n) function stands for "*toggle*," which facilitates a *permanent switch* to Layer n without reverting automatically to Layer 0. This function allows toggling between two layers, but it does not support switching among multiple layers.
+The TG(n) function stands for "*toggle*," which facilitates a *permanent switch* to Layer n without reverting automatically to Layer 0 (*on/off*). This function allows toggling between two layers, but it does not support switching among multiple layers.
 
 For instance, if you configure the Fn key on Layer 0 to TG(3) and assign the Z key on Layer 3 to input the number 9, pressing the Fn key once will permanently switch the keyboard to Layer 3. Consequently, subsequent presses of the Z (9) key will consistently result in the input of the number 9, regardless of how many times it is pressed and released. This toggle functionality provides a reliable means of maintaining a persistent layer switch for specialized tasks.
 
@@ -3881,10 +3909,25 @@ Once the keyboard is permanently switched to Layer 3 using TG(3), it remains on 
 
 Both methods provide a straightforward way to revert to the default layer after toggling to a different layer with TG(n), ensuring flexible and efficient layer management.
 
+***** TT(n)
+Normally acts like [[MO(n)]] unless it's tapped multiple times (5x) which toggles [[TG(n)]] layer n on.
+
+***** OSL(n)
+The OSL(n) function, which stands for *One Shot Layer*, provides a temporary switch to a specified layer (Layer n). When OSL(n) is activated, the keyboard momentarily transitions to the indicated layer, allowing for a single key action. After pressing any key on this layer, the keyboard automatically reverts to the default layer (Layer 0). This feature is particularly useful for executing a single action on a different layer without permanently changing layers.
+
+For instance, if you configure the Fn key on Layer 0 to OSL(2) and assign the Z key on Layer 2 to input the number 3, pressing the Fn (OSL(2)) key briefly, followed by the Z (3) key, will result in the input of the number 3. Thus, the OSL function enables a temporary switch to Layer n with a brief key press, and after a key on Layer n is triggered, it seamlessly returns to Layer 0.
+
 ***** TO(n)
-The TO(n) function is designed to switch to Layer n with a *short press*, maintaining that layer until another layer switch is manually initiated. This function supports permanent toggling between multiple layers, enhancing the flexibility of your keyboard layout.
+The TO(n) function is designed to switch to Layer n with a short press, *maintaining that layer until another layer switch is manually initiated*. This function supports permanent toggling between multiple layers, enhancing the flexibility of your keyboard layout.
+
+*Note*: it deletes the previous layers activated, unlike [[MO(n)]], [[TG(n)]], [[OSL(n)]], [[TT(n)]]  which keeps the previous layers, that is, if you have the layers ~1~ and ~2~ activated and you press ~TO(3)~ and then press ~TG(3)~ to turn it off, you return to the layer ~0~ not to the ~2~.
 
 For example, if you configure TO(3) on Layer 0 and TO(5) on Layer 3, you can seamlessly transition from Layer 0 to Layer 5 with just two short presses. First, pressing TO(3) switches from Layer 0 to Layer 3. Then, pressing TO(5) switches from Layer 3 to Layer 5.
+
+***** DF(n)
+Sets the default layer ~0~.
+
+*Note*: overrides previous layers, i.e. if you press ~DF(2)~ it will take it as default and override layers ~0~ and ~1~, to get layers ~0~ and ~1~ back you need to press ~DF(1)~ or ~DF(0)~.
 
 ***** Fn1 (Fn3)
 The Fn1 (Fn3) key offers *dual functionality*, enhancing the versatility of your keyboard layer management. The first function operates similarly to MO(1): *pressing and holding* Fn1 temporarily switches the keyboard to Layer 1, reverting to Layer 0 upon release. The second function is activated by *simultaneously pressing and holding both* Fn1 and Fn2, which switches the keyboard to Layer 3. This dual capability allows for flexible and efficient layer switching, providing a robust solution for advanced keyboard customization.

@@ -117,6 +117,7 @@
 |             |                                    |
 | /C-c '/       | org-edit-special (open bufer code) |
 | /C-c C-v v/   | org-babel-expand-src-block         |
+| /C-c C-v t/   | org-babel-tangle                   |
 | /C-c C-c/     | org-ctrl-c (eval code)             |
 | /C-x C-s/     | org-edit-src-save                  |
 |             |                                    |
@@ -446,12 +447,12 @@
 | /C-x r b/ | consult-bookmark            |
 |         | consult-recent-file         |
 |         |                             |
-| /f SPC/   | narrow recent files         |
 | /* SPC/   | narrow modified buffers     |
+| /b SPC/   | narrow buffers              |
+| /f SPC/   | narrow recent files         |
+| /m SPC/   | narrow bookmarks            |
 | /p SPC/   | narrow project              |
 | /r SPC/   | narrow file registers       |
-| /m SPC/   | narrow bookmarks            |
-| /b SPC/   | narrow buffers              |
 | /SPC/     | narrow hidden buffers       |
 
 **** Editing
@@ -1097,17 +1098,16 @@
 |            | describe-keymap                |
 |            | customize-variable             |
 |            |                                |
+| /C-h w/      | where-is                       |
 | /C-h e/      | view-echo-area-messages        |
 | /C-h l/      | view-lossage (last input keys) |
 | /C-h a/      | counsel-apropos(pattern)       |
-| /C-h w/      | where-is                       |
 |            |                                |
 | /C-h C-q/    | help-quick-toggle              |
 | /prefix C-h/ | display which-key bindings     |
 |            |                                |
 | /C-h C-h/    | help-for-help                  |
 | /cmd C-h/    | what valid keys follow cmd     |
-| /M-./        | xref-find-definition(cursor)   |
 
 ** IDE
 *** Eglot
@@ -1150,8 +1150,8 @@
 | /M-./     | xref-find-definitions                  |
 | /M-?/     | xref-find-references                   |
 | /C-M-./   | xref-find-apropos                      |
-| /C-x 4/   | xref-find-definitions-other-window     |
-| /C-x 5/   | xref-find-definitions-other-frame      |
+| /C-x 4 ./ | xref-find-definitions-other-window     |
+| /C-x 5 ./ | xref-find-definitions-other-frame      |
 |         |                                        |
 | /M-,/     | xref-go-back                           |
 | /C-M-,/   | xref-go-forward                        |
@@ -1177,6 +1177,7 @@
 | /C-u M-g f/ | consult-flymake (all buffers)    |
 |           |                                  |
 |           | flymake-diagnostic-functions     |
+|           |                                  |
 |           | flymake-reporting-backends       |
 |           | flymake-running-backends         |
 |           | flymake-disabled-backends        |
@@ -1222,43 +1223,31 @@
 
 | /C-M-i/M-TAB/ | completion-at-point |
 
-*** lsp-mode
-**** Lsp
+*** Dape
 
-|         | lsp                            |
-| /C-u M-x/ | lsp (prompt server)            |
-|         | lsp-deferred                   |
-|         | lsp-rename                     |
-|         | lsp-format-region              |
-|         | lsp-format-buffer              |
-|         | lsp-execute-code-action        |
-|         | lsp-headerline-breadcrumb-mode |
-
-**** Code navigation
-
-|   | lsp-find-definition          |
-|   | lsp-find-references          |
-|   | lsp-ui-peek-find-definitions |
-|   | lsp-ui-peek-find-references  |
-
-**** Treemacs
-
-|         | lsp-treemacs-errors-list               |
-|         | lsp-treemacs-symbols                   |
-|         | lsp-treemacs-references                |
-|         | lsp-treemacs-implementations           |
-|         | lsp-treemacs-call-hierarchy            |
-| /C-u M-x/ | lsp-treemacs-call-hierarchy (outgoing) |
-|         | lsp-treemacs-type-hierarchy            |
-|         | lsp-treemacs-deps-list                 |
-
-**** Help
-
-|   | lsp-doctor                   |
-|   | lsp-describe-session         |
-|   | lsp-ui-doc-focus-frame       |
-|   | lsp-ui-doc-unfocus-frame     |
-|   | lsp-register-custom-settings |
+| /C-c d d/ | dape                       |
+| /C-c d r/ | dape-restart               |
+|         |                            |
+| /C-c d b/ | dape-breakpoint-toggle     |
+| /C-c d B/ | dape-breakpoint-remove-all |
+| /C-c d e/ | dape-breakpoint-expression |
+| /C-c d h/ | dape-breakpoint-hits       |
+| /C-c d l/ | dape-breakpoint-log        |
+|         |                            |
+| /C-c d w/ | dape-watch-dwim            |
+| /C-c d x/ | dape-evaluate-expression   |
+|         |                            |
+| /C-c d c/ | dape-continue              |
+| /C-c d n/ | dape-next                  |
+| /C-c d o/ | dape-step-out              |
+| /C-c d s/ | dape-step-in               |
+| /C-c d p/ | dape-pause                 |
+| /C-c d d/ | dape-quit                  |
+| /C-c d D/ | dape-disconnect-quit       |
+|         |                            |
+| /C-c d R/ | dape-repl                  |
+| /C-c d i/ | dape-info (windows)        |
+|         | dape-configs               |
 
 ** Code
 *** Navigation
@@ -1364,31 +1353,43 @@
 | /M-x edebu func/ | edebug-defun(within/next to) |
 | /C-x C-e/        | to revaluate & cancel edebug |
 
-*** dape
+*** lsp-mode
+**** Lsp
 
-| /C-c d d/ | dape                       |
-| /C-c d r/ | dape-restart               |
-|         |                            |
-| /C-c d b/ | dape-breakpoint-toggle     |
-| /C-c d B/ | dape-breakpoint-remove-all |
-| /C-c d e/ | dape-breakpoint-expression |
-| /C-c d h/ | dape-breakpoint-hits       |
-| /C-c d l/ | dape-breakpoint-log        |
-|         |                            |
-| /C-c d w/ | dape-watch-dwim            |
-| /C-c d x/ | dape-evaluate-expression   |
-|         |                            |
-| /C-c d c/ | dape-continue              |
-| /C-c d n/ | dape-next                  |
-| /C-c d o/ | dape-step-out              |
-| /C-c d s/ | dape-step-in               |
-| /C-c d p/ | dape-pause                 |
-| /C-c d d/ | dape-quit                  |
-| /C-c d D/ | dape-disconnect-quit       |
-|         |                            |
-| /C-c d R/ | dape-repl                  |
-| /C-c d i/ | dape-info (windows)        |
-|         | dape-configs               |
+|         | lsp                            |
+| /C-u M-x/ | lsp (prompt server)            |
+|         | lsp-deferred                   |
+|         | lsp-rename                     |
+|         | lsp-format-region              |
+|         | lsp-format-buffer              |
+|         | lsp-execute-code-action        |
+|         | lsp-headerline-breadcrumb-mode |
+
+**** Code navigation
+
+|   | lsp-find-definition          |
+|   | lsp-find-references          |
+|   | lsp-ui-peek-find-definitions |
+|   | lsp-ui-peek-find-references  |
+
+**** Treemacs
+
+|         | lsp-treemacs-errors-list               |
+|         | lsp-treemacs-symbols                   |
+|         | lsp-treemacs-references                |
+|         | lsp-treemacs-implementations           |
+|         | lsp-treemacs-call-hierarchy            |
+| /C-u M-x/ | lsp-treemacs-call-hierarchy (outgoing) |
+|         | lsp-treemacs-type-hierarchy            |
+|         | lsp-treemacs-deps-list                 |
+
+**** Help
+
+|   | lsp-doctor                   |
+|   | lsp-describe-session         |
+|   | lsp-ui-doc-focus-frame       |
+|   | lsp-ui-doc-unfocus-frame     |
+|   | lsp-register-custom-settings |
 
 *** dap-mode
 **** Start
@@ -1451,6 +1452,201 @@
 |   | dap-eval                |
 |   | dap-eval-region         |
 |   | dap-eval-thing-at-point |
+
+*** Magit
+**** General
+
+| /C-x g/     | magit-status                               |
+| /C-x M-g/   | magit-dispatch                             |
+| /C-c M-g/   | magit-file-dispatch                        |
+| /C-c M-g t/ | trace the historical changes made to a def |
+| /C-x p m/   | magit-project-status                       |
+|           |                                            |
+| /TAB/       | toggle section at point                    |
+| /S-TAB/     | magit-section-cycle-global                 |
+| /1...4/     | sections                                   |
+| /M-1...M-4/ | all sections                               |
+|           |                                            |
+| /RET/       | shows detailed view at point               |
+| /SPC/       | shows detailed view at point other window  |
+| /C-SPC/     | set-mark-command                           |
+| /C-c C-c/   | magit-dispatch / save arguments            |
+| /C-q/       | exit all menus                             |
+|           |                                            |
+| /?/         | help                                       |
+| /C-h/       | in magit popup followed by a key           |
+| /g/         | magit-refresh / refresh current buffer     |
+| /G/         | magit-refresh-all                          |
+|           |                                            |
+| /!/         | magit-run / open cmd line invocation view  |
+| /! !/       | invokes a git at root repository           |
+| /$/         | show git cmd and output (behind-the-scene) |
+
+- C-c M-g t :: it shows the historical logs that changed the function point is in. (So it’ll only work well if Emacs can infer the function point is in.) So if you want to trace changes made to a particular function in your git history, that’s the command to use.
+
+**** Staging & unstaging
+
+| /s/     | magit-stage / magit-stage-files             |
+| /S/     | magit-stage-modified                        |
+| /s s s/ | stage all                                   |
+|       |                                             |
+| /u/     | magit-unstage / magit-unstage-files         |
+| /U/     | magit-unstage-all                           |
+|       |                                             |
+| /z/     | magit-stash                                 |
+| /z z/   | create a local stash entry for the changes  |
+| /z p/   | restore the stashed changes                 |
+| /z a/   | keep the stash entry around                 |
+|       |                                             |
+| /k/     | magit-discard / discard,uncommitted,changes |
+|       |                                             |
+| /i/     | add file to .gitignore                      |
+
+- In the status buffer, you can put your cursor on any *file*, *hunk*, or *line* and press ~k~ to discard the change.
+
+**** Committing changes
+
+| /c/         | magit-commit / committing popup                |
+| /c c/       | write a commit message                         |
+| /c e/       | change most recent commit (amend)              |
+| /c a/       | change most recent commit (edit message)       |
+| /c w/       | change most recent commit (without add change) |
+| /c F/       | add changes to an earlier commit               |
+|           |                                                |
+| /r/         | magit-rebase / rebase popup                    |
+| /r i/       | rebase interactively                           |
+|           |                                                |
+| /C-c C-d/   | toggle showing commit                          |
+| /M-n/ / /M-p/ | cycle commit message history ring              |
+|           |                                                |
+| /C-w/       | copies the commit hash of the selected commit  |
+| /x/         | reset HEAD and index to a particular commit    |
+| /v/         | will revert to the commit                      |
+| /a/         | applies a patch of the commit to files/index   |
+| /A/         | cherry picks the commit on top of working tre  |
+
+- c e :: if we forgot some lines that we wanted to add to the commit, you can add them by first, stage the changes that you want to add to the commit, then press ~c e~ (Commit -> Extend). Magit will “amend” the commit with those changes without asking you to edit the commit message!
+
+- c a :: if you do want to edit the commit message when adding the new files, you can do this by pressing ~c a~ (Commit -> Amend).
+
+- c w :: If you only want to edit the commit message without adding any staged changes, use ~c w~ (Commit -> Reword).
+
+*Note*: if you’ve already pushed the original commit to a remote branch, you’ll have to force-push the branch the next time because the commit histories won’t match!
+
+- c F :: to add changes to an earlier commit, just stage them like you normally would and then press ~c F~ (Commit -> Instant Fixup). You’ll be presented with Magit’s commit log view which shows the current branch’s commits with the newest commits sorted first. Just move your cursor to the line of the commit you want to edit.
+
+*Note*: like we talked about before, any operation that changes an existing commit will require you to force-push the branch!
+
+**** Pushing & pulling
+
+| /f/   | magit-fetch / fetch popup                           |
+| /f p/ | fetching the origin repo without pulling changes    |
+| /f u/ | fetching from upstream repo without pulling changes |
+|     |                                                     |
+| /F/   | magit-pull / pull                                   |
+| /F p/ | pull the latest commits from the remote             |
+| /F u/ | pull from an “upstream” branch/local/remote         |
+| /F e/ | choose any local/remote without save as upstream    |
+| /F r/ | rebasing local changes onto the new commits         |
+|     |                                                     |
+| /P/   | magit-push / push                                   |
+| /P p/ |                                                     |
+| /P u/ |                                                     |
+
+- if you make a new commit on the current branch, you can push it to the same remote branch by pressing ~P p~ in the status buffer again. Magit remembers the branch that you pushed to the last time so you can always use ~P p~ to push there again!
+
+- because fast-forwarding and rebasing on pulling is so common, you can instruct Magit to default to this by typing ~F C-x C-s~ after changing the settings.
+
+- I showed how you can edit existing commits by adding more changes or rewording the commit message. If you’ve done this, the only way to push those changes to the same branch is to use the ~-f~ argument when you launch the Push panel with ~P~! *Note*: enabling this option will *overwrite* the remote branch with the commits in the local branch, so make sure you are only force-pushing to a branch that is not ~main~ or ~master~! Changing the commit history makes it really difficult for collaborators to pull your changes.
+
+*Note*: if you make ~F p~ to pull any new changes from the remote version of the current local branch, and you receive an error saying that there are uncommitted local changes, use the ~z z~ (stash) command to stash those local changes before pulling the remote changes!
+
+**** Branches
+
+| /b/   | enter the branch view                         |
+| /b b/ | checks out a different branch                 |
+| /b l/ | creates a local branch of a remote and tracks |
+| /b s/ | creates a spin-off branch                     |
+| /b S/ | spin-out                                      |
+
+- b b :: switch back to master to confirm that it has been rolled back to the original commit! Once we’re satisfied with that, we can use ~b b~ again to select the new branch we created
+
+- b s :: create a new branch with the changes you already committed to the current branch while putting the original branch back to the commit where it started. Note: This only works when the branch you’re starting from has been pushed to the remote!
+
+- b S :: works much the sameas spin-off but it does not change your current branch to the new branch after completing the transfer
+
+**** Reference log
+
+| /l/     | magit-log / log popup                   |
+| /L/     | magit-log-refresh / log arguments popup |
+|       |                                         |
+| /l l/   | magit-log-current / opens the short log |
+| /l o/   | commits from a specific branch          |
+|       |                                         |
+| /-G/    | tracking down the history of changes    |
+| /-F/    | search messages                         |
+
+**** Diffs
+
+| /d/   | magit-diff / diff popup                      |
+| /d d/ | tries to DWIM                                |
+| /d s/ | diffs the commit against your staged changes |
+| /d u/ | against your unstaged changes                |
+| /D/   | magit-diff-refresh / diff arguments popup    |
+|     |                                              |
+| /r/   | show the diff for an range                   |
+| /+/   | enlarge / magit-diff-less-context            |
+| /-/   | shrink / magit-diff-more-context             |
+| /0/   | reset / magit-diff-default-context           |
+
+**** Movements
+
+| /C-p/ | magit-previous-line            |
+| /C-n/ | magit-next-line                |
+|     |                                |
+| /p/   | magit-section-backward         |
+| /n/   | magit-section-forward          |
+|     |                                |
+| /M-p/ | magit-section-backward-sibling |
+| /M-n/ | magit-section-forward-sibling  |
+
+**** Miscellaneous
+
+|   | magit-init          |
+|   | magit-clone         |
+|   |                     |
+| /m/ | magit-merge         |
+| /r/ | magit-rebase        |
+|   |                     |
+| /t/ | magit-tag           |
+|   |                     |
+| /x/ | magit-reset-quickly |
+| /X/ | magit-reset         |
+
+*** Forge
+
+| /N/       | forge-dispatch / Forge            |
+|         |                                   |
+| /n/       | forge-pull                        |
+|         |                                   |
+| /a/       | forge-add-repository              |
+|         |                                   |
+| /N m c/   | forge-configure                   |
+|         |                                   |
+| /N m f/   | forge-topics-menu                 |
+| /N l t/   | forge-list-topics                 |
+|         | forge-list-issues                 |
+|         | forge-list-pullreqs               |
+|         |                                   |
+| /N l g/   | forge-list-global-topics          |
+|         |                                   |
+| /N m r/   | forge-repositories-menu           |
+| /N l r/   | forge-list-repositories           |
+|         |                                   |
+| /C-c C-v/ | visit an issue or pull-request    |
+| /C-c C-w/ | same above but using a browser    |
+| /C-c C-n/ | create a new post (in buffer)     |
+| /C-c C-e/ | edit an existing post or metadata |
 
 ** Key
 *** Choices
@@ -1602,6 +1798,8 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | /C-c C-l/        | eshell-list-history      |
 |                | counsel-esh-history      |
 | /C-2 M-x eshell/ | open second eshell       |
+|                |                          |
+|                | pcomplete-list           |
 
 *** Shell
 
@@ -1838,6 +2036,7 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 - check commands
 ~ use-package commands
 ^ keymaps
+,# system bindings
 
 *** M-S-
 
@@ -1994,12 +2193,12 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 ** Control
 *** C-
 
-| C-$     |                               |
-| C-&     |                               |
-| C-[     |                               |
+| C-$     | #Switch applications          |
+| C-&     | ~consult-register-store       |
+| C-[     | copy-to-register              |
 | C-{     |                               |
-| C-}     | copy-to-register              |
-| C-(     | ~consult-register-store       |
+| C-}     | ~magit-status                 |
+| C-(     |                               |
 | C-=     | calc                          |
 | C-*     | eshell                        |
 | C-)     | dired-jump                    |
@@ -2053,62 +2252,62 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** C-S-
 
-| C-~      |                              |
-| C-%      |                              |
-| C-7      |                              |
-| C-5      |                              |
-| C-3      | insert-register              |
-| C-1      | ~consult-register-load       |
-| C-9      |                              |
-| C-0      | shell-command                |
-| C-2      |                              |
-| C-4      |                              |
-| C-6      |                              |
-| C-8      |                              |
-| C-`      |                              |
-| C-S-DEL  |                              |
-|          |                              |
-| C-S-TAB  | tempel-complete              |
-| C-:      |                              |
-| C-<      | widen                        |
-| C->      | xah-narrow-to-region         |
-| C-p      |                              |
-| C-S-y    |                              |
-| C-S-f    | ~consult-line-multi          |
-| C-S-g    |                              |
-| C-S-c    |                              |
-| C-S-r    | find-file-other-window       |
-| C-S-l    |                              |
-| C-?      |                              |
-| C-^      |                              |
-|          |                              |
-| C-S-CAPS |                              |
-| C-S-a    |                              |
-| C-S-o    | xah-open-in-external-app     |
-| C-S-e    |                              |
-| C-S-u    |                              |
-| C-S-i    |                              |
-| C-S-d    | scroll-other-window          |
-| C-S-h    |                              |
-| C-S-t    | xah-open-last-closed         |
-| C-S-n    | ~consult-buffer-other-window |
-| C-S-s    | write-file                   |
-| C-_      | save-buffers-kill-terminal   |
-| C-¦      |                              |
-| C-S-RET  |                              |
-|          |                              |
-| C-"      |                              |
-| C-S-q    | ^google-translate-map        |
-| C-S-j    |                              |
-| C-S-k    |                              |
-| C-S-x    |                              |
-| C-S-b    | scroll-other-window-down     |
-| C-S-m    |                              |
-| C-S-w    |                              |
-| C-S-v    | ~consult-yank-from-kill-ring |
-| C-S-z    |                              |
-|          |                              |
-| C-S-SPC  |                              |
+| C-~      | #Switch windows of an application |
+| C-%      | ~consult-register-load            |
+| C-7      | insert-register                   |
+| C-5      |                                   |
+| C-3      |                                   |
+| C-1      |                                   |
+| C-9      |                                   |
+| C-0      | shell-command                     |
+| C-2      |                                   |
+| C-4      |                                   |
+| C-6      |                                   |
+| C-8      |                                   |
+| C-`      |                                   |
+| C-S-DEL  |                                   |
+|          |                                   |
+| C-S-TAB  | tempel-complete                   |
+| C-:      |                                   |
+| C-<      | widen                             |
+| C->      | xah-narrow-to-region              |
+| C-p      |                                   |
+| C-S-y    |                                   |
+| C-S-f    | ~consult-line-multi               |
+| C-S-g    |                                   |
+| C-S-c    |                                   |
+| C-S-r    | find-file-other-window            |
+| C-S-l    |                                   |
+| C-?      |                                   |
+| C-^      |                                   |
+|          |                                   |
+| C-S-CAPS |                                   |
+| C-S-a    |                                   |
+| C-S-o    | xah-open-in-external-app          |
+| C-S-e    |                                   |
+| C-S-u    |                                   |
+| C-S-i    |                                   |
+| C-S-d    | scroll-other-window               |
+| C-S-h    |                                   |
+| C-S-t    | xah-open-last-closed              |
+| C-S-n    | ~consult-buffer-other-window      |
+| C-S-s    | write-file                        |
+| C-_      | save-buffers-kill-terminal        |
+| C-¦      |                                   |
+| C-S-RET  |                                   |
+|          |                                   |
+| C-"      |                                   |
+| C-S-q    | ^google-translate-map             |
+| C-S-j    |                                   |
+| C-S-k    |                                   |
+| C-S-x    |                                   |
+| C-S-b    | scroll-other-window-down          |
+| C-S-m    |                                   |
+| C-S-w    |                                   |
+| C-S-v    | ~consult-yank-from-kill-ring      |
+| C-S-z    |                                   |
+|          |                                   |
+| C-S-SPC  |                                   |
 
 *** C-<cluster>
 
@@ -2124,6 +2323,8 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |            |                          |
 | C-<insert> | xah-copy-line-or-region  |
 | C-<delete> | +kill-word               |
+|            |                          |
+| C-<f7>     | #Switch windows          |
 
 *** C-S-<cluster>
 
@@ -2139,6 +2340,65 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |              |                           |
 | C-S-<insert> | rf/yank-recently-window   |
 | C-S-<delete> |                           |
+
+*** C-c
+
+| C-c ~    |                      |
+| C-c %    |                      |
+| C-c 7    |                      |
+| C-c 5    |                      |
+| C-c 3    |                      |
+| C-c 1    |                      |
+| C-c 9    |                      |
+| C-c 0    |                      |
+| C-c 2    |                      |
+| C-c 4    |                      |
+| C-c 6    |                      |
+| C-c 8    |                      |
+| C-c `    |                      |
+| C-c DEL  |                      |
+|          |                      |
+| C-c TAB  |                      |
+| C-c :    |                      |
+| C-c <    |                      |
+| C-c >    |                      |
+| C-c p    |                      |
+| C-c y    |                      |
+| C-c f    | ~magit-file-dispatch |
+| C-c g    | ~magit-dispatch      |
+| C-c c    |                      |
+| C-c r    |                      |
+| C-c l    |                      |
+| C-c ?    |                      |
+| C-c ^    |                      |
+|          |                      |
+| C-c CAPS |                      |
+| C-c a    |                      |
+| C-c o    |                      |
+| C-c e    |                      |
+| C-c u    |                      |
+| C-c i    |                      |
+| C-c d    | ^~dape-key-prefix    |
+| C-c h    |                      |
+| C-c t    |                      |
+| C-c n    |                      |
+| C-c s    |                      |
+| C-c _    |                      |
+| C-c ¦    |                      |
+| C-c RET  |                      |
+|          |                      |
+| C-c "    |                      |
+| C-c q    |                      |
+| C-c j    |                      |
+| C-c k    |                      |
+| C-c x    |                      |
+| C-c b    |                      |
+| C-c m    |                      |
+| C-c w    |                      |
+| C-c v    |                      |
+| C-c z    |                      |
+|          |                      |
+| C-c SPC  |                      |
 
 ** Cluster
 *** <cluster>
@@ -2181,8 +2441,6 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | F11 | xah-next-user-buffer        | C-<next>   |
 | F12 | #Switch/Launch chromium     | F12        |
 
-,# system bindings
-
 *** S-<f >
 
 | S-F1  |                           |             |
@@ -2220,29 +2478,32 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 ** Keypad
 *** kp-
 
-| <kp-Bloq>     | #leader keyd                     |
-| <kp-divide>   |                                  |
-| <kp-multiply> |                                  |
-| <kp-subtract> | #Hide all normal windows         |
-|               |                                  |
-| <kp-7>        | .mc/mark-next-like-this          |
-| <kp-8>        |                                  |
-| <kp-9>        | kmacro-end-or-call-macro         |
-| <kp-add>      | switch-to-previous-buffer        |
-|               |                                  |
-| <kp-4>        | rf/find-or-switch-to-emacs-elisp |
-| <kp-5>        | rf/find-or-switch-to-english     |
-| <kp-6>        | rf/find-or-switch-to-init        |
-|               |                                  |
-| <kp-1>        | rf/find-or-switch-to-main-file   |
-| <kp-2>        | eshell                           |
-| <kp-3>        | scratch-buffer                   |
-|               |                                  |
-| <kp-0>        | other-window                     |
-| <kp-decimal>  | #temporarily most used command   |
-| <kp-enter>    | #Click                           |
-
-. usage-package bindings
+| rotate - press | KC_VOLD/VOLU - KC_SLEP           |
+| TO(1)          | Turn on layer 1                  |
+| <XF86Launch5>  |                                  |
+| <XF86Launch6>  |                                  |
+|                |                                  |
+| <kp-equal>     |                                  |
+| <kp-divide>    |                                  |
+| <kp-multiply>  |                                  |
+| <kp-subtract>  | #Hide all normal windows         |
+|                |                                  |
+| <kp-7>         | ~mc/mark-next-like-this          |
+| <kp-8>         |                                  |
+| <kp-9>         | kmacro-end-or-call-macro         |
+| <kp-add>       | switch-to-previous-buffer        |
+|                |                                  |
+| <kp-4>         | rf/find-or-switch-to-javascript  |
+| <kp-5>         | rf/find-or-switch-to-shell       |
+| <kp-6>         | rf/find-or-switch-to-emacs-elisp |
+|                |                                  |
+| <kp-1>         | rf/find-or-switch-to-todo        |
+| <kp-2>         | eshell                           |
+| <kp-3>         | scratch-buffer                   |
+|                |                                  |
+| <kp-0>         | other-window                     |
+| <kp-decimal>   | #temporarily most used command   |
+| <kp-enter>     | #Click                           |
 
 *** kp-S
 
@@ -2251,22 +2512,46 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | <S-kp-multiply> |                                     |
 | <S-kp-subtract> |                                     |
 |                 |                                     |
-| <S-kp-7>        | .mc/mark-previous-like-this         |
+| <S-kp-7>        | ~mc/mark-previous-like-this         |
 | <S-kp-8>        |                                     |
 | <S-kp-9>        | kmacro-start-macro                  |
-| <S-kp-add>      | .consult-buffer                     |
+| <S-kp-add>      | ~consult-buffer                     |
 |                 |                                     |
-| <S-kp-4>        |                                     |
-| <S-kp-5>        |                                     |
-| <S-kp-6>        |                                     |
+| <S-kp-4>        | rf/find-or-switch-to-html-css-seo   |
+| <S-kp-5>        | rf/find-or-switch-to-gnu-linux      |
+| <S-kp-6>        | rf/find-or-switch-to-init           |
 |                 |                                     |
-| <S-kp-1>        |                                     |
+| <S-kp-1>        | rf/find-or-switch-to-archive        |
 | <S-kp-2>        | #Switch to application 4 (terminal) |
-| <S-kp-3>        | view-echo-area-messages             |
+| <S-kp-3>        | rf/find-or-switch-to-english        |
 |                 |                                     |
 | <S-kp-0>        |                                     |
 | <S-kp-decimal>  |                                     |
 | <S-kp-nter>     |                                     |
+
+*** kp-C
+
+| <C-kp-Bloq>     |                                  |
+| <C-kp-divide>   |                                  |
+| <C-kp-multiply> |                                  |
+| <C-kp-subtract> |                                  |
+|                 |                                  |
+| <C-kp-7>        |                                  |
+| <C-kp-8>        |                                  |
+| <C-kp-9>        |                                  |
+| <C-kp-add>      |                                  |
+|                 |                                  |
+| <C-kp-4>        |                                  |
+| <C-kp-5>        |                                  |
+| <C-kp-6>        |                                  |
+|                 |                                  |
+| <C-kp-1>        |                                  |
+| <C-kp-2>        |                                  |
+| <C-kp-3>        | rf/find-or-switch-to-layout-maps |
+|                 |                                  |
+| <C-kp-0>        |                                  |
+| <C-kp-decimal>  |                                  |
+| <C-kp-nter>     |                                  |
 
 ** Mouse keys
 
@@ -2312,14 +2597,6 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 | M-r | completion-preview-complete |
 
-*** eshell-hist-mode-map
-
-| TAB   | nil                                       |
-|       |                                           |
-| C-S-h | eshell-previous-matching-input-from-input |
-| C-S-n | eshell-next-matching-input-from-input     |
-| C-S-d | eshell-list-history                       |
-
 *** ibuffer-mode-map
 
 | M-o   | nil                           |
@@ -2347,6 +2624,11 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |   |                                      |
 | g | picture-yank-rectangle-from-register |
 | c | copy-rectangle-to-register           |
+
+*** image-mode-map
+
+| c | image-previous-file |
+| t | image-next-file     |
 
 ** Usage package keys
 *** ace-window
@@ -2500,7 +2782,7 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |   |                         |
 | e | consult-kmacro          |
 |   |                         |
-| ( | consult-register        |
+| } | consult-register        |
 
 *** dabbrev
 
@@ -2699,6 +2981,29 @@ qwerty
 | M-F | combobulate-navigate-sequence-next     |
 | M-B | combobulate-navigate-sequence-previous |
 
+*** magit
+**** magit
+
+| C-{   | magit-status        |
+| C-c g | magit-dispatch      |
+| C-c f | magit-file-dispatch |
+
+**** magit-mode-map
+
+|     | nil           | C-w                            |
+|     |               |                                |
+| C-w | C-<insert>    | magit-copy-section-value       |
+|     |               |                                |
+| M-p | C-S-c         | magit-section-backward-sibling |
+| M-n | C-S-t         | magit-section-forward-sibling  |
+|     |               |                                |
+| p   | c             | magit-section-backward         |
+| n   | t             | magit-section-forward          |
+| t   | p             | magit-tag                      |
+| c   | n             | magit-commit                   |
+|     |               |                                |
+| '^  | S-<backspace> | magit-section-up               |
+
 *** dape
 
 | C-c d d | dape             |
@@ -2722,7 +3027,19 @@ qweerty
 qwerty
 | C-c C-e | markdown-do |
 
-*** esh-autosuggest
+*** eshell
+**** eshell-mode-map
+
+| C-t | pcomplete-list |
+
+**** eshell-hist-mode-map
+
+| TAB   | nil                                       |
+|       |                                           |
+| C-S-h | eshell-previous-matching-input-from-input |
+| C-S-n | eshell-next-matching-input-from-input     |
+| C-S-d | eshell-list-history                       |
+
 **** esh-autosuggest-active-map
 
 | nil | C-f / M-f                     |
@@ -12142,7 +12459,7 @@ The actual integration of a language server into a particular tool is not define
 *** Emacs role as a client
 As of 2020, Emacs is at least 35 years old; it had coding features way before LSP was a thing, through elisp packages. Keeping only currently popular implementations:
 
-- *completion* is brought by ~company~
+- *completion* is brought by ~company~ or ~corfu~
 - *syntax/error* checking is brought by ~flycheck~ or ~flymake~
 - *jumping to definitions* is brought by ~xref~
 - displaying symbol *documentation* on point (under the cursor) is brought by ~eldoc~
@@ -12231,6 +12548,7 @@ We recommend to set flycheck-checker via directory local variables to enforce a 
 
 **** ts-lit-plugin
 https://www.reddit.com/r/neovim/comments/y62tr4/javascript_lit_html_syntax_highlighting_ts/
+
 Javascript Lit HTML syntax highlighting. (TS Injection)
 
 I have been trying to develop web components under neovim.
@@ -12242,11 +12560,6 @@ I still have one big major problem. Treesitter can not figure out${(x) => x.disa
 This correctly works on Vscode via [[https://github.com/runem/lit-analyzer/tree/master/packages/vscode-lit-plugin][vscode-lit-plugin]].
 
 **** Packages about js, eslint, npm, lit, ...
-***** add-node-modules-path
-This file provides ~add-node-modules-path~, which runs ~npm bin~ and
-and adds the path to the buffer local ~exec-path~.
-This allows Emacs to find project based installs of e.g. ~eslint~.
-
 ***** Eslint-RC
 eslint-rc is a function that searches for local rc rules and eslintignore rules per project and use it to format the current buffer using eslint. The package also exports a minor mode that applies ~(eslint-rc)~ on save.
 
@@ -12265,6 +12578,13 @@ When embedding other languages in JavaScript, you can mark those strings with a 
   `;
 
 #+end_src
+
+***** add-node-modules-path
+This file provides ~add-node-modules-path~, which runs ~npm bin~ and
+and adds the path to the buffer local ~exec-path~.
+This allows Emacs to find project based installs of e.g. ~eslint~.
+
+(I think this is useful for MacOS)
 
 **** IDE (Daniel)
 I don't used an IDE, but I have Emacs, which does most of the things I want. I can navigate through code (even code outside the project). It warns me of syntax errors. I can navigate to files in the project, and look for text inside (helm-git-grep).
@@ -12532,7 +12852,7 @@ Services can be defined using the function ~prodigy-define-service~ or can be de
 **** Remove services
 To remove a service, just delete it from the ~prodigy-services~ variable.
 
-To remove all services, just do ~(setq  prodigy-services nil)~.
+To remove all services, just do ~(setq prodigy-services nil)~.
 
 **** Notes
 - In the prodigy window, you can see a process' output with the ~$~ key.
@@ -13373,6 +13693,7 @@ When *line* is used to create lines, the ~>~ and ~<~ characters can be used to p
 #+end_src
 
 *** The most common ones
+
 ┌ ┐ └ ┘
 ─ │ ├ ┤
 ┴ ┬ ┼
@@ -13402,7 +13723,9 @@ System design conventions (RF):
 - The =Control= modifier key contains main default Emacs commands (e.g. prefix like ~ctl-x~, ~ctl-c~, help ~C-h~, cancel ~C-g~, universal argument ~C-u~, newline ~C-m~, ...), universal standar commands (e.g. cut ~C-x~, copy ~C-c~, paste ~C-v~, open ~C-o~, ...), and other common Emacs commands related to standar commands (e.g. switch buffers, search, ...), and the most common/useful ones that don't fit into the =Meta= modifier
 - The =Modifier= + =Shift= keys (~M-S-~ or ~C-S-~ ) usually include reverse commands (e.g. switch window right/left) less common commands (e.g. open file other window) ,  and commands that are related to another (e.g. switch/resize window)
 - Major modes are built with key sequences that begin with a leader key (=<f6>=, =<f7>=, =<f8>=, =<tab>=, =<insert>=, ...) usually the 20 most used command are configured
-- In general, in some minor modes, commands that use the =Meta= modifier by default (e.g. ~M-n~ , ~M-p~ to move up/down in history) are exchanged for the =Control= modifier (e.g. ~C-n~, ~C-p~) since the =Meta= modifier is already used for basic movements.
+- In general, in some minor modes and maps, commands that use the =Meta= modifier to move lines or other essential comamnds (e.g. ~M-n~ , ~M-p~ to move up/down in history) are exchanged for the =Control= + =Shift= modifier (e.g. ~C-S-n~, ~C-S-p~) since the =Meta= modifier is already used for basic movements
+- The ~ctl-c~ prefix can be used to set additional commands that don't fit in other maps, e.g. (~C-c g~ magit-dispatch, ~C-c f~ magit-file-dispatch)
+- The ~ctl-x~ map has some free keybindings, which can be remapped to any useful key (~C-x c~, ~C-x g~, ~C-x j~, and ~C-x w~), e.g. (~C-x g~ magit-status).
 
 * How to
 ** Configure the init file
@@ -13665,16 +13988,43 @@ Support for Emacs frames and window systems.
   ;; Switch the contents of two open frames.
   ;; https://www.emacswiki.org/emacs/SwitchingBuffers
   (defun switch-buffers-between-frames ()
-  "switch-buffers-between-frames switches the buffers between the two last frames"
-  (interactive)
-  (let ((this-frame-buffer nil)
-        (other-frame-buffer nil))
-    (setq this-frame-buffer (car (frame-parameter nil 'buffer-list)))
-    (other-frame 1)
-    (setq other-frame-buffer (car (frame-parameter nil 'buffer-list)))
-    (switch-to-buffer this-frame-buffer)
-    (other-frame 1)
-    (switch-to-buffer other-frame-buffer)))
+    "switch-buffers-between-frames switches the buffers between the two last frames"
+    (interactive)
+    (let ((this-frame-buffer nil)
+          (other-frame-buffer nil))
+      (setq this-frame-buffer (car (frame-parameter nil 'buffer-list)))
+      (other-frame 1)
+      (setq other-frame-buffer (car (frame-parameter nil 'buffer-list)))
+      (switch-to-buffer this-frame-buffer)
+      (other-frame 1)
+      (switch-to-buffer other-frame-buffer)))
+
+
+  ;; Updated version that opens the new frame at the same size. This is
+  ;; because GNOME or another app intentionally offsets it slightly from
+  ;; the previous window's position and size.
+  (defun rf/make-frame-command-mod ()
+    "Make a new frame, on the same terminal as the selected frame.
+  If the terminal is a text-only terminal, this also selects the
+  new frame.
+
+  Updated version that opens the new frame at the same size. This is
+  because GNOME or another app intentionally offsets it slightly from
+  the previous window's position and size.
+
+  NOTE: if the new frame opens in an odd size, it's because of the size
+  of the last window, for example, if the width is 169, it will open in
+  a tiny size, it's fixed by putting another size.
+
+  When called from Lisp, returns the new frame."
+    (interactive)
+    (if (display-graphic-p)
+        (let ((width (frame-width))
+              (height (frame-height))
+              (frame (make-frame)))
+          (set-frame-size frame width height))))
+  ;; Optional: set position too
+  ;; (set-frame-position frame 100 100))
 
 #+end_src
 
@@ -13777,9 +14127,8 @@ Input from the mouse.
 
 #+begin_src emacs-lisp
 
-  ;; This is useful if you have Mouse with Spin Wheel
-  ;; 2022-03-21 great for logitech spin wheel (Xah)
-  (setq mouse-wheel-progressive-speed nil)
+  ;; Mouse scroll one line at a time:
+  (setq mouse-wheel-scroll-amount '(1))
 
 
   ;; Give the <mouse-9> key a global binding  as TAB command.
@@ -13981,6 +14330,16 @@ Yet Another Snippet extension.
   (define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
   ;; Bind `C-c y' to `yas-expand' ONLY.
   (define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
+
+#+end_src
+
+**** Completion Preview
+In-buffer completion preview.
+
+#+begin_src emacs-lisp
+
+  ;; Enable Completion-Preview mode in all buffers.
+  (global-completion-preview-mode)
 
 #+end_src
 
@@ -16488,6 +16847,47 @@ Suppose you need to do find/replace of a string pattern, for the hundreds of fil
 9. Type ~* u~ to mark all unsaved files, type ~S~ to save all marked files, type ~D~ to close them all.
 
 https://wilkesley.org/~ian/xah/emacs/find_replace_inter.html
+
+** Setup magit forge for Github.com
+[[https://magit.vc/manual/forge/Setup-for-Githubcom.html][Magit manual]]
+
+First inform Forge about your https://github.com username:
+
+#+begin_src sh
+
+  git config --global github.user USERNAME
+
+#+end_src
+
+Create and Store an Access Token
+
+Visit https://github.com/settings/tokens in a browser to generate a new "classic" token using the repo, user and read:org scopes. Do not close the browser window just yet, because the token will only be shown once.
+
+The auth-sources variable controls how and where Auth-Source keeps its secrets.
+
+#+begin_src emacs-lisp
+
+  (setq auth-sources '("~/.authinfo"))
+  ;; Make sure you put one of these forms in your init file and to evaluate it
+
+#+end_src
+
+Next add a line like the following to the chosen file:
+
+machine api.github.com login USERNAME^forge password TOKEN
+
+- The value of machine must be api.github.com. Variations of this won’t work.
+- USERNAME must be the same as the value used for the github.user Git variable above. You must append ^forge to that, without any space in between.
+- TOKEN is the token you generated earlier.
+
+~/.authinfo
+#+begin_src conf
+
+  machine api.github.com login USERNAME^forge password TOKEN
+
+#+end_src
+
+Finish by typing ~M-x auth-source-forget-all-cached RET~. If you don’t do this, then Auth-Source may fail to look up the token.
 
 ** Use a live web server
 *** impatien-mode

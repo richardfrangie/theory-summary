@@ -54,7 +54,7 @@ Create temporary filenames. Converts the ~XXXXXX~ to a unique set of characters 
 [ /-d/ create a directory, not a file /-d/ dry run, do not create anything; merely print a name (unsafe) ]
 
 ** Copy
-*** rsync -b file dir/
+*** rsync -t file dir/
 Transfer/copy /file/ from the current directory to the directory /dir/.
 [ /-t/ preserve modification times /-b/ make backups (useful to avoid overwriting) /--exclude='file'/ exclude files ]
 ( ~rsync -t *.c dir/~ transfer all files matching the pattern to the directory )
@@ -365,7 +365,7 @@ Create temporary directory. Converts the ~XXXXXX~ to a unique set of characters 
 ** Copy
 *** cp -ai dir_source dir_dest
 Copy /dir_dource/ to /dir_dest/ preserve all.
-[ /-a/ preserve-all, copy the files and directories and all of their attributes, including ownerships and permissions  /-r/ recursively copy directories and their contents /-u/ update, only copy files that either don't exist or are newer than the existing corresponding files, in the destination directory /-i/ interactive /-v/  verbose, explain what is being done ]
+[ /-a/ preserve-all, copy the files and directories and all of their attributes, including ownerships and permissions  /-r/ recursively copy directories and their contents /-u/ update, only copy files that either don't exist or are newer than the existing corresponding files, in the destination directory /-i/ interactive /-v/  verbose, explain what is being done /-x/ stay on this file system ]
 ( ~cp -a dir_source/* dir_dest~ copy just file or dir inside the dir_sorce )
 
 *** rsync -a  dir/  dest_dir
@@ -723,17 +723,18 @@ Check the current systemd configuration search path.
 ( ~pkg-config systemd --variable=systemdsystemunitdir~ see the system unit )
 ( ~pkg-config systemd --variable=systemdsystemconfdir~ see the system configuration directories )
 
-*** systemd-analyze
-Used to determine system boot-up performance statistics and retrieve other state and tracing information from the system and service manager, and to verify the correctness of unit files.
-( ~systemd-analyze time~ prints the time spent in the kernel before userspace has been reached, the time spent in the initial RAM disk (initrd) before normal system userspace has been reached, and the time normal system userspace took to initialize )
-( ~systemd-analyze plot >bootup.svg~ plot a bootchart )
-
 *** systemctl poweroff
 Shuts down system.
 ( ~systemctl halt~  halts system )
 ( ~systemctl reboot~  reboots system )
 ( ~systemctl suspend~  suspends system )
 ( ~systemctl hibernate~  hibernates system )
+
+*** systemd-analyze
+Used to determine system boot-up performance statistics and retrieve other state and tracing information from the system and service manager, and to verify the correctness of unit files.
+( ~systemd-analyze time~ prints the time spent in the kernel before userspace has been reached, the time spent in the initial RAM disk (initrd) before normal system userspace has been reached, and the time normal system userspace took to initialize )
+( ~systemd-analyze plot >bootup.svg~ plot a bootchart )
+( ~systemd-inhibit --list~ lists all active inhibition locks instead of acquiring one )
 
 ** I/O
 *** command1 | command2
@@ -921,6 +922,9 @@ The bc program reads a file written in its own C-like language and executes it. 
 ( ~echo Five divided by two equals $((5/2))~ arithmetic expansion )
 ( ~bc <<< "2+2"~ the ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts )
 
+*** lslogins
+Show when accounts were last used.
+
 *** alias name='string'
 After we define our alias, we can use it anywhere the shell would expect a command.
 ( ~alias~ see all the aliases defined in the environment )
@@ -950,6 +954,7 @@ Does not allow recursive downloading unlike ~wget~.
 [ /-I/ fetch the headers only /-#/ progress bar /-o/ write output to <file> instead of stdout /-v/ verbose  during the operation. Useful for debugging and seeing what's going on "under the  hood" ]
 ( ~curl --trace-ascii fileName https://eloquentjavascript.net/author~ record details about its communication )
 ( ~curl -v URL | head -50~ show more info like handshake, header,... )
+( ~wcurl URL~ downloading files )
 
 *** netcat
 netcat (or nc) can connect to remote TCP/UDP ports, specify a local port, listen on ports, scan ports, redirect standard I/O to and from network connections, and more.
@@ -1263,13 +1268,20 @@ Scan for devices.
 ** apt
 *** apt list
 Display a list of packages satisfying certain criteria. It supports glob(7) patterns for matching package names.
+Note: apt is meant for interactive use, and should not be used in scripts. In scripts one should use apt-get, which has a stable output better suitable for parsing.
 [ /--installed/ list installed /--upgradeable/ list upgradeable /--all-versions/ list all available versions /-a/ versions and archive areas of available packages ]
 ( ~apt list '?obsolete'~ list obsolete packages, useful when upgraded system (it's possible that some packages are no longer available on the new repositories) )
+( ~popcon-largest-unused~ list the packages you don't use that occupy the most space )
+( ~apt list '?narrow(?installed, ?not(?origin(Debian)))'~ finding installed packages that did not come from Debian )
+( ~apt list '?config-files'~ list of all removed packages that may have configuration files left on the system )
 
 *** apt-mark
 Show, set and unset various settings for a package.
 ( ~apt-mark showauto~ print a list of automatically installed packages )
 ( ~apt-mark showmaual~ print a list of manually installed packages )
+( ~apt-mark showhold~ show the packages that are kept in "hold" state so that the pacakge manager won't auto upgrade the packages )
+( ~apt-mark hold name~ prevent a specific package from being updated )
+( ~apt-mark unhold name~  unset the hold state )
 
 *** apt update
 Retrieve a fresh copy of the package lists from the configured sources.
@@ -1280,9 +1292,10 @@ Users are recommended to use the new apt(8) command for interactive usage and us
 Install newest versions of all packages currently installed from a repository without removing any (safe upgrade).
 Is used to install available upgrades of all packages currently installed on the system from the sources configured via sources.list. New packages will be installed if required to satisfy dependencies, but existing packages will never be removed. If an upgrade for a package requires the removal of an installed package the upgrade for this package isn't performed.
 ( ~apt-get dist-upgrade~ update packages (has a "smart" conflict resolution system) )
-( ~apt full-upgrade~ performs the function of upgrade but will remove currently installed packages if this is needed to upgrade the system as a whole (usually issued while doing system upgrades))
 ( ~apt upgrade name~ upgrade a package name )
 ( ~apt --simulate upgrade~ see which packages would be installed )
+( ~apt upgrade --without-new-pkgs~ upgrade the packages which can be upgraded without requiring any other packages to be removed or installed (minimal system upgrade) )
+( ~apt full-upgrade~ performs the function of upgrade but will remove currently installed packages if this is needed to upgrade the system as a whole (full system upgrade) )
 
 *** apt search pattern
 Can be used to search for the given regex term(s) in the list of available packages and display matches.
@@ -1315,6 +1328,7 @@ Downloaded the package from a repository and installed with full dependency reso
 Uninstalled the package.
 Note that removing a package leaves its configuration files on the system. On the other hand you can get rid of these leftovers by calling *purge* even on already removed packages. Note that this does not affect any data or configuration stored in your home directory.
 ( ~apt purge name~ remove the package and all its configuration and data files )
+( ~apt purge '?config-files'~ purge all removed packages that may have configuration files left on the system )
 ( ~apt autoremove name~ auto remove unecessary packages that no other packages depend on. Packages that were automatically installed to satisfy dependencies (packages which you have installed explicitly/directly via install are also never proposed for automatic removal) )
 ( ~apt-get --simulate remove name~ no action; perform a simulation of events that would occur based on the current system state but do not actually change the system )
 ( ~apt remove '?obsolete'~ remove obsolete packages, useful when upgraded system (it's possible that some packages are no longer available on the new repositories) )
@@ -1328,6 +1342,7 @@ The commands below are listed to continue with the total system cleanup.
 ( ~rm -Rf ~/.local/share/Trash/*~ emptying the user trash-bins )
 ( ~rm -Rf ~/.cache/*~ if (using the tools described above) you detect that a folder becomes too fat, remove this cache folder )
 ( ~rm -Rf ~/.thumbnails~ if necessary, remove the thumbnails folder )
+( ~find /etc -name '*.dpkg-*' -o -name '*.ucf-*' -o -name '*.merge-error'~ a previous upgrade may have left unused copies of configuration files; old versions of configuration files, versions supplied by the package maintainers, etc. Removing leftover files from previous upgrades can avoid confusion. This command find such leftover files )
 
 *** apt depends name
 List all packages needed by the one given.
@@ -1450,6 +1465,40 @@ List of currently installed Node versions.
 ( ~nvm install 20~ download and install Node.js 20 )
 ( ~nvm use 18~ temporarily use Node version 18 )
 ( ~nvm alias default 18~ use version 18 by default )
+
+** flatpak
+*** flatpak remotes
+List the remotes that you have configured on your system.
+( ~flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo~ add a remote. flathub is the local name that is given to the remote. The URL points to the remote’s .flatpakrepo file. --if-not-exists stops the command from producing an error if the remote already exists )
+( ~flatpak remote-delete flathub~ remove a remote )
+
+*** flatpak search gimp
+Return any applications matching the search terms.
+
+*** flatpak install flathub org.gimp.GIMP
+Install an application.
+flathub is the name of the remote the application is to be installed from, and org.gimp.GIMP is the ID of the application.
+( ~flatpak install gimp~ install method since Flatpak 1.2 )
+( ~flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref~ specify a .flatpakref instead of manually providing the remote and application ID )
+
+*** flatpak run org.gimp.GIMP
+Run application.
+
+*** flatpak update
+Update all your installed applications and runtimes to the latest version.
+
+*** flatpak list
+List the applications and runtimes you have installed.
+( ~flatpak list --app~ just list installed applications )
+
+*** flatpak uninstall org.gimp.GIMP
+Remove an application.
+
+*** flatpak uninstall --unused
+Remove runtimes and extensions that are not used by installed applications.
+( ~flatpak repair~ fix inconsistencies with your local installation )
+( ~flatpak permission-reset org.gimp.GIMP~ reset all portal permissions for an app )
+( ~flatpak history~ find out what changes have been made to your Flatpak installation over time, you can take a look at the logs (since 1.2) )
 
 ** rsync
 *** rsync -b file dir/
@@ -2102,20 +2151,6 @@ The manpage help for the /commad/ .
 ( ~man gitignore~ show more details about file *.gitignore* )
 
 ** Miscellaneous
-*** gpg -a --export F721C45A | git hash-object -w --stdin
-Can directly import the key into the Git database by exporting it and piping that through which writes a new blob with those contents into Git and gives you back the SHA-1 of the blob.
-
-*** git show maintainer-pgp-pub | gpg --import
-Can directly import your PGP key by pulling the blob directly out of the database and importing it into GPG.
-
-*** git instaweb --httpd=webrick
-Starts up an HTTPD server on port 1234 and then automatically starts a web browser that opens a page that shows how the project would look like.
-[ /--httpd/ start instaweb with a non-lighttpd handler ]
-( ~git instaweb --httpd=webrick --stop~ shut down the server )
-
-*** git rev-parse
-To take just about any string and turn it into an object SHA-1.
-
 *** git clean
 To remove unwanted files from working directory. This could include removing temporary build artifacts or merge conflict files.
 
@@ -2132,6 +2167,20 @@ Command annotates the lines of any file with which commit was the last one to in
 Find any string or regular expression in any of the files in your source code, even older versions of your project. (this command is really fast and you can search through any tree in Git, not just the working directory)
 [ /-n/ print out the line numbers where Git has found matches /-c/ summarize the output by showing you only which files contained the search string and how many matches there were in each file /-p/ display the enclosing method or function for each matching string /--and/ ensures that multiple matches must occur in the same line of text /--break/ split up the output into a more readable format /--heading/ split up the output into a more readable format ]
 ( ~git grep -p gmtime_r *.c~ )
+
+*** git rev-parse
+To take just about any string and turn it into an object SHA-1.
+
+*** gpg -a --export F721C45A | git hash-object -w --stdin
+Can directly import the key into the Git database by exporting it and piping that through which writes a new blob with those contents into Git and gives you back the SHA-1 of the blob.
+
+*** git show maintainer-pgp-pub | gpg --import
+Can directly import your PGP key by pulling the blob directly out of the database and importing it into GPG.
+
+*** git instaweb --httpd=webrick
+Starts up an HTTPD server on port 1234 and then automatically starts a web browser that opens a page that shows how the project would look like.
+[ /--httpd/ start instaweb with a non-lighttpd handler ]
+( ~git instaweb --httpd=webrick --stop~ shut down the server )
 
 ** Github CLI
 *** gh repo create --public <name-project>

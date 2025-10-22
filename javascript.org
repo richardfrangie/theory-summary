@@ -183,6 +183,56 @@ Like ~codePointAt~, the ~for/of~ loop was introduced at a time where people were
 
 If you have a character (which will be a string of one or two code units), you can use ~codePointAt(0)~ to get its code.
 
+***** Template literals
+****** Template literals (template strings)
+Template literals are literals delimited with backtick ( ~`~ ) characters, allowing for *multi-line strings*, *string interpolation* with embedded expressions, and special constructs called [[Tagged templates][tagged templates]].
+
+#+begin_src javascript
+
+  `string text`
+
+  // multi-line strings
+  `string text line 1
+   string text line 2`
+
+  // interpolation
+  `string text ${expression} string text`
+
+  // tagged templates
+  tagFunction`string text ${expression} string text`
+
+#+end_src
+
+****** Tagged templates
+Tags allow you to *parse template literals with a function*. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions.
+
+The tag function can then perform whatever operations on these arguments you wish, and return the manipulated string. (Alternatively, it can return something completely different.)
+
+*Note*: in addition, the [[String.raw]] method exists to create raw strings just like the default template function and string concatenation would create.
+
+#+begin_src javascript
+
+  const person = "Mike";
+  const age = 28;
+
+  function myTag(strings, personExp, ageExp) {
+    const str0 = strings[0]; // "That "
+    const str1 = strings[1]; // " is a "
+    const str2 = strings[2]; // "."
+
+    const ageStr = ageExp < 100 ? "youngster" : "centenarian";
+
+    // We can even return a string built using a template literal
+    return `${str0}${personExp}${str1}${ageStr}${str2}`;
+  }
+
+  const output = myTag`That ${person} is a ${age}.`;
+
+  console.log(output);
+  // That Mike is a youngster.
+
+#+end_src
+
 **** Special numbers
 ***** Infinity
 There are three special values in JavaScript that are considered numbers but don’t behave like normal numbers.
@@ -6598,6 +6648,77 @@ It is possible to pass a function—rather than a string—as the second argumen
   // → no lemon, 1 cabbage, and 100 eggs
   // The (\d+) group ends up as the amount argument to the function, and
   // the (\w+) group gets bound to unit.
+
+#+end_src
+
+*** String.raw
+The ~String.raw()~ static method is a tag function of template literals. It's used to get the raw string form of template literals — that is, substitutions (e.g. ~${foo}~) are processed, but escape sequences (e.g. ~\n~) are not.
+
+#+begin_src javascript
+
+  // Syntax:
+  String.raw(strings, sub1, sub2, /* …, */ subN)
+
+  String.raw`templateString`
+
+
+  // Create a variable that uses a Windows
+  // path without escaping the backslashes:
+  const filePath = String.raw`C:\Development\profile\about.html`;
+
+  console.log(`The file was uploaded from: ${filePath}`);
+  // Expected output: "The file was uploaded from:
+  // C:\Development\profile\about.html"
+  console.log(`The file was uploaded from: C:\Development\profile\about.html`);
+  // The file was uploaded from:
+  // C:Developmentprofileabout.html
+
+
+  const str = String.raw`Hi\n${2 + 3}!`;
+  // "Hi\\n5!"
+
+  str.length;
+  // 6
+
+  Array.from(str).join(",");
+  // "H,i,\\,n,5,!"
+
+
+  const css = (par) => String.raw`${par}`;
+  console.log(css`<h2>Hello</h2>`);
+  // <h2>Hello</h2>
+
+#+end_src
+
+*Using String.raw with RegExp*
+Combining a ~String.raw~ template literal with the ~RegExp()~ constructor allows you to create regular expressions with dynamic parts (which is not possible with regex literals) without double-escaping (~\\~) regular expression escape sequences (which is not possible with normal string literals). This is also valuable in strings that contain a lot of slashes, such as file paths or URLs.
+
+#+begin_src javascript
+
+  // A String.raw template allows a fairly readable
+  // regular expression matching a URL:
+  const reRawTemplate = new RegExp(
+    String.raw`https://developer\.mozilla\.org/en-US/docs/Web/JavaScript/Reference/`,
+  );
+
+  // The same thing with a regexp literal looks like this, with \/ for
+  // each forward slash:
+  const reRegexpLiteral =
+    /https:\/\/developer\.mozilla\.org\/en-US\/docs\/Web\/JavaScript\/Reference\//;
+
+  // And the same thing written with the RegExp constructor and a
+  // traditional string literal, with \\. for each period:
+  const reStringLiteral = new RegExp(
+    "https://developer\\.mozilla\\.org/en-US/docs/Web/JavaScript/Reference/",
+  );
+
+  // String.raw also allows dynamic parts to be included
+  function makeURLRegExp(path) {
+    return new RegExp(String.raw`https://developer\.mozilla\.org/${path}`);
+  }
+
+  const reDynamic = makeURLRegExp("en-US/docs/Web/JavaScript/Reference/");
+  const reWildcard = makeURLRegExp(".*");
 
 #+end_src
 
@@ -18869,7 +18990,7 @@ El objetivo del *constructor* es hacer ciertas tareas de inicialización rápida
 
 #+end_src
 
-*Note*: El método ~disconnectedCallback()~ puede ser realmente útil para realizar tareas importantes de finalización que, de lo contrario, estarían consumiendo recursos respecto a ese elemento.
+*Nota*: El método ~disconnectedCallback()~ puede ser realmente útil para realizar tareas importantes de finalización que, de lo contrario, estarían consumiendo recursos respecto a ese elemento.
 
 #+begin_src javascript
 
@@ -24095,6 +24216,6 @@ And that is it; that’s what happens under the hood of the ECMAScript engine!
 - [[https://eloquentjavascript.net/][Eloquent JavaScript]]
 - [[http://dmitrysoshnikov.com/][Dmitry Sóshnikov]]
 - [[https://developer.mozilla.org/en-US/docs/Web/JavaScript][MDN Web Docs]]
-- [[https://www.w3schools.com/js/default.asp][W3Schools]]
 - [[https://javascript.info/][Javascript.Info]]
+- [[https://www.w3schools.com/js/default.asp][W3Schools]]
 - [[https://lenguajejs.com/][ManzDev]]
