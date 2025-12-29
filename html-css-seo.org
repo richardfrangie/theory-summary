@@ -7,16 +7,14 @@ HyperText Markup Language is the standard markup language for documents designed
 
 An HTML document is composed of a tree of simple HTML nodes, such as *text nodes*, and HTML [[Element][elements]], which add semantics and formatting to parts of document. Each element can have HTML attributes specified. Elements can also have content, including other elements and text.
 
-
-*Note*: To be able to include angle brackets in the text of a document, even though they have a special meaning in HTML, yet another form of special notation has to be introduced. A plain opening angle bracket is written as ~&lt;~ (“less than”), and a closing bracket is written as ~&gt;~ (“greater than”). In HTML, an ampersand ( ~&~ ) character followed by a name or character code and a semicolon ( ~;~ ) is called an entity and will be replaced by the character it encodes.
-
-This is analogous to the way backslashes are used in JavaScript strings. Since this mechanism gives ampersand characters a special meaning, too, they need to be escaped as ~&amp;~. Inside attribute values, which are wrapped in double quotes, ~&quot;~ can be used to insert an actual quote character.
-
 ** Element
-*** Definition
+*** Tag
+Is a keyword or term assigned to a piece of information. This kind of metadata helps describe an item and allows it to be found again by browsing or searching.
+
+*** Elements
 HTML elements are indicated in the document by HTML tags, enclosed in angle brackets (an element is not a tag). Tags may also enclose further tag markup between the start and end, including a mixture of tags and text. This indicates further (nested) elements, as children of the parent element.
 
-#+begin_src artist
+#+begin_src
 
                       Element
   ┌──────────────────────┴─────────────────────┐
@@ -63,7 +61,7 @@ Inline elements have the following properties:
 *** inline-block
 The inline-block value is a strange combo of both block and inline.
 
-- Elements accept width and height properties
+- Elements *accept width and height properties*
 - Elements can have vertical and horizontal padding on all sides
 - Elements do not start on a new line
 - There will often be a small gap between inline-block elements
@@ -179,8 +177,6 @@ The ~<body>~ (block) element contains the body of document, which will be render
 
 **** div
 The ~<div>~ (block) tag is a block level non-semantic wrappers element which defines a *division or a section* in an HTML document. The ~<div>~ tag *is used as a container* for HTML elements - which is then styled with CSS or manipulated with JavaScript. Any sort of content can be put inside the ~<div>~ tag!
-
-*Note*: By default, browsers always place a line break before and after the block element (e.g. ~<div>~).
 
 #+begin_src html
 
@@ -605,10 +601,13 @@ The ~<em>~ (inline) tag is used to define emphasized text. The content inside is
 
 Typically this element is displayed in italic type. However, it should not be used to apply italic styling; use the CSS ~font-style~ property for that purpose. Use the [[cite][<cite>]] element to mark the title of a work (book, play, song, etc.). Use the [[i][<i>]] element to mark text that is in an alternate tone or mood, which covers many common situations for italics such as scientific names or words in other languages. Use the [[strong][<strong>]] element to mark text that has greater importance than surrounding text.
 
-~<i>~ vs. ~<em>~
-By default, the visual result is the same. However, the semantic meaning is different. The ~<em>~ element represents stress emphasis of its contents, while the ~<i>~ element represents text that is set off from the normal prose, such as a foreign word, fictional character thoughts, or when the text refers to the definition of a word instead of representing its semantic meaning. (The title of a work, such as the name of a book or movie, should use <cite>.)
+~<em>~ vs. ~<strong>~
+While ~<em>~ is used to change the meaning of a sentence as spoken emphasis does ("I /love/ carrots" vs. "I love /carrots/"), ~<strong>~ is used to give portions of a sentence added importance (e.g., "*Warning*! This is *very dangerous*.").
 
-An example for ~<em>~ could be: "Just do it already!", or: "We had to do something about it". A person or software reading the text would pronounce the words in italics with an emphasis, using verbal stress.
+~<i>~ vs. ~<em>~
+By default, the visual result is the same. However, the semantic meaning is different. The ~<em>~ element represents stress emphasis of its contents, while the ~<i>~ element represents text that is set off from the normal prose, such as a foreign word, fictional character thoughts, or when the text refers to the definition of a word instead of representing its semantic meaning.
+
+An example for ~<em>~ could be: "Just do it already!", or: "We had to do something about it".
 
 An example for ~<i>~ could be: "The Queen Mary sailed last night". Here, there is no added emphasis or importance on the word "Queen Mary". It is merely indicated that the object in question is not a queen named Mary, but a ship named Queen Mary. Another example for <i> could be: "The word the is an article".
 
@@ -1089,11 +1088,14 @@ The ~<textarea>~ (inline) tag defines a multi-line text input control.
 
   <label for="w3review">Review of W3Schools:</label>
 
-  <textarea id="w3review" name="w3review" placeholder="Something here..."
-            rows="4" cols="50">
+  <textarea id="w3review" name="w3review" rows="4" cols="50">
     At w3schools.com you will learn how to make a website. They offer
     free tutorials in all web development technologies.
   </textarea>
+
+
+  <textarea id="w3review" name="w3review" placeholder="Something here..."
+            rows="4" cols="50"></textarea>
 
 #+end_src
 
@@ -1385,7 +1387,7 @@ An id's value must not contain whitespace (spaces, tabs, etc.). Browsers treat n
 #+end_src
 
 *** class
-The ~class~ global attribute is a space-separated list of the case-sensitive classes of the element. Classes allow CSS and JavaScript to select and access specific elements via the class selectors or functions like the DOM method ~document.getElementsByClassName~. The ~class~ attribute provides a way of classifying similar elements.
+The ~class~ global attribute is a space-separated list of the case-sensitive classes of the element. Classes allow CSS and JavaScript to select and access specific elements via the class selectors or functions like the DOM method ~document.getElementsByClassName~. The ~class~ attribute provides a way of *classifying similar elements*.
 
 #+begin_src html
 
@@ -1402,7 +1404,7 @@ The ~class~ global attribute is a space-separated list of the case-sensitive cla
 *** title
 The ~title~ attribute defines some extra information about an element. In most browsers this attribute is displayed as what is often referred to as a tooltip.
 
-The value of the title attribute will be displayed as a tooltip when you mouse over the element:
+The value of the title attribute will be displayed as a tooltip when you mouse over the element.
 
 The main use of the title attribute is to label [[iframe][<iframe>]] elements for assistive technology.
 
@@ -1480,6 +1482,8 @@ Is a boolean attribute. If the ~defer~ attribute is set, it specifies that the s
 HTML is designed with extensibility in mind for data that should be associated with a particular element but need not have any defined meaning. ~data-~ attributes allow us to store extra information on standard, semantic HTML elements without other hacks such as non-standard attributes, or extra properties on DOM.
 
 *Note*: do not store content that should be visible and accessible in data attributes, because assistive technology may not access them. In addition, search crawlers may not index data attributes' values.
+
+Data values are strings. Number values must be quoted in the selector for the styling to take effect.
 
 The syntax is simple. Any attribute on any element whose attribute name starts with ~data-~ is a data attribute. Say you have an article and you want to store some extra information that doesn't have any visual representation. Just use ~data~ attributes for that:
 
@@ -1559,10 +1563,10 @@ You can also use the attribute selectors in CSS to change styles according to th
 
 Data attributes can also be stored to contain information that is constantly changing, like scores in a game. Using the CSS selectors and JavaScript access here this allows you to build some nifty effects without having to write your own display routines.
 
-Data values are strings. Number values must be quoted in the selector for the styling to take effect.
-
 ** DOM
 A DOM has a tree-like structure. Each [[Element][element]], [[Attributes][attribute]], and piece of text in the markup language becomes a DOM node in the tree structure. The nodes are defined by their relationship to other DOM nodes. Some elements are parents of child nodes, and child nodes have siblings.
+
+*Node*: ~Attr~ objects inherit the ~Node~ interface, but since *they are not actually child nodes of the element they describe*, the DOM *does not consider them part of the document tree*.
 
 Understanding the DOM helps you design, debug and maintain your CSS because the DOM is where your CSS and the document's content meet up.
 
@@ -1701,6 +1705,11 @@ clientHeigh |   |          ┌------------------------------| ═ |   |      |
                          scrollLeft=1800
 
 #+end_src
+
+** Special notation
+To be able to include angle brackets in the text of a document, even though they have a special meaning in HTML, yet another form of special notation has to be introduced. A plain opening angle bracket is written as ~&lt;~ (“less than”), and a closing bracket is written as ~&gt;~ (“greater than”). In HTML, an ampersand ( ~&~ ) character followed by a name or character code and a semicolon ( ~;~ ) is called an entity and will be replaced by the character it encodes.
+
+This is analogous to the way backslashes are used in JavaScript strings. Since this mechanism gives ampersand characters a special meaning, too, they need to be escaped as ~&amp;~. Inside attribute values, which are wrapped in double quotes, ~&quot;~ can be used to insert an actual quote character.
 
 * CSS
 ** Brief
@@ -1841,6 +1850,8 @@ What happens if a browser encounters CSS it doesn't understand? The answer is th
 
 ** Selector
 *** Brief
+The CSS selectors module defines the *patterns* to select elements to which a set of CSS rules are then applied along with their specificity.
+
 CSS selectors are used to "*find*" (or select) the HTML elements you want to style.
 
 Selectors, whether used in CSS or JavaScript, enable targeting HTML elements based on their type, attributes, current states, and even position in the DOM. Combinators allow you to be more precise when selecting elements by enabling selecting elements based on their relationship to other elements.
@@ -1864,7 +1875,7 @@ We can divide CSS selectors into five categories:
 | Elements     | div, p     | all <div> elements and all <p> elements |
 | All          | *          | all elements                            |
 
-*** Elements (, is())
+*** Based on type (Elements) (, is())
 Targeting an *element selector* — this is a selector that directly matches an HTML element name.
 
 You can *target multiple selectors* at the same time by separating the selectors with a *comma* ( ~,~ ).
@@ -1909,9 +1920,7 @@ Por otro lado, existe otro combinador lógico denominado ~:where()~, que funcion
 
 Mientras que con el combinador ~:is()~, la especificidad es el valor más alto de la lista de parámetros de ~:is()~, en el caso de ~:where()~ la especificidad CSS es siempre cero.
 
-*** Attribute (^, $, |)
-The ~[attribute]~ selector is used to select elements with a specified attribute.
-
+*** Based on Attribute (^, $, |)
 The ~[attribute="value"]~ selector is used to select elements with a specified attribute and value.
 
 #+begin_src css
@@ -1962,7 +1971,7 @@ The ~[attribute="value"]~ selector is used to select elements with a specified a
 
 #+end_src
 
-*** Subset of the elements (Class)
+*** Based on subset of the elements (Class)
 To select a *subset of the elements* without changing the others, you can add a *class* to your HTML element and target that class in your CSS.
 
 - class selector :: an identifier that can *classify* multiple elements in a document, denoted by a dot ~.~ prefix
@@ -1989,9 +1998,9 @@ HTML elements can also refer to more than one class.
 
 #+end_src
 
-*** Base on state (Pseudo Classes :, not())
+*** Based on state (Pseudo Classes) (:, not())
 **** Brief
-Is a keyword added to a selector that *specifies a special state (comportamiento) of the selected element(s)*. Pseudo-classes are used in CSS selectors to permit formatting based on information that is not contained in the document tree.
+Is a keyword added to a selector that *specifies a special state (behavior) of the selected element(s)*. Pseudo-classes are used in CSS selectors to permit formatting based on information that is not contained in the document tree.
 
 Pseudo-classes let you apply a style to an element not only in relation to the content of the document tree, but also in relation to external factors like the history of the navigator (~:visited~, for example), the status of its content (like ~:checked~ on certain form elements), or the position of the mouse (like ~:hover~, which lets you know if the mouse is over an element or not).
 
@@ -2011,6 +2020,61 @@ A pseudo-class consists of a colon ( ~:~ ) followed by the pseudo-class name (e.
 - ~:not()~ se puede anidar dentro de otro ~:not()~
 - ~:not()~ no acepta pseudoelementos, como ~::before~ o ~::after~
 - Al igual que con [[Elements (, is())][:is()]], la especificidad de ~:not()~  es el valor más alto de sus parámetros.
+
+**** Chart
+
+| /Selector/       | /Example/        | /Select/                           |
+|----------------+----------------+----------------------------------|
+| /Interacción/    |                |                                  |
+| :hover         | a:hover        | links on mouse over              |
+| :active        | a:active       | the active link                  |
+| :focus         | input:focus    | the <input> elem that has focus  |
+| :focus-within  |                | un hijo ha ganado el foco        |
+| :focus-visible |                | foco sólo de forma visible (TAB) |
+|                |                |                                  |
+| /Ubicación/      |                |                                  |
+| :visited       | a:visited      | all visited links                |
+| :link          | a:link         | all unvisited links              |
+| :target        |                | ele coincide con ancla URL actua |
+| :any-link      |                | ele que es un enlace <a>, <area> |
+|                |                |                                  |
+| /Estructura/     |                |                                  |
+| /Raiz/           |                |                                  |
+| :root          |                | matches the root element         |
+| :host          |                | raíz de component con Shadow DOM |
+|                |                |                                  |
+| :empty         | p:empty        | every <p> elem that has no child |
+| :first-child   |                |                                  |
+| :only-child    | p:only-child   | every <p> that's *only child*      |
+| :last-child    | p:last-child   | every <p> that's last child      |
+| :nth-child(n)  | p:nth-child(2) | every <p> that's the second chil |
+| :first-of-type |                |                                  |
+| :only-of-type  |                |                                  |
+| :last-of-type  | p:last-of-type | every <p> that's last <p> parent |
+| :nth-of-type() |                |                                  |
+| :defined       |                |                                  |
+|                |                |                                  |
+| /Formulario/     |                |                                  |
+| :checked       | input:checked  | every checked <input> element    |
+| :indeterminate |                |                                  |
+| :enabled       | input:enabled  | every enabled <input> element    |
+| :disabled      | input:disabled | every disabled <input> element   |
+| :read-only     |                |                                  |
+| :read-write    |                | editable por el usurario         |
+| :placeholder-s |                | mostrando un place holder        |
+| :default       |                |                                  |
+|                |                |                                  |
+| /Estado/         |                |                                  |
+| :fullscreen    |                |                                  |
+| :modal         |                |                                  |
+|                |                |                                  |
+| /Paginado/       |                |                                  |
+| :first         |                |                                  |
+| :left :right   |                |                                  |
+| :blank         |                |                                  |
+|                |                |                                  |
+| /Otros/          |                |                                  |
+| :not(selector) | :not(p)        | every element that is not a <p>  |
 
 **** Pseudo clases de interacción
 
@@ -2317,7 +2381,7 @@ Selecciona los elementos de un formulario que se consideran que tienen, de algun
 
 #+end_src
 
-**** Miscellaneous
+**** Miscellaneous (:not)
 
 #+begin_src css
 
@@ -2332,62 +2396,7 @@ Selecciona los elementos de un formulario que se consideran que tienen, de algun
 
 #+end_src
 
-**** Chart
-
-| /Selector/       | /Example/        | /Select/                           |
-|----------------+----------------+----------------------------------|
-| /Interacción/    |                |                                  |
-| :hover         | a:hover        | links on mouse over              |
-| :active        | a:active       | the active link                  |
-| :focus         | input:focus    | the <input> elem that has focus  |
-| :focus-within  |                | un hijo ha ganado el foco        |
-| :focus-visible |                | foco sólo de forma visible (TAB) |
-|                |                |                                  |
-| /Ubicación/      |                |                                  |
-| :visited       | a:visited      | all visited links                |
-| :link          | a:link         | all unvisited links              |
-| :target        |                | ele coincide con ancla URL actua |
-| :any-link      |                | ele que es un enlace <a>, <area> |
-|                |                |                                  |
-| /Estructura/     |                |                                  |
-| /Raiz/           |                |                                  |
-| :root          |                | matches the root element         |
-| :host          |                | raíz de component con Shadow DOM |
-|                |                |                                  |
-| :empty         | p:empty        | every <p> elem that has no child |
-| :first-child   |                |                                  |
-| :only-child    | p:only-child   | every <p> that's *only child*      |
-| :last-child    | p:last-child   | every <p> that's last child      |
-| :nth-child(n)  | p:nth-child(2) | every <p> that's the second chil |
-| :first-of-type |                |                                  |
-| :only-of-type  |                |                                  |
-| :last-of-type  | p:last-of-type | every <p> that's last <p> parent |
-| :nth-of-type() |                |                                  |
-| :defined       |                |                                  |
-|                |                |                                  |
-| /Formulario/     |                |                                  |
-| :checked       | input:checked  | every checked <input> element    |
-| :indeterminate |                |                                  |
-| :enabled       | input:enabled  | every enabled <input> element    |
-| :disabled      | input:disabled | every disabled <input> element   |
-| :read-only     |                |                                  |
-| :read-write    |                | editable por el usurario         |
-| :placeholder-s |                | mostrando un place holder        |
-| :default       |                |                                  |
-|                |                |                                  |
-| /Estado/         |                |                                  |
-| :fullscreen    |                |                                  |
-| :modal         |                |                                  |
-|                |                |                                  |
-| /Paginado/       |                |                                  |
-| :first         |                |                                  |
-| :left :right   |                |                                  |
-| :blank         |                |                                  |
-|                |                |                                  |
-| /Otros/          |                |                                  |
-| :not(selector) | :not(p)        | every element that is not a <p>  |
-
-*** Base on parts of element (Pseudo Elements ::)
+*** Based on parts of element (Pseudo Elements) (::)
 **** Brief
 Is a keyword added to a selector that lets you *style a specific part of the selected element(s)* (comportamientos virtuales no tangibles).
 
@@ -2412,19 +2421,38 @@ While it is not possible to select an element based on its *state* by using pseu
 
 #+end_src
 
-**** Propiedad content
-Su objetivo es crear contenido antes o después del elemento, es utilizada en selectores que incluyen los pseudoelementos [[Pseudo elementos de contenido][::before]], ~::after~, ....
-
-| /CONTENIDO/   | /DESCRIPCIÓN/         | /EJEMPLO/                    |
-|-------------+---------------------+----------------------------|
-| string      | Añade texto         | content:"Contenido:";      |
-| attr()      | Añade atributo HTML | content:attr(href);        |
-| image url() | Añade imagen URL    | content:url("icon.png");   |
-| gradient    | Añade un gradiente  | content:linear-gradient(); |
-| counter     | Define un contador  | content:counter(item);     |
+**** Chart
+| /Selector/       | /Example/         | /Example description/             |
+|----------------+-----------------+---------------------------------|
+| /Generar/        |                 |                                 |
+| ::before       | p::before       | Insert content before every <p> |
+| ::after        | p::after        | Insert content after every <p>  |
+|                |                 |                                 |
+| /Tipográfico/    |                 |                                 |
+| ::first-letter | p::first-letter | Selec first letter of every <p> |
+| ::first-line   | p::first-line   | Selec first line of every <p>   |
+|                |                 |                                 |
+| /Destacar/       |                 |                                 |
+| ::selection    | p::selection    | Selec portion of ele by user    |
+| ::target-text  |                 | texto enlazado tras ancla URL   |
+| ::spelling-err |                 | texto resaltado error tipograf  |
+| ::grammar-erro |                 | texto resaltado error gramatic  |
+|                |                 |                                 |
+| /WebComponent/   |                 |                                 |
+| ::part         |                 |                                 |
+| ::slotted      |                 |                                 |
+|                |                 |                                 |
+| /Otros/          |                 |                                 |
+| ::marker       | ::marker        | Selec the markers of list items |
+| ::placeholder  |                 | estilos campos sugerencia input |
+| ::file-sel but |                 | estilos a input de subir archiv |
+| ::backdrop     |                 | estil fondo ext sin q lo afecte |
+|                |                 |                                 |
+| /View Trans API/ |                 |                                 |
+| ::view-transit |                 |                                 |
 
 **** Pseudo elementos de contenido (::before)
-The ~::before~ selector inserts something before the content of each selected element(s). Use the [[Propiedad content][content]] property to specify the content to insert. Use the ~::after~ selector to insert something after the content.
+The ~::before~ selector inserts something before the content of each selected element(s). Use the [[Content property][content]] property to specify the content to insert. Use the ~::after~ selector to insert something after the content.
 
 Creates a pseudo-element that is the first child of the selected element. It is often used to add cosmetic content to an element with the ~content~ property. It is inline by default.
 
@@ -2577,53 +2605,10 @@ Creates a pseudo-element that is the first child of the selected element. It is 
 
 #+end_src
 
-**** Chart
-| /Selector/       | /Example/         | /Example description/             |
-|----------------+-----------------+---------------------------------|
-| /Generar/        |                 |                                 |
-| ::before       | p::before       | Insert content before every <p> |
-| ::after        | p::after        | Insert content after every <p>  |
-|                |                 |                                 |
-| /Tipográfico/    |                 |                                 |
-| ::first-letter | p::first-letter | Selec first letter of every <p> |
-| ::first-line   | p::first-line   | Selec first line of every <p>   |
-|                |                 |                                 |
-| /Destacar/       |                 |                                 |
-| ::selection    | p::selection    | Selec portion of ele by user    |
-| ::target-text  |                 | texto enlazado tras ancla URL   |
-| ::spelling-err |                 | texto resaltado error tipograf  |
-| ::grammar-erro |                 | texto resaltado error gramatic  |
-|                |                 |                                 |
-| /WebComponent/   |                 |                                 |
-| ::part         |                 |                                 |
-| ::slotted      |                 |                                 |
-|                |                 |                                 |
-| /Otros/          |                 |                                 |
-| ::marker       | ::marker        | Selec the markers of list items |
-| ::placeholder  |                 | estilos campos sugerencia input |
-| ::file-sel but |                 | estilos a input de subir archiv |
-| ::backdrop     |                 | estil fondo ext sin q lo afecte |
-|                |                 |                                 |
-| /View Trans API/ |                 |                                 |
-| ::view-transit |                 |                                 |
-
-*** Base on location (SPACE, +)
+*** Based on position (SPACE, +)
+**** Brief
 Styling things based on their *location* in a document
 
-#+begin_src css
-
-  /* This selector will select any <em> element that is inside (a */
-  /* descendant of) an <li> */
-  li em {   color: rebeccapurple; }
-
-
-  /* Styling a paragraph when it comes directly after a heading at the same */
-  /* hierarchy level (+ adjacent sibling) */
-  h1 + p { font-size: 200%; }
-
-#+end_src
-
-*** Combining selectors (SPACE, >, +, ~, :has())
 **** Descendant combinator (SPACE)
 Combines two selectors such that elements matched by the second selector are selected if they have an ancestor (parent, parent's parent, parent's parent's parent, etc.) element matching the first selector.
 
@@ -2634,16 +2619,6 @@ Combines two selectors such that elements matched by the second selector are sel
 
   /* selects any <span> that is inside a <p>, which is inside an <article>  */
   article p span { }
-
-#+end_src
-
-**** Child combinator (>)
-It matches only those elements matched by the second selector that are the *direct children* of elements matched by the first. Descendant elements further down the hierarchy don't match.
-
-#+begin_src css
-
-  /* select only <p> elements that are direct children of <article> elements */
-  article > p { }
 
 #+end_src
 
@@ -2661,6 +2636,17 @@ It matches only those elements matched by the second selector that are the next 
 
 #+end_src
 
+*** Based on relationship to other elements (>, ~, :has())
+**** Child combinator (>)
+It matches only those elements matched by the second selector that are the *direct children* of elements matched by the first. Descendant elements further down the hierarchy don't match.
+
+#+begin_src css
+
+  /* select only <p> elements that are direct children of <article> elements */
+  article > p { }
+
+#+end_src
+
 **** General sibling combinator (~)
 When you want to select siblings of an element even if they are not directly adjacent.
 
@@ -2668,19 +2654,6 @@ When you want to select siblings of an element even if they are not directly adj
 
   /* select all <img> elements that come anywhere after <p> elements */
   p ~ img {}
-
-#+end_src
-
-**** Combinators
-
-#+begin_src css
-
-  /* Style any element with a class of special, which is inside a <p>, */
-  /* which comes just after an <h1>, which is inside a <body> */
-  body h1 + p .special { color: yellow;background-color: black;padding: 5px; }
-
-  /* select list items with a class of "a" which are direct children of a <ul> */
-  ul > li[class="a"] { }
 
 #+end_src
 
@@ -2825,13 +2798,26 @@ Permite seleccionar un elemento contenedor, siempre y cuando sus elementos hijos
 
 #+end_src
 
+*** Combinators
+
+#+begin_src css
+
+  /* Style any element with a class of special, which is inside a <p>, */
+  /* which comes just after an <h1>, which is inside a <body> */
+  body h1 + p .special { color: yellow;background-color: black;padding: 5px; }
+
+  /* select list items with a class of "a" which are direct children of a <ul> */
+  ul > li[class="a"] { }
+
+#+end_src
+
 *** Nesting
 El operador ~&~ permite hacer referencia al selector inmediatamente padre dentro del anidamiento. Hay una manera simplificada (la sintaxis simple), que es omitiendo el uso de dicho símbolo pero tiene algunas limitaciones.
 
 #+begin_src css
 
   <div class="container">
-  <div class="item"></div>
+    <div class="item"></div>
   </div>
   <style>
   /* New syntax */
@@ -3103,8 +3089,11 @@ The ~@property~ rule represents a custom property registration directly in a sty
 #+end_src
 
 ** Properties
-*** Brief
-**** Definition
+*** Definition
+Is a specific characteristic that you can use to style HTML elements, such as color, font-size, or margin. Each property has a name and a value that determines how the element will be displayed on a webpage.
+
+*MDN*: A CSS property is a parameter used in a CSS declaration that lets you style certain aspects of selected elements.
+
 At its most basic level, CSS consists of two components:
 
 - properties :: these are human-readable identifiers that indicate which stylistic features you want to modify.
@@ -3121,25 +3110,54 @@ When a property is paired with a value, this pairing is called a *CSS declaratio
 
 #+end_src
 
-**** CSS-wide values
+*** CSS-wide values
 In addition to the pre-defined keywords that are part of the specification for a property, all CSS properties accept the CSS-wide property values ~initial~ , ~inherit~ , ~unset~ , ~revert~ , and ~revert-layer~ , which explicitly specify defaulting behaviors.
 
-- initial :: Represents the value specified as the property's initial value.
+- initial :: sets the property value applied to a selected element to the initial value of that property
 
-- inherit :: Represents the computed value of the property on the element's parent, provided it is inherited.
+- inherit :: sets the property value applied to a selected element to be the same as that of its parent element. Effectively, this "turns on inheritance"
 
-- unset :: Acts as either ~inherit~ or ~initial~, depending on whether the property is inherited or not.
+- unset :: resets the property to its natural value, which means that if the property is naturally inherited it acts like inherit, otherwise it acts like initial.
 
-- revert :: Resets the property to its inherited value if it inherits from its parent or to the default value established by the user agent's stylesheet (or by user styles, if any exist).
+- revert :: resets the property to its inherited value if it inherits from its parent or to the default value established *by the user agent's stylesheet* (or by user styles, if any exist) (browser's default styling rather than the defaults applied to that property). This value acts like unset in many cases.
 
-- revert-layer :: Rolls back the value of a property in a cascade layer to the value of the property in a CSS rule matching the element in a previous cascade layer. The value of the property with this keyword is recalculated as if no rules were specified on the target element in the current cascade layer.
+- revert-layer :: rolls back the value of a property in a cascade layer to the value of the property in a CSS rule matching the element in a previous cascade layer. The value of the property with this keyword is recalculated as if no rules were specified on the target element in the current cascade layer.
 
-**** content
+*** Content property
+The ~content~ property is used with the ~::before~ and ~::after~ pseudo-elements, to *insert generated content*.
+
 Replaces content with a generated value. It can be used to define what is rendered inside an element or pseudo-element. For elements, the ~content~ property specifies whether the element renders normally (~normal~ or ~none~) or is replaced with an image (and associated "alt" text). For pseudo-elements and margin boxes, ~content~ defines the content as images, text, both, or none, which determines whether the element renders at all.
 
 Objects inserted using the ~content~ property are anonymous [[Replaced elements][replaced elements]].
 
+Su objetivo es crear contenido antes o después del elemento, es utilizada en selectores que incluyen los pseudoelementos [[Pseudo elementos de contenido][::before]], ~::after~, ....
+
+| /CONTENIDO/   | /DESCRIPCIÓN/         | /EJEMPLO/                    |
+|-------------+---------------------+----------------------------|
+| string      | Añade texto         | content:"Contenido:";      |
+| attr()      | Añade atributo HTML | content:attr(href);        |
+| image url() | Añade imagen URL    | content:url("icon.png");   |
+| gradient    | Añade un gradiente  | content:linear-gradient(); |
+| counter     | Define un contador  | content:counter(item);     |
+
 #+begin_src css
+
+  <p class="topic-games">Game News: A new inFamous is not planned</p>
+
+  .topic-games::before {
+    content: "🎮 " / "games";
+  }
+  /* 🎮 Game News: A new inFamous is not planned */
+
+  <p class="topic-weather">
+  Weather for Today: Heat, violent storms and twisters
+  </p>
+
+  .topic-weather::before {
+    content: "⛅ " / "cloudy";
+  }
+  /* ⛅ Weather for Today: Heat, violent storms and twisters  */
+
 
   <h2>Paperback Best Sellers</h2>
   <ol>
@@ -3168,13 +3186,19 @@ Objects inserted using the ~content~ property are anonymous [[Replaced elements]
 
 *** Custom properties (--)
 **** Brief
-Custom properties (sometimes referred to as CSS variables or cascading variables) are entities defined by CSS authors that represent specific values to be reused throughout a document. They are set using the ~@property~ at-rule or by custom property syntax (e.g., ~--primary-color: blue;~). Custom properties are accessed using the CSS [[var()]] function (e.g., ~color: var(--primary-color);~).
+Custom properties (sometimes referred to as CSS variables or cascading variables) are entities defined by CSS authors that represent specific values to be reused throughout a document. They are set using the [[@property]] at-rule or by custom property syntax (e.g., ~--primary-color: blue;~). Custom properties are accessed using the CSS [[var()]] function (e.g., ~color: var(--primary-color);~).
 
 Complex websites have very large amounts of CSS, and this often results in a lot of repeated CSS values. For example, it's common to see the same color used in hundreds of different places in stylesheets. Changing a color that's been duplicated in many places requires a search and replace across all rules and CSS files. Another benefit is readability and semantics.
 
 Custom properties defined using two dashes ( ~--~ ) are subject to the cascade and inherit their value from their parent. The ~@property~ at-rule allows more control over the custom property and lets you specify whether it inherits its value from a parent, what the initial value is, and the type constraints that should apply.
 
 *Note*: You can use the ~var()~ function in any part of a value in any property on an element. You cannot use ~var()~ for property names, selectors, or anything aside from property values, which means you can't use it in a media query or container query.
+
+| Initial value  | see prose                               |
+| Applies to     | all elements                            |
+| Inherited      | yes                                     |
+| Computed value | as specified with variables substituted |
+| Animation type | discrete                                |
 
 #+begin_src css
 
@@ -3224,14 +3248,8 @@ Custom properties defined using two dashes ( ~--~ ) are subject to the cascade a
 
 #+end_src
 
-| Initial value  | see prose                               |
-| Applies to     | all elements                            |
-| Inherited      | yes                                     |
-| Computed value | as specified with variables substituted |
-| Animation type | discrete                                |
-
 **** Using a prefix of two dashes (--)
-A custom property prefixed with two dashes begins with ~--~ , followed by the property name (e.g., ~--my-property~ ), and a property value that can be any [[CSS-wide values][valid CSS value]]. Like any other property, this is written inside a ruleset.
+A custom property prefixed with two dashes begins with ~--~ , followed by the property name (e.g., ~--my-property~ ), and a property value that can be any valid CSS value. Like any other property, this is written inside a ruleset.
 
 #+begin_src css
 
@@ -3263,23 +3281,6 @@ Regardless of which method you choose to define a custom property, you use them 
 
 #+end_src
 
-**** Using the @property at-rule
-The ~@property~ at-rule allows you to be more expressive with the definition of a custom property with the ability to associate a type with the property, set default values, and control inheritance.
-
-*Note*: If you want to define or work with custom properties in JavaScript instead of directly in CSS, there is a corresponding API for this purpose.
-
-#+begin_src css
-
-  /* creates a custom property called --logo-color which expects a <color>: */
-  @property --logo-color {
-    syntax: "<color>";
-    inherits: false;
-    initial-value: #c0ffee;
-  }
-
-#+end_src
-
-**** Inheritance of custom properties
 A custom property defined using two dashes ~--~ instead of ~@property~ always inherits the value of its parent.
 
 #+begin_src css
@@ -3318,6 +3319,22 @@ The results of ~var(--box-color)~ depending on inheritance are as follows:
 - class="four" :: ~cornflowerblue~ (inherited from its parent)
 
 One aspect of custom properties that the examples above demonstrate is that they don't behave exactly like variables in other programming languages. The value is computed where it is needed, not stored and reused in other places of a stylesheet. For instance, you cannot set a property's value and expect to retrieve the value in a sibling's descendant's rule. The property is only set for the matching selector and its descendants.
+
+**** Using the @property at-rule
+The [[@property]] at-rule allows you to be more expressive with the definition of a custom property with the ability to associate a type with the property, set default values, and control inheritance.
+
+*Note*: If you want to define or work with custom properties in JavaScript instead of directly in CSS, there is a corresponding API for this purpose.
+
+#+begin_src css
+
+  /* creates a custom property called --logo-color which expects a <color>: */
+  @property --logo-color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #c0ffee;
+  }
+
+#+end_src
 
 **** Values in JavaScript
 To use the values of custom properties in JavaScript, it is just like standard properties.
@@ -3383,47 +3400,78 @@ In HTML, the default display property value is taken from the HTML specification
 
 #+end_src
 
-**** Outer display type
-(Define como se comporta un elemento con respecto a los elementos a su alrededor (fuera de este), como fluye en la página)
-The display type of an element defines the outer display type; this dictates *how the box displays alongside other elements in the same formatting context*.
+**** Outer display type (block, inline, inline-block)
+***** Brief
+The display type of an element defines the outer display type; this dictates *how the box displays alongside other elements in the same formatting context*. (Define como se comporta un elemento con respecto a los elementos a su alrededor (fuera de este), como fluye en la página)
+
+***** Type of block
+Browsers typically display the block-level element with a newline both before and after the element. You can visualize them as a stack of boxes. Browsers automatically add some space (a margin) before and after the element.
+
+A block-level element always takes up the full width available (stretches out to the left and right as far as it can).
+
+A block-level element occupies the entire horizontal space of its parent element (container), and vertical space equal to the height of its contents, thereby creating a "block".
 
 If a box has an outer display type of ~block~, then:
-- The box will break onto a new line.
+- The box will break onto a new line. Always start on a new line
 - The ~width~ and ~height~ properties are respected.
-- Padding, margin and border will cause other elements to be pushed away from the box.
 - If ~width~ is not specified, the box will extend in the inline direction to fill the space available in its container. In most cases, the box will become as wide as its container, filling up 100% of the space available.
+- Horizontal and vertical margins both work
+- Padding, margin and border will cause other elements to be pushed away from the box.
 
 Some HTML elements, such as [[h1-h6][<h1>]] and [[p][<p>]], use block as their outer display type by default.
 
+***** Type of inline
+Inline elements are those which only occupy the space bounded by the tags defining the element, instead of breaking the flow of the content.
+
+An inline element does not start on a new line and only takes up as much width as necessary.
+
+If an inline element does not fit on a line, create a different box for each line on which it is present.
+
 If a box has an outer display type of ~inline~, then:
-- The box will not break onto a new line.
-- The ~width~ and ~height~ properties will not apply.
-- Vertical padding, margins, and borders will apply but will not cause other inline boxes to move away from the box.
+- The box will not break onto a new line. Do not start on a new line
+- The ~width~ and ~height~ properties will not apply. Only use as much horizontal space as required by the content
+- Margins will work horizontally, but not vertically
 - Horizontal padding, margins, and borders will apply and will cause other inline boxes to move away from the box.
+- Vertical padding, margins, and borders will apply but will not cause other inline boxes to move away from the box.
+- Padding works on all sides, but the top and bottom may overlap other elements.
+- The padding and border overlap other words in the paragraph.
 
 Some HTML elements, such as [[a][<a>]], [[span][<span>]], ~<em>~ and ~<strong>~ use inline as their outer display type by default.
 
-**** Inner display type
-Boxes also have an inner display type, which dictates how elements inside that box are laid out, an example is [[Flexbox]].
-
-Block and inline layout is the default way things behave on the web. By default and without any other instruction, the elements inside a box are also laid out in normal flow and behave as block or inline boxes.
-
-You can change the inner display type for example by setting ~display: flex;~. The element will still use the outer display type ~block~ but this changes the inner display type to ~flex~. Any direct children of this box will become flex items and *behave according to the Flexbox specification*.
-
-**** inline boxes
-In inline boxes like ~<span>~ the ~width~ and ~height~ are ignored. The vertical margin, padding, and border are respected but don't change the relationship of other content to our inline box. The padding and border overlap other words in the paragraph. The horizontal padding, margins, and borders move other content away from the box.
-
-**** inline-block
+***** Type of inline-block
 ~display: inline-block~ is a special value of ~display~ property, which provides a middle ground between ~inline~ and ~block~. Use it if you *do not want an item to break onto a new line, but do want it to respect* ~width~ and ~height~ and avoid the overlapping.
 
 An element with ~display: inline-block~ does a subset of the block things:
 
 - The ~width~ and ~height~ properties are respected.
 - ~padding~, ~margin~, and ~border~ will cause other elements to be pushed away from the box.
+- Elements can have vertical and horizontal padding on all sides
+- There will often be a small gap between inline-block elements
 
 It does not, however, break onto a new line, and will only become larger than its content if you explicitly add ~width~ and ~height~ properties.
 
 *Note*: Where this can be useful is when you want to give a link a larger hit area by adding ~padding~. ~<a>~ is an inline element like ~<span>~; you can use ~display: inline-block~ to allow padding to be set on it, making it easier for a user to click the link.
+
+**** Inner display type (flow layout, grid, flex)
+Boxes also have an inner display type, which dictates *how elements inside that box are laid out*, an example is [[Flexbox]].
+
+Block and inline layout is the default way things behave on the web. By default and without any other instruction, the elements inside a box are also laid out in normal flow and behave as block or inline boxes.
+
+You can change the inner display type for example by setting ~display: flex;~. The element will still use the outer display type ~block~ but this changes the inner display type to ~flex~. Any direct children of this box will become flex items and *behave according to the Flexbox specification*.
+
+**** Block and inline layout in normal flow
+*Formatting context*
+For elements with a *block formatting context*, the spec says:
+
+"In a block formatting context, boxes are laid out one after the other, *vertically*, beginning at the top of a containing block. The vertical distance between two sibling boxes is determined by the 'margin' properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.
+
+In a block formatting context, each box's left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch)."
+
+For elements with an *inline formatting context*:
+
+"In an inline formatting context, boxes are laid out *horizontally*, one after the other, beginning at the top of a containing block. Horizontal margins, borders, and padding are respected between these boxes. The boxes may be aligned vertically in different ways: their bottoms or tops may be aligned, or the baselines of text within them may be aligned.
+
+The line box size in the block direction (so the height when working in English) is defined by the tallest box inside it.
 
 **** vertical-align
 The default ~vertical-align~ value is baseline which aligns the baseline of the box with the baseline of the parent box.
@@ -3470,26 +3518,14 @@ The default ~vertical-align~ value is baseline which aligns the baseline of the 
 
 #+end_src
 
-**** Block and inline layout in normal flow
-*Formatting context*
-For elements with a *block formatting context*, the spec says:
-
-"In a block formatting context, boxes are laid out one after the other, *vertically*, beginning at the top of a containing block. The vertical distance between two sibling boxes is determined by the 'margin' properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.
-
-In a block formatting context, each box's left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch)."
-
-For elements with an *inline formatting context*:
-
-"In an inline formatting context, boxes are laid out *horizontally*, one after the other, beginning at the top of a containing block. Horizontal margins, borders, and padding are respected between these boxes. The boxes may be aligned vertically in different ways: their bottoms or tops may be aligned, or the baselines of text within them may be aligned.
-
-The line box size in the block direction (so the height when working in English) is defined by the tallest box inside it.
-
 **** Replaced elements
 The *replaced element* can be a block or inline element. What defines it is the fact that its dimensions are unknown in principle. For instance, a ~img~ element. The browser will replace the element with a ~img~ . The ~img~ will have an [[The natural or intrinsic size of things][intrinsic]] height and width, but in the HTML code those dimensions do not appear, until the element is  not replaced by the corresponding ~img~, the dimensions are not unknown.
 
 Images and video are described as replaced elements. *This means that CSS cannot affect the internal layout of these elements* — only their position on the page amongst other elements.
 
 Keep in mind that replaced elements, when they become part of a grid or flex layout, have different default behaviors, essentially to avoid them being stretched strangely by the layout.
+
+*Note*: [[object-fit]] property sets how the content of a replaced element, such as an ~<img>~ or ~<video>~, should be resized to fit its container.
 
 **** contents
 Hay situaciones donde se puede arruinar el diseño de maquetaciones Grid o Flex, porque son sistemas que funcionan relacionando un elemento padre con su hijo, por lo que si se cambia el marcado HTML de forma que se rompa esa relación, el diseño deja de ser efectivo.
@@ -3555,9 +3591,9 @@ Si introducimos un elemento con clase ~.middle~ dentro del ~.grid~, que envuelva
 #+end_src
 
 *** Overflow
-Sets the desired behavior when content does not fit in the parent element box (overflows) in the horizontal and/or vertical direction.
+Sets the desired *behavior when content does not fit in the parent element box* (overflows) in the horizontal and/or vertical direction.
 
-The overflow property is how you take control of an element's overflow. It is the way you instruct the browser how it should behave. The default value of overflow is ~visible~. With this default, we can see content when it overflows.
+The overflow property is *how you take control of an element's overflow*. It is the way you instruct the browser how it should behave. The default value of overflow is ~visible~. With this default, we can see content when it overflows.
 
 To crop content when it overflows, you can set ~overflow: hidden~. This does exactly what it says: it hides overflow. Beware that this can make some content invisible. You should only do this if hiding content won't cause problems.
 
@@ -3602,107 +3638,6 @@ When developing a site, always keep overflow in mind. Test designs with large an
 
 #+end_src
 
-*** Box size
-**** width
-The ~width~ property sets an element's width. By default, it sets the width of the [[content][content area]] but if ~box-sizing~ is set to ~border-box~, it sets the width of the border area.
-
-The specified value of ~width~ applies to the content area so long as its value remains within the values defined by ~min-width~ and ~max-width~.
-
-- If the value for width is less than the value for ~min-width~, then ~min-width~ overrides ~width~.
-- If the value for width is greater than the value for ~max-width~, then ~max-width~ overrides ~width~.
-
-#+begin_src css
-
-  /* <length> values */
-  width: 300px;
-  width: 25em;
-
-  /* <percentage> value */
-  width: 75%;
-
-  /* Keyword values */
-  width: max-content;
-  width: min-content;
-  width: fit-content;
-  width: fit-content(20em);
-  width: auto;
-
-#+end_src
-
-**** height
-The ~height~ property specifies the height of an element. By default, the property defines the height of the [[content][content area]]. If ~box-sizing~ is set to ~border-box~, however, it instead determines the height of the border area.
-
-The ~min-height~ and ~max-height~ properties override height.
-
-#+begin_src css
-
-  /* <length> values */
-  height: 120px;
-  height: 10em;
-  height: 100vh;
-
-  /* <percentage> value */
-  height: 75%;
-
-  /* Keyword values */
-  height: max-content;
-  height: min-content;
-  height: fit-content;
-  height: fit-content(20em);
-  height: auto;
-
-#+end_src
-
-**** box-sizing
-Sets how the total width and height of an element is calculated. Can be ~content-box~ (no incluyen borde, relleno y/o margen) *default* value or ~border-box~ (incluyen el borde y relleno.).
-
-The ~box-sizing~ property can be used to adjust this behavior:
-
-- [[The standard CSS box model][content-box]] :: gives you the default CSS box-sizing behavior. If you set an element's width to 100 pixels, then the element's content box will be 100 pixels wide, and the width of any border or padding will be added to the final rendered width, making the element wider than 100px.
-
-- [[The alternative CSS box model][border-box]] ::  tells the browser to account for any border and padding in the values you specify for an element's width and height. If you set an element's width to 100 pixels, that 100 pixels will include any border or padding you added, and the content box will shrink to absorb that extra width. This typically makes it much easier to size elements. ~box-sizing: border-box~ is the default styling that browsers use for the ~<table>~ , ~<select>~ , and ~<button>~ elements, and for ~<input>~ elements whose type is ~radio~ , ~checkbox~ , ~reset~ , ~button~ , ~submit~ , ~color~ , or ~search~.
-
-*Note*:
-- It is often useful to set ~box-sizing~ to ~border-box~ to *lay out elements*. This makes dealing with the sizes of elements much easier, and generally eliminates a number of pitfalls you can stumble on while laying out your content.
-- When using ~position: relative~ or ~position: absolute~, use of ~box-sizing: content-box~ allows the positioning values to be *relative to the content*, and independent of changes to border and padding sizes, which is sometimes desirable.
-
-#+begin_src css
-
-  box-sizing: content-box; /* default */
-  box-sizing: border-box;
-
-#+end_src
-
-**** inline-size
-The ~inline-size~ CSS property defines the *horizontal or vertical size of an element's block*, depending on its writing mode. It corresponds to either the ~width~ or the ~height~ property, depending on the value of [[writing-mode]].
-
-If the writing mode is vertically oriented, the value of ~inline-size~ relates to the height of the element; otherwise, it relates to the width of the element. A related property is [[block-size]], which defines the other dimension of the element.
-
-*Note*: The CSS ~inline-size~ and ~block-size~ properties are very similar to CSS properties ~width~ and ~height~, but the ~inline-size~ and ~block-size~ properties are *dependent on inline and block directions*.
-
-**** block-size
-The ~block-size~ CSS property defines the *horizontal or vertical size of an element's block*, depending on its writing mode. It corresponds to either the ~width~ or the ~height~ property, depending on the value of [[writing-mode]].
-
-If the writing mode is vertically oriented, the value of ~block-size~ relates to the width of the element; otherwise, it relates to the height of the element. A related property is [[inline-size]], which defines the other dimension of the element.
-
-**** writing-mode
-The ~writing-mode~ CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress. When set for an entire document, it should be set on the root element (~html~ element for HTML documents).
-
-**** transform-box
-The ~transform-box~ CSS property defines the layout box to which the [[transform]], individual transform properties ~translate~, ~scale~, and ~rotate~, and ~transform-origin~ properties relate.
-
-The ~transform-box~ property is specified as one of the next keyword values.
-
-#+begin_src css
-
-/* Keyword values */
-transform-box: content-box | border-box | fill-box | stroke-box | view-box;
-
-/* Global values */
-transform-box: inherit | initial | revert | revert-layer | unset;
-
-#+end_src
-
 *** Alignment
 **** justify-items
 Alinea los *elementos* (hijos) en *horizontal* (eje principal) dentro de cada celda.
@@ -3742,16 +3677,126 @@ Alinea el *contenido* (la cuadricula) en *vertical* (eje secundario) en el conte
 
 #+end_src
 
-*** Font
-**** font-family
-Takes font name as values, in order of preference. At the end of the list it is always convenient tu put a generic family name.
+*** Object
+**** object-fit
+Sets how the content of a [[Replaced elements][replaced element]], such as an ~<img>~ or ~<video>~, should be resized to fit its container.
+
+You can alter the alignment of the replaced element's content object within the element's box using the [[object-position]] property.
+
+*Note*: Al insertar en un documento HTML algunos objetos como imágenes a través de la etiqueta ~<img>~, elementos multimedia a través de ~<video>~ u otros como ~<textarea>~ o ~<input>~, dichos elementos tienen su propia forma de mostrarse en pantalla ya que tienen características ajenas a CSS.
+
+- fill :: «Rellena» la imagen ocupando todo el espacio. Habitualmente, se produce un estiramiento de la imagen.
+- cover :: Mantiene proporción, cubriendo lo máximo posible, sin que queden huecos sin cubrir. Suele ocultar partes.
+- contain :: Mantiene proporción, conteniendo el máximo posible de la imagen. Suelen sobrar partes.
+- none :: Mantiene el aspecto natural.
+~scale-down~	Similar a contain, pero si la imagen es más pequeña, no la amplía.
 
 #+begin_src css
 
-  font-family : Georgia, "Times New Roman", Times, serif;
+  object-fit: contain | cover | fill | none | scale-down;
+
+  <div class="parent">
+    <img class="item item-1" src="cat.jpg" alt="Cat">
+    <img class="item item-2" src="cat.jpg" alt="Cat">
+    <img class="item item-3" src="cat.jpg" alt="Cat">
+    <img class="item item-4" src="cat.jpg" alt="Cat">
+    <img class="item item-5" src="cat.jpg" alt="Cat">
+  </div>
+
+  .parent {
+    display: flex;
+  }
+  .item {
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    background: lightgrey;
+  }
+
+  .item-1 { object-fit: fill; }
+  .item-2 { object-fit: cover; }
+  .item-3 { object-fit: contain; }
+  .item-4 { object-fit: scale-down; }
+  .item-5 { object-fit: none; }
 
 #+end_src
 
+**** object-position
+Specifies the *alignment* of the selected [[Replaced elements][replaced]] element's contents within the element's box. Areas of the box which aren't covered by the replaced element's object will show the element's background.
+
+You can adjust how the replaced element's object's [[The natural or intrinsic size of things][intrinsic size]] (that is, its natural size) is adjusted to fit within the element's box using the [[object-fit]] property.
+
+*Note*: Al insertar en un documento HTML algunos objetos como imágenes a través de la etiqueta ~<img>~, elementos multimedia a través de ~<video>~ u otros como ~<textarea>~ o ~<input>~, dichos elementos tienen su propia forma de mostrarse en pantalla ya que tienen características ajenas a CSS.
+
+*Note*: ~object-position~ sirve para utilizar junto a la propiedad ~object-fit~ y cambiar la posición donde aparece la imagen, especialmente cuando está recortada y sólo aparece un fragmento o parte de la imagen. La propiedad funciona de forma muy parecida a como lo hace la propiedad [[background-position]]:
+
+#+begin_src css
+
+  /* Keyword values */
+  object-position: top | bottom | left | right | center;
+
+  /* <percentage> values */
+  /* 50% 50% Por defecto, la imagen está centrada tanto en X como en Y. */
+  object-position: 25% 75%;
+
+  /* <length> values */
+  object-position: 0 0;
+  object-position: 1cm 2cm;
+  object-position: 10ch 8em;
+
+  /* Edge offsets values */
+  object-position: bottom 10px right 20px;
+  object-position: right 3em bottom 10px;
+  object-position: top 0 right 10px;
+
+
+  <div class="container">
+    <img class="normal" src="bad-manzdev.png" alt="Bad ManzDev">
+    <img class="positioned" src="bad-manzdev.png" alt="Bad ManzDev">
+  </div>
+
+  .container {
+    --size: 256px;
+
+    display: flex;
+    gap: 1rem;
+  }
+
+  img {
+    width: var(--size);
+    height: var(--size);
+    object-fit: none;
+  }
+
+  .normal { object-position: 50% 50%; }
+  .positioned { object-position: left 50% top 0%; }
+
+#+end_src
+
+**** object-view-box
+Permite indicar al navegador la región visible de un elemento a visualizar, es decir, su viewbox (caja de visualización). Con esta herramienta, se puede mostrar sólo una parte de una imagen o video, o incluso hacer zoom con animaciones si activamos las transiciones.
+
+#+begin_src css
+
+  <div class="container">
+    <img src="bad-manzdev.png" alt="Bad ManzDev">
+  </div>
+
+  .container img {
+    width: 256px;
+    height: 256px;
+    transition: all 0.5s;
+    object-view-box: inset(0% 0% 0% 0%);
+  }
+
+  /* Al mover el ratón por encima... */
+  .container img:hover {
+    object-view-box: inset(20% 20% 20% 20%);
+  }
+
+#+end_src
+
+*** Font
 **** font
 *Shorthand font property*. The first three values ~font-style~, ~font-variant~ and ~font-weigh~ are optional and can appear in any order. The fourth ~font-size~ is required. The fifth ~line-height~, line height is optional and if it appears it must be preceded by a slash. And at the end the typographic family ~font-family~ is mandatory.
 
@@ -3760,6 +3805,30 @@ Takes font name as values, in order of preference. At the end of the list it is 
   font : italic small-caps bold 1.5em/3em Arial, sans-serif
 
 #+end_src
+
+**** font-family
+Takes font name as values, in order of preference. At the end of the list it is always convenient to put a generic family name.
+
+*Web safe fonts*
+You can use the font stack to specify preferred fonts, followed by web-safe alternatives, followed by the default system font. However, this increases your workload because of the testing required to make sure that your designs work with each font.
+
+*Default fonts*
+CSS defines five generic names for fonts: serif, sans-serif, monospace, cursive, and fantasy.
+
+#+begin_src css
+
+  font-family : Georgia, "Times New Roman", Times, serif;
+
+#+end_src
+
+**** font-size
+- ~ems~: ~1 em~ is equal to the font size set on the parent element of the current element we are styling (more specifically, the width of a capital letter M contained inside the parent element).
+- The standard font-size of which is set to ~16px~ across browsers. Any paragraph (or another element that doesn't have a different size set by the browser) inside the root element will have a final size of ~16px~. Other elements may have different default sizes. For example, an ~h1~ element has a size of ~2em~ set by default, so it will have a final size of ~32px~.
+-  It is best to use ~rem~ where you can to keep things simple, and avoid setting the ~font-size~ of container elements where possible.
+
+**** text-align
+**** line-height
+**** letter-spacing, word-spacing
 
 *** Background
 **** background-image
@@ -4411,11 +4480,11 @@ El resto de valores, se utilizan específicamente en ficheros SVG:
 
 #+end_src
 
-*** Border
+*** Borders
 **** border-radius
 Rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners.
 
-The radius applies to the whole ~background~, even if the element has no border; the exact position of the clipping is defined by the ~background-clip~ property.
+The radius applies to the whole ~background~, even if the element has no border; the exact position of the clipping is defined by the [[background-clip]] property.
 
 *Nota*: Cuando uses un valor de 0 en uno de los extremos, el opuesto también estará a 0. Valores negativos no están permitidos.
 
@@ -4473,6 +4542,25 @@ The ~var()~ function cannot be used in property names, selectors or anything els
   :root {
     --main-bg-color: pink;
   }
+
+#+end_src
+
+**** attr()
+Is used to retrieve the value of an attribute of the selected element and use it in the stylesheet. It can also be used on pseudo-elements, in which case the value of the attribute on the pseudo-element's originating element is returned.
+
+*Note*: The ~attr()~ function can be used with any CSS property, but support for properties other than ~content~ is experimental, and support for the type-or-unit parameter is sparse.
+
+#+begin_src css
+
+  <p data-foo="hello">world</p>
+
+  <style>
+  [data-foo]::before {
+    content: attr(data-foo) " ";
+  }
+  </style>
+  /* Output: */
+  /* hello world */
 
 #+end_src
 
@@ -4880,45 +4968,6 @@ Establece una forma circular o eliptipa en una porción del elemento, pudiendo r
 
 #+end_src
 
-**** radial-gradient()
-Creates an image consisting of a progressive transition between two or more colors that radiate from an origin. Its shape may be a circle or an ellipse. The function's result is an object of the ~<gradient>~ data type, which is a special kind of ~<image>~.
-
-A radial gradient is specified by indicating the center of the gradient (where the 0% ellipse will be) and the size and shape of the ending shape (the 100% ellipse).
-
-#+begin_src css
-
-  /* A gradient at the center of its container,
-     starting red, changing to blue, and finishing green */
-  radial-gradient(circle at center, red 0, blue, green 100%)
-
-  /* hsl color space with longer hue interpolation */
-  radial-gradient(circle at center in hsl longer hue, red 0, blue, green 100%)
-
-
-  /* Ellipse (this is default): */
-  background-image: radial-gradient(red, yellow, green);
-
-  /* Circle */
-  background-image: radial-gradient(circle, red, yellow, green);
-
-  /* Eclipse lunar */
-  <div class="moon"></div>
-  <style>
-  .moon {
-    background: white;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    mask-image: radial-gradient(
-      circle 75px at 70% 50%,
-      transparent 100%,
-      black 101%
-    );
-  }
-  </style>
-
-#+end_src
-
 **** image-set()
 Is a method of letting the browser pick the most appropriate CSS image from a given set, primarily for high pixel density screens.
 
@@ -5063,25 +5112,6 @@ Specify a single box-shadow using:
 
 #+end_src
 
-**** attr()
-Is used to retrieve the value of an attribute of the selected element and use it in the stylesheet. It can also be used on pseudo-elements, in which case the value of the attribute on the pseudo-element's originating element is returned.
-
-*Note*: The ~attr()~ function can be used with any CSS property, but support for properties other than ~content~ is experimental, and support for the type-or-unit parameter is sparse.
-
-#+begin_src css
-
-  <p data-foo="hello">world</p>
-
-  <style>
-  [data-foo]::before {
-    content: attr(data-foo) " ";
-  }
-  </style>
-  /* Output: */
-  /* hello world */
-
-#+end_src
-
 **** scale()
 Defines a transformation that resizes an element on the 2D plane. Because the amount of scaling is defined by a vector [sx, sy], it can resize the horizontal and vertical dimensions at different scales. Its result is a ~<transform-function>~ data type.
 
@@ -5127,128 +5157,21 @@ When a coordinate value is outside the [-1, 1] range, the element grows along th
 
 #+end_src
 
-*** Object
-**** object-fit
-Sets how the content of a [[Replaced elements][replaced element]], such as an ~<img>~ or ~<video>~, should be resized to fit its container.
-
-You can alter the alignment of the replaced element's content object within the element's box using the [[object-position]] property.
-
-*Note*: Al insertar en un documento HTML algunos objetos como imágenes a través de la etiqueta ~<img>~, elementos multimedia a través de ~<video>~ u otros como ~<textarea>~ o ~<input>~, dichos elementos tienen su propia forma de mostrarse en pantalla ya que tienen características ajenas a CSS.
-
-- fill :: «Rellena» la imagen ocupando todo el espacio. Habitualmente, se produce un estiramiento de la imagen.
-- cover :: Mantiene proporción, cubriendo lo máximo posible, sin que queden huecos sin cubrir. Suele ocultar partes.
-- contain :: Mantiene proporción, conteniendo el máximo posible de la imagen. Suelen sobrar partes.
-- none :: Mantiene el aspecto natural.
-~scale-down~	Similar a contain, pero si la imagen es más pequeña, no la amplía.
-
-#+begin_src css
-
-  object-fit: contain | cover | fill | none | scale-down;
-
-  <div class="parent">
-    <img class="item item-1" src="cat.jpg" alt="Cat">
-    <img class="item item-2" src="cat.jpg" alt="Cat">
-    <img class="item item-3" src="cat.jpg" alt="Cat">
-    <img class="item item-4" src="cat.jpg" alt="Cat">
-    <img class="item item-5" src="cat.jpg" alt="Cat">
-  </div>
-
-  .parent {
-    display: flex;
-  }
-  .item {
-    margin: 10px;
-    width: 150px;
-    height: 150px;
-    background: lightgrey;
-  }
-
-  .item-1 { object-fit: fill; }
-  .item-2 { object-fit: cover; }
-  .item-3 { object-fit: contain; }
-  .item-4 { object-fit: scale-down; }
-  .item-5 { object-fit: none; }
-
-#+end_src
-
-**** object-position
-Specifies the alignment of the selected [[Replaced elements][replaced]] element's contents within the element's box. Areas of the box which aren't covered by the replaced element's object will show the element's background.
-
-You can adjust how the replaced element's object's [[The natural or intrinsic size of things][intrinsic size]] (that is, its natural size) is adjusted to fit within the element's box using the [[object-fit]] property.
-
-*Note*: Al insertar en un documento HTML algunos objetos como imágenes a través de la etiqueta ~<img>~, elementos multimedia a través de ~<video>~ u otros como ~<textarea>~ o ~<input>~, dichos elementos tienen su propia forma de mostrarse en pantalla ya que tienen características ajenas a CSS.
-
-*Note*: ~object-position~ sirve para utilizar junto a la propiedad ~object-fit~ y cambiar la posición donde aparece la imagen, especialmente cuando está recortada y sólo aparece un fragmento o parte de la imagen. La propiedad funciona de forma muy parecida a como lo hace la propiedad [[background-position]]:
-
-#+begin_src css
-
-  /* Keyword values */
-  object-position: top | bottom | left | right | center;
-
-  /* <percentage> values */
-  /* 50% 50% Por defecto, la imagen está centrada tanto en X como en Y. */
-  object-position: 25% 75%;
-
-  /* <length> values */
-  object-position: 0 0;
-  object-position: 1cm 2cm;
-  object-position: 10ch 8em;
-
-  /* Edge offsets values */
-  object-position: bottom 10px right 20px;
-  object-position: right 3em bottom 10px;
-  object-position: top 0 right 10px;
-
-
-  <div class="container">
-    <img class="normal" src="bad-manzdev.png" alt="Bad ManzDev">
-    <img class="positioned" src="bad-manzdev.png" alt="Bad ManzDev">
-  </div>
-
-  .container {
-    --size: 256px;
-
-    display: flex;
-    gap: 1rem;
-  }
-
-  img {
-    width: var(--size);
-    height: var(--size);
-    object-fit: none;
-  }
-
-  .normal { object-position: 50% 50%; }
-  .positioned { object-position: left 50% top 0%; }
-
-#+end_src
-
-**** object-view-box
-Permite indicar al navegador la región visible de un elemento a visualizar, es decir, su viewbox (caja de visualización). Con esta herramienta, se puede mostrar sólo una parte de una imagen o video, o incluso hacer zoom con animaciones si activamos las transiciones.
-
-#+begin_src css
-
-  <div class="container">
-    <img src="bad-manzdev.png" alt="Bad ManzDev">
-  </div>
-
-  .container img {
-    width: 256px;
-    height: 256px;
-    transition: all 0.5s;
-    object-view-box: inset(0% 0% 0% 0%);
-  }
-
-  /* Al mover el ratón por encima... */
-  .container img:hover {
-    object-view-box: inset(20% 20% 20% 20%);
-  }
-
-#+end_src
-
 *** Color
 **** color
 Cambia el color del texto que está en el interior de un elemento.
+
+**** color()
+Indica un color mediante un espacio de color diferente, tiene como primer parámetro el espacio de color, y luego, separado con espacios los valores de cada uno de los componentes.
+
+#+begin_src css
+
+  .normal { background: rgb(50% 25% 75%); }
+  .item-1 { background: color(srgb 50% 25% 75%); }
+  .item-2 { background: color(srgb-linear 50% 25% 75%); }
+  .item-3 { background: color(display-p3 50% 25% 75%); }
+
+#+end_src
 
 **** background-color
 Cambia el color de fondo de un elemento.
@@ -5324,18 +5247,6 @@ Permite mezclar una cierta cantidad de dos colores determinados en un espacio de
   .item-b { background: blue; }
   .item-result { background: color-mix(in srgb, red, blue); }
   </style>
-
-#+end_src
-
-**** color()
-Indica un color mediante un espacio de color diferente, tiene como primer parámetro el espacio de color, y luego, separado con espacios los valores de cada uno de los componentes.
-
-#+begin_src css
-
-  .normal { background: rgb(50% 25% 75%); }
-  .item-1 { background: color(srgb 50% 25% 75%); }
-  .item-2 { background: color(srgb-linear 50% 25% 75%); }
-  .item-3 { background: color(display-p3 50% 25% 75%); }
 
 #+end_src
 
@@ -5491,6 +5402,8 @@ Define un gradiente lineal, o sea, en una dirección específica.
 **** radial-gradient()
 Creates an *image* consisting of a progressive transition between two or more colors that radiate from an origin. Its shape may be a circle or an ellipse. The function's result is an object of the ~<gradient>~ data type, which is a special kind of ~<image>~.
 
+A radial gradient is specified by indicating the center of the gradient (where the 0% ellipse will be) and the size and shape of the ending shape (the 100% ellipse).
+
 *Nota*: Piensa que los navegadores, internamente, crean una imagen con el gradiente indicado en código. Por esa razón utilizamos [[background-image]] y no un /background-gradient/.
 
 ~start-color, ..., last-color~ : color *stops* are the colors you want to render smooth transitions among. This value consists of a color value, followed by an optional stop position (a percentage between 0% and 100% or a length along the gradient axis).
@@ -5540,6 +5453,28 @@ Creates an *image* consisting of a progressive transition between two or more co
 
   /* Position */
   radial-gradient(closest-side at 60% 55%, blue, green, yellow, black);
+
+  /* Ellipse (this is default): */
+  background-image: radial-gradient(red, yellow, green);
+
+  /* Circle */
+  background-image: radial-gradient(circle, red, yellow, green);
+
+    /* Eclipse lunar */
+  <div class="moon"></div>
+  <style>
+  .moon {
+    background: white;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    mask-image: radial-gradient(
+      circle 75px at 70% 50%,
+      transparent 100%,
+      black 101%
+    );
+  }
+  </style>
 
 
   /* Simple gradient */
@@ -5735,7 +5670,7 @@ If you specify ~all~ as the transition property for one single-property transiti
 
 ** The Box model
 *** Box model
-In CSS we have several types of boxes that generally fit into the categories of block boxes and inline boxes. The *type* refers to how the box behaves in terms of page flow and in *relation to other boxes* on the page. Boxes have an [[Inner display type][inner display type]] and an [[Outer display type][outer display type]].
+In CSS we have several types of boxes that generally fit into the categories of block boxes and inline boxes. The *type* refers to how the box behaves in *terms of page flow* and in *relation to other boxes* on the page. Boxes have an [[Inner display type (flow layout, grid, flex)][inner display type]] and an [[Outer display type (block, inline, inline-block)][outer display type]].
 
 The CSS box model as a whole applies to block boxes and defines how the different parts of a box — margin, border, padding, and content — work together to create a box that you can see on a page. Inline boxes use just some of the behavior defined in the box model.
 
@@ -5749,7 +5684,7 @@ The *size* and [[Position property][position]] of an element are often impacted 
 
 *Percentage values that are applied to* the ~width~ , ~height~ , ~padding~ , ~margin~ , and offset properties of an absolutely positioned element (i.e., which has its ~position~ set to ~absolute~ or ~fixed~) are *computed from the element's containing block*.
 
-*Note*: the *containing block* is the nearest containing block-level of the element (obviously the element must be nested inside the containing) or the containing block has a ~position~ value other than ~static~ ( ~fixed~ , ~absolute~ , ~relative~ , or ~sticky~ ), if there are no other positioned containing ancestors, then ~<html>~ will be the containing block. (INS)
+*Note*: the *containing block* is the nearest containing block-level of the element (obviously the element must be nested inside the containing) and the containing block has a ~position~ value other than ~static~ ( ~fixed~ , ~absolute~ , ~relative~ , or ~sticky~ ), if there are no other positioned containing ancestors, then ~<html>~ will be the containing block. (INS)
 
 **** Percentage values from the containing block
 When certain properties are given a percentage value, the *computed value depends on the element's containing block*. The properties that work this way are *box model properties* and *offset properties*:
@@ -5938,10 +5873,10 @@ In the example below, the paragraph's position is absolute, so its containing bl
 **** Box areas
 When a user agent (such as your browser) lays out a document, it generates a box for every element. Each box is divided into four areas.
 
-- margin :: es la distancia que se usa para *separar la caja* de otra cualquiera que este adjacente o que la contenga (contenedor)
-- padding :: es la distancia que *separa* la caja de su propio *contenido*. Si el contenido es otra caja, la separación sería con respecto a el margin de es caja de adentro, es decir, el *padding* de la caja mayor se separa conrespecto al *margin* de la caja de adentro.
-- border ::
-- content ::
+- [[content]]
+- [[padding]]
+- [[margin]]
+- [[border]]
 
 #+begin_src artist
 
@@ -5965,6 +5900,50 @@ When a user agent (such as your browser) lays out a document, it generates a box
 
 #+end_src
 
+**** content
+The area where your content is displayed; size it using properties like ~inline-size~ and ~block-size~ or ~width~ and ~height~.
+
+#+begin_src css
+
+  /* Keywords that cannot be combined with other values */
+  content: normal;
+  content: none;
+
+  /* <content-replacement>: <image> values */
+  content: url("http://www.example.com/test.png");
+  content: linear-gradient(#e66465, #9198e5);
+  content: image-set("image1x.png" 1x, "image2x.png" 2x);
+
+  /* speech output: alternative text after a "/"  */
+  content: url("../img/test.png") / "This is the alt text";
+
+  /* <string> value */
+  content: "unparsed text";
+
+  /* attr() value linked to the HTML attribute value */
+  content: attr(href);
+
+#+end_src
+
+**** padding
+The padding sits between the border and the content area and is used to *push the content away from the border*. Unlike margins, you cannot have a negative padding. Any background applied to your element will display behind the padding.
+
+#+begin_src css
+
+  /* Apply to all four sides */
+  padding: 1em;
+
+  /* top and bottom | left and right */
+  padding: 5% 10%;
+
+  /* top | left and right | bottom */
+  padding: 1em 2em 2em;
+
+  /* top | right | bottom | left */
+  padding: 5px 1em 0 2em;
+
+#+end_src
+
 **** margin
 The margin is an invisible space around box. *It pushes other elements away from the box*. Margins can have positive or negative values. Setting a negative margin on one side of your box can cause it to overlap other things on the page. Whether you are using the standard or alternative box model, the margin is always added after the size of the visible box has been calculated.
 
@@ -5977,6 +5956,8 @@ Depending on whether two elements whose margins touch have positive or negative 
 *Note*:
 - Collapsing margins is only relevant in the vertical direction.
 - Margins don't collapse in a container with display set to [[Flexbox][flex]] or [[Grid]].
+- The margin is what separates some block elements from others.
+- If a box is floating, the text in the other boxes will surround it, always respecting the margins of the floating element.
 
 #+begin_src css
 
@@ -6002,7 +5983,7 @@ Depending on whether two elements whose margins touch have positive or negative 
 #+end_src
 
 **** border
-The border is drawn between the margin and the padding of a box. (límite que separa el interior del exterior del elemento)
+The border is drawn between the margin and the padding of a box.
 
 If you are using the *standard box model*, the size of the border is added to the width and height of the content box.
 
@@ -6040,47 +6021,112 @@ If you are using the *alternative box model* then the size of the border makes t
 
 #+end_src
 
-**** padding
-The padding sits between the border and the content area and is used to *push the content away from the border*. Unlike margins, you cannot have a negative padding. Any background applied to your element will display behind the padding.
+*** Box size
+**** width
+The ~width~ property sets an element's width. By default, it sets the width of the [[content][content area]] but if ~box-sizing~ is set to ~border-box~, it sets the width of the border area.
+
+The specified value of ~width~ applies to the content area so long as its value remains within the values defined by ~min-width~ and ~max-width~.
+
+- If the value for width is less than the value for ~min-width~, then ~min-width~ overrides ~width~.
+- If the value for width is greater than the value for ~max-width~, then ~max-width~ overrides ~width~.
 
 #+begin_src css
 
-  /* Apply to all four sides */
-  padding: 1em;
+  /* <length> values */
+  width: 300px;
+  width: 25em;
 
-  /* top and bottom | left and right */
-  padding: 5% 10%;
+  /* <percentage> value */
+  width: 75%;
 
-  /* top | left and right | bottom */
-  padding: 1em 2em 2em;
-
-  /* top | right | bottom | left */
-  padding: 5px 1em 0 2em;
+  /* Keyword values */
+  width: max-content;
+  width: min-content;
+  width: fit-content;
+  width: fit-content(20em);
+  width: auto;
 
 #+end_src
 
-**** content
-The area where your content is displayed; size it using properties like ~inline-size~ and ~block-size~ or ~width~ and ~height~.
+**** height
+The ~height~ property specifies the height of an element. By default, the property defines the height of the [[content][content area]]. If ~box-sizing~ is set to ~border-box~, however, it instead determines the height of the border area.
+
+The ~min-height~ and ~max-height~ properties override height.
 
 #+begin_src css
 
-  /* Keywords that cannot be combined with other values */
-  content: normal;
-  content: none;
+  /* <length> values */
+  height: 120px;
+  height: 10em;
+  height: 100vh;
 
-  /* <content-replacement>: <image> values */
-  content: url("http://www.example.com/test.png");
-  content: linear-gradient(#e66465, #9198e5);
-  content: image-set("image1x.png" 1x, "image2x.png" 2x);
+  /* <percentage> value */
+  height: 75%;
 
-  /* speech output: alternative text after a "/"  */
-  content: url("../img/test.png") / "This is the alt text";
+  /* Keyword values */
+  height: max-content;
+  height: min-content;
+  height: fit-content;
+  height: fit-content(20em);
+  height: auto;
 
-  /* <string> value */
-  content: "unparsed text";
+#+end_src
 
-  /* attr() value linked to the HTML attribute value */
-  content: attr(href);
+**** box-sizing
+Sets how the total [[width]] and [[height]] of an element is calculated. Can be ~content-box~ (no incluyen borde, relleno y/o margen) *default* value or ~border-box~ (incluyen el borde y relleno.).
+
+The ~box-sizing~ property can be used to adjust this behavior:
+
+- [[The standard CSS box model][content-box]] :: gives you the *default* CSS box-sizing behavior. If you set an element's width to 100 pixels, then the element's content box will be 100 pixels wide, and the width of any border or padding will be added to the final rendered width, making the element wider than 100px.
+
+- [[The alternative CSS box model][border-box]] ::  tells the browser to account for any border and padding in the values you specify for an element's width and height. If you set an element's width to 100 pixels, that 100 pixels will include any border or padding you added, and the content box will shrink to absorb that extra width. This typically makes it much easier to size elements.
+
+*Note*: ~box-sizing: border-box~ is the default styling that browsers use for the ~<table>~ , ~<select>~ , and ~<button>~ elements, and for ~<input>~ elements whose type is ~radio~ , ~checkbox~ , ~reset~ , ~button~ , ~submit~ , ~color~ , or ~search~.
+
+*Note*:
+- It is often useful to set ~box-sizing~ to ~border-box~ to *lay out elements*. This makes dealing with the sizes of elements much easier, and generally eliminates a number of pitfalls you can stumble on while laying out your content.
+- When using ~position: relative~ or ~position: absolute~, use of ~box-sizing: content-box~ allows the positioning values to be *relative to the content*, and independent of changes to border and padding sizes, which is sometimes desirable.
+
+#+begin_src css
+
+  box-sizing: content-box; /* default */
+  box-sizing: border-box;
+
+#+end_src
+
+**** inline-size & block-size
+***** inline-size
+The ~inline-size~ CSS property defines the *horizontal or vertical size of an element's block, depending on its writing mode*. It corresponds to either the ~width~ or the ~height~ property, *depending on the value of* [[writing-mode]].
+
+If the writing mode is vertically oriented, the value of ~inline-size~ relates to the height of the element; otherwise, it relates to the width of the element. A related property is [[block-size]], which defines the other dimension of the element.
+
+*Note*: The CSS ~inline-size~ and ~block-size~ properties are very similar to CSS properties ~width~ and ~height~, but the ~inline-size~ and ~block-size~ properties are *dependent on inline and block directions*.
+
+That is, in the ~width~ property the writing-mode is independent - always means left-to-right width, but in the ~inline-size~ property the writing-mode is dependent - changes meaning based on context.
+
+Use ~width~ for fixed measurements and when you specifically want to set the width regardless of writing mode.
+Use ~inline-size~ for adaptive layouts that respond to the writing direction, making it particularly useful for internationalization and responsive designs.
+
+***** block-size
+The ~block-size~ CSS property defines the *horizontal or vertical size of an element's block, depending on its writing mode*. It corresponds to either the ~width~ or the ~height~ property, *depending on the value of* [[writing-mode]].
+
+If the writing mode is vertically oriented, the value of ~block-size~ relates to the width of the element; otherwise, it relates to the height of the element. A related property is [[inline-size]], which defines the other dimension of the element.
+
+**** writing-mode
+The ~writing-mode~ CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress. When set for an entire document, it should be set on the root element (~html~ element for HTML documents).
+
+**** transform-box
+The ~transform-box~ CSS property defines the layout box to which the [[transform]], individual transform properties ~translate~, ~scale~, and ~rotate~, and ~transform-origin~ properties relate.
+
+The ~transform-box~ property is specified as one of the next keyword values.
+
+#+begin_src css
+
+/* Keyword values */
+transform-box: content-box | border-box | fill-box | stroke-box | view-box;
+
+/* Global values */
+transform-box: inherit | initial | revert | revert-layer | unset;
 
 #+end_src
 
@@ -6088,6 +6134,8 @@ The area where your content is displayed; size it using properties like ~inline-
 **** The standard CSS box model
 In the standard box model, if you give a box an ~inline-size~ and a ~block-size~ (or ~width~ and a ~height~) attributes, this defines the inline-size and block-size (*width* and height in horizontal languages) of the content box. Any padding and border is then added to those dimensions to get the total size taken up by the box.
 (width = content area)
+
+*Note*: The margin is not counted towards the actual size of the box — sure, it affects the total space that the box will take up on the page, but only the space outside the box. The box's area stops at the border — it does not extend into the margin.
 
 #+begin_src artist
 
@@ -6116,8 +6164,6 @@ In the standard box model, if you give a box an ~inline-size~ and a ~block-size~
 #+end_src
 
 The actual space taken up by the box will be ~410px~ wide (350 + 25 + 25 + 5 + 5) and ~210px~ high (150 + 25 + 25 + 5 + 5).
-
-*Note*: The margin is not counted towards the actual size of the box — sure, it affects the total space that the box will take up on the page, but only the space outside the box. The box's area stops at the border — it does not extend into the margin.
 
 **** The alternative CSS box model
 In the alternative box model, any width is the width of the visible box on the page. The *content area width* is that width minus the width for the padding and border. No need to add up the border and padding to get the real size of the box.
@@ -6171,44 +6217,36 @@ The actual space taken up by the box will be ~350px~ (290+25+25+5+5) in the inli
 
 #+end_src
 
-*** Notes
-- The margin is what separates some block elements from others.
-- The vertical margins of two adjacent block element are not added together, but reduced to the greater of the two. (If the top box has a margin of 4 and an adjacent box below has a margin of 2, the distance separating them is the maxiumum between 2 and 4, that is, 4 not 6 as expected)
-- If a box is floating, the text in the other boxes will surround it, always respecting the margins of the floating element.
-- For block elements you can specify the ~width~ and ~height~ of the element.
-- For inline elements the ~width~ and ~height~ of the element is generally the minimum to fit the element.
-
 ** Layout
-*** Page layout
+*** Brief
 CSS page layout techniques allow us to take elements contained in a web page and control where they're positioned relative to the following factors: their default position in normal layout flow, the other elements around them, their parent container, and the main viewport/window.
 
 *** Normal flow
-**** Definition
 Normal flow is how the browser lays out HTML pages by default when you do nothing to control page layout. The HTML is displayed in the exact order in which it appears in the source code, with elements stacked on top of one another.
 
 The [[Position property][position]] property *allows you to precisely control the placement of boxes inside other boxes*. ~static~ positioning is the default in normal flow.
 
 Standard values such as ~block~, ~inline~ or [[inline-block]] can change how elements behave in normal flow. We also have entire layout methods that are enabled via specific display values, for example, CSS [[Grid]] and [[Flexbox]], which alter how child elements are laid out inside their parents.
 
-**** How elements are structured individually
-By default, a *block level element's* content *fills the available inline space of the parent element containing it* and the element grows along the block dimension to accommodate its content. The size of *inline elements* is *just the size of their content*. You can't set width or height on inline elements — they just sit inside the content of block level elements — except for images. Unlike other inline elements, images can be resized without changing their [[Display property][display]] property. If you want to control the size of an inline element in this manner, you need to set it to behave like a block level element.
+*How elements are structured individually*
+By default, a /block level element's/ content *fills the available inline space of the parent element containing it* and the element grows along the block dimension to accommodate its content. The size of /inline elements/ is *just the size of their content*. You can't set width or height on inline elements — they just sit inside the content of block level elements — except for images. Unlike other inline elements, images can be resized without changing their [[Display property][display]] property. If you want to control the size of an inline element in this manner, you need to set it to behave like a block level element.
 
-**** How about the structured when the elements interact with one another
-The normal layout flow is the system by which elements are placed inside the browser's viewport. By default, *block-level elements* are laid out in the *block flow direction*, which is based on the parent's writing mode (initial: horizontal-tb). *Each element will appear on a new line below the last one*, with each one separated by whatever margin that's been specified. In English, for example, (or any other horizontal, top to bottom writing mode) block-level elements are laid out *vertically*.
+*How about the structured when the elements interact with one another*
+The normal layout flow is the system by which elements are placed inside the browser's viewport. By default, /block-level elements/ are laid out in the *block flow direction*, which is based on the parent's writing mode (initial: horizontal-tb). *Each element will appear on a new line below the last one*, with each one separated by whatever margin that's been specified. In English, for example, (or any other horizontal, top to bottom writing mode) block-level elements are laid out *vertically*.
 
-*Inline elements* behave differently. They don't appear on new lines; instead, *they all sit on the same line* along with any adjacent (or wrapped) text content as long as there is space for them to do so inside the width of the parent block level element. If there isn't space, then the overflowing content will move down to a new line.
+/Inline element/ behave differently. They don't appear on new lines; instead, *they all sit on the same line* along with any adjacent (or wrapped) text content as long as there is space for them to do so inside the width of the parent block level element. If there isn't space, then the overflowing content will move down to a new line.
 
 *Note*: The direction in which block element contents are laid out is described as the Block Direction. The *Block Direction runs vertically in a language such as English*, which has a horizontal writing mode. The corresponding *Inline Direction is the direction in which inline contents* (such as a sentence) would run.
 
 *** Position
-**** position
+**** Brief
 Specifies the *type of positioning method* used for an element, that is, *how an element is positioned in a document*. The ~top~ , ~right~ , ~bottom~ , and ~left~ properties determine the final location of positioned elements.
 
 Positioning allows you to *move an element from where it would otherwise be placed in [[Normal flow][normal flow]] over to another location*. Positioning isn't a method for creating the main layouts of a page; it's more about managing and *fine-tuning the position of specific items on a page*.
 
 The ~position~ property allows you to *precisely control the placement of boxes inside other boxes*.
 
-There are five possible values of the ~position~ property. ~static~ positioning is the default in normal flow. *If an item is positioned in any way other than* ~static~ ( ~fixed~ , ~absolute~ , ~relative~ , or ~sticky~ ), then the further properties ~top~, ~bottom~, ~left~, and ~right~ *are used to specify offsets and positions*. The element having position static is not affected by the ~top~, ~bottom~ , ~left~ or ~right~ properties, that is , *the element needs to have one of these* ~fixed~ , ~absolute~ , ~relative~ , or ~sticky~ properties to be able to use ~top~, ~bottom~, ~left~ or ~right~.
+There are five possible values of the ~position~ property. ~static~ positioning is the default in normal flow. *If an item is positioned in any way other than* ~static~ ( ~fixed~ , ~absolute~ , ~relative~ , or ~sticky~ ), then the further properties ~top~, ~bottom~, ~left~, and ~right~ *are used to specify offsets and positions*. The element having position static is not affected by the ~top~, ~bottom~ , ~left~ or ~right~ properties.
 
 The size and position of an element are often impacted by its [[Containing block][containing block]] (*this is why it's so important to learn it*).
 
@@ -6222,46 +6260,6 @@ When ~position~ is set to ~absolute~, the element is removed from the normal doc
   /* Syntax */
   position: static|absolute|fixed|relative|sticky|initial|inherit;
   /* Default value: static */
-
-#+end_src
-
-*ManzDev: Grid or Flex + position*
-Si se tiene un contenedor con ~display: flex~ o ~display: grid~ con sus items alineados, por ejemplo, al centro ~justify-items: center; align-items: center;~ y se quiere alinear separadamente uno(s) de sus items hijos, se debe colocar la propiedad  ~position: relative~ que haría al contenedor relativo a sus items hijos y la propiedad ~position: absolute~ en los hijos que se quieran reposicionar.
-
-Al hacer esto los items hijos con la propiedad ~position: absolute~ se colocan por decirlo así en otra capa, y se alinearían al centro del contenedor debido a que son hijos de un grid o flex que previamente los alinea al centro. Si por ejemplo se quiere mover verticalemente, basta con solo usar la propiedad ~top~ o ~bottom~.
-
-#+begin_src css
-
-  <div class="card" data-card="7" data-suit="*">
-    <span class="item">*</span>
-    <span class="item">*</span>
-    <span class="item">*</span>
-    <span class="item">*</span>
-    <span class="item">*</span>
-    <span class="item">*</span>
-    <span class="item">*</span>
-  </div>
-
-  <style>
-  .card {
-    width: 100px;
-    height: 150px;
-    background: red;
-  }
-
-  [data-card="7"] {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    align-items: center;
-
-    & .item:nth-child(1) {
-      position: absolute;
-      top: 25%;
-    }
-  }
-  </style>
 
 #+end_src
 
@@ -6367,6 +6365,8 @@ This is very similar to [[static]] positioning, allows you to modify an element'
 ***** Definition
 *Moves an element completely out of the page's normal layout flow*, like it's sitting on its own *separate layer*. From there, you can fix it to a position relative to the edges of its closest positioned ancestor (which becomes ~<html>~ or ~<body>~ if no other ancestors are positioned) (sometimes ~absolute~ positions an element in place relative to the visible portion of the viewport (INS)). The element is *positioned in relation to its nearest non-static ancestor*, that is, the [[Containing Block][containing block]] of element must have any property other than ~static~.
 
+*Eloquent*: when ~position~ is set to ~absolute~, the element is removed from the normal document flow—that is, it no longer takes up space and may overlap with other elements. Also, its ~top~ and ~left~ properties can be used to absolutely position it relative to the top-left corner of the nearest enclosing element whose ~position~ property isn’t ~static~, or relative to the document if no such enclosing element exists.
+
 An absolutely positioned element is very useful: it means that *we can create isolated UI features that don't interfere with the layout of other elements on the page*. For example, popup information boxes, control menus, rollover panels, UI features that can be dragged and dropped anywhere on the page, and so on.
 
 ~top~ , ~bottom~ , ~left~ , and ~right~ behave in a different way with absolute positioning. Rather than positioning the element based on its [[relative]] position within the normal document flow, they specify the distance the element should be from each of the *containing element's sides*. So in this case, we are saying that the absolutely positioned element should sit 30px from the top of the "containing element" and 30px from the left. (In this case, the "containing element" is the initial containing block)
@@ -6374,8 +6374,6 @@ An absolutely positioned element is very useful: it means that *we can create is
 *Note*: Try setting ~top: 0; bottom: 0; left: 0; right: 0;~ and ~margin: 0;~ on your positioned elements. The results is that the element will take up the full window.
 
 *Note*: Margins still affect positioned elements. Margin collapsing doesn't, however.
-
-*Nota*: ~position: absolute~ envia los items a otra capa, de esta manera puede haber ocaciones donde otro item tenga overflow y sin embargo se vea por debajo de otro elemento, eso puede pasar porque dicho elemento tiene la propiedad ~position: absolute~ y esta en una capa por encima del resto de los elementos.
 
 #+begin_src css
 
@@ -6481,7 +6479,7 @@ The positioned element is nested inside the ~<body>~ in the HTML source, but in 
   <div class="container">
     <div class="middle">
       <div class="element"></div>
-  </div>
+    </div>
   </div>
   <style>
   .container {
@@ -6524,7 +6522,7 @@ En CSS existen múltiples formas de crear contextos de apilamiento, a parte de c
 - A elementos con un ~isolation~ establecido a ~isolate~
 
 **** fixed
-The item is absolutely positioned in a *fixed position on the screen even as the rest of the document is scrolled*.
+The item is absolutely positioned in a *fixed position on the screen* even as the rest of the document is scrolled.
 
 This works in exactly the same way as [[absolute]] positioning, with one key difference: whereas absolute positioning fixes an element in place relative to its nearest positioned ancestor (the initial containing block if there isn't one), fixed positioning usually fixes an element in place *relative to the visible portion of the viewport*. (An exception to this occurs if one of the element's ancestors is a fixed containing block because its transform property has a value other than none.)
 
@@ -7750,12 +7748,12 @@ Es posible usar ambas si tenemos la propiedad [[flex-wrap]] definida a ~wrap~ y,
 #+end_src
 
 *** Grid
-**** Grid brief
+**** Brief
 A grid is a *collection of horizontal and vertical lines creating a pattern* against which we can line up our design elements. They help us to create layouts in which our elements *won't jump around or change width as we move from page to page*, providing greater consistency on our websites.
 
 A grid will typically have columns, rows, and then gaps between each row and column. The gaps are commonly referred to as gutters.
 
-Lines can be addressed using their line number. In a left-to-right language such as English, column line 1 will be on the left of the grid, row line 1 on the top. Lines numbers respect the writing mode of the document and so in a right-to-left language for example (arabe), column line 1 will be on the right of the grid. The image below shows the line numbers of the grid, assuming the language is left-to-right.
+Lines can be addressed using their line number. In a left-to-right language such as English, column line 1 will be on the left of the grid, row line 1 on the top. Lines numbers respect the writing mode of the document.
 
 CSS Grid Layout excels at dividing a page into major regions or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
 
@@ -8150,7 +8148,7 @@ To create gaps between tracks, we use the properties:
 ***** Brief
 Grid interacts with absolutely positioned elements, which can be useful if you want to position an item inside a grid or grid area. The specification defines the behavior when a grid container is a containing block and a parent of the absolutely positioned item.
 
-***** A grid container as containing block
+***** Grid item that has a grid container as a positioning context
 To make the grid container a containing block you need to add the position property to the container with a value of relative, just as you would make a containing block for any other absolutely positioned items. Once you have done this, if you give a grid item ~position: absolute~ it will take as its containing block the grid container or, if the item also has a grid position, the area of the grid it is placed into.
 
 In the below example I have a wrapper containing four child items. Item three is absolutely positioned and also placed on the grid using line-based placement. The grid container has ~position: relative~ and so becomes the positioning context of this item.
@@ -8166,7 +8164,7 @@ In the below example I have a wrapper containing four child items. Item three is
       offset values are calculated in from the outer edges of the area
       it has been placed into.
   </div>
-  /* <div class="box box3">Three</div> */
+  <!-- <div class="box box3">Three</div> -->
   <div class="box box4">Four</div>
   </div>
   <style>
@@ -8198,12 +8196,12 @@ In the below example I have a wrapper containing four child items. Item three is
 
 #+end_src
 
-***** A grid container as parent
+***** Grid item that has a grid container that is not a position context
 If the absolutely positioned child has a grid container as a parent but that container does not create a new positioning context, then it is taken out of flow as in the previous example. The positioning context will be whatever element creates a positioning context as is common to other layout methods. In our case, if we remove ~position: relative~ from the wrapper above, positioning context is from the viewport.
 
 Once again the item no longer participates in the grid layout in terms of sizing or when other items are auto-placed.
 
-***** With a grid area as the parent
+***** Nested grid item that has a grid area as a positioning context
 If the absolutely positioned item is nested inside a grid area then you can create a positioning context on that area. In the below example we have our grid as before but this time I have nested an item inside ~.box3~ of the grid.
 
 I have given ~.box3~ position relative and then positioned the sub-item with the offset properties. In this case, the positioning context is the grid area.
@@ -8257,7 +8255,48 @@ I have given ~.box3~ position relative and then positioned the sub-item with the
 
 #+end_src
 
-**** Alinear items individualmente
+***** Grid/Flex and absolutely positioned elements
+*ManzDev*
+Si se tiene un contenedor con ~display: flex~ o ~display: grid~ con sus items alineados, por ejemplo, al centro ~justify-items: center; align-items: center;~ y se quiere alinear separadamente uno(s) de sus items hijos, se debe colocar la propiedad  ~position: relative~ que haría al contenedor relativo a sus items hijos y la propiedad ~position: absolute~ en los hijos que se quieran reposicionar.
+
+Al hacer esto los items hijos con la propiedad ~position: absolute~ se colocan por decirlo así en otra capa, y se alinearían al centro del contenedor debido a que son hijos de un grid o flex que previamente los alinea al centro. Si por ejemplo se quiere mover verticalemente, basta con solo usar la propiedad ~top~ o ~bottom~.
+
+#+begin_src css
+
+  <div class="card" data-card="7" data-suit="*">
+    <span class="item">*</span>
+    <span class="item">*</span>
+    <span class="item">*</span>
+    <span class="item">*</span>
+    <span class="item">*</span>
+    <span class="item">*</span>
+    <span class="item">*</span>
+  </div>
+
+  <style>
+  .card {
+    width: 100px;
+    height: 150px;
+    background: red;
+  }
+
+  [data-card="7"] {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    & .item:nth-child(1) {
+      position: absolute;
+      top: 25%;
+    }
+  }
+  </style>
+
+#+end_src
+
+**** Alinear items hijos individualmente
 Las siguientes propiedades se aplican a los ítems hijos de una cuadrícula, para alterar o cambiar el comportamiento específico de dicho elemento, que no se comportará como el resto.
 
 | /PROPIEDAD/         | /DESCRIPCIÓN/                      |
@@ -8370,13 +8409,12 @@ Indicando un valor numérico haríamos referencia a la línea (linea que divide 
 #+end_src
 
 **** The implicit and explicit grid (~grid-auto-rows/columns~)
-***** Brief
-The difference between explicit and the implicit grid:
+***** The difference between explicit and the implicit grid
 
 - explicit grid :: created using ~grid-template-columns~ or ~grid-template-rows~.
 - implicit grid :: extends the defined explicit grid when content is placed outside of that grid, such as into our rows by drawing additional grid lines.
 
-By default, tracks created in the implicit grid are ~auto~ sized, which in general means that *they're large enough to accommodate their content*. If you wish to give implicit grid tracks a size, you can use the ~grid-auto-rows~ and ~grid-auto-columns~ properties. If you ~add grid-auto-rows~ with a value of ~100px~ to your CSS, you'll see that those created rows are now 100 pixels tall.
+By default, tracks created in the implicit grid are ~auto~ sized, which in general means that they're large enough to accommodate their content. If you wish to give implicit grid tracks a size, you can use the ~grid-auto-rows~ and ~grid-auto-columns~ properties. If you ~add grid-auto-rows~ with a value of ~100px~ to your CSS, you'll see that those created rows are now 100 pixels tall.
 
 #+begin_src artist
 
@@ -8421,7 +8459,7 @@ By default, tracks created in the implicit grid are ~auto~ sized, which in gener
   }
   .container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);/*grid-template-columns: 1fr 1fr 1fr*/
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 100px;
     gap: 20px;
   }
@@ -8698,15 +8736,12 @@ If you add extra content, you'll see that the track expands to allow it to fit. 
 
 #+end_src
 
-**** As many columns as will fit (like Flex) (media queries) (~repeat()~)
+**** As many columns as will fit (like Flex) (~repeat()~)(~auto-fill~, ~auto-fit~)
 Sometimes it's helpful to be able to ask grid to create as many columns as will fit into the container. We do this by setting the value of ~grid-template-columns~ using the ~repeat()~ function, but instead of passing in a number, pass in the keyword ~auto-fill~. For the second parameter of the function we use ~minmax()~ with a minimum value equal to the minimum track size that we would like to have and a maximum of ~1fr~.
 
 This works because grid is creating as many 200-pixel columns as will fit into the container, then sharing whatever space is leftover among all the columns. The maximum is ~1fr~ which, as we already know, distributes space evenly between tracks.
 
-*ManzDev*
-~auto-fill~ indica al navegador que *rellene* el contenedor grid con múltiples elementos hijos dependiendo del tamaño del viewport (región visible del navegador). ~auto-fit~ *ajusta* el tamaño de los ítems para que cubran el tamaño máximo de la fila.
-
-Si utilizamos ~repeat(auto-fill, minmax(300px, 1fr)~, el navegador se va a encargar de que los elementos hijos con el tamaño mínimo quepan en la primera fila, y los que no quepan, se desplacen a las siguientes filas del grid, consiguiendo un efecto similar al las [[Media Queries][media queries]].
+*ManzDev*: ~auto-fill~ indica al navegador que *rellene* el contenedor grid con múltiples elementos hijos dependiendo del tamaño del viewport (región visible del navegador). ~auto-fit~ *ajusta* el tamaño de los ítems para que cubran el tamaño máximo de la fila. Si utilizamos ~repeat(auto-fill, minmax(300px, 1fr)~, el navegador se va a encargar de que los elementos hijos con el tamaño mínimo quepan en la primera fila, y los que no quepan, se desplacen a las siguientes filas del grid, consiguiendo un efecto similar al las [[Media Queries][media queries]].
 
 ~auto-fit~ behaves the same as ~auto-fill~, except that after placing the grid items any empty repeated tracks are collapsed. An empty track is one with no in-flow grid items placed into or spanning across it. (This can result in all tracks being collapsed, if they're all empty.)
 
@@ -9658,7 +9693,7 @@ Una sencilla forma de solucionarlo, es seguir estos 3 sencillos pasos:
 
 #+end_src
 
-**** La propiedad ~align-content~ en block
+**** Centrar verticalmente (~align-content~ en block)
 La propiedad ~align-content~ recientemente ha añadido la posibilidad de ser utilizada en elementos con ~display: block~, esto permite el centrado verticalmente de un elemento con tan solo una línea de CSS.
 
 | /Valor/  | /Descripción/                                            |
@@ -9738,7 +9773,7 @@ The viewport — which is the visible area of your page in the browser you are u
 Sizing things according to the viewport can be useful in your designs. For example, if you want a full-page hero section to show before the rest of your content, making that part of your page ~100vh~ high will push the rest of the content below the viewport, meaning that it will only appear once the document is scrolled.
 
 *** Values and units
-**** Lengths
+**** Types of lengths
 There are two types of lengths used in CSS — relative and absolute. The numeric type you will come across most frequently is ~<length>~. For example, ~10px~ (pixels) or ~30em~.
 
 **** Absolute length units
@@ -9748,9 +9783,9 @@ They are not relative to anything else, and are generally considered to always b
 Relative length units are relative to something else, perhaps the size of the parent element's font, or the size of the viewport. The benefit of using relative units is that with some careful planning you can make it so the size of text or other elements scales relative to everything else on the page. For example, ~30em~ or ~10vw~ and so on.
 
 **** ems and rems
-The *em* unit means "my *parent element's font-size*" in the case of typography. The [[li][<li>]] elements inside the [[ul][<ul>]] with a ~class~ of ~ems~ take their sizing from their parent. So each successive level of nesting gets progressively larger, as each has its font size set to ~1.3em~ — 1.3 times its parent's font size.
+The *em* unit means "my *parent element's font-size*" (in typography 'em' comes from the width of the uppercase letter 'M') in the case of typography. The [[li][<li>]] elements inside the [[ul][<ul>]] with a ~class~ of ~ems~ take their sizing from their parent. So each successive level of nesting gets progressively larger, as each has its font size set to ~1.3em~ — 1.3 times its parent's font size.
 
-The *rem* unit means "The *root element's font-size*" (rem stands for "root em"). The ~<li>~ elements inside the ~<ul>~ with a ~class~ of ~rems~ take their sizing from the root element ([[html][<html>]]). This means that each successive level of nesting does not keep getting larger.
+The *rem* unit means "The *root element's font-size*" ('rem' stands for "root em"). The ~<li>~ elements inside the ~<ul>~ with a ~class~ of ~rems~ take their sizing from the root element ([[html][<html>]]). This means that each successive level of nesting does not keep getting larger.
 
 #+begin_src css
 
@@ -10000,38 +10035,6 @@ Importa desde [[https://fonts.google.com/][google fonts]] usando un ~@impor~ css
 
 #+end_src
 
-*** Font styles
-**** Definition
-Properties that affect a text's font, e.g., which font gets applied, its size, and whether it's bold, italic, etc.
-
-**** font-family
-***** Web safe fonts
-You can use the font stack to specify preferred fonts, followed by web-safe alternatives, followed by the default system font. However, this increases your workload because of the testing required to make sure that your designs work with each font.
-
-- Arial
-- Courier New
-- Georgia
-- Times New Roman
-- Trebuchet MS
-- Verdana
-
-***** Default fonts
-CSS defines five generic names for fonts: serif, sans-serif, monospace, cursive, and fantasy.
-
-**** font-size
-- ~ems~: ~1 em~ is equal to the font size set on the parent element of the current element we are styling (more specifically, the width of a capital letter M contained inside the parent element).
-- The standard font-size of which is set to ~16px~ across browsers. Any paragraph (or another element that doesn't have a different size set by the browser) inside the root element will have a final size of ~16px~. Other elements may have different default sizes. For example, an ~h1~ element has a size of ~2em~ set by default, so it will have a final size of ~32px~.
--  It is best to use ~rem~ where you can to keep things simple, and avoid setting the ~font-size~ of container elements where possible.
-
-*** Text layout style
-**** Definition
-Properties that affect the spacing and other layout features of the text, allowing manipulation of, for example, the space between lines and letters, and how the text is aligned within the content box.
-
-**** text-align
-**** line-height
-**** font-size
-**** font-family
-**** letter-spacing, word-spacing
 *** Stylink links
 **** order
 The order is important because link styles build on one another. For example, the styles in the first rule will apply to all the subsequent ones. When a link is activated, it's usually also hovered over. If you put these in the wrong order, and you're changing the same properties in each ruleset, things won't work as you expect. To remember the order, you could try using a mnemonic like LoVe Fears HAte.
@@ -10136,18 +10139,12 @@ A website navigation menu can be marked up as a set of links, and this can be st
 
 ** Inheritance Cascade Specificity
 *** Inheritance
-**** Definition
 Inheritance is a key feature in CSS; it relies on the ancestor-descendant relationship to operate. Inheritance is the mechanism by which properties are applied not only to a specified element but also to its descendants. Inheritance relies on the document tree, which is the hierarchy of XHTML elements in a page based on nesting. Descendant elements may inherit CSS property values from any ancestor element enclosing them. *In general, descendant elements inherit text-related properties, but their box-related properties are not inherited*.
 
 - properties that can be inherited are :: color, font, letter spacing, line-height, list-style, text-align, text-indent, text-transform, visibility, white-space, and word-spacing.
 - properties that cannot be inherited are :: background, border, display, float and clear, height, and width, margin, min- and max-height and -width, outline, overflow, padding, position, text-decoration, vertical-align, and z-index.
 
-**** Controlling inheritance
-- inherit :: sets the property value applied to a selected element to be the same as that of its parent element. Effectively, this "turns on inheritance".
-- initial :: sets the property value applied to a selected element to the initial value of that property.
-- revert :: resets the property value applied to a selected element to the browser's default styling rather than the defaults applied to that property. This value acts like unset in many cases.
-- revert-layer :: resets the property value applied to a selected element to the value established in a previous cascade layer.
-- unset :: resets the property to its natural value, which means that if the property is naturally inherited it acts like inherit, otherwise it acts like initial.
+To control inheritance, you can use the ~initial~, ~inherit~, ~unset~, ~revert~, or ~revert-layer~ properties defined by [[CSS-wide values]].
 
 *** Cascade
 At a very simple level, this means that the origin, the cascade layer, and the order of CSS rules matter. When two rules from the same cascade layer apply and both have equal specificity, the one that is defined last in the stylesheet is the one that will be used.
@@ -10210,9 +10207,11 @@ At the time, the recommendation was to use CSS [[float]] for layout and media qu
 
 Responsive sites are built on flexible grids, meaning you *don't need* to target every possible device size with pixel perfect layouts. Several layout methods, including [[Flexbox]], [[Grid]] and [[Multi-column layout][Multiple-column layout]], *are responsive by default*. They all assume that you are trying to create a flexible grid.
 
+[[Media Queries][Media queries]] can help with Responsive Web Design, *but are not a requirement*. [[Flexbox][Flexible grids]], [[Relative length units][relative units]], and [[min- and max- sizes][minimum and maximum unit]] values can be used without queries.
+
 *** Media Queries
 **** Brief
-Media queries allow us to run a series of tests and apply CSS selectively to style the page appropriately, that is media queries use conditional logic for applying CSS styling. Media queries are a key part of responsive web design, as they allow you to create different layouts depending on the size of the viewport, but they can also be used to detect other things about the environment your site is running on, for example whether the user is using a touchscreen rather than a mouse.
+Media queries allow us to run a series of tests and apply CSS selectively to style the page appropriately, that is media queries *use conditional logic for applying CSS styling*. Media queries are a key part of responsive web design, as they allow you to create different layouts depending on the size of the viewport, but they can also be used to detect other things about the environment your site is running on, for example whether the user is using a touchscreen rather than a mouse.
 
 A common approach when using Media Queries is to create a simple single-column layout for narrow-screen devices (e.g. mobile phones), then check for wider screens and implement a multiple-column layout when you know that you have enough screen width to handle it.
 
@@ -10235,7 +10234,7 @@ The simplest media query syntax looks like this:
 
 #+end_src
 
-**** width and height
+**** min-width & max-width
 The feature we tend to detect most often in order to create responsive designs (and that has widespread browser support) is viewport width, and we can apply CSS if the viewport is above or below a certain width — or an exact width — using the ~min-width~, ~max-width~, and ~width~ media features.
 
 #+begin_src css
@@ -10248,7 +10247,7 @@ The feature we tend to detect most often in order to create responsive designs (
 
 #+end_src
 
-**** Orientation
+**** orientation
 One well-supported media feature is orientation, which allows us to test for portrait or landscape mode.
 
 #+begin_src css
@@ -10457,6 +10456,43 @@ This means that we only need to specify the font size for the heading once, rath
 *** Example website mobile first responsive design
 The view for the very smallest devices is quite often a simple single column of content, much as it appears in normal flow. This means that you probably don't need to do a lot of layout for small devices.
 
+#+begin_src html
+
+  <div class="wrapper">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+          <li><a href="">Meet the team</a></li>
+          <li><a href="">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+        <div class="content">
+          <h1>Veggies!</h1>
+          <p>…</p>
+        </div>
+        <aside class="related">
+          <p>…</p>
+        </aside>
+      </article>
+
+      <aside class="sidebar">
+        <h2>External vegetable-based links</h2>
+        <ul>
+          <li>…</li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer><p>&copy;2019</p></footer>
+  </div>
+
+#+end_src
+
 #+begin_src css
 
   * {
@@ -10513,43 +10549,6 @@ The view for the very smallest devices is quite often a simple single column of 
 
 #+end_src
 
-#+begin_src html
-
-  <div class="wrapper">
-    <header>
-      <nav>
-        <ul>
-          <li><a href="">About</a></li>
-          <li><a href="">Contact</a></li>
-          <li><a href="">Meet the team</a></li>
-          <li><a href="">Blog</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <article>
-        <div class="content">
-          <h1>Veggies!</h1>
-          <p>…</p>
-        </div>
-        <aside class="related">
-          <p>…</p>
-        </aside>
-      </article>
-
-      <aside class="sidebar">
-        <h2>External vegetable-based links</h2>
-        <ul>
-          <li>…</li>
-        </ul>
-      </aside>
-    </main>
-
-    <footer><p>&copy;2019</p></footer>
-  </div>
-
-#+end_src
-
 We've made no layout changes, however the source of the document is ordered in a way that makes the content readable. This is an important first step and one which ensures that if the content were to be read out by a screen reader, it would be understandable.
 
 From this point, start to drag the Responsive Design Mode view wider until you can see that the line lengths are becoming quite long, and we have space for the navigation to display in a horizontal line. This is where we'll add our first media query. We'll use ~ems~, as this will mean that if the user has increased their text size, the breakpoint will happen at a similar line-length but wider viewport, than someone with a smaller text size.
@@ -10598,7 +10597,7 @@ Let's continue to expand the width until we feel there is enough room for the si
 #+end_src
 
 * Website
-** Fundamental concepts
+** Brief
 1. Each documet must have a locator or identifier [[URL]].
 2. There must be a language in which computers comunicate to request and deliver documents to each other. (HTTP)
 3. There must be a way to encode the documents so that the other computer is able to display it on the screen [[HTML]].
@@ -10609,7 +10608,7 @@ A *Uniform Resource Identifier* is a unique sequence of characters that *identif
 
 Some URIs provide a means of *locating* and retrieving information resources on a network; these are *Uniform Resource Locators* (URLs). A URL provides the location of the resource. A URI identifies the resource by name at the specified location or URL. Other URIs provide only a unique *name*, without a means of locating or retrieving the resource or information about it, these are *Uniform Resource Names* (URNs).
 
-A *URN* is analogous to a *person's name*, while a *URL* is analogous to their *street address*. In other words, a URN identifies an item and a URL provides a method for finding it.
+A *URN* is analogous to a *person's name*, while a *URL* is analogous to their *street address*. In other words, *a URN identifies an item and a URL provides a method for finding it*.
 
 The URI generic syntax consists of five components organized hierarchically in order of decreasing significance from left to right:
 ~URI = scheme ":" ["//" authority] path ["?" query] ["#" fragment]~
@@ -10660,6 +10659,199 @@ A URL beginning with (~//~) replaces everything in the base URL from the include
 
 *** URN
 A Uniform Resource Name is a URI that *identifies* a resource *by name* in a particular namespace. A URN may be used to talk about a resource without implying its location or how to access it.
+
+** How page request and browsers work
+*** Overview
+For the most part, browsers are considered single-threaded. That is, they execute a task from beginning to end before taking up another task. For smooth interactions, the developer's goal is to ensure performant site interactions, from smooth scrolling to being responsive to touch. Render time is key, with ensuring the main thread can complete all the work we throw at it and still always be available to handle user interactions.
+
+*Order in which component files are parsed*
+- The browser parses the HTML file first, and that leads to the browser recognizing any ~<link>~-element references to external CSS stylesheets and any ~<script>~-element references to scripts.
+- As the browser parses the HTML, it sends requests back to the server for any CSS files it has found from ~<link>~ elements, and any JavaScript files it has found from ~<script>~ elements, and from those, then parses the CSS and JavaScript.
+- The browser generates an in-memory [[DOM]] tree from the parsed HTML, generates an in-memory CSSOM structure from the parsed CSS, and compiles and executes the parsed JavaScript.
+- As the browser builds the DOM tree and applies the styles from the CSSOM tree and executes the JavaScript, a visual representation of the page is painted to the screen, and the user sees the page content and can begin to interact with it.
+
+#+begin_src artist
+
+  +-----------+                               +------------+
+  |           |                               |            |
+  |   PC      |<--------DNS-Lookup----------->|   DNS      |
+  |           |                               |            |
+  |           |                               +------------+
+  |           |                               +------------+
+  |           |<-------TCP-Handshake--------->|   Site     |
+  |           |                               +------------+
+  |           |<-------SSL-Handshake--------->|            |
+  |           |                               +------------+
+  |           |-------HTTP-GET-Request------->|            |
+  |           |                               |            |
+  |           |<------14KB-response-----------|            |
+  |           |-----------ACK---------------->|            |
+  |           |<------28KB-response-----------|            |
+  |           |-----------ACK---------------->|            |
+  |           |<------56KB-response-----------|            |
+  |           |-----------ACK---------------->|            |
+  +-----------+                               +------------+
+
+#+end_src
+
+*** Navigation
+Navigation is the first step in loading a web page. It occurs whenever a user requests a page by entering a URL into the address bar, clicking a link, submitting a form, as well as other actions.
+
+- DNS Lookup :: the first step of navigating to a web page is finding where the assets for that page are located, that is, the IP address. DNS lookups must be done for each unique hostname the requested page references. If your fonts, images, scripts, ads, and metrics all have different hostnames, a DNS lookup will have to be made for each one. This can be problematic for performance, particularly on mobile networks. When a user is on a mobile network, each DNS lookup has to go from the phone to the cell tower to reach an authoritative DNS server.
+
+- TCP Handshake :: once the IP address is known, the browser sets up a connection to the server via a TCP three-way handshake SYN, SYN-ACK, ACK.
+
+- TLS Negotiation :: for secure connections established over HTTPS, another "handshake" is required. This handshake, or rather the TLS negotiation, determines which cipher will be used to encrypt the communication, verifies the server, and establishes that a secure connection. After the 8 round trips, the browser is finally able to make the request.
+
+#+begin_src artist
+
+  +-----------+                              +-------------+
+  |   PC      |--------www.example.com------>|     DNS     |
+  |           |<-------93.184.216.34---------|             |
+  |           |                              +-------------+
+  |           |                              +-------------+
+  |           |------------SYN-------------->|             |
+  |           |<---------SYN-ACK-------------|     SITE    |
+  |           |------------ACK-------------->|             |
+  |           |                              +-------------+
+  |           |--------ClientHello---------->|             |
+  |           |<--ServerHello-&-Certificate--|             |
+  |           |--------ClientKey------------>|             |
+  |           |                              +-------------+
+  +-----------+
+
+#+end_src
+
+*** Response
+Once we have an established connection to a web server, the browser sends an initial [[file:networks.org::GET][HTTP GET request]] on behalf of the user.
+
+This response for this initial request contains the first byte of data received. *Time to First Byte (TTFB)* is the time between when the user made the request—say by clicking on a link—and the receipt of this first packet of HTML. The first chunk of content is usually 14KB of data.
+
+The first response packet will be 14KB. This is part of *TCP slow start* (14KB rule), an algorithm which balances the speed of a network connection. Slow start gradually increases the amount of data transmitted until the network's maximum bandwidth can be determined. In TCP slow start, after receipt of the initial packet, the server doubles the size of the next packet to around 28KB. Subsequent packets increase in size until a predetermined threshold is reached, or congestion is experienced.
+
+As the server sends data in TCP packets, the user's client confirms delivery by returning acknowledgements, or ACKs. The connection has a limited capacity depending on hardware and network conditions. If the server sends too many packets too quickly, they will be dropped. Meaning, there will be no acknowledgement. The server registers this as missing ACKs. Congestion control algorithms use this flow of sent packets and ACKs to determine a send rate.
+
+#+begin_src artist
+
+  +-----------+                               +------------+
+  |   PC      |<--------DNS-Lookup----------->|   DNS      |
+  |           |                               +------------+
+  |           |                               +------------+
+  |           |<-------TCP-Handshake--------->|   Site     |
+  |           |                               +------------+
+  |           |<-------SSL-Handshake--------->|            |
+  |           |                               +------------+
+  |           |-------HTTP-GET-Request------->|            |
+  |           |                               |            |
+  |           |<------14KB-response-----------|            |
+  |           |-----------ACK---------------->|            |
+  |           |<------28KB-response-----------|            |
+  |           |-----------ACK---------------->|            |
+  |           |<------56KB-response-----------|            |
+  |           |-----------ACK---------------->|            |
+  +-----------+                               +------------+
+
+#+end_src
+
+*** Parsing
+**** Brief
+Once the browser receives the first chunk of data, it can begin parsing the information received.
+
+It's important for web performance optimization to include everything the browser needs to start rendering a page, or at least a template of the page - the CSS and HTML needed for the first render — in the first 14 kilobytes. But before anything is rendered to the screen, the HTML, CSS, and JavaScript have to be parsed.
+
+#+begin_src artist
+
+        +--------------+
+        |     HTML     |
+        +--------------+
+          /           \
+  +------------+       \ +--------------+
+  |    HEAD    |         |     BODY     |
+  +------------+         +--------------+
+   |                      |
+   |  +-----------+       | +-------------+   +----------------+
+   |--|   META    |       |-|     H1      |---| class:"heading"|
+   |  +-----------+       | +-------------+   +----------------+
+   |  +-----------+       | +-------------+
+   |--|   TITLE   |       |-|     P       |
+   |  +-----------+       | +-------------+
+   |  +-----------+       |     | +---------------+
+   |--|   LINK    |       |     |-| a paragraph ..|
+   |  +-----------+       |     | +---------------+
+   |  +-----------+       |     | +---------------+  +--------------+
+   |--|   SCRIPT  |       |     |-|    A          |--| href:"htt..."|
+      +-----------+       |       +---------------+  +--------------+
+                          |          |
+                          |          |  +---------------+
+                          |          |- |  link         |
+                          |             +---------------+
+                          |
+                          | +---------------+
+                          |-|     DIV       |
+                          | +---------------+
+                          |     | +-------------+ +--------------+
+                          |     |-|    IMG      |-| src:"..."    |
+                          |       +-------------+ +--------------+
+                          | +-----------------+  +-------------+
+                          |-|     SCRIPT      |--| src:"..."   |
+                            +-----------------+  +-------------+
+
+#+end_src
+
+**** Building the DOM tree (1step)
+*The first step* is processing the HTML markup and building the DOM tree. HTML parsing involves tokenization and tree construction.
+
+The DOM tree describes the content of the document. The ~<html>~ element is the first tag and root node of the document tree. The tree reflects the relationships and hierarchies between different tags. Tags nested within other tags are child nodes. The greater the number of DOM nodes, the longer it takes to construct the DOM tree.
+
+When the parser finds non-blocking resources, such as an image, the browser will request those resources and continue parsing. Parsing can continue when a CSS file is encountered, but ~<script>~ tags—particularly those without an ~async~ or ~defer~ attribute—block rendering, and pause the parsing of HTML. Though the browser's preload scanner hastens this process, excessive scripts can still be a significant bottleneck.
+
+**** Preload scanner
+While the browser builds the DOM tree, this process occupies the main thread. As this happens, the preload scanner will parse through the content available and request high priority resources like CSS, JavaScript, and web fonts. Thanks to the preload scanner, we don't have to wait until the parser finds a reference to an external resource to request it. It will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may already be in flight, or have been downloaded. The optimizations the preload scanner provides reduce blockages.
+
+**** Building the CSSOM (2step)
+*The second step* in the critical rendering path is processing CSS and building the CSSOM tree. The browser goes through each rule set in the CSS, creating a tree of nodes with parent, child, and sibling relationships based on the CSS selectors.
+
+The CSSOM tree includes styles from the user agent style sheet. The browser begins with the most general rule applicable to a node and recursively refines the computed styles by applying more specific rules. In other words, it cascades the property values.
+
+Total time to create the CSSOM is very very fast and is generally less than the time it takes for one DNS lookup.
+
+**** Other Processes
+*JavaScript Compilation*
+While the CSS is being parsed and the CSSOM created, other assets, including JavaScript files, are downloading (thanks to the preload scanner). JavaScript is interpreted, compiled, parsed and executed. The scripts are parsed into abstract syntax trees. Some browser engines take the Abstract Syntax Tree and pass it into an interpreter, outputting bytecode which is executed on the main thread. This is known as JavaScript compilation.
+
+*Building the Accessibility Tree*
+The browser also builds an accessibility tree that assistive devices use to parse and interpret content. The accessibility object model (AOM) is like a semantic version of the DOM. The browser updates the accessibility tree when the DOM is updated. The accessibility tree is not modifiable by assistive technologies themselves.
+
+Until the AOM is built, the content is not accessible to screen readers.
+
+*** Render
+**** Brief
+Rendering steps include style, layout, paint and, in some cases, compositing. The CSSOM and DOM trees created in the parsing step are combined into a *render tree* which is then used to compute the layout of every visible element, which is then painted to the screen.
+
+**** Style (3step)
+*The third step* in the critical rendering path is *combining the DOM and CSSOM into a render tree*. The computed style tree, or render tree, construction starts with the root of the DOM tree, traversing each visible node.
+
+Tags that aren't going to be displayed, like the ~<head>~ and its children and any nodes with ~display: none~, such as the script ~{ display: none; }~ you will find in user agent stylesheets, are not included in the render tree as they will not appear in the rendered output. Nodes with ~visibility: hidden~ applied are included in the render tree, as they do take up space.
+
+**** Layout (4step)
+*The fourth step* in the critical rendering path is running layout on the render tree *to compute the geometry of each node*. *Layout* is the process by which the width, height, and location of all the nodes in the render tree are determined, plus the determination of the size and position of each object on the page. *Reflow* is any subsequent size and position determination of any part of the page or the entire document.
+
+**** Paint (5step)
+*The last step* in the critical rendering path is *painting the individual nodes to the screen*, the first occurrence of which is called the *first meaningful paint*. In the painting or rasterization phase, the browser converts each box calculated in the layout phase to actual pixels on the screen. Painting involves drawing every visual part of an element to the screen, including text, colors, borders, shadows, and replaced elements like buttons and images. The browser needs to do this super quickly.
+
+To ensure smooth scrolling and animation, everything occupying the main thread, including calculating styles, along with reflow and paint, must take the browser less than 16.67ms to accomplish. To ensure repainting can be done even faster than the initial paint, the drawing to the screen is generally broken down into several layers. If this occurs, then compositing is necessary.
+
+**** Compositing
+When sections of the document are drawn in different layers, overlapping each other, compositing is necessary to ensure they are drawn to the screen in the right order and the content is rendered correctly.
+
+As the page continues to load assets, reflows can happen. A reflow sparks a repaint and a re-composite. Had we defined the size of our image, no reflow would have been necessary, and only the layer that needed to be repainted would be repainted, and composited if necessary. But we didn't include the image size! When the image is obtained from the server, the rendering process goes back to the layout steps and restarts from there.
+
+*** Interactivity
+Once the main thread is done painting the page, you would think we would be "all set." That isn't necessarily the case. If the load includes JavaScript, that was correctly deferred, and only executed after the ~onload~ event fires, the main thread might be busy, and not available for scrolling, touch, and other interactions.
+
+*Time to Interactive (TTI)* is the measurement of how long it took from that first request which led to the DNS lookup and SSL connection to when the page is interactive — interactive being the point in time after the First Contentful Paint when the page responds to user interactions within 50ms. If the main thread is occupied parsing, compiling, and executing JavaScript, it is not available and therefore not able to respond to user interactions in a timely (less than 50ms) fashion.
+
+For example, maybe an image loads quickly, but perhaps an ~anotherscript.js~ file is 2MB and the user's network connection is slow. In this case the user would see the page super quickly, but wouldn't be able to scroll without jank until the script was downloaded, parsed and executed. That is not a good user experience. Avoid occupying the main thread
 
 ** Website structure
 *** Basic sections of a document
@@ -10821,211 +11013,18 @@ A strip across the bottom of the page that generally contains fine print, copyri
 
 - sketch a rough sitemap :: now try to sketch a rough sitemap — have a bubble for each page on your site, and draw lines to show the typical workflow between pages. The homepage will probably be in the center, and link to most if not all of the others; most of the pages in a small site should be available from the main navigation, although there are exceptions. You might also want to include notes about how things might be presented.
 
-** Order in which component files are parsed
-- The browser parses the HTML file first, and that leads to the browser recognizing any ~<link>~-element references to external CSS stylesheets and any ~<script>~-element references to scripts.
-- As the browser parses the HTML, it sends requests back to the server for any CSS files it has found from ~<link>~ elements, and any JavaScript files it has found from ~<script>~ elements, and from those, then parses the CSS and JavaScript.
-- The browser generates an in-memory [[DOM]] tree from the parsed HTML, generates an in-memory CSSOM structure from the parsed CSS, and compiles and executes the parsed JavaScript.
-- As the browser builds the DOM tree and applies the styles from the CSSOM tree and executes the JavaScript, a visual representation of the page is painted to the screen, and the user sees the page content and can begin to interact with it.
-
-** What will your website look like?
+*** What will your website look like?
 - what structure should your website have? :: The most common things we'll have on any website project we create are an index HTML file and folders to contain images, style files, and script files.
 - what information does my website offer? ::
 - what fonts and colors do I want? ::
 - what does my site do? ::
 
-** How browsers work
-*** Overview
-For the most part, browsers are considered single-threaded. That is, they execute a task from beginning to end before taking up another task. For smooth interactions, the developer's goal is to ensure performant site interactions, from smooth scrolling to being responsive to touch. Render time is key, with ensuring the main thread can complete all the work we throw at it and still always be available to handle user interactions.
-
-#+begin_src artist
-
-  +-----------+                               +------------+
-  |           |                               |            |
-  |   PC      |<--------DNS-Lookup----------->|   DNS      |
-  |           |                               |            |
-  |           |                               +------------+
-  |           |                               +------------+
-  |           |<-------TCP-Handshake--------->|   Site     |
-  |           |                               +------------+
-  |           |<-------SSL-Handshake--------->|            |
-  |           |                               +------------+
-  |           |-------HTTP-GET-Request------->|            |
-  |           |                               |            |
-  |           |<------14KB-response-----------|            |
-  |           |-----------ACK---------------->|            |
-  |           |<------28KB-response-----------|            |
-  |           |-----------ACK---------------->|            |
-  |           |<------56KB-response-----------|            |
-  |           |-----------ACK---------------->|            |
-  +-----------+                               +------------+
-
-#+end_src
-
-*** Navigation
-Navigation is the first step in loading a web page. It occurs whenever a user requests a page by entering a URL into the address bar, clicking a link, submitting a form, as well as other actions.
-
-- DNS Lookup :: the first step of navigating to a web page is finding where the assets for that page are located, that is, the IP address. DNS lookups must be done for each unique hostname the requested page references. If your fonts, images, scripts, ads, and metrics all have different hostnames, a DNS lookup will have to be made for each one. This can be problematic for performance, particularly on mobile networks. When a user is on a mobile network, each DNS lookup has to go from the phone to the cell tower to reach an authoritative DNS server.
-
-- TCP Handshake :: once the IP address is known, the browser sets up a connection to the server via a TCP three-way handshake SYN, SYN-ACK, ACK.
-
-- TLS Negotiation :: for secure connections established over HTTPS, another "handshake" is required. This handshake, or rather the TLS negotiation, determines which cipher will be used to encrypt the communication, verifies the server, and establishes that a secure connection. After the 8 round trips, the browser is finally able to make the request.
-
-#+begin_src artist
-
-  +-----------+                              +-------------+
-  |   PC      |--------www.example.com------>|     DNS     |
-  |           |<-------93.184.216.34---------|             |
-  |           |                              +-------------+
-  |           |                              +-------------+
-  |           |------------SYN-------------->|             |
-  |           |<---------SYN-ACK-------------|     SITE    |
-  |           |------------ACK-------------->|             |
-  |           |                              +-------------+
-  |           |--------ClientHello---------->|             |
-  |           |<--ServerHello-&-Certificate--|             |
-  |           |--------ClientKey------------>|             |
-  |           |                              +-------------+
-  +-----------+
-
-#+end_src
-
-*** Response
-Once we have an established connection to a web server, the browser sends an initial [[file:networks.org::GET][HTTP GET request]] on behalf of the user.
-
-This response for this initial request contains the first byte of data received. *Time to First Byte (TTFB)* is the time between when the user made the request—say by clicking on a link—and the receipt of this first packet of HTML. The first chunk of content is usually 14KB of data.
-
-The first response packet will be 14KB. This is part of *TCP slow start* (14KB rule), an algorithm which balances the speed of a network connection. Slow start gradually increases the amount of data transmitted until the network's maximum bandwidth can be determined. In TCP slow start, after receipt of the initial packet, the server doubles the size of the next packet to around 28KB. Subsequent packets increase in size until a predetermined threshold is reached, or congestion is experienced.
-
-As the server sends data in TCP packets, the user's client confirms delivery by returning acknowledgements, or ACKs. The connection has a limited capacity depending on hardware and network conditions. If the server sends too many packets too quickly, they will be dropped. Meaning, there will be no acknowledgement. The server registers this as missing ACKs. Congestion control algorithms use this flow of sent packets and ACKs to determine a send rate.
-
-#+begin_src artist
-
-  +-----------+                               +------------+
-  |   PC      |<--------DNS-Lookup----------->|   DNS      |
-  |           |                               +------------+
-  |           |                               +------------+
-  |           |<-------TCP-Handshake--------->|   Site     |
-  |           |                               +------------+
-  |           |<-------SSL-Handshake--------->|            |
-  |           |                               +------------+
-  |           |-------HTTP-GET-Request------->|            |
-  |           |                               |            |
-  |           |<------14KB-response-----------|            |
-  |           |-----------ACK---------------->|            |
-  |           |<------28KB-response-----------|            |
-  |           |-----------ACK---------------->|            |
-  |           |<------56KB-response-----------|            |
-  |           |-----------ACK---------------->|            |
-  +-----------+                               +------------+
-
-#+end_src
-
-*** Parsing
-**** Definition
-Once the browser receives the first chunk of data, it can begin parsing the information received.
-
-It's important for web performance optimization to include everything the browser needs to start rendering a page, or at least a template of the page - the CSS and HTML needed for the first render — in the first 14 kilobytes. But before anything is rendered to the screen, the HTML, CSS, and JavaScript have to be parsed.
-
-#+begin_src artist
-
-        +--------------+
-        |     HTML     |
-        +--------------+
-          /           \
-  +------------+       \ +--------------+
-  |    HEAD    |         |     BODY     |
-  +------------+         +--------------+
-   |                      |
-   |  +-----------+       | +-------------+   +----------------+
-   |--|   META    |       |-|     H1      |---| class:"heading"|
-   |  +-----------+       | +-------------+   +----------------+
-   |  +-----------+       | +-------------+
-   |--|   TITLE   |       |-|     P       |
-   |  +-----------+       | +-------------+
-   |  +-----------+       |     | +---------------+
-   |--|   LINK    |       |     |-| a paragraph ..|
-   |  +-----------+       |     | +---------------+
-   |  +-----------+       |     | +---------------+  +--------------+
-   |--|   SCRIPT  |       |     |-|    A          |--| href:"htt..."|
-      +-----------+       |       +---------------+  +--------------+
-                          |          |
-                          |          |  +---------------+
-                          |          |- |  link         |
-                          |             +---------------+
-                          |
-                          | +---------------+
-                          |-|     DIV       |
-                          | +---------------+
-                          |     | +-------------+ +--------------+
-                          |     |-|    IMG      |-| src:"..."    |
-                          |       +-------------+ +--------------+
-                          | +-----------------+  +-------------+
-                          |-|     SCRIPT      |--| src:"..."   |
-                            +-----------------+  +-------------+
-
-#+end_src
-
-**** Building the DOM tree (1step)
-*The first step* is processing the HTML markup and building the DOM tree. HTML parsing involves tokenization and tree construction.
-
-The DOM tree describes the content of the document. The ~<html>~ element is the first tag and root node of the document tree. The tree reflects the relationships and hierarchies between different tags. Tags nested within other tags are child nodes. The greater the number of DOM nodes, the longer it takes to construct the DOM tree.
-
-When the parser finds non-blocking resources, such as an image, the browser will request those resources and continue parsing. Parsing can continue when a CSS file is encountered, but ~<script>~ tags—particularly those without an ~async~ or ~defer~ attribute—block rendering, and pause the parsing of HTML. Though the browser's preload scanner hastens this process, excessive scripts can still be a significant bottleneck.
-
-**** Preload scanner
-While the browser builds the DOM tree, this process occupies the main thread. As this happens, the preload scanner will parse through the content available and request high priority resources like CSS, JavaScript, and web fonts. Thanks to the preload scanner, we don't have to wait until the parser finds a reference to an external resource to request it. It will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may already be in flight, or have been downloaded. The optimizations the preload scanner provides reduce blockages.
-
-**** Building the CSSOM (2step)
-*The second step* in the critical rendering path is processing CSS and building the CSSOM tree. The browser goes through each rule set in the CSS, creating a tree of nodes with parent, child, and sibling relationships based on the CSS selectors.
-
-The CSSOM tree includes styles from the user agent style sheet. The browser begins with the most general rule applicable to a node and recursively refines the computed styles by applying more specific rules. In other words, it cascades the property values.
-
-Total time to create the CSSOM is very very fast and is generally less than the time it takes for one DNS lookup.
-
-**** Other Processes
-*JavaScript Compilation*
-While the CSS is being parsed and the CSSOM created, other assets, including JavaScript files, are downloading (thanks to the preload scanner). JavaScript is interpreted, compiled, parsed and executed. The scripts are parsed into abstract syntax trees. Some browser engines take the Abstract Syntax Tree and pass it into an interpreter, outputting bytecode which is executed on the main thread. This is known as JavaScript compilation.
-
-*Building the Accessibility Tree*
-The browser also builds an accessibility tree that assistive devices use to parse and interpret content. The accessibility object model (AOM) is like a semantic version of the DOM. The browser updates the accessibility tree when the DOM is updated. The accessibility tree is not modifiable by assistive technologies themselves.
-
-Until the AOM is built, the content is not accessible to screen readers.
-
-*** Render
-**** Definition
-Rendering steps include style, layout, paint and, in some cases, compositing. The CSSOM and DOM trees created in the parsing step are combined into a *render tree* which is then used to compute the layout of every visible element, which is then painted to the screen.
-
-**** Style (3step)
-*The third step* in the critical rendering path is *combining the DOM and CSSOM into a render tree*. The computed style tree, or render tree, construction starts with the root of the DOM tree, traversing each visible node.
-
-Tags that aren't going to be displayed, like the ~<head>~ and its children and any nodes with ~display: none~, such as the script ~{ display: none; }~ you will find in user agent stylesheets, are not included in the render tree as they will not appear in the rendered output. Nodes with ~visibility: hidden~ applied are included in the render tree, as they do take up space.
-
-**** Layout (4step)
-*The fourth step* in the critical rendering path is running layout on the render tree *to compute the geometry of each node*. *Layout* is the process by which the width, height, and location of all the nodes in the render tree are determined, plus the determination of the size and position of each object on the page. *Reflow* is any subsequent size and position determination of any part of the page or the entire document.
-
-**** Paint (5step)
-*The last step* in the critical rendering path is *painting the individual nodes to the screen*, the first occurrence of which is called the *first meaningful paint*. In the painting or rasterization phase, the browser converts each box calculated in the layout phase to actual pixels on the screen. Painting involves drawing every visual part of an element to the screen, including text, colors, borders, shadows, and replaced elements like buttons and images. The browser needs to do this super quickly.
-
-To ensure smooth scrolling and animation, everything occupying the main thread, including calculating styles, along with reflow and paint, must take the browser less than 16.67ms to accomplish. To ensure repainting can be done even faster than the initial paint, the drawing to the screen is generally broken down into several layers. If this occurs, then compositing is necessary.
-
-**** Compositing
-When sections of the document are drawn in different layers, overlapping each other, compositing is necessary to ensure they are drawn to the screen in the right order and the content is rendered correctly.
-
-As the page continues to load assets, reflows can happen. A reflow sparks a repaint and a re-composite. Had we defined the size of our image, no reflow would have been necessary, and only the layer that needed to be repainted would be repainted, and composited if necessary. But we didn't include the image size! When the image is obtained from the server, the rendering process goes back to the layout steps and restarts from there.
-
-*** Interactivity
-Once the main thread is done painting the page, you would think we would be "all set." That isn't necessarily the case. If the load includes JavaScript, that was correctly deferred, and only executed after the ~onload~ event fires, the main thread might be busy, and not available for scrolling, touch, and other interactions.
-
-*Time to Interactive (TTI)* is the measurement of how long it took from that first request which led to the DNS lookup and SSL connection to when the page is interactive — interactive being the point in time after the First Contentful Paint when the page responds to user interactions within 50ms. If the main thread is occupied parsing, compiling, and executing JavaScript, it is not available and therefore not able to respond to user interactions in a timely (less than 50ms) fashion.
-
-For example, maybe an image loads quickly, but perhaps an ~anotherscript.js~ file is 2MB and the user's network connection is slow. In this case the user would see the page super quickly, but wouldn't be able to scroll without jank until the script was downloaded, parsed and executed. That is not a good user experience. Avoid occupying the main thread
-
 ** Guidelines for building a website
 1. [[What will your website look like?]]
 2. [[Planning a simple example website]]
 3. [[Basic sections of a document]]
-4. [[Example website mobile first responsive design]]
-5. [[Example website logical sections in style sheet]]
+4. [[Example website logical sections in style sheet]]
+5. [[Example website mobile first responsive design]]
 6. [[Example website text styling]]
 7. [[Guidelines for SEO]]
 
@@ -11148,46 +11147,67 @@ If you move a page permanently to another location, don't forget to implement 30
 
 When a user requests a page that has been removed, you can create a custom 404 page to provide a better experience. Just be sure that when a user requests a page that is no longer there, you return a true 404 error, not a soft 404.
 
-** Best practices for web content
-- Ask "Who, How, and Why" about your content :: consider evaluating your content in terms of "Who(created the content), How(the content was created), and Why(was the content created)" as a way to stay on course with what our systems seek to reward. How (the content was created): For example, with product reviews, it can build trust with readers when they understand the number of products that were tested, what the test results were, and how the tests were conducted, all accompanied by evidence of the work involved, such as photographs.
+** Best practices for
+*** Web content
+**** Ask "Who, How, and Why" about your content
+Consider evaluating your content in terms of "Who(created the content), How(the content was created), and Why(was the content created)" as a way to stay on course with what our systems seek to reward. How (the content was created): For example, with product reviews, it can build trust with readers when they understand the number of products that were tested, what the test results were, and how the tests were conducted, all accompanied by evidence of the work involved, such as photographs.
 
-- Design for accessibility :: create pages for users, not just search engines. When you're designing your site, think about the needs of your users, including those who may not be using a JavaScript-capable browser (for example, people who use screen readers or less advanced mobile devices). One of the easiest ways to test your site's accessibility is to preview it in your browser with JavaScript turned off, or to view it in a text-only browser such as Lynx. Viewing a site as text-only can also help you identify other content which may be hard for Google to see, such as text embedded in images.
+**** Design for accessibility
+Create pages for users, not just search engines. When you're designing your site, think about the needs of your users, including those who may not be using a JavaScript-capable browser (for example, people who use screen readers or less advanced mobile devices). One of the easiest ways to test your site's accessibility is to preview it in your browser with JavaScript turned off, or to view it in a text-only browser such as Lynx. Viewing a site as text-only can also help you identify other content which may be hard for Google to see, such as text embedded in images.
 
-- Site fast and Accessible :: make sure that your site is secure, fast, accessible to all, and works on all devices.
+**** Site fast and Accessible
+Make sure that your site is secure, fast, accessible to all, and works on all devices.
 
-- Keywords and placement locations :: use words that people would use to look for your content, and place those words in prominent locations on the page, such as the *title and main heading* of a page, and other descriptive locations such as *alt text* and *link text*.
+**** Keywords and placement locations
+Use words that people would use to look for your content, and place those words in prominent locations on the page, such as the *title and main heading* of a page, and other descriptive locations such as *alt text* and *link text*.
 
-- Know what your readers want (and give it to them) :: think about the words that a user might search for to find a piece of your content. Users who know a lot about the topic might use different keywords in their search queries than someone who is new to the topic. For example, a long-time football fan might search for "fifa", an acronym for the Fédération Internationale de Football Association, while a new fan might use a more general query like "football playoffs". Anticipating these differences in search behavior and accounting for them while writing your content (using a good mix of keyword phrases) could produce positive results. Consider creating a new, useful service that no other site offers. You could also write an original piece of research, break an exciting news story, or leverage your unique user base.
+**** Know what your readers want (and give it to them)
+Think about the words that a user might search for to find a piece of your content. Users who know a lot about the topic might use different keywords in their search queries than someone who is new to the topic. For example, a long-time football fan might search for "fifa", an acronym for the Fédération Internationale de Football Association, while a new fan might use a more general query like "football playoffs". Anticipating these differences in search behavior and accounting for them while writing your content (using a good mix of keyword phrases) could produce positive results. Consider creating a new, useful service that no other site offers. You could also write an original piece of research, break an exciting news story, or leverage your unique user base.
 
-- Optimize placement :: whenever possible, place images near relevant text. When it makes sense, consider placing the most important image near the top of the page.
+**** Optimize placement
+Whenever possible, place images near relevant text. When it makes sense, consider placing the most important image near the top of the page.
 
-- Check your links :: [[Googlebot]] navigates from URL to URL by fetching and parsing links, [[Sitemaps][sitemaps]], and redirects. Googlebot treats every URL as if it's the first and only URL it has seen from your site.
+**** Check your links
+[[Googlebot]] navigates from URL to URL by fetching and parsing links, [[Sitemaps][sitemaps]], and redirects. Googlebot treats every URL as if it's the first and only URL it has seen from your site.
 
-** Make sure Googlebot can find all the URLs on the site
-- Use [[a][<a>]] elements that Google can crawl. Generally, Google can only crawl your link if it's an ~<a>~ HTML element (also known as anchor element) with an [[href]] attribute. Ensure that all pages on the site can be reached by a link from another findable page. Make sure the referring link includes either text or, for images, an [[alt]] attribute, that is relevant to the target page. Google can't reliably extract URLs from ~<a>~ elements that don't have an href attribute or other tags that perform as links because of script events.
-- Build and submit a sitemap to help Googlebot more intelligently crawl your site. A sitemap is a file where you provide information about the pages, videos, and other files on your site, and the relationships between them.
-- For JavaScript apps that have only one HTML page, make sure that each screen or piece of individual content has a URL.
+*** Creating Web Stories
+**** Storytelling
 
-** Best practices for creating Web Stories
-*** Storytelling
 - Video first :: video is more engaging than text or images. Use as much video as possible, and supplement with images and text.
+
 - Bring your perspective :: go beyond the facts. Share your opinions. Be the protagonist of your own story. Make it relatable.
+
 - Have a narrative arc :: create suspense in your story from one page to another. Bring the user along in the journey by providing context and narrative. Deliver payoff for sticking with you to the end.
 
-*** Design
+**** Design
+
 - Reduce your character count :: avoid including multiple pages with walls of text. Consider reducing text to approximately 280 characters per page (the length of a tweet).
+
 - Don't block text :: make sure text is not blocked by other content on the page. Avoid burned in text; by not using burned in text, you prevent text from being blocked when it gets resized to fit various device sizes.
+
 - Keep text within bounds :: ensure that all text in your Web Story is visible to the reader. Avoid burned in text; by not using burned in text, you prevent text from overflowing when it gets resized to fit various device sizes.
+
 - Use animations mindfully :: bring your stories to life with animations. Avoid distracting or repetitive animations which can cause fatigue.
+
 - Shorten video length :: we recommend videos that are less than 15 seconds per page, or 60 seconds maximum.
 
-*** SEO
+**** SEO
+
 - Keep the title short :: keep titles shorter than 90 characters. We recommend using a descriptive title that is shorter than 70 characters.
+
 - Include alt text on images :: we recommend including alt text on your images to improve your story's discoverability.
 
-** Best practices for HTML tags
-*** meta tags
-**** Definition
+*** Googlebot can find all the URLs
+
+- Use [[a][<a>]] elements that Google can crawl. Generally, Google can only crawl your link if it's an ~<a>~ HTML element (also known as anchor element) with an [[href]] attribute. Ensure that all pages on the site can be reached by a link from another findable page. Make sure the referring link includes either text or, for images, an [[alt]] attribute, that is relevant to the target page. Google can't reliably extract URLs from ~<a>~ elements that don't have an href attribute or other tags that perform as links because of script events.
+
+- Build and submit a sitemap to help Googlebot more intelligently crawl your site. A sitemap is a file where you provide information about the pages, videos, and other files on your site, and the relationships between them.
+
+- For JavaScript apps that have only one HTML page, make sure that each screen or piece of individual content has a URL.
+
+*** HTML tags
+**** meta tags
+***** Definition
 [[meta]] tags are HTML tags used to provide additional information about a page to search engines and other clients. Clients process the ~meta~ tags and ignore those they don't support. ~meta~ tags are added to the ~<head>~ section of your HTML page and generally look like this:
 
 #+begin_src html
@@ -11205,7 +11225,7 @@ When a user requests a page that has been removed, you can create a custom 404 p
 
 #+end_src
 
-**** Use quality descriptions
+***** Use quality descriptions
 Make sure your descriptions are truly descriptive. Because meta descriptions aren't displayed in the pages the user sees, it's easy to let this content slide. But high-quality descriptions can be displayed in Google's search results, and can go a long way to improving the quality and quantity of your search traffic.
 
 #+begin_src html
@@ -11252,7 +11272,7 @@ Make sure your descriptions are truly descriptive. Because meta descriptions are
 
 #+end_src
 
-**** Include relevant information in the description
+***** Include relevant information in the description
 The meta description doesn't just have to be in sentence format; it's also a great place to include information about the page. For example, news or blog postings can list the author, date of publication, or byline information. This can give potential visitors very relevant information that might not be displayed in the [[Snippet][snippet]] otherwise. Similarly, product pages might have the key bits of information—price, age, manufacturer—scattered throughout a page. A good meta description can bring all this data together.
 
 #+begin_src html
@@ -11264,7 +11284,7 @@ The meta description doesn't just have to be in sentence format; it's also a gre
 
 #+end_src
 
-**** Define a favicon to show in search results
+***** Define a favicon to show in search results
 Add a [[link][<link>]] tag to the header of your home page with the following syntax:
 
 #+begin_src html
@@ -11273,7 +11293,7 @@ Add a [[link][<link>]] tag to the header of your home page with the following sy
 
 #+end_src
 
-*** Create unique, accurate page titles
+**** Create unique, accurate page titles
 A [[title][<title>]] element tells both users and search engines what the topic of a particular page is. Place the ~<title>~ element within the ~<head>~ element of the HTML document, and create unique title text for each page on your site.
 
 Identical or similar descriptions on every page of a site aren't helpful when individual pages appear in search results. Wherever possible, create descriptions that accurately describe the specific page. Use site-level descriptions on the main home page or other aggregation pages, and use page-level descriptions everywhere else.
@@ -11297,7 +11317,7 @@ A title link is the title of a search result on Google Search and other properti
 
 #+end_src
 
-*** Write good anchor text
+**** Write good anchor text
 Good anchor text is descriptive, reasonably concise, and relevant to the page that it's on and to the page it links to. It provides context for the link, and sets the expectation for your readers. The better your anchor text, the easier it is for people to navigate your site and for Google to understand what the page you're linking to is about.
 
 *Tip*: Try reading only the anchor text (out of context) and check if it's specific enough to make sense by itself. If you don't know what the page could be about, you need more descriptive anchor text.
@@ -11340,8 +11360,8 @@ Good anchor text is descriptive, reasonably concise, and relevant to the page th
 
 #+end_src
 
-*** Images
-**** Semantic HTML for images
+**** Images
+***** Semantic HTML for images
 Using semantic HTML markup helps crawlers find and process images. Google parses the HTML [[img][<img>]] elements (even when they're enclosed in other elements such as ~<picture>~ elements) in your pages to index images, but doesn't index CSS images.
 
 #+begin_src html
@@ -11354,15 +11374,15 @@ Using semantic HTML markup helps crawlers find and process images. Google parses
 
 #+end_src
 
-**** Appropriate *text alternatives* based on the purpose of the image
-***** Informative Images
-****** Brief
+***** Appropriate *text alternatives* based on the purpose of the image
+****** Informative Images
+******* Brief
 [[https://www.w3.org/WAI/tutorials/images/][W3 Images Tutorial]]
 Informative images convey a simple concept or information that can be expressed in a short phrase or sentence. The text alternative should convey the meaning or content that is displayed visually, which typically isn’t a literal description of the image.
 
 In some situations a detailed literal description may be needed, but only when the content of the image is all or part of the conveyed information. Whether to treat an image as informative or decorative is a judgment that authors make, based on the reason for including the image on the page.
 
-****** Images used to label other information
+******* Images used to label other information
 This example shows two image icons – one of a telephone, one of a fax machine. A phone number follows each image. Consistent with the visual presentation, the text alternatives “Telephone:” and “Fax:” are used to identify the device associated with each number.
 
 #+begin_src html
@@ -11376,7 +11396,7 @@ This example shows two image icons – one of a telephone, one of a fax machine.
 
 #+end_src
 
-****** Images used to supplement other information
+******* Images used to supplement other information
 The following image shows a dog wearing a bell. It supplements the adjacent text that explains the purpose of this bell. A short text alternative is sufficient to describe the information that is displayed visually but is not explained in the text; in this case, the text alternative is “Dog with a bell attached to its collar.”.
 
 #+begin_src html
@@ -11392,7 +11412,7 @@ The following image shows a dog wearing a bell. It supplements the adjacent text
 
 #+end_src
 
-****** Images conveying an impression or emotion
+******* Images conveying an impression or emotion
 This photograph shows a happy family group. It’s a stock image so the individuals should not be identified. It’s being used to give the impression that the website or the company it represents is family-friendly. The text alternative is “We’re family-friendly” as this best describes the intended impression.
 
 #+begin_src html
@@ -11405,7 +11425,7 @@ This photograph shows a happy family group. It’s a stock image so the individu
 
 #+end_src
 
-****** Images conveying file format
+******* Images conveying file format
 In this example, a document is available to download in three different formats identified by format icons within text links. They have the text alternatives 'HTML', 'Word document', and 'PDF' to distinguish the file type for each link:
 
 #+begin_src html
@@ -11435,15 +11455,15 @@ In this example, a document is available to download in three different formats 
 
 #+end_src
 
-***** Decorative Images
-****** Brief
-Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.
+****** Decorative Images
+******* Brief
+Decorative images don't add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.
 
 In these cases, a null (empty) [[alt]] text should be provided ( ~alt=""~ ) so that they can be ignored by assistive technologies, such as screen readers. Text values for these types of images would add audible clutter to screen reader output or could distract users if the topic is different from that in adjacent text. Leaving out the ~alt~ attribute is also not an option because when it is not provided, some screen readers will announce the file name of the image instead.
 
 *Note*: Where possible, decorative images should be provided using CSS background images instead.
 
-****** Image used as part of page design
+******* Image used as part of page design
 This image is used as a border in the page design and has a purely decorative purpose.
 
 #+begin_src html
@@ -11455,8 +11475,8 @@ This image is used as a border in the page design and has a purely decorative pu
 
 #+end_src
 
-****** Decorative image as part of a text link
-This illustration of a crocus bulb is used to make the link easier to identify and to increase the clickable area but doesn’t add to the information already provided in the adjacent link text (of the same anchor). In this case, use a null (empty) alt value for the image.
+******* Decorative image as part of a text link
+This illustration of a crocus bulb is used to make the link easier to identify and to increase the clickable area but doesn't add to the information already provided in the adjacent link text (of the same anchor). In this case, use a null (empty) alt value for the image.
 
 #+begin_src html
 
@@ -11467,7 +11487,7 @@ This illustration of a crocus bulb is used to make the link easier to identify a
 
 #+end_src
 
-****** Image with adjacent text alternative
+******* Image with adjacent text alternative
 This picture of a sleeping dog is already sufficiently described by the adjacent text. There is no need to repeat this information, and a null (empty) alt value can be used for this image.
 
 #+begin_src html
@@ -11479,7 +11499,7 @@ This picture of a sleeping dog is already sufficiently described by the adjacent
 
 #+end_src
 
-****** Image used for ambiance (eye-candy)
+******* Image used for ambiance (eye-candy)
 This image is used only to add ambiance or visual interest to the page.
 
 #+begin_src html
@@ -11492,13 +11512,13 @@ This image is used only to add ambiance or visual interest to the page.
 
 #+end_src
 
-***** Functional Images
-****** Brief
+****** Functional Images
+******* Brief
 Functional images are used to initiate actions rather than to convey information. They are used in buttons, links, and other interactive elements. The text alternative for the image should convey the action that will be initiated (the purpose of the image), rather than a description of the image.
 
 For instance, the text alternative should be “print this page” rather than “(image of a) printer”, “search” rather than “magnifying lens” or “Example.com homepage” rather than “Example.com logo”.
 
-****** Image used alone as a linked logo
+******* Image used alone as a linked logo
 The following image is the only content of a link that leads to the W3C home page.
 
 #+begin_src html
@@ -11509,7 +11529,7 @@ The following image is the only content of a link that leads to the W3C home pag
 
 #+end_src
 
-****** Icon image conveying information within link text
+******* Icon image conveying information within link text
 In this example, the image follows text within a link to inform users that the link will open in a new window. It has the text alternative “new window” to convey the meaning of the icon:
 
 #+begin_src html
@@ -11520,7 +11540,7 @@ In this example, the image follows text within a link to inform users that the l
 
 #+end_src
 
-****** Stand-alone icon image that has a function
+******* Stand-alone icon image that has a function
 The following image is an icon representing a printer to denote print functionality. It has the text alternative “Print this page” because its purpose is to activate the print dialog when it is selected:
 
 #+begin_src html
@@ -11531,7 +11551,7 @@ The following image is an icon representing a printer to denote print functional
 
 #+end_src
 
-****** Image used in a button
+******* Image used in a button
 The following image is used to give the button a distinct style. In this case, it is the button to initiate a search request and is an icon representing a magnifying lens. The text alternative for the image is “search” to convey the purpose of the button:
 
 #+begin_src html
@@ -11540,7 +11560,7 @@ The following image is used to give the button a distinct style. In this case, i
 
 #+end_src
 
-****** Anoher example
+******* Anoher example
 
 #+begin_src html
 
@@ -11554,7 +11574,7 @@ The following image is used to give the button a distinct style. In this case, i
 
 #+end_src
 
-***** Images of Text
+****** Images of Text
 Images of text display text that is intended to be read. With the current CSS capabilities in most web browsers, it is good design practice to use actual text that is styled with CSS rather than image-based text presentation. Genuine text is much more flexible than images: It can be resized without losing clarity, and background and text colors can be modified to suit the reading preferences of users. Images are more likely to distort and pixelate when resized. In those rare situations where images of text must be used, the text alternative must contain the same text presented in the image.
 
 *Image of text used as an unlinked logo*
@@ -11567,8 +11587,8 @@ The following image is the logo for the Web Accessibility Initiative. It is not 
 
 #+end_src
 
-***** Complex Images
-****** Brief
+****** Complex Images
+******* Brief
 Complex images contain substantial information – more than can be conveyed in a short phrase or sentence. These are typically:
 
 - graphs and charts, including flow charts and organizational charts;
@@ -11577,12 +11597,10 @@ Complex images contain substantial information – more than can be conveyed in 
 
 In these cases, a two-part text alternative is required. The first part is the short description to identify the image and, where appropriate, indicate the location of the long description. The second part is the long description – a textual representation of the essential information conveyed by the image.
 
-****** Groups of Images
+******* Groups of Images
 Sometimes groups of images are used together to represent one piece of information. For example, a collection of star icons that together represent a rating. In this case, only one of the images needs a text alternative to describe the entire collection, while the other images have a null (empty) [[alt]] attribute so that they are ignored by assistive technology.
 
 In other cases, a group of images may represent a collection of related images. For example, showing a collection of art impressions that are thematically related. In this case, each image needs its text alternative that describes it individually, as well as its relationship within the group.
-
-
 
 #+begin_src html
 
@@ -11600,16 +11618,16 @@ In other cases, a group of images may represent a collection of related images. 
 
 #+end_src
 
-****** Image Maps
+******* Image Maps
 A client-side image map is an image divided into selectable regions defined by ~<area>~ elements (“hotspots”) that allow user interaction. Usually, the selectable regions are links to other pages. For image maps, text alternatives are needed on both the ~<img>~ element itself (to convey the informative context) and on each of the ~<area>~ elements (to convey the link destination or the action that will be initiated if the link is followed).
 
-**** Responsive images
-***** Brief
+***** Responsive images
+****** Brief
 Designing responsive web pages leads to better user experience, since users use them across a plethora of device types.
 
 Web pages use the ~<picture>~ element or the ~srcset~ attribute of an [[img]] element to specify responsive images. However, some browsers and crawlers do not understand these attributes. We recommend that you always specify a fallback URL via the ~src~ attribute.
 
-***** <img srcset>
+****** <img srcset>
 The ~srcset~ attribute allows specifying different versions of the same image, specifically for different screen sizes.
 
 #+begin_src html
@@ -11624,7 +11642,7 @@ The ~srcset~ attribute allows specifying different versions of the same image, s
 
 #+end_src
 
-***** <picture>
+****** <picture>
 The ~<picture>~ element is a container that is used to group different ~<source>~ versions of the same image. It offers a fallback approach so the browser can choose the right image depending on device capabilities, like pixel density and screen size. The picture element also comes in handy for using new image formats with built-in graceful degradation for clients that may not yet support the new formats.
 
 Per section 4.8.1 of the HTML Standard, make sure that you provide an ~img~ element as a fallback with a ~src~ attribute when using the picture element using the following format:
@@ -11639,7 +11657,7 @@ Per section 4.8.1 of the HTML Standard, make sure that you provide an ~img~ elem
 
 #+end_src
 
-*** Provide date information to Google and page
+**** Provide date information to Google and page
 Add a user-visible date to the page and feature it prominently. Label your dates appropriately with text like "Publish" or "Last updated". Here are some examples of how you can highlight date information about a web page:
 
 Posted Feb 4, 2019  or  Published February 4, 2019
@@ -11671,27 +11689,22 @@ Para empezar a optimizar la experiencia del usuario con Core Web Vitals, pruebe 
 - Utilice el nuevo [[https://search.google.com/search-console/about][Core Web Vitals Report]] de Search Console para *identificar los grupos de páginas que requieren atención* (según los datos de campo (field data)). Obtiene un resumen del rendimiento de sus orígenes en el campo.
 - Una vez que haya identificado las páginas que necesitan atención, utilice [[https://pagespeed.web.dev/][PageSpeed Insights]] (impulsado por Lighthouse y Chrome UX Report) para *diagnosticar problemas de laboratorio y de campo* en una página. PageSpeed Insights (PSI) está disponible por medio de Search Console o puede introducir una URL directamente en PSI.
 - ¿Está listo para optimizar su sitio localmente en el laboratorio? Utilice [[https://github.com/GoogleChrome/lighthouse][Lighthouse]]  y [[https://developer.chrome.com/docs/devtools/][Chrome DevTools]]  para *medir* [[Core Web Vitals]] y obtenga una orientación práctica sobre qué corregir exactamente. La extensión de Chrome Web Vitals puede brindarle una visión en tiempo real de las métricas en el escritorio.
-- ¿Necesita un panel de control personalizado de Core Web Vitals? Utilice el panel de control actualizado de /CrUX/ o la nueva /API de Chrome UX/ Report para los datos de campo o la API de PageSpeed Insights para los datos de laboratorio.
+- ¿Necesita un panel de control personalizado de Core Web Vitals? Utilice el *panel de control* actualizado de /CrUX/ o la nueva /API de Chrome UX/ Report para los datos de campo o la API de PageSpeed Insights para los datos de laboratorio.
 - Pruebe la nueva /API de Chrome User Experience Report/ para *acceder fácilmente a los resultados de su origen y su URL* con respecto a Core Web Vitals durante los últimos 28 días.
-- Utilice la sección y el pie de página de Experiencia en el panel de Rendimiento de /DevTools/ para profundizar y *depurar* contra Core Web Vitals específicos.
+- Utilice la sección y el pie de página de Experiencia en el panel de Rendimiento de /DevTools/ para *profundizar y depurar* contra Core Web Vitals específicos.
 - Utilice la extensión Web Vitals para realizar un *seguimiento del rendimiento* de una página con respecto a Core Web Vitals *en tiempo real*.
 - ¿Busca orientación? [[https://web.dev/measure/][web.dev/measure]] puede *medir su página y mostrarle un conjunto priorizado de normas y laboratorios de código* para la optimización, utilizando datos de PageSpeed Insights (PSI).
 - Por último, utilice *Lighthouse CI* en las solicitudes de extracción para *asegurarse de que no haya regresiones* en Core Web Vitals antes de implementar un cambio en la producción.
 
-- Lab data :: describes how hypothetical users may experience your website. (Herramientas de laboratorio)
-- Field data :: describes how real users actually experienced your website. Field data is also known as Real User Monitoring (RUM). (Herramientas de campo)
-- Search Console :: el nuevo Core Web Vitals Report en Search Console le ayuda a identificar grupos de páginas de su sitio que requieren atención, según los datos del mundo real (de campo) de CrUX. El rendimiento de las URL se agrupa por estado, tipo de métrica y grupo de URL (grupos de páginas web similares).
-- PageSpeed Insights :: pagespeed Insights (PSI) reporta sobre el rendimiento de laboratorio y de campo de una página en dispositivos móviles y equipos de escritorio. La herramienta proporciona una visión general de cómo los usuarios del mundo real experimentan la página (impulsada por Chrome UX Report) y un conjunto de recomendaciones prácticas sobre cómo el propietario de un sitio puede mejorar la experiencia de la página (proporcionada por Lighthouse).
-- Lighthouse :: lighthouse es una herramienta automatizada de auditoría de sitios web que ayuda a que los desarrolladores diagnostiquen problemas e identifiquen oportunidades para mejorar la experiencia del usuario de sus sitios. Mide varias dimensiones de la calidad de la experiencia del usuario en un entorno de laboratorio, incluyendo el rendimiento y la accesibilidad.
-- CrUX :: chrome UX Report (CrUX) es un conjunto de datos públicos sobre la experiencia real del usuario en millones de sitios web. Mide las versiones de campo de todas las Core Web Vitals. A diferencia de los datos de laboratorio, los datos de CrUX provienen de usuarios que han optado por participar en el campo.
+- Lab data :: describes *how hypothetical users* may experience your website. (Herramientas de laboratorio)
+- Field data :: describes *how real users* actually experienced your website. Field data is also known as Real User Monitoring (RUM). (Herramientas de campo)
+- Search Console :: el nuevo Core Web Vitals Report en Search Console le ayuda a *identificar grupos de páginas de su sitio que requieren atención*, según los datos del mundo real (de campo) de CrUX. El rendimiento de las URL se agrupa por estado, tipo de métrica y grupo de URL (grupos de páginas web similares).
+- PageSpeed Insights :: pagespeed Insights (PSI) reporta sobre el *rendimiento* de laboratorio y de campo de una página en dispositivos móviles y equipos de escritorio. La herramienta proporciona una visión general de cómo los usuarios del mundo real experimentan la página (impulsada por Chrome UX Report) y un conjunto de recomendaciones prácticas sobre cómo el propietario de un sitio puede mejorar la experiencia de la página (proporcionada por Lighthouse).
+- Lighthouse :: lighthouse es una herramienta automatizada de auditoría de sitios web que ayuda a que los desarrolladores *diagnostiquen problemas* e identifiquen oportunidades para mejorar la experiencia del usuario de sus sitios. Mide varias dimensiones de la calidad de la experiencia del usuario en un entorno de laboratorio, incluyendo el rendimiento y la accesibilidad.
+- CrUX :: chrome UX Report (CrUX) es un conjunto de *datos públicos sobre la experiencia real del usuario* en millones de sitios web. Mide las versiones de campo de todas las Core Web Vitals. A diferencia de los datos de laboratorio, los datos de CrUX provienen de usuarios que han optado por participar en el campo.
 
 *** Mobile-friendly
 The page is mobile-friendly. Check if your page is mobile-friendly https://search.google.com/test/mobile-friendly
-
-** Guidelines for SEO
-1. [[Page experience signals]]
-2. [[Best practices for web content]]
-3. [[Best practices for HTML tags]]
 
 ** Glossary
 *** Index
@@ -11735,8 +11748,8 @@ Is the date that Google estimates that the web page was updated or published.
 
 * References
 - [[https://developer.mozilla.org][MDN]]
-- [[https://www.w3schools.com][W3]]
-- [[https://es.wikipedia.org][Wikipedia]]
+- [[https://www.w3schools.com][W3Schools]]
 - [[https://javascript.info/][Javascript.Info]]
+- [[https://www.wikipedia.org/][Wikipedia]]
 - [[https://developers.google.com/search/docs/fundamentals/get-on-google][Google SEO fundamentals]]
 - [[https://conclase.net][Con Clase]]

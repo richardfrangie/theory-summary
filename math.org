@@ -1113,6 +1113,42 @@ $\pi(x) \approx \operatorname{Li} (x)$ , donde  $\operatorname{Li} (x)=\int _{0}
 
 La integral logarítmica $\operatorname{Li} (x)$ representa la estimación por encima (mayor o igual) de la cantidad de números primos menores que un determinado valor mientras que la función $\frac{x}{ln(x)}$ da una estimación por debajo.
 
+** Proporcionalidad
+*** Brief
+La proporcionalidad es una relación o razón constante entre diferentes magnitudes que se vayan a medir.
+
+*** Proporcionalidad directa
+Dadas dos variables $X$ e $Y$, $Y$ es (directamente) proporcional a $X$ ($X$ e $Y$ varían directamente, o $X$ e $Y$ están en variación directa) si hay una constante distinta de cero tal que:
+
+$$y =k \cdot x$$
+
+La relación a menudo se denota
+
+$$y \propto x$$
+
+y la razón constante
+
+$$k=y/x$$
+
+es llamada constante de proporcionalidad.
+
+*** Proporcionalidad inversa
+El concepto de proporcionalidad inversa puede ser contrastado contra la proporcionalidad directa. Considere dos variables que se dice son "inversamente proporcionales" entre sí. Si todas las otras variables se mantienen constantes, la magnitud o el valor absoluto de una variable de proporcionalidad inversa disminuirá proporcionalmente si la otra variable aumenta, mientras que su producto se mantendrá (la constante de proporcionalidad k) siempre igual.
+
+*Nota*: en proporcionalidades inversas, cuando se va a calcular la relación, y se dice que se deben invertir los factores, lo que se debe invertir es el '*factor de relación* entre ambas magnitudes' no las magnitudes. Por ejemplo, en el ejercicio: si una persona completa el trabajo en 3 horas, ¿cuánto tardarán 4 personas?
+
+$$\frac{1p}{3h} = \frac{4p}{Xh}$$
+
+$$X = \frac{4p}{1p} \cdot 3h$$
+
+Este es el factor de relación que se debe invertir
+
+$$ X = \frac{1}{\left(\frac{4p}{1p}\right)} \cdot 3h$$
+
+$$ X = \frac{1p}{4p} \cdot 3h$$
+
+$$ X = 45min$$
+
 ** Miscellaneous
 *** Racionales con decimales exactos o periódicos
 Un número racional puede ser entero o decimal.

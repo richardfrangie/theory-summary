@@ -242,7 +242,9 @@ Support for Emacs frames and window systems.
   When called from Lisp, returns the new frame."
     (interactive)
     (if (display-graphic-p)
-        (let ((width (frame-width))
+        ;; Trick by subtracting 1, otherwise a tiny frame will be created.
+        ;; When the width is 168, the frame is created tiny (IDKW).
+        (let ((width (1- (frame-width)))
               (height (frame-height))
               (frame (make-frame)))
           (set-frame-size frame width height))))
@@ -264,7 +266,7 @@ Window configuration.
 
   ;; GNU Emacs package for selecting a window to switch to.
   (use-package ace-window
-    :bind ("M-O" . ace-window)
+    :bind ("M-E" . ace-window)
     :config
     ;; Call to action midway with fewer than three windows.
     (setq aw-dispatch-always t)
@@ -389,7 +391,11 @@ Controlling the behavior of the minibuffer.
   (keymap-set minibuffer-local-map "M-p" nil)
   (keymap-set minibuffer-local-map "M-r" nil)
   (keymap-set minibuffer-local-map "C-," 'se/take-the-word-at-point)
-
+  ;; Set next/previous history in case the vertico-map is unavailable.
+  (keymap-set minibuffer-local-map "C-S-h" 'previous-line-or-history-element)
+  (keymap-set minibuffer-local-map "C-S-n" 'next-line-or-history-element)
+  ;; (keymap-set minibuffer-local-map "C-S-h" 'previous-history-element)
+  ;; (keymap-set minibuffer-local-map "C-S-n" 'next-history-element)
 
   ;; Minibuffer, stop cursor going into prompt (Xah)
   (customize-set-variable
@@ -427,18 +433,21 @@ Simplified keyboard macro user interface.
 #+begin_src emacs-lisp
 
   ;; When practicing writing English sentences.
-  (defalias 'rf/english-toggle-headers
+  (defalias 'rf/fold-org-english-headers
     (kmacro "<tab> C-c C-n <tab> C-<right> C-<left>"))
 
   ;; Turn a single word into link ( word -> [[Word][word]] )
   (defalias 'rf/turn-org-word-into-link
     (kmacro "C-<right> C-<backspace> C-y ] [ C-y ] ] C-<left> C-<left>
-    M-x u p c a s e - c h a r <return> [ ["))
+      M-x u p c a s e - c h a r <return> [ ["))
 
   ;; Swap the ORG header with the text (org <-> text)
-  ;;; Testing S-<end> binding (doc later if it works)
   (defalias 'rf/swap-org-header-with-text
-    (kmacro "C-a C-SPC S-<end> S-<delete> C-<up> C-<right> C-<left> S-<insert> <return> S-<end> <delete>"))
+    (kmacro "C-S-<home> C-SPC C-S-<end> S-<delete> C-<up> C-<right> C-<left> S-<insert> <return> S-<end> <delete>"))
+
+  ;; Run the last interactive command make performed by pressing 'M-x'
+  (defalias 'rf/last-interactive-command
+    (kmacro "<menu> <return>"))
 
 #+end_src
 
@@ -456,13 +465,13 @@ Most basic editing facilities.
   (use-package expand-region
     :config
     (setq expand-region-contract-fast-key ")")
-    (setq expand-region-reset-fast-key "+"))
+    (setq expand-region-reset-fast-key "*"))
 
   (defun rf/expand-region (argument)
     "Wrapper that calls expand region according to the current mode.
 
-  If the major-mode is `org-mode', call the `xah-extend-selection'
-  command, otherwise, call `er/expand-region'."
+                    If the major-mode is `org-mode', call the `xah-extend-selection'
+                    command, otherwise, call `er/expand-region'."
     (interactive "P")
     (if (eq major-mode 'org-mode)
         (xah-extend-selection)
@@ -471,6 +480,182 @@ Most basic editing facilities.
 
   ;; Enable `downcase-region' command for future editing sessions
   (put 'downcase-region 'disabled nil)
+
+
+  ;; To be used in the `rf/beginning-of-line' command.
+  (defun rf/bovlp ()
+    "Return t if point is at the beginning of visual line."
+    (interactive)
+    (let ((start-point (point))
+          last-point)
+      (save-excursion
+        (beginning-of-visual-line)
+        (setq last-point (point)))
+      (= start-point last-point)))
+
+  ;; To be used in the `rf/end-of-line' command.
+  (defun rf/eovlp ()
+    "Return t if point is at the end of visual line."
+    (interactive)
+    (let ((start-point (point))
+          last-point)
+      (save-excursion
+        (end-of-visual-line)
+        (setq last-point (point)))
+      (= start-point last-point)))
+
+  (defun rf/pos-bovl (&optional N)
+    "Return the position of the first character on the current visual line.
+
+      With optional argument N non-nil, move forward N - 1 lines first."
+    (interactive)
+    (save-excursion
+      (when N
+        (line-move-visual N))
+      (beginning-of-visual-line)
+      (point)))
+
+  (defun rf/pos-eovl (&optional N)
+    "Return the position of the last character on the current visual line.
+
+      With optional argument N non-nil, move forward N - 1 lines first."
+    (interactive)
+    (save-excursion
+      (when N
+        (line-move-visual N))
+      (end-of-visual-line)
+      (point)))
+
+  ;; Make the `beginning-of-line' command smart.
+  (defun rf/beginning-of-line (arg)
+    "Move point to beginning of line or end of line.
+
+      If the point is at the beginning of line, then move it to end of the line."
+    (interactive "p")
+    (if (bound-and-true-p visual-line-mode)
+        (if (rf/bovlp)
+            (end-of-visual-line)
+          (beginning-of-visual-line arg))
+      (if (bolp)
+          (end-of-line)
+        (beginning-of-line arg))))
+
+  ;; Make the `end-of-line' command smart.
+  (defun rf/end-of-line (arg)
+    "Move point to end of line or beginning of line.
+
+      If the point is at the end of line, then move it to beginning of the line."
+    (interactive "p")
+    (if (bound-and-true-p visual-line-mode)
+        (if (rf/eovlp)
+            (beginning-of-visual-line)
+          (end-of-visual-line arg))
+      (if (eolp)
+          (beginning-of-line)
+        (end-of-line arg))))
+
+
+  ;; Modified version of Xah to also cut the visual line.
+  (defun xah-cut-line-or-region-mod ()
+    "Cut current line/(visual line) or selection.
+      If `universal-argument' is called first, cut whole buffer
+          (respects `narrow-to-region').
+
+      Modified version of Xah to also cut the visual line.
+
+      URL `http://xahlee.info/emacs/emacs/emacs_copy_cut_current_line.html'
+      Created: 2010-05-21
+      Version: 2015-06-10"
+    (interactive)
+    (if current-prefix-arg
+        (progn ; not using kill-region
+          (kill-new (buffer-string))
+          (delete-region (point-min) (point-max)))
+      (progn (if (region-active-p)
+                 (kill-region (region-beginning) (region-end) t)
+               ;; Modified here to cut the visual line.
+               (if (bound-and-true-p visual-line-mode)
+                   (kill-region (rf/pos-bovl) (rf/pos-bovl 1))
+                 (kill-region
+                  (line-beginning-position)
+                  (line-beginning-position 2)))))))
+
+  ;; Modified version of Xah to also work on visual lines.
+  (defun xah-copy-line-or-region-mod ()
+    "Copy current line or selection.
+
+      Modified version of Xah to also work on visual lines.
+
+      Copy current line. When called repeatedly, append copy subsequent lines.
+      Except:
+
+      If `universal-argument' is called first, copy whole buffer
+      (respects `narrow-to-region').
+      If `rectangle-mark-mode' is on, copy the rectangle.
+      If `region-active-p', copy the region.
+
+      URL `http://xahlee.info/emacs/emacs/emacs_copy_cut_current_line.html'
+      Created: 2010-05-21
+      Version: 2024-06-19"
+    (interactive)
+    (cond
+     (current-prefix-arg (copy-region-as-kill (point-min) (point-max)))
+     ((and (boundp 'rectangle-mark-mode) rectangle-mark-mode)
+      (copy-region-as-kill (region-beginning) (region-end) t))
+     ((region-active-p) (copy-region-as-kill (region-beginning) (region-end)))
+     ((eq last-command this-command)
+      (if (eobp)
+          nil
+        (progn
+          (kill-append "\n" nil)
+          ;; Modified here to also work on visual lines.
+          (if (bound-and-true-p visual-line-mode)
+              (progn
+                (kill-append (buffer-substring (rf/pos-bovl)
+                                               (rf/pos-eovl)) nil)
+                (end-of-visual-line))
+            (progn
+              (kill-append (buffer-substring (line-beginning-position)
+                                             (line-end-position)) nil)
+              (end-of-line)))
+          (forward-char))))
+     ((eobp)
+      (if (eq (char-before) 10)
+          (progn)
+        ;; Modified here to also work on visual lines.
+        (if (bound-and-true-p visual-line-mode)
+            (progn
+              (copy-region-as-kill (rf/pos-bovl) (rf/pos-eovl))
+              (end-of-visual-line))
+          (progn
+            (copy-region-as-kill (line-beginning-position)
+                                 (line-end-position))
+            (end-of-line)))))
+     (t
+      ;; Modified here to also work on visual lines.
+      (if (bound-and-true-p visual-line-mode)
+          (progn
+            (copy-region-as-kill (rf/pos-bovl) (rf/pos-eovl))
+            (end-of-visual-line))
+        (progn
+          (copy-region-as-kill (line-beginning-position)
+                               (line-end-position))
+          (end-of-line)))
+      (forward-char))))
+
+  ;; Modified version to also work on visual lines and repeated maps.
+  (defun rf/backward-kill-line (&optional arg)
+    "Kill back from point to start of line/(visual line)."
+    (interactive)
+    (if (bound-and-true-p visual-line-mode)
+        (progn
+          (when (rf/bovlp)
+            (backward-char))
+          (kill-region (point) (rf/pos-bovl)))
+      (progn
+        (when (bolp)
+          (backward-char))
+        (kill-region (point) (progn (beginning-of-line arg) (point))))))
 
 #+end_src
 
@@ -542,7 +727,12 @@ Yet Another Snippet extension.
     :bind (:map yas-minor-mode-map
                 ("TAB" . nil)
                 ("<tab>" . nil)
-                ("C-<tab>" . yas-expand))
+                ("C-<tab>" . yas-expand)
+                ("C-M-<tab>" . yas-expand)
+                :map yas-keymap
+                ("TAB" . nil)
+                ("<tab>" . nil)
+                ("C-<tab>" . yas-next-field-or-maybe-expand))
     :config
     (yas-reload-all))
 
@@ -617,6 +807,7 @@ Incremental search minor mode.
   (keymap-set isearch-mode-map "C-S-v" 'isearch-yank-pop-only)
   (keymap-set isearch-mode-map "M-S-<insert>" 'isearch-yank-pop-only)
 
+  (keymap-set isearch-mode-map "<escape>" 'isearch-abort)
 
   ;; minibuffer-local-isearch-map
   (keymap-set minibuffer-local-isearch-map "<left>"
@@ -636,10 +827,10 @@ Incremental search minor mode.
   (defun xah-toggle-search-whitespace ()
     "Set `search-whitespace-regexp' to nil or includes hyphen lowline tab newline.
 
-    URL `http://xahlee.info/emacs/emacs/emacs_isearch_space.html'
+      URL `http://xahlee.info/emacs/emacs/emacs_isearch_space.html'
 
-    Created: 2019-02-22
-    Version 2024-06-16"
+      Created: 2019-02-22
+      Version 2024-06-16"
     (interactive)
     (if search-whitespace-regexp
         (progn
@@ -658,10 +849,10 @@ Emulate CUA key bindings including C-x and C-c.
 
   ;; cua-rectangle-mark-mode bindings
   (with-eval-after-load 'cua-rect
-    (keymap-set cua--rectangle-keymap "C-c" 'cua-resize-rectangle-up)
-    (keymap-set cua--rectangle-keymap "C-t" 'cua-resize-rectangle-down)
-    (keymap-set cua--rectangle-keymap "C-h" 'cua-resize-rectangle-left)
-    (keymap-set cua--rectangle-keymap "C-n" 'cua-resize-rectangle-right))
+    (keymap-set cua--rectangle-keymap "C-S-c" 'cua-resize-rectangle-up)
+    (keymap-set cua--rectangle-keymap "C-S-t" 'cua-resize-rectangle-down)
+    (keymap-set cua--rectangle-keymap "C-S-h" 'cua-resize-rectangle-left)
+    (keymap-set cua--rectangle-keymap "C-S-n" 'cua-resize-rectangle-right))
 
 #+end_src
 
@@ -698,7 +889,8 @@ In-buffer completion preview.
     ;; Don't provide help for invalid completion input
     (setq completion-auto-help nil)
     ;; Convenient alternative
-    (keymap-set completion-preview-active-mode-map "M-r"
+    (keymap-set completion-preview-active-mode-map "M-i" nil)
+    (keymap-set completion-preview-active-mode-map "M-l"
                 'completion-preview-complete))
 
 #+end_src
@@ -724,8 +916,8 @@ Convenience features for faster editing.
 
   ;; Minor mode that makes it possible to drag stuff (words, region, lines,...):
   (use-package drag-stuff
-    :bind (("M-S-<up>" . drag-stuff-up)
-           ("M-S-<down>" . drag-stuff-down)
+    :bind (("M-<up>" . drag-stuff-up)
+           ("M-<down>" . drag-stuff-down)
            ("M-C" . drag-stuff-up)
            ("M-T" . drag-stuff-down))
     :config
@@ -757,11 +949,16 @@ Functions for buffer manipulation
 
 #+begin_src emacs-lisp
 
-  ;; Switch to the most recently selected buffer.
   ;; https://www.emacswiki.org/emacs/SwitchingBuffers
   (defun switch-to-previous-buffer ()
+    "Switch to the most recently selected buffer."
     (interactive)
     (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+  (defun rf/recently-not-visible-buffer ()
+    "Display most recently not visible buffer, in the selected window."
+    (interactive)
+    (switch-to-buffer nil))
 
 #+end_src
 
@@ -979,7 +1176,7 @@ Provides search and navigation commands based on the Emacs completion function c
   (use-package consult
     :demand t
     :bind
-    (("S-<kp-add>" . consult-buffer)
+    (("<kp-equal>" . consult-buffer)
      ("C-n" . consult-buffer)
      ("C-S-n" . consult-buffer-other-window)
      ("C-f" . consult-line)
@@ -1024,13 +1221,13 @@ Provides search and navigation commands based on the Emacs completion function c
       "f" #'consult-goto-line
       "n" #'consult-project-buffer
       "r" #'consult-bookmark
-      "u" #'consult-man
-      "i" #'consult-info
-      "p" #'consult-flymake
-      "." #'consult-flycheck
-      "," #'consult-compile-error
+      "p" #'consult-man
+      "." #'consult-info
+      "u" #'consult-flymake
+      "e" #'consult-flycheck
+      "o" #'consult-compile-error
       "m" #'consult-mark
-      "b" #'consult-global-mark)
+      "w" #'consult-global-mark)
     (keymap-set global-map "C-p" consult-goto-map)
 
     (defvar-keymap consult-search-map
@@ -1044,12 +1241,12 @@ Provides search and navigation commands based on the Emacs completion function c
       "r" #'consult-locate
       "d" #'consult-history
       "f" #'consult-isearch-history
-      "b" #'consult-complex-command
+      "w" #'consult-complex-command
       "m" #'consult-minor-mode-menu
-      "k" #'consult-keep-lines
-      "j" #'consult-focus-lines
-      "u" #'consult-yasnippet
-      "e" #'consult-kmacro
+      "u" #'consult-keep-lines
+      "e" #'consult-focus-lines
+      "p" #'consult-yasnippet
+      "." #'consult-kmacro
       "}" #'consult-register)
     (keymap-set global-map "C-k" consult-search-map))
 
@@ -1081,7 +1278,8 @@ Corfu enhances in-buffer completion with a small completion popup.
     :hook ((prog-mode . corfu-mode)
            (text-mode .corfu-mode))
     :bind (:map corfu-map
-                ("RET" . nil))
+                ("RET" . nil)
+                ("M-RET" . corfu-insert))
     :init
     ;; Enable optional extension modes:
     (corfu-history-mode) ; or (corfu-prescient-mode 1) ; After installing
@@ -1152,7 +1350,7 @@ Cape provides Completion At Point Extensions which can be used in combination wi
   (use-package cape
     ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
     ;; Press 'C-c p ?' or 'C-S-j ?' to for help.
-    :bind ("M-k" . cape-prefix-map)
+    :bind ("M-i" . cape-prefix-map)
     :init
     ;; Add to the global default value of `completion-at-point-functions'
     ;; which is used by `completion-at-point'. The order of the
@@ -1241,8 +1439,14 @@ Cape provides Completion At Point Extensions which can be used in combination wi
                            0
                          (mod (prefix-numeric-value arg) (length targets)))
                        targets)))
-                 (type (plist-get target :type)))
+                 (type (plist-get target :type))
+                 (buffer (plist-get target :target)))
             (cond
+             ;; MODIFICATION: don't delete the scratch or Messages buffer
+             ((or (string= buffer "*scratch*")
+                  (string= buffer "*Messages*")
+                  (string= buffer "*eshell*"))
+              (message "Try removing the buffer: %s." buffer))
              ((eq type 'buffer)
               (let ((embark-pre-action-hooks))
                 (embark--act 'kill-buffer target))))))))
@@ -1318,14 +1522,28 @@ Simple but effective candidate sorting by usage.
   ;; Configures filtering locally in the Vertico buffer.
   (use-package vertico-prescient
     :after vertico
+    :bind (:map vertico-map
+                ;; Remove "M-s" from the `prescient-toggle-map' binding
+                ("M-s" . nil)
+                ("M-s" . vertico-first)
+                ("M-S" . vertico-last))
     :config
     (vertico-prescient-mode 1))
+  ;; This has to be here after `vertico', `vertico-prescient' for it to work.
+  (with-eval-after-load 'vertico
+    ;; Set another keymap to `prescient-toggle-map'
+    (keymap-set vertico-map "M-l" prescient-toggle-map))
 
   ;; Configures filtering locally in buffers in which corfu-mode is active.
   (use-package corfu-prescient
     :after corfu
+    :bind (:map corfu-map
+                ;; Remove "M-s" from the `prescient-toggle-map' binding
+                ("M-s" . nil))
     :config
-    (corfu-prescient-mode 1))
+    (corfu-prescient-mode 1)
+    ;; Set another keymap to `prescient-toggle-map'
+    (keymap-set corfu-map "M-l" prescient-toggle-map))
 
   ;; Configures filtering locally in buffers in which company-mode is active.
   (use-package company-prescient
@@ -1348,6 +1566,9 @@ Convenient way to repeat previous commands.
   ;; Disable the "repeat suggest" message when repeat-mode is active
   ;;; (custom-set-variables '(repeat-echo-function 'ignore))
 
+  ;; Stops the modal repeating of keys in sequence.
+  (setq repeat-exit-key "SPC")
+
 #+end_src
 
 *** Meta
@@ -1363,11 +1584,7 @@ Manage repeat commands and maps triggered by the =Meta= key.
     "c" #'previous-line
     "t" #'next-line
     "h" #'backward-char
-    "n" #'forward-char)
-
-  (defvar-keymap line-paragraph-movement-repeat-map
-    :doc "Keymap for repeating line and paragraph movement."
-    :repeat t
+    "n" #'forward-char
     "d" #'xah-beginning-of-line-or-block
     "b" #'xah-end-of-line-or-block)
 
@@ -1387,15 +1604,20 @@ Manage repeat commands and maps triggered by the =Meta= key.
   (defvar-keymap char-word-delete-repeat-map
     :doc "Keymap to repeat commands to delete characters and words."
     :repeat t
-    "." #'backward-kill-word
+    "," #'backward-kill-word
     "p" #'kill-word
-    "e" #'delete-backward-char
+    "o" #'delete-backward-char
     "u" #'delete-forward-char)
+
+  (defvar-keymap delete-current-text-block-repeat-map
+    :doc "Keymap for repeating `xah-delete-current-text-block' command."
+    :repeat t
+    "." #'xah-delete-current-text-block)
 
   (defvar-keymap line-whitespaces-delete-repeat-map
     :doc "Keymap to repeat commands to delete line and whitspaces."
     :repeat t
-    "i" #'kill-line
+    "k" #'kill-line
     "j" #'xah-shrink-whitespaces)
 
   (defvar-keymap move-last-mark-repeat-map
@@ -1412,18 +1634,23 @@ Manage repeat commands and maps triggered by the =Meta= key.
     :doc "Keymap for repeating window and frame rotatation."
     :repeat t
     "a" #'other-frame
-    "o" #'other-window)
+    "e" #'other-window)
 
   (defvar-keymap toggle-case-repeat-map
     :doc "Keymap for repeating toggle letter case."
     :repeat t
     "'" #'xah-toggle-letter-case)
 
+  (defvar-keymap extend-selection-repeat-map
+    :doc "Keymap for repeating `xah-extend-selection' command."
+    :repeat t
+    ")" #'rf/expand-region)
+
   (defvar-keymap selection-repeat-map
     :doc "Keymap for repeating selection commands."
     :repeat t
-    "=" #'xah-select-block
-    ")" #'xah-select-line)
+    "+" #'xah-select-block
+    "*" #'xah-select-line)
 
   (defvar-keymap scroll-other-repeat-map
     :doc "Keymap to repeat scrolling another window."
@@ -1479,7 +1706,7 @@ Manage repeat commands  and maps triggered by the =Meta-Shift= key.
     "N" #'enlarge-window-horizontally
     "b" #'balance-windows
     "m" #'window-swap-states)
-  (keymap-set global-map "M-K" switch-resize-windows-repeat-map)
+  (keymap-set global-map "M-J" switch-resize-windows-repeat-map)
 
   (defvar-keymap rectangle-related-map
     :doc "Keymap for rectangle-related commands."
@@ -1490,6 +1717,12 @@ Manage repeat commands  and maps triggered by the =Meta-Shift= key.
     "g" #'picture-yank-rectangle-from-register
     "c" #'copy-rectangle-to-register)
   (keymap-set global-map "M-Q" rectangle-related-map)
+
+  (defvar-keymap backward-kill-line-repeat-map
+    :doc "Keymap to repeat commands to backward kill line."
+    :repeat t
+    "k" #'rf/backward-kill-line
+    "j" #'xah-shrink-whitespaces)
 
 #+end_src
 
@@ -1509,7 +1742,7 @@ Manage repeat commands and maps triggered by the =Control= and =Control-Shift= k
     :repeat t
     "v" #'xah-paste-or-paste-previous)
 
-    (defvar-keymap open-line-repeat-map
+  (defvar-keymap open-line-repeat-map
     :doc "Keymap to repeat open line command."
     :repeat t
     "o" #'open-line)
@@ -1525,6 +1758,11 @@ Manage repeat commands and maps triggered by the =Control= and =Control-Shift= k
     :repeat t
     "<prior>" #'xah-previous-user-buffer
     "<next>"  #'xah-next-user-buffer)
+
+  (defvar-keymap goto-last-repeat-map
+    :doc "Keymap to repeat goto-last-change command."
+    :repeat t
+    "d" #'goto-last-change)
 
 
   ;; C-S-
@@ -1553,39 +1791,39 @@ Manage global =Meta= key combinations.
            '(
              ;; ("M-$" . )
              ("M-&" . make-frame-command)
-             ("M-[" . split-window-right)
-             ("M-{" . delete-window)
-             ("M-}" . query-replace)
-             ("M-(" . replace-string)
-             ("M-=" . xah-select-block)
-             ("M-*" . rf/expand-region)
-             ("M-)" . xah-select-line)
-             ("M-+" . xah-select-text-in-quote)
-             ;; ("M-]" . )
+             ("M-[" . delete-window)
+             ("M-{" . query-replace)
+             ("M-}" . replace-string)
+             ("M-(" . split-window-right)
+             ("M-=" . ispell-word)
+             ("M-*" . xah-select-line)
+             ("M-)" . rf/expand-region)
+             ("M-+" . xah-select-block)
+             ("M-]" . xah-select-text-in-quote)
              ;; ("M-!" . )
              ;; ("M-#" . )
              ;; ("M-DEL" . )
 
              ;; ("M-<tab>" . +completion-at-point)
              ("M-;" . xah-fill-or-unfill)
-             ("M-," . xah-delete-current-text-block)
-             ("M-." . backward-kill-word)
+             ("M-," . backward-kill-word)
+             ("M-." . xah-delete-current-text-block)
              ("M-p" . kill-word)
              ("M-y" . xah-pop-local-mark-ring)
              ("M-f" . isearch-forward)
              ("M-g" . backward-word)
              ("M-c" . previous-line)
              ("M-r" . forward-word)
-             ("M-l" . recenter-top-bottom)
+             ("M-l" . nil)
              ;; ("M-/" . )
              ;; ("M-@" . )
 
              ;; ("M-CAPS" . )
              ("M-a" . other-frame)
-             ("M-o" . other-window)
-             ("M-e" . delete-backward-char)
+             ("M-o" . delete-backward-char)
+             ("M-e" . other-window)
              ("M-u" . delete-forward-char)
-             ("M-i" . kill-line)
+             ;; ("M-i" . ^cape-prefix-map)
              ("M-d" . xah-beginning-of-line-or-block)
              ("M-h" . backward-char)
              ("M-t" . next-line)
@@ -1598,7 +1836,7 @@ Manage global =Meta= key combinations.
              ("M-'" . xah-toggle-letter-case)
              ("M-q" . cua-rectangle-mark-mode)
              ("M-j" . xah-shrink-whitespaces)
-             ;; ("M-k" . ^cape-prefix-map)
+             ("M-k" . kill-line)
              ;; ("M-x" . +execute-extended-command)
              ("M-b" . xah-end-of-line-or-block)
              ("M-m" . xah-backward-left-bracket)
@@ -1621,23 +1859,23 @@ Manage global =Meta= + =Shift= key combinations.
            '(
              ;; ("M-~" . )
              ("M-%" . delete-frame)
-             ("M-7" . split-window-below)
-             ("M-5" . delete-other-windows)
-             ("M-3" . query-replace-regexp)
-             ("M-1" . replace-regexp)
+             ("M-7" . delete-other-windows)
+             ("M-5" . query-replace-regexp)
+             ("M-3" . replace-regexp)
+             ("M-1" . split-window-below)
              ;; ("M-9" . )
              ;; ("M-0" . )
              ;; ("M-2" . )
              ;; ("M-4" . )
-             ("M-6" . ispell-word)
+             ;; ("M-6" . )
              ;; ("M-8" . )
              ;; ("M-`" . )
              ;; ("M-S-<backspace>" . )
 
              ;; ("M-S-<tab>" . )
              ;; ("M-:" . )
-             ("M-<" . eval-region)
-             ("M->" . eval-expression)
+             ;; ("M-<" . )
+             ;; ("M->" . )
              ;; ("M-P" . )
              ("M-Y" . mp/exchange-point-and-mark-no-activate)
              ("M-F" . xah-search-current-word)
@@ -1650,10 +1888,10 @@ Manage global =Meta= + =Shift= key combinations.
 
              ;; ("M-S-CAPS" . )
              ;; ("M-A" . )
-             ;; ("M-O" . ~ace-window)
-             ;; ("M-E" . )
+             ;; ("M-O" . )
+             ;; ("M-E" . ~ace-window)
              ;; ("M-U" . )
-             ("M-I" . wakib-backward-kill-line)
+             ;; ("M-I" . )
              ("M-D" . scroll-down-command)
              ;; ("M-H" . )
              ;; ("M-T" . ~drag-stuff-down)
@@ -1665,8 +1903,8 @@ Manage global =Meta= + =Shift= key combinations.
 
              ;; ("M-\"" . )
              ;; ("M-Q" . ^rectangle-related-map)
-             ;; ("M-J" . )
-             ;; ("M-K" . ^switch-resize-windows-repeat-map)
+             ;; ("M-J" . ^switch-resize-windows-repeat-map)
+             ("M-K" . rf/backward-kill-line)
              ("M-X" . execute-extended-command-for-buffer)
              ("M-B" . scroll-up-command)
              ;; ("M-M" . )
@@ -1707,8 +1945,8 @@ Manage global =Meta= + cluster key combinations.
   (dolist (binds
            '(
              ;; ("M-<up>" . )
-             ;; ("M-S-<up>" . ~drag-stuff-up)
-             ;; ("M-S-<down>" . ~drag-stuff-down)
+             ;; ("M-<up>" . ~drag-stuff-up)
+             ;; ("M-<down>" . ~drag-stuff-down)
              ;; ("M-S-<left>" . )
              ;; ("M-S-<right>" . )
 
@@ -1733,6 +1971,22 @@ Manage global =Meta= + =Control= key combinations.
            '(
              ("C-M-f" . isearch-backward)
              ("C-M-<insert>" . xah-copy-all-or-region)
+
+             ("C-M-e" . rf/swap-org-header-with-text)
+             ))
+    (keymap-global-set (car binds) (cdr binds)))
+
+#+end_src
+
+**** C-M-S-
+Manage global =Meta= + =Control= + =Shift= key combinations. Generally intended to be used with keyboard macros so they don't interfere with other manual bindings.
+
+#+begin_src emacs-lisp
+
+  (dolist (binds
+           '(
+             ("C-M-S-f" . rf/fold-org-english-headers)
+             ("C-M-S-s" . rf/swap-org-header-with-text)
              ))
     (keymap-global-set (car binds) (cdr binds)))
 
@@ -1749,9 +2003,9 @@ Manage global =Control= key combinations.
              ;; ("C-`" . )
              ;; ("C-$" . )
              ;; ("C-&" . ~consult-register-store)
-             ("C-[" . copy-to-register)
-             ;; ("C-{" . )
-             ;; ("C-}" . ~magit-status)
+             ;; ("C-[" . DO NOT USE. BLOCKS THE META KEY)
+             ;; ("C-{" . ~magit-status)
+             ;; ("C-}" . )
              ;; ("C-(" . )
              ("C-=" . calc)
              ("C-*" . eshell)
@@ -1772,14 +2026,14 @@ Manage global =Control= key combinations.
              ;; ("C-g" . +keyboard-quit)
              ;; ("C-c" . +mode-specific-map)
              ("C-r" . find-file)
-             ;; ("C-l" . )
+             ;; ("C-l" . +recenter-top-bottom)
              ;; ("C-/" . )
              ;; ("C-@" . )
 
              ;; ("C-caps" . )
              ("C-a" . mark-whole-buffer)
              ;; ("C-o" . +open-line)
-             ("C-e" . nil)
+             ("C-e" . eval-last-sexp)
              ;; ("C-u" . +universal-argument)
              ;; ("C-i" . +tab)
              ("C-d" . nil)
@@ -1817,7 +2071,7 @@ Manage global =Control= + =Shiftkey= combinations.
            '(
              ;; ("C-~" . )
              ;; ("C-%" . ~consult-register-load)
-             ("C-7" . insert-register)
+             ;; ("C-7" . )
              ;; ("C-5" . )
              ;; ("C-3" . )
              ;; ("C-1" . )
@@ -1847,10 +2101,10 @@ Manage global =Control= + =Shiftkey= combinations.
              ;; ("C-S-CAPS" . )
              ;; ("C-S-a" . )
              ("C-S-o" . xah-open-in-external-app)
-             ;; ("C-S-e" . )
+             ("C-S-e" . eval-region)
              ;; ("C-S-u" . )
              ;; ("C-S-i" . )
-             ("C-S-d" . scroll-other-window)
+             ("C-S-d" . scroll-other-window-down)
              ;; ("C-S-h" . )
              ("C-S-t" . xah-open-last-closed)
              ;; ("C-S-n" . ~consult-buffer-other-window)
@@ -1861,10 +2115,10 @@ Manage global =Control= + =Shiftkey= combinations.
 
              ;; ("C-\"" . )
              ;; ("C-S-q" . ^google-translate-map)
-             ;; ("C-S-j" . )
+             ("C-S-j" . eval-expression)
              ;; ("C-S-k" . )
              ;; ("C-S-x" . )
-             ("C-S-b" . scroll-other-window-down)
+             ("C-S-b" . scroll-other-window)
              ;; ("C-S-m" . )
              ;; ("C-S-w" . )
              ;; ("C-S-v" . ~consult-yank-from-kill-ring)
@@ -1893,7 +2147,7 @@ Manage global =Control= + cluster key combinations.
              ("C-<prior>" . xah-previous-user-buffer)
              ("C-<next>" . xah-next-user-buffer)
 
-             ("C-<insert>" . xah-copy-line-or-region)
+             ("C-<insert>" . xah-copy-line-or-region-mod)
              ;; ("C-<delete>" . +kill-word)
              ))
     (keymap-global-set (car binds) (cdr binds)))
@@ -1906,8 +2160,8 @@ Manage global =Control= + cluster key combinations.
              ;; ("C-S-<left>" . )
              ;; ("C-S-<right>" . )
 
-             ;; ("C-S-<home>" . )
-             ;; ("C-S-<end>" . )
+             ("C-S-<home>" . backward-sentence)
+             ("C-S-<end>" . forward-sentence)
              ("C-S-<prior>" . xah-previous-emacs-buffer)
              ("C-S-<next>" . xah-next-emacs-buffer)
 
@@ -1928,7 +2182,10 @@ Manage global cluster key combinations.
              ("<escape>" . keyboard-escape-quit)
 
              ("S-<insert>" . xah-paste-or-paste-previous)
-             ("S-<delete>" . xah-cut-line-or-region)
+             ("S-<delete>" . xah-cut-line-or-region-mod)
+
+             ("<home>" . rf/beginning-of-line)
+             ("<end>" . rf/end-of-line)
              ))
     (keymap-global-set (car binds) (cdr binds)))
 
@@ -1942,13 +2199,13 @@ Manage global keypad key combinations.
   ;; kp-
   (dolist (binds
            '(
-             ;; ("<kp-Bloq>"     . #leader keyd)
+             ;; ("<kp-equal>"     . ~consult-buffer)
              ;; ("<kp-divide>"   . )
              ;; ("<kp-multiply>" . )
-             ;; ("<kp-subtract>" . #Hide all normal windows)
+             ("<kp-subtract>" . rf/recently-not-visible-buffer)
 
              ;; ("<kp-7>" . ~mc/mark-next-like-this)
-             ;; ("<kp-8>" . )
+             ("<kp-8>" . rf/last-interactive-command)
              ("<kp-9>" . kmacro-end-or-call-macro)
              ("<kp-add>" . switch-to-previous-buffer)
 
@@ -1969,7 +2226,7 @@ Manage global keypad key combinations.
   ;; kp-S-
   (dolist (binds
            '(
-             ;; ("S-<kp-Bloq>" . )
+             ("S-<kp-equal>" . find-file)
              ;; ("S-<kp-divide>" . )
              ;; ("S-<kp-multiply>" . )
              ;; ("S-<kp-subtract>" . )
@@ -1977,7 +2234,7 @@ Manage global keypad key combinations.
              ;; ("S-<kp-7>" . ~mc/mark-previous-like-this)
              ;; ("S-<kp-8>" . )
              ("S-<kp-9>" . kmacro-start-macro)
-             ;; ("S-<kp-add>" . ~consult-buffer)
+             ;; ("S-<kp-add>" . )
 
              ("S-<kp-4>" . rf/find-or-switch-to-html-css-seo)
              ("S-<kp-5>" . rf/find-or-switch-to-gnu-linux)
@@ -1996,7 +2253,7 @@ Manage global keypad key combinations.
   ;; kp-C-
   (dolist (binds
            '(
-             ;; ("C-<kp-Bloq>" . )
+             ;; ("C-<kp-equal>" . )
              ;; ("C-<kp-divide>" . )
              ;; ("C-<kp-multiply>" . )
              ;; ("C-<kp-subtract>" . )
@@ -2030,7 +2287,7 @@ Manage global mouse key combinations.
   ;; mouse-
   (dolist (binds
            '(
-             ("<mouse-8>" . xah-previous-user-buffer)
+             ("<mouse-8>" . "TAB")
              ))
     (keymap-global-set (car binds) (cdr binds)))
 
@@ -2069,14 +2326,14 @@ Manage remap key keybindings.
   (keymap-global-set "<remap> <delete-char>" 'delete-forward-char)
 
   ;; Remap cut, copy, paste
-  (keymap-global-set "<remap> <kill-region>" 'xah-cut-line-or-region)
-  (keymap-global-set "<remap> <kill-ring-save>" 'xah-copy-line-or-region)
+  (keymap-global-set "<remap> <kill-region>" 'xah-cut-line-or-region-mod)
+  (keymap-global-set "<remap> <kill-ring-save>" 'xah-copy-line-or-region-mod)
   (keymap-global-set "<remap> <yank>" 'xah-paste-or-paste-previous)
   (keymap-global-set "<remap> <yank-pop>" 'consult-yank-pop)
 
-  ;; Trick to be able to use `kill-ring-save' as a copy in CUA rec mode
+  ;; To be able to use `kill-ring-save' as a copy in CUA rec mode
   (with-eval-after-load 'cua-rect
-    (keymap-set cua--rectangle-keymap "<remap> <kill-ring-save>"
+    (keymap-set cua--rectangle-keymap "<remap> <xah-copy-line-or-region-mod>"
                 'kill-ring-save))
 
   (keymap-global-set "<remap> <exchange-point-and-mark>"
@@ -2218,7 +2475,12 @@ Finding files.
     '(("todo.org" . "/home/rich/Documents/todo.org")
       ("emacs-elisp.org" . "/home/rich/Documents/emacs-elisp.org")
       ("shell.org" . "/home/rich/Documents/shell.org")
+      ("javascript.org" . "/home/rich/.emacs.d/javascript.org")
+      ("html-css-seo.org" . "/home/rich/Documents/html-css-seo.org")
       ("init.org" . "/home/rich/.emacs.d/init.org")
+      ("archive.org" . "/home/rich/Documents/archive.org")
+      ("gnu-linux.org" . "/home/rich/Documents/gnu-linux.org")
+      ("math.org" . "/home/rich/.emacs.d/math.org")
       ("english.org" . "/home/rich/Documents/english.org"))
     "List of main files.
   This is a list of the most frequently used files. It's used to
@@ -2261,20 +2523,50 @@ Finding files.
     (interactive)
     (rf/find-or-switch-to-file "/home/rich/Documents/emacs-elisp.org"))
 
-  (defun rf/find-or-switch-to-english ()
-    "Find or switch to the `english.org' file."
-    (interactive)
-    (rf/find-or-switch-to-file "/home/rich/Documents/english.org"))
-
   (defun rf/find-or-switch-to-shell ()
     "Find or switch to the `shell.org' file."
     (interactive)
     (rf/find-or-switch-to-file "/home/rich/Documents/shell.org"))
 
+  (defun rf/find-or-switch-to-javascript ()
+    "Find or switch to the `javascript.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/javascript.org"))
+
+  (defun rf/find-or-switch-to-html-css-seo ()
+    "Find or switch to the `html-css-seo.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/html-css-seo.org"))
+
   (defun rf/find-or-switch-to-init ()
     "Find or switch to the `init.org' file."
     (interactive)
     (rf/find-or-switch-to-file "/home/rich/.emacs.d/init.org"))
+
+  (defun rf/find-or-switch-to-archive ()
+    "Find or switch to the `archive.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/archive.org"))
+
+  (defun rf/find-or-switch-to-gnu-linux ()
+    "Find or switch to the `gnu-linux.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/gnu-linux.org"))
+
+  (defun rf/find-or-switch-to-math ()
+    "Find or switch to the `math.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/math.org"))
+
+  (defun rf/find-or-switch-to-english ()
+    "Find or switch to the `english.org' file."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Documents/english.org"))
+
+  (defun rf/find-or-switch-to-layout-maps ()
+    "Find or switch to the `emacs-maps' folder."
+    (interactive)
+    (rf/find-or-switch-to-file "/home/rich/Pictures/emacs-maps/"))
 
 #+end_src
 
@@ -2297,9 +2589,7 @@ Outline-based notes management and organizer.
                     ("<kp-multiply>" . rf/org-emphasize-bold)
                     ("<kp-divide>" . rf/org-emphasize-code)
                     ("S-<kp-divide>" . rf/org-emphasize-italic)
-                    ("S-<kp-multiply>" . rf/org-emphasize-verbatim)
-                    ;;; Testing (doc later if it works)
-                    ("S-<end>" . org-forward-sentence))
+                    ("S-<kp-multiply>" . rf/org-emphasize-verbatim))
 
         :config
         ;; Wrapping functions of properties and functions org.
@@ -2364,10 +2654,10 @@ Setting up org mode bindings.
     (defvar-keymap rf/org-leader-map
       :doc "Keymap for Org mode using a new leader key."
       :prefix 'rf/org-leader-map
-      "=" #'rf/org-emphasize-italic
-      "*" #'rf/org-emphasize-bold
-      ")" #'rf/org-emphasize-code
-      "+" #'rf/org-emphasize-verbatim
+      "*" #'rf/org-emphasize-code
+      ")" #'rf/org-emphasize-bold
+      "+" #'rf/org-emphasize-italic
+      "]" #'rf/org-emphasize-verbatim
 
       "c" #'org-previous-visible-heading
       "t" #'org-next-visible-heading
@@ -2382,7 +2672,7 @@ Setting up org mode bindings.
       "," #'org-insert-link
       ";" #'org-store-link
       "e" #'org-table-create-or-convert-from-region
-      "o" #'org-insert-structure-template
+      "u" #'org-insert-structure-template
       "." #'org-narrow-to-subtree
       "m" #'org-return-and-maybe-indent
       "j" #'org-table-copy-down)
@@ -2414,15 +2704,15 @@ Setting up org mode bindings.
     (defvar-keymap org-char-word-delete-repeat-map
       :doc "Keymap to repeat commands to delete in org mode."
       :repeat t
-      "." #'backward-kill-word
+      "," #'backward-kill-word
       "p" #'kill-word
-      "e" #'org-delete-backward-char
+      "o" #'org-delete-backward-char
       "u" #'delete-forward-char)
 
     (defvar-keymap org-line-whitespaces-delete-repeat-map
       :doc "Keymap to repeat commands to delete line and spaces in org mode."
       :repeat t
-      "i" #'org-kill-line
+      "k" #'org-kill-line
       "j" #'xah-shrink-whitespaces)
 
     ;; Setting the leader key
@@ -3095,7 +3385,7 @@ Controlling Git from Emacs.
 
   ;; A Git porcelain inside Emacs
   (use-package magit
-    :bind(("C-}" . magit-status)
+    :bind(("C-{" . magit-status)
           ("C-c g" . magit-dispatch)
           ("C-c f" . magit-file-dispatch)
           :map magit-mode-map
@@ -3199,8 +3489,8 @@ Customization variables for JavaScript mode.
   (use-package js
     :hook (js-mode . electric-pair-local-mode)
     :bind (:map js-mode-map
-                ("C-c C-j" . rf/js-save-eval-print)
-                ("C-c C-l" . rf/js-console-log-wrap))
+                ("<f6> e" . rf/js-save-eval-print)
+                ("<f6> u" . rf/js-console-log-wrap))
     :config
     (defun rf/js-save-eval-print (&optional output-buffer)
       "Save, evaluate, and print the ouput js for debugging purposes."
@@ -3360,6 +3650,24 @@ Advanced desk calculator and mathematical tool.
 
   ;; Exclude line numbering from kills and copies.
   (setq calc-kill-line-numbering nil)
+
+#+end_src
+
+** Rmail
+Mail reader for Emacs.
+
+#+begin_src emacs-lisp
+
+  ;; rmail-summary-mode bindings
+  (with-eval-after-load 'rmailsum
+    (keymap-set rmail-summary-mode-map "c" 'rmail-summary-previous-msg)
+    (keymap-set rmail-summary-mode-map "n" 'rmail-summary-continue)
+    (keymap-set rmail-summary-mode-map "t" 'rmail-summary-next-msg)
+    (keymap-set rmail-summary-mode-map "p" 'rmail-summary-toggle-header)
+    (keymap-set rmail-summary-mode-map "M-n" nil)
+    (keymap-set rmail-summary-mode-map "M-i" 'rmail-summary-next-all)
+    (keymap-set rmail-summary-mode-map "M-s" nil)
+    (keymap-set rmail-summary-mode-map "M-e" 'rmail-summary-search))
 
 #+end_src
 

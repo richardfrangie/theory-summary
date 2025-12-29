@@ -612,6 +612,22 @@ The idea here is that you can specify specific things you want or don’t want i
 - ~~/.gitconfig~ or ~~/.config/git/config~ Values specific personally to you, the user.
 - ~config~ file in the Git directory (that is, ~.git/config~) of whatever repository you’re currently using: Specific to that single repository.
 
+  Example of ~/.gitconfig~:
+
+#+begin_src conf
+
+  [user]
+      name = Richard Frangie
+      email = richardveravzla@gmail.com
+  [init]
+      defaultBranch = main
+  [core]
+      editor = emacs
+  [github]
+      user = richardfrangie
+
+#+end_src
+
 *** File .gitignore
 Create a file to add a list of patterns to match the files to be ignored.
 

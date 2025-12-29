@@ -1977,39 +1977,39 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 | M-$    |                                      |
 | M-&    | make-frame-command                   |
-| M-[    | split-window-right                   |
-| M-{    | delete-window                        |
-| M-}    | query-replace                        |
-| M-(    | replace-string                       |
-| M-=    | xah-select-block                     |
-| M-*    | rf/expand-region                     |
-| M-)    | xah-select-line                      |
-| M-+    | xah-select-text-in-quote             |
-| M-]    |                                      |
+| M-[    | delete-window                        |
+| M-{    | query-replace                        |
+| M-}    | replace-string                       |
+| M-(    | split-window-right                   |
+| M-=    | ispell-word                          |
+| M-*    | xah-select-line                      |
+| M-)    | rf/expand-region                     |
+| M-+    | xah-select-block                     |
+| M-]    | xah-select-text-in-quote             |
 | M-!    |                                      |
 | M-#    |                                      |
 | M-DEL  |                                      |
 |        |                                      |
 | M-TAB  | +completion-at-point                 |
 | M-;    | xah-fill-or-unfill                   |
-| M-,    | xah-delete-current-text-block        |
-| M-.    | backward-kill-word                   |
+| M-,    | backward-kill-word                   |
+| M-.    | xah-delete-current-text-block        |
 | M-p    | kill-word                            |
 | M-y    | xah-pop-local-mark-ring              |
 | M-f    | isearch-forward                      |
 | M-g    | backward-word                        |
 | M-c    | previous-line                        |
 | M-r    | forward-word                         |
-| M-l    | recenter-top-bottom                  |
+| M-l    | nil                                  |
 | M-/    |                                      |
 | M-@    |                                      |
 |        |                                      |
 | M-CAPS |                                      |
 | M-a    | other-frame                          |
-| M-o    | other-window                         |
-| M-e    | delete-backward-char                 |
+| M-o    | delete-backward-char                 |
+| M-e    | other-window                         |
 | M-u    | delete-forward-char                  |
-| M-i    | kill-line                            |
+| M-i    | ^cape-prefix-map                     |
 | M-d    | xah-beginning-of-line-or-block       |
 | M-h    | backward-char                        |
 | M-t    | next-line                            |
@@ -2022,7 +2022,7 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | M-'    | xah-toggle-letter-case               |
 | M-q    | cua-rectangle-mark-mode              |
 | M-j    | xah-shrink-whitespaces               |
-| M-k    | ^cape-prefix-map                     |
+| M-k    | kill-line                            |
 | M-x    | +execute-extended-command            |
 | M-b    | xah-end-of-line-or-block             |
 | M-m    | xah-backward-left-bracket            |
@@ -2042,23 +2042,23 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 | M-~          |                                        |
 | M-%          | delete-frame                           |
-| M-7          | split-window-below                     |
-| M-5          | delete-other-windows                   |
-| M-3          | query-replace-regexp                   |
-| M-1          | replace-regexp                         |
+| M-7          | delete-other-windows                   |
+| M-5          | query-replace-regexp                   |
+| M-3          | replace-regexp                         |
+| M-1          | split-window-below                     |
 | M-9          |                                        |
 | M-0          |                                        |
 | M-2          |                                        |
 | M-4          |                                        |
-| M-6          | ispell-word                            |
+| M-6          |                                        |
 | M-8          |                                        |
 | M-`          |                                        |
 | M-S-DEL      |                                        |
 |              |                                        |
 | M-S-TAB      |                                        |
 | M-:          |                                        |
-| M-<          | eval-region                            |
-| M->          | eval-expression                        |
+| M-<          |                                        |
+| M->          |                                        |
 | M-P          |                                        |
 | M-Y          | mp/exchange-point-and-mark-no-activate |
 | M-F          | xah-search-current-word                |
@@ -2071,10 +2071,10 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |              |                                        |
 | M-S-CAPS     |                                        |
 | M-A          |                                        |
-| M-O          | ~ace-window                            |
-| M-E          |                                        |
+| M-O          |                                        |
+| M-E          | ~ace-window                            |
 | M-U          |                                        |
-| M-I          | wakib-backward-kill-line               |
+| M-I          |                                        |
 | M-D          | scroll-down-command                    |
 | M-H          |                                        |
 | M-T          | ~drag-stuff-down                       |
@@ -2086,8 +2086,8 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |              |                                        |
 | M-"          |                                        |
 | M-Q          | ^rectangle-related-map                 |
-| M-J          |                                        |
-| M-K          | ^switch-resize-windows-repeat-map      |
+| M-J          | ^switch-resize-windows-repeat-map      |
+| M-K          | rf/backward-kill-line                  |
 | M-X          | execute-extended-command-for-buffer    |
 | M-B          | scroll-up-command                      |
 | M-M          |                                        |
@@ -2099,8 +2099,8 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** M-<cluster>
 
-| M-<up>     |                                   |
-| M-<down>   |                                   |
+| M-<up>     | ~drag-stuff-up                    |
+| M-<down>   | ~drag-stuff-down                  |
 | M-<left>   |                                   |
 | M-<right>  |                                   |
 |            |                                   |
@@ -2111,11 +2111,13 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |            |                                   |
 | M-<insert> |                                   |
 | M-<delete> |                                   |
+|            |                                   |
+| M-<f6>     | #Switch windows                   |
 
 *** M-S-<cluster>
 
-| M-S-<up>     | ~drag-stuff-up               |
-| M-S-<down>   | ~drag-stuff-down             |
+| M-S-<up>     |                              |
+| M-S-<down>   |                              |
 | M-S-<left>   |                              |
 | M-S-<right>  |                              |
 |              |                              |
@@ -2129,132 +2131,137 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** C-M-
 
-| C-M-$     |                    |
-| C-M-&     |                    |
-| C-M-[     |                    |
-| C-M-{     |                    |
-| C-M-}     |                    |
-| C-M-(     |                    |
-| C-M-=     |                    |
-| C-M-*     |                    |
-| C-M-)     |                    |
-| C-M-+     |                    |
-| C-M-]     |                    |
-| C-M-!     |                    |
-| C-M-#     |                    |
-| C-M-DEL   |                    |
-|           |                    |
-| C-M-TAB   |                    |
-| C-M-;     |                    |
-| C-M-,     |                    |
-| C-M-.     |                    |
-| C-M-p     |                    |
-| C-M-y     |                    |
-| C-M-f     | isearch-backward   |
-| C-M-g     |                    |
-| C-M-c     |                    |
-| C-M-r     |                    |
-| C-M-l     |                    |
-| C-M-/     |                    |
-| C-M-@     |                    |
-|           |                    |
-| C-M-caps  |                    |
-| C-M-a     |                    |
-| C-M-o     |                    |
-| C-M-e     |                    |
-| C-M-u     |                    |
-| C-M-i     |                    |
-| C-M-d     |                    |
-| C-M-h     |                    |
-| C-M-t     |                    |
-| C-M-n     |                    |
-| C-M-s     |                    |
-| C-M--     |                    |
-| C-M-\     |                    |
-| C-M-RET   |                    |
-|           |                    |
-| C-M-'     |                    |
-| C-M-q     |                    |
-| C-M-j     |                    |
-| C-M-k     |                    |
-| C-M-x     |                    |
-| C-M-b     |                    |
-| C-M-m     |                    |
-| C-M-w     |                    |
-| C-M-v     |                    |
-| C-M-z     |                    |
-|           |                    |
-| C-M-SPC   |                    |
+| C-M-$    |                              |
+| C-M-&    |                              |
+| C-M-[    |                              |
+| C-M-{    |                              |
+| C-M-}    |                              |
+| C-M-(    |                              |
+| C-M-=    |                              |
+| C-M-*    |                              |
+| C-M-)    |                              |
+| C-M-+    |                              |
+| C-M-]    |                              |
+| C-M-!    |                              |
+| C-M-#    |                              |
+| C-M-DEL  |                              |
+|          |                              |
+| C-M-TAB  |                              |
+| C-M-;    |                              |
+| C-M-,    |                              |
+| C-M-.    |                              |
+| C-M-p    |                              |
+| C-M-y    |                              |
+| C-M-f    | isearch-backward             |
+| C-M-g    |                              |
+| C-M-c    |                              |
+| C-M-r    |                              |
+| C-M-l    |                              |
+| C-M-/    |                              |
+| C-M-@    |                              |
+|          |                              |
+| C-M-caps |                              |
+| C-M-a    |                              |
+| C-M-o    |                              |
+| C-M-e    | rf/swap-org-header-with-text |
+| C-M-u    |                              |
+| C-M-i    |                              |
+| C-M-d    |                              |
+| C-M-h    |                              |
+| C-M-t    |                              |
+| C-M-n    |                              |
+| C-M-s    |                              |
+| C-M--    |                              |
+| C-M-\    |                              |
+| C-M-RET  |                              |
+|          |                              |
+| C-M-'    |                              |
+| C-M-q    |                              |
+| C-M-j    |                              |
+| C-M-k    |                              |
+| C-M-x    |                              |
+| C-M-b    |                              |
+| C-M-m    |                              |
+| C-M-w    |                              |
+| C-M-v    |                              |
+| C-M-z    |                              |
+|          |                              |
+| C-M-SPC  |                              |
 
 *** C-M-<cluster>
 
 | C-M-<insert> | xah-copy-all-or-region |
 
+*** C-M-S-
+
+| C-M-S-f | rf/fold-org-english-headers  |
+| C-M-S-s | rf/swap-org-header-with-text |
+
 ** Control
 *** C-
 
-| C-$     | #Switch applications          |
-| C-&     | ~consult-register-store       |
-| C-[     | copy-to-register              |
-| C-{     |                               |
-| C-}     | ~magit-status                 |
-| C-(     |                               |
-| C-=     | calc                          |
-| C-*     | eshell                        |
-| C-)     | dired-jump                    |
-| C-+     | ibuffer                       |
-| C-]     | +esc                          |
-| C-!     |                               |
-| C-#     |                               |
-| C-DEL   | +backward-kill-word           |
-|         |                               |
-| C-<tab> | ~yas-expand                   |
-| C-;     |                               |
-| C-,     | ~embark-act                   |
-| C-.     | ~embark-dwim                  |
-| C-p     | ^consult-goto-map             |
-| C-y     | undo-redo                     |
-| C-f     | ~consult-line                 |
-| C-g     | +keyboard-quit                |
-| C-c     | +mode-specific-map            |
-| C-r     | find-file                     |
-| C-l     | eshell                        |
-| C-/     |                               |
-| C-@     |                               |
-|         |                               |
-| C-caps  |                               |
-| C-a     | mark-whole-buffer             |
-| C-o     | +open-line                    |
-| C-e     |                               |
-| C-u     | +universal-argument           |
-| C-i     | +tab                          |
-| C-d     |                               |
-| C-h     | +help-map                     |
-| C-t     | switch-to-previous-buffer     |
-| C-n     | ~consult-buffer               |
-| C-s     | save-buffer                   |
-| C--     | save-some-buffers             |
-| C-\     |                               |
-| C-RET   |                               |
-|         |                               |
-| C-'     | repeat                        |
-| C-q     | +quoted-insert                |
-| C-j     | +newline indent (major-modes) |
-| C-k     | ^consult-search-map           |
-| C-x     | +ctl-x-map                    |
-| C-b     | ~vertico-repeat               |
-| C-m     | +newline                      |
-| C-w     | xah-close-current-buffer      |
-| C-v     | xah-paste-or-paste-previous   |
-| C-z     | undo                          |
-|         |                               |
-| C-SPC   | +set-mark-command             |
+| C-$     | #Switch applications            |
+| C-&     | ~consult-register-store         |
+| C-[     | DO NOT USE. BLOCKS THE META KEY |
+| C-{     | ~magit-status                   |
+| C-}     |                                 |
+| C-(     |                                 |
+| C-=     | calc                            |
+| C-*     | eshell                          |
+| C-)     | dired-jump                      |
+| C-+     | ibuffer                         |
+| C-]     | +esc                            |
+| C-!     |                                 |
+| C-#     |                                 |
+| C-DEL   | +backward-kill-word             |
+|         |                                 |
+| C-<tab> | ~yas-expand                     |
+| C-;     |                                 |
+| C-,     | ~embark-act                     |
+| C-.     | ~embark-dwim                    |
+| C-p     | ^consult-goto-map               |
+| C-y     | undo-redo                       |
+| C-f     | ~consult-line                   |
+| C-g     | +keyboard-quit                  |
+| C-c     | +mode-specific-map              |
+| C-r     | find-file                       |
+| C-l     | +recenter-top-bottom            |
+| C-/     |                                 |
+| C-@     |                                 |
+|         |                                 |
+| C-caps  |                                 |
+| C-a     | mark-whole-buffer               |
+| C-o     | +open-line                      |
+| C-e     | eval-last-sexp                  |
+| C-u     | +universal-argument             |
+| C-i     | +tab                            |
+| C-d     |                                 |
+| C-h     | +help-map                       |
+| C-t     | switch-to-previous-buffer       |
+| C-n     | ~consult-buffer                 |
+| C-s     | save-buffer                     |
+| C--     | save-some-buffers               |
+| C-\     |                                 |
+| C-RET   |                                 |
+|         |                                 |
+| C-'     | repeat                          |
+| C-q     | +quoted-insert                  |
+| C-j     | +newline indent (major-modes)   |
+| C-k     | ^consult-search-map             |
+| C-x     | +ctl-x-map                      |
+| C-b     | ~vertico-repeat                 |
+| C-m     | +newline                        |
+| C-w     | xah-close-current-buffer        |
+| C-v     | xah-paste-or-paste-previous     |
+| C-z     | undo                            |
+|         |                                 |
+| C-SPC   | +set-mark-command               |
 
 *** C-S-
 
 | C-~      | #Switch windows of an application |
 | C-%      | ~consult-register-load            |
-| C-7      | insert-register                   |
+| C-7      |                                   |
 | C-5      |                                   |
 | C-3      |                                   |
 | C-1      |                                   |
@@ -2284,10 +2291,10 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | C-S-CAPS |                                   |
 | C-S-a    |                                   |
 | C-S-o    | xah-open-in-external-app          |
-| C-S-e    |                                   |
+| C-S-e    | eval-region                       |
 | C-S-u    |                                   |
 | C-S-i    |                                   |
-| C-S-d    | scroll-other-window               |
+| C-S-d    | scroll-other-window-down          |
 | C-S-h    |                                   |
 | C-S-t    | xah-open-last-closed              |
 | C-S-n    | ~consult-buffer-other-window      |
@@ -2298,10 +2305,10 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |          |                                   |
 | C-"      |                                   |
 | C-S-q    | ^google-translate-map             |
-| C-S-j    |                                   |
+| C-S-j    | eval-expression                   |
 | C-S-k    |                                   |
 | C-S-x    |                                   |
-| C-S-b    | scroll-other-window-down          |
+| C-S-b    | scroll-other-window               |
 | C-S-m    |                                   |
 | C-S-w    |                                   |
 | C-S-v    | ~consult-yank-from-kill-ring      |
@@ -2311,20 +2318,18 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** C-<cluster>
 
-| C-<up>     | +backward-paragrap       |
-| C-<down>   | +forward-paragrap        |
-| C-<left>   | +left-word               |
-| C-<right>  | +right-word              |
-|            |                          |
-| C-<home>   | +beginning-of-buffer     |
-| C-<end>    | +end-of-buffer           |
-| C-<prior>  | xah-previous-user-buffer |
-| C-<next>   | xah-next-user-buffer     |
-|            |                          |
-| C-<insert> | xah-copy-line-or-region  |
-| C-<delete> | +kill-word               |
-|            |                          |
-| C-<f7>     | #Switch windows          |
+| C-<up>     | +backward-paragrap          |
+| C-<down>   | +forward-paragrap           |
+| C-<left>   | +left-word                  |
+| C-<right>  | +right-word                 |
+|            |                             |
+| C-<home>   | +beginning-of-buffer        |
+| C-<end>    | +end-of-buffer              |
+| C-<prior>  | xah-previous-user-buffer    |
+| C-<next>   | xah-next-user-buffer        |
+|            |                             |
+| C-<insert> | xah-copy-line-or-region-mod |
+| C-<delete> | +kill-word                  |
 
 *** C-S-<cluster>
 
@@ -2333,8 +2338,8 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | C-S-<left>   |                           |
 | C-S-<right>  |                           |
 |              |                           |
-| C-S-<home>   |                           |
-| C-S-<end>    |                           |
+| C-S-<home>   | -backward-sentence        |
+| C-S-<end>    | -forward-sentence         |
 | C-S-<prior>  | xah-previous-emacs-buffer |
 | C-S-<next>   | xah-next-emacs-buffer     |
 |              |                           |
@@ -2421,14 +2426,14 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | <escape>   | keyboard-escape-quit        |
 |            |                             |
 | S-<insert> | xah-paste-or-paste-previous |
-| S-<delete> | xah-cut-line-or-region      |
+| S-<delete> | xah-cut-line-or-region-mod  |
 
 ** Function keys
 *** <f >
 
 | F1  | #Switch to last window      | s-`        |
-| F2  | xah-copy-line-or-region     | C-<insert> |
-| F3  | xah-cut-line-or-region      | S-<delete> |
+| F2  | xah-copy-line-or-region-mod | C-<insert> |
+| F3  | xah-cut-line-or-region-mod  | S-<delete> |
 | F4  | xah-paste-or-paste-previous | S-<insert> |
 |     |                             |            |
 | F5  | #Switch emacs               | F5         |
@@ -2466,7 +2471,7 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | M-F4  | ~consult-yank-from-kill-ring | M-S-<insert> |
 |       |                              |              |
 | M-F5  |                              |              |
-| M-F6  |                              |              |
+| M-F6  | #Switch windows              |              |
 | M-F7  |                              |              |
 | M-F8  |                              |              |
 |       |                              |              |
@@ -2478,91 +2483,104 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 ** Keypad
 *** kp-
 
-| rotate - press | KC_VOLD/VOLU - KC_SLEP           |
-| TO(1)          | Turn on layer 1                  |
-| <XF86Launch5>  |                                  |
-| <XF86Launch6>  |                                  |
-|                |                                  |
-| <kp-equal>     |                                  |
-| <kp-divide>    |                                  |
-| <kp-multiply>  |                                  |
-| <kp-subtract>  | #Hide all normal windows         |
-|                |                                  |
-| <kp-7>         | ~mc/mark-next-like-this          |
-| <kp-8>         |                                  |
-| <kp-9>         | kmacro-end-or-call-macro         |
-| <kp-add>       | switch-to-previous-buffer        |
-|                |                                  |
-| <kp-4>         | rf/find-or-switch-to-javascript  |
-| <kp-5>         | rf/find-or-switch-to-shell       |
-| <kp-6>         | rf/find-or-switch-to-emacs-elisp |
-|                |                                  |
-| <kp-1>         | rf/find-or-switch-to-todo        |
-| <kp-2>         | eshell                           |
-| <kp-3>         | scratch-buffer                   |
-|                |                                  |
-| <kp-0>         | other-window                     |
-| <kp-decimal>   | #temporarily most used command   |
-| <kp-enter>     | #Click                           |
+| rotate - press    | #KC_VOLD/VOLU - KC_SLEP          |
+| TO(1)             | #Turn on layer 1                 |
+| <XF86Launch5>/f14 | #Switch application              |
+| <XF86Launch6>/f15 | #Hide all normal windows         |
+|                   |                                  |
+| <kp-equal>        | ~consult-buffer                  |
+| <kp-divide>       |                                  |
+| <kp-multiply>     |                                  |
+| <kp-subtract>     | rf/recently-not-visible-buffer   |
+|                   |                                  |
+| <kp-7>            | ~mc/mark-next-like-this          |
+| <kp-8>            | rf/last-interactive-command      |
+| <kp-9>            | kmacro-end-or-call-macro         |
+| <kp-add>          | switch-to-previous-buffer        |
+|                   |                                  |
+| <kp-4>            | rf/find-or-switch-to-javascript  |
+| <kp-5>            | rf/find-or-switch-to-shell       |
+| <kp-6>            | rf/find-or-switch-to-emacs-elisp |
+|                   |                                  |
+| <kp-1>            | rf/find-or-switch-to-todo        |
+| <kp-2>            | eshell                           |
+| <kp-3>            | scratch-buffer                   |
+|                   |                                  |
+| <kp-0>            | other-window                     |
+| <kp-decimal>      | #temporarily most used command   |
+| <kp-enter>        | #Click                           |
 
 *** kp-S
 
-| <S-kp-Bloq>     |                                     |
-| <S-kp-divide>   |                                     |
-| <S-kp-multiply> |                                     |
-| <S-kp-subtract> |                                     |
-|                 |                                     |
-| <S-kp-7>        | ~mc/mark-previous-like-this         |
-| <S-kp-8>        |                                     |
-| <S-kp-9>        | kmacro-start-macro                  |
-| <S-kp-add>      | ~consult-buffer                     |
-|                 |                                     |
-| <S-kp-4>        | rf/find-or-switch-to-html-css-seo   |
-| <S-kp-5>        | rf/find-or-switch-to-gnu-linux      |
-| <S-kp-6>        | rf/find-or-switch-to-init           |
-|                 |                                     |
-| <S-kp-1>        | rf/find-or-switch-to-archive        |
-| <S-kp-2>        | #Switch to application 4 (terminal) |
-| <S-kp-3>        | rf/find-or-switch-to-english        |
-|                 |                                     |
-| <S-kp-0>        |                                     |
-| <S-kp-decimal>  |                                     |
-| <S-kp-nter>     |                                     |
+| rotate - press      | #KC_VOLD/VOLU - KC_SLEP             |
+| TO(1)               | #Turn on layer 1                    |
+| S-<XF86Launch5>/f14 |                                     |
+| S-<XF86Launch6>/f15 |                                     |
+|                     |                                     |
+| S-<kp-equal>        | find-file                           |
+| S-<kp-divide>       |                                     |
+| S-<kp-multiply>     |                                     |
+| S-<kp-subtract>     |                                     |
+|                     |                                     |
+| S-<kp-7>            | ~mc/mark-previous-like-this         |
+| S-<kp-8>            |                                     |
+| S-<kp-9>            | kmacro-start-macro                  |
+| S-<kp-add>          |                                     |
+|                     |                                     |
+| S-<kp-4>            | rf/find-or-switch-to-html-css-seo   |
+| S-<kp-5>            | rf/find-or-switch-to-gnu-linux      |
+| S-<kp-6>            | rf/find-or-switch-to-init           |
+|                     |                                     |
+| S-<kp-1>            | rf/find-or-switch-to-archive        |
+| S-<kp-2>            | #Switch to application 4 (terminal) |
+| S-<kp-3>            | rf/find-or-switch-to-english        |
+|                     |                                     |
+| S-<kp-0>            |                                     |
+| S-<kp-decimal>      |                                     |
+| S-<kp-nter>         |                                     |
 
 *** kp-C
 
-| <C-kp-Bloq>     |                                  |
-| <C-kp-divide>   |                                  |
-| <C-kp-multiply> |                                  |
-| <C-kp-subtract> |                                  |
-|                 |                                  |
-| <C-kp-7>        |                                  |
-| <C-kp-8>        |                                  |
-| <C-kp-9>        |                                  |
-| <C-kp-add>      |                                  |
-|                 |                                  |
-| <C-kp-4>        |                                  |
-| <C-kp-5>        |                                  |
-| <C-kp-6>        |                                  |
-|                 |                                  |
-| <C-kp-1>        |                                  |
-| <C-kp-2>        |                                  |
-| <C-kp-3>        | rf/find-or-switch-to-layout-maps |
-|                 |                                  |
-| <C-kp-0>        |                                  |
-| <C-kp-decimal>  |                                  |
-| <C-kp-nter>     |                                  |
+| rotate - press      | #KC_VOLD/VOLU - KC_SLEP          |
+| TO(1)               | #Turn on layer 1                 |
+| C-<XF86Launch5>/f14 |                                  |
+| C-<XF86Launch6>/f15 |                                  |
+|                     |                                  |
+| C-<kp-equal>        |                                  |
+| C-<kp-divide>       |                                  |
+| C-<kp-multiply>     |                                  |
+| C-<kp-subtract>     |                                  |
+|                     |                                  |
+| C-<kp-7>            |                                  |
+| C-<kp-8>            |                                  |
+| C-<kp-9>            |                                  |
+| C-<kp-add>          |                                  |
+|                     |                                  |
+| C-<kp-4>            |                                  |
+| C-<kp-5>            |                                  |
+| C-<kp-6>            |                                  |
+|                     |                                  |
+| C-<kp-1>            |                                  |
+| C-<kp-2>            |                                  |
+| C-<kp-3>            | rf/find-or-switch-to-layout-maps |
+|                     |                                  |
+| C-<kp-0>            |                                  |
+| C-<kp-decimal>      |                                  |
+| C-<kp-enter>        |                                  |
 
 ** Mouse keys
 
-| <mouse-8> | xah-previous-user-buffer |
+| <mouse-8> | TAB |
 
 ** Lisp maps
 *** minibuffer-local-map
 
-| nil | M-n / M-p / M-r           |
-|     |                           |
-| C-, | se/take-the-word-at-point |
+| nil   | M-n / M-p / M-r                  |
+|       |                                  |
+| C-,   | se/take-the-word-at-point        |
+|       |                                  |
+| C-S-h | previous-line-or-history-element |
+| C-S-n | next-history-element             |
 
 *** isearch-mode-map
 
@@ -2577,6 +2595,8 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | C-S-v           | isearch-yank-pop-only    |
 | M-S-<insert>    | isearch-yank-pop-only    |
 |                 |                          |
+| <escape>        | isearch-abort            |
+|                 |                          |
 |                 | isearch-toggle-case-fold |
 |                 | isearch-toggle-regexp    |
 |                 | isearch-query-replace    |
@@ -2588,14 +2608,15 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** cua--rectangle-keymap
 
-| C-c | cua-resize-rectangle-up    |
-| C-t | cua-resize-rectangle-down  |
-| C-h | cua-resize-rectangle-left  |
-| C-n | cua-resize-rectangle-right |
+| C-S-c | cua-resize-rectangle-up    |
+| C-S-t | cua-resize-rectangle-down  |
+| C-S-h | cua-resize-rectangle-left  |
+| C-S-n | cua-resize-rectangle-right |
 
 *** completion-preview-active-mode-map
 
-| M-r | completion-preview-complete |
+| M-i | nil                         |
+| M-l | completion-preview-complete |
 
 *** ibuffer-mode-map
 
@@ -2630,10 +2651,22 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | c | image-previous-file |
 | t | image-next-file     |
 
+*** rmail-summary-mode-map
+
+| c   | rmail-summary-previous-msg  |
+| n   | rmail-summary-continue      |
+| t   | rmail-summary-next-msg      |
+| p   | rmail-summary-toggle-header |
+|     |                             |
+| M-n | nil                         |
+| M-i | rmail-summary-next-all      |
+| M-s | nil                         |
+| M-e | rmail-summary-search        |
+
 ** Usage package keys
 *** ace-window
 
-| M-O | ace-window |
+| M-E | ace-window |
 
 *** multiple-cursors
 
@@ -2643,15 +2676,23 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** expand-region
 
-| ) | expand-region-contract-fast-key |
-| + | expand-region-reset-fast-key    |
+| )  | expand-region-contract-fast-key |
+| '* | expand-region-reset-fast-key    |
 
 *** yas-minor-mode-map
 
-| TAB     | nil        |
-| <tab>   | nil        |
-|         |            |
-| M-<tab> | yas-expand |
+| TAB       | nil        |
+| <tab>     | nil        |
+|           |            |
+| C-<tab>   | yas-expand |
+| C-M-<tab> | yas-expand |
+
+*** yas-keymap
+
+| TAB     | nil                            |
+| <tab>   | nil                            |
+|         |                                |
+| C-<tab> | yas-next-field-or-maybe-expand |
 
 *** tempel
 **** tempel
@@ -2669,11 +2710,11 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** drag-stuff
 
-| M-S-<up>   | drag-stuff-up   |
-| M-S-<down> | drag-stuff-down |
-|            |                 |
-| M-C        | drag-stuff-up   |
-| M-T        | drag-stuff-down |
+| M-<up>   | drag-stuff-up   |
+| M-<down> | drag-stuff-down |
+|          |                 |
+| M-C      | drag-stuff-up   |
+| M-T      | drag-stuff-down |
 
 *** vertico
 **** vertico-map
@@ -2712,7 +2753,7 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 *** consult
 **** consult
 
-| S-<kp-add>   | consult-buffer              |
+| <kp-equal>   | consult-buffer              |
 | C-n          | consult-buffer              |
 | C-S-n        | consult-buffer-other-window |
 |              |                             |
@@ -2749,15 +2790,15 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | n | consult-project-buffer |
 | r | consult-bookmark       |
 |   |                        |
-| u | consult-man            |
-| i | consult-info           |
+| p | consult-man            |
+| . | consult-info           |
 |   |                        |
-| p | consult-flymake        |
-| . | consult-flycheck       |
-| , | consult-compile-error  |
+| u | consult-flymake        |
+| e | consult-flycheck       |
+| o | consult-compile-error  |
 |   |                        |
 | m | consult-mark           |
-| b | consult-global-mark    |
+| w | consult-global-mark    |
 
 **** consult-search-map
 
@@ -2771,16 +2812,16 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 |   |                         |
 | d | consult-history         |
 | f | consult-isearch-history |
-| b | consult-complex-command |
+| w | consult-complex-command |
 |   |                         |
 | m | consult-minor-mode-menu |
 |   |                         |
-| k | consult-keep-lines      |
-| j | consult-focus-lines     |
+| u | consult-keep-lines      |
+| e | consult-focus-lines     |
 |   |                         |
-| u | consult-yasnippet       |
+| p | consult-yasnippet       |
 |   |                         |
-| e | consult-kmacro          |
+| . | consult-kmacro          |
 |   |                         |
 | } | consult-register        |
 
@@ -2791,7 +2832,7 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 *** cape
 
-| M-k | cape-prefix-map |
+| M-i | cape-prefix-map |
 
 *** embark
 **** embark
@@ -2910,10 +2951,10 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 
 **** rf/org-leader-map
 
-| '= | rf/org-emphasize-italic                 |
-| '* | rf/org-emphasize-bold                   |
-| )  | rf/org-emphasize-code                   |
-| +  | rf/org-emphasize-verbatim               |
+| '* | rf/org-emphasize-code                   |
+| ') | rf/org-emphasize-bold                   |
+| '+ | rf/org-emphasize-italic                 |
+| '] | rf/org-emphasize-verbatim               |
 |    |                                         |
 | c  | org-previous-visible-heading            |
 | t  | org-next-visible-heading                |
@@ -2931,12 +2972,12 @@ Emacs has a lot syntax variations for a given key combination, but the one print
 | ;  | org-store-link                          |
 |    |                                         |
 | e  | org-table-create-or-convert-from-region |
-| o  | org-insert-structure-template           |
+| u  | org-insert-structure-template           |
 |    |                                         |
 | .  | org-narrow-to-subtree                   |
 | m  | org-return-and-maybe-indent             |
 |    |                                         |
-| w  | org-table-copy-down                     |
+| j  | org-table-copy-down                     |
 
 *** dired
 **** dired-mode-map
@@ -3036,8 +3077,8 @@ qwerty
 
 | TAB   | nil                                       |
 |       |                                           |
-| C-S-h | eshell-previous-matching-input-from-input |
-| C-S-n | eshell-next-matching-input-from-input     |
+| C-S-c | eshell-previous-matching-input-from-input |
+| C-S-t | eshell-next-matching-input-from-input     |
 | C-S-d | eshell-list-history                       |
 
 **** esh-autosuggest-active-map
@@ -8061,6 +8102,53 @@ Regular expressions have a syntax in which a few characters are *special constru
 
 *Nota*: La expresión regular de emacs es básicamente BRE, pero se ha ampliado para tratar ~+~ y ~?~ como metacaracteres así como en ERE. Por lo tanto, no hay necesidad de escaparlos con ~\~ en la expresión regular de emacs.
 
+Regular expression syntax varies significantly among computer programs. When writing Elisp code that generates regular expressions for use by other programs, it is helpful to know how syntax variants differ. Emacs regular expressions differ from two syntax variants standarded by POSIX: basic regular expressions (BREs) and extended regular expressions (EREs). Plain ~grep~ uses BREs, and ~grep -E~ uses EREs.
+
+#+begin_src sh
+
+  # Plain grep uses BREs, and ‘grep -E’ uses EREs.
+
+  # With -E (Extended Regular Expressions)
+  ls | grep -E 'ja*'    # Same as BRE in this case
+  ls | grep -E 'ja+'    # + is a metacharacter in ERE (needs no escape)
+
+  # With BRE (Basic Regular Expressions):
+  ls | grep -G 'ja\*'   # Same as ERE in this case
+  ls | grep -G 'ja\+'   # + needs escape in BRE
+
+#+end_src
+
+** Table
+
+| /Character/   | /Description/                                       |
+|-------------+---------------------------------------------------|
+| /./           | any char (but newline)                            |
+| /*/           | previous char or group, repeated 0 or more time   |
+| /+/           | previous char or group, repeated 1 or more time   |
+| /?/           | previous char or group, repeated 0 or 1 time      |
+| /^/           | start of line                                     |
+| /$/           | end of line                                       |
+| /[...]/       | any char between brackets                         |
+| /[^..]/       | any char not in the brackets                      |
+| /[a-z]/       | any char between a and z                          |
+| /\/           | prevents interpretation of following special char |
+| /\¦/          | or                                                |
+| /\w/          | word constituent                                  |
+| /\b/          | word boundary                                     |
+| /\sc/         | char with c syntax (e.g. \s- for whitespace char) |
+| /\( \)/       | start/end of group                                |
+| /\&lt; \&gt;/ | start/end of word (faulty rendering*)             |
+| /\_< \_>/     | start/end of symbol                               |
+| /\` \'/       | start/end of buffer/string                        |
+| /\1/          | string matched by the first group                 |
+| /\n/          | string matched by the nth group                   |
+| /\{3\}/       | previous char or group, repeated 3 times          |
+| /\{3,\}/      | previous char or group, repeated 3 or more times  |
+| /\{3,6\}/     | previous char or group, repeated 3 to 6 times     |
+| /\=/          | match succeeds if it is located at point          |
+
+/*/  faulty rendering: backslash + less-than and backslash + greater-than
+
 ** Special characters
 *** . , * , + , ?
 **** .
@@ -8073,14 +8161,9 @@ Is not a construct by itself; it is a postfix operator that means to match the *
 
 ~*~ always applies to the smallest possible preceding expression. Thus, ~fo~ has a repeating ~o~, not a repeating ~fo~. It matches ~f~, ~fo~, ~foo~, and so on.
 
-*Nota*: cuando se está realizando una busqueda con alguna función regex y el programa destaca (highlight) las expresiones que coinciden, se debe tener cuidado en no confundir cuando el programa resalta todas las coincidencias señalando varias coincidencias independientes como si fuera una sola coincidencia, por ejemplo:
-
-~fo*~ destacará (highlight) ~fofofofofo~ pero no es que realmente coincida con todo este string junto, si no que destaca ~fo~ repetidas veces, es decir, la coincidencia es ~fo~ otro ~fo~ otro ~fo~ pero no el string completo ~fofofofofo~ .
+*Nota*: cuando se está realizando una busqueda con alguna función regex y el programa destaca (highlight) las expresiones que coinciden, se debe tener cuidado en no confundir cuando el programa resalta todas las coincidencias señalando varias coincidencias independientes como si fuera una sola coincidencia, por ejemplo: ~fo*~ destacará (highlight) ~fofofofofo~ pero no es que realmente coincida con todo este string junto, si no que destaca ~fo~ repetidas veces, es decir, la coincidencia es ~fo~ otro ~fo~ otro ~fo~ pero no el string completo ~fofofofofo~ .
 
 The matcher processes a ~*~ construct by matching, immediately, as many repetitions as can be found. Then it continues with the rest of the pattern. If that fails, backtracking occurs, discarding some of the matches of the ~*~-modified construct in case that makes it possible to match the rest of the pattern. For example, in matching ~ca*ar~ against the string ~caaar~, the ~a*~ first tries to match all three ~a~ s; but the rest of the pattern is ~ar~ and there is only ~r~ left to match, so this try fails. The next alternative is for ~a*~ to match only two ~a~ s. With this choice, the rest of the regexp matches successfully.
-
-*Nota*: la regex ~ca*ar~ enlaza con ~car~ de la siguiente manera:
-Enlazando con la ~c~ del principio que es fija y con el ~ar~ del final que también es fijo, esto es lo que realmente enlaza con ~car~. La ~a*~ no enlaza ya que esta puede ser o bien la cantidad de ~a~ que sea o ninguna ~a~ , lo cual es este caso, es decir 1 ~c~ + 0 ~a*~ + 1 ~ar~ .
 
 - Using [[\{n,m\}]] notation, ~\{0,\}~ is equivalent to ~*~.
 
@@ -8099,7 +8182,9 @@ Thus, ~ca?r~ matches ~car~ or ~cr~, and nothing else.
 - Using [[\{n,m\}]] notation, ~\{0,1\}~ is equivalent to ~?~.
 
 *** *? , +? , ??
-Are non-greedy variants. The normal operators ~*~, ~+~, ~?~ match as much as they can, as long as the overall regexp can still match. With a following ~?~, they will *match as little as possible* .
+Are non-greedy variants.
+
+The normal operators ~*~, ~+~, ~?~ match as much as they can, as long as the overall regexp can still match. With a following ~?~, they will *match as little as possible* .
 
 For example, ~ab*~ can match the string ~a~ and the string ~abbbb~; but  ~ab*?~ match only with ~a~ (the shortest valid match).
 
@@ -8172,11 +8257,6 @@ Thus, ~[^a-z0-9A-Z]~ matches all characters except ASCII letters and digits.
 
 Note: A complemented character set can match a newline, unless newline is mentioned as one of the characters not to match. This is in contrast to the handling of regexps in programs such as grep.
 
-**** \|
-*Specifies an alternative*. Two regular expressions ~a~ and ~b~ with ~\|~ in between form an expression that matches some text if either ~a~ matches it or ~b~ matches it. It works by trying to match ~a~, and if that fails, by trying to match ~b~.
-
-Thus, ~foo\|bar~ matches either ~foo~ or ~bar~ but no other string.
-
 *** ^ , $
 **** ^
 Is a special character that matches the empty string, but *only at the beginning of a line* in the text being matched. Otherwise it fails to match anything.
@@ -8199,6 +8279,11 @@ Backslashes must be entered as ~\\~.
 Literal backslash with doubling backslash ~\\\\~.
 
 *Caution*: when it's an interactive command search one ~\~ by executing Lisp code two ~\\~.
+
+**** \|
+*Specifies an alternative*. Two regular expressions ~a~ and ~b~ with ~\|~ in between form an expression that matches some text if either ~a~ matches it or ~b~ matches it. It works by trying to match ~a~, and if that fails, by trying to match ~b~.
+
+Thus, ~foo\|bar~ matches either ~foo~ or ~bar~ but no other string.
 
 **** \b
 Matches the *empty string*, but only at the *beginning or end of a word*.
@@ -8275,6 +8360,51 @@ Matches any character whose syntax is ~c~. Here ~c~ is a character which represe
 
 **** \Sc
 Matches any character whose syntax is not ~c~.
+
+** Classes
+
+| /Character/    | /Class Description/                         |
+|--------------+-------------------------------------------|
+| /[:digit:]/    | a digit, same as [0-9]                    |
+| /[:alpha:]/    | a letter (an alphabetic character)        |
+| /[:alnum:]/    | a letter or a digit(an alphanumeric char) |
+| /[:upper:]/    | a letter in uppercase                     |
+| /[:lower:]/    | a letter in lowercase                     |
+| /[:graph:]/    | a visible character                       |
+| /[:print:]/    | a visible character plus the space char   |
+| /[:space:]/    | a whitespace char,typically [\t\r\n\v\f]  |
+| /[:blank:]/    | a space or tab character                  |
+| /[:xdigit:]/   | an hexadecimal digit                      |
+| /[:cntrl:]/    | a control character                       |
+| /[:ascii:]/    | an ascii character                        |
+| /[:nonascii:]/ | any non ascii character                   |
+
+*Syntax Class Usage*:
+One must remember that *syntax classes must be used within square brackets*, as one would in specifying any other sequence to match or reject: e.g. ~[[:upper:]\|[:digit:]\.]~. This is easy to overlook when using square-bracket-delimited syntax classes, since they include their own square brackets! E.g., if searching for a single whitespace character in a regexp, this
+
+#+begin_src emacs-lisp
+
+  [:space:]
+
+#+end_src
+
+will *fail*. Just remember to add a 2nd/outer pair of square brackets: e.g., this
+
+#+begin_src emacs-lisp
+
+  [[:space:]]
+
+#+end_src
+
+will succeed in finding a single whitespace character, this
+
+#+begin_src emacs-lisp
+
+  [[:space:]]*
+
+#+end_src
+
+will succeed in finding zero-or-more single whitespace characters, etc.
 
 ** Examples
 *** End of sentence
@@ -8427,82 +8557,6 @@ Note: The construct ~\d~ for any digit is not supported, use ~[0-9]~ or ~[:digit
   +$
 
 #+end_src
-
-** Classes
-
-| /Character/    | /Class Description/                         |
-|--------------+-------------------------------------------|
-| /[:digit:]/    | a digit, same as [0-9]                    |
-| /[:alpha:]/    | a letter (an alphabetic character)        |
-| /[:alnum:]/    | a letter or a digit(an alphanumeric char) |
-| /[:upper:]/    | a letter in uppercase                     |
-| /[:lower:]/    | a letter in lowercase                     |
-| /[:graph:]/    | a visible character                       |
-| /[:print:]/    | a visible character plus the space char   |
-| /[:space:]/    | a whitespace char,typically [\t\r\n\v\f]  |
-| /[:blank:]/    | a space or tab character                  |
-| /[:xdigit:]/   | an hexadecimal digit                      |
-| /[:cntrl:]/    | a control character                       |
-| /[:ascii:]/    | an ascii character                        |
-| /[:nonascii:]/ | any non ascii character                   |
-
-*Syntax Class Usage*:
-One must remember that *syntax classes must be used within square brackets*, as one would in specifying any other sequence to match or reject: e.g. ~[[:upper:]\|[:digit:]\.]~. This is easy to overlook when using square-bracket-delimited syntax classes, since they include their own square brackets! E.g., if searching for a single whitespace character in a regexp, this
-
-#+begin_src emacs-lisp
-
-  [:space:]
-
-#+end_src
-
-will *fail*. Just remember to add a 2nd/outer pair of square brackets: e.g., this
-
-#+begin_src emacs-lisp
-
-  [[:space:]]
-
-#+end_src
-
-will succeed in finding a single whitespace character, this
-
-#+begin_src emacs-lisp
-
-  [[:space:]]*
-
-#+end_src
-
-will succeed in finding zero-or-more single whitespace characters, etc.
-
-** Table
-
-| /Character/   | /Description/                                       |
-|-------------+---------------------------------------------------|
-| /./           | any char (but newline)                            |
-| /*/           | previous char or group, repeated 0 or more time   |
-| /+/           | previous char or group, repeated 1 or more time   |
-| /?/           | previous char or group, repeated 0 or 1 time      |
-| /^/           | start of line                                     |
-| /$/           | end of line                                       |
-| /[...]/       | any char between brackets                         |
-| /[^..]/       | any char not in the brackets                      |
-| /[a-z]/       | any char between a and z                          |
-| /\/           | prevents interpretation of following special char |
-| /\¦/          | or                                                |
-| /\w/          | word constituent                                  |
-| /\b/          | word boundary                                     |
-| /\sc/         | char with c syntax (e.g. \s- for whitespace char) |
-| /\( \)/       | start/end of group                                |
-| /\&lt; \&gt;/ | start/end of word (faulty rendering*)             |
-| /\_< \_>/     | start/end of symbol                               |
-| /\` \'/       | start/end of buffer/string                        |
-| /\1/          | string matched by the first group                 |
-| /\n/          | string matched by the nth group                   |
-| /\{3\}/       | previous char or group, repeated 3 times          |
-| /\{3,\}/      | previous char or group, repeated 3 or more times  |
-| /\{3,6\}/     | previous char or group, repeated 3 to 6 times     |
-| /\=/          | match succeeds if it is located at point          |
-
-/*/  faulty rendering: backslash + less-than and backslash + greater-than
 
 ** Commands descriptions
 
@@ -8698,8 +8752,45 @@ Backward slash ( ~\~ ) + whitespace (    )
 #+end_src
 
 ** Notes
-*** Backslash escaping
-For backslash escaping (magic vs literal), Emacs uses a mixture of BRE and ERE. Like in ERE, Emacs supports unescaped ~+~ , ~?~ . Like in BRE, Emacs supports escaped ~\(~ , ~\)~ , ~\|~ , ~\{~ , ~\}~ .
+*** BREs vs EREs
+Emacs regular expressions have a syntax closer to EREs than to BREs, with some extensions.
+
+With BRE, the following metacharacters are recognized, all other characters are considered literals:
+~^ $ . [ ] *~
+
+With ERE, the following metacharacters (and their associated functions) are added:
+~( ) { } ? + |~
+
+However, the ~(~ , ~)~ , ~{~ , and ~}~ characters are treated as metacharacters in BRE if they are escaped with a backslash, whereas with ERE, preceding any metacharacter with a backslash causes it to be treated as a literal.
+
+Here is a summary of how POSIX BREs and EREs differ from Emacs regular expressions:
+
+- In POSIX BREs ~+~ and ~?~ are not special. The only backslash escape sequences are ~\(…\)~, ~\{…\}~, ~\1~ through ~\9~, along with the escaped special characters ~\$~, ~\*~, ~\.~, ~\[~, ~\\~, and ~\^~. Therefore ~\(?:~ acts like ~\([?]:~. POSIX does not define how other BRE escapes behave; for example, GNU grep treats ~\|~ like Emacs does, but does not support all the Emacs escapes.
+
+- In POSIX BREs, it is an implementation option whether ~^~ is special after ~\(~; GNU grep treats it like Emacs does. In POSIX EREs, ~^~ is always special outside of bracket expressions, which means the ERE ~x^~ never matches. In Emacs regular expressions, ~^~ is special only at the beginning of the regular expression, or after ~\(~, ~\(?:~ or ~\|~.
+
+- In POSIX BREs, it is an implementation option whether ~$~ is special before ~\)~; GNU grep treats it like Emacs does. In POSIX EREs, ~$~ is always special outside of bracket expressions (see bracket expressions), which means the ERE ~$x~ never matches. In Emacs regular expressions, ~$~ is special only at the end of the regular expression, or before ~\)~ or ~\|~.
+
+- In POSIX EREs ~{~, ~(~ and ~|~ are special, and ~)~ is special when matched with a preceding ~(~. These special characters do not use preceding backslashes; ~(?~ produces undefined results. The only backslash escape sequences are the escaped special characters ~\$~, ~\(~, ~\)~, ~\*~, ~\+~, ~\.~, ~\?~, ~\[~, ~\\~, ~\^~, ~\{~ and ~\|~. POSIX does not define how other ERE escapes behave; for example, GNU ~grep -E~ treats ~\1~ like Emacs does, but does not support all the Emacs escapes.
+
+- In POSIX BREs and EREs, undefined results are produced by repetition operators at the start of a regular expression or subexpression (possibly preceded by ~^~), except that the repetition operator ~*~ has the same behavior in BREs as in Emacs. In Emacs, these operators are treated as ordinary.
+
+- In BREs and EREs, undefined results are produced by two repetition operators in sequence. In Emacs, these have well-defined behavior, e.g., ~a**~ is equivalent to ~a*~.
+
+- In BREs and EREs, undefined results are produced by empty regular expressions or subexpressions. In Emacs these have well-defined behavior, e.g., ~\(\)*~ matches the empty string,
+
+- In BREs and EREs, undefined results are produced for the named character classes ~[:ascii:]~, ~[:multibyte:]~, ~[:nonascii:]~, ~[:unibyte:]~, and ~[:word:]~.
+
+- BREs and EREs can contain collating symbols and equivalence class expressions within bracket expressions, e.g., ~[[.ch.]d[=a=]]~. Emacs regular expressions do not support this.
+
+- BREs, EREs, and the strings they match cannot contain encoding errors or NUL bytes. In Emacs these constructs simply match themselves.
+
+- BRE and ERE searching always finds the longest match. Emacs searching by default does not necessarily do so. See Longest-match searching for regular expression matches.
+
+*** Wikibooks notes
+Notes on regular expressions used in text editor Emacs:
+
+- For backslash escaping (magic vs literal), Emacs uses a mixture of BRE and ERE. Like in ERE, Emacs supports unescaped ~+~ , ~?~ . Like in BRE, Emacs supports escaped ~\(~ , ~\)~ , ~\|~ , ~\{~ , ~\}~ .
 - GNU extensions to regular expressions supported by Emacs include ~\w~ , ~\W~ , ~\b~ , ~\B~ , ~\<~ , ~\>~ , ~\`~  , ~\'~ (start and end of buffer)
 - No ~\s~ like in PCRE; whitespace is matched by ~\s-~ .
 - No ~\d~ like in PCRE; use ~[0-9]~ or ~[[:digit:]]~
@@ -8708,7 +8799,7 @@ For backslash escaping (magic vs literal), Emacs uses a mixture of BRE and ERE. 
 
 - Regexp commands use regex to search. So, if you simply want to search plain words or phrases, and if your phrase contains any of regex characters, you need to escape them. Here's some commonly used regex characters that you'll need to place a backslash before it: ~[ ] \ + * ?~ .
 
-*** Using lisp expressions ~\,~
+*** Using lisp expressions ( ~\,~ )
 *Xah*
 If you are doing a regex search, and you want to force the replacement to upper case or lower case, in the replace prompt, give ~\,(upcase \1)~ or ~\,(downcase \1)~.
 
@@ -8744,6 +8835,32 @@ To make your captured pattern upper case, give your replacement string this expr
 - whitespace ~[[:space:]]~
 
 *Warning*: the meaning of a character class in emacs is dependent on the current major mode's syntax table. For example, what chars are considered “word” in ~[[:word:]]~ depends on how its defined in syntax table of current major mode.
+
+*** Grouping subexpressions
+*Note*: in the grouping expressions with parentheses followed by a sing, something like ~(hoo+)+~ the outer loop matcher (the second ~+~) takes the *regular expression* inside the parentheses to do the search, *not the match*; e.g. in the string ~Boohoooohoohooo~ what it uses is ~hoo+~ (regexp), not ~hoooo~ (match). The last match is taken as a future reference (~$1~).
+
+#+begin_src javascript
+
+  let cartoonCrying  = /boo+(hoo+)+/i;
+  console.log(cartoonCrying.test("Boohoooohoohooo"));  // → true
+  // The first and second + characters apply only to the second 'o' in boo
+  // and hoo, respectively. The third + applies to the whole group (hoo+),
+  // matching one or more sequences like that.
+
+  console.log(cartoonCrying.exec("Boohoooohoohooo"))
+  console.log(cartoonCrying.exec("Boohoooohohooo"))
+  console.log(cartoonCrying.exec("Boohoooohoohooooooooooo"))
+  console.log(cartoonCrying.exec("Boo7hoooohoohooo"))
+
+  // [ 'Boohoooohoohooo'        , 'hooo'         ]
+  // [ 'Boohoooo'               , 'hoooo'        ]
+  // [ 'Boohoooohoohooooooooooo', 'hooooooooooo' ]
+  // null
+
+  console.log(/boo+(hoo)+/i.exec("Boohoooohoohooo"));
+  // [ 'Boohoo'                 , 'hoo'          ]
+
+#+end_src
 
 * Emacs
 ** Loading
@@ -10768,6 +10885,25 @@ By default they are ~digit-argument~. Such is not very frequently used. If you n
 
 ***** Number Pad Keys
 Very useful, but depending on which emacs distro/OS you are using, or if you use emacs in terminal or GUI, binding these keys may not work.
+
+*** Keybinding system documentation
+System design conventions (RF):
+
+- The most frequently used commands should *bind to the most easy-to-press keys*
+- Modifier keys must be changed to be used as leader keys (enable Sticky keys)
+- The primary modifier key is the =Meta= key (~M-~ ) (the physical =Meta= key should be in the thumb position)
+- The =Meta= modifier key will contain the most useful global commands (e.g. move characters and lines, delete characters and word, switch and removes windows, replace strings, selections commands, ...)
+- Commands are usually grouped (e.g. inverted T on the right home row: move characters; left hand: kill commands, right set of number (6,7,8,9); selection commands, ...)
+- The right hand has groups of movements (e.g. move characters, lines, scroll, ...) while the left hand has kill and delete commands (delete characters, kill words or text, ...)
+- The combination =Meta= + =Shift= (~M-S-~ ) or =Control= + =Shift= (~C-S-~ ) contains the other commands that don't fit on =Meta= (~M-~) or =Control= (~C-~) key
+- The most important default emacs standars remain the same (e.g. global prefix ~C-x~, mode prefix ~C-c~, help map ~C-h~, cancel ~C-g~, ...)
+- The =Control= modifier key contains main default Emacs commands (e.g. prefix like ~ctl-x~, ~ctl-c~, help ~C-h~, cancel ~C-g~, universal argument ~C-u~, newline ~C-m~, ...), universal standar commands (e.g. cut ~C-x~, copy ~C-c~, paste ~C-v~, open ~C-o~, ...), and other common Emacs commands related to standar commands (e.g. switch buffers, search, ...), and the most common/useful ones that don't fit into the =Meta= modifier
+- The =Modifier= + =Shift= keys (~M-S-~ or ~C-S-~ ) usually include reverse commands (e.g. switch window right/left) less common commands (e.g. open file other window) ,  and commands that are related to another (e.g. switch/resize window)
+- Major modes are built with key sequences that begin with a leader key (=<f6>=, =<f7>=, =<f8>=, =<tab>=, =<insert>=, ...) usually the 20 most used command are configured
+- In general, in some minor modes and maps, commands that use the =Meta= modifier to move lines or other essential comamnds (e.g. ~M-n~ , ~M-p~ to move up/down in history) are exchanged for the =Control= + =Shift= modifier (e.g. ~C-S-n~, ~C-S-p~) since the =Meta= modifier is already used for basic movements
+- The ~ctl-c~ prefix can be used to set additional commands that don't fit in other maps, e.g. (~C-c g~ magit-dispatch, ~C-c f~ magit-file-dispatch)
+- The ~ctl-x~ map has some free keybindings, which can be remapped to any useful key (~C-x c~, ~C-x g~, ~C-x j~, and ~C-x w~), e.g. (~C-x g~ magit-status).
+- The =Meta= + =Control= + =Shift= key combinations are generally intended for use with keyboard macros so they don't interfere with other manual bindings.
 
 ** Packages
 *** Brief
@@ -12950,7 +13086,7 @@ As a shell:
 
 #+begin_src sh
 
-  #Doesn't this:
+  # Doesn't this:
   ls -d /tmp
   # look like this =:
   (ls "-d" "/tmp")
@@ -13709,23 +13845,6 @@ Here are 7 general emacs tips that's the most important in emacs productivity to
 - Remap Most Frequently Used Keys :: The cursor moving commands are statistically the most frequently used keys. You use them every few seconds.
 - Master Find Replace and Emacs Regex :: Searching text and find replace is the heart of text processing. I use it many times every hour.
 - Get A Good Keyboard :: You switch to different applications all day. Web browsers, emacs, terminal, Desktop, music player, image editor, etc. Their usage and interface changes, but there is one thing that does not change: Your keyboard.
-*** Keybinding system documentation
-System design conventions (RF):
-
-- The most frequently used commands should *bind to the most easy-to-press keys*
-- Modifier keys must be changed to be used as leader keys (enable Sticky keys)
-- The primary modifier key is the =Meta= key (~M-~ ) (the physical =Meta= key should be in the thumb position)
-- The =Meta= modifier key will contain the most useful global commands (e.g. move characters and lines, delete characters and word, switch and removes windows, replace strings, selections commands, ...)
-- Commands are usually grouped (e.g. inverted T on the right home row: move characters; left hand: kill commands, right set of number (6,7,8,9); selection commands, ...)
-- The right hand has groups of movements (e.g. move characters, lines, scroll, ...) while the left hand has kill and delete commands (delete characters, kill words or text, ...)
-- The combination =Meta= + =Shift= (~M-S-~ ) or =Control= + =Shift= (~C-S-~ ) contains the other commands that don't fit on =Meta= (~M-~) or =Control= (~C-~) key
-- The most important default emacs standars remain the same (e.g. global prefix ~C-x~, mode prefix ~C-c~, help map ~C-h~, cancel ~C-g~, ...)
-- The =Control= modifier key contains main default Emacs commands (e.g. prefix like ~ctl-x~, ~ctl-c~, help ~C-h~, cancel ~C-g~, universal argument ~C-u~, newline ~C-m~, ...), universal standar commands (e.g. cut ~C-x~, copy ~C-c~, paste ~C-v~, open ~C-o~, ...), and other common Emacs commands related to standar commands (e.g. switch buffers, search, ...), and the most common/useful ones that don't fit into the =Meta= modifier
-- The =Modifier= + =Shift= keys (~M-S-~ or ~C-S-~ ) usually include reverse commands (e.g. switch window right/left) less common commands (e.g. open file other window) ,  and commands that are related to another (e.g. switch/resize window)
-- Major modes are built with key sequences that begin with a leader key (=<f6>=, =<f7>=, =<f8>=, =<tab>=, =<insert>=, ...) usually the 20 most used command are configured
-- In general, in some minor modes and maps, commands that use the =Meta= modifier to move lines or other essential comamnds (e.g. ~M-n~ , ~M-p~ to move up/down in history) are exchanged for the =Control= + =Shift= modifier (e.g. ~C-S-n~, ~C-S-p~) since the =Meta= modifier is already used for basic movements
-- The ~ctl-c~ prefix can be used to set additional commands that don't fit in other maps, e.g. (~C-c g~ magit-dispatch, ~C-c f~ magit-file-dispatch)
-- The ~ctl-x~ map has some free keybindings, which can be remapped to any useful key (~C-x c~, ~C-x g~, ~C-x j~, and ~C-x w~), e.g. (~C-x g~ magit-status).
 
 * How to
 ** Configure the init file
@@ -14510,8 +14629,11 @@ Convenient way to repeat previous commands.
 
 #+begin_src emacs-lisp
 
-  ;; Stops the modal repeating of keys in sequence.
-  ;; (setq repeat-exit-key "SPC")
+  (defvar-keymap line-paragraph-movement-repeat-map
+    :doc "Keymap for repeating line and paragraph movement."
+    :repeat t
+    "d" #'xah-beginning-of-line-or-block
+    "b" #'xah-end-of-line-or-block)
 
 #+end_src
 
@@ -16967,7 +17089,7 @@ The format should be like this
   <html>
     <head>
       <title>Something</title>
-      <link rel="stylesheet" href="./syle.css">
+      <link rel="stylesheet" href="./style.css">
     </head>
     <body>
       <h1>Here</h1>

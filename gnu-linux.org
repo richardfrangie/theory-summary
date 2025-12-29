@@ -272,55 +272,41 @@ Backports cannot be tested as extensively as Debian stable, and are thus support
 
 The coinstallability of all available backports is not tested, and it is strongly recommended to opt-into the use of specific backported packages on an as-needed basis.
 
-***** Adding the repository
-As root, or using sudo, open your ~sources.list~ file (Nano is the recommended editor for new users):
+***** Add Backports to sources.list
+
+1. Add a new file ~/etc/apt/sources.list.d/debian-backports.sources~:
 
 #+begin_src sh
 
-  sudo apt edit-sources
+  Types: deb deb-src
+  URIs: http://deb.debian.org/debian
+  Suites: trixie-backports
+  Components: main
+  Enabled: yes
+  Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 
 #+end_src
 
-Append the following line to the bottom of the file:
+2. Run  ~apt update~ or ~apt-get update~
+
+***** Installing a Package from Backports
+All backports are deactivated by default so that the normal operation of a stable installation will not be compromised with potentially disruptive changes (such as incompatible configuration schema). Release files make this possible, and all backported packages are pinned to priority 100 via ~ButAutomaticUpgrades: yes~. To install something from backports run one of:
 
 #+begin_src sh
 
-  deb http://deb.debian.org/debian bookworm-backports main
+  apt install <package>/trixie-backports
+  apt-get install <package>/trixie-backports
 
 #+end_src
 
-Run ~apt update~.
-
-***** Installing backports on the command line
-The backports repository is low-priority by default. So, if you want to install a backported package, you will have to state that explicitly.
-
-For example:
+or, if you also want missing dependencies to be installed from trixie-backports too
 
 #+begin_src sh
 
-  sudo apt install cockpit/bookworm-backports
+  apt install -t trixie-backports <package>
+  apt-get install -t trixie-backports <package>
 
 #+end_src
-
-This will attempt to install Cockpit from bookworm-backports, preferring dependencies from stable. Sometimes backports depend on other backports, and it is necessary to specify these dependencies as well.
-
-(Dependency is just a stand in for a theoretical backport dependency)
-
-#+begin_src sh
-
-  sudo apt install cockpit/bookworm-backports dependency/bookworm-backports
-
-#+end_src
-
-Another option is to use the ~-t~ target release flag, but this can sometimes lead to unnecessarily downloading dependencies from backports.
-
-#+begin_src sh
-
-  sudo apt -t bookworm-backports install cockpit
-
-#+end_src
-
-The ~-t~ option here specifies ~bookworm-backports~ as the target release. This would install a newer version of Cockpit and all its reverse dependencies from bookworm-backports instead of the older one from Debian stable release.
 
 *** Setting up your system to use e-mail
 **** Brief

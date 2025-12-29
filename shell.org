@@ -1396,18 +1396,21 @@ Search the /name/ package.
 Initialize a project in npm non-iteratively.
 [ /-y/ non-iteratively ]
 
+*** npm install
+If a project has a package.json file, it will install everything the project needs, in the node_modules folder, creating it if it's not existing already.
+
 *** npm install name
 Add the /name/ dependency to your *project* (inside node_module).
 Install the package (will use ^ . . . only allow minor version upgrades and patches) and all its dependencies in the node_modules/ folder, while updating the package.json file by adding the package and its version as a dependency of the project.
-[ /-g/ global, without associating it with the project /-D/ or /--save-dev/ as a development dependency (devDependences) /-P/ or /--save-prod/ as a production dependecy (default) (dependences) /install/ or /i/ or /add/ install ]
+[ /-g/ global, without associating it with the project /-D/ or /--save-dev/ installs and adds the entry to the package.json file devDependencies /--no-save/ installs but does not add the entry to the package.json file dependencies /-save-optional/ installs and adds the entry to the package.json file optionalDependencies /--no-optional/ will prevent optional dependencies from being installed /-P/ or /--save-prod/ as a production dependecy (default) (dependences) /install/ or /i/ or /add/ install ]
 ( ~npm i name~ equivalent command )
-( ~npm install~ install all the dependencies in your project )
-( ~npm install lit-element@2.3.1~ install lit-element version 2.3.1 (won't allow upgrades to other versions) )
-( ~npm install -D @vue/cli@4.4.6~ install @vue/cli version 4.4.6 )
+( ~npm install name@version~ install a specific version of a package (won't allow upgrades to other versions) )
 ( ~npm install --save-prod name~ switch installed package from development to production )
 
-*** npm outdated
-Integrated unit update system.
+*** npm update
+Update. npm will check all packages for a newer version that satisfies your versioning constraints.
+( ~npm update name~ specify a single package to update )
+( ~npm outdated~ integrated unit update system )
 ( ~npm dedupe~ check packages and unify dependencies )
 ( ~npm-check~ display a report of outdated, incorrect, and unused dependencies )
 ( ~npm list name~ list package dependecies )
@@ -1422,8 +1425,8 @@ Uninstall package.
 *** npm test
 Run this project's tests.
 
-*** npm run name
-Run the script named /name/.
+*** npm run task
+The package.json file supports a format for specifying command line tasks that can be run by using this command.
 ( ~npm run~ shows available tasks )
 ( ~cat package.json | jq .scripts~ shows the scripts of package.json )
 ( ~npm run start~ usually used for project startup tasks )
@@ -1454,7 +1457,7 @@ Access the documentation homepage of the /name/ package.
 ( ~npm bugs name~ equivalent to the above command )
 
 *** npx
-Run CLI packages installed at project level (or uninstalled).
+Executes packages without installing them.
 npx check if the package is installed in node_modules/.bin. If it is, run it. If it is not, it will look for it in the system (globally installed). If it is, it runs it. If it is not found, it will install it temporarily and run it.
 ( ~npx ./node_modules/.bin/name~ equivalent command )
 ( ~cat package.json | jq .devDependencies,.dependencies~ show dependencies development and dependencies production )
@@ -1550,7 +1553,9 @@ Enter an interactive configuration session.
 (https://rclone.org/docs/)
 ( ~rclone config show~ print (decrypted) config file, or the config for a single remote )
 ( ~rclone config file~ show path of configuration file in use )
-( ~rclone listremotes~ lists all the available remotes from the config file )
+
+*** rclone listremotes
+Lists all the available remotes from the config file.
 
 *** rclone size remote:path/dir
 Return the total size and number of objects in remote:path.
@@ -1583,6 +1588,7 @@ Make the path if it doesn't already exist.
 
 *** rclone copy /local/dir remote:path/dir
 Copy files from source to dest, skipping already copied.
+[ /--dry-run/ do a trial run with no permanent changes ]
 ( ~rclone copy remote:file.ext /tmp/download~ the file (file.ext) on the remote  will be copy inside (/tmp/download) on the local )
 ( ~rclone move source:path dest:path [flags]~ move files from source to dest )
 
@@ -1825,17 +1831,17 @@ Commit the changes. Just changes to anything that was staged. Records a new perm
 ( ~git commit -a -m 'whatever'~ commit, automatically stage and message inline )
 ( ~git commit -a -S -m 'Signed commit'~ signing commits directly with GPG key )
 
+*** git push -u origin main
+Push /main/ to origin server /origin/. Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
+[ /-u/ configures the branches for easier pushing and pulling later ]
+( ~git push --force~ force push the amended commit to overwrite the previous one (if you've already pushed a commit to the remote repository and then realized it was a mistake, you can amend the commit and push the changes) )
+
 *** git remote add origin git@github.com:carlos/name.git
 Add a new remote Git repository as a shortname (link to a repository). Is a management tool for your record of remote repositories. It allows you to save long URLs as short handles.
 
 *** git branch -M main
 Create a new branch called /main/.
 [ /-M/ shortcut for -m -f allow renaming the branch even if the new branch name already exists ]
-
-*** git push -u origin main
-Push /main/ to origin server /origin/. Push any commits you’ve done back up to the server. Calculate what your local database has that the remote one does not, and then pushes the difference into the other repository.
-[ /-u/ configures the branches for easier pushing and pulling later ]
-( ~git push --force~ force push the amended commit to overwrite the previous one (if you've already pushed a commit to the remote repository and then realized it was a mistake, you can amend the commit and push the changes) )
 
 *** git pull
 Fetches data from the server you originally cloned from and automatically tries to merge it into the code you’re currently working on. (automatically sets up local master branch to track the remote master branch on the server you cloned from)
@@ -1978,7 +1984,7 @@ Discard changes in working directory of the file /file/. *Careful* any local cha
 
 *** git commit --amend
 Redo last commit (if commit and then realize forgot to stage the changes in a file wanted to add to this commit). This command takes staging area and uses it for the commit. (*Is used to modify the most recent commit. It combines changes in the staging environment with the latest commit, and creates a new commit. This new commit replaces the latest commit entirely*)
-[ /--no-edit/ will allow you to make the amendment to your commit without changing its commit message ]
+[ /--no-edit/ will allow you to make the amendment to your commit without changing its commit message /--all/ automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected ]
 ( ~git commit --amend -m "an updated commit message"~ adding the /-m/ option allows you to pass in a new message from the command line without being prompted to open an editor )
 ( ~git push --force~ force push the amended commit to overwrite the previous one (if you've already pushed a commit to the remote repository and then realized it was a mistake, you can amend the commit and push the changes) )
 
@@ -2948,27 +2954,41 @@ GNU version of grep also supports extended regular expressions when the ~-E~ opt
 
 *Nota*: La expresión regular de emacs es básicamente BRE, pero se ha ampliado para tratar ~+~ y ~?~ como metacaracteres así como en ERE. Por lo tanto, no hay necesidad de escaparlos con ~\~ en la expresión regular de emacs.
 
-| /BRE(emacs)/   | /ERE/     | /Description regex/                           |
-|--------------+---------+---------------------------------------------|
-| /\.[]^$*/      | /\.[]^$*/ | common metacharacters                       |
-| /\+\?\(\)\{\}/ |         | BRE only "\" escaped metacharacters         |
-|              | /+ ?(){}/ | ERE only non-"\" escaped metacharacters     |
-| /c/            | /c/       | match non-metacharacter "c"                 |
-| /\c/           | /\c/      | match a literal character "c" even if "c"   |
-|              |         | is metacharacter by itself                  |
-| /./            | /./       | match any character including newline       |
-| /'^/           | /'^/      | position at the beginning of a string       |
-| /'$/           | /'$/      | position at the end of a string             |
-| /\</           | /\</      | position at the beginning of a word         |
-| /\>/           | /\>/      | position at the end of a word               |
-| /[abc…]/       | /[abc…]/  | match any characters in "abc…"              |
-| /[^abc…]/      | /[^abc…]/ | match any characters except in "abc…"       |
-| /r*/           | /r*/      | match 0 or more regex identified by "r"     |
-| /r\+/          | /r+/      | match one or more regex identified by "r"   |
-| /r\?/          | /r?/      | match 0 or one regex identified by "r"      |
-| /r1\¦r2/       | /r1¦r2/   | match 1 of the regex identified by r1 or r2 |
-| /\(r1\¦r2\)/   | /(r1¦r2)/ | match 1 of the regex identified by r1 or r2 |
-|              |         | (¦=pipe) and treat it as a bracketed regex  |
+#+begin_src sh
+
+  # Plain grep uses BREs, and ‘grep -E’ uses EREs.
+
+  # With -E (Extended Regular Expressions)
+  ls | grep -E 'ja*'    # Same as BRE in this case
+  ls | grep -E 'ja+'    # + is a metacharacter in ERE (needs no escape)
+
+  # With BRE (Basic Regular Expressions):
+  ls | grep -G 'ja\*'   # Same as ERE in this case
+  ls | grep -G 'ja\+'   # + needs escape in BRE
+
+#+end_src
+
+| /BRE(emacs)/   | /ERE/     | /Description regex/                         |
+|--------------+---------+-------------------------------------------|
+| /\.[]^$*/      | /\.[]^$*/ | common metacharacters                     |
+| /\+\?\(\)\{\}/ |         | BRE only "\" escaped metacharacters       |
+|              | /+ ?(){}/ | ERE only non-"\" escaped metacharacters   |
+| /c/            | /c/       | match non-metacharacter "c"               |
+| /\c/           | /\c/      | match a literal character "c" even if "c" |
+|              |         | is metacharacter by itself                |
+| /./            | /./       | match any character including newline     |
+| /'^/           | /'^/      | position at the beginning of a string     |
+| /'$/           | /'$/      | position at the end of a string           |
+| /\</           | /\</      | position at the beginning of a word       |
+| /\>/           | /\>/      | position at the end of a word             |
+| /[abc…]/       | /[abc…]/  | match any characters in "abc…"            |
+| /[^abc…]/      | /[^abc…]/ | match any characters except in "abc…"     |
+| /r*/           | /r*/      | match 0 or more regex identified by "r"   |
+| /r\+/          | /r+/      | match one or more regex identified by "r" |
+| /r\?/          | /r?/      | match 0 or one regex identified by "r"    |
+| /r1\¦r2/       | /r1¦r2/   | match 1 of regex identified by r1 or r2   |
+| /\(r1\¦r2\)/   | /(r1¦r2)/ | match 1 of regex identified by r1 or r2   |
+|              |         | (¦=pipe) and treat it as a bracketed rege |
 
 *** Any Character  .
 It will match *any* character in that character position.
