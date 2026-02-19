@@ -44,6 +44,6 @@ A simple and basic summary of elementary mathematical concepts. One of the advan
 [[file:screenshots/math-file.png]]
 
 *** [[file:keyboard-cmd-layout.svg][Keyboard Bindings]]
-SVG file created in Inkscape showing all the shortcuts. You can play around with the layers to enable or disable command sets (e.g. standard, emacs, system, ...) or keyboard layouts (e.g qwerty, dvorak, ...).
+SVG file created in Inkscape showing all system keyboard shortcuts. You can play around with Inkscape to create or remove commands or with layers to show or hide commands (e.g. standard, emacs, system, ...) and keyboard layouts (e.g qwerty, dvorak, ...).
 
 [[file:screenshots/keyboard-layout-cmds.png]]

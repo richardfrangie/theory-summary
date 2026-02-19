@@ -25,9 +25,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="0.78345643"
-     inkscape:cx="1096.4234"
-     inkscape:cy="623.51904"
+     inkscape:zoom="0.87317719"
+     inkscape:cx="1363.9843"
+     inkscape:cy="210.15208"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -681,7 +681,7 @@
        y="11.249995"
        ry="0"
        inkscape:label="gradient wallpaper samsung 1920x1080"
-       inkscape:export-filename="/home/rich/Pictures/layout-monitor-dec-18.png"
+       inkscape:export-filename="/home/rich/Pictures/layout-monitor-feb-19.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
   </g>
@@ -3840,9 +3840,10 @@
        inkscape:groupmode="layer"
        id="g10025"
        inkscape:label="Search (C-k )"
-       style="display:inline">
+       style="display:inline"
+       transform="translate(0,120.53881)">
       <rect
-         style="display:inline;opacity:1;fill:#eb19c9;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         style="display:inline;opacity:1;fill:#c355f5;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
          id="rect9955"
          width="15.796451"
          height="15.796461"
@@ -3862,200 +3863,248 @@
       <g
          id="g10021"
          inkscape:label="alphanumeric"
-         transform="translate(0,287.85309)"
-         style="display:inline;fill:#d613b7;fill-opacity:1">
+         transform="translate(0,284.40351)"
+         style="display:inline;fill:#c355f5;fill-opacity:1">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="39.311607"
            y="58.411575"
            id="text9963"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9961"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="39.311607"
              y="58.411575">register</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-           x="123.05036"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="136.99734"
            y="74.211411"
            id="text9967"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9965"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-             x="123.05036"
-             y="74.211411">find</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="136.99734"
+             y="74.211411">rf find</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.111087"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.111087"
            x="152.97447"
-           y="74.211411"
+           y="90.011131"
            id="text9975"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9973"
              x="152.97447"
-             y="74.211411"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.111087">locate</tspan></text>
+             y="90.011131"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.111087">locate</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="103.45539"
            y="74.211411"
            id="text9979"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9977"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="103.45539"
              y="74.211411">isearch h</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="37.123711"
-           y="90.011353"
+           y="105.81089"
            id="text9983"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9981"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="37.123711"
-             y="90.011353">focus lines</tspan></text>
+             y="105.81089">focus lines</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-           x="136.50529"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="39.693451"
            y="90.000351"
            id="text9991"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9989"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-             x="136.50529"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="39.693451"
              y="90.000351">ripgrep</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-           x="151.46712"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="23.109077"
            y="90.286736"
            id="text9999"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9997"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-             x="151.46712"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="23.109077"
              y="90.286736">git grep</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="105.08592"
            y="90.011131"
            id="text10003"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan10001"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="105.08592"
              y="90.011131">history</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="134.92801"
            y="105.81089"
            id="text10007"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan10005"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="134.92801"
              y="105.81089">com cmd</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="53.839985"
            y="74.174675"
            id="text10015"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan10013"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="53.839985"
              y="74.174675">yasnippet</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="53.264141"
-           y="90.011353"
+           y="105.81089"
            id="text10019"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan10017"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="53.264141"
-             y="90.011353">keep lines</tspan></text>
+             y="105.81089">keep lines</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="39.557957"
            y="74.174675"
            id="text13190"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan13188"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="39.557957"
              y="74.174675">kmacro</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
            x="119.7308"
            y="105.81089"
            id="text13194"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan13192"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
              x="119.7308"
              y="105.81089">minor m</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-           x="122.48991"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="57.207283"
            y="90.000351"
            id="text13480"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan13478"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-             x="122.48991"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="57.207283"
              y="90.000351">grep</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-           x="139.9619"
-           y="74.211411"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="124.30059"
+           y="90.011131"
            id="text70518"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan70516"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-             x="139.9619"
-             y="74.211411">fd</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="124.30059"
+             y="90.011131">fd</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-           x="-18.341646"
-           y="98.838745"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="-18.149517"
+           y="105.77415"
            id="text4"
            transform="scale(0.99997181,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan4"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#eb19c9;fill-opacity:1;stroke-width:0.264583"
-             x="-18.341646"
-             y="98.838745">^srch map C-k</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="-18.149517"
+             y="105.77415">+srch map C-k</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="73.188019"
+           y="90.000351"
+           id="text70508"
+           transform="scale(0.99997181,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan70506"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="73.188019"
+             y="90.000351">man</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="73.50827"
+           y="74.174675"
+           id="text70514"
+           transform="scale(0.99997181,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan70512"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="73.50827"
+             y="74.174675">info</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="138.87885"
+           y="90.011131"
+           id="text2"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan2"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="138.87885"
+             y="90.011131">find</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+           x="122.41909"
+           y="74.211411"
+           id="text28"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan28"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c355f5;fill-opacity:1;stroke-width:0.264583"
+             x="122.41909"
+             y="74.211411">rf fd</tspan></text>
       </g>
       <g
          id="g10023"
@@ -4067,7 +4116,8 @@
        inkscape:groupmode="layer"
        id="g5867"
        inkscape:label="Goto (C-p )"
-       style="display:inline">
+       style="display:inline"
+       transform="translate(0,120.53881)">
       <rect
          style="display:inline;opacity:1;fill:#00b562;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
          id="rect5753"
@@ -4089,7 +4139,7 @@
       <g
          id="g5853"
          inkscape:label="alphanumeric"
-         transform="translate(0,284.3668)"
+         transform="translate(0,280.91748)"
          style="display:inline;fill:#00b562;fill-opacity:1">
         <text
            xml:space="preserve"
@@ -4142,15 +4192,15 @@
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-           x="39.091648"
-           y="90.045006"
+           x="54.891426"
+           y="74.211632"
            id="text5817"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan5815"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-             x="39.091648"
-             y="90.045006">flycheck</tspan></text>
+             x="54.891426"
+             y="74.211632">flycheck</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
@@ -4215,26 +4265,26 @@
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
            x="21.940006"
-           y="90.011131"
+           y="74.211632"
            id="text9891"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9889"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
              x="21.940006"
-             y="90.011131">compile e</tspan></text>
+             y="74.211632">compile e</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-           x="55.157795"
-           y="90.045006"
+           x="39.358017"
+           y="74.211632"
            id="text9899"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan9897"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-             x="55.157795"
-             y="90.045006">flymake</tspan></text>
+             x="39.358017"
+             y="74.211632">flymake</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
@@ -4249,40 +4299,16 @@
              y="74.211632">goto</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-           x="57.379562"
-           y="74.174438"
-           id="text70508"
-           transform="scale(0.9999718,1.0000282)"><tspan
-             sodipodi:role="line"
-             id="tspan70506"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-             x="57.379562"
-             y="74.174438">man</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-           x="41.90004"
-           y="74.174438"
-           id="text70514"
-           transform="scale(0.9999718,1.0000282)"><tspan
-             sodipodi:role="line"
-             id="tspan70512"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.264583"
-             x="41.90004"
-             y="74.174438">info</tspan></text>
-        <text
-           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#00b562;fill-opacity:1;stroke-width:0.257984"
-           x="-18.338497"
-           y="99.232925"
+           x="-18.221909"
+           y="105.77392"
            id="text5"
            transform="scale(0.99997181,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan5"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00b562;fill-opacity:1;stroke-width:0.257984"
-             x="-18.338497"
-             y="99.232925">^goto map C-p</tspan></text>
+             x="-18.221909"
+             y="105.77392">+goto map C-p</tspan></text>
       </g>
       <g
          id="g5865"
@@ -4308,7 +4334,7 @@
          id="g45034"
          inkscape:label="keypad"
          style="display:inline;fill:#ffc622;fill-opacity:1"
-         transform="translate(0.02997,281.41765)">
+         transform="translate(0.02997,284.90393)">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
@@ -4348,197 +4374,197 @@
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
            x="39.697021"
-           y="74.211411"
+           y="77.660637"
            id="text34508"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34506"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
              x="39.697021"
-             y="74.211411">narrow</tspan></text>
+             y="77.660637">narrow</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-           x="119.96047"
-           y="74.211411"
+           x="119.38227"
+           y="77.660637"
            id="text34524"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34522"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-             x="119.96047"
-             y="74.211411">up head</tspan></text>
+             x="119.38227"
+             y="77.660637">↑↑head</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.06579px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.257242"
-           x="149.65179"
-           y="74.212433"
+           x="151.07338"
+           y="77.661659"
            id="text34528"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34526"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.06579px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.257242"
-             x="149.65179"
-             y="74.212433">down head</tspan></text>
+             x="151.07338"
+             y="77.661659">↓↓head</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.111087"
-           x="137.108"
-           y="74.211411"
+           x="136.46422"
+           y="77.660637"
            id="text34532"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34530"
-             x="137.108"
-             y="74.211411"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.111087">head↑</tspan></text>
+             x="136.46422"
+             y="77.660637"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.111087">↑head</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-           x="106.11707"
-           y="105.81089"
+           x="106.05253"
+           y="109.26012"
            id="text34544"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34542"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-             x="106.11707"
-             y="105.81089">→link</tspan></text>
+             x="106.05253"
+             y="109.26012">→link</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
            x="54.674381"
-           y="105.81089"
+           y="109.26012"
            id="text34556"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34554"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
              x="54.674381"
-             y="105.81089">cut tree</tspan></text>
+             y="109.26012">cut tree</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.264583"
            x="150.29195"
-           y="58.411583"
+           y="61.860809"
            id="text34580"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34578"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.264583"
              x="150.29195"
-             y="58.411583">emp italic</tspan></text>
+             y="61.860809">emp italic</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.264583"
            x="166.4498"
-           y="58.411583"
+           y="61.860809"
            id="text34584"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34582"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.264583"
              x="166.4498"
-             y="58.411583">emp verb</tspan></text>
+             y="61.860809">emp verb</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.111087"
            x="119.16709"
-           y="58.411583"
+           y="61.860809"
            id="text34588"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34586"
              x="119.16709"
-             y="58.411583"
+             y="61.860809"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.111087">emp code</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.03644px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.25478"
            x="135.29823"
-           y="58.411583"
+           y="61.860809"
            id="text34592"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34590"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.03644px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#d19b00;fill-opacity:1;stroke-width:0.25478"
              x="135.29823"
-             y="58.411583">emp bold</tspan></text>
+             y="61.860809">emp bold</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-           x="106.18327"
-           y="90.011131"
+           x="106.0125"
+           y="93.460358"
            id="text34604"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34602"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-             x="106.18327"
-             y="90.011131">link←</tspan></text>
+             x="106.0125"
+             y="93.460358">link←</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
            x="38.3344"
-           y="90.011131"
+           y="93.460358"
            id="text34608"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34606"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
              x="38.3344"
-             y="90.011131">table cre</tspan></text>
+             y="93.460358">table cre</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
            x="54.064667"
-           y="90.011131"
+           y="93.460358"
            id="text34616"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34614"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
              x="54.064667"
-             y="90.011131">ins temp</tspan></text>
+             y="93.460358">ins temp</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-           x="137.108"
-           y="90.000351"
+           x="136.46422"
+           y="93.449577"
            id="text34628"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34626"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-             x="137.108"
-             y="90.000351">head↓</tspan></text>
+             x="136.46422"
+             y="93.449577">↓head</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-           x="121.10138"
-           y="90.286736"
+           x="120.93119"
+           y="93.735962"
            id="text34632"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34630"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-             x="121.10138"
-             y="90.286736">←head</tspan></text>
+             x="120.93119"
+             y="93.735962">head←</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-           x="152.50909"
-           y="90.286736"
+           x="152.42624"
+           y="93.735962"
            id="text34636"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan34634"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
-             x="152.50909"
-             y="90.286736">head→</tspan></text>
+             x="152.42624"
+             y="93.735962">→head</tspan></text>
         <g
            id="g34646"
-           transform="translate(-0.56753642)"
+           transform="translate(-0.56753642,3.4493217)"
            style="fill:#ffc622;fill-opacity:1">
           <text
              xml:space="preserve"
@@ -4557,29 +4583,29 @@
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
            x="23.686623"
-           y="74.211411"
+           y="77.660637"
            id="text45152"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan45150"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
              x="23.686623"
-             y="74.211411">ins link</tspan></text>
+             y="77.660637">ins link</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
            x="6.3248439"
-           y="74.211411"
+           y="77.660637"
            id="text45156"
            transform="scale(0.9999718,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan45154"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.264583"
              x="6.3248439"
-             y="74.211411">store link</tspan></text>
+             y="77.660637">store link</tspan></text>
         <g
            id="g85961"
-           transform="translate(-85.293671)"
+           transform="translate(-85.293671,3.4493217)"
            style="fill:#ffc622;fill-opacity:1">
           <text
              xml:space="preserve"
@@ -4597,15 +4623,429 @@
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffc622;fill-opacity:1;stroke-width:0.257984"
-           x="-18.338497"
-           y="99.232925"
+           x="-16.102495"
+           y="109.29683"
            id="text8"
-           transform="matrix(0.99997181,0,0,1.0000282,0,3.4860598)"><tspan
+           transform="scale(0.99997181,1.0000282)"><tspan
              sodipodi:role="line"
              id="tspan8"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffc622;fill-opacity:1;stroke-width:0.257984"
-             x="-18.338497"
-             y="99.232925">^leader f6</tspan></text>
+             x="-16.102495"
+             y="109.29683">+org map f6</tspan></text>
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g63"
+       inkscape:label="Prog (&lt;f6&gt;- )"
+       style="display:inline;fill:#ff3333;fill-opacity:1">
+      <rect
+         style="display:inline;opacity:1;fill:#ff3333;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect40"
+         width="15.796451"
+         height="15.796461"
+         x="-54.078114"
+         y="395.74509"
+         ry="2.9513702" />
+      <g
+         id="g42"
+         transform="translate(0.02997,281.41764)"
+         style="fill:#ff3333;fill-opacity:1"
+         inkscape:label="clusters" />
+      <g
+         id="g62"
+         inkscape:label="alphanumeric"
+         transform="translate(0,280.88074)"
+         style="display:inline;fill:#ff3333;fill-opacity:1">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="118.19511"
+           y="74.211411"
+           id="text43"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan43"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="118.19511"
+             y="74.211411">↑navigate</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.06579px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.257242"
+           x="149.92963"
+           y="74.212433"
+           id="text44"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan44"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.06579px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.257242"
+             x="149.92963"
+             y="74.212433">↓navigate</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.111087"
+           x="133.37079"
+           y="74.211411"
+           id="text45"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan45"
+             x="133.37079"
+             y="74.211411"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.111087">↑sequence</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="104.63479"
+           y="105.81089"
+           id="text46"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan46"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="104.63479"
+             y="105.81089">→defun</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="53.995461"
+           y="105.81089"
+           id="text47"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan47"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="53.995461"
+             y="105.81089">kill dwim</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.111087"
+           x="119.08967"
+           y="58.411587"
+           id="text50"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan50"
+             x="119.08967"
+             y="58.411587"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.111087">mark def</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.03644px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.25478"
+           x="133.71593"
+           y="58.411583"
+           id="text51"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan51"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.03644px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.25478"
+             x="133.71593"
+             y="58.411583">mark dwim</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="104.64865"
+           y="90.011131"
+           id="text52"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan52"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="104.64865"
+             y="90.011131">defun←</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="133.37079"
+           y="90.000351"
+           id="text55"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan55"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="133.37079"
+             y="90.000351">↓sequence</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="119.82025"
+           y="90.286736"
+           id="text56"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan56"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="119.82025"
+             y="90.286736">logical←</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="151.35718"
+           y="90.286736"
+           id="text57"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan57"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="151.35718"
+             y="90.286736">→logical</tspan></text>
+        <g
+           id="g58"
+           transform="translate(-3.0834266)"
+           style="fill:#ff3333;fill-opacity:1">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="122.16779"
+             y="105.81089"
+             id="text58"
+             transform="scale(0.9999718,1.0000282)"><tspan
+               sodipodi:role="line"
+               id="tspan58"
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+               x="122.16779"
+               y="105.81089">siblings←</tspan></text>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="5.6177859"
+           y="74.211411"
+           id="text59"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan59"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="5.6177859"
+             y="74.211411">trans sexp</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff3333;fill-opacity:1;stroke-width:0.257984"
+           x="-16.915548"
+           y="105.81065"
+           id="text62"
+           transform="scale(0.99997181,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan62"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.257984"
+             x="-16.915548"
+             y="105.81065">+prog map f6</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="134.79886"
+           y="105.81089"
+           id="text83"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan83"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="134.79886"
+             y="105.81089">→siblings</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="200.89539"
+           y="90.286736"
+           id="text84"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan84"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="200.89539"
+             y="90.286736">clone dwim</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+           x="136.60568"
+           y="96.972481"
+           id="text87"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan87"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+             x="136.60568"
+             y="96.972481">↓drag</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="21.922318"
+           y="74.211411"
+           id="text90"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan90"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="21.922318"
+             y="74.211411">+envelope</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.111087"
+           x="136.60568"
+           y="81.18354"
+           id="text96"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan96"
+             x="136.60568"
+             y="81.18354"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.111087">↑drag</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.111087"
+           x="39.093834"
+           y="80.907944"
+           id="text109"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan109"
+             x="39.093834"
+             y="80.907944"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.111087">↑splice</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+           x="39.093834"
+           y="96.696884"
+           id="text110"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan110"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+             x="39.093834"
+             y="96.696884">↓splice</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+           x="23.566818"
+           y="96.983269"
+           id="text111"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan111"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+             x="23.566818"
+             y="96.983269">splice←</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+           x="55.110966"
+           y="96.983269"
+           id="text112"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan112"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.264583"
+             x="55.110966"
+             y="96.983269">→splice</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="40.052437"
+           y="90.011131"
+           id="text119"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan119"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="40.052437"
+             y="90.011131">+eglot</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="56.629051"
+           y="90.011131"
+           id="text120"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan120"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="56.629051"
+             y="90.011131">+xref</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="38.06316"
+           y="74.211411"
+           id="text121"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan121"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="38.06316"
+             y="74.211411">+flycheck</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="54.133217"
+           y="74.211411"
+           id="text122"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan122"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="54.133217"
+             y="74.211411">+flymake</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="71.519684"
+           y="90.011131"
+           id="text123"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan123"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="71.519684"
+             y="90.011131">+eldoc</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="152.76254"
+           y="105.81089"
+           id="text124"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan124"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="152.76254"
+             y="105.81089">+dape</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="23.626751"
+           y="90.011131"
+           id="text88"
+           transform="scale(0.99997181,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan88"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="23.626751"
+             y="90.011131">+cursor</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff6666;fill-opacity:1;stroke-width:0.257984"
+           x="-18.551943"
+           y="112.78302"
+           id="text125"
+           transform="scale(0.99997181,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan125"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6666;fill-opacity:1;stroke-width:0.257984"
+             x="-18.551943"
+             y="112.78302">+prog map f6-S</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+           x="165.49492"
+           y="105.81089"
+           id="text17"
+           transform="scale(0.9999718,1.0000282)"><tspan
+             sodipodi:role="line"
+             id="tspan17"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3333;fill-opacity:1;stroke-width:0.264583"
+             x="165.49492"
+             y="105.81089">combobula</tspan></text>
       </g>
     </g>
   </g>
@@ -4614,7 +5054,7 @@
      id="g282020"
      inkscape:label="Fun Keypad (S-&lt;f &gt; S-&lt;kp- &gt;)"
      style="display:inline"
-     transform="translate(0,2.2e-4)"
+     transform="translate(0,-120.5388)"
      sodipodi:insensitive="true">
     <rect
        style="display:inline;fill:#dacfe8;fill-opacity:1;stroke:none;stroke-width:0.529001;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
@@ -4875,6 +5315,24 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#b3b3b3;fill-opacity:1;stroke-width:0.264583"
            x="6.3726492"
            y="521.53564">show all</tspan></text>
+    </g>
+    <g
+       id="g20"
+       inkscape:label="functions"
+       style="display:inline;fill:#b3b3b3;fill-opacity:1"
+       transform="translate(-128.29375,120.53881)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#b3b3b3;fill-opacity:1;stroke-width:0.264583"
+         x="110.91376"
+         y="321.45782"
+         id="text20"
+         transform="scale(0.99997181,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan20"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#b3b3b3;fill-opacity:1;stroke-width:0.264583"
+           x="110.91376"
+           y="321.45782">kill buff</tspan></text>
     </g>
   </g>
   <g
@@ -5306,6 +5764,18 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#b3b3b3;fill-opacity:1;stroke-width:0.264583"
            x="6.3726492"
            y="521.53564">show ove</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#fcfcfc;fill-opacity:1;stroke-width:0.264583"
+         x="-7.0424762"
+         y="475.61963"
+         id="text23"
+         transform="scale(0.99997181,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan23"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fcfcfc;fill-opacity:1;stroke-width:0.264583"
+           x="-7.0424762"
+           y="475.61963">cmd</tspan></text>
     </g>
   </g>
   <g
@@ -5313,7 +5783,7 @@
      id="g88614"
      inkscape:label="Super (s-S- )"
      style="display:inline"
-     transform="translate(0,120.53908)"
+     transform="translate(0,3.0517578e-5)"
      sodipodi:insensitive="true">
     <rect
        style="display:inline;opacity:1;fill:#f7305d;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
@@ -5531,7 +6001,7 @@
      id="g110727"
      inkscape:label="Super (s- )"
      style="display:inline"
-     transform="translate(0,120.53884)"
+     transform="translate(0,3.0517578e-5)"
      sodipodi:insensitive="true">
     <rect
        style="display:inline;opacity:1;fill:#f7305d;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
@@ -5937,7 +6407,7 @@
      inkscape:groupmode="layer"
      id="g80920"
      inkscape:label="Control (C-S- ) "
-     transform="translate(0,1.5115578)"
+     transform="translate(0,-119.02725)"
      style="display:inline;fill:#ffc622;fill-opacity:1"
      sodipodi:insensitive="true">
     <rect
@@ -5956,27 +6426,27 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="273.29095"
+         x="271.98221"
          y="195.58011"
          id="text80792"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan80790"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="273.29095"
-           y="195.58011">→e buff</tspan></text>
+           x="271.98221"
+           y="195.58011">→u buffer</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="273.40799"
+         x="272.04688"
          y="179.78029"
          id="text80804"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan80802"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="273.40799"
-           y="179.78029">e buff←</tspan></text>
+           x="272.04688"
+           y="179.78029">u buffer←</tspan></text>
     </g>
     <g
        id="g80918"
@@ -6057,18 +6527,6 @@
            y="179.78026">shell cmd</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="6.8850188"
-         y="179.78004"
-         id="text32577"
-         transform="scale(0.9999718,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan32575"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="6.8850188"
-           y="179.78004">con load</tspan></text>
-      <text
-         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.14513px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.263899"
          x="107.66112"
          y="211.33905"
@@ -6094,15 +6552,15 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="21.438032"
+         x="21.344511"
          y="227.1796"
          id="text38624"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan38622"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="21.438032"
-           y="227.1796">^tran map</tspan></text>
+           x="21.344511"
+           y="227.1796">+tran map</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
@@ -6177,52 +6635,64 @@
            y="195.58008">con line m</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="141.00296"
-         y="243.00763"
-         id="text6399"
-         transform="scale(0.9999718,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan6397"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="141.00296"
-           y="243.00763">tempel com</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="-10.027326"
-         y="179.78004"
-         id="text115744"
-         transform="scale(0.99997181,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan115742"
-           style="fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="-10.027326"
-           y="179.78004">s win app</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="38.902267"
-         y="211.37987"
-         id="text2"
-         transform="scale(0.99997181,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan2"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="38.902267"
-           y="211.37987">eval reg</tspan></text>
-      <text
-         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
          x="38.642059"
-         y="227.1796"
+         y="211.37987"
          id="text32599"
          transform="scale(0.99997181,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan32597"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
            x="38.642059"
-           y="227.1796">eval exp</tspan></text>
+           y="211.37987">eval exp</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="135.88892"
+         y="227.1796"
+         id="text19"
+         transform="scale(0.9999718,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan19"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="135.88892"
+           y="227.1796">kill buff</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="141.37094"
+         y="243.00763"
+         id="text35427"
+         transform="matrix(0.99997181,0,0,1.0000282,0,1.1031843e-5)"><tspan
+           sodipodi:role="line"
+           id="tspan35425"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="141.37094"
+           y="243.00763">yas expand</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="134.9805"
+         y="179.78026"
+         id="text22"
+         transform="scale(0.9999718,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan22"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="134.9805"
+           y="179.78026">dired j o</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="6.3020215"
+         y="179.78004"
+         id="text28210"
+         transform="matrix(0.99997181,0,0,1.0000282,0,-1.2227117e-6)"><tspan
+           sodipodi:role="line"
+           id="tspan28208"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="6.3020215"
+           y="179.78004">con store</tspan></text>
     </g>
     <g
        id="g84532"
@@ -6574,6 +7044,18 @@
            y="227.17957">paste</tspan></text>
       <text
          xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="6.8850188"
+         y="179.78004"
+         id="text32577"
+         transform="matrix(0.99997181,0,0,1.0000282,0,-1.2227117e-6)"><tspan
+           sodipodi:role="line"
+           id="tspan32575"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="6.8850188"
+           y="179.78004">con load</tspan></text>
+      <text
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
          x="120.39338"
          y="227.17957"
@@ -6695,18 +7177,6 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="141.37094"
-         y="243.00763"
-         id="text35427"
-         transform="scale(0.9999718,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan35425"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="141.37094"
-           y="243.00763">yas expand</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
          x="111.47113"
          y="243.00763"
          id="text22641"
@@ -6767,27 +7237,27 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.257984"
-         x="52.809841"
+         x="52.718853"
          y="195.56543"
          id="text26727"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan26725"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.07462px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.257984"
-           x="52.809841"
-           y="195.56543">^goto map</tspan></text>
+           x="52.718853"
+           y="195.56543">+goto map</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="52.910179"
+         x="52.815922"
          y="227.17955"
          id="text26735"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan26733"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="52.910179"
-           y="227.17955">^srch map</tspan></text>
+           x="52.815922"
+           y="227.17955">+srch map</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
@@ -6848,18 +7318,6 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
            x="40.621147"
            y="179.78004">magit</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="6.3020215"
-         y="179.78004"
-         id="text28210"
-         transform="scale(0.9999718,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan28208"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="6.3020215"
-           y="179.78004">con store</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
@@ -6995,15 +7453,15 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-         x="38.611855"
+         x="39.999115"
          y="211.37982"
          id="text3"
          transform="scale(0.99997181,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan3"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
-           x="38.611855"
-           y="211.37982">eval last</tspan></text>
+           x="39.999115"
+           y="211.37982">rf eval</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
@@ -7016,6 +7474,31 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
            x="167.28323"
            y="195.58008">recenter</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="141.00296"
+         y="243.00763"
+         id="text6399"
+         transform="matrix(0.99997181,0,0,1.0000282,0,-9.5514898e-6)"
+         sodipodi:insensitive="true"><tspan
+           sodipodi:role="line"
+           id="tspan6397"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="141.00296"
+           y="243.00763">tempel com</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+         x="-11.324605"
+         y="195.58008"
+         id="text115744"
+         transform="scale(0.99997181,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan115742"
+           style="fill:#ff5722;fill-opacity:1;stroke-width:0.264583"
+           x="-11.324605"
+           y="195.58008">s win app</tspan></text>
     </g>
     <g
        id="g502009"
@@ -7146,6 +7629,18 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
            x="94.747047"
            y="321.45782">copy all</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.09757px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.259909"
+         x="58.972492"
+         y="321.45847"
+         id="text21"
+         transform="scale(0.99997181,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan21"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.09757px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.259909"
+           x="58.972492"
+           y="321.45847">save s buf</tspan></text>
     </g>
     <g
        id="g42586"
@@ -7197,14 +7692,14 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#009299;fill-opacity:1;stroke-width:0.264583"
-         x="21.809332"
+         x="69.473961"
          y="57.270176"
          id="text42658"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan42656"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#009299;fill-opacity:1;stroke-width:0.264583"
-           x="21.809332"
+           x="69.473961"
            y="57.270176">⌧ o win</tspan></text>
       <text
          xml:space="preserve"
@@ -7313,7 +7808,7 @@
            id="tspan37089"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
            x="137.17329"
-           y="73.07">drag↑</tspan></text>
+           y="73.07">↑drag</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
@@ -7325,7 +7820,7 @@
            id="tspan37093"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
            x="137.17329"
-           y="88.869728">drag↓</tspan></text>
+           y="88.869728">↓drag</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#b3b3b3;fill-opacity:1;stroke-width:0.264583"
@@ -7353,27 +7848,15 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-         x="150.18224"
-         y="104.67706"
-         id="text38610"
-         transform="scale(0.9999718,1.0000282)"><tspan
-           sodipodi:role="line"
-           id="tspan38608"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-           x="150.18224"
-           y="104.67706">chang bra</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-         x="37.617626"
+         x="37.51976"
          y="104.67706"
          id="text38614"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan38612"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-           x="37.617626"
-           y="104.67706">^win map</tspan></text>
+           x="37.51976"
+           y="104.67706">+win map</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
@@ -7401,27 +7884,27 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#009299;fill-opacity:1;stroke-width:0.264583"
-         x="71.434753"
+         x="24.520473"
          y="57.270164"
          id="text10572"
          transform="scale(0.99997181,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan10570"
            style="fill:#009299;fill-opacity:1;stroke-width:0.264583"
-           x="71.434753"
-           y="57.270164">split ─</tspan></text>
+           x="24.520473"
+           y="57.270164">split |</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-         x="21.577789"
+         x="21.350283"
          y="104.67706"
          id="text88999"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan88997"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-           x="21.577789"
-           y="104.67706">^rect map</tspan></text>
+           x="21.350283"
+           y="104.67706">+rect map</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
@@ -7434,6 +7917,42 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
            x="102.36242"
            y="73.07">xah search</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#009299;fill-opacity:1;stroke-width:0.264583"
+         x="106.33327"
+         y="57.270176"
+         id="text18"
+         transform="scale(0.9999718,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan18"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#009299;fill-opacity:1;stroke-width:0.264583"
+           x="106.33327"
+           y="57.270176">ispell</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+         x="121.15915"
+         y="88.869728"
+         id="text26"
+         transform="scale(0.9999718,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan26"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+           x="121.15915"
+           y="88.869728">drag←</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+         x="152.65492"
+         y="88.869728"
+         id="text27"
+         transform="scale(0.9999718,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan27"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+           x="152.65492"
+           y="88.869728">→drag</tspan></text>
     </g>
     <g
        id="g60709"
@@ -7573,7 +8092,7 @@
      id="layer22"
      inkscape:label="Meta (M- )"
      style="display:inline"
-     transform="translate(0,120.53881)"
+     transform="translate(0,1.2197266e-5)"
      sodipodi:insensitive="true">
     <rect
        style="display:inline;opacity:1;fill:#00adb5;fill-opacity:1;stroke:none;stroke-width:0.561131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
@@ -7647,7 +8166,7 @@
            id="tspan37111"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
            x="259.06332"
-           y="104.66951">drag↑</tspan></text>
+           y="104.66951">↑drag</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
@@ -7659,7 +8178,31 @@
            id="tspan37117"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
            x="259.06332"
-           y="120.4976">drag↓</tspan></text>
+           y="120.4976">↓drag</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+         x="243.10579"
+         y="121.10212"
+         id="text24"
+         transform="scale(0.99997181,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan24"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+           x="243.10579"
+           y="121.10212">drag←</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+         x="274.56976"
+         y="121.10212"
+         id="text25"
+         transform="scale(0.99997181,1.0000282)"><tspan
+           sodipodi:role="line"
+           id="tspan25"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
+           x="274.56976"
+           y="121.10212">→drag</tspan></text>
     </g>
     <g
        id="g508115"
@@ -7813,14 +8356,14 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#009299;fill-opacity:1;stroke-width:0.264583"
-         x="22.833084"
+         x="70.163528"
          y="58.411583"
          id="text10564"
          transform="scale(0.9999718,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan10562"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#009299;fill-opacity:1;stroke-width:0.264583"
-           x="22.833084"
+           x="70.163528"
            y="58.411583">⌧ wind</tspan></text>
       <text
          xml:space="preserve"
@@ -8152,15 +8695,15 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-         x="23.56563"
-         y="105.73416"
+         x="70.956711"
+         y="90.011131"
          id="text38606"
          transform="scale(0.99997181,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan38604"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.11197px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.261117"
-           x="23.56563"
-           y="105.73416">cua rec</tspan></text>
+           x="70.956711"
+           y="90.011131">cua rec</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.264583"
@@ -8176,27 +8719,27 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#009299;fill-opacity:1;stroke-width:0.264583"
-         x="71.971123"
+         x="23.948006"
          y="58.411572"
          id="text42666"
          transform="scale(0.99997181,1.0000282)"><tspan
-           sodipodi:role="line"
            id="tspan42664"
            style="fill:#009299;fill-opacity:1;stroke-width:0.264583"
-           x="71.971123"
-           y="58.411572">split |</tspan></text>
+           x="23.948006"
+           y="58.411572"
+           sodipodi:role="line">split ─</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.09652px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#00adb5;fill-opacity:1;stroke-width:0.259821"
-         x="68.55484"
-         y="90.011131"
+         x="21.035246"
+         y="105.81089"
          id="text7920"
          transform="scale(0.99997181,1.0000282)"><tspan
            sodipodi:role="line"
            id="tspan7918"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.09652px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00adb5;fill-opacity:1;stroke-width:0.259821"
-           x="68.55484"
-           y="90.011131">^cape map</tspan></text>
+           x="21.035246"
+           y="105.81089">+cape map</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.15328px;font-family:Padauk;-inkscape-font-specification:'Padauk, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#009299;fill-opacity:1;stroke-width:0.264583"
@@ -8766,7 +9309,7 @@
   </g>
   <g
      id="g41156"
-     inkscape:label="clones monitor samsung (scale 134.909)"
+     inkscape:label="clones monitor samsung (scale 134.909%)"
      style="display:inline"
      transform="matrix(1.3490985,0,0,1.3490985,-59.838256,-35.831639)"
      sodipodi:insensitive="true">
@@ -8897,7 +9440,7 @@
          xlink:href="#g88614"
          id="use103517"
          inkscape:label="Super (s-S- ) down"
-         transform="translate(0,-285.3739)"
+         transform="translate(0,-164.83485)"
          style="display:inline" />
       <use
          x="0"
@@ -8905,7 +9448,7 @@
          xlink:href="#g88614"
          id="use103519"
          inkscape:label="Super (s-S- ) up"
-         transform="translate(0,-391.96805)"
+         transform="translate(0,-271.429)"
          style="display:none" />
     </g>
     <g
@@ -8919,14 +9462,14 @@
          xlink:href="#g110727"
          id="use26781"
          inkscape:label="Super (s- ) down"
-         transform="translate(0,-285.37368)"
+         transform="translate(0,-164.83487)"
          style="display:none" />
       <use
          x="0"
          y="0"
          xlink:href="#g110727"
          id="use26783"
-         transform="translate(0,-391.96784)"
+         transform="translate(0,-271.42903)"
          inkscape:label="Super (s- ) up"
          style="display:inline" />
     </g>
@@ -8941,14 +9484,14 @@
          xlink:href="#g80920"
          id="use86787"
          inkscape:label="Control (C-S- ) down"
-         transform="translate(0,-285.37368)" />
+         transform="translate(0,-164.83487)" />
       <use
          x="0"
          y="0"
          xlink:href="#g80920"
          id="use86789"
          inkscape:label="Control (C-S- ) up"
-         transform="translate(0,-391.96784)"
+         transform="translate(0,-271.42903)"
          style="display:none" />
     </g>
     <g
@@ -9004,7 +9547,7 @@
          xlink:href="#layer22"
          id="use26789"
          inkscape:label="Meta (M- ) down"
-         transform="translate(0,-285.37368)"
+         transform="translate(0,-164.83488)"
          style="display:none" />
       <use
          x="0"
@@ -9012,7 +9555,7 @@
          xlink:href="#layer22"
          id="use26791"
          inkscape:label="Meta (M- ) up"
-         transform="translate(0,-391.96784)" />
+         transform="translate(0,-271.42904)" />
     </g>
     <g
        id="g297147"
@@ -9024,7 +9567,7 @@
          xlink:href="#g282020"
          id="use297141"
          inkscape:label="Fun Keypad (S-&lt;f &gt; S-&lt;kp- &gt;) down"
-         transform="translate(0,-285.37388)"
+         transform="translate(0,-164.83486)"
          style="display:inline" />
       <use
          x="0"
@@ -9032,7 +9575,7 @@
          xlink:href="#g282020"
          id="use297143"
          inkscape:label="Fun Keypad (S-&lt;f &gt; S-&lt;kp- &gt;) up"
-         transform="translate(0,-392.29462)"
+         transform="translate(0,-271.7556)"
          style="display:none" />
     </g>
     <g
@@ -9058,11 +9601,11 @@
   </g>
   <g
      id="g56527"
-     inkscape:label="clones monitor laptop (scale 134.909)"
+     inkscape:label="clones monitor laptop (scale 134.909%)"
      transform="translate(0,331.88094)"
      sodipodi:insensitive="true">
     <rect
-       style="display:inline;opacity:0.290294;fill:url(#linearGradient19994);fill-opacity:1;stroke-width:2.14495;paint-order:stroke fill markers"
+       style="display:inline;opacity:1;fill:url(#linearGradient19994);fill-opacity:1;stroke-width:2.14495;paint-order:stroke fill markers"
        id="rect19992"
        width="237.03108"
        height="188.02629"
@@ -9080,7 +9623,7 @@
        x="-90.268356"
        y="-558.44592"
        inkscape:label="background wallpaper laptop 1366x768"
-       inkscape:export-filename="/home/rich/Pictures/layout-laptop-nov-10.png"
+       inkscape:export-filename="/home/rich/Pictures/layout-laptop-feb-015.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <use
@@ -9136,7 +9679,7 @@
        id="use56516"
        style="display:inline"
        inkscape:label="Search (C-k )"
-       transform="matrix(1.34909,0,0,1.34909,-55.877823,-912.0893)" />
+       transform="matrix(1.34909,0,0,1.34909,-55.877823,-1074.707)" />
     <use
        x="0"
        y="0"
@@ -9144,11 +9687,36 @@
        id="use56513"
        style="display:inline"
        inkscape:label="Goto (C-p )"
-       transform="matrix(1.34909,0,0,1.34909,-55.877823,-912.08927)" />
+       transform="matrix(1.34909,0,0,1.34909,-55.877823,-1074.707)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g63"
+       id="use124"
+       inkscape:label="Prog (&lt;f6&gt;- )"
+       style="display:inline"
+       transform="matrix(1.34909,0,0,1.34909,-55.877823,-1005.0896)" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="main"
-     sodipodi:insensitive="true" />
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#225bff;fill-opacity:1;stroke-width:0.2;paint-order:stroke fill markers"
+       id="rect64"
+       width="14.740654"
+       height="13.358718"
+       x="-86.032417"
+       y="350.79974"
+       ry="2.2846682" />
+    <rect
+       style="fill:#c355f5;fill-opacity:1;stroke-width:0.2;paint-order:stroke fill markers"
+       id="rect69"
+       width="14.740654"
+       height="13.358718"
+       x="-85.365768"
+       y="329.5321"
+       ry="2.2846682" />
+  </g>
 </svg>

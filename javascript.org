@@ -2659,12 +2659,12 @@ Executes a loop that operates on a sequence of *values sourced* from an *iterabl
 
 #+begin_src javascript
 
-  for (let a of [1, 2, 3]) {
+  for (let a of [5, 10, 15]) {
       console.log(a);
   }
-  // 1, 2, 3
+  // 5, 10, 15
 
-  for (let a in [1, 2, 3]) {
+  for (let a in [5, 10, 15]) {
       console.log(a);
   }
   // 0, 1, 2
@@ -2698,16 +2698,16 @@ The ~for...in~ statement iterates over all *enumerable string properties* of an 
 
 #+end_src
 
-*Note*: ~for...in~ loops over the keys/indexes in an array, while [[for...of]] loops over the values of the array.
+*Note*: ~for...in~ loops over the keys/indexes in an iterable, while [[for...of]] loops over the values of the iterable.
 
 #+begin_src javascript
 
-  for (let a of [1, 2, 3]) {
+  for (let a of [5, 10, 15]) {
       console.log(a);
   }
-  // 1, 2, 3
+  // 5, 10, 15
 
-  for (let a in [1, 2, 3]) {
+  for (let a in [5, 10, 15]) {
       console.log(a);
   }
   // 0, 1, 2
