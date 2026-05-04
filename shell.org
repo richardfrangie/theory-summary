@@ -1737,6 +1737,21 @@ Convert an input media file to a different video encoder /libx264/, which is a H
 *** ffmpeg -txt_format text -i input.mp4 out.srt
 Read and/or extract subtitles from embedded subtitles tracks.
 
+** font-tools
+*** woff2_compress input-font.ttf
+Convert a TrueType font (.ttf) to WOFF2. Need to install the woff2 package.
+( ~libwoff1~ converting fonts to WOFF 2.0 )
+
+*** sfnt2woff-zopfli input-font.ttf
+Create WOFF files with Zopfli compression.
+( ~ttf2woff input-font.ttf output-font.woff~ convert a TrueType font (.ttf) to WOFF )
+
+*** fontforge
+For converting from ttf to svg.
+
+*** batik ttf2svf
+For converting from ttf to svg.
+
 ** docker
 *** docker build -t hlw_test .
 Build the image (reads the Dockerfile in the current directory and applies the identifier /hlw_test/ to the image).
@@ -3631,6 +3646,7 @@ It's especially important when you’re running [[shift]] in a loop to pick thro
 #+end_src
 
 *** $@, $*
+
 - $@ :: expands into the list of *all positional parameters*, starting with ~1~. When surrounded by double quotes, *it expands each positional parameter into a separate word* as if it was surrounded by double quotes.
 
 - $* :: expands into the list of all positional parameters, starting with ~1~. When surrounded by double quotes, *it expands into a double-quoted string* containing all of the positional parameters, each separated by the first character of the [[IFS]] shell variable (by default a space character).
@@ -4115,6 +4131,7 @@ Three *binary* operators (tests that need two files as arguments) are used in fi
 *Note*: If the ~test~ command is used on a symbolic link, it tests the actual object being linked to, not the link itself (except for the ~-h~ test). That is, if ~link~ is a symbolic link to a regular file, ~[ -f link ]~ returns an exit code of true ~0~.
 
 **** String Tests
+
 - The binary string operator ~=~ returns true if its operands are equal.
 - The ~!=~ operator that returns true if its operands are not equal.
 - ~-z~ Returns true if its argument is empty (length of string is zero).

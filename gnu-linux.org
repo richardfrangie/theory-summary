@@ -501,6 +501,7 @@ We can place the jobs that do not require interaction from the user as they run 
 #+end_src
 
 *** Common Signals
+
 - HUP Hangup (1) :: this is a vestige of the good old days when terminals were attached to remote computers with phone lines and modems. The signal is used to indicate to programs that the controlling terminal has “hung up.” The effect of this signal can be demonstrated by closing a terminal session. The foreground program running on the terminal will be sent the signal and will terminate. This signal is also used by many daemon programs to cause a reinitialization. This means that when a daemon is sent this signal, it will restart and reread its configuration file. The Apache web server is an example of a daemon that uses the ~HUP~ signal in this way.
 
 - INT Interrupt (2) :: this performs the same function as a ~Ctrl-c~ sent from the terminal. It will usually terminate a program.
@@ -1059,15 +1060,20 @@ GRUB stands for Grand Unified Boot Loader. One of GRUB’s most important capabi
 9. GRUB executes a boot command to load and execute the kernel as specified by the configuration’s linux command.
 
 *** Boot Loader Tasks
+
 - Select from multiple kernels.
 - Switch between sets of kernel parameters.
 - Allow the user to manually override and edit kernel image names and parameters (for example, to enter single-user mode).
 - Provide support for booting other operating systems.
 
 ** Managing tasks
+
 - Processes :: The kernel is responsible for determining which processes are allowed to use the CPU.
+
 - Memory :: The kernel needs to keep track of all memory—what is currently allocated to a particular process, what might be shared between processes, and what is free.
+
 - Device drivers :: The kernel acts as an interface between hardware and processes. It’s usually the kernel’s job to operate the hardware.
+
 - System calls and support Processes :: normally use system calls to communicate with the kernel.
 
 ** Process Management
@@ -1566,6 +1572,7 @@ Note the use of ~oneshot~ as the service type, indicating that the service is ex
 A device is typically accessible only in kernel mode because improper access could crash the machine. A notable difficulty is that different devices rarely have the same programming interface, even if the devices perform the same task.
 
 ** Device Files
+
 - block device :: programs access data from a block device in fixed chunks. Disks can be easily split up into blocks of data. Because a block device’s total size is fixed and easy to index, processes have quick random access to any block in the device with the help of the kernel.
 
 - character device :: character devices work with data streams. You can only read characters from or write characters to character devices. Character devices don’t have a size; when you read from or write to one, the kernel usually performs a read or write operation on it. Printers directly attached to your computer are represented by character devices.
@@ -2773,6 +2780,7 @@ Makefile dependencies
 
 *** macros, variables, targets
 **** macros
+
 - CFLAGS :: C compiler options. When creating object code from a ~.c~ file, ~make~ passes this as an argument to the compiler.
 - LDFLAGS :: like ~CFLAGS~, but these options are for the linker when creating an executable from object code.
 - LDLIBS :: if you use ~LDFLAGS~ but don’t want to combine the library name options with the search path, put the library name options in this file.
@@ -2781,11 +2789,13 @@ Makefile dependencies
 - CXXFLAGS :: GNU make uses this for C++ compiler flags.
 
 **** variables
+
 - $@ :: when inside a rule, this variable expands to the current target.
 - $< :: when inside a rule, this variable expands to the first dependency of the target.
 - $* :: this variable expands to the basename or stem of the current target. For example, if you’re building ~blah.o~, this expands to ~blah~.
 
 **** targets
+
 - clean :: the ~clean~ target is ubiquitous; a ~make clean~ usually instructs ~make~ to remove all of the object files and executables so that you can make a fresh start or pack up the software.
 - distclean :: a Makefile created by way of the GNU autotools system always has a ~distclean~ target to remove everything that wasn’t part of the original distribution, including the Makefile.
 - install :: this target copies files and compiled programs to what the Makefile thinks is the proper place on the system.
@@ -2963,6 +2973,7 @@ One of the most frequent reasons to use a tool like top is to find out which pro
 -  ~T~ to sort by the running time
 
 **** Example
+
 - 14:59:20 :: the current time of day.
 - up 6:30 :: uptime. It is the amount of time since the machine was last booted.
 - load average: :: refers to the number of processes that are waiting to run, that is, the number of processes that are in a runnable state and are sharing the cpu. Values less than 1.0 indicate that the machine is not busy.

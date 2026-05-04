@@ -1,4 +1,4 @@
-#+title: Summary
+# #+title: Summary
 #+date: 2025-03-28
 #+author: Richard Frangie
 #+language: en
@@ -7,10 +7,9 @@
 #+html: <span><img alt="Debian" src="https://img.shields.io/badge/Debian-A81D33?logo=debian&logoColor=white"></span>
 #+html: <span><img alt="Emacs" src="https://img.shields.io/badge/Emacs-7F5AB6?logo=gnuemacs&logoColor=white"></span>
 #+html: <span><img alt="Org-mode" src="https://img.shields.io/badge/org--mode-%23557d6f?style=flat&logo=org&logoColor=white"></span>
-#+html: <span><img alt="Zsh" src="https://img.shields.io/badge/Zsh-F15A24?logo=zsh&logoColor=white"></span>
+#+html: <span><img alt="CLI" src="https://img.shields.io/badge/CLI-white?logo=gnometerminal&logoColor=black"></span>
 #+html: <span><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black"></span>
 #+html: <span><img alt="Math" src="https://img.shields.io/badge/Math-1E90FF?logo=wolframmathematica&logoColor=white"></span>
-#+html: <span><img alt="LaTeX" src="https://img.shields.io/badge/LaTeX-008080?logo=latex&logoColor=white"></span>
 #+html: <span><img alt="Inkscape" src="https://img.shields.io/badge/inkscape-white?style=flat&logo=inkscape&logoColor=black"></span>
 
 * Overview
